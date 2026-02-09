@@ -6,6 +6,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 OpenEvolve is an open-source implementation of Google DeepMind's AlphaEvolve system - an evolutionary coding agent that uses LLMs to optimize code through iterative evolution. The framework can evolve code in multiple languages (Python, R, Rust, etc.) for tasks like scientific computing, optimization, and algorithm discovery.
 
+### Documentation
+
+- **GPU Kernel Use Case Guide** (`GPU_KERNEL_USECASE_EXPLAINED.md`): Comprehensive explanation of the Metal kernel optimization example, including how programs are loaded, integrated with larger systems, and evolved. Simple language with code references and diagrams.
+
+- **Toy Go System Demo** (`examples/toygosys/`): Simple working example showing OpenEvolve with a Go system. Demonstrates cross-language integration, build/run pipeline, and score-based evolution. Includes README and ARCHITECTURE documentation.
+
 ## Essential Commands
 
 ### Development Setup
