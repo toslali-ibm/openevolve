@@ -666,9 +666,318 @@ T=2:   Must wait for entire batch to complete before processing
 
 ---
 
+## Experiment 4: Autoscaling Evolution
+
+### Problem Context
+
+Modern LLM serving platforms consist of multiple model replicas distributed across GPU accelerators, handling variable request loads with strict SLOs (TTFT, ITL). The autoscaling system must dynamically adjust replica counts to maintain SLOs while optimizing resource utilization.
+
+**Challenges**:
+- Non-stationary workloads (time-varying arrival rates)
+- Cold start latency when scaling up
+- Resource costs (each replica = 1 GPU)
+- Oscillation/thrashing (rapid scale up/down)
+
+### Current Approaches & Limitations
+
+**Baseline 1: Reactive Threshold-Based**
+```go
+if avgLatency > sloThreshold * 1.2 {
+    scaleUp()
+} else if avgLatency < sloThreshold * 0.8 {
+    scaleDown()
+}
+```
+❌ Reacts too late, causes SLO violations during bursts
+
+**Baseline 2: Queueing Model + MILP Optimization**
+```
+1. Model system as M/M/1 queue
+2. Predict required replicas using Little's Law
+3. Optimize replica count with MILP solver
+```
+❌ Modeling errors under non-stationary workloads
+❌ Simplistic assumptions (uncorrelated input/output lengths)
+❌ Parameter drift over time
+
+### Current State
+
+```go
+// autoscaler.go - Current model-based approach
+type Autoscaler struct {
+    queueingModel *MMOneModel
+    optimizer     *MILPSolver
+}
+
+func (as *Autoscaler) DecideScaling(metrics Metrics) int {
+    // 1. Predict arrivals using queueing model
+    predictedLoad := as.queueingModel.Predict(metrics.ArrivalRate)
+
+    // 2. Calculate required replicas
+    requiredReplicas := as.optimizer.Solve(predictedLoad, metrics.SLO)
+
+    // 3. Return scaling decision
+    return requiredReplicas - metrics.CurrentReplicas
+}
+```
+
+### Goal State
+
+```go
+// autoscaler.go - Evolved data-driven approach
+type Autoscaler struct {
+    metricsHistory []Metrics  // Recent history
+}
+
+func (as *Autoscaler) DecideScaling(currentMetrics Metrics, history []Metrics) int {
+    // EVOLVE-BLOCK-START
+    // Evolved autoscaling policy
+
+    // Available signals:
+    // - currentMetrics.P50_TTFT, P99_TTFT, P50_ITL, P99_ITL
+    // - currentMetrics.Throughput, QueueDepth
+    // - currentMetrics.CurrentReplicas
+    // - currentMetrics.ReplicaUtilization (per-replica GPU util)
+    // - history (last 10 decision intervals)
+    //   - history[i].ArrivalRate, Latency, QueueDepth
+
+    // Baseline: Simple reactive
+    if currentMetrics.P99_TTFT > SLO_TTFT * 1.2 {
+        return +1  // Scale up
+    } else if currentMetrics.P99_TTFT < SLO_TTFT * 0.7 {
+        return -1  // Scale down
+    }
+    return 0  // No change
+
+    // Could evolve to:
+    // - Predictive scaling based on arrival rate trends
+    // - Workload-aware scaling (long prompts need more replicas)
+    // - Hysteresis to prevent thrashing
+    // - Burst detection and preemptive scaling
+    // - Cost-aware scaling with SLO budgets
+    // - Multi-step scaling (scale by +2, +3 during extreme load)
+    // EVOLVE-BLOCK-END
+}
+```
+
+### Experiment Design
+
+**Objective**: Evolve autoscaling policy that minimizes cost while maintaining SLOs
+
+**Decision Surface**:
+- **Frequency**: Every 30-60 seconds (scaling decision interval)
+- **Inputs**: Current metrics + recent history (last 5-10 intervals)
+- **Output**: Scaling adjustment ∈ {-3, -2, -1, 0, +1, +2, +3}
+
+**Input Variables**:
+```go
+type Metrics struct {
+    // Latency metrics
+    P50_TTFT float64  // Median time-to-first-token
+    P99_TTFT float64  // 99th percentile TTFT
+    P50_ITL  float64  // Median inter-token latency
+    P99_ITL  float64  // 99th percentile ITL
+
+    // Load metrics
+    ArrivalRate      float64  // Requests per second
+    Throughput       float64  // Completed requests per second
+    QueueDepth       int      // Current queue size
+
+    // Capacity metrics
+    CurrentReplicas       int       // Current replica count
+    ReplicaUtilization    []float64 // Per-replica GPU utilization
+    AvgReplicaUtilization float64   // Average across replicas
+}
+
+type HistoricalMetrics struct {
+    Last5Min  []Metrics  // Last 10 intervals (30s each)
+    Last30Min []Metrics  // Last 60 intervals (aggregated)
+}
+```
+
+**Constraints**:
+- Max replicas: 20 (cluster capacity)
+- Min replicas: 2 (availability)
+- Max scaling step: ±3 replicas per decision
+- Cooldown: 60s after scale-up, 180s after scale-down
+
+**Metrics**:
+
+**Primary**:
+```python
+# Cost-SLO trade-off
+cost = replica_hours * gpu_cost_per_hour
+slo_violations = requests_violating_slo / total_requests
+
+score = (1 - slo_violations) / (cost + epsilon)
+# Maximize SLO attainment per dollar spent
+```
+
+**Secondary**:
+- **Scaling stability**: Number of scaling actions (fewer is better)
+- **Over-provisioning**: Average excess capacity
+- **Under-provisioning**: Time spent violating SLOs
+- **Cold start impact**: Latency during scale-up events
+
+**SLO Definitions**:
+```
+TTFT SLO: P99 < 500ms
+ITL SLO:  P99 < 50ms
+```
+
+### Workload Patterns
+
+**Training workloads** (for evolution):
+
+```
+1. Steady-state (baseline):
+   - Constant arrival rate: 10 req/s
+   - Duration: 30 minutes
+
+2. Ramp-up:
+   - Start: 5 req/s
+   - Linear increase to 30 req/s over 20 minutes
+   - Hold at 30 req/s for 10 minutes
+
+3. Burst:
+   - Background: 10 req/s
+   - Burst: 50 req/s for 2 minutes every 10 minutes
+   - Duration: 30 minutes
+
+4. Diurnal pattern:
+   - Simulate 24-hour cycle (accelerated to 30 minutes)
+   - Peak: 30 req/s (business hours)
+   - Valley: 5 req/s (off-hours)
+
+5. Flash crowd:
+   - Background: 10 req/s
+   - Sudden spike to 100 req/s for 5 minutes
+   - Return to 10 req/s
+```
+
+### Failure Modes to Avoid
+
+**1. Thrashing**:
+```
+T=0:   Scale up (+2 replicas)
+T=60:  Queue drains, scale down (-2 replicas)
+T=120: Queue builds, scale up (+2 replicas)
+T=180: Repeat...
+❌ Wasteful, adds cold start overhead
+```
+
+**2. Late Reaction**:
+```
+T=0:   Burst starts, queue builds rapidly
+T=60:  Autoscaler notices, scales up (+2)
+T=90:  Replicas ready, but 30s of SLO violations already occurred
+❌ Reactive, not proactive
+```
+
+**3. Over-Provisioning**:
+```
+Workload drops to 5 req/s (needs 2 replicas)
+Autoscaler maintains 10 replicas (fear of scale-down)
+❌ 8 idle replicas = wasted cost
+```
+
+**Evolved Solutions Should**:
+- Detect trends (ramp-up) and scale proactively
+- Use hysteresis to prevent thrashing
+- Balance SLO safety margins with cost efficiency
+
+### Trace Files
+
+```
+traces/autoscaling/
+├── steady_state.json        # Constant load, test stability
+├── ramp_up.json             # Gradual increase, test prediction
+├── burst.json               # Periodic bursts, test responsiveness
+├── diurnal.json             # Daily pattern, test long-term behavior
+├── flash_crowd.json         # Extreme spike, test robustness
+└── mixed_pattern.json       # Combination of all patterns
+```
+
+### Evaluation Metrics
+
+**Cost Efficiency**:
+```
+replica_hours = Σ(replicas_at_time_t * duration_t)
+cost = replica_hours * $2.50/GPU-hour
+```
+
+**SLO Attainment**:
+```
+slo_violations = count(P99_TTFT > 500ms OR P99_ITL > 50ms)
+slo_attainment = 1 - (slo_violations / total_intervals)
+```
+
+**Scaling Stability**:
+```
+scaling_actions = count(scaling_decision != 0)
+thrashing_index = count(scale_up followed by scale_down within 5 minutes)
+```
+
+**Overall Score**:
+```python
+score = slo_attainment / (cost * (1 + 0.1 * thrashing_index))
+# Penalize both cost and instability
+```
+
+### Comparison Baselines
+
+**Baseline 1: Reactive Threshold**
+```go
+if P99_TTFT > SLO * 1.2:
+    scaleUp()
+elif P99_TTFT < SLO * 0.7 AND cooldown_elapsed:
+    scaleDown()
+```
+
+**Baseline 2: Queueing Model + MILP**
+```python
+# Predict arrivals using exponential smoothing
+predicted_arrival = alpha * current_arrival + (1 - alpha) * history
+
+# Compute replicas using Little's Law
+required_replicas = predicted_arrival * avg_service_time / utilization_target
+
+# Solve MILP for optimal replica count under cost constraints
+```
+
+**Baseline 3: Kubernetes HPA (Horizontal Pod Autoscaler)**
+```yaml
+target_utilization: 70%
+scale_up_policy: 100% increase, max 2 pods per 60s
+scale_down_policy: 50% decrease, max 1 pod per 180s
+```
+
+### Sim-to-Real Transfer
+
+**Phase 1: BLIS Evolution**
+- Evolve policies on simulated workloads
+- Measure: cost, SLO attainment, stability
+
+**Phase 2: Shadow Deployment**
+- Deploy evolved policy in WVA alongside baseline
+- Compare decisions (no actual scaling)
+- Measure prediction accuracy
+
+**Phase 3: A/B Testing**
+- Route 10% traffic to evolved autoscaler
+- Gradually increase to 100%
+- Monitor real costs and SLOs
+
+**Phase 4: Comparison**
+- Run evolved vs baselines on production workloads
+- Measure sim-to-real transfer quality
+- Identify aspects where simulation was insufficient
+
+---
+
 ## Contract Update: BLIS Requirements
 
-### For Experiments 1-3 (Router + Admission + Priority Scheduling)
+### For Experiments 1-4 (Router + Admission + Priority + Autoscaling)
 
 #### 1. Multi-Experiment Support
 
@@ -849,6 +1158,105 @@ FAILURE_MODES: inversions=15 hol_events=42 hol_avg_delay=85ms
     {"id": "inst1", "capacity": 1000},
     {"id": "inst2", "capacity": 1000}
   ]
+}
+```
+
+#### 8. Autoscaling Module Structure
+
+```go
+// autoscaler/policy.go
+package autoscaler
+
+type Metrics struct {
+    // Latency
+    P50_TTFT float64
+    P99_TTFT float64
+    P50_ITL  float64
+    P99_ITL  float64
+
+    // Load
+    ArrivalRate      float64
+    Throughput       float64
+    QueueDepth       int
+
+    // Capacity
+    CurrentReplicas       int
+    ReplicaUtilization    []float64
+    AvgReplicaUtilization float64
+
+    // Time
+    Timestamp float64
+}
+
+type HistoricalMetrics struct {
+    Last5Min  []Metrics  // Recent history (10 intervals @ 30s)
+    Last30Min []Metrics  // Longer-term history
+}
+
+// EVOLVE-BLOCK-START
+func AutoscalingPolicy(current Metrics, history HistoricalMetrics) int {
+    // Evolved autoscaling logic
+    // Returns: scaling adjustment (-3 to +3)
+
+    if current.P99_TTFT > 500 * 1.2 {
+        return +1
+    } else if current.P99_TTFT < 500 * 0.7 {
+        return -1
+    }
+    return 0
+}
+// EVOLVE-BLOCK-END
+```
+
+#### 9. Output Format (Extended for Autoscaling)
+
+```
+STATS: throughput=150req/s p50_ttft=250ms p99_ttft=480ms p50_itl=25ms p99_itl=45ms
+CAPACITY: replicas=5 avg_utilization=0.78 replica_hours=2.5
+SCALING: decisions=12 scale_ups=5 scale_downs=3 thrashing_events=1
+COST: total_cost=$6.25 slo_violations=0.02 cost_per_request=$0.042
+```
+
+**Parsing**:
+- `p99_ttft`, `p99_itl`: Tail latencies for SLO checking
+- `replicas`: Current replica count
+- `replica_hours`: Cumulative resource usage
+- `scaling` stats: Autoscaler behavior
+- `cost`: Total cost and per-request cost
+- `slo_violations`: Fraction of time violating SLOs
+
+#### 10. Trace Format (Autoscaling)
+
+```json
+{
+  "duration_seconds": 1800,
+  "decision_interval_seconds": 30,
+  "workload_pattern": "burst",
+  "time_series": [
+    {
+      "time": 0.0,
+      "arrival_rate": 10.0,
+      "requests": [
+        {"input_len": 512, "output_len": 256},
+        ...
+      ]
+    },
+    {
+      "time": 30.0,
+      "arrival_rate": 15.0,
+      "requests": [...]
+    }
+  ],
+  "slo": {
+    "p99_ttft_ms": 500,
+    "p99_itl_ms": 50
+  },
+  "constraints": {
+    "min_replicas": 2,
+    "max_replicas": 20,
+    "max_scaling_step": 3,
+    "gpu_cost_per_hour": 2.50
+  }
 }
 ```
 
@@ -1144,7 +1552,7 @@ Before migration to LLMD:
 
 ## Future Experiments
 
-- **Experiment 4**: KV Cache Eviction Policy
-- **Experiment 5**: Scheduler Batch Size Optimization
-- **Experiment 6**: Multi-objective Optimization (latency + throughput + cost)
-- **Experiment 7**: Cross-layer Co-optimization (admission + routing + scheduling jointly)
+- **Experiment 5**: KV Cache Eviction Policy
+- **Experiment 6**: Scheduler Batch Size Optimization
+- **Experiment 7**: Multi-objective Optimization (latency + throughput + cost)
+- **Experiment 8**: Cross-layer Co-optimization (admission + routing + scheduling + autoscaling jointly)
