@@ -435,9 +435,240 @@ traces/admission/
 
 ---
 
+## Experiment 3: Joint Evolution of Priority Scheduling
+
+### Problem Context
+
+Priority scheduling in LLM-d spans multiple layers:
+- **Global layer**: Flow control across distributed components
+- **Local layer**: Instance-local scheduling and batching within vLLM backends
+
+**Current Issue**: These layers are designed independently, leading to:
+- Priority inversion (low-priority requests block high-priority)
+- Head-of-line blocking
+- Misalignment between global intent and local execution
+
+The resulting behavior emerges from **coupled, non-linear interactions** across layers.
+
+### Current State
+
+```go
+// Global flow control (simplified)
+type GlobalScheduler struct {
+    priorityQueue PriorityQueue  // Simple priority queue ❌
+}
+
+func (gs *GlobalScheduler) RouteRequest(req Request) Instance {
+    // Route based on priority, but local scheduler may reorder
+    return selectInstance(req.Priority)
+}
+
+// Local scheduler (per-instance)
+type LocalScheduler struct {
+    batchSize int  // Fixed batch size ❌
+}
+
+func (ls *LocalScheduler) ScheduleBatch() []Request {
+    // FCFS batching, ignores global priorities ❌
+    return ls.queue.GetNext(ls.batchSize)
+}
+```
+
+**Problem**: Global scheduler sends high-priority request to instance, but local FCFS scheduler may delay it behind many low-priority requests.
+
+### Goal State
+
+```go
+// Global scheduler (EVOLVED)
+type GlobalScheduler struct {
+    // Evolved priority signaling strategy
+}
+
+func (gs *GlobalScheduler) SelectInstance(req Request, instances []Instance) (Instance, PrioritySignal) {
+    // EVOLVE-BLOCK-START (Global)
+    // Evolved global priority propagation
+
+    // Available signals:
+    // - req.Priority (1-10, higher is more urgent)
+    // - req.SLO (target latency)
+    // - instances[i].Load
+    // - instances[i].QueueDepth
+    // - instances[i].QueuePriorityProfile
+
+    // Baseline: route to least loaded
+    selectedInstance := selectLeastLoaded(instances)
+    prioritySignal := req.Priority  // Pass through
+
+    // Could evolve to:
+    // - Avoid routing high-priority to instances with deep low-priority queues
+    // - Amplify priority signals under congestion
+    // - Coordinate with local scheduler expectations
+    // EVOLVE-BLOCK-END
+
+    return selectedInstance, prioritySignal
+}
+
+// Local scheduler (EVOLVED, per-instance)
+type LocalScheduler struct {
+    // Evolved batching and scheduling strategy
+}
+
+func (ls *LocalScheduler) ScheduleBatch(requests []Request) []Request {
+    // EVOLVE-BLOCK-START (Local)
+    // Evolved local scheduling and batching
+
+    // Available information:
+    // - requests[i].Priority
+    // - requests[i].GlobalSignal (from global scheduler)
+    // - requests[i].ArrivalTime
+    // - requests[i].EstimatedDuration
+    // - ls.CurrentBatch (ongoing batch)
+    // - ls.SystemLoad
+
+    // Baseline: FCFS with fixed batch size
+    batchSize := 16
+    batch := requests[:min(batchSize, len(requests))]
+
+    // Could evolve to:
+    // - Priority-aware batching (high-priority requests jump queue)
+    // - Dynamic batch sizing based on priority distribution
+    // - Preemption of low-priority batches
+    // - Head-of-line blocking mitigation
+    // EVOLVE-BLOCK-END
+
+    return batch
+}
+```
+
+### Experiment Design
+
+**Objective**: Jointly optimize global and local scheduling to maximize SLO attainment while suppressing failure modes
+
+**Decision Surfaces**:
+
+1. **Global Layer**:
+   - Instance selection considering queue priority profiles
+   - Priority signal propagation (amplification/damping)
+   - Load balancing vs priority preservation trade-offs
+
+2. **Local Layer**:
+   - Scheduling order (FCFS, priority-based, preemptive)
+   - Batch size (fixed vs dynamic)
+   - Batch composition (priority mixing strategies)
+
+**Input Variables**:
+
+*Global scheduler:*
+- `req.Priority` - Request priority [1-10]
+- `req.SLO` - Target latency (ms)
+- `instance.Load` - Current utilization
+- `instance.QueueDepth` - Number of queued requests
+- `instance.QueuePriorityProfile` - Distribution of priorities in queue
+
+*Local scheduler:*
+- `req.Priority` - Request priority
+- `req.GlobalSignal` - Signal from global scheduler
+- `req.ArrivalTime` - When request arrived
+- `req.EstimatedDuration` - Expected processing time
+- `systemLoad` - Current instance load
+
+**Metrics**:
+- **Primary**: SLO attainment rate (% requests meeting latency target)
+- **Failure modes**:
+  - Priority inversion events (low-priority completes before high-priority that arrived earlier)
+  - Head-of-line blocking severity (high-priority delay due to queue position)
+- **Secondary**: Throughput, fairness across priority classes
+
+**Scoring Function**:
+```python
+score = slo_attainment_rate * (1 - priority_inversion_rate) * (1 - hol_blocking_severity)
+
+# Penalties for failure modes
+if priority_inversion_rate > 0.05:  # >5% inversions
+    score *= 0.5
+if hol_blocking_severity > 0.1:     # >100ms avg HOL delay
+    score *= 0.5
+```
+
+### Workload Characteristics
+
+**Request Priority Distribution**:
+```
+Priority 1-3 (Low):     60% of requests, SLO = 2000ms
+Priority 4-7 (Medium):  30% of requests, SLO = 1000ms
+Priority 8-10 (High):   10% of requests, SLO = 500ms
+```
+
+**Arrival Patterns**:
+- Baseline: Poisson arrivals mixed priorities
+- Stress: Bursty high-priority arrivals during high load
+- Adversarial: Low-priority flood with occasional high-priority
+
+### Joint Evolution Strategy
+
+**Two-level co-evolution**:
+
+```
+┌─────────────────────────────────────────────────────┐
+│ JOINT EVOLUTION                                     │
+│                                                     │
+│ 1. Sample global + local policies from database    │
+│ 2. LLM generates mutation:                         │
+│    Option A: Mutate global policy only             │
+│    Option B: Mutate local policy only              │
+│    Option C: Mutate both (coordinated)             │
+│ 3. Run BLIS with joint policy                      │
+│ 4. Measure system-level outcomes                   │
+│ 5. Score based on global metrics                   │
+└─────────────────────────────────────────────────────┘
+```
+
+**Key insight**: Evaluate policies jointly, not in isolation. A "good" global policy may fail with a "bad" local policy and vice versa.
+
+### Trace Files
+
+```
+traces/priority/
+├── baseline_mixed.json         # Mixed priorities, uniform arrivals
+├── high_priority_burst.json    # Burst of high-priority during load
+├── low_priority_flood.json     # Flood of low-priority + some high
+└── priority_inversion_stress.json  # Adversarial for inversion
+```
+
+### Example Failure Modes to Detect
+
+**Priority Inversion**:
+```
+Timeline:
+T=0:   High-priority req A arrives → routed to Instance 1
+T=1:   Instance 1 has 50 low-priority requests in queue
+T=2:   Low-priority req B arrives → routed to Instance 2 (empty queue)
+T=3:   Req B completes (Instance 2)
+T=10:  Req A completes (Instance 1, waited behind 50 requests)
+       ❌ Priority inversion: Low-priority B completed before high-priority A
+```
+
+**Head-of-Line Blocking**:
+```
+Timeline:
+T=0:   Instance has batch of 16 requests processing
+T=1:   High-priority urgent request arrives
+T=2:   Must wait for entire batch to complete before processing
+       ❌ HOL blocking: High-priority delayed by batch boundary
+```
+
+**Evolved Solution Example**:
+```go
+// Global: Route high-priority to instance with fewest high-priority queued
+// Local: Preempt current batch if new high-priority arrives + batch age > threshold
+// Result: High-priority requests get fast-tracked without starving low-priority
+```
+
+---
+
 ## Contract Update: BLIS Requirements
 
-### For Experiment 1 (Router) + Experiment 2 (Admission)
+### For Experiments 1-3 (Router + Admission + Priority Scheduling)
 
 #### 1. Multi-Experiment Support
 
@@ -533,6 +764,91 @@ ADMISSION_STATS: admitted=1500 delayed=200 rejected=50
     "tenant2": {"type": "long_prompt"},
     "tenant3": {"type": "bursty"}
   }
+}
+```
+
+#### 5. Priority Scheduling Module Structure
+
+```go
+// scheduler/global.go
+package scheduler
+
+type GlobalScheduler struct {
+    instances []Instance
+}
+
+type Instance struct {
+    ID                   string
+    Load                 float64
+    QueueDepth           int
+    QueuePriorityProfile map[int]int  // priority -> count
+}
+
+type PrioritySignal struct {
+    Priority  int
+    Amplified bool
+}
+
+// EVOLVE-BLOCK-START
+func (gs *GlobalScheduler) SelectInstance(req Request, instances []Instance) (Instance, PrioritySignal) {
+    // Evolved global routing + priority propagation
+    return instances[0], PrioritySignal{Priority: req.Priority}
+}
+// EVOLVE-BLOCK-END
+
+// scheduler/local.go
+type LocalScheduler struct {
+    queue []Request
+}
+
+// EVOLVE-BLOCK-START
+func (ls *LocalScheduler) ScheduleBatch(requests []Request) []Request {
+    // Evolved local scheduling + batching
+    batchSize := 16
+    return requests[:min(batchSize, len(requests))]
+}
+// EVOLVE-BLOCK-END
+```
+
+#### 6. Output Format (Extended for Priority)
+
+```
+STATS: throughput=150req/s slo_attainment=0.92 priority_inversions=0.03 hol_blocking=0.08
+PRIORITY_STATS: p1-3_latency=1200ms p4-7_latency=650ms p8-10_latency=320ms
+FAILURE_MODES: inversions=15 hol_events=42 hol_avg_delay=85ms
+```
+
+**Parsing**:
+- `slo_attainment`: Fraction of requests meeting their SLO
+- `priority_inversions`: Rate of priority inversion events
+- `hol_blocking`: Head-of-line blocking severity (normalized)
+- Per-priority-class latencies
+- Failure mode counts and severity
+
+#### 7. Trace Format (Priority)
+
+```json
+{
+  "requests": [
+    {
+      "arrival_time": 0.0,
+      "priority": 8,
+      "slo_ms": 500,
+      "input_len": 512,
+      "output_len": 256
+    },
+    {
+      "arrival_time": 0.1,
+      "priority": 2,
+      "slo_ms": 2000,
+      "input_len": 512,
+      "output_len": 256
+    }
+  ],
+  "instances": [
+    {"id": "inst1", "capacity": 1000},
+    {"id": "inst2", "capacity": 1000}
+  ]
 }
 ```
 
@@ -828,6 +1144,7 @@ Before migration to LLMD:
 
 ## Future Experiments
 
-- **Experiment 3**: KV Cache Eviction Policy
-- **Experiment 4**: Scheduler Batch Size Optimization
-- **Experiment 5**: Multi-objective Optimization (latency + throughput + cost)
+- **Experiment 4**: KV Cache Eviction Policy
+- **Experiment 5**: Scheduler Batch Size Optimization
+- **Experiment 6**: Multi-objective Optimization (latency + throughput + cost)
+- **Experiment 7**: Cross-layer Co-optimization (admission + routing + scheduling jointly)
