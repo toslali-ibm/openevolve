@@ -299,6 +299,245 @@ Iteration 30: Complex logic with request characteristics
 
 ---
 
+## Experiment 2: Adaptive Admission Control
+
+### Problem Statement
+
+In multi-tenant LLM deployments, admission control determines how external demand translates into internal load. The system must simultaneously:
+- Maintain high utilization
+- Enforce fairness across tenants
+- Protect well-behaved traffic from pathological workloads (bursty arrivals, extremely long prompts)
+
+**Challenge**: Static admission rules or quotas are insufficient with heterogeneous tenants and dynamic traffic patterns.
+
+### Current State
+
+```go
+// admission.go - Current static approach
+type AdmissionController struct {
+    maxConcurrency int     // Fixed limit ❌
+    maxQueueSize   int     // Static queue ❌
+}
+
+func (ac *AdmissionController) ShouldAdmit(req Request, state SystemState) Decision {
+    // Simple static rules
+    if state.ActiveRequests >= ac.maxConcurrency {
+        if state.QueueSize >= ac.maxQueueSize {
+            return REJECT
+        }
+        return DELAY
+    }
+    return ADMIT
+}
+```
+
+### Goal State
+
+```go
+// admission.go - Adaptive policy (EVOLVED by OpenEvolve)
+type AdmissionController struct {
+    // System monitors
+    utilizationMonitor  Monitor
+    fairnessMonitor     Monitor
+}
+
+func (ac *AdmissionController) ShouldAdmit(req Request, state SystemState) Decision {
+    // EVOLVE-BLOCK-START
+    // Adaptive admission logic (evolved by OpenEvolve)
+
+    // Input signals available:
+    // - req.TenantID, req.InputLen, req.OutputLen
+    // - state.Utilization (0-1)
+    // - state.TenantLoad[tenantID] (per-tenant active requests)
+    // - state.QueueDepth
+    // - state.P99Latency (recent tail latency)
+
+    // Simple baseline (to be evolved)
+    if state.Utilization > 0.9 {
+        return REJECT
+    }
+    if state.QueueDepth > 100 {
+        return DELAY
+    }
+    return ADMIT
+
+    // Could evolve to:
+    // - Per-tenant quotas based on fairness
+    // - Traffic shaping for bursty tenants
+    // - Priority-based admission
+    // - Load-aware admission thresholds
+    // EVOLVE-BLOCK-END
+}
+```
+
+### Experiment Design
+
+**Objective**: Maximize system throughput while:
+- Bounding P99 latency for well-behaved tenants
+- Isolating misbehaving traffic (bursty, long prompts)
+- Enforcing fairness across tenants
+
+**Input Variables** (available to evolved code):
+- `req.TenantID` - Tenant identifier
+- `req.InputLen` - Prompt length
+- `req.OutputLen` - Expected output length
+- `state.Utilization` - Current system utilization [0-1]
+- `state.TenantLoad` - Per-tenant active request counts
+- `state.QueueDepth` - Current queue size
+- `state.P99Latency` - Recent P99 latency
+- `state.TenantBehavior` - Tenant behavior metrics (burstiness, avg length)
+
+**Output**: Decision ∈ {ADMIT, DELAY, REJECT}
+
+**Metrics**:
+- **Primary**: Throughput (requests/second)
+- **Constraint 1**: P99 latency < 500ms for well-behaved tenants
+- **Constraint 2**: Fairness score > 0.8 (Jain's fairness index)
+- **Constraint 3**: Utilization > 0.75
+
+**Scoring Function**:
+```python
+score = throughput * utilization * fairness_score
+if p99_latency > 500:  # Hard constraint
+    score *= 0.1  # Heavy penalty
+```
+
+### Workload Characteristics
+
+**Tenant Types** (for evaluation):
+
+```
+Well-behaved tenants (80%):
+  - Poisson arrivals (λ = 10 req/s)
+  - Input length: Normal(512, 128)
+  - Output length: Normal(256, 64)
+
+Bursty tenant (10%):
+  - Bursty arrivals (bursts of 50 requests every 30s)
+  - Input length: Normal(512, 128)
+  - Output length: Normal(256, 64)
+
+Long-prompt tenant (10%):
+  - Poisson arrivals (λ = 5 req/s)
+  - Input length: Normal(2048, 512)  ← Very long
+  - Output length: Normal(1024, 256)  ← Very long
+```
+
+### Trace Files
+
+```
+traces/admission/
+├── baseline.json           # All well-behaved tenants
+├── with_bursty.json        # 1 bursty tenant + 4 well-behaved
+├── with_long_prompts.json  # 1 long-prompt + 4 well-behaved
+└── mixed_pathological.json # Both bursty + long-prompt
+```
+
+---
+
+## Contract Update: BLIS Requirements
+
+### For Experiment 1 (Router) + Experiment 2 (Admission)
+
+#### 1. Multi-Experiment Support
+
+BLIS must support specifying which module to evolve:
+
+```bash
+# Experiment 1: Router
+./blis --trace traces/workload.json --config config.yaml
+
+# Experiment 2: Admission Control
+./blis --trace traces/admission/mixed.json --config config_admission.yaml
+```
+
+#### 2. Admission Control Module Structure
+
+```go
+// admission/policy.go
+package admission
+
+type SystemState struct {
+    Utilization    float64              // Current system utilization [0-1]
+    TenantLoad     map[string]int       // Active requests per tenant
+    QueueDepth     int                  // Current queue size
+    P99Latency     float64              // Recent P99 latency (ms)
+    TenantBehavior map[string]Behavior  // Per-tenant behavior metrics
+}
+
+type Behavior struct {
+    Burstiness     float64  // Coefficient of variation
+    AvgInputLen    float64  // Average input length
+    AvgOutputLen   float64  // Average output length
+}
+
+type Request struct {
+    TenantID  string
+    InputLen  int
+    OutputLen int
+}
+
+type Decision int
+const (
+    ADMIT Decision = iota
+    DELAY
+    REJECT
+)
+
+// EVOLVE-BLOCK-START and EVOLVE-BLOCK-END markers
+func AdmissionPolicy(req Request, state SystemState) Decision {
+    // EVOLVE-BLOCK-START
+    if state.Utilization > 0.9 {
+        return REJECT
+    }
+    return ADMIT
+    // EVOLVE-BLOCK-END
+}
+```
+
+#### 3. Output Format (Extended)
+
+```
+STATS: throughput=150req/s utilization=0.82 p99_latency=385ms fairness=0.85
+TENANT_STATS: tenant1_p99=350ms tenant2_p99=380ms tenant3_p99=420ms
+ADMISSION_STATS: admitted=1500 delayed=200 rejected=50
+```
+
+**Parsing**:
+- `throughput`: Overall system throughput
+- `utilization`: System utilization
+- `p99_latency`: P99 latency across all admitted requests
+- `fairness`: Jain's fairness index across tenants
+- Per-tenant P99 latencies for constraint checking
+
+#### 4. Trace Format (Admission)
+
+```json
+{
+  "requests": [
+    {
+      "arrival_time": 0.0,
+      "tenant_id": "tenant1",
+      "input_len": 512,
+      "output_len": 256
+    },
+    {
+      "arrival_time": 0.1,
+      "tenant_id": "tenant2",
+      "input_len": 2048,
+      "output_len": 1024
+    }
+  ],
+  "tenant_profiles": {
+    "tenant1": {"type": "well_behaved"},
+    "tenant2": {"type": "long_prompt"},
+    "tenant3": {"type": "bursty"}
+  }
+}
+```
+
+---
+
 ## Validation & Migration Pipeline
 
 ### Phase 1: Evolution (Training Phase)
@@ -589,7 +828,6 @@ Before migration to LLMD:
 
 ## Future Experiments
 
-- **Experiment 2**: KV Cache Eviction Policy
-- **Experiment 3**: Admission Control Thresholds
+- **Experiment 3**: KV Cache Eviction Policy
 - **Experiment 4**: Scheduler Batch Size Optimization
-- **Experiment 5**: Multi-objective (latency + throughput)
+- **Experiment 5**: Multi-objective Optimization (latency + throughput + cost)
