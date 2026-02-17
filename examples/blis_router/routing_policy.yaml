@@ -1,0 +1,12 @@
+admission:
+  policy: always-admit
+
+routing:
+  policy: weighted
+  cache_weight: 0.6
+  load_weight: 0.4
+
+priority:
+  policy: constant
+
+scheduler: fcfs

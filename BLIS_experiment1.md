@@ -9,7 +9,7 @@ This document provides a concise guide for running BLIS and evolving its routing
 ### Quick Start
 
 ```bash
-cd inference-sim
+cd examples/blis_router/inference-sim
 
 # Build BLIS
 go build -o simulation_worker main.go
@@ -35,14 +35,26 @@ go build -o simulation_worker main.go
 
 ### Example: Multi-Instance with Weighted Routing
 
+**Create routing policy config** (`routing_policy.yaml`):
+```yaml
+admission:
+  policy: always-admit
+routing:
+  policy: weighted
+  cache_weight: 0.6
+  load_weight: 0.4
+priority:
+  policy: constant
+scheduler: fcfs
+```
+
+**Run with policy config:**
 ```bash
 ./simulation_worker run \
   --model meta-llama/llama-3.1-8b-instruct \
   --hardware H100 --tp 1 \
   --num-instances 4 \
-  --routing-policy weighted \
-  --routing-cache-weight 0.6 \
-  --routing-load-weight 0.4 \
+  --policy-config routing_policy.yaml \
   --max-prompts 500 --rate 20
 ```
 
@@ -175,7 +187,9 @@ score := cacheScore + loadScore
 examples/blis_router/
 ├── initial_program.py    # Full routing.go with EVOLVE-BLOCK markers
 ├── evaluator.py          # Builds BLIS, runs workloads, scores results
-└── config.yaml           # OpenEvolve settings (50 iterations)
+├── config.yaml           # OpenEvolve settings (50 iterations)
+├── routing_policy.yaml   # BLIS routing policy configuration
+└── inference-sim/        # BLIS simulator (git submodule)
 ```
 
 That's it! Only 3 files needed.
@@ -187,7 +201,7 @@ That's it! Only 3 files needed.
    ↓
 2. Evaluator writes evolved routing.go to inference-sim/sim/
    ↓
-3. Build: cd inference-sim && go build -o simulation_worker
+3. Build: cd examples/blis_router/inference-sim && go build -o simulation_worker
    ↓
 4. Run 3 workloads:
    - Light:  --rate 10 --max-prompts 100
@@ -216,12 +230,12 @@ def evaluate(program_text: str) -> dict:
 
     # 1. Write evolved routing.go to BLIS
     write_file(
-        "../../inference-sim/sim/routing.go",
+        "inference-sim/sim/routing.go",
         program_text  # Already the full file!
     )
 
     # 2. Build BLIS
-    run("cd ../../inference-sim && go build -o simulation_worker")
+    run("cd inference-sim && go build -o simulation_worker")
 
     # 3. Run on 3 workloads
     workloads = [
@@ -233,10 +247,11 @@ def evaluate(program_text: str) -> dict:
     latencies = []
     for name, flags in workloads:
         output = run(
-            f"cd ../../inference-sim && "
+            f"cd inference-sim && "
             f"./simulation_worker run "
             f"--model meta-llama/llama-3.1-8b-instruct "
             f"--hardware H100 --tp 1 --num-instances 4 "
+            f"--policy-config ../routing_policy.yaml "
             f"{flags}"
         )
 
@@ -369,15 +384,16 @@ mkdir blis_router
 cd blis_router
 ```
 
-Create 3 files:
+Create 4 files:
 - [ ] `initial_program.py` - Copy routing.go with EVOLVE-BLOCK markers
 - [ ] `evaluator.py` - Build, run, parse metrics
 - [ ] `config.yaml` - OpenEvolve settings
+- [ ] `routing_policy.yaml` - BLIS routing policy config
 
 ### Step 2: Test BLIS Works
 
 ```bash
-cd ../../inference-sim
+cd inference-sim
 go build -o simulation_worker
 ./simulation_worker run --model meta-llama/llama-3.1-8b-instruct --hardware H100 --tp 1 --num-instances 4 --max-prompts 100
 ```
@@ -409,7 +425,7 @@ python openevolve-run.py \
 cat examples/blis_router/openevolve_output/best_program.py
 
 # Compare with baseline
-cd inference-sim
+cd examples/blis_router/inference-sim
 # Copy baseline routing.go back, run test
 # Copy evolved routing.go, run test
 # Compare metrics
@@ -423,10 +439,10 @@ cd inference-sim
 
 | Component | File | Purpose |
 |-----------|------|---------|
-| Router Logic | `inference-sim/sim/routing.go:85-140` | WeightedScoring algorithm |
-| Router State | `inference-sim/sim/router_state.go` | System state snapshot |
-| CLI Entry | `inference-sim/cmd/root.go` | Command-line interface |
-| Build | `inference-sim/main.go` | Compile entry point |
+| Router Logic | `examples/blis_router/inference-sim/sim/routing.go:85-140` | WeightedScoring algorithm |
+| Router State | `examples/blis_router/inference-sim/sim/router_state.go` | System state snapshot |
+| CLI Entry | `examples/blis_router/inference-sim/cmd/root.go` | Command-line interface |
+| Build | `examples/blis_router/inference-sim/main.go` | Compile entry point |
 | Output Parser | Evaluator parses `STATS:` line | Metrics extraction |
 
 ---
@@ -438,6 +454,7 @@ All files are ready in `examples/blis_router/`:
 ✓ **initial_program.py** - Full routing.go with rich EVOLVE-BLOCK comments
 ✓ **evaluator.py** - Builds BLIS, runs 3 workloads, computes score
 ✓ **config.yaml** - OpenEvolve settings (50 iterations, gemini model)
+✓ **routing_policy.yaml** - BLIS routing policy (weighted, cache=0.6, load=0.4)
 ✓ **README.md** - Detailed usage instructions
 
 ### Run It Now

@@ -51,9 +51,9 @@ def evaluate(program_path: str) -> EvaluationResult:
 
     # Get paths
     script_dir = Path(__file__).parent
-    openevolve_root = script_dir.parent.parent
-    inference_sim_dir = openevolve_root / "inference-sim"
+    inference_sim_dir = script_dir / "inference-sim"
     routing_go_path = inference_sim_dir / "sim" / "routing.go"
+    policy_config_path = script_dir / "routing_policy.yaml"
 
     # Step 1: Extract Go code from Python wrapper
     print(f"Program text preview: {program_text[:100]}...")
@@ -182,9 +182,7 @@ def evaluate(program_path: str) -> EvaluationResult:
                 "--hardware", "H100",
                 "--tp", "1",
                 "--num-instances", "4",
-                "--routing-policy", "weighted",
-                # "--routing-cache-weight", "0.6",
-                # "--routing-load-weight", "0.4"
+                "--policy-config", str(policy_config_path)
             ] + workload_flags.split()
 
             result = subprocess.run(
