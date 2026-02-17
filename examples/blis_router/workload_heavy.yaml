@@ -2,7 +2,7 @@ version: "1"
 seed: 42
 category: language
 aggregate_rate: 50.0  # 50 req/s
-horizon: 10000000  # 10 seconds (in microseconds) = ~500 requests
+horizon: 100000000  # 10 seconds (in microseconds) = ~500 requests
 
 clients:
   - id: "heavy-batch"

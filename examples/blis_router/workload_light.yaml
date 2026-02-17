@@ -2,7 +2,7 @@ version: "1"
 seed: 42
 category: language
 aggregate_rate: 10.0  # 10 req/s
-horizon: 10000000  # 10 seconds (in microseconds) = ~100 requests
+horizon: 100000000  # 10 seconds (in microseconds) = ~100 requests
 
 clients:
   - id: "light-traffic"
