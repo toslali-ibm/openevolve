@@ -215,8 +215,21 @@ def evaluate(program_path: str) -> EvaluationResult:
             # We want the CLUSTER aggregate, so we take the LAST match
             matches = re.findall(r'"e2e_mean_ms":\s*([\d.]+)', result.stdout)
             if matches:
-                # Take the last match, which is the cluster-wide aggregate
-                e2e_ms = float(matches[-1])
+                # Validate: expect num_instances + 1 matches (per-instance + cluster)
+                num_instances = 4  # From --num-instances flag
+                expected_matches = num_instances + 1
+
+                if len(matches) == expected_matches:
+                    # Normal case: last match is cluster-wide
+                    e2e_ms = float(matches[-1])
+                elif len(matches) == 1:
+                    # Single instance or only cluster metric reported
+                    e2e_ms = float(matches[0])
+                else:
+                    # Unexpected number of matches - warn but use last
+                    print(f"⚠ Warning: Expected {expected_matches} e2e_mean_ms values, got {len(matches)}")
+                    e2e_ms = float(matches[-1])
+
                 latencies.append(e2e_ms)
                 workload_results[workload_name] = {"e2e_ms": e2e_ms}
                 print(f"✓ {workload_name}: e2e_mean_ms={e2e_ms:.2f}ms (cluster-wide)")

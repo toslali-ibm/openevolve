@@ -3,8 +3,8 @@ admission:
 
 routing:
   policy: weighted
-  cache_weight: 0
-  load_weight: 0.9
+  cache_weight: 0.6
+  load_weight: 0.4
 
 priority:
   policy: constant

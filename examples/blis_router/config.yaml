@@ -301,9 +301,9 @@ prompt:
     **Scoring Formula:**
     ```
     avg_latency = mean([light_e2e, heavy_e2e, mixed_e2e])
-    score = 1.0 / avg_latency
+    score = -avg_latency
 
-    Lower latency = Higher score = Better!
+    Lower latency = Higher score (less negative) = Better!
     ```
 
     # IMPORTANT NOTES:
