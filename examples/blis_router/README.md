@@ -22,9 +22,10 @@ pwd  # Should show .../openevolve
 ```
 
 ### Step 1: Build BLIS
+Assuming you are at the openevolve/ main dir and cloned the recent inference-sim
 
 ```bash
-cd inference-sim
+cd inference-sim 
 go build -o simulation_worker main.go
 cd ..
 ```
