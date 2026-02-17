@@ -183,8 +183,8 @@ def evaluate(program_path: str) -> EvaluationResult:
                 "--tp", "1",
                 "--num-instances", "4",
                 "--routing-policy", "weighted",
-                "--routing-cache-weight", "0.6",
-                "--routing-load-weight", "0.4"
+                # "--routing-cache-weight", "0.6",
+                # "--routing-load-weight", "0.4"
             ] + workload_flags.split()
 
             result = subprocess.run(
@@ -207,13 +207,17 @@ def evaluate(program_path: str) -> EvaluationResult:
                 continue
 
             # Parse e2e_mean_ms from JSON output
-            # BLIS outputs: "e2e_mean_ms": 4961.56564,
-            match = re.search(r'"e2e_mean_ms":\s*([\d.]+)', result.stdout)
-            if match:
-                e2e_ms = float(match.group(1))
+            # BLIS outputs multiple "e2e_mean_ms" values:
+            # - Per-instance metrics (one per instance, e.g., 4 instances)
+            # - Cluster-wide aggregate (last occurrence)
+            # We want the CLUSTER aggregate, so we take the LAST match
+            matches = re.findall(r'"e2e_mean_ms":\s*([\d.]+)', result.stdout)
+            if matches:
+                # Take the last match, which is the cluster-wide aggregate
+                e2e_ms = float(matches[-1])
                 latencies.append(e2e_ms)
                 workload_results[workload_name] = {"e2e_ms": e2e_ms}
-                print(f"✓ {workload_name}: e2e_mean_ms={e2e_ms:.2f}ms")
+                print(f"✓ {workload_name}: e2e_mean_ms={e2e_ms:.2f}ms (cluster-wide)")
             else:
                 print(f"✗ Could not parse e2e_mean_ms from {workload_name} output")
                 print("Output:", result.stdout[:500])
