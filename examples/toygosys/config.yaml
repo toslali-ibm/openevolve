@@ -1,0 +1,66 @@
+max_iterations: 10
+checkpoint_interval: 5
+log_level: "INFO"
+
+# LLM configuration
+llm:
+  primary_model: GCP/gemini-2.5-flash
+  primary_model_weight: 1.0
+  api_base: https://ete-litellm.ai-models.vpc-int.res.ibm.com
+  temperature: 1
+  max_tokens: 16000
+  timeout: 120  
+
+# Prompt configuration
+prompt:
+  system_message: |
+    You are an expert Go programmer optimizing a strategy function.
+
+    GOAL: Find the best numbers to maximize the score.
+    The scoring function rewards guesses close to targets: [25, 50, 75]
+    Each guess gets: 100 - distance_from_target points
+
+    CURRENT CODE:
+    ```go
+    func GetStrategy() []int {
+        // EVOLVE-BLOCK-START
+        guesses := []int{10, 20, 30}  // Current strategy
+        // EVOLVE-BLOCK-END
+        return guesses
+    }
+    ```
+
+    OPTIMIZATION STRATEGIES:
+    1. Analyze the scoring function (targets are [25, 50, 75])
+    2. Try values closer to the targets
+    3. Experiment with different number combinations
+    4. Consider edge cases
+
+    CONSTRAINTS:
+    - Must return exactly 3 integers in a slice
+    - Keep the code simple and valid Go syntax
+    - Only modify code between EVOLVE-BLOCK-START and EVOLVE-BLOCK-END
+    - Must keep the return statement
+
+    Generate improved Go code that returns better guesses!
+
+  num_top_programs: 2
+  num_diverse_programs: 1
+
+# Database configuration
+database:
+  population_size: 10
+  num_islands: 2
+  elite_selection_ratio: 0.3
+  exploitation_ratio: 0.7
+  exploration_ratio: 0.3
+
+# Evaluator configuration
+evaluator:
+  timeout: 30
+  parallel_evaluations: 1
+
+# Evolution settings
+diff_based_evolution: true
+allow_full_rewrites: false
+max_code_length: 1000
