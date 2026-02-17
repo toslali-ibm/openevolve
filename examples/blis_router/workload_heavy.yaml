@@ -1,0 +1,26 @@
+version: "1"
+seed: 42
+category: language
+aggregate_rate: 50.0  # 50 req/s
+horizon: 10000000  # 10 seconds (in microseconds) = ~500 requests
+
+clients:
+  - id: "heavy-batch"
+    slo_class: "batch"
+    rate_fraction: 1.0
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 3.5  # Bursty
+    input_distribution:
+      type: pareto_lognormal
+      params:
+        alpha: 1.5
+        xm: 50
+        mu: 5.5
+        sigma: 1.2
+        mix_weight: 0.3
+    output_distribution:
+      type: exponential
+      params:
+        mean: 250

@@ -161,20 +161,23 @@ def evaluate(program_path: str) -> EvaluationResult:
             }
         )
 
-    # Step 4: Run simulations on 3 workloads
+    # Step 4: Run simulations on 3 realistic servegen workloads
     workloads = [
-        ("light", "--rate 10 --max-prompts 100"),
-        ("heavy", "--rate 50 --max-prompts 500"),
-        ("mixed", "--rate 20 --max-prompts 300")
+        ("light", "workload_light.yaml"),
+        ("heavy", "workload_heavy.yaml"),
+        ("mixed", "workload_mixed.yaml")
     ]
 
     latencies = []
     workload_results = {}
     failed_workloads = []
 
-    for workload_name, workload_flags in workloads:
+    for workload_name, workload_file in workloads:
         try:
             print(f"Running {workload_name} workload...")
+
+            # Workload file path (relative to script directory)
+            workload_path = script_dir / workload_file
 
             cmd = [
                 "./simulation_worker", "run",
@@ -182,8 +185,9 @@ def evaluate(program_path: str) -> EvaluationResult:
                 "--hardware", "H100",
                 "--tp", "1",
                 "--num-instances", "4",
-                "--policy-config", str(policy_config_path)
-            ] + workload_flags.split()
+                "--policy-config", str(policy_config_path),
+                "--workload-spec", str(workload_path)
+            ]
 
             result = subprocess.run(
                 cmd,

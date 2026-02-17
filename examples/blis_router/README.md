@@ -22,12 +22,11 @@ pwd  # Should show .../openevolve
 ```
 
 ### Step 1: Build BLIS
-Assuming you are at the openevolve/ main dir and cloned the recent inference-sim
 
 ```bash
-cd inference-sim 
+cd inference-sim
 go build -o simulation_worker main.go
-cd ..
+cd ../../..  # Back to openevolve root
 ```
 
 ### Step 2: Test Evaluator
@@ -62,6 +61,36 @@ python openevolve-run.py \
 ```
 
 **Duration:** 1-2 hours
+
+---
+
+## Routing Policy Configuration
+
+BLIS routing is configured via `routing_policy.yaml`:
+
+```yaml
+admission:
+  policy: always-admit
+
+routing:
+  policy: weighted
+  cache_weight: 0.6  # Prioritize cache affinity
+  load_weight: 0.4   # Prioritize load balancing
+
+priority:
+  policy: constant
+
+scheduler: fcfs
+```
+
+**Usage:**
+```bash
+./simulation_worker run \
+  --model meta-llama/llama-3.1-8b-instruct \
+  --hardware H100 --tp 1 --num-instances 4 \
+  --policy-config routing_policy.yaml \
+  --max-prompts 100
+```
 
 ---
 
@@ -224,21 +253,20 @@ import sys
 sys.path.insert(0, 'openevolve_output')
 from best_program import GO_ROUTING_CODE
 
-with open('../../inference-sim/sim/routing.go', 'w') as f:
+with open('inference-sim/sim/routing.go', 'w') as f:
     f.write(GO_ROUTING_CODE)
 print('✓ Wrote best routing.go to BLIS')
 "
 
 # Rebuild BLIS
-cd ../../inference-sim
+cd inference-sim
 go build -o simulation_worker main.go
 
-# Test it
+# Test it with routing policy
 ./simulation_worker run \
   --model meta-llama/llama-3.1-8b-instruct \
   --hardware H100 --tp 1 --num-instances 4 \
-  --routing-policy weighted \
-  --routing-cache-weight 0.6 --routing-load-weight 0.4 \
+  --policy-config ../routing_policy.yaml \
   --max-prompts 500 --rate 20
 ```
 
@@ -296,7 +324,7 @@ temperature: 0.9  # Higher = more diverse mutations
 
 ```bash
 # Test BLIS build manually
-cd inference-sim
+cd examples/blis_router/inference-sim
 go build -o simulation_worker main.go
 
 # Should complete with no errors
@@ -307,10 +335,11 @@ go build -o simulation_worker main.go
 
 ```bash
 # Test BLIS simulation manually
-cd inference-sim
+cd examples/blis_router/inference-sim
 ./simulation_worker run \
   --model meta-llama/llama-3.1-8b-instruct \
   --hardware H100 --tp 1 --num-instances 4 \
+  --policy-config ../routing_policy.yaml \
   --max-prompts 10
 
 # Should output JSON metrics
@@ -356,6 +385,8 @@ llm:
 | `initial_program.py` | Full routing.go with EVOLVE-BLOCK markers and guidance comments |
 | `evaluator.py` | Builds BLIS, runs 3 workloads, computes score |
 | `config.yaml` | OpenEvolve settings (models, iterations, parameters) |
+| `routing_policy.yaml` | BLIS routing policy configuration (cache/load weights) |
+| `inference-sim/` | BLIS simulator (git submodule) |
 | `README.md` | This file |
 
 ---

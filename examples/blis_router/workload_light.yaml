@@ -1,0 +1,26 @@
+version: "1"
+seed: 42
+category: language
+aggregate_rate: 10.0  # 10 req/s
+horizon: 10000000  # 10 seconds (in microseconds) = ~100 requests
+
+clients:
+  - id: "light-traffic"
+    slo_class: "interactive"
+    rate_fraction: 1.0
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 2.0  # Slightly bursty
+    input_distribution:
+      type: pareto_lognormal
+      params:
+        alpha: 1.5
+        xm: 50
+        mu: 5.5
+        sigma: 1.2
+        mix_weight: 0.3
+    output_distribution:
+      type: exponential
+      params:
+        mean: 200

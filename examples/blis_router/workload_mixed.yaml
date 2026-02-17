@@ -1,0 +1,44 @@
+version: "1"
+seed: 42
+category: language
+aggregate_rate: 20.0  # 20 req/s total
+horizon: 15000000  # 15 seconds (in microseconds) = ~300 requests
+
+clients:
+  - id: "batch-traffic"
+    slo_class: "batch"
+    rate_fraction: 0.7  # 70% batch
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 3.5  # Bursty
+    input_distribution:
+      type: pareto_lognormal
+      params:
+        alpha: 1.5
+        xm: 50
+        mu: 5.5
+        sigma: 1.2
+        mix_weight: 0.3
+    output_distribution:
+      type: exponential
+      params:
+        mean: 300
+
+  - id: "realtime-traffic"
+    slo_class: "realtime"
+    rate_fraction: 0.3  # 30% realtime
+    streaming: true
+    arrival:
+      process: poisson  # Less bursty
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 128
+        std_dev: 50
+        min: 10
+        max: 512
+    output_distribution:
+      type: exponential
+      params:
+        mean: 100
