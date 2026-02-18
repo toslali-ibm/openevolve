@@ -16,7 +16,6 @@ from openevolve.utils.code_utils import (
     format_diff_summary,
     parse_full_rewrite,
 )
-from openevolve.utils.diff_utils import print_compact_diff
 
 
 @dataclass
@@ -154,14 +153,6 @@ async def run_iteration_with_shared_db(
         result.artifacts = artifacts
         result.iteration_time = time.time() - iteration_start
         result.iteration = iteration
-
-        # Print compact diff if enabled
-        show_diffs = os.environ.get("OPENEVOLVE_SHOW_DIFFS", "false").lower() == "true"
-        if show_diffs:
-            try:
-                print_compact_diff(parent.code, child_code)
-            except Exception as e:
-                logger.debug(f"Could not print diff: {e}")
 
         return result
 
