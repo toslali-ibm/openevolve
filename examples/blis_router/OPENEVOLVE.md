@@ -437,6 +437,79 @@ if not validate_syntax(mutated_code):
 
 #### Step 4: Evaluation
 
+**How Programs Flow: Initial → Mutated**
+
+This is a key question: How does the evaluator receive evolved programs in each iteration?
+
+**Iteration 0 (Initial)**:
+```python
+# Controller loads the initial program file
+initial_code = load_file("initial_program.py")
+
+# Core evaluator receives code as string
+await evaluator.evaluate_program(
+    program_code=initial_code,  # String content
+    program_id="initial"
+)
+```
+
+**Iteration 1+ (Evolved)**:
+```python
+# LLM generates mutated code (IN MEMORY, not saved to disk)
+mutated_code = llm_response  # String from LLM
+
+# Core evaluator receives mutated code as string
+await evaluator.evaluate_program(
+    program_code=mutated_code,  # Mutated string (not initial_program.py!)
+    program_id=child_id
+)
+
+# Core evaluator creates TEMPORARY file:
+with tempfile.NamedTemporaryFile(suffix=".py", delete=False) as temp:
+    temp.write(mutated_code.encode("utf-8"))
+    temp_path = temp.name  # e.g., /tmp/tmpXYZ123.py
+
+# Custom evaluator receives temp file path
+custom_evaluate(temp_path)  # Your evaluator.py function
+
+# Custom evaluator processes:
+# 1. Read temp file
+# 2. Extract Go code
+# 3. Write to routing.go
+# 4. Build and run
+# 5. Return score
+```
+
+**Key Points**:
+- ✅ **Initial iteration**: Reads `initial_program.py` from disk
+- ✅ **Subsequent iterations**: LLM mutations are **in-memory strings**, not files
+- ✅ **Core evaluator**: Creates temporary files automatically
+- ✅ **Custom evaluator**: Always receives a file path (either initial or temp file)
+- ✅ **Temp files**: Automatically cleaned up after evaluation
+
+**The Flow**:
+```
+┌────────────────────────────────────────────────────────────────┐
+│ Iteration 0 (Initial)                                          │
+├────────────────────────────────────────────────────────────────┤
+│ initial_program.py → Core Evaluator → Temp File → Custom Eval │
+└────────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────────┐
+│ Iteration 1+ (Evolved)                                         │
+├────────────────────────────────────────────────────────────────┤
+│ LLM Mutation (string) → Core Evaluator → Temp File → Custom   │
+│                                                          Eval   │
+└────────────────────────────────────────────────────────────────┘
+```
+
+**Why This Design?**
+
+1. **Clean separation**: LLM generates code in memory (fast, no disk I/O)
+2. **Compatibility**: Custom evaluators expect file paths (legacy support)
+3. **Isolation**: Each evaluation uses its own temp file (no race conditions)
+4. **Cleanup**: Temp files deleted automatically (no disk clutter)
+
 ```python
 # Evaluate mutated program
 score, metrics = evaluate_program(
