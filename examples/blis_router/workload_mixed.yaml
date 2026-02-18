@@ -1,44 +1,61 @@
-version: "1"
-seed: 42
-category: language
-aggregate_rate: 20.0  # 20 req/s total
-horizon: 150000000  # 15 seconds (in microseconds) = ~300 requests
+# =============================================================================
+# Mixed Workload (Batch + Realtime)
+# =============================================================================
+# This workload simulates a realistic multi-tenant scenario with:
+# - Two distinct client types sharing the system
+# - Batch traffic (70%): bursty, long outputs, tolerates latency
+# - Realtime traffic (30%): steady arrivals, streaming, latency-sensitive
+# - Tests scheduler's ability to balance throughput vs latency requirements
+# Total: ~2400 requests over 2 minutes (1680 batch + 720 realtime)
+# =============================================================================
+
+version: "1"                    # Config format version
+seed: 42                        # Random seed for reproducibility
+category: language              # Workload category (language model inference)
+aggregate_rate: 20.0            # Total request rate: 20 requests per second
+horizon: 120000000              # Simulation duration: 2 minutes (in microseconds)
 
 clients:
-  - id: "batch-traffic"
-    slo_class: "batch"
-    rate_fraction: 0.7  # 70% batch
-    streaming: false
+  # -------------------------------------------------------------------------
+  # Batch Client: High-throughput, latency-tolerant workload (70% of traffic)
+  # -------------------------------------------------------------------------
+  - id: "batch-traffic"         # Unique client identifier
+    slo_class: "batch"          # SLO class: batch (tolerates higher latency)
+    rate_fraction: 0.7          # 70% of aggregate rate = 14 req/s
+    streaming: false            # Non-streaming: wait for full response
     arrival:
-      process: gamma
-      cv: 3.5  # Bursty
-    input_distribution:
-      type: pareto_lognormal
+      process: gamma            # Gamma arrival process
+      cv: 3.5                   # Very bursty: requests come in bursts
+    input_distribution:         # Distribution for input token counts
+      type: pareto_lognormal    # Heavy-tailed distribution
       params:
-        alpha: 1.5
-        xm: 50
-        mu: 5.5
-        sigma: 1.2
-        mix_weight: 0.3
-    output_distribution:
-      type: exponential
+        alpha: 1.5              # Pareto shape parameter
+        xm: 50                  # Pareto minimum value
+        mu: 5.5                 # Lognormal mean (log scale)
+        sigma: 1.2              # Lognormal std dev
+        mix_weight: 0.3         # 30% Pareto, 70% lognormal
+    output_distribution:        # Distribution for output token counts
+      type: exponential         # Exponential distribution
       params:
-        mean: 300
+        mean: 300               # Long outputs: 300 tokens average
 
-  - id: "realtime-traffic"
-    slo_class: "realtime"
-    rate_fraction: 0.3  # 30% realtime
-    streaming: true
+  # -------------------------------------------------------------------------
+  # Realtime Client: Low-latency, streaming workload (30% of traffic)
+  # -------------------------------------------------------------------------
+  - id: "realtime-traffic"      # Unique client identifier
+    slo_class: "realtime"       # SLO class: realtime (strict latency requirements)
+    rate_fraction: 0.3          # 30% of aggregate rate = 6 req/s
+    streaming: true             # Streaming: tokens sent as generated (TTFT matters)
     arrival:
-      process: poisson  # Less bursty
-    input_distribution:
-      type: gaussian
+      process: poisson          # Poisson arrivals: steady, predictable rate
+    input_distribution:         # Distribution for input token counts
+      type: gaussian            # Normal distribution: predictable prompt lengths
       params:
-        mean: 128
-        std_dev: 50
-        min: 10
-        max: 512
-    output_distribution:
-      type: exponential
+        mean: 128               # Average prompt: 128 tokens
+        std_dev: 50             # Standard deviation: moderate variance
+        min: 10                 # Minimum: 10 tokens (truncates distribution)
+        max: 512                # Maximum: 512 tokens (truncates distribution)
+    output_distribution:        # Distribution for output token counts
+      type: exponential         # Exponential distribution
       params:
-        mean: 100
+        mean: 100               # Short outputs: 100 tokens average (fast responses)

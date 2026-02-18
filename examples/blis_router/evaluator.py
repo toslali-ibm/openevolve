@@ -42,6 +42,7 @@ def print_diff(initial_code: str, current_code: str):
 
     diff = list(unified_diff(initial_lines, current_lines, lineterm=''))
     if not diff:
+        print("\n\n!!!! NO DIFF FOUND HERE\n\n")
         return  # No changes
 
     removed = sum(1 for line in diff if line.startswith('-') and not line.startswith('---'))
@@ -109,8 +110,9 @@ def evaluate(program_path: str) -> EvaluationResult:
     print(f"✓ Extracted Go code: {len(go_code)} chars, first line: {go_code.split(chr(10))[0]}")
 
     # Show diff vs initial program if enabled
-    show_diffs = os.environ.get("OPENEVOLVE_SHOW_DIFFS", "false").lower() == "true"
-    if show_diffs:
+    show_diffs = os.environ.get("OPENEVOLVE_SHOW_DIFFS", "true").lower() == "true"
+    if show_diffs or True:
+        
         try:
             initial_program_path = script_dir / "initial_program.py"
             if initial_program_path.exists():
@@ -159,11 +161,14 @@ def evaluate(program_path: str) -> EvaluationResult:
             print(f"✗ Build failed:")
             print(result.stderr)
 
+            # Truncate error for metrics (keep full version in artifacts)
+            error_summary = result.stderr.strip()[:500] if result.stderr else "Unknown build error"
+
             return EvaluationResult(
                 metrics={
                     "combined_score": -100000.0,  # Very bad score for build failure
                     "avg_e2e_ms": float('inf'),
-                    "error": "Build failed"
+                    "error": f"Build failed: {error_summary}"
                 },
                 artifacts={
                     "error_type": "BuildError",

@@ -26,8 +26,8 @@ python openevolve-run.py \
   --config examples/blis_router/config.yaml \
   --iterations 50
 
-# 4. Track all programs and scores across iterations
-python scripts/visualizer.py --path examples/blis_router/openevolve_output/checkpoints/checkpoint_50/
+# 4. Visualize evolution tree (auto-finds latest checkpoint)
+python scripts/visualizer.py --path examples/blis_router/openevolve_output/
 ```
 
 **Expected Duration:** ~1-2 hours for 50 iterations
@@ -77,9 +77,9 @@ routing:
 ```
 
 ### Workloads (ServeGen-based)
-- **Light** (`workload_light.yaml`): 10 req/s, gamma arrivals (CV=2.0), 10s horizon
-- **Heavy** (`workload_heavy.yaml`): 50 req/s, gamma arrivals (CV=3.5), 10s horizon
-- **Mixed** (`workload_mixed.yaml`): 20 req/s, 70% batch + 30% realtime, 15s horizon
+- **Light** (`workload_light.yaml`): 10 req/s, gamma arrivals (CV=2.0), 2 min horizon (~1200 requests)
+- **Heavy** (`workload_heavy.yaml`): 50 req/s, gamma arrivals (CV=3.5), 2 min horizon (~6000 requests)
+- **Mixed** (`workload_mixed.yaml`): 20 req/s, 70% batch + 30% realtime, 2 min horizon (~2400 requests)
 
 Uses realistic Pareto-LogNormal input distributions and bursty arrival patterns.
 
