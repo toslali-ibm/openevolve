@@ -89,6 +89,9 @@ python openevolve-run.py examples/function_minimization/initial_program.py \
   examples/function_minimization/evaluator.py \
   --config examples/function_minimization/config.yaml \
   --iterations 50
+
+# Track all programs across iterations
+python scripts/visualizer.py --path examples/function_minimization/openevolve_output/checkpoints/checkpoint_50/
 ```
 
 **Note:** The example config uses Gemini by default, but you can use any OpenAI-compatible provider by modifying the `config.yaml`. See the [configs](configs/) for full configuration options.
