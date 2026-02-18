@@ -1,13 +1,13 @@
 """
 Initial Program: BLIS Router Weight Optimization
 
-This contains the full routing.go file with EVOLVE-BLOCK markers
-around the weight calculation logic.
+This contains the full routing.go file (synced with inference-sim v0.4.0)
+with EVOLVE-BLOCK markers around the WeightedScoring logic.
 
-Goal: Evolve static weights into adaptive weights that respond to system state.
+Goal: Evolve the routing policy to minimize end-to-end latency across workloads.
 """
 
-# Full routing.go file with EVOLVE-BLOCK markers
+# Full routing.go file with EVOLVE-BLOCK markers (synced with inference-sim v0.4.0)
 GO_ROUTING_CODE = """package sim
 
 import "fmt"
@@ -18,11 +18,13 @@ import "fmt"
 // Timestamp is intentionally excluded: snapshot freshness is managed by
 // CachedSnapshotProvider and is not a policy concern.
 type RoutingSnapshot struct {
-	ID            string
-	QueueDepth    int
-	BatchSize     int
-	KVUtilization float64
-	FreeKVBlocks  int64
+	ID              string
+	QueueDepth      int
+	BatchSize       int
+	KVUtilization   float64
+	FreeKVBlocks    int64
+	CacheHitRate    float64
+	PendingRequests int // Requests routed to this instance but not yet in queue
 }
 
 // RoutingDecision encapsulates the routing decision for a request.
@@ -64,7 +66,9 @@ func (rr *RoundRobin) Route(req *Request, state *RouterState) RoutingDecision {
 	}
 }
 
-// LeastLoaded routes requests to the instance with minimum (QueueDepth + BatchSize).
+// LeastLoaded routes requests to the instance with minimum (QueueDepth + BatchSize + PendingRequests).
+// PendingRequests prevents pile-on at high request rates where multiple routing decisions
+// occur at the same timestamp before instance events process (#175).
 // Ties are broken by first occurrence in snapshot order (lowest index).
 type LeastLoaded struct{}
 
@@ -75,11 +79,11 @@ func (ll *LeastLoaded) Route(req *Request, state *RouterState) RoutingDecision {
 		panic("LeastLoaded.Route: empty snapshots")
 	}
 
-	minLoad := snapshots[0].QueueDepth + snapshots[0].BatchSize
+	minLoad := snapshots[0].QueueDepth + snapshots[0].BatchSize + snapshots[0].PendingRequests
 	target := snapshots[0]
 
 	for i := 1; i < len(snapshots); i++ {
-		load := snapshots[i].QueueDepth + snapshots[i].BatchSize
+		load := snapshots[i].QueueDepth + snapshots[i].BatchSize + snapshots[i].PendingRequests
 		if load < minLoad {
 			minLoad = load
 			target = snapshots[i]
@@ -92,8 +96,25 @@ func (ll *LeastLoaded) Route(req *Request, state *RouterState) RoutingDecision {
 	}
 }
 
-// WeightedScoring routes requests using a weighted combination of cache affinity and load balance.
-// Score = (1 - KVUtilization) * cacheWeight + (1 - normalizedLoad) * loadWeight.
+// WeightedScoring routes requests using a weighted combination of cache availability and load balance.
+//
+// Two scoring dimensions:
+//   - Cache: FreeKVBlocks / maxFreeKVBlocks — measures memory availability
+//   - Load:  1 / (1 + effectiveLoad) — measures load balance without max-normalization
+//
+// Where effectiveLoad = QueueDepth + BatchSize + PendingRequests.
+//
+// PendingRequests counts requests routed to an instance but not yet in its queue (#170).
+// This gives routing visibility into its own recent decisions, breaking the symmetric
+// equilibrium that otherwise makes weight changes unobservable (#169).
+// Load increases immediately (via PendingRequests) while FreeKVBlocks stays unchanged
+// (no KV blocks allocated yet for pending requests), creating signal disagreement
+// where weight changes produce different routing decisions.
+//
+// The load dimension uses 1/(1+load) instead of max-normalization to preserve
+// absolute differences between instances. Max-normalization collapses small
+// differences, making weights ineffective in balanced clusters.
+//
 // Higher scores are preferred. Ties broken by first occurrence in snapshot order.
 type WeightedScoring struct {
 	cacheWeight float64
@@ -107,135 +128,110 @@ func (ws *WeightedScoring) Route(req *Request, state *RouterState) RoutingDecisi
 		panic("WeightedScoring.Route: empty snapshots")
 	}
 
-	// Compute loads and find max for normalization
-	loads := make([]int, len(snapshots))
-	maxLoad := 0
-	for i, snap := range snapshots {
-		loads[i] = snap.QueueDepth + snap.BatchSize
-		if loads[i] > maxLoad {
-			maxLoad = loads[i]
+	// EVOLVE-BLOCK-START
+	// =====================================================================
+	// OPTIMIZATION GOAL: Minimize average end-to-end latency across workloads
+	//
+	// CURRENT APPROACH: Weighted combination of cache and load signals
+	//   Default weights: cacheWeight=0.6, loadWeight=0.4 (normalized to sum to 1.0)
+	//
+	// AVAILABLE STATE (you can use these variables in your evolved logic):
+	//
+	//   snapshots []RoutingSnapshot
+	//     List of all instance snapshots with current state
+	//
+	//   Each snap in snapshots has:
+	//     snap.ID (string) - Instance identifier
+	//     snap.QueueDepth (int) - Requests waiting in queue
+	//     snap.BatchSize (int) - Requests currently being processed
+	//     snap.PendingRequests (int) - Requests routed but not yet in queue
+	//     snap.FreeKVBlocks (int64) - Available KV cache blocks
+	//     snap.KVUtilization (float64) - KV cache usage [0.0-1.0]
+	//     snap.CacheHitRate (float64) - Cache hit rate [0.0-1.0]
+	//
+	//   state.Clock (int64) - Current simulation time (microseconds)
+	//
+	//   ws.cacheWeight, ws.loadWeight (float64)
+	//     Current weights (these are what we're evolving!)
+	//
+	// CURRENT SCORING FORMULA:
+	//   1. Find maxFreeKV = max(snap.FreeKVBlocks) across all instances
+	//   2. For each instance:
+	//      cacheScore = (snap.FreeKVBlocks / maxFreeKV) * cacheWeight
+	//      effectiveLoad = snap.QueueDepth + snap.BatchSize + snap.PendingRequests
+	//      loadScore = (1.0 / (1.0 + effectiveLoad)) * loadWeight
+	//      finalScore = cacheScore + loadScore
+	//   3. Route to instance with highest finalScore
+	//
+	// EVOLUTION IDEAS TO TRY:
+	//
+	//   1. Adaptive weights based on system state:
+	//      if maxFreeKV < 1000 {
+	//          // Low cache capacity → prioritize load balancing
+	//          cacheWeight = 0.2
+	//          loadWeight = 0.8
+	//      }
+	//
+	//   2. Use different scoring formulas:
+	//      // Instead of FreeKVBlocks, try (1.0 - KVUtilization)
+	//      // Instead of 1/(1+load), try exponential decay: exp(-load/10.0)
+	//
+	//   3. Consider cache hit rate:
+	//      cacheScore = snap.FreeKVBlocks/maxFreeKV * snap.CacheHitRate
+	//
+	//   4. Add threshold-based routing:
+	//      if snap.QueueDepth > 100 {
+	//          // Skip overloaded instances entirely
+	//          continue
+	//      }
+	//
+	//   5. Use non-linear combinations:
+	//      score = sqrt(cacheScore * loadScore)  // geometric mean
+	//
+	//   6. Temporal patterns:
+	//      // Detect burst periods and adjust strategy
+	//
+	// CONSTRAINTS:
+	//   - Must return a valid RoutingDecision with TargetInstance set
+	//   - Scores should be computable (no NaN, Inf)
+	//   - Logic should be fast (runs for every request)
+	//   - Must handle edge cases (all instances busy, zero FreeKVBlocks, etc.)
+	//
+	// TESTING:
+	//   Your evolved algorithm will be tested on 3 workloads:
+	//   - Light: low request rate
+	//   - Heavy: high request rate
+	//   - Mixed: variable request rate
+	//
+	//   Score = -avg_e2e_ms (negative because we're minimizing latency)
+	//   Lower latency = higher (less negative) score = better!
+	// =====================================================================
+
+	// Find max FreeKVBlocks for cache normalization
+	maxFreeKV := int64(0)
+	for _, snap := range snapshots {
+		if snap.FreeKVBlocks > maxFreeKV {
+			maxFreeKV = snap.FreeKVBlocks
 		}
 	}
 
-	// Compute scores
+	// Compute scores using independent signals
 	scores := make(map[string]float64, len(snapshots))
 	bestScore := -1.0
 	bestIdx := 0
 
 	for i, snap := range snapshots {
-		// Normalize load to [0,1] (handle uniform load: all zero → normalizedLoad = 0)
-		normalizedLoad := 0.0
-		if maxLoad > 0 {
-			normalizedLoad = float64(loads[i]) / float64(maxLoad)
+		// Cache dimension: FreeKVBlocks normalized by cluster max
+		cacheScore := 0.0
+		if maxFreeKV > 0 {
+			cacheScore = float64(snap.FreeKVBlocks) / float64(maxFreeKV)
 		}
 
-		// EVOLVE-BLOCK-START
-		// =====================================================================
-		// OPTIMIZATION GOAL: Minimize average end-to-end latency across workloads
-		//
-		// CURRENT APPROACH: Static weighted combination
-		//   - cacheWeight = 0.6 (prioritize cache affinity)
-		//   - loadWeight = 0.4 (prioritize load balancing)
-		//
-		// AVAILABLE STATE (you can use these variables):
-		//
-		//   snap.KVUtilization (float64, range [0.0-1.0])
-		//     - How full is this instance's KV cache?
-		//     - 0.0 = completely empty (lots of room for new cached tokens)
-		//     - 1.0 = completely full (will need to evict to cache new tokens)
-		//     - Lower values mean better cache opportunity
-		//
-		//   normalizedLoad (float64, range [0.0-1.0])
-		//     - How loaded is this instance relative to others?
-		//     - 0.0 = least loaded (idle or light queue)
-		//     - 1.0 = most loaded (longest queue + biggest batch)
-		//     - Lower values mean better load balance
-		//
-		//   snap.QueueDepth (int)
-		//     - Number of requests waiting in queue
-		//     - Higher = more congestion
-		//
-		//   snap.BatchSize (int)
-		//     - Number of requests currently being processed
-		//     - Higher = more busy
-		//
-		//   snap.FreeKVBlocks (int64)
-		//     - Number of available cache blocks
-		//     - Higher = more cache capacity available
-		//
-		//   state.Clock (int64)
-		//     - Current simulation time (microseconds)
-		//     - Can use for detecting temporal patterns
-		//
-		//   ws.cacheWeight, ws.loadWeight (float64)
-		//     - Current static weights (0.6, 0.4)
-		//     - These are what we're trying to make adaptive!
-		//
-		// SCORING COMPONENTS:
-		//   cacheScore = (1.0 - snap.KVUtilization) * cacheWeight
-		//     - Higher when cache has room
-		//     - Scaled by cacheWeight
-		//
-		//   loadScore = (1.0 - normalizedLoad) * loadWeight
-		//     - Higher when instance is less loaded
-		//     - Scaled by loadWeight
-		//
-		//   Final score = cacheScore + loadScore
-		//     - Higher score = better choice for routing
-		//
-		// EVOLUTION IDEAS TO TRY:
-		//
-		//   1. Adaptive weights based on cache utilization:
-		//      if snap.KVUtilization < 0.3 {
-		//          // Lots of cache room → prioritize cache affinity
-		//          cacheWeight = 0.8
-		//          loadWeight = 0.2
-		//      }
-		//
-		//   2. Adaptive weights based on load levels:
-		//      if normalizedLoad > 0.7 {
-		//          // High load → prioritize balancing
-		//          cacheWeight = 0.3
-		//          loadWeight = 0.7
-		//      }
-		//
-		//   3. Consider absolute queue depth:
-		//      if snap.QueueDepth > 50 {
-		//          // Deep queue → avoid this instance
-		//          // Could adjust score or change weights
-		//      }
-		//
-		//   4. Hybrid scoring:
-		//      - Use different formulas based on conditions
-		//      - Combine multiple factors
-		//      - Add non-linear transformations
-		//
-		//   5. Temporal patterns:
-		//      - Detect burst periods using state.Clock
-		//      - Adjust strategy over time
-		//
-		// CONSTRAINTS:
-		//   - Weights should generally be in [0.0, 1.0] range
-		//   - Final score should be computable (no NaN, Inf)
-		//   - Logic should be fast (runs for every request)
-		//
-		// TESTING:
-		//   Your evolved algorithm will be tested on:
-		//   - Light load: 10 req/s, 100 requests
-		//   - Heavy load: 50 req/s, 500 requests
-		//   - Mixed load: 20 req/s, 300 requests
-		//
-		//   Score = 1.0 / avg(mean_e2e across all workloads)
-		//   Lower latency = higher score = better!
-		// =====================================================================
+		// Load dimension: inverse of effective load (no max-normalization)
+		effectiveLoad := snap.QueueDepth + snap.BatchSize + snap.PendingRequests
+		loadScore := 1.0 / (1.0 + float64(effectiveLoad))
 
-		// Composite score
-		cacheScore := (1.0 - snap.KVUtilization) * ws.cacheWeight
-		loadScore := (1.0 - normalizedLoad) * ws.loadWeight
-		score := cacheScore + loadScore
-
-		// EVOLVE-BLOCK-END
-
+		score := cacheScore*ws.cacheWeight + loadScore*ws.loadWeight
 		scores[snap.ID] = score
 
 		// Select argmax; first occurrence wins on tie (strict >)
@@ -244,6 +240,8 @@ func (ws *WeightedScoring) Route(req *Request, state *RouterState) RoutingDecisi
 			bestIdx = i
 		}
 	}
+
+	// EVOLVE-BLOCK-END
 
 	return RoutingDecision{
 		TargetInstance: snapshots[bestIdx].ID,
@@ -296,7 +294,7 @@ func (pa *PrefixAffinity) Route(req *Request, state *RouterState) RoutingDecisio
 	}
 }
 
-// AlwaysBusiest routes requests to the instance with maximum (QueueDepth + BatchSize).
+// AlwaysBusiest routes requests to the instance with maximum (QueueDepth + BatchSize + PendingRequests).
 // Pathological template for testing load imbalance detection.
 // Ties broken by first occurrence in snapshot order (lowest index).
 type AlwaysBusiest struct{}
@@ -308,11 +306,11 @@ func (ab *AlwaysBusiest) Route(_ *Request, state *RouterState) RoutingDecision {
 		panic("AlwaysBusiest.Route: empty snapshots")
 	}
 
-	maxLoad := snapshots[0].QueueDepth + snapshots[0].BatchSize
+	maxLoad := snapshots[0].QueueDepth + snapshots[0].BatchSize + snapshots[0].PendingRequests
 	target := snapshots[0]
 
 	for i := 1; i < len(snapshots); i++ {
-		load := snapshots[i].QueueDepth + snapshots[i].BatchSize
+		load := snapshots[i].QueueDepth + snapshots[i].BatchSize + snapshots[i].PendingRequests
 		if load > maxLoad {
 			maxLoad = load
 			target = snapshots[i]
@@ -340,6 +338,15 @@ func NewRoutingPolicy(name string, cacheWeight, loadWeight float64) RoutingPolic
 	case "least-loaded":
 		return &LeastLoaded{}
 	case "weighted":
+		// Normalize weights so they sum to 1.0 (preserves ratio).
+		// This ensures (0.6, 0.2) behaves identically to (0.75, 0.25).
+		// Panics on non-positive sum (CLI validates before reaching here).
+		sum := cacheWeight + loadWeight
+		if sum <= 0 {
+			panic(fmt.Sprintf("WeightedScoring requires positive weight sum, got cacheWeight=%f + loadWeight=%f = %f", cacheWeight, loadWeight, sum))
+		}
+		cacheWeight = cacheWeight / sum
+		loadWeight = loadWeight / sum
 		return &WeightedScoring{cacheWeight: cacheWeight, loadWeight: loadWeight}
 	case "prefix-affinity":
 		return &PrefixAffinity{prefixMap: make(map[string]string)}

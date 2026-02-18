@@ -12,6 +12,7 @@ Score = -avg_latency (negative because we're minimizing latency)
 Higher score = Lower latency = Better!
 """
 
+import json
 import re
 import subprocess
 import traceback
@@ -186,7 +187,8 @@ def evaluate(program_path: str) -> EvaluationResult:
                 "--tp", "1",
                 "--num-instances", "4",
                 "--policy-config", str(policy_config_path),
-                "--workload-spec", str(workload_path)
+                "--workload-spec", str(workload_path),
+                "--log", "info"
             ]
 
             result = subprocess.run(
@@ -208,39 +210,70 @@ def evaluate(program_path: str) -> EvaluationResult:
                 }
                 continue
 
-            # Parse e2e_mean_ms from JSON output
-            # BLIS outputs multiple "e2e_mean_ms" values:
-            # - Per-instance metrics (one per instance, e.g., 4 instances)
-            # - Cluster-wide aggregate (last occurrence)
-            # We want the CLUSTER aggregate, so we take the LAST match
-            matches = re.findall(r'"e2e_mean_ms":\s*([\d.]+)', result.stdout)
-            if matches:
-                # Validate: expect num_instances + 1 matches (per-instance + cluster)
-                num_instances = 4  # From --num-instances flag
-                expected_matches = num_instances + 1
+            # Parse JSON output from stderr (logrus outputs to stderr with --log flag)
+            # BLIS outputs multiple JSON blocks - one per instance + one cluster-wide aggregate
+            # We want the CLUSTER aggregate (instance_id == "cluster")
+            try:
+                # Find all JSON blocks in the output (could be in stdout or stderr)
+                output_text = result.stderr if result.stderr else result.stdout
 
-                if len(matches) == expected_matches:
-                    # Normal case: last match is cluster-wide
-                    e2e_ms = float(matches[-1])
-                elif len(matches) == 1:
-                    # Single instance or only cluster metric reported
-                    e2e_ms = float(matches[0])
+                # Extract JSON objects from the log output
+                json_blocks = []
+                for line in output_text.split('\n'):
+                    # Look for lines with msg="..." containing JSON
+                    # Format: level=info msg="{\n  \"instance_id\": ..."
+                    if 'msg="' in line and '{' in line:
+                        # Extract JSON from msg="..." field
+                        msg_start = line.find('msg="')
+                        if msg_start >= 0:
+                            json_start = line.find('{', msg_start)
+                            if json_start >= 0:
+                                # Find the closing "
+                                json_end = line.rfind('"')
+                                if json_end > json_start:
+                                    json_str = line[json_start:json_end]
+                                    # Unescape newlines and quotes
+                                    json_str = json_str.replace('\\n', '\n').replace('\\"', '"')
+                                    try:
+                                        json_obj = json.loads(json_str)
+                                        json_blocks.append(json_obj)
+                                    except json.JSONDecodeError:
+                                        continue
+
+                # Find the cluster-wide metrics (instance_id == "cluster")
+                cluster_metrics = None
+                for block in json_blocks:
+                    if block.get("instance_id") == "cluster":
+                        cluster_metrics = block
+                        break
+
+                if cluster_metrics and "e2e_mean_ms" in cluster_metrics:
+                    e2e_ms = float(cluster_metrics["e2e_mean_ms"])
+                    latencies.append(e2e_ms)
+                    workload_results[workload_name] = {
+                        "e2e_ms": e2e_ms,
+                        "ttft_mean_ms": cluster_metrics.get("ttft_mean_ms"),
+                        "itl_mean_ms": cluster_metrics.get("itl_mean_ms"),
+                        "tokens_per_sec": cluster_metrics.get("tokens_per_sec")
+                    }
+                    print(f"✓ {workload_name}: e2e_mean_ms={e2e_ms:.2f}ms (cluster-wide)")
                 else:
-                    # Unexpected number of matches - warn but use last
-                    print(f"⚠ Warning: Expected {expected_matches} e2e_mean_ms values, got {len(matches)}")
-                    e2e_ms = float(matches[-1])
-
-                latencies.append(e2e_ms)
-                workload_results[workload_name] = {"e2e_ms": e2e_ms}
-                print(f"✓ {workload_name}: e2e_mean_ms={e2e_ms:.2f}ms (cluster-wide)")
-            else:
-                print(f"✗ Could not parse e2e_mean_ms from {workload_name} output")
-                print("Output:", result.stdout[:500])
+                    print(f"✗ Could not find cluster metrics in {workload_name} output")
+                    print(f"Found {len(json_blocks)} JSON blocks")
+                    failed_workloads.append(workload_name)
+                    workload_results[workload_name] = {
+                        "e2e_ms": None,
+                        "error": "Failed to find cluster metrics",
+                        "json_blocks_found": len(json_blocks)
+                    }
+            except Exception as parse_error:
+                print(f"✗ Error parsing {workload_name} output: {parse_error}")
+                print("Output sample:", output_text[:500])
                 failed_workloads.append(workload_name)
                 workload_results[workload_name] = {
                     "e2e_ms": None,
-                    "error": "Failed to parse output",
-                    "output_sample": result.stdout[:500]
+                    "error": f"Parse error: {str(parse_error)}",
+                    "output_sample": output_text[:500]
                 }
 
         except subprocess.TimeoutExpired:
@@ -345,6 +378,10 @@ if __name__ == "__main__":
     result = evaluate(str(initial_program_path))
 
     print("\nTest result:")
-    print(f"  Score: {result.metrics.get('combined_score', 'N/A'):.2f}")
-    print(f"  Avg E2E: {result.metrics.get('avg_e2e_ms', 'N/A'):.2f}ms")
-    print(f"  Success rate: {result.metrics.get('success_rate', 'N/A'):.0%}")
+    score = result.metrics.get('combined_score')
+    avg_e2e = result.metrics.get('avg_e2e_ms')
+    success_rate = result.metrics.get('success_rate')
+
+    print(f"  Score: {score:.2f}" if score is not None else "  Score: N/A")
+    print(f"  Avg E2E: {avg_e2e:.2f}ms" if avg_e2e is not None and avg_e2e != float('inf') else "  Avg E2E: N/A")
+    print(f"  Success rate: {success_rate:.0%}" if success_rate is not None else "  Success rate: N/A")
