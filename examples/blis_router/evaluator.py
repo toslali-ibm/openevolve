@@ -13,11 +13,41 @@ Higher score = Lower latency = Better!
 """
 
 import json
+import os
 import re
 import subprocess
 import traceback
+from difflib import unified_diff
 from pathlib import Path
 from openevolve.evaluation_result import EvaluationResult
+
+
+def extract_evolve_block(code: str) -> str:
+    """Extract only EVOLVE-BLOCK section from Go code."""
+    pattern = r'// EVOLVE-BLOCK-START(.*?)// EVOLVE-BLOCK-END'
+    match = re.search(pattern, code, re.DOTALL)
+    return match.group(1).strip() if match else ""
+
+
+def print_diff(initial_code: str, current_code: str):
+    """Print compact colored diff between initial and current EVOLVE-BLOCK."""
+    initial_block = extract_evolve_block(initial_code)
+    current_block = extract_evolve_block(current_code)
+
+    if not initial_block or not current_block:
+        return
+
+    initial_lines = initial_block.splitlines(keepends=True)
+    current_lines = current_block.splitlines(keepends=True)
+
+    diff = list(unified_diff(initial_lines, current_lines, lineterm=''))
+    if not diff:
+        return  # No changes
+
+    removed = sum(1 for line in diff if line.startswith('-') and not line.startswith('---'))
+    added = sum(1 for line in diff if line.startswith('+') and not line.startswith('+++'))
+
+    print(f"   📝 Diff vs initial: \033[91m-{removed}\033[0m / \033[92m+{added}\033[0m lines")
 
 
 def extract_go_code(program_text: str) -> str:
@@ -77,6 +107,20 @@ def evaluate(program_path: str) -> EvaluationResult:
         )
 
     print(f"✓ Extracted Go code: {len(go_code)} chars, first line: {go_code.split(chr(10))[0]}")
+
+    # Show diff vs initial program if enabled
+    show_diffs = os.environ.get("OPENEVOLVE_SHOW_DIFFS", "false").lower() == "true"
+    if show_diffs:
+        try:
+            initial_program_path = script_dir / "initial_program.py"
+            if initial_program_path.exists():
+                with open(initial_program_path, 'r') as f:
+                    initial_text = f.read()
+                initial_go_code = extract_go_code(initial_text)
+                if initial_go_code:
+                    print_diff(initial_go_code, go_code)
+        except Exception as e:
+            pass  # Silently skip if diff fails
 
     # Step 2: Write evolved routing.go
     try:
