@@ -182,13 +182,16 @@ def evaluate(program_path: str) -> EvaluationResult:
 
             cmd = [
                 "./simulation_worker", "run",
-                "--model", "meta-llama/llama-3.1-8b-instruct",
+                "--model", "Qwen/Qwen2.5-7B-Instruct",
                 "--hardware", "H100",
                 "--tp", "1",
                 "--num-instances", "4",
                 "--policy-config", str(policy_config_path),
                 "--workload-spec", str(workload_path),
-                "--log", "info"
+                "--log", "info",
+                # Blackbox mode with custom coefficients for Qwen/Qwen2.5-7B-Instruct
+                "--alpha-coeffs", "4680.303204056608,0.0,0.0",
+                "--beta-coeffs", "7051.796874715078,19.538416565504026,25.431830886933543"
             ]
 
             result = subprocess.run(
