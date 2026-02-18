@@ -25,6 +25,9 @@ python openevolve-run.py \
   examples/blis_router/evaluator.py \
   --config examples/blis_router/config.yaml \
   --iterations 50
+
+# 4. Track all programs and scores across iterations
+python scripts/visualizer.py --path examples/blis_router/openevolve_output/checkpoints/checkpoint_50/
 ```
 
 **Expected Duration:** ~1-2 hours for 50 iterations
