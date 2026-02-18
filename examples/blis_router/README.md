@@ -18,13 +18,13 @@ cd ../../..
 cd examples/blis_router
 python evaluator.py
 
-# 3. Run evolution
+# 3. Run evolution (outputs to terminal AND saves to file)
 cd ../..
 python openevolve-run.py \
   examples/blis_router/initial_program.py \
   examples/blis_router/evaluator.py \
   --config examples/blis_router/config.yaml \
-  --iterations 50
+  --iterations 50 2>&1 | tee examples/blis_router/run_output.log
 
 # 4. Visualize evolution tree (auto-finds latest checkpoint)
 python scripts/visualizer.py --path examples/blis_router/openevolve_output/
