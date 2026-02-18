@@ -13,6 +13,7 @@ Higher score = Lower latency = Better!
 """
 
 import json
+import logging
 import os
 import re
 import subprocess
@@ -20,6 +21,9 @@ import traceback
 from difflib import unified_diff
 from pathlib import Path
 from openevolve.evaluation_result import EvaluationResult
+
+# Use logging instead of print() so output is captured in worker processes
+logger = logging.getLogger(__name__)
 
 
 def extract_evolve_block(code: str) -> str:
@@ -42,13 +46,13 @@ def print_diff(initial_code: str, current_code: str):
 
     diff = list(unified_diff(initial_lines, current_lines, lineterm=''))
     if not diff:
-        print("\n\n!!!! NO DIFF FOUND HERE\n\n")
+        logger.info("!!!! NO DIFF FOUND - code unchanged from initial")
         return  # No changes
 
     removed = sum(1 for line in diff if line.startswith('-') and not line.startswith('---'))
     added = sum(1 for line in diff if line.startswith('+') and not line.startswith('+++'))
 
-    print(f"   📝 Diff vs initial: \033[91m-{removed}\033[0m / \033[92m+{added}\033[0m lines")
+    logger.info(f"Diff vs initial: -{removed} / +{added} lines")
 
 
 def extract_go_code(program_text: str) -> str:
@@ -88,12 +92,12 @@ def evaluate(program_path: str) -> EvaluationResult:
     policy_config_path = script_dir / "routing_policy.yaml"
 
     # Step 1: Extract Go code from Python wrapper
-    print(f"Program text preview: {program_text[:100]}...")
+    logger.info(f"Program text preview: {program_text[:100]}...")
     go_code = extract_go_code(program_text)
     if not go_code:
-        print("✗ Failed to extract Go code from program")
-        print(f"Program text length: {len(program_text)}")
-        print(f"Contains GO_ROUTING_CODE: {'GO_ROUTING_CODE' in program_text}")
+        logger.error("Failed to extract Go code from program")
+        logger.error(f"Program text length: {len(program_text)}")
+        logger.error(f"Contains GO_ROUTING_CODE: {'GO_ROUTING_CODE' in program_text}")
         return EvaluationResult(
             metrics={
                 "combined_score": -100000.0,
@@ -107,7 +111,7 @@ def evaluate(program_path: str) -> EvaluationResult:
             }
         )
 
-    print(f"✓ Extracted Go code: {len(go_code)} chars, first line: {go_code.split(chr(10))[0]}")
+    logger.info(f"Extracted Go code: {len(go_code)} chars, first line: {go_code.split(chr(10))[0]}")
 
     # Show diff vs initial program if enabled
     show_diffs = os.environ.get("OPENEVOLVE_SHOW_DIFFS", "true").lower() == "true"
@@ -128,10 +132,10 @@ def evaluate(program_path: str) -> EvaluationResult:
     try:
         with open(routing_go_path, 'w') as f:
             f.write(go_code)
-        print(f"✓ Wrote evolved routing.go to {routing_go_path}")
+        logger.info(f"Wrote evolved routing.go to {routing_go_path}")
     except Exception as e:
-        print(f"✗ Failed to write routing.go: {e}")
-        print(traceback.format_exc())
+        logger.error(f"Failed to write routing.go: {e}")
+        logger.error(traceback.format_exc())
 
         return EvaluationResult(
             metrics={
@@ -148,7 +152,7 @@ def evaluate(program_path: str) -> EvaluationResult:
 
     # Step 3: Build BLIS
     try:
-        print("Building BLIS...")
+        logger.info("Building BLIS...")
         result = subprocess.run(
             ["go", "build", "-o", "simulation_worker", "main.go"],
             cwd=inference_sim_dir,
@@ -158,8 +162,7 @@ def evaluate(program_path: str) -> EvaluationResult:
         )
 
         if result.returncode != 0:
-            print(f"✗ Build failed:")
-            print(result.stderr)
+            logger.error(f"Build failed: {result.stderr}")
 
             # Truncate error for metrics (keep full version in artifacts)
             error_summary = result.stderr.strip()[:500] if result.stderr else "Unknown build error"
@@ -178,9 +181,9 @@ def evaluate(program_path: str) -> EvaluationResult:
                 }
             )
 
-        print("✓ Build successful")
+        logger.info("Build successful")
     except subprocess.TimeoutExpired:
-        print(f"✗ Build timed out")
+        logger.error("Build timed out")
 
         return EvaluationResult(
             metrics={
@@ -195,8 +198,8 @@ def evaluate(program_path: str) -> EvaluationResult:
             }
         )
     except Exception as e:
-        print(f"✗ Build error: {e}")
-        print(traceback.format_exc())
+        logger.error(f"Build error: {e}")
+        logger.error(traceback.format_exc())
 
         return EvaluationResult(
             metrics={
@@ -224,7 +227,7 @@ def evaluate(program_path: str) -> EvaluationResult:
 
     for workload_name, workload_file in workloads:
         try:
-            print(f"Running {workload_name} workload...")
+            logger.info(f"Running {workload_name} workload...")
 
             # Workload file path (relative to script directory)
             workload_path = script_dir / workload_file
@@ -252,8 +255,7 @@ def evaluate(program_path: str) -> EvaluationResult:
             )
 
             if result.returncode != 0:
-                print(f"✗ {workload_name} workload failed:")
-                print(result.stderr)
+                logger.error(f"{workload_name} workload failed: {result.stderr}")
                 failed_workloads.append(workload_name)
                 workload_results[workload_name] = {
                     "e2e_ms": None,
@@ -308,10 +310,10 @@ def evaluate(program_path: str) -> EvaluationResult:
                         "itl_mean_ms": cluster_metrics.get("itl_mean_ms"),
                         "tokens_per_sec": cluster_metrics.get("tokens_per_sec")
                     }
-                    print(f"✓ {workload_name}: e2e_mean_ms={e2e_ms:.2f}ms (cluster-wide)")
+                    logger.info(f"{workload_name}: e2e_mean_ms={e2e_ms:.2f}ms (cluster-wide)")
                 else:
-                    print(f"✗ Could not find cluster metrics in {workload_name} output")
-                    print(f"Found {len(json_blocks)} JSON blocks")
+                    logger.error(f"Could not find cluster metrics in {workload_name} output")
+                    logger.error(f"Found {len(json_blocks)} JSON blocks")
                     failed_workloads.append(workload_name)
                     workload_results[workload_name] = {
                         "e2e_ms": None,
@@ -319,8 +321,8 @@ def evaluate(program_path: str) -> EvaluationResult:
                         "json_blocks_found": len(json_blocks)
                     }
             except Exception as parse_error:
-                print(f"✗ Error parsing {workload_name} output: {parse_error}")
-                print("Output sample:", output_text[:500])
+                logger.error(f"Error parsing {workload_name} output: {parse_error}")
+                logger.error(f"Output sample: {output_text[:500]}")
                 failed_workloads.append(workload_name)
                 workload_results[workload_name] = {
                     "e2e_ms": None,
@@ -329,14 +331,14 @@ def evaluate(program_path: str) -> EvaluationResult:
                 }
 
         except subprocess.TimeoutExpired:
-            print(f"✗ {workload_name} workload timed out")
+            logger.error(f"{workload_name} workload timed out")
             failed_workloads.append(workload_name)
             workload_results[workload_name] = {
                 "e2e_ms": None,
                 "error": "Timeout (120s)"
             }
         except Exception as e:
-            print(f"✗ {workload_name} workload error: {e}")
+            logger.error(f"{workload_name} workload error: {e}")
             failed_workloads.append(workload_name)
             workload_results[workload_name] = {
                 "e2e_ms": None,
@@ -346,7 +348,7 @@ def evaluate(program_path: str) -> EvaluationResult:
     # Step 5: Compute score
     if len(latencies) == 0:
         # All workloads failed
-        print("✗ All workloads failed")
+        logger.error("All workloads failed")
 
         return EvaluationResult(
             metrics={
@@ -375,19 +377,15 @@ def evaluate(program_path: str) -> EvaluationResult:
     # Calculate success rate
     success_rate = len(latencies) / len(workloads)
 
-    print(f"\n{'='*60}")
-    print(f"EVALUATION COMPLETE")
-    print(f"{'='*60}")
+    # Log evaluation summary
+    summary_lines = ["EVALUATION COMPLETE"]
     for name, result in workload_results.items():
         if result.get("e2e_ms") is not None:
-            print(f"{name.capitalize():12s}: {result['e2e_ms']:.2f}ms ✓")
+            summary_lines.append(f"  {name}: {result['e2e_ms']:.2f}ms")
         else:
-            print(f"{name.capitalize():12s}: FAILED ✗")
-    print(f"{'─'*60}")
-    print(f"Average latency: {avg_latency:.2f}ms")
-    print(f"Success rate:    {success_rate:.0%} ({len(latencies)}/{len(workloads)})")
-    print(f"Score:           {score:.2f}")
-    print(f"{'='*60}\n")
+            summary_lines.append(f"  {name}: FAILED")
+    summary_lines.append(f"  Average: {avg_latency:.2f}ms | Success: {success_rate:.0%} | Score: {score:.2f}")
+    logger.info(" | ".join(summary_lines))
 
     # Prepare artifacts
     artifacts = {
