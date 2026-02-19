@@ -214,11 +214,17 @@ def evaluate(program_path: str) -> EvaluationResult:
             }
         )
 
-    # Step 4: Run simulations on 3 realistic servegen workloads
+    # Step 4: Run simulations on workloads designed to stress routing decisions
+    # Each workload targets a specific routing weakness:
+    # - prefix_concentrated: rewards prefix-aware routing (cache affinity)
+    # - slo_contention: rewards SLO-aware routing (realtime vs batch)
+    # - burst_storm: rewards fast load-balancing (extreme burstiness)
+    # - kv_pressure: rewards memory-aware routing (KV cache management)
     workloads = [
-        ("light", "workload_light.yaml"),
-        ("heavy", "workload_heavy.yaml"),
-        ("mixed", "workload_mixed.yaml")
+        ("prefix", "workload_prefix_concentrated.yaml"),
+        ("slo", "workload_slo_contention.yaml"),
+        ("burst", "workload_burst_storm.yaml"),
+        ("kvpressure", "workload_kv_pressure.yaml"),
     ]
 
     latencies = {}  # workload_name -> e2e_ms
@@ -377,12 +383,20 @@ def evaluate(program_path: str) -> EvaluationResult:
     use_equal_weight = os.environ.get("BLIS_EQUAL_WEIGHT", "false").lower() == "true"
     total_requests = sum(request_counts.values())
 
-    if use_equal_weight or total_requests == 0:
-        avg_latency = sum(latencies.values()) / len(latencies)
-    else:
-        # Request-weighted average
+    # Calculate both for comparison
+    equal_avg = sum(latencies.values()) / len(latencies)
+    if total_requests > 0:
         weighted_sum = sum(latencies[name] * request_counts[name] for name in latencies)
-        avg_latency = weighted_sum / total_requests
+        weighted_avg = weighted_sum / total_requests
+    else:
+        weighted_avg = equal_avg
+
+    logger.info(f"[debug] equal_avg={equal_avg:.1f}ms weighted_avg={weighted_avg:.1f}ms")
+
+    if use_equal_weight or total_requests == 0:
+        avg_latency = equal_avg
+    else:
+        avg_latency = weighted_avg
 
     # Score = negative latency (so lower latency = higher score)
     # E.g., 5000ms → score -5000, 4500ms → score -4500 (better!)
@@ -414,12 +428,14 @@ def evaluate(program_path: str) -> EvaluationResult:
         "combined_score": score,
         "avg_e2e_ms": avg_latency,
         "total_requests": total_requests,
-        "light_e2e_ms": workload_results.get("light", {}).get("e2e_ms"),
-        "light_requests": workload_results.get("light", {}).get("completed_requests"),
-        "heavy_e2e_ms": workload_results.get("heavy", {}).get("e2e_ms"),
-        "heavy_requests": workload_results.get("heavy", {}).get("completed_requests"),
-        "mixed_e2e_ms": workload_results.get("mixed", {}).get("e2e_ms"),
-        "mixed_requests": workload_results.get("mixed", {}).get("completed_requests"),
+        "prefix_e2e_ms": workload_results.get("prefix", {}).get("e2e_ms"),
+        "prefix_requests": workload_results.get("prefix", {}).get("completed_requests"),
+        "slo_e2e_ms": workload_results.get("slo", {}).get("e2e_ms"),
+        "slo_requests": workload_results.get("slo", {}).get("completed_requests"),
+        "burst_e2e_ms": workload_results.get("burst", {}).get("e2e_ms"),
+        "burst_requests": workload_results.get("burst", {}).get("completed_requests"),
+        "kvpressure_e2e_ms": workload_results.get("kvpressure", {}).get("e2e_ms"),
+        "kvpressure_requests": workload_results.get("kvpressure", {}).get("completed_requests"),
         "success_rate": success_rate,
         "num_successful": len(latencies),
         "num_failed": len(failed_workloads)
@@ -432,6 +448,9 @@ def evaluate(program_path: str) -> EvaluationResult:
 
 
 if __name__ == "__main__":
+    # Configure logging for test run
+    logging.basicConfig(level=logging.INFO, format='%(message)s')
+
     # Test the evaluator with the initial program
     print("Testing evaluator with initial program...")
 
