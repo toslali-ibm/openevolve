@@ -128,7 +128,6 @@ func (ws *WeightedScoring) Route(req *Request, state *RouterState) RoutingDecisi
 		panic("WeightedScoring.Route: empty snapshots")
 	}
 
-	// EVOLVE-BLOCK-START
 	// =====================================================================
 	// OPTIMIZATION GOAL: Minimize average end-to-end latency across workloads
 	//
@@ -207,6 +206,7 @@ func (ws *WeightedScoring) Route(req *Request, state *RouterState) RoutingDecisi
 	//   Lower latency = higher (less negative) score = better!
 	// =====================================================================
 
+	// EVOLVE-BLOCK-START
 	// Find max FreeKVBlocks for cache normalization
 	maxFreeKV := int64(0)
 	for _, snap := range snapshots {
