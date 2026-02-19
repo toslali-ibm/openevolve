@@ -1,13 +1,13 @@
 """
 Initial Program: BLIS Router Weight Optimization
 
-This contains the full routing.go file (synced with inference-sim v0.4.0)
+This contains the full routing.go file (synced with inference-sim main)
 with EVOLVE-BLOCK markers around the WeightedScoring logic.
 
 Goal: Evolve the routing policy to minimize end-to-end latency across workloads.
 """
 
-# Full routing.go file with EVOLVE-BLOCK markers (synced with inference-sim v0.4.0)
+# Full routing.go file with EVOLVE-BLOCK markers (synced with inference-sim main)
 GO_ROUTING_CODE = """package sim
 
 import "fmt"
@@ -25,6 +25,13 @@ type RoutingSnapshot struct {
 	FreeKVBlocks    int64
 	CacheHitRate    float64
 	PendingRequests int // Requests routed to this instance but not yet in queue
+}
+
+// EffectiveLoad returns the total effective load on this instance:
+// QueueDepth + BatchSize + PendingRequests.
+// Used by routing policies and counterfactual scoring for consistent load calculations.
+func (s RoutingSnapshot) EffectiveLoad() int {
+	return s.QueueDepth + s.BatchSize + s.PendingRequests
 }
 
 // RoutingDecision encapsulates the routing decision for a request.
@@ -79,11 +86,11 @@ func (ll *LeastLoaded) Route(req *Request, state *RouterState) RoutingDecision {
 		panic("LeastLoaded.Route: empty snapshots")
 	}
 
-	minLoad := snapshots[0].QueueDepth + snapshots[0].BatchSize + snapshots[0].PendingRequests
+	minLoad := snapshots[0].EffectiveLoad()
 	target := snapshots[0]
 
 	for i := 1; i < len(snapshots); i++ {
-		load := snapshots[i].QueueDepth + snapshots[i].BatchSize + snapshots[i].PendingRequests
+		load := snapshots[i].EffectiveLoad()
 		if load < minLoad {
 			minLoad = load
 			target = snapshots[i]
@@ -129,8 +136,6 @@ func (ws *WeightedScoring) Route(req *Request, state *RouterState) RoutingDecisi
 	}
 
 	// EVOLVE-BLOCK-START
-	// Goal: Minimize end-to-end latency by optimizing the scoring logic below.
-	// See system prompt for available state variables and evolution ideas.
 	// Find max FreeKVBlocks for cache normalization
 	maxFreeKV := int64(0)
 	for _, snap := range snapshots {
@@ -152,7 +157,7 @@ func (ws *WeightedScoring) Route(req *Request, state *RouterState) RoutingDecisi
 		}
 
 		// Load dimension: inverse of effective load (no max-normalization)
-		effectiveLoad := snap.QueueDepth + snap.BatchSize + snap.PendingRequests
+		effectiveLoad := snap.EffectiveLoad()
 		loadScore := 1.0 / (1.0 + float64(effectiveLoad))
 
 		score := cacheScore*ws.cacheWeight + loadScore*ws.loadWeight
@@ -164,7 +169,6 @@ func (ws *WeightedScoring) Route(req *Request, state *RouterState) RoutingDecisi
 			bestIdx = i
 		}
 	}
-
 	// EVOLVE-BLOCK-END
 
 	return RoutingDecision{
@@ -230,11 +234,11 @@ func (ab *AlwaysBusiest) Route(_ *Request, state *RouterState) RoutingDecision {
 		panic("AlwaysBusiest.Route: empty snapshots")
 	}
 
-	maxLoad := snapshots[0].QueueDepth + snapshots[0].BatchSize + snapshots[0].PendingRequests
+	maxLoad := snapshots[0].EffectiveLoad()
 	target := snapshots[0]
 
 	for i := 1; i < len(snapshots); i++ {
-		load := snapshots[i].QueueDepth + snapshots[i].BatchSize + snapshots[i].PendingRequests
+		load := snapshots[i].EffectiveLoad()
 		if load > maxLoad {
 			maxLoad = load
 			target = snapshots[i]
