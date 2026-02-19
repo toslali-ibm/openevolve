@@ -4,14 +4,14 @@
 # Simulates 3 different chatbot applications sharing the cluster:
 # - Each tenant has its own system prompt prefix (prefix_group)
 # - Requests within a tenant share the same prefix (cache opportunity)
-# - Total: ~1200 requests over 2 minutes across 3 tenants
+# - Total: ~600 requests over 1 minute across 3 tenants
 # =============================================================================
 
 version: "1"
 seed: 42
 category: language
 aggregate_rate: 10.0            # 10 req/s total across all tenants
-horizon: 120000000              # 2 minutes
+horizon: 60000000              # 1 minutes
 
 clients:
   # -------------------------------------------------------------------------

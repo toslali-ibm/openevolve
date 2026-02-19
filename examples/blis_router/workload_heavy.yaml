@@ -5,14 +5,14 @@
 # - Each pipeline has its own system prompt prefix (prefix_group)
 # - Requests within a pipeline share the same prefix (high cache opportunity)
 # - Very bursty: pipelines submit jobs in batches
-# - Total: ~24000 requests over 2 minutes across 4 pipelines
+# - Total: ~12000 requests over 1 minute across 4 pipelines
 # =============================================================================
 
 version: "1"
 seed: 42
 category: language
 aggregate_rate: 200.0           # 200 req/s total (~50 req/s per instance with 4 instances)
-horizon: 120000000              # 2 minutes
+horizon: 60000000               # 1 minute
 
 clients:
   # -------------------------------------------------------------------------

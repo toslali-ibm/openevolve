@@ -5,14 +5,14 @@
 # - 4 tenants total: 2 batch pipelines + 2 realtime applications
 # - Each tenant has its own system prompt prefix (prefix_group)
 # - Tests routing under mixed SLO requirements with prefix affinity opportunities
-# - Total: ~12000 requests over 2 minutes
+# - Total: ~6000 requests over 1 minute
 # =============================================================================
 
 version: "1"
 seed: 42
 category: language
 aggregate_rate: 100.0           # 100 req/s total (~25 req/s per instance with 4 instances)
-horizon: 120000000              # 2 minutes
+horizon: 60000000               # 1 minute
 
 clients:
   # =========================================================================
