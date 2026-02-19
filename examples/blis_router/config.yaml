@@ -140,7 +140,7 @@ prompt:
     4. Handle edge cases: division by zero, empty clusters, etc.
 
     ## EVALUATION
-    - Tested on 4 workloads: high_load (300 req/s), high_prefix (80 req/s), mixed (150 req/s), servegen (200 req/s)
+    - Tested on 4 workloads: burst_steady (250 req/s), context_growth (150 req/s), multi_tenant_chat (200 req/s), prefix_pressure (400 req/s)
     - Score = negative average latency (higher = better)
     - Target: Beat the baseline by incorporating CacheHitRate and other unused signals as well as dynamic weighting logic!
 

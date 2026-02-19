@@ -35,12 +35,12 @@ if [ ! -f "$BLIS_DIR/simulation_worker" ]; then
     exit 1
 fi
 
-# All workloads to test
+# All workloads to test (challenging scenarios for routing optimization)
 WORKLOADS=(
-    "workload_high_load.yaml"      # High request rate (100 req/s), 1000 reqs
-    "workload_high_prefix.yaml"    # High prefix cache hits, 1000 reqs
-    "workload_mixed.yaml"          # Balanced mix, 1000 reqs
-    "workload_servegen.yaml"       # ServeGen language example, 1000 reqs
+    "workload_multi_tenant_chat.yaml"  # 5 tenants, multi-turn, 5000 reqs
+    "workload_prefix_pressure.yaml"    # 8 prefix groups vs 4 instances, 8000 reqs
+    "workload_context_growth.yaml"     # Multi-turn with context accumulation, 3000 reqs
+    "workload_burst_steady.yaml"       # CV=5.0 bursts + steady realtime, 6000 reqs
 )
 
 echo "=============================================="

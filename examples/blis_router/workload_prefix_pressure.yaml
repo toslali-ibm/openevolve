@@ -1,0 +1,169 @@
+# Prefix Cache Pressure Test
+# 8 prefix groups vs 4 instances - forces routing tradeoffs
+# Router must choose between load balancing and cache affinity
+# Total: 8000 requests
+
+version: "1"
+seed: 42
+category: language
+aggregate_rate: 400.0
+num_requests: 8000
+
+clients:
+  - id: "prefix-group-1"
+    slo_class: "interactive"
+    rate_fraction: 0.125
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 2.5
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 400
+        std_dev: 100
+        min: 100
+        max: 1000
+    output_distribution:
+      type: exponential
+      params:
+        mean: 150
+    prefix_group: "system-prompt-1"
+
+  - id: "prefix-group-2"
+    slo_class: "interactive"
+    rate_fraction: 0.125
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 2.5
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 400
+        std_dev: 100
+        min: 100
+        max: 1000
+    output_distribution:
+      type: exponential
+      params:
+        mean: 150
+    prefix_group: "system-prompt-2"
+
+  - id: "prefix-group-3"
+    slo_class: "interactive"
+    rate_fraction: 0.125
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 2.5
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 400
+        std_dev: 100
+        min: 100
+        max: 1000
+    output_distribution:
+      type: exponential
+      params:
+        mean: 150
+    prefix_group: "system-prompt-3"
+
+  - id: "prefix-group-4"
+    slo_class: "interactive"
+    rate_fraction: 0.125
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 2.5
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 400
+        std_dev: 100
+        min: 100
+        max: 1000
+    output_distribution:
+      type: exponential
+      params:
+        mean: 150
+    prefix_group: "system-prompt-4"
+
+  - id: "prefix-group-5"
+    slo_class: "batch"
+    rate_fraction: 0.125
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 3.0
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 600
+        std_dev: 200
+        min: 100
+        max: 1500
+    output_distribution:
+      type: exponential
+      params:
+        mean: 300
+    prefix_group: "system-prompt-5"
+
+  - id: "prefix-group-6"
+    slo_class: "batch"
+    rate_fraction: 0.125
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 3.0
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 600
+        std_dev: 200
+        min: 100
+        max: 1500
+    output_distribution:
+      type: exponential
+      params:
+        mean: 300
+    prefix_group: "system-prompt-6"
+
+  - id: "prefix-group-7"
+    slo_class: "realtime"
+    rate_fraction: 0.125
+    streaming: true
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 200
+        std_dev: 50
+        min: 50
+        max: 400
+    output_distribution:
+      type: exponential
+      params:
+        mean: 50
+    prefix_group: "system-prompt-7"
+
+  - id: "prefix-group-8"
+    slo_class: "realtime"
+    rate_fraction: 0.125
+    streaming: true
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 200
+        std_dev: 50
+        min: 50
+        max: 400
+    output_distribution:
+      type: exponential
+      params:
+        mean: 50
+    prefix_group: "system-prompt-8"
