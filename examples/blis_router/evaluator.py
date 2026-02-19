@@ -224,6 +224,7 @@ def evaluate(program_path: str) -> EvaluationResult:
     ]
 
     latencies = []
+    tail_latencies = []  # p99 latencies
     request_counts = []  # for weighted averaging
     workload_results = {}
     failed_workloads = []
@@ -311,18 +312,21 @@ def evaluate(program_path: str) -> EvaluationResult:
 
                 if cluster_metrics and "e2e_mean_ms" in cluster_metrics:
                     e2e_ms = float(cluster_metrics["e2e_mean_ms"])
+                    e2e_p95_ms = float(cluster_metrics.get("e2e_p95_ms", e2e_ms))
                     latencies.append(e2e_ms)
+                    tail_latencies.append(e2e_p95_ms)
                     # Get request count from simulation output (fallback to 1 for equal weight)
                     num_requests = cluster_metrics.get("completed_requests", 1)
                     request_counts.append(int(num_requests))
                     workload_results[workload_name] = {
                         "e2e_ms": e2e_ms,
+                        "e2e_p95_ms": e2e_p95_ms,
                         "completed_requests": num_requests,
                         "ttft_mean_ms": cluster_metrics.get("ttft_mean_ms"),
                         "itl_mean_ms": cluster_metrics.get("itl_mean_ms"),
                         "tokens_per_sec": cluster_metrics.get("tokens_per_sec")
                     }
-                    logger.info(f"{workload_name}: e2e_mean_ms={e2e_ms:.2f}ms (cluster-wide)")
+                    logger.info(f"{workload_name}: e2e_mean={e2e_ms:.2f}ms, p95={e2e_p95_ms:.2f}ms")
                 else:
                     logger.error(f"Could not find cluster metrics in {workload_name} output")
                     logger.error(f"Found {len(json_blocks)} JSON blocks")
@@ -385,12 +389,14 @@ def evaluate(program_path: str) -> EvaluationResult:
     if use_weighted:
         total_requests = sum(request_counts)
         avg_latency = sum(lat * cnt for lat, cnt in zip(latencies, request_counts)) / total_requests
+        avg_tail_latency = sum(lat * cnt for lat, cnt in zip(tail_latencies, request_counts)) / total_requests
     else:
         avg_latency = sum(latencies) / len(latencies)
+        avg_tail_latency = sum(tail_latencies) / len(tail_latencies)
 
-    # Score = negative latency (so lower latency = higher score)
-    # E.g., 5000ms → score -5000, 4500ms → score -4500 (better!)
-    score = -avg_latency
+    # Score = negative of combined latency (50% mean + 50% p95 tail)
+    # Lower latency = higher score
+    score = -0.5 * avg_latency - 0.5 * avg_tail_latency
 
     # Calculate success rate
     success_rate = len(latencies) / len(workloads)
@@ -399,10 +405,10 @@ def evaluate(program_path: str) -> EvaluationResult:
     summary_lines = ["EVALUATION COMPLETE"]
     for name, result in workload_results.items():
         if result.get("e2e_ms") is not None:
-            summary_lines.append(f"  {name}: {result['e2e_ms']:.2f}ms")
+            summary_lines.append(f"  {name}: mean={result['e2e_ms']:.0f}ms p95={result.get('e2e_p95_ms', 0):.0f}ms")
         else:
             summary_lines.append(f"  {name}: FAILED")
-    summary_lines.append(f"  Average: {avg_latency:.2f}ms | Success: {success_rate:.0%} | Score: {score:.2f}")
+    summary_lines.append(f"  Avg mean={avg_latency:.0f}ms p95={avg_tail_latency:.0f}ms | Score: {score:.2f}")
     logger.info(" | ".join(summary_lines))
 
     # Prepare artifacts
@@ -421,6 +427,7 @@ def evaluate(program_path: str) -> EvaluationResult:
     metrics = {
         "combined_score": score,
         "avg_e2e_ms": avg_latency,
+        "avg_p95_ms": avg_tail_latency,
         "high_load_e2e_ms": workload_results.get("high_load", {}).get("e2e_ms"),
         "high_prefix_e2e_ms": workload_results.get("high_prefix", {}).get("e2e_ms"),
         "mixed_e2e_ms": workload_results.get("mixed", {}).get("e2e_ms"),
