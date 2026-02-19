@@ -34,7 +34,7 @@ llm:
   # Primary model for generating code mutations
   # aws/claude-sonnet-4-5: High quality, good for code generation
   # Alternative options: "GCP/claude-opus-4", "gcp/gemini-2.5-pro", "GCP/gemini-2.5-flash"
-  primary_model: Azure/gpt-4o
+  primary_model: GCP/gemini-2.5-flash # Azure/gpt-4o
 
   # Weight for primary model in ensemble (1.0 = use only primary)
   # If using ensemble, this + secondary_model_weight should sum to 1.0
@@ -42,7 +42,7 @@ llm:
 
   # Optional: Secondary model for ensemble diversity
   # Uncomment to enable two-model ensemble voting
-  secondary_model: GCP/gemini-2.5-flash
+  secondary_model: gcp/gemini-2.5-pro #GCP/gemini-2.5-flash
   secondary_model_weight: 0.4
 
   # Optional: API base URL for custom endpoints
@@ -53,7 +53,8 @@ llm:
   # 0.7 = balanced creativity and consistency
   # Lower (0.3-0.5) = more conservative, similar to past solutions
   # Higher (0.8-1.0) = more creative, diverse mutations
-  temperature: 1
+  temperature: 0.6 #1
+  top_p: 0.95
 
   # Optional: Top-p (nucleus sampling) for generation diversity
   # NOTE: AWS Bedrock (Claude) doesn't allow both temperature and top_p
@@ -63,7 +64,7 @@ llm:
   # Maximum tokens in LLM response
   # 16000 sufficient for routing.go file (~12KB source)
   # Increase if evolving larger files
-  max_tokens: 16000
+  max_tokens: 32000 #16000
 
   # Timeout for LLM API calls (seconds)
   # 120s = 2 minutes, sufficient for most models
@@ -146,7 +147,7 @@ prompt:
 database:
   # Path where evolution database is stored
   # Contains program archive, scores, features, and evolution history
-#   db_path: "./examples/blis_router/openevolve_output/blis_router_evolution"
+  db_path: "./openevolve_output/blis_router" # "./examples/blis_router/openevolve_output/blis_router_evolution"
 
   # Total number of programs to maintain in population across all islands
   # 50 = good balance between diversity and efficiency
@@ -216,4 +217,4 @@ allow_full_rewrites: false
 # Maximum allowed code length (characters)
 # 20000 = sufficient for routing.go with comments (~12KB base + mutations)
 # Safety limit to prevent runaway code generation
-max_code_length: 20000
+max_code_length: 40000
