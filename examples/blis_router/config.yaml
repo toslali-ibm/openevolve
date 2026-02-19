@@ -16,7 +16,7 @@
 # Total number of evolution iterations to run
 # 50 iterations = ~1-2 hours depending on BLIS simulation time
 # Each iteration: sample programs → LLM generates mutation → evaluate → update database
-max_iterations: 50
+max_iterations: 100
 
 # Save checkpoint every N iterations for resumability
 # Checkpoints include full database state, best program, and evolution progress
@@ -34,7 +34,7 @@ llm:
   # Primary model for generating code mutations
   # aws/claude-sonnet-4-5: High quality, good for code generation
   # Alternative options: "GCP/claude-opus-4", "gcp/gemini-2.5-pro", "GCP/gemini-2.5-flash"
-  primary_model: Azure/gpt-4o
+  primary_model: GCP/gemini-2.5-flash
 
   # Weight for primary model in ensemble (1.0 = use only primary)
   # If using ensemble, this + secondary_model_weight should sum to 1.0
@@ -42,7 +42,7 @@ llm:
 
   # Optional: Secondary model for ensemble diversity
   # Uncomment to enable two-model ensemble voting
-  secondary_model: GCP/gemini-2.5-flash
+  secondary_model: gcp/gemini-2.5-pro
   secondary_model_weight: 0.4
 
   # Optional: API base URL for custom endpoints
@@ -166,7 +166,7 @@ database:
   # Total number of programs to maintain in population across all islands
   # 50 = good balance between diversity and efficiency
   # Larger = more diversity but slower evolution
-  population_size: 50
+  population_size: 100
 
   # Size of elite archive (best programs regardless of features)
   # 15 = keep top 15 programs for guaranteed exploitation
