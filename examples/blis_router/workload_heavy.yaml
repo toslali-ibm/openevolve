@@ -1,37 +1,124 @@
 # =============================================================================
-# Heavy Batch Workload
+# Heavy Batch Workload (Multi-Pipeline)
 # =============================================================================
-# This workload simulates a high-throughput batch processing scenario with:
-# - High request rate (50 req/s) creating significant system load
-# - Very bursty arrival pattern (cv=3.5) causing queue buildup
-# - Long-tailed input token distribution (Pareto-lognormal) with some very long prompts
-# - Batch SLO class: tolerates higher latency for throughput efficiency
-# Total: ~6000 requests over 2 minutes
+# Simulates 4 different batch processing pipelines sharing the cluster:
+# - Each pipeline has its own system prompt prefix (prefix_group)
+# - Requests within a pipeline share the same prefix (high cache opportunity)
+# - Very bursty: pipelines submit jobs in batches
+# - Total: ~6000 requests over 2 minutes across 4 pipelines
 # =============================================================================
 
-version: "1"                    # Config format version
-seed: 42                        # Random seed for reproducibility
-category: language              # Workload category (language model inference)
-aggregate_rate: 50.0            # Total request rate: 50 requests per second
-horizon: 120000000              # Simulation duration: 2 minutes (in microseconds)
+version: "1"
+seed: 42
+category: language
+aggregate_rate: 50.0            # 50 req/s total across all pipelines
+horizon: 120000000              # 2 minutes
 
 clients:
-  - id: "heavy-batch"           # Unique client identifier
-    slo_class: "batch"          # SLO class: batch (tolerates higher latency)
-    rate_fraction: 1.0          # This client generates 100% of the traffic
-    streaming: false            # Non-streaming: wait for full response
+  # -------------------------------------------------------------------------
+  # Pipeline 1: Document Summarization (30% of traffic)
+  # Batch job processing documents with shared summarization prompt
+  # -------------------------------------------------------------------------
+  - id: "summarization-pipeline"
+    prefix_group: "pipeline-summarize"  # Shared prefix: summarization instructions
+    slo_class: "batch"
+    rate_fraction: 0.30                 # 15 req/s
+    streaming: false
     arrival:
-      process: gamma            # Gamma arrival process (generalizes Poisson)
-      cv: 3.5                   # Coefficient of variation: very bursty (>1 = bursty, 1 = Poisson)
-    input_distribution:         # Distribution for input token counts (prompt length)
-      type: pareto_lognormal    # Heavy-tailed: mix of Pareto and lognormal
+      process: gamma
+      cv: 4.0                           # Very bursty: batch submissions
+    input_distribution:
+      type: pareto_lognormal            # Documents: highly variable length
       params:
-        alpha: 1.5              # Pareto shape: controls tail heaviness (lower = heavier tail)
-        xm: 50                  # Pareto scale: minimum value
-        mu: 5.5                 # Lognormal mean (log scale): ~245 tokens median
-        sigma: 1.2              # Lognormal std dev: high variance in prompt lengths
-        mix_weight: 0.3         # 30% Pareto, 70% lognormal
-    output_distribution:        # Distribution for output token counts (response length)
-      type: exponential         # Exponential: memoryless, typical for completions
+        alpha: 1.3                       # Heavier tail (long documents)
+        xm: 100
+        mu: 6.0
+        sigma: 1.3
+        mix_weight: 0.4
+    output_distribution:
+      type: exponential
       params:
-        mean: 250               # Average output: 250 tokens per response
+        mean: 200                       # Summaries: moderate length
+
+  # -------------------------------------------------------------------------
+  # Pipeline 2: Data Extraction (30% of traffic)
+  # Batch job extracting structured data with shared extraction prompt
+  # -------------------------------------------------------------------------
+  - id: "extraction-pipeline"
+    prefix_group: "pipeline-extract"    # Shared prefix: extraction schema
+    slo_class: "batch"
+    rate_fraction: 0.30                 # 15 req/s
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 3.5                           # Very bursty
+    input_distribution:
+      type: pareto_lognormal
+      params:
+        alpha: 1.5
+        xm: 50
+        mu: 5.5
+        sigma: 1.2
+        mix_weight: 0.3
+    output_distribution:
+      type: gaussian                    # Structured output: predictable length
+      params:
+        mean: 150
+        std_dev: 50
+        min: 50
+        max: 400
+
+  # -------------------------------------------------------------------------
+  # Pipeline 3: Translation (25% of traffic)
+  # Batch job translating content with shared translation prompt
+  # -------------------------------------------------------------------------
+  - id: "translation-pipeline"
+    prefix_group: "pipeline-translate"  # Shared prefix: translation instructions
+    slo_class: "batch"
+    rate_fraction: 0.25                 # 12.5 req/s
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 3.0                           # Bursty
+    input_distribution:
+      type: gaussian                    # Sentences/paragraphs: moderate variance
+      params:
+        mean: 200
+        std_dev: 80
+        min: 20
+        max: 500
+    output_distribution:
+      type: gaussian                    # Output ~= input length for translation
+      params:
+        mean: 220
+        std_dev: 90
+        min: 20
+        max: 550
+
+  # -------------------------------------------------------------------------
+  # Pipeline 4: Classification (15% of traffic)
+  # Batch job classifying content with shared classification prompt
+  # -------------------------------------------------------------------------
+  - id: "classification-pipeline"
+    prefix_group: "pipeline-classify"   # Shared prefix: classification categories
+    slo_class: "batch"
+    rate_fraction: 0.15                 # 7.5 req/s
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 3.5                           # Bursty
+    input_distribution:
+      type: pareto_lognormal
+      params:
+        alpha: 1.5
+        xm: 30
+        mu: 5.0
+        sigma: 1.0
+        mix_weight: 0.3
+    output_distribution:
+      type: gaussian                    # Classification: short, predictable output
+      params:
+        mean: 50
+        std_dev: 20
+        min: 10
+        max: 150

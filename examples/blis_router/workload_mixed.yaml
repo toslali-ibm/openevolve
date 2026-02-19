@@ -1,61 +1,123 @@
 # =============================================================================
-# Mixed Workload (Batch + Realtime)
+# Mixed Workload (Multi-Tenant: Batch + Realtime)
 # =============================================================================
-# This workload simulates a realistic multi-tenant scenario with:
-# - Two distinct client types sharing the system
-# - Batch traffic (70%): bursty, long outputs, tolerates latency
-# - Realtime traffic (30%): steady arrivals, streaming, latency-sensitive
-# - Tests scheduler's ability to balance throughput vs latency requirements
-# Total: ~2400 requests over 2 minutes (1680 batch + 720 realtime)
+# Simulates a realistic multi-tenant production scenario:
+# - 4 tenants total: 2 batch pipelines + 2 realtime applications
+# - Each tenant has its own system prompt prefix (prefix_group)
+# - Tests routing under mixed SLO requirements with prefix affinity opportunities
+# - Total: ~2400 requests over 2 minutes
 # =============================================================================
 
-version: "1"                    # Config format version
-seed: 42                        # Random seed for reproducibility
-category: language              # Workload category (language model inference)
-aggregate_rate: 20.0            # Total request rate: 20 requests per second
-horizon: 120000000              # Simulation duration: 2 minutes (in microseconds)
+version: "1"
+seed: 42
+category: language
+aggregate_rate: 20.0            # 20 req/s total
+horizon: 120000000              # 2 minutes
 
 clients:
-  # -------------------------------------------------------------------------
-  # Batch Client: High-throughput, latency-tolerant workload (70% of traffic)
-  # -------------------------------------------------------------------------
-  - id: "batch-traffic"         # Unique client identifier
-    slo_class: "batch"          # SLO class: batch (tolerates higher latency)
-    rate_fraction: 0.7          # 70% of aggregate rate = 14 req/s
-    streaming: false            # Non-streaming: wait for full response
-    arrival:
-      process: gamma            # Gamma arrival process
-      cv: 3.5                   # Very bursty: requests come in bursts
-    input_distribution:         # Distribution for input token counts
-      type: pareto_lognormal    # Heavy-tailed distribution
-      params:
-        alpha: 1.5              # Pareto shape parameter
-        xm: 50                  # Pareto minimum value
-        mu: 5.5                 # Lognormal mean (log scale)
-        sigma: 1.2              # Lognormal std dev
-        mix_weight: 0.3         # 30% Pareto, 70% lognormal
-    output_distribution:        # Distribution for output token counts
-      type: exponential         # Exponential distribution
-      params:
-        mean: 300               # Long outputs: 300 tokens average
+  # =========================================================================
+  # BATCH TENANTS (70% of traffic) - Latency tolerant, bursty
+  # =========================================================================
 
   # -------------------------------------------------------------------------
-  # Realtime Client: Low-latency, streaming workload (30% of traffic)
+  # Batch Tenant 1: Analytics Pipeline (40% of total traffic)
+  # Processing analytics queries with shared analytics prompt
   # -------------------------------------------------------------------------
-  - id: "realtime-traffic"      # Unique client identifier
-    slo_class: "realtime"       # SLO class: realtime (strict latency requirements)
-    rate_fraction: 0.3          # 30% of aggregate rate = 6 req/s
-    streaming: true             # Streaming: tokens sent as generated (TTFT matters)
+  - id: "analytics-batch"
+    prefix_group: "batch-analytics"     # Shared prefix: analytics context
+    slo_class: "batch"
+    rate_fraction: 0.40                 # 8 req/s
+    streaming: false
     arrival:
-      process: poisson          # Poisson arrivals: steady, predictable rate
-    input_distribution:         # Distribution for input token counts
-      type: gaussian            # Normal distribution: predictable prompt lengths
+      process: gamma
+      cv: 3.5                           # Very bursty: batch submissions
+    input_distribution:
+      type: pareto_lognormal
       params:
-        mean: 128               # Average prompt: 128 tokens
-        std_dev: 50             # Standard deviation: moderate variance
-        min: 10                 # Minimum: 10 tokens (truncates distribution)
-        max: 512                # Maximum: 512 tokens (truncates distribution)
-    output_distribution:        # Distribution for output token counts
-      type: exponential         # Exponential distribution
+        alpha: 1.5
+        xm: 50
+        mu: 5.5
+        sigma: 1.2
+        mix_weight: 0.3
+    output_distribution:
+      type: exponential
       params:
-        mean: 100               # Short outputs: 100 tokens average (fast responses)
+        mean: 300                       # Analytics: longer responses
+
+  # -------------------------------------------------------------------------
+  # Batch Tenant 2: Content Generation Pipeline (30% of total traffic)
+  # Generating content with shared content generation prompt
+  # -------------------------------------------------------------------------
+  - id: "content-batch"
+    prefix_group: "batch-content"       # Shared prefix: content generation context
+    slo_class: "batch"
+    rate_fraction: 0.30                 # 6 req/s
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 4.0                           # Very bursty
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 100                       # Short prompts for content generation
+        std_dev: 40
+        min: 20
+        max: 300
+    output_distribution:
+      type: pareto_lognormal            # Content: highly variable length
+      params:
+        alpha: 1.5
+        xm: 100
+        mu: 5.5
+        sigma: 1.0
+        mix_weight: 0.3
+
+  # =========================================================================
+  # REALTIME TENANTS (30% of traffic) - Latency sensitive, steady
+  # =========================================================================
+
+  # -------------------------------------------------------------------------
+  # Realtime Tenant 1: Chat Application (20% of total traffic)
+  # Live chat with shared chat system prompt
+  # -------------------------------------------------------------------------
+  - id: "chat-realtime"
+    prefix_group: "realtime-chat"       # Shared prefix: chat system prompt
+    slo_class: "realtime"
+    rate_fraction: 0.20                 # 4 req/s
+    streaming: true                     # Streaming for responsive UX
+    arrival:
+      process: poisson                  # Steady: user-driven
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 80                        # Chat: short messages
+        std_dev: 30
+        min: 10
+        max: 256
+    output_distribution:
+      type: exponential
+      params:
+        mean: 100                       # Chat: quick responses
+
+  # -------------------------------------------------------------------------
+  # Realtime Tenant 2: Search/RAG Application (10% of total traffic)
+  # Search queries with shared RAG system prompt
+  # -------------------------------------------------------------------------
+  - id: "search-realtime"
+    prefix_group: "realtime-search"     # Shared prefix: RAG/search context
+    slo_class: "realtime"
+    rate_fraction: 0.10                 # 2 req/s
+    streaming: true                     # Streaming for fast first token
+    arrival:
+      process: poisson                  # Steady: search queries
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 200                       # Search: query + retrieved context
+        std_dev: 60
+        min: 50
+        max: 512
+    output_distribution:
+      type: exponential
+      params:
+        mean: 150                       # Search: concise answers
