@@ -96,11 +96,26 @@ database:
   num_islands: 3
 ```
 
+### Environment Variables
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `BLIS_EQUAL_WEIGHT` | `false` | Set to `true` for equal-weight averaging across workloads. Default uses request-weighted averaging (workloads with more requests have more impact on score). |
+| `OPENEVOLVE_SHOW_DIFFS` | `true` | Set to `false` to disable diff logging vs initial program. |
+
+**Example:**
+```bash
+# Use equal-weight averaging instead of request-weighted
+BLIS_EQUAL_WEIGHT=true python openevolve-run.py ...
+```
+
 ---
 
 ## Scoring
 
-**Formula:** `score = -avg_latency`
+**Formula:** `score = -avg_latency` (request-weighted by default)
+
+**Request-weighted averaging:** Workloads with more requests have more impact on the average latency. For example, if heavy has 12000 requests and light has 600, heavy's latency counts ~20x more.
 
 **Interpretation:**
 - Higher score (less negative) = Better

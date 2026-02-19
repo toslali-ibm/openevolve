@@ -221,7 +221,8 @@ def evaluate(program_path: str) -> EvaluationResult:
         ("mixed", "workload_mixed.yaml")
     ]
 
-    latencies = []
+    latencies = {}  # workload_name -> e2e_ms
+    request_counts = {}  # workload_name -> completed_requests (from BLIS)
     workload_results = {}
     failed_workloads = []
 
@@ -303,14 +304,17 @@ def evaluate(program_path: str) -> EvaluationResult:
 
                 if cluster_metrics and "e2e_mean_ms" in cluster_metrics:
                     e2e_ms = float(cluster_metrics["e2e_mean_ms"])
-                    latencies.append(e2e_ms)
+                    completed = cluster_metrics.get("completed_requests", 0)
+                    latencies[workload_name] = e2e_ms
+                    request_counts[workload_name] = completed
                     workload_results[workload_name] = {
                         "e2e_ms": e2e_ms,
+                        "completed_requests": completed,
                         "ttft_mean_ms": cluster_metrics.get("ttft_mean_ms"),
                         "itl_mean_ms": cluster_metrics.get("itl_mean_ms"),
                         "tokens_per_sec": cluster_metrics.get("tokens_per_sec")
                     }
-                    logger.info(f"{workload_name}: e2e_mean_ms={e2e_ms:.2f}ms (cluster-wide)")
+                    logger.info(f"[{workload_name}] e2e={e2e_ms:.1f}ms reqs={completed}")
                 else:
                     logger.error(f"Could not find cluster metrics in {workload_name} output")
                     logger.error(f"Found {len(json_blocks)} JSON blocks")
@@ -368,7 +372,17 @@ def evaluate(program_path: str) -> EvaluationResult:
         )
 
     # Calculate average latency from successful runs
-    avg_latency = sum(latencies) / len(latencies)
+    # Default: request-weighted (workloads with more requests have more impact)
+    # Set BLIS_EQUAL_WEIGHT=true for simple equal-weight average
+    use_equal_weight = os.environ.get("BLIS_EQUAL_WEIGHT", "false").lower() == "true"
+    total_requests = sum(request_counts.values())
+
+    if use_equal_weight or total_requests == 0:
+        avg_latency = sum(latencies.values()) / len(latencies)
+    else:
+        # Request-weighted average
+        weighted_sum = sum(latencies[name] * request_counts[name] for name in latencies)
+        avg_latency = weighted_sum / total_requests
 
     # Score = negative latency (so lower latency = higher score)
     # E.g., 5000ms → score -5000, 4500ms → score -4500 (better!)
@@ -376,23 +390,19 @@ def evaluate(program_path: str) -> EvaluationResult:
 
     # Calculate success rate
     success_rate = len(latencies) / len(workloads)
+    weight_mode = "equal" if use_equal_weight else "request-weighted"
 
     # Log evaluation summary
-    summary_lines = ["EVALUATION COMPLETE"]
-    for name, result in workload_results.items():
-        if result.get("e2e_ms") is not None:
-            summary_lines.append(f"  {name}: {result['e2e_ms']:.2f}ms")
-        else:
-            summary_lines.append(f"  {name}: FAILED")
-    summary_lines.append(f"  Average: {avg_latency:.2f}ms | Success: {success_rate:.0%} | Score: {score:.2f}")
-    logger.info(" | ".join(summary_lines))
+    logger.info(f"[summary] avg={avg_latency:.1f}ms ({weight_mode}) reqs={total_requests} score={score:.1f}")
 
     # Prepare artifacts
     artifacts = {
         "workload_results": workload_results,
         "successful_workloads": len(latencies),
         "failed_workloads": len(failed_workloads),
-        "success_rate": f"{success_rate:.0%}"
+        "success_rate": f"{success_rate:.0%}",
+        "total_requests": total_requests,
+        "weight_mode": weight_mode
     }
 
     if failed_workloads:
@@ -403,9 +413,13 @@ def evaluate(program_path: str) -> EvaluationResult:
     metrics = {
         "combined_score": score,
         "avg_e2e_ms": avg_latency,
+        "total_requests": total_requests,
         "light_e2e_ms": workload_results.get("light", {}).get("e2e_ms"),
+        "light_requests": workload_results.get("light", {}).get("completed_requests"),
         "heavy_e2e_ms": workload_results.get("heavy", {}).get("e2e_ms"),
+        "heavy_requests": workload_results.get("heavy", {}).get("completed_requests"),
         "mixed_e2e_ms": workload_results.get("mixed", {}).get("e2e_ms"),
+        "mixed_requests": workload_results.get("mixed", {}).get("completed_requests"),
         "success_rate": success_rate,
         "num_successful": len(latencies),
         "num_failed": len(failed_workloads)
