@@ -267,35 +267,40 @@ def evaluate(program_path: str) -> EvaluationResult:
                 }
                 continue
 
-            # Parse JSON output from stderr (logrus outputs to stderr with --log flag)
-            # BLIS outputs multiple JSON blocks - one per instance + one cluster-wide aggregate
+            # Parse JSON output - BLIS outputs multiple JSON blocks with headers
+            # Format: "=== Simulation Metrics ===" followed by JSON object
             # We want the CLUSTER aggregate (instance_id == "cluster")
             try:
                 # Find all JSON blocks in the output (could be in stdout or stderr)
-                output_text = result.stderr if result.stderr else result.stdout
+                output_text = result.stdout + (result.stderr or "")
 
-                # Extract JSON objects from the log output
+                # Extract JSON objects by finding { ... } blocks
                 json_blocks = []
+                in_json = False
+                json_buffer = ""
+                brace_count = 0
+
                 for line in output_text.split('\n'):
-                    # Look for lines with msg="..." containing JSON
-                    # Format: level=info msg="{\n  \"instance_id\": ..."
-                    if 'msg="' in line and '{' in line:
-                        # Extract JSON from msg="..." field
-                        msg_start = line.find('msg="')
-                        if msg_start >= 0:
-                            json_start = line.find('{', msg_start)
-                            if json_start >= 0:
-                                # Find the closing "
-                                json_end = line.rfind('"')
-                                if json_end > json_start:
-                                    json_str = line[json_start:json_end]
-                                    # Unescape newlines and quotes
-                                    json_str = json_str.replace('\\n', '\n').replace('\\"', '"')
-                                    try:
-                                        json_obj = json.loads(json_str)
-                                        json_blocks.append(json_obj)
-                                    except json.JSONDecodeError:
-                                        continue
+                    stripped = line.strip()
+
+                    # Start of JSON object
+                    if stripped.startswith('{'):
+                        in_json = True
+                        brace_count = 0
+
+                    if in_json:
+                        json_buffer += line + '\n'
+                        brace_count += stripped.count('{') - stripped.count('}')
+
+                        # End of JSON object
+                        if brace_count == 0 and json_buffer.strip():
+                            try:
+                                json_obj = json.loads(json_buffer)
+                                json_blocks.append(json_obj)
+                            except json.JSONDecodeError:
+                                pass
+                            json_buffer = ""
+                            in_json = False
 
                 # Find the cluster-wide metrics (instance_id == "cluster")
                 cluster_metrics = None
