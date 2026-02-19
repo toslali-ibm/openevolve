@@ -5,13 +5,13 @@
 # - 4 tenants total: 2 batch pipelines + 2 realtime applications
 # - Each tenant has its own system prompt prefix (prefix_group)
 # - Tests routing under mixed SLO requirements with prefix affinity opportunities
-# - Total: ~2400 requests over 2 minutes
+# - Total: ~12000 requests over 2 minutes
 # =============================================================================
 
 version: "1"
 seed: 42
 category: language
-aggregate_rate: 20.0            # 20 req/s total
+aggregate_rate: 100.0           # 100 req/s total (~25 req/s per instance with 4 instances)
 horizon: 120000000              # 2 minutes
 
 clients:
@@ -26,7 +26,7 @@ clients:
   - id: "analytics-batch"
     prefix_group: "batch-analytics"     # Shared prefix: analytics context
     slo_class: "batch"
-    rate_fraction: 0.40                 # 8 req/s
+    rate_fraction: 0.40                 # 40 req/s
     streaming: false
     arrival:
       process: gamma
@@ -51,7 +51,7 @@ clients:
   - id: "content-batch"
     prefix_group: "batch-content"       # Shared prefix: content generation context
     slo_class: "batch"
-    rate_fraction: 0.30                 # 6 req/s
+    rate_fraction: 0.30                 # 30 req/s
     streaming: false
     arrival:
       process: gamma
@@ -83,7 +83,7 @@ clients:
   - id: "chat-realtime"
     prefix_group: "realtime-chat"       # Shared prefix: chat system prompt
     slo_class: "realtime"
-    rate_fraction: 0.20                 # 4 req/s
+    rate_fraction: 0.20                 # 20 req/s
     streaming: true                     # Streaming for responsive UX
     arrival:
       process: poisson                  # Steady: user-driven
@@ -106,7 +106,7 @@ clients:
   - id: "search-realtime"
     prefix_group: "realtime-search"     # Shared prefix: RAG/search context
     slo_class: "realtime"
-    rate_fraction: 0.10                 # 2 req/s
+    rate_fraction: 0.10                 # 10 req/s
     streaming: true                     # Streaming for fast first token
     arrival:
       process: poisson                  # Steady: search queries
