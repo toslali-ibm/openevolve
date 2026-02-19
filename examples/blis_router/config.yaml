@@ -187,7 +187,7 @@ evaluator:
   # 300s = 5 minutes per evaluation
   # Includes: writing file, Go build, running 3 BLIS workloads, parsing
   # Increase if BLIS simulations are slow or workloads are large
-  timeout: 30
+  timeout: 60
 
   # Number of programs to evaluate in parallel
   # 1 = sequential evaluation (required for BLIS since Go build is sequential)

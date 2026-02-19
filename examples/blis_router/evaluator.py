@@ -214,21 +214,14 @@ def evaluate(program_path: str) -> EvaluationResult:
             }
         )
 
-    # Step 4: Run simulations on workloads designed to stress routing decisions
-    # Each workload targets a specific routing weakness:
-    # - prefix_concentrated: rewards prefix-aware routing (cache affinity)
-    # - slo_contention: rewards SLO-aware routing (realtime vs batch)
-    # - burst_storm: rewards fast load-balancing (extreme burstiness)
-    # - kv_pressure: rewards memory-aware routing (KV cache management)
+    # Step 4: Run simulations on 3 realistic servegen workloads
     workloads = [
-        ("prefix", "workload_prefix_concentrated.yaml"),
-        ("slo", "workload_slo_contention.yaml"),
-        ("burst", "workload_burst_storm.yaml"),
-        ("kvpressure", "workload_kv_pressure.yaml"),
+        ("light", "workload_light.yaml"),
+        ("heavy", "workload_heavy.yaml"),
+        ("mixed", "workload_mixed.yaml")
     ]
 
-    latencies = {}  # workload_name -> e2e_ms
-    request_counts = {}  # workload_name -> completed_requests (from BLIS)
+    latencies = []
     workload_results = {}
     failed_workloads = []
 
@@ -310,17 +303,14 @@ def evaluate(program_path: str) -> EvaluationResult:
 
                 if cluster_metrics and "e2e_mean_ms" in cluster_metrics:
                     e2e_ms = float(cluster_metrics["e2e_mean_ms"])
-                    completed = cluster_metrics.get("completed_requests", 0)
-                    latencies[workload_name] = e2e_ms
-                    request_counts[workload_name] = completed
+                    latencies.append(e2e_ms)
                     workload_results[workload_name] = {
                         "e2e_ms": e2e_ms,
-                        "completed_requests": completed,
                         "ttft_mean_ms": cluster_metrics.get("ttft_mean_ms"),
                         "itl_mean_ms": cluster_metrics.get("itl_mean_ms"),
                         "tokens_per_sec": cluster_metrics.get("tokens_per_sec")
                     }
-                    logger.info(f"[{workload_name}] e2e={e2e_ms:.1f}ms reqs={completed}")
+                    logger.info(f"{workload_name}: e2e_mean_ms={e2e_ms:.2f}ms (cluster-wide)")
                 else:
                     logger.error(f"Could not find cluster metrics in {workload_name} output")
                     logger.error(f"Found {len(json_blocks)} JSON blocks")
@@ -378,25 +368,7 @@ def evaluate(program_path: str) -> EvaluationResult:
         )
 
     # Calculate average latency from successful runs
-    # Default: request-weighted (workloads with more requests have more impact)
-    # Set BLIS_EQUAL_WEIGHT=true for simple equal-weight average
-    use_equal_weight = os.environ.get("BLIS_EQUAL_WEIGHT", "false").lower() == "true"
-    total_requests = sum(request_counts.values())
-
-    # Calculate both for comparison
-    equal_avg = sum(latencies.values()) / len(latencies)
-    if total_requests > 0:
-        weighted_sum = sum(latencies[name] * request_counts[name] for name in latencies)
-        weighted_avg = weighted_sum / total_requests
-    else:
-        weighted_avg = equal_avg
-
-    logger.info(f"[debug] equal_avg={equal_avg:.1f}ms weighted_avg={weighted_avg:.1f}ms")
-
-    if use_equal_weight or total_requests == 0:
-        avg_latency = equal_avg
-    else:
-        avg_latency = weighted_avg
+    avg_latency = sum(latencies) / len(latencies)
 
     # Score = negative latency (so lower latency = higher score)
     # E.g., 5000ms → score -5000, 4500ms → score -4500 (better!)
@@ -404,19 +376,23 @@ def evaluate(program_path: str) -> EvaluationResult:
 
     # Calculate success rate
     success_rate = len(latencies) / len(workloads)
-    weight_mode = "equal" if use_equal_weight else "request-weighted"
 
     # Log evaluation summary
-    logger.info(f"[summary] avg={avg_latency:.1f}ms ({weight_mode}) reqs={total_requests} score={score:.1f}")
+    summary_lines = ["EVALUATION COMPLETE"]
+    for name, result in workload_results.items():
+        if result.get("e2e_ms") is not None:
+            summary_lines.append(f"  {name}: {result['e2e_ms']:.2f}ms")
+        else:
+            summary_lines.append(f"  {name}: FAILED")
+    summary_lines.append(f"  Average: {avg_latency:.2f}ms | Success: {success_rate:.0%} | Score: {score:.2f}")
+    logger.info(" | ".join(summary_lines))
 
     # Prepare artifacts
     artifacts = {
         "workload_results": workload_results,
         "successful_workloads": len(latencies),
         "failed_workloads": len(failed_workloads),
-        "success_rate": f"{success_rate:.0%}",
-        "total_requests": total_requests,
-        "weight_mode": weight_mode
+        "success_rate": f"{success_rate:.0%}"
     }
 
     if failed_workloads:
@@ -427,15 +403,9 @@ def evaluate(program_path: str) -> EvaluationResult:
     metrics = {
         "combined_score": score,
         "avg_e2e_ms": avg_latency,
-        "total_requests": total_requests,
-        "prefix_e2e_ms": workload_results.get("prefix", {}).get("e2e_ms"),
-        "prefix_requests": workload_results.get("prefix", {}).get("completed_requests"),
-        "slo_e2e_ms": workload_results.get("slo", {}).get("e2e_ms"),
-        "slo_requests": workload_results.get("slo", {}).get("completed_requests"),
-        "burst_e2e_ms": workload_results.get("burst", {}).get("e2e_ms"),
-        "burst_requests": workload_results.get("burst", {}).get("completed_requests"),
-        "kvpressure_e2e_ms": workload_results.get("kvpressure", {}).get("e2e_ms"),
-        "kvpressure_requests": workload_results.get("kvpressure", {}).get("completed_requests"),
+        "light_e2e_ms": workload_results.get("light", {}).get("e2e_ms"),
+        "heavy_e2e_ms": workload_results.get("heavy", {}).get("e2e_ms"),
+        "mixed_e2e_ms": workload_results.get("mixed", {}).get("e2e_ms"),
         "success_rate": success_rate,
         "num_successful": len(latencies),
         "num_failed": len(failed_workloads)
@@ -448,9 +418,6 @@ def evaluate(program_path: str) -> EvaluationResult:
 
 
 if __name__ == "__main__":
-    # Configure logging for test run
-    logging.basicConfig(level=logging.INFO, format='%(message)s')
-
     # Test the evaluator with the initial program
     print("Testing evaluator with initial program...")
 

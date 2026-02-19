@@ -1,87 +1,37 @@
 # =============================================================================
-# Light Interactive Workload (Multi-Tenant)
+# Light Interactive Workload
 # =============================================================================
-# Simulates 3 different chatbot applications sharing the cluster:
-# - Each tenant has its own system prompt prefix (prefix_group)
-# - Requests within a tenant share the same prefix (cache opportunity)
-# - Total: ~600 requests over 1 minute across 3 tenants
+# This workload simulates a low-traffic interactive scenario with:
+# - Low request rate (10 req/s) representing light system usage
+# - Moderate burstiness (cv=2.0) typical of human-driven interactions
+# - Interactive SLO class: requires low latency for good user experience
+# - Shorter average outputs (200 tokens) typical of conversational responses
+# Total: ~1200 requests over 2 minutes
 # =============================================================================
 
-version: "1"
-seed: 42
-category: language
-aggregate_rate: 10.0            # 10 req/s total across all tenants
-horizon: 60000000              # 1 minutes
+version: "1"                    # Config format version
+seed: 42                        # Random seed for reproducibility
+category: language              # Workload category (language model inference)
+aggregate_rate: 10.0            # Total request rate: 10 requests per second
+horizon: 120000000              # Simulation duration: 2 minutes (in microseconds)
 
 clients:
-  # -------------------------------------------------------------------------
-  # Tenant A: Customer Support Chatbot (40% of traffic)
-  # All requests share a common system prompt for support context
-  # -------------------------------------------------------------------------
-  - id: "support-chatbot"
-    prefix_group: "tenant-a-support"    # Shared prefix: support system prompt
-    slo_class: "interactive"
-    rate_fraction: 0.4                  # 4 req/s
-    streaming: false
+  - id: "light-traffic"         # Unique client identifier
+    slo_class: "interactive"    # SLO class: interactive (requires low latency)
+    rate_fraction: 1.0          # This client generates 100% of the traffic
+    streaming: false            # Non-streaming: wait for full response
     arrival:
-      process: gamma
-      cv: 2.0                           # Moderately bursty (human-driven)
-    input_distribution:
-      type: gaussian
+      process: gamma            # Gamma arrival process (generalizes Poisson)
+      cv: 2.0                   # Coefficient of variation: moderately bursty
+    input_distribution:         # Distribution for input token counts (prompt length)
+      type: pareto_lognormal    # Heavy-tailed: mix of Pareto and lognormal
       params:
-        mean: 150                       # Support queries: moderate length
-        std_dev: 50
-        min: 20
-        max: 400
-    output_distribution:
-      type: exponential
+        alpha: 1.5              # Pareto shape: controls tail heaviness
+        xm: 50                  # Pareto scale: minimum value
+        mu: 5.5                 # Lognormal mean (log scale): ~245 tokens median
+        sigma: 1.2              # Lognormal std dev: high variance in prompt lengths
+        mix_weight: 0.3         # 30% Pareto, 70% lognormal
+    output_distribution:        # Distribution for output token counts (response length)
+      type: exponential         # Exponential: memoryless, typical for completions
       params:
-        mean: 180                       # Support responses: moderate length
-
-  # -------------------------------------------------------------------------
-  # Tenant B: Code Assistant (35% of traffic)
-  # All requests share a common system prompt for coding context
-  # -------------------------------------------------------------------------
-  - id: "code-assistant"
-    prefix_group: "tenant-b-code"       # Shared prefix: coding system prompt
-    slo_class: "interactive"
-    rate_fraction: 0.35                 # 3.5 req/s
-    streaming: false
-    arrival:
-      process: gamma
-      cv: 2.5                           # More bursty (developers work in bursts)
-    input_distribution:
-      type: pareto_lognormal            # Code snippets: highly variable length
-      params:
-        alpha: 1.5
-        xm: 50
-        mu: 5.5
-        sigma: 1.0
-        mix_weight: 0.3
-    output_distribution:
-      type: exponential
-      params:
-        mean: 250                       # Code completions: longer outputs
-
-  # -------------------------------------------------------------------------
-  # Tenant C: General Assistant (25% of traffic)
-  # All requests share a common system prompt for general chat
-  # -------------------------------------------------------------------------
-  - id: "general-assistant"
-    prefix_group: "tenant-c-general"    # Shared prefix: general system prompt
-    slo_class: "interactive"
-    rate_fraction: 0.25                 # 2.5 req/s
-    streaming: false
-    arrival:
-      process: poisson                  # Steady arrivals
-    input_distribution:
-      type: gaussian
-      params:
-        mean: 100                       # General queries: shorter
-        std_dev: 40
-        min: 10
-        max: 300
-    output_distribution:
-      type: exponential
-      params:
-        mean: 150                       # General responses: moderate
+        mean: 200               # Average output: 200 tokens per response
