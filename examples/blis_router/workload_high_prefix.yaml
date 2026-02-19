@@ -1,0 +1,82 @@
+# High Prefix Hits Workload
+# Maximizes KV cache prefix hits via shared prompts
+# All clients share prefix groups for cache reuse
+# Total: 1000 requests
+
+version: "1"
+seed: 42
+category: language
+aggregate_rate: 80.0
+num_requests: 1000
+
+clients:
+  - id: "shared-prompt-batch-1"
+    tenant_id: "tenant-shared"
+    slo_class: "batch"
+    rate_fraction: 0.4
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 2.0
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 512               # Longer shared prompts = more cache benefit
+        std_dev: 100
+        min: 200
+        max: 1024
+    output_distribution:
+      type: exponential
+      params:
+        mean: 128
+    prefix_group: "system-prompt-A"    # Shared prefix group
+    network:
+      rtt_ms: 5.0
+      bandwidth_mbps: 1000
+
+  - id: "shared-prompt-batch-2"
+    tenant_id: "tenant-shared"
+    slo_class: "batch"
+    rate_fraction: 0.3
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 2.0
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 400
+        std_dev: 80
+        min: 150
+        max: 800
+    output_distribution:
+      type: exponential
+      params:
+        mean: 100
+    prefix_group: "system-prompt-A"    # Same prefix group as above
+    network:
+      rtt_ms: 5.0
+      bandwidth_mbps: 1000
+
+  - id: "shared-prompt-realtime"
+    tenant_id: "tenant-chat"
+    slo_class: "realtime"
+    rate_fraction: 0.3
+    streaming: true
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 256
+        std_dev: 50
+        min: 100
+        max: 512
+    output_distribution:
+      type: exponential
+      params:
+        mean: 64
+    prefix_group: "chat-system-prompt"  # Different prefix for realtime
+    network:
+      rtt_ms: 15.0
+      bandwidth_mbps: 500

@@ -215,11 +215,12 @@ def evaluate(program_path: str) -> EvaluationResult:
             }
         )
 
-    # Step 4: Run simulations on 3 realistic servegen workloads
+    # Step 4: Run simulations on 4 realistic workloads (1000 requests each)
     workloads = [
-        ("light", "workload_light.yaml"),
-        ("heavy", "workload_heavy.yaml"),
-        ("mixed", "workload_mixed.yaml")
+        ("high_load", "workload_high_load.yaml"),
+        ("high_prefix", "workload_high_prefix.yaml"),
+        ("mixed", "workload_mixed.yaml"),
+        ("servegen", "workload_servegen.yaml")
     ]
 
     latencies = []
@@ -415,9 +416,10 @@ def evaluate(program_path: str) -> EvaluationResult:
     metrics = {
         "combined_score": score,
         "avg_e2e_ms": avg_latency,
-        "light_e2e_ms": workload_results.get("light", {}).get("e2e_ms"),
-        "heavy_e2e_ms": workload_results.get("heavy", {}).get("e2e_ms"),
+        "high_load_e2e_ms": workload_results.get("high_load", {}).get("e2e_ms"),
+        "high_prefix_e2e_ms": workload_results.get("high_prefix", {}).get("e2e_ms"),
         "mixed_e2e_ms": workload_results.get("mixed", {}).get("e2e_ms"),
+        "servegen_e2e_ms": workload_results.get("servegen", {}).get("e2e_ms"),
         "success_rate": success_rate,
         "num_successful": len(latencies),
         "num_failed": len(failed_workloads)

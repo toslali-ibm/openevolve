@@ -1,61 +1,105 @@
-# =============================================================================
-# Mixed Workload (Batch + Realtime)
-# =============================================================================
-# This workload simulates a realistic multi-tenant scenario with:
-# - Two distinct client types sharing the system
-# - Batch traffic (70%): bursty, long outputs, tolerates latency
-# - Realtime traffic (30%): steady arrivals, streaming, latency-sensitive
-# - Tests scheduler's ability to balance throughput vs latency requirements
-# Total: ~2400 requests over 2 minutes (1680 batch + 720 realtime)
-# =============================================================================
+# Mixed Workload
+# Balanced mix of batch/realtime, with/without prefix sharing
+# Tests routing under diverse conditions
+# Total: 1000 requests
 
-version: "1"                    # Config format version
-seed: 42                        # Random seed for reproducibility
-category: language              # Workload category (language model inference)
-aggregate_rate: 20.0            # Total request rate: 20 requests per second
-horizon: 120000000              # Simulation duration: 2 minutes (in microseconds)
+version: "1"
+seed: 42
+category: language
+aggregate_rate: 150.0
+num_requests: 1000
 
 clients:
-  # -------------------------------------------------------------------------
-  # Batch Client: High-throughput, latency-tolerant workload (70% of traffic)
-  # -------------------------------------------------------------------------
-  - id: "batch-traffic"         # Unique client identifier
-    slo_class: "batch"          # SLO class: batch (tolerates higher latency)
-    rate_fraction: 0.7          # 70% of aggregate rate = 14 req/s
-    streaming: false            # Non-streaming: wait for full response
+  - id: "batch-with-prefix"
+    tenant_id: "tenant-A"
+    slo_class: "batch"
+    rate_fraction: 0.35
+    streaming: false
     arrival:
-      process: gamma            # Gamma arrival process
-      cv: 3.5                   # Very bursty: requests come in bursts
-    input_distribution:         # Distribution for input token counts
-      type: pareto_lognormal    # Heavy-tailed distribution
+      process: gamma
+      cv: 3.0
+    input_distribution:
+      type: pareto_lognormal
       params:
-        alpha: 1.5              # Pareto shape parameter
-        xm: 50                  # Pareto minimum value
-        mu: 5.5                 # Lognormal mean (log scale)
-        sigma: 1.2              # Lognormal std dev
-        mix_weight: 0.3         # 30% Pareto, 70% lognormal
-    output_distribution:        # Distribution for output token counts
-      type: exponential         # Exponential distribution
+        alpha: 1.5
+        xm: 50
+        mu: 5.5
+        sigma: 1.2
+        mix_weight: 0.3
+    output_distribution:
+      type: exponential
       params:
-        mean: 300               # Long outputs: 300 tokens average
+        mean: 200
+    prefix_group: "shared-system-prompt"
+    network:
+      rtt_ms: 2.0
+      bandwidth_mbps: 1000
 
-  # -------------------------------------------------------------------------
-  # Realtime Client: Low-latency, streaming workload (30% of traffic)
-  # -------------------------------------------------------------------------
-  - id: "realtime-traffic"      # Unique client identifier
-    slo_class: "realtime"       # SLO class: realtime (strict latency requirements)
-    rate_fraction: 0.3          # 30% of aggregate rate = 6 req/s
-    streaming: true             # Streaming: tokens sent as generated (TTFT matters)
+  - id: "batch-no-prefix"
+    tenant_id: "tenant-B"
+    slo_class: "batch"
+    rate_fraction: 0.25
+    streaming: false
     arrival:
-      process: poisson          # Poisson arrivals: steady, predictable rate
-    input_distribution:         # Distribution for input token counts
-      type: gaussian            # Normal distribution: predictable prompt lengths
+      process: gamma
+      cv: 2.5
+    input_distribution:
+      type: pareto_lognormal
       params:
-        mean: 128               # Average prompt: 128 tokens
-        std_dev: 50             # Standard deviation: moderate variance
-        min: 10                 # Minimum: 10 tokens (truncates distribution)
-        max: 512                # Maximum: 512 tokens (truncates distribution)
-    output_distribution:        # Distribution for output token counts
-      type: exponential         # Exponential distribution
+        alpha: 1.5
+        xm: 50
+        mu: 5.0
+        sigma: 1.0
+        mix_weight: 0.3
+    output_distribution:
+      type: exponential
       params:
-        mean: 100               # Short outputs: 100 tokens average (fast responses)
+        mean: 180
+    network:
+      rtt_ms: 5.0
+      bandwidth_mbps: 800
+
+  - id: "realtime-chat"
+    tenant_id: "tenant-C"
+    slo_class: "realtime"
+    rate_fraction: 0.25
+    streaming: true
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 128
+        std_dev: 50
+        min: 10
+        max: 512
+    output_distribution:
+      type: exponential
+      params:
+        mean: 80
+    network:
+      rtt_ms: 30.0
+      bandwidth_mbps: 200
+
+  - id: "interactive-api"
+    tenant_id: "tenant-D"
+    slo_class: "interactive"
+    rate_fraction: 0.15
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 1.5
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 200
+        std_dev: 60
+        min: 50
+        max: 600
+    output_distribution:
+      type: exponential
+      params:
+        mean: 100
+    network:
+      rtt_ms: 10.0
+      bandwidth_mbps: 500
