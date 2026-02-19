@@ -43,6 +43,15 @@ def _worker_init(config_dict: dict, evaluation_file: str, parent_env: dict = Non
     if parent_env:
         os.environ.update(parent_env)
 
+    # Configure logging in worker process to match parent
+    # Without this, logger.info() calls are silently dropped
+    log_level = config_dict.get("log_level", "INFO")
+    logging.basicConfig(
+        level=getattr(logging, log_level),
+        format="%(asctime)s - %(levelname)s - %(message)s",
+        force=True,  # Override any existing configuration
+    )
+
     global _worker_config
     global _worker_evaluation_file
     global _worker_evaluator
