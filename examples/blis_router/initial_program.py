@@ -128,85 +128,9 @@ func (ws *WeightedScoring) Route(req *Request, state *RouterState) RoutingDecisi
 		panic("WeightedScoring.Route: empty snapshots")
 	}
 
-	// =====================================================================
-	// OPTIMIZATION GOAL: Minimize average end-to-end latency across workloads
-	//
-	// CURRENT APPROACH: Weighted combination of cache and load signals
-	//   Default weights: cacheWeight=0.6, loadWeight=0.4 (normalized to sum to 1.0)
-	//
-	// AVAILABLE STATE (you can use these variables in your evolved logic):
-	//
-	//   snapshots []RoutingSnapshot
-	//     List of all instance snapshots with current state
-	//
-	//   Each snap in snapshots has:
-	//     snap.ID (string) - Instance identifier
-	//     snap.QueueDepth (int) - Requests waiting in queue
-	//     snap.BatchSize (int) - Requests currently being processed
-	//     snap.PendingRequests (int) - Requests routed but not yet in queue
-	//     snap.FreeKVBlocks (int64) - Available KV cache blocks
-	//     snap.KVUtilization (float64) - KV cache usage [0.0-1.0]
-	//     snap.CacheHitRate (float64) - Cache hit rate [0.0-1.0]
-	//
-	//   state.Clock (int64) - Current simulation time (microseconds)
-	//
-	//   ws.cacheWeight, ws.loadWeight (float64)
-	//     Current weights (these are what we're evolving!)
-	//
-	// CURRENT SCORING FORMULA:
-	//   1. Find maxFreeKV = max(snap.FreeKVBlocks) across all instances
-	//   2. For each instance:
-	//      cacheScore = (snap.FreeKVBlocks / maxFreeKV) * cacheWeight
-	//      effectiveLoad = snap.QueueDepth + snap.BatchSize + snap.PendingRequests
-	//      loadScore = (1.0 / (1.0 + effectiveLoad)) * loadWeight
-	//      finalScore = cacheScore + loadScore
-	//   3. Route to instance with highest finalScore
-	//
-	// EVOLUTION IDEAS TO TRY:
-	//
-	//   1. Adaptive weights based on system state:
-	//      if maxFreeKV < 1000 {
-	//          // Low cache capacity → prioritize load balancing
-	//          cacheWeight = 0.2
-	//          loadWeight = 0.8
-	//      }
-	//
-	//   2. Use different scoring formulas:
-	//      // Instead of FreeKVBlocks, try (1.0 - KVUtilization)
-	//      // Instead of 1/(1+load), try exponential decay: exp(-load/10.0)
-	//
-	//   3. Consider cache hit rate:
-	//      cacheScore = snap.FreeKVBlocks/maxFreeKV * snap.CacheHitRate
-	//
-	//   4. Add threshold-based routing:
-	//      if snap.QueueDepth > 100 {
-	//          // Skip overloaded instances entirely
-	//          continue
-	//      }
-	//
-	//   5. Use non-linear combinations:
-	//      score = sqrt(cacheScore * loadScore)  // geometric mean
-	//
-	//   6. Temporal patterns:
-	//      // Detect burst periods and adjust strategy
-	//
-	// CONSTRAINTS:
-	//   - Must return a valid RoutingDecision with TargetInstance set
-	//   - Scores should be computable (no NaN, Inf)
-	//   - Logic should be fast (runs for every request)
-	//   - Must handle edge cases (all instances busy, zero FreeKVBlocks, etc.)
-	//
-	// TESTING:
-	//   Your evolved algorithm will be tested on 3 workloads:
-	//   - Light: low request rate
-	//   - Heavy: high request rate
-	//   - Mixed: variable request rate
-	//
-	//   Score = -avg_e2e_ms (negative because we're minimizing latency)
-	//   Lower latency = higher (less negative) score = better!
-	// =====================================================================
-
 	// EVOLVE-BLOCK-START
+	// Goal: Minimize end-to-end latency by optimizing the scoring logic below.
+	// See system prompt for available state variables and evolution ideas.
 	// Find max FreeKVBlocks for cache normalization
 	maxFreeKV := int64(0)
 	for _, snap := range snapshots {
