@@ -113,7 +113,7 @@ database:
 
 **Target:** 5-10% latency reduction (score > -5000)
 
-**Weighted Averaging:** By default, latency is weighted by `completed_requests` per workload. Set `EQUAL_WEIGHT_LATENCY=true` for simple averaging.
+**Averaging:** By default, workloads are weighted equally. Set `WEIGHTED_LATENCY=true` to weight by `completed_requests`.
 
 ---
 

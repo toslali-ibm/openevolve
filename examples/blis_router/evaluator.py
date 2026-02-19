@@ -374,13 +374,13 @@ def evaluate(program_path: str) -> EvaluationResult:
         )
 
     # Calculate average latency from successful runs
-    # Default: weighted by request count. Set EQUAL_WEIGHT_LATENCY=true for equal weighting.
-    use_equal_weight = os.environ.get("EQUAL_WEIGHT_LATENCY", "false").lower() == "true"
-    if use_equal_weight:
-        avg_latency = sum(latencies) / len(latencies)
-    else:
+    # Default: equal weighting. Set WEIGHTED_LATENCY=true to weight by request count.
+    use_weighted = os.environ.get("WEIGHTED_LATENCY", "false").lower() == "true"
+    if use_weighted:
         total_requests = sum(request_counts)
         avg_latency = sum(lat * cnt for lat, cnt in zip(latencies, request_counts)) / total_requests
+    else:
+        avg_latency = sum(latencies) / len(latencies)
 
     # Score = negative latency (so lower latency = higher score)
     # E.g., 5000ms → score -5000, 4500ms → score -4500 (better!)
