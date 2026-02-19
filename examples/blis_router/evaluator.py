@@ -20,6 +20,7 @@ import subprocess
 import traceback
 from difflib import unified_diff
 from pathlib import Path
+
 from openevolve.evaluation_result import EvaluationResult
 
 # Use logging instead of print() so output is captured in worker processes
@@ -222,6 +223,7 @@ def evaluate(program_path: str) -> EvaluationResult:
     ]
 
     latencies = []
+    request_counts = []  # for weighted averaging
     workload_results = {}
     failed_workloads = []
 
@@ -304,8 +306,12 @@ def evaluate(program_path: str) -> EvaluationResult:
                 if cluster_metrics and "e2e_mean_ms" in cluster_metrics:
                     e2e_ms = float(cluster_metrics["e2e_mean_ms"])
                     latencies.append(e2e_ms)
+                    # Get request count from simulation output (fallback to 1 for equal weight)
+                    num_requests = cluster_metrics.get("completed_requests", 1)
+                    request_counts.append(int(num_requests))
                     workload_results[workload_name] = {
                         "e2e_ms": e2e_ms,
+                        "completed_requests": num_requests,
                         "ttft_mean_ms": cluster_metrics.get("ttft_mean_ms"),
                         "itl_mean_ms": cluster_metrics.get("itl_mean_ms"),
                         "tokens_per_sec": cluster_metrics.get("tokens_per_sec")
@@ -368,7 +374,13 @@ def evaluate(program_path: str) -> EvaluationResult:
         )
 
     # Calculate average latency from successful runs
-    avg_latency = sum(latencies) / len(latencies)
+    # Default: weighted by request count. Set EQUAL_WEIGHT_LATENCY=true for equal weighting.
+    use_equal_weight = os.environ.get("EQUAL_WEIGHT_LATENCY", "false").lower() == "true"
+    if use_equal_weight:
+        avg_latency = sum(latencies) / len(latencies)
+    else:
+        total_requests = sum(request_counts)
+        avg_latency = sum(lat * cnt for lat, cnt in zip(latencies, request_counts)) / total_requests
 
     # Score = negative latency (so lower latency = higher score)
     # E.g., 5000ms → score -5000, 4500ms → score -4500 (better!)

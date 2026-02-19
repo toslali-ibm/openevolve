@@ -113,6 +113,44 @@ database:
 
 **Target:** 5-10% latency reduction (score > -5000)
 
+**Weighted Averaging:** By default, latency is weighted by `completed_requests` per workload. Set `EQUAL_WEIGHT_LATENCY=true` for simple averaging.
+
+---
+
+## Simulation Output Format
+
+Each workload run outputs cluster-wide metrics as JSON. The evaluator parses the `cluster` entry:
+
+```json
+{
+  "instance_id": "cluster",
+  "completed_requests": 1189,
+  "total_input_tokens": 425847,
+  "total_output_tokens": 237364,
+  "e2e_mean_ms": 4523.17,
+  "e2e_p99_ms": 12847.32,
+  "ttft_mean_ms": 1892.45,
+  "tokens_per_sec": 1978.03
+}
+```
+
+**Key fields used by evaluator:**
+- `e2e_mean_ms`: End-to-end latency (used for scoring)
+- `completed_requests`: Request count (used for weighted averaging)
+
+**Example run:**
+```bash
+cd examples/blis_router/inference-sim
+./simulation_worker run \
+  --model Qwen/Qwen2.5-7B-Instruct \
+  --hardware H100 --tp 1 --num-instances 4 \
+  --policy-config ../routing_policy.yaml \
+  --workload-spec ../workload_light.yaml \
+  --alpha-coeffs "4680.303204056608,0.0,0.0" \
+  --beta-coeffs "7051.796874715078,19.538416565504026,25.431830886933543" \
+  --log info
+```
+
 ---
 
 ## Viewing Results
