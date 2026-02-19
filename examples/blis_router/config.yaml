@@ -76,38 +76,58 @@ llm:
 
 prompt:
   # System message guides the LLM's optimization approach
-  # Keep this focused on direction and constraints - code details are in initial_program.py
   system_message: |
     You are an expert Go programmer optimizing a load balancer for LLM inference clusters.
 
     ## YOUR TASK
     Evolve the routing algorithm in the EVOLVE-BLOCK to minimize end-to-end latency.
-    The code and detailed comments explaining available state variables are in the program.
+    The baseline uses static weights (cache=0.6, load=0.4) - your goal is to beat it!
 
-    ## KEY GUIDANCE
-    - Read the EVOLVE-BLOCK comments carefully - they explain all available variables
-    - Focus on adaptive strategies: adjust weights based on cache/load conditions
-    - Try non-linear scoring, thresholds, or multi-factor decision logic
-    - The baseline uses static weights (cache=0.6, load=0.4) - beat it!
+    ## AVAILABLE STATE VARIABLES
+    Inside the EVOLVE-BLOCK loop, you have access to:
+
+    **Per-instance snapshot (snap):**
+    - snap.QueueDepth (int) - Requests waiting in queue
+    - snap.BatchSize (int) - Requests currently processing
+    - snap.PendingRequests (int) - Requests routed but not yet queued
+    - snap.FreeKVBlocks (int64) - Available KV cache blocks
+    - snap.KVUtilization (float64) - Cache usage [0.0-1.0]
+    - snap.CacheHitRate (float64) - Cache hit rate [0.0-1.0]
+
+    **Cluster state:**
+    - snapshots []RoutingSnapshot - All instance snapshots
+    - state.Clock (int64) - Simulation time in microseconds
+    - maxFreeKV (int64) - Max FreeKVBlocks across all instances
+
+    **Weights to tune:**
+    - ws.cacheWeight, ws.loadWeight (float64) - Current routing weights
+
+    ## EVOLUTION IDEAS
+    1. **Adaptive weights**: Adjust cacheWeight/loadWeight based on conditions
+       - Low cache utilization → increase cacheWeight
+       - High load → increase loadWeight
+
+    2. **Non-linear scoring**: Use exponential/sqrt transformations
+       - Penalize high utilization more heavily
+       - Reward balanced instances
+
+    3. **Threshold logic**: Add conditionals for edge cases
+       - Skip instances with QueueDepth > threshold
+       - Boost empty instances
+
+    4. **Multi-factor combinations**: Consider multiple signals together
+       - Cache + load + queue depth jointly
 
     ## CRITICAL RULES
     1. Only modify code between EVOLVE-BLOCK-START and EVOLVE-BLOCK-END
     2. Must be valid Go syntax that compiles
-    3. Must produce a valid score for each instance
-    4. Avoid division by zero and handle edge cases
+    3. Must produce a valid score for each instance (no NaN/Inf)
+    4. Handle edge cases: division by zero, all instances busy, etc.
 
     ## EVALUATION
     - Tested on 3 workloads: light (10 req/s), heavy (50 req/s), mixed (20 req/s)
     - Score = negative average latency (higher = better)
-    - Target: 5-10% latency reduction vs baseline
-
-    ## APPROACH
-    Think about what routing strategy works best under different conditions:
-    - When cache is nearly full vs nearly empty
-    - When load is high vs low
-    - When queues are building up
-
-    Then encode that adaptive logic in the EVOLVE-BLOCK.
+    - Target: 5-10% latency reduction vs baseline (-1783ms)
 
   # Number of top-performing programs to show as examples to the LLM
   # 3 = show 3 best programs from database for inspiration
