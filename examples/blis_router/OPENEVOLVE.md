@@ -783,6 +783,278 @@ if can't parse metrics:
 
 ---
 
+## Metrics and Artifacts
+
+OpenEvolve uses two complementary data channels from evaluators: **metrics** for scoring and selection, and **artifacts** for debugging and LLM feedback.
+
+### Metrics
+
+Metrics are the **primary signal** for evolution. They determine which programs survive and reproduce.
+
+#### The EvaluationResult Contract
+
+```python
+from openevolve.evaluation_result import EvaluationResult
+
+def evaluate(program_path: str) -> EvaluationResult:
+    # ... run evaluation ...
+
+    return EvaluationResult(
+        metrics={
+            "combined_score": -1500.0,      # REQUIRED: Primary fitness score
+            "avg_e2e_ms": 1500.0,           # Optional: Additional metrics
+            "success_rate": 1.0,            # Optional: For MAP-Elites features
+        },
+        artifacts={...}  # Optional: See Artifacts section
+    )
+```
+
+#### Key Metric Rules
+
+1. **`combined_score` is mandatory**: This is the primary fitness score used for selection
+   - Higher values = better programs
+   - For minimization problems (like latency), use negative values: `score = -latency`
+
+2. **All metric values must be floats**: The database and evolution system expect numeric values
+   ```python
+   # ✅ Correct
+   metrics={"combined_score": -1500.0, "success_rate": 1.0}
+
+   # ❌ Wrong - will cause errors
+   metrics={"combined_score": "good", "success_rate": True}
+   ```
+
+3. **Use raw continuous values for MAP-Elites features**: Don't pre-bin values
+   ```python
+   # ✅ Correct: Raw values, database handles binning
+   metrics={"combined_score": 0.85, "latency_ms": 1247.5}
+
+   # ❌ Wrong: Pre-computed bin indices
+   metrics={"combined_score": 0.85, "latency_bin": 3}
+   ```
+
+4. **Error handling**: Return very bad scores for failures, not exceptions
+   ```python
+   if build_failed:
+       return EvaluationResult(
+           metrics={"combined_score": -100000.0, "error": 0.0}
+       )
+   ```
+
+#### How Metrics Are Used
+
+```
+Evaluator returns metrics
+         ↓
+    combined_score → Selection (which programs reproduce)
+         ↓
+    Feature metrics → MAP-Elites grid placement (diversity)
+         ↓
+    All metrics → Logged for analysis and shown to LLM
+```
+
+### Artifacts
+
+Artifacts are **optional side-channel data** that provide context beyond numeric scores. They help the LLM understand *why* a program succeeded or failed.
+
+#### What Artifacts Are For
+
+| Use Case | Example Artifact |
+|----------|------------------|
+| **Error debugging** | `"stderr": "Build failed: syntax error on line 42"` |
+| **Execution context** | `"execution_time": "12.5s"` |
+| **Validation details** | `"validation_report": "2 boundary violations"` |
+| **Success feedback** | `"stdout": "Achieved 95% of target!"` |
+| **Stage tracking** | `"failure_stage": "stage2_timeout"` |
+
+#### Artifact Data Types
+
+Artifacts can be strings or binary data:
+
+```python
+artifacts = {
+    # String artifacts (common)
+    "stderr": "Error message here",
+    "execution_time": "12.5s",
+    "validation_report": "All checks passed",
+
+    # Binary artifacts (rare, for images/files)
+    "visualization": b"\x89PNG\r\n...",
+}
+```
+
+#### Example: BLIS Router Artifacts
+
+```python
+def evaluate(program_path: str) -> EvaluationResult:
+    # ... evaluation code ...
+
+    if build_failed:
+        return EvaluationResult(
+            metrics={"combined_score": -100000.0},
+            artifacts={
+                "error_type": "BuildError",
+                "error_message": "Go build failed - likely syntax error",
+                "build_stderr": result.stderr,
+                "suggestion": "Check Go syntax in EVOLVE-BLOCK section"
+            }
+        )
+
+    if all_workloads_failed:
+        return EvaluationResult(
+            metrics={"combined_score": -100000.0},
+            artifacts={
+                "error_type": "AllWorkloadsFailed",
+                "failed_workloads": ["burst_steady", "context_growth", ...],
+                "workload_results": workload_results,  # Detailed per-workload info
+                "suggestion": "Check if routing logic causes crashes"
+            }
+        )
+
+    # Success case
+    return EvaluationResult(
+        metrics={
+            "combined_score": score,
+            "avg_e2e_ms": avg_latency,
+            ...
+        },
+        artifacts={
+            "workload_results": workload_results,
+            "successful_workloads": 4,
+            "success_rate": "100%"
+        }
+    )
+```
+
+### Artifact Data Flow
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  1. EVALUATOR RETURNS ARTIFACTS                                 │
+│                                                                 │
+│  evaluate() → EvaluationResult(metrics={...}, artifacts={...}) │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│  2. CORE EVALUATOR CAPTURES ARTIFACTS                           │
+│                                                                 │
+│  evaluator._pending_artifacts[program_id] = artifacts          │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│  3. ITERATION RETRIEVES ARTIFACTS                               │
+│                                                                 │
+│  artifacts = evaluator.get_pending_artifacts(child_id)         │
+│  result.artifacts = artifacts                                  │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│  4. DATABASE STORES ARTIFACTS                                   │
+│                                                                 │
+│  Small (<32KB): JSON in program.artifacts_json                 │
+│  Large (≥32KB): Files in program.artifact_dir                  │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│  5. PROMPT SAMPLER INCLUDES ARTIFACTS IN NEXT ITERATION         │
+│                                                                 │
+│  parent_artifacts = database.get_artifacts(parent.id)          │
+│  prompt = build_prompt(..., program_artifacts=parent_artifacts)│
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│  6. LLM SEES ARTIFACTS IN PROMPT                                │
+│                                                                 │
+│  ## Previous Execution Feedback                                │
+│                                                                 │
+│  ### stderr                                                    │
+│  ```                                                           │
+│  Build failed: undefined: snap.CacheHitRatio                   │
+│  ```                                                           │
+│                                                                 │
+│  ### suggestion                                                │
+│  ```                                                           │
+│  Use snap.CacheHitRate (not CacheHitRatio)                     │
+│  ```                                                           │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Artifact Storage Details
+
+**Small artifacts** (default: <32KB) are stored inline as JSON:
+```python
+program.artifacts_json = '{"stderr": "...", "suggestion": "..."}'
+```
+
+**Large artifacts** (≥32KB) are saved to disk:
+```
+openevolve_output/
+└── artifacts/
+    └── <program_id>/
+        ├── large_log_file
+        └── visualization.png
+```
+
+### Configuration Options
+
+In `config.yaml` or environment:
+
+```yaml
+# Enable/disable artifact storage (default: true)
+# Set ENABLE_ARTIFACTS=false to disable
+
+# In prompt configuration
+prompt:
+  include_artifacts: true        # Include artifacts in LLM prompts
+  max_artifact_bytes: 32768      # Max size per artifact in prompt
+  artifact_security_filter: true # Filter potentially dangerous content
+```
+
+### Best Practices for Artifacts
+
+1. **Always include `failure_stage`** for errors:
+   ```python
+   artifacts={"failure_stage": "build", "stderr": "..."}
+   ```
+
+2. **Add `suggestion` for common failures**:
+   ```python
+   artifacts={
+       "error_type": "SyntaxError",
+       "suggestion": "Check for missing semicolons in Go code"
+   }
+   ```
+
+3. **Include success context** for good solutions:
+   ```python
+   if score > best_threshold:
+       artifacts["stdout"] = f"New best! Score improved by {improvement}%"
+   ```
+
+4. **Keep artifacts concise**: LLM prompts have token limits
+   ```python
+   # ✅ Good: Truncate long outputs
+   artifacts["stderr"] = result.stderr[:500] if result.stderr else ""
+
+   # ❌ Bad: Include entire log files
+   artifacts["full_log"] = result.stderr  # Could be huge
+   ```
+
+5. **Use structured keys** for parseability:
+   ```python
+   # ✅ Good: Clear, structured keys
+   artifacts={
+       "error_type": "BuildError",
+       "error_line": 42,
+       "error_message": "undefined variable"
+   }
+
+   # ❌ Bad: Free-form text blob
+   artifacts={"details": "Build failed on line 42 with undefined variable..."}
+   ```
+
+---
+
 ## Running the Evolution
 
 ### Prerequisites
