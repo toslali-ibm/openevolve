@@ -247,7 +247,10 @@ def evaluate(program_path: str) -> EvaluationResult:
                 "--log", "info",
                 # Blackbox mode with custom coefficients for Qwen/Qwen2.5-7B-Instruct
                 "--alpha-coeffs", "4680.303204056608,0.0,0.0",
-                "--beta-coeffs", "7051.796874715078,19.538416565504026,25.431830886933543"
+                "--beta-coeffs", "7051.796874715078,19.538416565504026,25.431830886933543",
+                "--total-kv-blocks", "65833",
+                "--max-num-running-reqs", "256",
+                "--max-num-scheduled-tokens", "4096"
             ]
 
             result = subprocess.run(

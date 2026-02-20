@@ -67,6 +67,9 @@ for workload in "${WORKLOADS[@]}"; do
 --workload-spec $workload_path \
 --alpha-coeffs $ALPHA_COEFFS \
 --beta-coeffs $BETA_COEFFS \
+--total-kv-blocks 65833 \
+--max-num-running-reqs 256 \
+--max-num-scheduled-tokens 4096 \
 --log error"
 
     echo ""
@@ -84,6 +87,9 @@ for workload in "${WORKLOADS[@]}"; do
         --workload-spec "$workload_path" \
         --alpha-coeffs "$ALPHA_COEFFS" \
         --beta-coeffs "$BETA_COEFFS" \
+        --total-kv-blocks 65833 \
+        --max-num-running-reqs 256 \
+        --max-num-scheduled-tokens 4096 \
         --log error 2>&1) || {
         printf "%-28s %12s %12s %12s\n" "$workload" "ERROR" "-" "-"
         continue
