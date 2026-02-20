@@ -46,20 +46,23 @@
 
 ## Research Questions
 
+**IMPORTANT: Each research idea iteration must address ALL THREE questions jointly.** The three questions (EVOLVE-BLOCK placement, system prompt, workload design) are interdependent — the optimal block placement depends on what the prompt guides toward, and workloads must stress-test the capabilities enabled by the block boundaries. Do NOT address one question per iteration; instead, propose a coherent solution across all three dimensions in each iteration, refining the joint solution based on feedback.
+
 ### Q1: EVOLVE-BLOCK Placement
 
-**Where should evolution markers be placed in routing.go (and related files) to maximize discovery potential while maintaining compilability?**
+**Where should the SINGLE EVOLVE-BLOCK be placed in routing.go to maximize discovery potential while maintaining compilability?**
 
 Considerations:
 - Current marker: only `WeightedScoring.Route()` scoring loop (lines 137-165)
-- Candidate regions for markers:
-  - Individual scorer functions in `routing_scorers.go` (scoreQueueDepth, scoreKVUtilization, scoreLoadBalance)
-  - Prefix-affinity scorer in `routing_prefix_scorer.go`
-  - Weight normalization logic
-  - NewRoutingPolicy factory (to enable new policy creation)
-  - Entire WeightedScoring struct and Route method
+- **Only ONE contiguous EVOLVE-BLOCK is supported** — choose boundaries that include all code that should evolve together
+- Candidate regions to include in the single block:
+  - The scoring loop (current)
+  - Pre-scoring logic (request classification, adaptive weight computation)
+  - Post-scoring logic (tie-breaking, adjustments based on CacheHitRate)
+  - Potentially the entire `WeightedScoring.Route()` method body
 - Tradeoff: broader scope = more innovation potential, but higher build failure risk
 - Single file constraint: OpenEvolve takes one initial_program.py containing the Go code
+- NOTE: Code from other files (routing_scorers.go, routing_prefix_scorer.go) cannot be directly evolved unless copied into the single initial_program.py file
 
 ### Q2: System Prompt Design
 
@@ -98,6 +101,7 @@ Considerations:
 
 ### OpenEvolve Constraints
 - **Single file input:** only `initial_program.py` (containing routing.go) can be evolved
+- **SINGLE EVOLVE-BLOCK only:** OpenEvolve supports exactly ONE contiguous EVOLVE-BLOCK region per file. Multiple blocks are NOT supported — the LLM prompts assume a single block, and all examples use one block. Choose the block boundaries carefully to include all code that should evolve together.
 - **EVOLVE-BLOCK markers** define mutation scope — code outside markers is preserved
 - **LLM sees full file** but only modifies marked regions
 - **Each iteration must produce valid Go** that compiles and runs
@@ -143,18 +147,22 @@ Considerations:
 
 ### For the Research-Ideas Skill Output
 
-**Q1 (EVOLVE-BLOCK Placement):** Concrete recommendations for marker placement with rationale
-- Which functions/regions to mark
-- Expected innovation potential vs build failure risk tradeoff
-- Suggested marker granularity (single large block vs multiple small blocks)
+**Each iteration must produce a JOINT solution addressing all three questions together.** The output should be a coherent OpenEvolve configuration (block placement + prompt + workloads) that work as a system.
+
+**Q1 (EVOLVE-BLOCK Placement):** Concrete recommendation for the SINGLE block boundaries
+- Exact start and end points in routing.go
+- What capabilities this boundary enables (e.g., adaptive weights, new signals, structural changes)
+- Why this scope balances innovation potential vs build failure risk
 
 **Q2 (System Prompt):** A refined system prompt that:
+- Is tailored to the chosen EVOLVE-BLOCK boundaries (guides LLM toward innovations that the block scope enables)
 - Directs LLMs toward structural innovations (not just weight tuning)
 - Highlights underutilized signals (CacheHitRate, Clock, request size)
 - References hypothesis findings as optimization targets
 - Suggests specific algorithmic patterns to explore (thresholds, conditionals, adaptive weights)
 
 **Q3 (Workload Design):** A workload suite (4-6 workloads) that:
+- Stress-tests the capabilities enabled by the chosen EVOLVE-BLOCK scope
 - Covers scenarios where current routing is suboptimal (per hypothesis findings)
 - Creates measurable differentiation between naive and sophisticated routing
 - Balances prefix-heavy, load-heavy, and mixed scenarios
