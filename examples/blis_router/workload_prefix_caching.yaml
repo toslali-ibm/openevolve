@@ -1,0 +1,97 @@
+# H9: Prefix Caching Effectiveness Test
+# Hypothesis: TTFT decreases monotonically as prefix_length increases
+# Key finding: 95.8% TTFT reduction at max prefix; cache hit rate linear with prefix fraction
+# Reference: hypotheses/h9-prefix-caching/run.sh (rate=100, prefix_length=0-512)
+#
+# This workload tests prefix caching benefit with varying prefix lengths.
+# A good router should route requests to instances with matching cached prefixes.
+
+version: "1"
+seed: 42
+category: language
+aggregate_rate: 100.0   # Moderate rate as in H9 experiment
+num_requests: 500       # More than H9 for statistical significance
+
+clients:
+  # Long shared prefix (maximum cache benefit)
+  - id: "long-prefix-group"
+    slo_class: "interactive"
+    rate_fraction: 0.30
+    streaming: false
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 256  # user_part: total_input - prefix_length
+        std_dev: 50
+        min: 100
+        max: 500
+    output_distribution:
+      type: exponential
+      params:
+        mean: 80
+    prefix_group: "shared-long-prefix"
+    prefix_length: 512  # Maximum prefix from H9 experiment
+
+  # Medium shared prefix
+  - id: "medium-prefix-group"
+    slo_class: "interactive"
+    rate_fraction: 0.30
+    streaming: false
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 512
+        std_dev: 100
+        min: 200
+        max: 800
+    output_distribution:
+      type: exponential
+      params:
+        mean: 100
+    prefix_group: "shared-medium-prefix"
+    prefix_length: 256  # Mid-range prefix from H9
+
+  # Short shared prefix (less cache benefit)
+  - id: "short-prefix-group"
+    slo_class: "interactive"
+    rate_fraction: 0.25
+    streaming: false
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 640
+        std_dev: 100
+        min: 400
+        max: 900
+    output_distribution:
+      type: exponential
+      params:
+        mean: 60
+    prefix_group: "shared-short-prefix"
+    prefix_length: 128
+
+  # No prefix (baseline - no cache benefit)
+  - id: "no-prefix-group"
+    slo_class: "batch"
+    rate_fraction: 0.15
+    streaming: false
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 768  # Full input, no prefix
+        std_dev: 50
+        min: 600
+        max: 900
+    output_distribution:
+      type: exponential
+      params:
+        mean: 120
+    # No prefix_group - unique tokens per request

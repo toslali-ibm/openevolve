@@ -35,12 +35,13 @@ if [ ! -f "$BLIS_DIR/simulation_worker" ]; then
     exit 1
 fi
 
-# All workloads to test (challenging scenarios for routing optimization)
+# Hypothesis-aligned workloads (from inference-sim/hypotheses/)
+# Each workload tests a validated hypothesis finding
 WORKLOADS=(
-    "workload_multi_tenant_chat.yaml"  # 5 tenants, multi-turn, 5000 reqs
-    "workload_prefix_pressure.yaml"    # 8 prefix groups vs 4 instances, 8000 reqs
-    "workload_context_growth.yaml"     # Multi-turn with context accumulation, 3000 reqs
-    "workload_burst_steady.yaml"       # CV=5.0 bursts + steady realtime, 6000 reqs
+    "workload_signal_freshness.yaml"   # H3: rate=5000, queue-depth vs kv-util staleness
+    "workload_prefix_caching.yaml"     # H9: rate=100, TTFT reduction with prefix_length
+    "workload_multiturn_affinity.yaml" # Prefix-Affinity: rate=5000, multi-turn context accumulation
+    "workload_combined_stress.yaml"    # Combined: rate=3000, all hypotheses
 )
 
 echo "=============================================="

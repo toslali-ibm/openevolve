@@ -77,25 +77,34 @@ llm:
 prompt:
   # System message guides the LLM's optimization approach
   # Based on research-ideas Idea 3: Focused minimal with baseline context
+  # Incorporates validated hypothesis findings from inference-sim/hypotheses/
   system_message: |
-    You are optimizing a request router for LLM inference. Current system: ~180ms average latency.
+    You are optimizing a request router for LLM inference.
 
     CORE TRADEOFF: Cache affinity (reuse cached KV blocks) vs Load balancing (spread requests evenly)
 
+    VALIDATED HYPOTHESIS FINDINGS (from experiments):
+    - H3: At >500 req/s, kv-utilization becomes STALE (200x worse distribution than queue-depth)
+    - H9: 95.8% TTFT reduction when routing to cached prefix (prefix_length matters!)
+    - Prefix-Affinity: 2.45x better TTFT for multi-turn; queue-depth DESTROYS cache locality
+
     SIGNALS YOU CAN USE:
-    - len(req.InputTokens): request size. Large requests (>400 tokens) benefit more from cache hits.
+    - len(req.InputTokens): request size. Large requests (>400 tokens) benefit MORE from cache hits.
     - req.SLOClass: "realtime" needs fast response; "batch" tolerates delay.
-    - snap.QueueDepth, snap.BatchSize, snap.PendingRequests: current load (FRESH)
-    - snap.CacheHitRate: historical cache performance (NOT USED by default - exploit this!)
+    - snap.QueueDepth, snap.BatchSize, snap.PendingRequests: current load (FRESH - always reliable)
+    - snap.KVUtilization: memory pressure (STALE at >300 req/s - use cautiously!)
+    - snap.CacheHitRate: historical cache performance (underutilized signal - exploit this!)
     - snap.EffectiveLoad(): total load = Queue + Batch + Pending
     - state.Clock: simulation time in microseconds
 
-    ANTI-PATTERN: kv-utilization alone becomes uniform at high request rates. Always combine with queue-depth.
+    ANTI-PATTERNS TO AVOID:
+    - kv-utilization alone at high rates → becomes uniform, useless for routing
+    - Pure load-balance at high rates → destroys cache locality (23% vs 56% hit rate)
 
     TOP 3 IMPROVEMENT STRATEGIES:
-    1. **CacheHitRate bonus**: Add snap.CacheHitRate * factor to scores for better cache instances
-    2. **Load-adaptive weights**: Increase queue-depth importance when cluster load is high
-    3. **Request-size routing**: Route large requests to best CacheHitRate; small to lowest load
+    1. **CacheHitRate bonus**: Add snap.CacheHitRate * factor to scores for cache-efficient instances
+    2. **Load-adaptive weights**: At high load (totalLoad > threshold), prefer queue-depth over kv-util
+    3. **Request-size routing**: Large requests → best CacheHitRate; small → lowest queue-depth
 
     Or discover something entirely new!
 
@@ -112,8 +121,11 @@ prompt:
     3. Must produce valid scores (no NaN/Inf) - guard divisions!
     4. bestIdx must be valid index [0, len(snapshots)-1]
 
-    EVALUATION:
-    - 4 workloads: burst_steady, context_growth, multi_tenant_chat, prefix_pressure
+    EVALUATION (hypothesis-aligned workloads):
+    - signal_freshness: rate=5000, tests H3 (queue-depth vs kv-util staleness)
+    - prefix_caching: rate=100, tests H9 (TTFT reduction with prefix length)
+    - multiturn_affinity: rate=5000, tests Prefix-Affinity (multi-turn context accumulation)
+    - combined_stress: rate=3000, all hypotheses combined
     - Score = -0.5 * avg_e2e_ms - 0.5 * avg_p95_ms (lower latency = higher score)
 
   # Number of top-performing programs to show as examples to the LLM

@@ -215,12 +215,17 @@ def evaluate(program_path: str) -> EvaluationResult:
             }
         )
 
-    # Step 4: Run simulations on 4 realistic workloads (1000 requests each)
+    # Step 4: Run simulations on 4 hypothesis-aligned workloads
+    # Workloads directly capture validated hypothesis findings:
+    # - signal_freshness: H3 (queue-depth >> kv-util at high rates, rate=5000)
+    # - prefix_caching: H9 (TTFT reduction with prefix, rate=100)
+    # - multiturn_affinity: Prefix-Affinity (2.45x better TTFT, rate=5000)
+    # - combined_stress: All hypotheses combined (rate=3000)
     workloads = [
-        ("burst_steady", "workload_burst_steady.yaml"),
-        ("context_growth", "workload_context_growth.yaml"),
-        ("multi_tenant_chat", "workload_multi_tenant_chat.yaml"),
-        ("prefix_pressure", "workload_prefix_pressure.yaml")
+        ("signal_freshness", "workload_signal_freshness.yaml"),
+        ("prefix_caching", "workload_prefix_caching.yaml"),
+        ("multiturn_affinity", "workload_multiturn_affinity.yaml"),
+        ("combined_stress", "workload_combined_stress.yaml")
     ]
 
     latencies = []
@@ -431,10 +436,11 @@ def evaluate(program_path: str) -> EvaluationResult:
         "combined_score": score,
         "avg_e2e_ms": avg_latency,
         "avg_p95_ms": avg_tail_latency,
-        "burst_steady_e2e_ms": workload_results.get("burst_steady", {}).get("e2e_ms"),
-        "context_growth_e2e_ms": workload_results.get("context_growth", {}).get("e2e_ms"),
-        "multi_tenant_chat_e2e_ms": workload_results.get("multi_tenant_chat", {}).get("e2e_ms"),
-        "prefix_pressure_e2e_ms": workload_results.get("prefix_pressure", {}).get("e2e_ms"),
+        # Hypothesis-aligned workload metrics
+        "signal_freshness_e2e_ms": workload_results.get("signal_freshness", {}).get("e2e_ms"),  # H3
+        "prefix_caching_e2e_ms": workload_results.get("prefix_caching", {}).get("e2e_ms"),      # H9
+        "multiturn_affinity_e2e_ms": workload_results.get("multiturn_affinity", {}).get("e2e_ms"),  # Prefix-Affinity
+        "combined_stress_e2e_ms": workload_results.get("combined_stress", {}).get("e2e_ms"),    # Combined
         "success_rate": success_rate,
         "num_successful": len(latencies),
         "num_failed": len(failed_workloads)

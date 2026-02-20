@@ -135,10 +135,6 @@ func (ws *WeightedScoring) Route(req *Request, state *RouterState) RoutingDecisi
 	}
 
 	// EVOLVE-BLOCK-START
-	// BASELINE: ~180ms avg E2E (run evaluator to confirm actual baseline)
-	// SIGNALS: QueueDepth/BatchSize/PendingRequests (FRESH), KVUtilization/CacheHitRate (STALE at >300 req/s)
-	// ANTI-PATTERN: kv-utilization alone becomes uniform at high rates - always combine with queue-depth
-
 	scores := make(map[string]float64, len(snapshots))
 	for i, scorer := range ws.scorers {
 		dimScores := scorer(req, snapshots)
@@ -149,12 +145,6 @@ func (ws *WeightedScoring) Route(req *Request, state *RouterState) RoutingDecisi
 			scores[snap.ID] += s * ws.weights[i]
 		}
 	}
-
-	// EVOLVE: Improve on baseline. Key opportunities:
-	// 1. CacheHitRate bonus (unused signal)
-	// 2. Load-adaptive adjustments
-	// 3. Request-size-aware routing
-	// 4. Or discover something entirely new
 
 	bestScore := -1.0
 	bestIdx := 0

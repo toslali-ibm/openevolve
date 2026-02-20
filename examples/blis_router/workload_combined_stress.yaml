@@ -1,0 +1,130 @@
+# Combined Hypothesis Stress Test
+# Tests all three validated hypotheses simultaneously:
+# - H3: High rate exposes signal staleness (queue-depth >> kv-utilization)
+# - H9: Varying prefix lengths test cache effectiveness
+# - Prefix-Affinity: Multi-turn with context accumulation benefits from routing
+#
+# This workload is the ultimate test for an evolved router:
+# Must balance signal freshness, cache affinity, and load distribution.
+
+version: "1"
+seed: 42
+category: reasoning
+aggregate_rate: 3000.0  # High enough for signal staleness, not overwhelming
+num_requests: 1500      # Balanced for evaluation time
+
+clients:
+  # H3-focused: High-rate burst to expose signal staleness
+  - id: "high-rate-burst"
+    slo_class: "batch"
+    rate_fraction: 0.25
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 5.0  # Extreme burstiness (same as H3)
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 200
+        std_dev: 60
+        min: 50
+        max: 500
+    output_distribution:
+      type: exponential
+      params:
+        mean: 150
+    prefix_group: "burst-system"
+    prefix_length: 64
+
+  # H9-focused: Long prefix for maximum cache benefit
+  - id: "long-prefix-cache"
+    slo_class: "interactive"
+    rate_fraction: 0.20
+    streaming: false
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 256
+        std_dev: 50
+        min: 100
+        max: 500
+    output_distribution:
+      type: exponential
+      params:
+        mean: 80
+    prefix_group: "shared-long-system"
+    prefix_length: 512  # Maximum prefix benefit (H9)
+
+  # Prefix-Affinity-focused: Multi-turn conversation
+  - id: "multiturn-chat"
+    tenant_id: "chat-tenant"
+    slo_class: "interactive"
+    rate_fraction: 0.25
+    streaming: true
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 128
+        std_dev: 40
+        min: 32
+        max: 400
+    output_distribution:
+      type: gaussian
+      params:
+        mean: 64
+        std_dev: 20
+        min: 16
+        max: 200
+    prefix_group: "chat-system-prompt"
+    prefix_length: 256
+    reasoning:
+      multi_turn:
+        max_rounds: 5
+        think_time_us: 400000
+        context_growth: accumulate
+
+  # Realtime SLO traffic (must not be starved)
+  - id: "realtime-critical"
+    slo_class: "realtime"
+    rate_fraction: 0.15
+    streaming: true
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 60
+        std_dev: 15
+        min: 20
+        max: 150
+    output_distribution:
+      type: exponential
+      params:
+        mean: 30
+    prefix_group: "realtime-system"
+    prefix_length: 32
+
+  # No-prefix baseline (tests load balancing without cache)
+  - id: "unique-requests"
+    slo_class: "batch"
+    rate_fraction: 0.15
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 3.0
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 400
+        std_dev: 150
+        min: 100
+        max: 1000
+    output_distribution:
+      type: exponential
+      params:
+        mean: 200
+    # No prefix_group - unique tokens, pure load balancing test
