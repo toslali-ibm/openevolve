@@ -1,10 +1,16 @@
+# BLIS Policy Config: EPP Estimate Prefix Cache (llm-d parity)
+# Used as baseline for OpenEvolve routing optimization
+
 admission:
   policy: always-admit
 
 routing:
   policy: weighted
-  cache_weight: 0.6
-  load_weight: 0.4
+  scorers:
+    - name: prefix-affinity
+      weight: 1.0
+    - name: load-balance
+      weight: 1.0
 
 priority:
   policy: constant

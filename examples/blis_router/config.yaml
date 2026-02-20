@@ -76,73 +76,45 @@ llm:
 
 prompt:
   # System message guides the LLM's optimization approach
+  # Based on research-ideas Idea 3: Focused minimal with baseline context
   system_message: |
-    You are an expert Go programmer optimizing a load balancer for LLM inference clusters.
+    You are optimizing a request router for LLM inference. Current system: ~180ms average latency.
 
-    ## YOUR TASK
-    Evolve the routing algorithm in the EVOLVE-BLOCK to minimize end-to-end latency.
+    CORE TRADEOFF: Cache affinity (reuse cached KV blocks) vs Load balancing (spread requests evenly)
 
-    ## BASELINE LIMITATION
-    The current baseline ONLY uses:
-    - FreeKVBlocks (cache capacity)
-    - QueueDepth + BatchSize + PendingRequests (load)
+    SIGNALS YOU CAN USE:
+    - len(req.InputTokens): request size. Large requests (>400 tokens) benefit more from cache hits.
+    - req.SLOClass: "realtime" needs fast response; "batch" tolerates delay.
+    - snap.QueueDepth, snap.BatchSize, snap.PendingRequests: current load (FRESH)
+    - snap.CacheHitRate: historical cache performance (NOT USED by default - exploit this!)
+    - snap.EffectiveLoad(): total load = Queue + Batch + Pending
+    - state.Clock: simulation time in microseconds
 
-    It completely IGNORES valuable signals like CacheHitRate! Your goal is to discover
-    algorithms that incorporate these unused features to beat the baseline.
+    ANTI-PATTERN: kv-utilization alone becomes uniform at high request rates. Always combine with queue-depth.
 
-    ## AVAILABLE STATE VARIABLES
-    Inside the EVOLVE-BLOCK loop, you have access to:
+    TOP 3 IMPROVEMENT STRATEGIES:
+    1. **CacheHitRate bonus**: Add snap.CacheHitRate * factor to scores for better cache instances
+    2. **Load-adaptive weights**: Increase queue-depth importance when cluster load is high
+    3. **Request-size routing**: Route large requests to best CacheHitRate; small to lowest load
 
-    **Per-instance snapshot (snap):**
-    - snap.QueueDepth (int) - Requests waiting in queue
-    - snap.BatchSize (int) - Requests currently processing
-    - snap.PendingRequests (int) - Requests routed but not yet queued
-    - snap.FreeKVBlocks (int64) - Available KV cache blocks
-    - snap.KVUtilization (float64) - Cache usage ratio [0.0-1.0]
-    - snap.CacheHitRate (float64) - **UNUSED!** Prefix cache hit rate [0.0-1.0]
+    Or discover something entirely new!
 
-    **Cluster state:**
-    - snapshots []RoutingSnapshot - All instance snapshots
-    - state.Clock (int64) - Simulation time in microseconds
-    - maxFreeKV (int64) - Max FreeKVBlocks across all instances
+    WHAT YOU CAN DO:
+    - Modify scores[] after the scorer loop
+    - Add conditional logic before scoring
+    - Change selection logic (tie-breaking on CacheHitRate)
+    - Compute aggregate metrics (total load, variance)
+    - Bypass scoring entirely for specific fast-paths
 
-    **Weights:**
-    - ws.cacheWeight, ws.loadWeight (float64) - Routing weights (can be made adaptive)
-
-    ## HIGH-VALUE EVOLUTION IDEAS
-
-    1. **Incorporate CacheHitRate** (currently unused!):
-       - Route to instances with higher cache hit rates for prefix reuse
-       - Weight: hitScore := snap.CacheHitRate * hitWeight
-       - Especially valuable for workloads with shared prefixes
-
-    2. **Use KVUtilization directly** (simpler than FreeKVBlocks):
-       - utilScore := (1.0 - snap.KVUtilization) * utilWeight
-       - Avoids max-normalization complexity
-
-    3. **Adaptive weights based on cluster state**:
-       - High overall load → prioritize load balancing
-       - Low cache hit rates → prioritize cache affinity
-       - Compute cluster averages and adjust weights dynamically
-
-    4. **Non-linear transformations**:
-       - Exponential penalty for high utilization: math.Exp(-snap.KVUtilization * k)
-       - Square root for diminishing returns: math.Sqrt(snap.CacheHitRate)
-
-    5. **Threshold-based routing**:
-       - Skip overloaded instances: if effectiveLoad > threshold { score *= 0.1 }
-       - Boost instances with good cache: if snap.CacheHitRate > 0.5 { score *= 1.5 }
-
-    ## CRITICAL RULES
+    CRITICAL RULES:
     1. Only modify code between EVOLVE-BLOCK-START and EVOLVE-BLOCK-END
     2. Must be valid Go syntax that compiles
     3. Must produce valid scores (no NaN/Inf) - guard divisions!
-    4. Handle edge cases: division by zero, empty clusters, etc.
+    4. bestIdx must be valid index [0, len(snapshots)-1]
 
-    ## EVALUATION
-    - Tested on 4 workloads: burst_steady (250 req/s), context_growth (150 req/s), multi_tenant_chat (200 req/s), prefix_pressure (400 req/s)
-    - Score = negative average latency (higher = better)
-    - Target: Beat the baseline by incorporating CacheHitRate and other unused signals as well as dynamic weighting logic!
+    EVALUATION:
+    - 4 workloads: burst_steady, context_growth, multi_tenant_chat, prefix_pressure
+    - Score = -0.5 * avg_e2e_ms - 0.5 * avg_p95_ms (lower latency = higher score)
 
   # Number of top-performing programs to show as examples to the LLM
   # 3 = show 3 best programs from database for inspiration
