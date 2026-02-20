@@ -161,7 +161,7 @@ prompt:
 database:
   # Path where evolution database is stored
   # Contains program archive, scores, features, and evolution history
-#   db_path: "./examples/blis_router/openevolve_output/blis_router_evolution"
+  db_path: "./examples/blis_router/openevolve_output/blis_router_evolution"
 
   # Total number of programs to maintain in population across all islands
   # 50 = good balance between diversity and efficiency
