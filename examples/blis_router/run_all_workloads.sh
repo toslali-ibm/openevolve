@@ -39,8 +39,9 @@ fi
 # Each workload tests a validated hypothesis finding
 WORKLOADS=(
     "workload_signal_freshness.yaml"   # H3: rate=5000, queue-depth vs kv-util staleness
-    "workload_prefix_caching.yaml"     # H9: rate=100, TTFT reduction with prefix_length
+    "workload_prefix_caching.yaml"     # H9: rate=500, TTFT reduction with prefix_length (small output)
     "workload_multiturn_affinity.yaml" # Prefix-Affinity: rate=5000, multi-turn context accumulation
+    "workload_sjf_bimodal.yaml"        # H1-SJF: rate=3000, short vs long request routing (constant dist)
     "workload_combined_stress.yaml"    # Combined: rate=3000, all hypotheses
 )
 

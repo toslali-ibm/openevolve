@@ -5,11 +5,14 @@
 #
 # This workload tests prefix caching benefit with varying prefix lengths.
 # A good router should route requests to instances with matching cached prefixes.
+#
+# NOTE: Output tokens kept small (32-48) so TTFT improvements show up in E2E.
+# Rate increased from 100 to 500 to create queueing pressure where routing matters.
 
 version: "1"
 seed: 42
 category: language
-aggregate_rate: 100.0   # Moderate rate as in H9 experiment
+aggregate_rate: 500.0   # Increased from 100 - creates queueing pressure
 num_requests: 500       # More than H9 for statistical significance
 
 clients:
@@ -28,9 +31,9 @@ clients:
         min: 100
         max: 500
     output_distribution:
-      type: exponential
+      type: constant
       params:
-        mean: 80
+        value: 32  # Small output so TTFT dominates E2E
     prefix_group: "shared-long-prefix"
     prefix_length: 512  # Maximum prefix from H9 experiment
 
@@ -49,9 +52,9 @@ clients:
         min: 200
         max: 800
     output_distribution:
-      type: exponential
+      type: constant
       params:
-        mean: 100
+        value: 48  # Small output so TTFT dominates E2E
     prefix_group: "shared-medium-prefix"
     prefix_length: 256  # Mid-range prefix from H9
 
@@ -70,9 +73,9 @@ clients:
         min: 400
         max: 900
     output_distribution:
-      type: exponential
+      type: constant
       params:
-        mean: 60
+        value: 48  # Small output so TTFT dominates E2E
     prefix_group: "shared-short-prefix"
     prefix_length: 128
 
@@ -91,7 +94,7 @@ clients:
         min: 600
         max: 900
     output_distribution:
-      type: exponential
+      type: constant
       params:
-        mean: 120
+        value: 64  # Small output so TTFT dominates E2E
     # No prefix_group - unique tokens per request

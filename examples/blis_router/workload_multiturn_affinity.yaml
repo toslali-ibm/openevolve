@@ -5,6 +5,9 @@
 #
 # This workload creates multi-turn conversations where routing to cached instances
 # dramatically improves performance. Queue-depth routing actively destroys this benefit.
+#
+# NOTE: Output tokens kept small (32-64) so TTFT improvements show up in E2E.
+# API traffic has NO prefix_group to test pure load balancing.
 
 version: "1"
 seed: 42
@@ -29,12 +32,9 @@ clients:
         min: 32
         max: 512
     output_distribution:
-      type: gaussian
+      type: constant
       params:
-        mean: 64
-        std_dev: 20
-        min: 16
-        max: 256
+        value: 32  # Small output so TTFT dominates E2E
     prefix_group: "chat-system-prompt"
     prefix_length: 256  # Shared system prompt
     reasoning:
@@ -60,9 +60,9 @@ clients:
         min: 50
         max: 800
     output_distribution:
-      type: exponential
+      type: constant
       params:
-        mean: 150
+        value: 48  # Small output so TTFT dominates E2E
     prefix_group: "coding-system-prompt"
     prefix_length: 384
     reasoning:
@@ -71,7 +71,8 @@ clients:
         think_time_us: 300000
         context_growth: accumulate
 
-  # Single-turn API traffic (no multi-turn, tests load balancing)
+  # Single-turn API traffic (no multi-turn, tests pure load balancing)
+  # NO prefix_group - tests load balancing without cache affinity
   - id: "api-requests"
     tenant_id: "api-users"
     slo_class: "realtime"
@@ -87,8 +88,6 @@ clients:
         min: 20
         max: 200
     output_distribution:
-      type: exponential
+      type: constant
       params:
-        mean: 40
-    prefix_group: "api-system"
-    prefix_length: 64
+        value: 32  # Small output

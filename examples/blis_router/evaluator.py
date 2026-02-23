@@ -215,16 +215,18 @@ def evaluate(program_path: str) -> EvaluationResult:
             }
         )
 
-    # Step 4: Run simulations on 4 hypothesis-aligned workloads
+    # Step 4: Run simulations on 5 hypothesis-aligned workloads
     # Workloads directly capture validated hypothesis findings:
     # - signal_freshness: H3 (queue-depth >> kv-util at high rates, rate=5000)
-    # - prefix_caching: H9 (TTFT reduction with prefix, rate=100)
+    # - prefix_caching: H9 (TTFT reduction with prefix, rate=500, small output tokens)
     # - multiturn_affinity: Prefix-Affinity (2.45x better TTFT, rate=5000)
+    # - sjf_bimodal: H1 (SJF helps short requests, rate=3000, constant distributions)
     # - combined_stress: All hypotheses combined (rate=3000)
     workloads = [
         ("signal_freshness", "workload_signal_freshness.yaml"),
         ("prefix_caching", "workload_prefix_caching.yaml"),
         ("multiturn_affinity", "workload_multiturn_affinity.yaml"),
+        ("sjf_bimodal", "workload_sjf_bimodal.yaml"),
         ("combined_stress", "workload_combined_stress.yaml")
     ]
 
@@ -440,6 +442,7 @@ def evaluate(program_path: str) -> EvaluationResult:
         "signal_freshness_e2e_ms": workload_results.get("signal_freshness", {}).get("e2e_ms"),  # H3
         "prefix_caching_e2e_ms": workload_results.get("prefix_caching", {}).get("e2e_ms"),      # H9
         "multiturn_affinity_e2e_ms": workload_results.get("multiturn_affinity", {}).get("e2e_ms"),  # Prefix-Affinity
+        "sjf_bimodal_e2e_ms": workload_results.get("sjf_bimodal", {}).get("e2e_ms"),            # H1-SJF
         "combined_stress_e2e_ms": workload_results.get("combined_stress", {}).get("e2e_ms"),    # Combined
         "success_rate": success_rate,
         "num_successful": len(latencies),
