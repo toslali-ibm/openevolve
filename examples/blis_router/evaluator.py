@@ -46,19 +46,18 @@ WORKLOADS = [
 ]
 
 
+SIM_MODEL = os.environ.get("BLIS_MODEL", "meta-llama/llama-3.1-8b-instruct")
+
+
 def _build_sim_cmd(
     inference_sim_dir: Path, policy_config_path: Path, workload_path: Path
 ) -> list[str]:
     """Return the simulation command list for a single workload run."""
-    return [
+    cmd = [
         "./simulation_worker",
         "run",
         "--model",
-        "Qwen/Qwen2.5-7B-Instruct",
-        "--hardware",
-        "H100",
-        "--tp",
-        "1",
+        SIM_MODEL,
         "--num-instances",
         "4",
         "--policy-config",
@@ -67,17 +66,26 @@ def _build_sim_cmd(
         str(workload_path),
         "--log",
         "info",
-        "--alpha-coeffs",
-        "4680.303204056608,0.0,0.0",
-        "--beta-coeffs",
-        "7051.796874715078,19.538416565504026,25.431830886933543",
-        "--total-kv-blocks",
-        "65833",
-        "--max-num-running-reqs",
-        "256",
-        "--max-num-scheduled-tokens",
-        "4096",
     ]
+    # Qwen needs blackbox coefficients; other models use simulator defaults
+    if "Qwen" in SIM_MODEL:
+        cmd += [
+            "--hardware",
+            "H100",
+            "--tp",
+            "1",
+            "--alpha-coeffs",
+            "4680.303204056608,0.0,0.0",
+            "--beta-coeffs",
+            "7051.796874715078,19.538416565504026,25.431830886933543",
+            "--total-kv-blocks",
+            "65833",
+            "--max-num-running-reqs",
+            "256",
+            "--max-num-scheduled-tokens",
+            "4096",
+        ]
+    return cmd
 
 
 def extract_evolve_block(code: str) -> str:
