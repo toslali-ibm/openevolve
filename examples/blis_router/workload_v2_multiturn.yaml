@@ -6,28 +6,28 @@
 #   Static weights can't learn session patterns; adaptive routing should.
 #
 # DESIGN:
-#   - 5000 requests at rate=800 → 6.25 seconds simulated time
-#   - 50% multi-turn chat with FAST think time (50ms, not 500ms!)
-#     so conversations actually complete multiple rounds within simulation
-#   - 20% multi-turn coding with moderate think time
-#   - 30% single-turn API traffic (no session, tests load balancing)
+#   - 6000 requests at rate=1200 → 5 seconds simulated time
+#   - 6 distinct prefix groups across 4 instances forces prefix-affinity to
+#     concentrate traffic (pigeonhole), creating imbalance vs load-balance
+#   - Higher rate creates queueing pressure where weight trade-off matters
+#   - Fast think times (50-100ms) so conversations complete multiple rounds
 #
 # KEY FIX from v1: think_time_us=50000 (50ms) instead of 500000 (500ms)
 #   v1's 500ms think time was longer than the 0.4s simulation, so multi-turn
-#   conversations never completed a second turn. Now 50ms << 6.25s simulation.
+#   conversations never completed a second turn. Now 50ms << 5s simulation.
 
 version: "1"
 seed: 42
 category: reasoning
-aggregate_rate: 800.0
-num_requests: 5000
+aggregate_rate: 1200.0
+num_requests: 6000
 
 clients:
-  # Multi-turn chat: fast think time so conversations complete multiple rounds
-  - id: "multi-turn-chat"
+  # Multi-turn general chat
+  - id: "chat-general"
     tenant_id: "chat-users"
     slo_class: "interactive"
-    rate_fraction: 0.50
+    rate_fraction: 0.20
     streaming: true
     arrival:
       process: poisson
@@ -42,19 +42,46 @@ clients:
       type: exponential
       params:
         mean: 60
-    prefix_group: "chat-system-prompt"
+    prefix_group: "chat-general-prompt"
     prefix_length: 256
     reasoning:
       multi_turn:
         max_rounds: 5
-        think_time_us: 50000    # 50ms - conversations WILL complete multiple rounds
+        think_time_us: 50000
         context_growth: accumulate
 
-  # Multi-turn coding: moderate think time
+  # Multi-turn customer support chat
+  - id: "chat-support"
+    tenant_id: "support-agents"
+    slo_class: "interactive"
+    rate_fraction: 0.15
+    streaming: true
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 180
+        std_dev: 50
+        min: 60
+        max: 500
+    output_distribution:
+      type: exponential
+      params:
+        mean: 80
+    prefix_group: "chat-support-prompt"
+    prefix_length: 384
+    reasoning:
+      multi_turn:
+        max_rounds: 4
+        think_time_us: 50000
+        context_growth: accumulate
+
+  # Multi-turn coding assistant
   - id: "coding-sessions"
     tenant_id: "developers"
     slo_class: "interactive"
-    rate_fraction: 0.20
+    rate_fraction: 0.15
     streaming: true
     arrival:
       process: gamma
@@ -71,17 +98,71 @@ clients:
       params:
         mean: 100
     prefix_group: "coding-system-prompt"
-    prefix_length: 384
+    prefix_length: 512
     reasoning:
       multi_turn:
         max_rounds: 4
-        think_time_us: 100000   # 100ms between turns
+        think_time_us: 100000
         context_growth: accumulate
 
-  # Single-turn API: no session, pure load balancing
+  # Multi-turn creative writing
+  - id: "creative-writing"
+    tenant_id: "writers"
+    slo_class: "batch"
+    rate_fraction: 0.10
+    streaming: true
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 400
+        std_dev: 120
+        min: 100
+        max: 900
+    output_distribution:
+      type: exponential
+      params:
+        mean: 150
+    prefix_group: "creative-writing-prompt"
+    prefix_length: 448
+    reasoning:
+      multi_turn:
+        max_rounds: 3
+        think_time_us: 80000
+        context_growth: accumulate
+
+  # Multi-turn data analysis
+  - id: "data-analysis"
+    tenant_id: "analysts"
+    slo_class: "interactive"
+    rate_fraction: 0.10
+    streaming: false
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 250
+        std_dev: 80
+        min: 80
+        max: 600
+    output_distribution:
+      type: exponential
+      params:
+        mean: 90
+    prefix_group: "data-analysis-prompt"
+    prefix_length: 320
+    reasoning:
+      multi_turn:
+        max_rounds: 3
+        think_time_us: 70000
+        context_growth: accumulate
+
+  # Single-turn API: no session, no prefix - pure load balancing
   - id: "api-traffic"
     slo_class: "realtime"
-    rate_fraction: 0.30
+    rate_fraction: 0.15
     streaming: false
     arrival:
       process: poisson
@@ -97,3 +178,24 @@ clients:
       params:
         mean: 30
     # No prefix group, no multi-turn - tests pure load balancing
+
+  # Single-turn with shared prefix (6th prefix group)
+  - id: "single-turn-prefixed"
+    slo_class: "realtime"
+    rate_fraction: 0.15
+    streaming: true
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 120
+        std_dev: 30
+        min: 40
+        max: 300
+    output_distribution:
+      type: exponential
+      params:
+        mean: 40
+    prefix_group: "api-gateway-prompt"
+    prefix_length: 192
