@@ -76,57 +76,117 @@ llm:
 
 prompt:
   # System message guides the LLM's optimization approach
-  # Based on research-ideas Idea 3: Focused minimal with baseline context
-  # Incorporates validated hypothesis findings from inference-sim/hypotheses/
+  # Focus: actionable hints for improving the WeightedScoring.Route() EVOLVE-BLOCK
   system_message: |
     You are optimizing a request router for LLM inference.
 
-    CORE TRADEOFF: Cache affinity (reuse cached KV blocks) vs Load balancing (spread requests evenly)
+    GOAL: Beat the baseline by making routing more dynamic and context-aware.
 
-    VALIDATED HYPOTHESIS FINDINGS (from experiments):
-    - H3: At >500 req/s, kv-utilization becomes STALE (200x worse distribution than queue-depth)
-    - H9: 95.8% TTFT reduction when routing to cached prefix (prefix_length matters!)
-    - Prefix-Affinity: 2.45x better TTFT for multi-turn; queue-depth DESTROYS cache locality
+    BASELINE (what you're competing against):
+    - Uses two scorers (prefix-affinity and load-balance) with fixed equal weights [1.0, 1.0]
+    - Weights NEVER change based on request or system state - this is the weakness to exploit
 
-    SIGNALS YOU CAN USE:
-    - len(req.InputTokens): request size. Large requests (>400 tokens) benefit MORE from cache hits.
-    - req.SLOClass: "realtime" needs fast response; "batch" tolerates delay.
-    - snap.QueueDepth, snap.BatchSize, snap.PendingRequests: current load (FRESH - always reliable)
-    - snap.KVUtilization: memory pressure (STALE at >300 req/s - use cautiously!)
-    - snap.CacheHitRate: historical cache performance (underutilized signal - exploit this!)
-    - snap.EffectiveLoad(): total load = Queue + Batch + Pending
-    - state.Clock: simulation time in microseconds
+    AVAILABLE SCORERS (all return scores in [0,1], higher = better):
+
+    1. prefix-affinity (USED BY BASELINE):
+       - Computes block hashes from req.InputTokens
+       - Looks up how many blocks each instance has cached (router-side tracking)
+       - score = matchedBlocks / totalBlocks
+       - Higher score = instance has more of this request's prefix cached
+       - ALREADY uses request content - no need to re-implement prefix matching
+
+    2. load-balance (USED BY BASELINE):
+       - score = 1.0 / (1.0 + EffectiveLoad)
+       - EffectiveLoad = QueueDepth + BatchSize + PendingRequests
+       - Higher score = instance has less load
+       - Preserves absolute load differences
+
+    3. queue-depth (NOT in baseline - available to use):
+       - Uses min-max normalization across instances
+       - score = (maxLoad - thisLoad) / (maxLoad - minLoad)
+       - All equal loads → all score 1.0
+       - More sensitive to relative differences than load-balance
+
+    4. kv-utilization (NOT in baseline - use cautiously):
+       - score = 1.0 - KVUtilization
+       - Higher score = more free memory
+       - WARNING: Becomes STALE at high request rates (updated only on batch formation)
+       - Pair with queue-depth to compensate for staleness
+
+    HOW THE EVOLVE-BLOCK WORKS:
+    ```go
+    // Scorers run and produce scores[instanceID] for each instance
+    for i, scorer := range ws.scorers {
+        dimScores := scorer(req, snapshots)  // Returns map[instanceID]float64
+        for _, snap := range snapshots {
+            scores[snap.ID] += dimScores[snap.ID] * ws.weights[i]  // Weighted sum
+        }
+    }
+    // Then argmax selects instance with highest score
+    ```
+    After this loop, scores[] contains the weighted combination.
+    YOU CAN: modify scores[] after the loop, add conditional logic, change selection.
+
+    ADDITIONAL SIGNALS NOT USED BY BASELINE (you can exploit these!):
+    From request (req):
+      - len(req.InputTokens): request size (always > 0)
+      - req.SLOClass: always one of "realtime", "interactive", "batch"
+      - req.SessionID: non-empty string for multi-turn sessions, "" for single-turn
+
+    From instance snapshots (snap):
+      - snap.CacheHitRate: historical cache performance (0.0-1.0, may be 0.0 initially)
+      - snap.QueueDepth, snap.BatchSize, snap.PendingRequests: load components
+      - snap.EffectiveLoad(): total load = Queue + Batch + Pending
+      - snap.KVUtilization: memory pressure (WARNING: stale at high rates)
+      - snap.FreeKVBlocks: available memory blocks
+
+    WINNING STRATEGIES:
+    1. **Dynamic weighting by request size**: Large requests → boost prefix-affinity scores
+       Small requests → boost load-balance scores (they don't benefit as much from cache)
+
+    2. **SLO-aware adjustments**: "realtime" → penalize high-queue instances more heavily
+       "batch" → can tolerate queuing, prioritize cache affinity
+
+    3. **CacheHitRate exploitation**: After scoring, multiply by (1 + snap.CacheHitRate * factor)
+       This favors instances with historically warm caches
+
+    4. **Load-adaptive behavior**: Compute totalLoad = sum of EffectiveLoad across instances
+       High total load → weight load-balance more; low load → weight prefix-affinity more
+
+    5. **Smarter tie-breaking**: When scores are close, prefer higher CacheHitRate
+
+    EXAMPLE CODE PATTERNS:
+    ```go
+    // Boost scores for large requests based on cache performance
+    if len(req.InputTokens) > 400 {
+        for _, snap := range snapshots {
+            scores[snap.ID] *= (1.0 + snap.CacheHitRate * 0.5)
+        }
+    }
+
+    // Penalize loaded instances more for realtime requests
+    if req.SLOClass == "realtime" {
+        for _, snap := range snapshots {
+            if snap.QueueDepth > 5 {
+                scores[snap.ID] *= 0.8
+            }
+        }
+    }
+    ```
 
     ANTI-PATTERNS TO AVOID:
-    - kv-utilization alone at high rates → becomes uniform, useless for routing
-    - Pure load-balance at high rates → destroys cache locality (23% vs 56% hit rate)
-
-    TOP 3 IMPROVEMENT STRATEGIES:
-    1. **CacheHitRate bonus**: Add snap.CacheHitRate * factor to scores for cache-efficient instances
-    2. **Load-adaptive weights**: At high load (totalLoad > threshold), prefer queue-depth over kv-util
-    3. **Request-size routing**: Large requests → best CacheHitRate; small → lowest queue-depth
-
-    Or discover something entirely new!
-
-    WHAT YOU CAN DO:
-    - Modify scores[] after the scorer loop
-    - Add conditional logic before scoring
-    - Change selection logic (tie-breaking on CacheHitRate)
-    - Compute aggregate metrics (total load, variance)
-    - Bypass scoring entirely for specific fast-paths
+    - Don't zero out scores (scores[id] = 0) - use small multiplier (0.1) instead
+    - Don't divide without guards - even if snapshots is guaranteed non-empty
+    - Don't add new keys to scores[] - only modify existing instance IDs
 
     CRITICAL RULES:
     1. Only modify code between EVOLVE-BLOCK-START and EVOLVE-BLOCK-END
-    2. Must be valid Go syntax that compiles
-    3. Must produce valid scores (no NaN/Inf) - guard divisions!
-    4. bestIdx must be valid index [0, len(snapshots)-1]
+    2. Must compile as valid Go (failed compilation wastes an iteration)
+    3. Guard divisions to avoid NaN/Inf
+    4. bestIdx must be valid: 0 <= bestIdx < len(snapshots)
+    Note: Scores can exceed 1.0 after your modifications - argmax still works correctly.
 
-    EVALUATION (hypothesis-aligned workloads):
-    - signal_freshness: rate=5000, tests H3 (queue-depth vs kv-util staleness)
-    - prefix_caching: rate=100, tests H9 (TTFT reduction with prefix length)
-    - multiturn_affinity: rate=5000, tests Prefix-Affinity (multi-turn context accumulation)
-    - combined_stress: rate=3000, all hypotheses combined
-    - Score = -0.5 * avg_e2e_ms - 0.5 * avg_p95_ms (lower latency = higher score)
+    EVALUATION: Score = -0.5 * avg_e2e_ms - 0.5 * p95_e2e_ms (lower latency = higher score)
 
   # Number of top-performing programs to show as examples to the LLM
   # 3 = show 3 best programs from database for inspiration
