@@ -1,13 +1,13 @@
 """
 Initial Program: BLIS Router Weight Optimization
 
-This contains the full routing.go file (synced with inference-sim v0.5.0)
+This contains the full routing.go file (synced with inference-sim v0.6.1)
 with EVOLVE-BLOCK markers around the WeightedScoring logic.
 
 Goal: Evolve the routing policy to minimize end-to-end latency across workloads.
 """
 
-# Full routing.go file with EVOLVE-BLOCK markers (synced with inference-sim v0.5.0)
+# Full routing.go file with EVOLVE-BLOCK markers (synced with inference-sim v0.6.1)
 GO_ROUTING_CODE = """package sim
 
 import "fmt"
@@ -34,6 +34,16 @@ func (s RoutingSnapshot) EffectiveLoad() int {
 	return s.QueueDepth + s.BatchSize + s.PendingRequests
 }
 
+// NewRoutingSnapshot creates a RoutingSnapshot with the given instance ID.
+// All numeric fields are zero-valued. Used for initial snapshot creation;
+// field-by-field refresh via CachedSnapshotProvider.Snapshot() is a separate concern.
+func NewRoutingSnapshot(id string) RoutingSnapshot {
+	if id == "" {
+		panic("NewRoutingSnapshot: id must not be empty")
+	}
+	return RoutingSnapshot{ID: id}
+}
+
 // RoutingDecision encapsulates the routing decision for a request.
 type RoutingDecision struct {
 	TargetInstance string             // Instance ID to route to (must match a snapshot ID)
@@ -46,6 +56,33 @@ type RoutingDecision struct {
 	// but does not persist. This is intentional: it allows priority to evolve over time
 	// (e.g., SLOBasedPriority ages requests) while giving routing a way to influence initial placement.
 	Priority float64
+}
+
+// NewRoutingDecision creates a RoutingDecision with the given target and reason.
+// Scores is nil and Priority is 0.0 (defer to instance-level PriorityPolicy).
+// This is the canonical constructor for policies that do not produce per-instance scores.
+func NewRoutingDecision(target string, reason string) RoutingDecision {
+	if target == "" {
+		panic("NewRoutingDecision: target must not be empty")
+	}
+	return RoutingDecision{
+		TargetInstance: target,
+		Reason:         reason,
+	}
+}
+
+// NewRoutingDecisionWithScores creates a RoutingDecision with target, reason, and per-instance scores.
+// Priority is 0.0 (defer to instance-level PriorityPolicy).
+// Used by scoring-based routing policies (e.g., WeightedScoring).
+func NewRoutingDecisionWithScores(target string, reason string, scores map[string]float64) RoutingDecision {
+	if target == "" {
+		panic("NewRoutingDecisionWithScores: target must not be empty")
+	}
+	return RoutingDecision{
+		TargetInstance: target,
+		Reason:         reason,
+		Scores:         scores,
+	}
 }
 
 // RoutingPolicy decides which instance should handle a request.
@@ -67,10 +104,7 @@ func (rr *RoundRobin) Route(req *Request, state *RouterState) RoutingDecision {
 	}
 	target := snapshots[rr.counter%len(snapshots)]
 	rr.counter++
-	return RoutingDecision{
-		TargetInstance: target.ID,
-		Reason:         fmt.Sprintf("round-robin[%d]", rr.counter-1),
-	}
+	return NewRoutingDecision(target.ID, fmt.Sprintf("round-robin[%d]", rr.counter-1))
 }
 
 // LeastLoaded routes requests to the instance with minimum (QueueDepth + BatchSize + PendingRequests).
@@ -97,10 +131,7 @@ func (ll *LeastLoaded) Route(req *Request, state *RouterState) RoutingDecision {
 		}
 	}
 
-	return RoutingDecision{
-		TargetInstance: target.ID,
-		Reason:         fmt.Sprintf("least-loaded (load=%d)", minLoad),
-	}
+	return NewRoutingDecision(target.ID, fmt.Sprintf("least-loaded (load=%d)", minLoad))
 }
 
 // observerFunc is called after each routing decision to update stateful scorer state.
@@ -135,17 +166,25 @@ func (ws *WeightedScoring) Route(req *Request, state *RouterState) RoutingDecisi
 	}
 
 	// EVOLVE-BLOCK-START
+	// Compute composite scores from all scorers
 	scores := make(map[string]float64, len(snapshots))
 	for i, scorer := range ws.scorers {
 		dimScores := scorer(req, snapshots)
 		for _, snap := range snapshots {
 			s := dimScores[snap.ID]
-			if s < 0 { s = 0 }
-			if s > 1 { s = 1 }
+			// Clamp to [0,1] per INV-1
+			if s < 0 {
+				s = 0
+			}
+			if s > 1 {
+				s = 1
+			}
 			scores[snap.ID] += s * ws.weights[i]
 		}
 	}
 
+	// Argmax: select instance with highest composite score.
+	// Ties broken by first occurrence in snapshot order (strict >).
 	bestScore := -1.0
 	bestIdx := 0
 	for i, snap := range snapshots {
@@ -161,11 +200,11 @@ func (ws *WeightedScoring) Route(req *Request, state *RouterState) RoutingDecisi
 		obs(req, snapshots[bestIdx].ID)
 	}
 
-	return RoutingDecision{
-		TargetInstance: snapshots[bestIdx].ID,
-		Reason:         fmt.Sprintf("weighted-scoring (score=%.3f)", bestScore),
-		Scores:         scores,
-	}
+	return NewRoutingDecisionWithScores(
+		snapshots[bestIdx].ID,
+		fmt.Sprintf("weighted-scoring (score=%.3f)", bestScore),
+		scores,
+	)
 }
 
 // PrefixAffinity routes requests with matching prefixes to the same instance (cache-aware).
@@ -174,27 +213,34 @@ func (ws *WeightedScoring) Route(req *Request, state *RouterState) RoutingDecisi
 // for finite-duration simulations; large-cardinality workloads will consume proportional memory.
 type PrefixAffinity struct {
 	prefixMap map[string]string // prefix hash → instance ID (unbounded; grows with unique prefix count)
+	blockSize int64             // KV cache block size for block-aligned prefix hashing
 }
 
 // Route implements RoutingPolicy for PrefixAffinity.
+// Uses block-aligned hierarchical hashing (same scheme as the weighted-scoring
+// prefix-affinity scorer) so requests sharing block-aligned prefixes route together.
 func (pa *PrefixAffinity) Route(req *Request, state *RouterState) RoutingDecision {
 	snapshots := state.Snapshots
 	if len(snapshots) == 0 {
 		panic("PrefixAffinity.Route: empty snapshots")
 	}
 
-	// Compute prefix hash using KVCache's hashTokens (pipe-delimited decimal strings)
-	prefixHash := hashTokens(req.InputTokens)
+	// Compute block-aligned prefix hashes; use the last (longest prefix) as affinity key
+	blockHashes := computeBlockHashes(int(pa.blockSize), req.InputTokens)
+	var prefixHash string
+	if len(blockHashes) > 0 {
+		prefixHash = blockHashes[len(blockHashes)-1]
+	} else {
+		// Tokens shorter than one block: fall back to whole-input hash
+		prefixHash = hashTokens(req.InputTokens)
+	}
 
 	// Check cache for existing mapping
 	if targetID, found := pa.prefixMap[prefixHash]; found {
 		// Verify target still in snapshots (instance may have been removed)
 		for _, snap := range snapshots {
 			if snap.ID == targetID {
-				return RoutingDecision{
-					TargetInstance: targetID,
-					Reason:         "prefix-affinity (cache-hit)",
-				}
+				return NewRoutingDecision(targetID, "prefix-affinity (cache-hit)")
 			}
 		}
 	}
@@ -206,10 +252,25 @@ func (pa *PrefixAffinity) Route(req *Request, state *RouterState) RoutingDecisio
 	// Update cache with new mapping
 	pa.prefixMap[prefixHash] = decision.TargetInstance
 
-	return RoutingDecision{
-		TargetInstance: decision.TargetInstance,
-		Reason:         "prefix-affinity (cache-miss, fallback to least-loaded)",
+	return NewRoutingDecision(decision.TargetInstance, "prefix-affinity (cache-miss, fallback to least-loaded)")
+}
+
+// computeBlockHashes returns hierarchical block hashes without requiring a PrefixCacheIndex.
+// Reuses the same hashBlock function from prefix_cache_index.go for consistency.
+func computeBlockHashes(blockSize int, tokens []int) []string {
+	numBlocks := len(tokens) / blockSize
+	if numBlocks == 0 {
+		return nil
 	}
+	hashes := make([]string, numBlocks)
+	prevHash := ""
+	for i := 0; i < numBlocks; i++ {
+		start := i * blockSize
+		end := start + blockSize
+		hashes[i] = hashBlock(prevHash, tokens[start:end])
+		prevHash = hashes[i]
+	}
+	return hashes
 }
 
 // AlwaysBusiest routes requests to the instance with maximum (QueueDepth + BatchSize + PendingRequests).
@@ -235,10 +296,7 @@ func (ab *AlwaysBusiest) Route(_ *Request, state *RouterState) RoutingDecision {
 		}
 	}
 
-	return RoutingDecision{
-		TargetInstance: target.ID,
-		Reason:         fmt.Sprintf("always-busiest (load=%d)", maxLoad),
-	}
+	return NewRoutingDecision(target.ID, fmt.Sprintf("always-busiest (load=%d)", maxLoad))
 }
 
 // NewRoutingPolicy creates a routing policy by name.
@@ -248,7 +306,7 @@ func (ab *AlwaysBusiest) Route(_ *Request, state *RouterState) RoutingDecision {
 // If scorerConfigs is nil/empty for "weighted", DefaultScorerConfigs() is used.
 // Non-weighted policies ignore scorerConfigs.
 // Panics on unrecognized names.
-func NewRoutingPolicy(name string, scorerConfigs []ScorerConfig) RoutingPolicy {
+func NewRoutingPolicy(name string, scorerConfigs []ScorerConfig, blockSize int64) RoutingPolicy {
 	if !IsValidRoutingPolicy(name) {
 		panic(fmt.Sprintf("unknown routing policy %q", name))
 	}
@@ -264,7 +322,7 @@ func NewRoutingPolicy(name string, scorerConfigs []ScorerConfig) RoutingPolicy {
 		scorers := make([]scorerFunc, len(scorerConfigs))
 		var observers []observerFunc
 		for i, cfg := range scorerConfigs {
-			scorer, obs := newScorerWithObserver(cfg.Name, defaultBlockSize)
+			scorer, obs := newScorerWithObserver(cfg.Name, int(blockSize))
 			scorers[i] = scorer
 			if obs != nil {
 				observers = append(observers, obs)
@@ -273,7 +331,7 @@ func NewRoutingPolicy(name string, scorerConfigs []ScorerConfig) RoutingPolicy {
 		weights := normalizeScorerWeights(scorerConfigs)
 		return &WeightedScoring{scorers: scorers, weights: weights, observers: observers}
 	case "prefix-affinity":
-		return &PrefixAffinity{prefixMap: make(map[string]string)}
+		return &PrefixAffinity{prefixMap: make(map[string]string), blockSize: blockSize}
 	case "always-busiest":
 		return &AlwaysBusiest{}
 	default:
