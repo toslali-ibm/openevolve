@@ -5,7 +5,7 @@ Evaluates evolved routing algorithms by:
 1. Extracting Go code from Python wrapper
 2. Writing evolved routing.go to BLIS source
 3. Building BLIS
-4. Running simulations on 5 hypothesis-aligned workloads
+4. Running simulations on 3 routing-sensitive v2 workloads
 5. Testing inline hypotheses against baseline (cached after first eval)
 6. Computing score based on average end-to-end latency
 
@@ -35,14 +35,12 @@ from hypothesis import (
 # Use logging instead of print() so output is captured in worker processes
 logger = logging.getLogger(__name__)
 
-# Hypothesis-aligned workloads: (name, filename) tuples.
+# V2 workloads: longer durations, validated routing-sensitive.
 # Shared between get_or_compute_baseline() and evaluate().
 WORKLOADS = [
-    ("signal_freshness", "workload_signal_freshness.yaml"),
-    ("prefix_caching", "workload_prefix_caching.yaml"),
-    ("multiturn_affinity", "workload_multiturn_affinity.yaml"),
-    ("sjf_bimodal", "workload_sjf_bimodal.yaml"),
-    ("combined_stress", "workload_combined_stress.yaml"),
+    ("cache_warmup", "workload_v2_cache_warmup.yaml"),
+    ("load_spikes", "workload_v2_load_spikes.yaml"),
+    ("multiturn", "workload_v2_multiturn.yaml"),
 ]
 
 
@@ -429,13 +427,11 @@ def evaluate(program_path: str) -> EvaluationResult:
             },
         )
 
-    # Step 4: Run simulations on 5 hypothesis-aligned workloads
-    # Workloads directly capture validated hypothesis findings:
-    # - signal_freshness: H3 (queue-depth >> kv-util at high rates, rate=5000)
-    # - prefix_caching: H9 (TTFT reduction with prefix, rate=500, small output tokens)
-    # - multiturn_affinity: Prefix-Affinity (2.45x better TTFT, rate=5000)
-    # - sjf_bimodal: H1 (SJF helps short requests, rate=3000, constant distributions)
-    # - combined_stress: All hypotheses combined (rate=3000)
+    # Step 4: Run simulations on 3 routing-sensitive v2 workloads
+    # Validated: sabotaged (always-instance-0) is 242-315% worse than baseline.
+    # - cache_warmup: 3 prefix groups + no-prefix, rate=1000, 5s sim
+    # - load_spikes: bursty batch + steady interactive + realtime, rate=1500, 4s sim
+    # - multiturn: multi-turn chat + coding + single-turn API, rate=800, 6.25s sim
     latencies = []
     tail_latencies = []  # p99 latencies
     request_counts = []  # for weighted averaging
@@ -588,11 +584,9 @@ def evaluate(program_path: str) -> EvaluationResult:
 
     # Hypothesis testing
     actual_for_hypothesis = {
-        "prefix_caching_e2e_ms": workload_results.get("prefix_caching", {}).get("e2e_ms"),
-        "signal_freshness_e2e_ms": workload_results.get("signal_freshness", {}).get("e2e_ms"),
-        "multiturn_affinity_e2e_ms": workload_results.get("multiturn_affinity", {}).get("e2e_ms"),
-        "sjf_bimodal_e2e_ms": workload_results.get("sjf_bimodal", {}).get("e2e_ms"),
-        "combined_stress_e2e_ms": workload_results.get("combined_stress", {}).get("e2e_ms"),
+        "cache_warmup_e2e_ms": workload_results.get("cache_warmup", {}).get("e2e_ms"),
+        "load_spikes_e2e_ms": workload_results.get("load_spikes", {}).get("e2e_ms"),
+        "multiturn_e2e_ms": workload_results.get("multiturn", {}).get("e2e_ms"),
         "avg_e2e_ms": avg_latency if latencies else None,
         "avg_p95_ms": avg_tail_latency if tail_latencies else None,
     }
@@ -627,16 +621,10 @@ def evaluate(program_path: str) -> EvaluationResult:
         "combined_score": score,
         "avg_e2e_ms": avg_latency,
         "avg_p95_ms": avg_tail_latency,
-        # Hypothesis-aligned workload metrics
-        "signal_freshness_e2e_ms": workload_results.get("signal_freshness", {}).get("e2e_ms"),  # H3
-        "prefix_caching_e2e_ms": workload_results.get("prefix_caching", {}).get("e2e_ms"),  # H9
-        "multiturn_affinity_e2e_ms": workload_results.get("multiturn_affinity", {}).get(
-            "e2e_ms"
-        ),  # Prefix-Affinity
-        "sjf_bimodal_e2e_ms": workload_results.get("sjf_bimodal", {}).get("e2e_ms"),  # H1-SJF
-        "combined_stress_e2e_ms": workload_results.get("combined_stress", {}).get(
-            "e2e_ms"
-        ),  # Combined
+        # V2 workload metrics
+        "cache_warmup_e2e_ms": workload_results.get("cache_warmup", {}).get("e2e_ms"),
+        "load_spikes_e2e_ms": workload_results.get("load_spikes", {}).get("e2e_ms"),
+        "multiturn_e2e_ms": workload_results.get("multiturn", {}).get("e2e_ms"),
         "success_rate": success_rate,
         "num_successful": len(latencies),
         "num_failed": len(failed_workloads),

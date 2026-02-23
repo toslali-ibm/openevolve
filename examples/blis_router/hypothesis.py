@@ -24,11 +24,9 @@ logger = logging.getLogger(__name__)
 # Metrics that hypothesis EXPECT lines may reference.
 # Kept in sync with evaluator.py output keys.
 VALID_METRICS = {
-    "prefix_caching_e2e_ms",
-    "signal_freshness_e2e_ms",
-    "multiturn_affinity_e2e_ms",
-    "sjf_bimodal_e2e_ms",
-    "combined_stress_e2e_ms",
+    "cache_warmup_e2e_ms",
+    "load_spikes_e2e_ms",
+    "multiturn_e2e_ms",
     "avg_e2e_ms",
     "avg_p95_ms",
 }

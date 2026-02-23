@@ -43,7 +43,7 @@ package sim
 
 // HYPOTHESIS-1: Queue-depth weighting reduces latency under bursty load
 // MECHANISM-1: Prioritising instances with shorter queues avoids head-of-line blocking
-// EXPECT-1: signal_freshness_e2e_ms < 200
+// EXPECT-1: cache_warmup_e2e_ms < 200
 
 func Route() {}
 """
@@ -53,13 +53,13 @@ package sim
 
 // HYPOTHESIS-1: Queue-depth weighting reduces latency under bursty load
 // MECHANISM-1: Prioritising instances with shorter queues avoids head-of-line blocking
-// EXPECT-1: signal_freshness_e2e_ms < 200
+// EXPECT-1: cache_warmup_e2e_ms < 200
 
 // HYPOTHESIS-2: Prefix caching improves TTFT for shared-prefix workloads
 // MECHANISM-2: Routing to instances that already cached the prefix avoids redundant
 //   computation of KV pairs, reducing time-to-first-token significantly for
 //   requests sharing the same system prompt.
-// EXPECT-2: prefix_caching_e2e_ms < 150.5
+// EXPECT-2: load_spikes_e2e_ms < 150.5
 
 func Route() {}
 """
@@ -104,7 +104,7 @@ class TestParseHypotheses(unittest.TestCase):
             h["mechanism"],
             "Prioritising instances with shorter queues avoids head-of-line blocking",
         )
-        self.assertEqual(h["metric"], "signal_freshness_e2e_ms")
+        self.assertEqual(h["metric"], "cache_warmup_e2e_ms")
         self.assertEqual(h["threshold"], 200.0)
 
     def test_multiple_hypotheses(self):
@@ -112,7 +112,7 @@ class TestParseHypotheses(unittest.TestCase):
         self.assertEqual(len(result), 2)
         self.assertEqual(result[0]["id"], 1)
         self.assertEqual(result[1]["id"], 2)
-        self.assertEqual(result[1]["metric"], "prefix_caching_e2e_ms")
+        self.assertEqual(result[1]["metric"], "load_spikes_e2e_ms")
 
     def test_no_hypotheses(self):
         result = parse_hypotheses(NO_HYPOTHESIS_GO)
@@ -155,24 +155,24 @@ class TestTestHypotheses(unittest.TestCase):
     def setUp(self):
         self.hypotheses = parse_hypotheses(MULTI_HYPOTHESIS_GO)
         self.baseline = {
-            "signal_freshness_e2e_ms": 220.0,
-            "prefix_caching_e2e_ms": 180.0,
+            "cache_warmup_e2e_ms": 220.0,
+            "load_spikes_e2e_ms": 180.0,
         }
 
     def test_confirmed_verdict(self):
-        actual = {"signal_freshness_e2e_ms": 190.0, "prefix_caching_e2e_ms": 140.0}
+        actual = {"cache_warmup_e2e_ms": 190.0, "load_spikes_e2e_ms": 140.0}
         results = _test_hypotheses(self.hypotheses, actual, self.baseline)
         self.assertEqual(results[0]["verdict"], "CONFIRMED")  # 190 < 200
         self.assertEqual(results[1]["verdict"], "CONFIRMED")  # 140 < 150.5
 
     def test_refuted_verdict(self):
-        actual = {"signal_freshness_e2e_ms": 250.0, "prefix_caching_e2e_ms": 160.0}
+        actual = {"cache_warmup_e2e_ms": 250.0, "load_spikes_e2e_ms": 160.0}
         results = _test_hypotheses(self.hypotheses, actual, self.baseline)
         self.assertEqual(results[0]["verdict"], "REFUTED")  # 250 >= 200
         self.assertEqual(results[1]["verdict"], "REFUTED")  # 160 >= 150.5
 
     def test_inconclusive_verdict_missing_metric(self):
-        actual = {"signal_freshness_e2e_ms": 190.0}  # prefix_caching missing
+        actual = {"cache_warmup_e2e_ms": 190.0}  # prefix_caching missing
         results = _test_hypotheses(self.hypotheses, actual, self.baseline)
         self.assertEqual(results[0]["verdict"], "CONFIRMED")
         self.assertEqual(results[1]["verdict"], "INCONCLUSIVE")
@@ -180,18 +180,18 @@ class TestTestHypotheses(unittest.TestCase):
         self.assertIsNone(results[1]["delta_vs_baseline_pct"])
 
     def test_inconclusive_verdict_none_metric(self):
-        actual = {"signal_freshness_e2e_ms": 190.0, "prefix_caching_e2e_ms": None}
+        actual = {"cache_warmup_e2e_ms": 190.0, "load_spikes_e2e_ms": None}
         results = _test_hypotheses(self.hypotheses, actual, self.baseline)
         self.assertEqual(results[1]["verdict"], "INCONCLUSIVE")
 
     def test_mixed_verdicts(self):
-        actual = {"signal_freshness_e2e_ms": 190.0, "prefix_caching_e2e_ms": 160.0}
+        actual = {"cache_warmup_e2e_ms": 190.0, "load_spikes_e2e_ms": 160.0}
         results = _test_hypotheses(self.hypotheses, actual, self.baseline)
         self.assertEqual(results[0]["verdict"], "CONFIRMED")
         self.assertEqual(results[1]["verdict"], "REFUTED")
 
     def test_delta_vs_baseline_pct(self):
-        actual = {"signal_freshness_e2e_ms": 198.0, "prefix_caching_e2e_ms": 180.0}
+        actual = {"cache_warmup_e2e_ms": 198.0, "load_spikes_e2e_ms": 180.0}
         results = _test_hypotheses(self.hypotheses, actual, self.baseline)
         # delta for H1: (198 - 220) / 220 * 100 = -10.0%
         self.assertAlmostEqual(results[0]["delta_vs_baseline_pct"], -10.0, places=1)
@@ -199,7 +199,7 @@ class TestTestHypotheses(unittest.TestCase):
         self.assertAlmostEqual(results[1]["delta_vs_baseline_pct"], 0.0, places=1)
 
     def test_result_keys(self):
-        actual = {"signal_freshness_e2e_ms": 190.0, "prefix_caching_e2e_ms": 140.0}
+        actual = {"cache_warmup_e2e_ms": 190.0, "load_spikes_e2e_ms": 140.0}
         results = _test_hypotheses(self.hypotheses, actual, self.baseline)
         expected_keys = {
             "id",
@@ -342,7 +342,7 @@ class TestGenerateKnowledgeBaseSummary(unittest.TestCase):
                             "id": 1,
                             "claim": "Queue-depth helps",
                             "mechanism": "shorter queues",
-                            "metric": "signal_freshness_e2e_ms",
+                            "metric": "cache_warmup_e2e_ms",
                             "threshold": 200,
                             "actual": 180,
                             "baseline_value": 220,
@@ -359,7 +359,7 @@ class TestGenerateKnowledgeBaseSummary(unittest.TestCase):
                             "id": 1,
                             "claim": "Queue-depth helps",
                             "mechanism": "shorter queues",
-                            "metric": "signal_freshness_e2e_ms",
+                            "metric": "cache_warmup_e2e_ms",
                             "threshold": 200,
                             "actual": 175,
                             "baseline_value": 220,
@@ -373,7 +373,7 @@ class TestGenerateKnowledgeBaseSummary(unittest.TestCase):
         result = generate_knowledge_base_summary(ledger)
         self.assertIn("CONFIRMED STRATEGIES", result)
         self.assertIn("Queue-depth helps", result)
-        self.assertIn("signal_freshness_e2e_ms", result)
+        self.assertIn("cache_warmup_e2e_ms", result)
         self.assertIn("shorter queues", result)
 
     def test_refuted_strategies_shown(self):
@@ -489,7 +489,7 @@ class TestFormatHypothesisResults(unittest.TestCase):
                 "id": 1,
                 "claim": "Queue-depth helps",
                 "mechanism": "shorter queues",
-                "metric": "signal_freshness_e2e_ms",
+                "metric": "cache_warmup_e2e_ms",
                 "threshold": 200.0,
                 "actual": 190.0,
                 "baseline_value": 220.0,
@@ -500,7 +500,7 @@ class TestFormatHypothesisResults(unittest.TestCase):
                 "id": 2,
                 "claim": "Prefix caching helps",
                 "mechanism": "prefix reuse",
-                "metric": "prefix_caching_e2e_ms",
+                "metric": "load_spikes_e2e_ms",
                 "threshold": 150.0,
                 "actual": 160.0,
                 "baseline_value": 180.0,
@@ -511,7 +511,7 @@ class TestFormatHypothesisResults(unittest.TestCase):
         result = format_hypothesis_results(hypothesis_results, -195.0, -220.0)
         self.assertIn("H1 [CONFIRMED]", result)
         self.assertIn("H2 [REFUTED]", result)
-        self.assertIn("EXPECT signal_freshness_e2e_ms < 200.0", result)
+        self.assertIn("EXPECT cache_warmup_e2e_ms < 200.0", result)
         self.assertIn("ACTUAL 190.0", result)
         self.assertIn("delta=", result)
         self.assertIn("OVERALL", result)
@@ -547,11 +547,9 @@ class TestValidMetrics(unittest.TestCase):
 
     def test_contains_expected_metrics(self):
         expected = {
-            "prefix_caching_e2e_ms",
-            "signal_freshness_e2e_ms",
-            "multiturn_affinity_e2e_ms",
-            "sjf_bimodal_e2e_ms",
-            "combined_stress_e2e_ms",
+            "cache_warmup_e2e_ms",
+            "load_spikes_e2e_ms",
+            "multiturn_e2e_ms",
             "avg_e2e_ms",
             "avg_p95_ms",
         }

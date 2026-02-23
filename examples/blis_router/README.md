@@ -95,7 +95,7 @@ From instance snapshots (`snap`):
 The LLM writes testable hypotheses alongside code mutations. Each iteration:
 
 1. LLM includes structured `// HYPOTHESIS-N` / `// MECHANISM-N` / `// EXPECT-N` comments in the EVOLVE-BLOCK
-2. Evaluator parses hypotheses, runs 5 workloads, tests predictions against a cached baseline
+2. Evaluator parses hypotheses, runs 3 workloads, tests predictions against a cached baseline
 3. Results are appended to a persistent hypothesis ledger
 4. A knowledge base summary (confirmed/refuted strategies) is returned as an artifact
 5. Next iteration: the LLM sees what worked and what didn't
@@ -141,15 +141,15 @@ routing:
       weight: 1.0
 ```
 
-### Workloads (5 hypothesis-aligned)
+### Workloads (3 routing-sensitive v2)
 
-| Workload | File | Tests | Rate |
-|----------|------|-------|------|
-| Signal Freshness | `workload_signal_freshness.yaml` | H3: queue-depth >> kv-util at high rates | 5000 req/s |
-| Prefix Caching | `workload_prefix_caching.yaml` | H9: TTFT reduction with prefix reuse | 500 req/s |
-| Multi-turn Affinity | `workload_multiturn_affinity.yaml` | Prefix-Affinity: 2.45x better TTFT | 5000 req/s |
-| SJF Bimodal | `workload_sjf_bimodal.yaml` | H1: SJF helps short requests | 3000 req/s |
-| Combined Stress | `workload_combined_stress.yaml` | All hypotheses combined | 3000 req/s |
+All validated: sabotaged (always-instance-0) is 242-315% worse than baseline.
+
+| Workload | File | Purpose | Rate | Duration |
+|----------|------|---------|------|----------|
+| Cache Warmup | `workload_v2_cache_warmup.yaml` | Prefix cache exploitation after warmup | 1000 req/s | 5s |
+| Load Spikes | `workload_v2_load_spikes.yaml` | Adaptation to bursty load imbalances | 1500 req/s | 4s |
+| Multi-turn | `workload_v2_multiturn.yaml` | Session affinity for multi-turn conversations | 800 req/s | 6.25s |
 
 ### Evolution Settings (`config.yaml`)
 ```yaml
@@ -173,7 +173,7 @@ database:
 **Interpretation:**
 - Higher score (less negative) = Better
 - Lower mean + tail latency = Higher score
-- Averaged equally across all 5 workloads
+- Averaged equally across all 3 workloads
 
 **Averaging:** By default, workloads are weighted equally. Set `WEIGHTED_LATENCY=true` to weight by `completed_requests`.
 
@@ -254,7 +254,7 @@ go build -o simulation_worker main.go
   --model meta-llama/llama-3.1-8b-instruct \
   --num-instances 4 \
   --policy-config ../routing_policy.yaml \
-  --workload-spec ../workload_combined_stress.yaml \
+  --workload-spec ../workload_v2_load_spikes.yaml \
   --log info
 ```
 
@@ -299,11 +299,10 @@ rm -f examples/blis_router/baseline_metrics.json examples/blis_router/hypothesis
 | `hypothesis.py` | Hypothesis parsing, testing, ledger, and knowledge base summary |
 | `config.yaml` | OpenEvolve settings (LLM, evolution, database) |
 | `routing_policy.yaml` | BLIS routing policy (prefix-affinity + load-balance, equal weights) |
-| `workload_signal_freshness.yaml` | Signal freshness workload (rate=5000) |
-| `workload_prefix_caching.yaml` | Prefix caching workload (rate=500) |
-| `workload_multiturn_affinity.yaml` | Multi-turn affinity workload (rate=5000) |
-| `workload_sjf_bimodal.yaml` | SJF bimodal workload (rate=3000) |
-| `workload_combined_stress.yaml` | Combined stress workload (rate=3000) |
+| `workload_v2_cache_warmup.yaml` | Cache warmup & exploitation (rate=1000, 5s) |
+| `workload_v2_load_spikes.yaml` | Bursty load with SLO tension (rate=1500, 4s) |
+| `workload_v2_multiturn.yaml` | Multi-turn sessions with context growth (rate=800, 6.25s) |
+| `validate_workloads.py` | Routing sensitivity validation script (4 configs x N workloads) |
 | `baseline_metrics.json` | Auto-generated: cached baseline metrics from initial program |
 | `hypothesis_ledger.json` | Auto-generated: cumulative hypothesis results across iterations |
 | `inference-sim/` | BLIS simulator (submodule) |

@@ -1,0 +1,58 @@
+{
+  "sabotaged": {
+    "v2_cache_warmup": {
+      "e2e_mean_ms": 19631.7944518,
+      "e2e_p95_ms": 35561.9502
+    },
+    "v2_load_spikes": {
+      "e2e_mean_ms": 26792.908079999997,
+      "e2e_p95_ms": 49703.58414999999
+    },
+    "v2_multiturn": {
+      "e2e_mean_ms": 13878.625074,
+      "e2e_p95_ms": 25546.4509
+    }
+  },
+  "prefix-only": {
+    "v2_cache_warmup": {
+      "e2e_mean_ms": 5734.5725258,
+      "e2e_p95_ms": 10562.626499999998
+    },
+    "v2_load_spikes": {
+      "e2e_mean_ms": 10645.594902833333,
+      "e2e_p95_ms": 34079.168999999994
+    },
+    "v2_multiturn": {
+      "e2e_mean_ms": 3808.2233702,
+      "e2e_p95_ms": 6619.449649999999
+    }
+  },
+  "load-only": {
+    "v2_cache_warmup": {
+      "e2e_mean_ms": 4237.9248624,
+      "e2e_p95_ms": 8109.8702
+    },
+    "v2_load_spikes": {
+      "e2e_mean_ms": 6456.937023166667,
+      "e2e_p95_ms": 12167.97915
+    },
+    "v2_multiturn": {
+      "e2e_mean_ms": 3809.8496032,
+      "e2e_p95_ms": 6601.611999999998
+    }
+  },
+  "baseline": {
+    "v2_cache_warmup": {
+      "e2e_mean_ms": 5734.5725258,
+      "e2e_p95_ms": 10562.626499999998
+    },
+    "v2_load_spikes": {
+      "e2e_mean_ms": 6455.9396575,
+      "e2e_p95_ms": 12417.216699999999
+    },
+    "v2_multiturn": {
+      "e2e_mean_ms": 3808.2233702,
+      "e2e_p95_ms": 6619.449649999999
+    }
+  }
+}

@@ -1,0 +1,84 @@
+# V2 Workload: Bursty Load with SLO Tension
+# PURPOSE: Test whether router adapts to temporary load imbalances and SLO pressure.
+# WHY ROUTING MATTERS: Bursty traffic (gamma CV=5) creates moments where some
+#   instances are slammed while others are idle. Static weights treat all moments
+#   the same. An adaptive router should shift toward load-balance during spikes
+#   and toward prefix-affinity during calm periods.
+#
+# DESIGN:
+#   - 6000 requests at rate=1500 → 4 seconds simulated time
+#   - 40% bursty batch traffic (gamma CV=5) creates intense load spikes
+#   - 30% steady interactive with prefix (benefits from cache affinity)
+#   - 30% realtime with strict SLO needs (must avoid queued instances)
+#   - The tension: bursty traffic overloads some instances, realtime needs
+#     to route AWAY from those instances, interactive wants cache affinity
+
+version: "1"
+seed: 42
+category: language
+aggregate_rate: 1500.0
+num_requests: 6000
+
+clients:
+  # Bursty batch: creates load spikes on random instances
+  - id: "bursty-batch"
+    slo_class: "batch"
+    rate_fraction: 0.40
+    streaming: false
+    arrival:
+      process: gamma
+      cv: 5.0  # Extreme burstiness
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 500
+        std_dev: 200
+        min: 100
+        max: 1200
+    output_distribution:
+      type: exponential
+      params:
+        mean: 200
+    prefix_group: "batch-processing"
+    prefix_length: 64  # Small prefix, mostly load-sensitive
+
+  # Steady interactive: benefits from cache affinity
+  - id: "steady-interactive"
+    slo_class: "interactive"
+    rate_fraction: 0.30
+    streaming: false
+    arrival:
+      process: poisson  # Steady arrival
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 250
+        std_dev: 60
+        min: 100
+        max: 500
+    output_distribution:
+      type: exponential
+      params:
+        mean: 80
+    prefix_group: "interactive-system-prompt"
+    prefix_length: 384  # Long prefix, benefits from cache
+
+  # Realtime SLO-critical: must avoid loaded instances
+  - id: "realtime-critical"
+    slo_class: "realtime"
+    rate_fraction: 0.30
+    streaming: true
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 80
+        std_dev: 20
+        min: 30
+        max: 180
+    output_distribution:
+      type: exponential
+      params:
+        mean: 30
+    # No prefix group - pure load-balance routing

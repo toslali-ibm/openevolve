@@ -1,0 +1,99 @@
+# V2 Workload: Multi-Turn Sessions with Context Growth
+# PURPOSE: Test whether router maintains session affinity for multi-turn conversations.
+# WHY ROUTING MATTERS: Multi-turn conversations accumulate context. If a conversation
+#   is routed to the same instance across turns, cached KV blocks are reused.
+#   If routed to a different instance, the entire context must be recomputed.
+#   Static weights can't learn session patterns; adaptive routing should.
+#
+# DESIGN:
+#   - 5000 requests at rate=800 → 6.25 seconds simulated time
+#   - 50% multi-turn chat with FAST think time (50ms, not 500ms!)
+#     so conversations actually complete multiple rounds within simulation
+#   - 20% multi-turn coding with moderate think time
+#   - 30% single-turn API traffic (no session, tests load balancing)
+#
+# KEY FIX from v1: think_time_us=50000 (50ms) instead of 500000 (500ms)
+#   v1's 500ms think time was longer than the 0.4s simulation, so multi-turn
+#   conversations never completed a second turn. Now 50ms << 6.25s simulation.
+
+version: "1"
+seed: 42
+category: reasoning
+aggregate_rate: 800.0
+num_requests: 5000
+
+clients:
+  # Multi-turn chat: fast think time so conversations complete multiple rounds
+  - id: "multi-turn-chat"
+    tenant_id: "chat-users"
+    slo_class: "interactive"
+    rate_fraction: 0.50
+    streaming: true
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 150
+        std_dev: 40
+        min: 50
+        max: 400
+    output_distribution:
+      type: exponential
+      params:
+        mean: 60
+    prefix_group: "chat-system-prompt"
+    prefix_length: 256
+    reasoning:
+      multi_turn:
+        max_rounds: 5
+        think_time_us: 50000    # 50ms - conversations WILL complete multiple rounds
+        context_growth: accumulate
+
+  # Multi-turn coding: moderate think time
+  - id: "coding-sessions"
+    tenant_id: "developers"
+    slo_class: "interactive"
+    rate_fraction: 0.20
+    streaming: true
+    arrival:
+      process: gamma
+      cv: 2.0
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 300
+        std_dev: 100
+        min: 80
+        max: 800
+    output_distribution:
+      type: exponential
+      params:
+        mean: 100
+    prefix_group: "coding-system-prompt"
+    prefix_length: 384
+    reasoning:
+      multi_turn:
+        max_rounds: 4
+        think_time_us: 100000   # 100ms between turns
+        context_growth: accumulate
+
+  # Single-turn API: no session, pure load balancing
+  - id: "api-traffic"
+    slo_class: "realtime"
+    rate_fraction: 0.30
+    streaming: false
+    arrival:
+      process: poisson
+    input_distribution:
+      type: gaussian
+      params:
+        mean: 80
+        std_dev: 25
+        min: 20
+        max: 200
+    output_distribution:
+      type: exponential
+      params:
+        mean: 30
+    # No prefix group, no multi-turn - tests pure load balancing
