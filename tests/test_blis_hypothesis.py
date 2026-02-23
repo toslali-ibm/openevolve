@@ -80,6 +80,16 @@ package sim
 func Route() {}
 """
 
+INVALID_METRIC_GO = """\
+package sim
+
+// HYPOTHESIS-1: Bogus metric hypothesis
+// MECHANISM-1: Uses a metric that does not exist
+// EXPECT-1: totally_fake_metric < 100
+
+func Route() {}
+"""
+
 
 class TestParseHypotheses(unittest.TestCase):
     """Tests for parse_hypotheses()."""
@@ -132,6 +142,11 @@ class TestParseHypotheses(unittest.TestCase):
         result = parse_hypotheses(code)
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0]["id"], 1)
+
+    def test_invalid_metric_excluded(self):
+        """Hypothesis referencing an unknown metric is excluded from results."""
+        result = parse_hypotheses(INVALID_METRIC_GO)
+        self.assertEqual(result, [])
 
 
 class TestTestHypotheses(unittest.TestCase):
@@ -187,8 +202,15 @@ class TestTestHypotheses(unittest.TestCase):
         actual = {"signal_freshness_e2e_ms": 190.0, "prefix_caching_e2e_ms": 140.0}
         results = _test_hypotheses(self.hypotheses, actual, self.baseline)
         expected_keys = {
-            "id", "claim", "mechanism", "metric", "threshold",
-            "actual", "baseline_value", "delta_vs_baseline_pct", "verdict",
+            "id",
+            "claim",
+            "mechanism",
+            "metric",
+            "threshold",
+            "actual",
+            "baseline_value",
+            "delta_vs_baseline_pct",
+            "verdict",
         }
         self.assertEqual(set(results[0].keys()), expected_keys)
 
@@ -246,9 +268,19 @@ class TestUpdateLedger(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             path = Path(tmpdir) / "ledger.json"
             ledger = {"baseline": {}, "entries": []}
-            hr = [{"id": 1, "claim": "c", "mechanism": "m", "metric": "avg_e2e_ms",
-                    "threshold": 200, "actual": 190, "baseline_value": 220,
-                    "delta_vs_baseline_pct": -13.6, "verdict": "CONFIRMED"}]
+            hr = [
+                {
+                    "id": 1,
+                    "claim": "c",
+                    "mechanism": "m",
+                    "metric": "avg_e2e_ms",
+                    "threshold": 200,
+                    "actual": 190,
+                    "baseline_value": 220,
+                    "delta_vs_baseline_pct": -13.6,
+                    "verdict": "CONFIRMED",
+                }
+            ]
             update_ledger(ledger, hr, -195.0, path)
             update_ledger(ledger, hr, -190.0, path)
             self.assertEqual(len(ledger["entries"]), 2)
@@ -257,9 +289,19 @@ class TestUpdateLedger(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             path = Path(tmpdir) / "subdir" / "ledger.json"
             ledger = {"baseline": {}, "entries": []}
-            hr = [{"id": 1, "claim": "c", "mechanism": "m", "metric": "avg_e2e_ms",
-                    "threshold": 200, "actual": 190, "baseline_value": 220,
-                    "delta_vs_baseline_pct": -13.6, "verdict": "CONFIRMED"}]
+            hr = [
+                {
+                    "id": 1,
+                    "claim": "c",
+                    "mechanism": "m",
+                    "metric": "avg_e2e_ms",
+                    "threshold": 200,
+                    "actual": 190,
+                    "baseline_value": 220,
+                    "delta_vs_baseline_pct": -13.6,
+                    "verdict": "CONFIRMED",
+                }
+            ]
             update_ledger(ledger, hr, -195.0, path)
 
             # Re-read from disk
@@ -274,7 +316,19 @@ class TestGenerateKnowledgeBaseSummary(unittest.TestCase):
     def test_empty_ledger(self):
         ledger = {"baseline": {}, "entries": []}
         result = generate_knowledge_base_summary(ledger)
-        self.assertEqual(result, "No hypothesis data yet.")
+        self.assertIn("No hypothesis data yet.", result)
+
+    def test_empty_ledger_with_baseline(self):
+        """When entries are empty but baseline exists, baseline values are shown."""
+        ledger = {
+            "baseline": {"avg_e2e_ms": 250.0, "avg_p95_ms": 400.0},
+            "entries": [],
+        }
+        result = generate_knowledge_base_summary(ledger)
+        self.assertIn("No hypothesis data yet.", result)
+        self.assertIn("BASELINE VALUES", result)
+        self.assertIn("avg_e2e_ms: 250.0", result)
+        self.assertIn("avg_p95_ms: 400.0", result)
 
     def test_confirmed_strategies_shown(self):
         ledger = {
@@ -394,9 +448,7 @@ class TestGenerateKnowledgeBaseSummary(unittest.TestCase):
         # Each confirmed strategy produces 2 lines (main + mechanism)
         confirmed_section = result.split("=== CONFIRMED STRATEGIES ===")[1]
         # Count unique hypothesis entries (lines starting with "  [")
-        strategy_lines = [
-            l for l in confirmed_section.splitlines() if l.strip().startswith("[")
-        ]
+        strategy_lines = [l for l in confirmed_section.splitlines() if l.strip().startswith("[")]
         self.assertLessEqual(len(strategy_lines), 3)
 
     def test_baseline_values_shown(self):

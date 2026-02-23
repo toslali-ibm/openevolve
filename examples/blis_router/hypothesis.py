@@ -13,10 +13,13 @@ iterations. The ledger feeds back into the LLM prompt as a knowledge base.
 """
 
 import json
+import logging
 import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
+
+logger = logging.getLogger(__name__)
 
 # Metrics that hypothesis EXPECT lines may reference.
 # Kept in sync with evaluator.py output keys.
@@ -95,11 +98,18 @@ def parse_hypotheses(go_code: str) -> list:
 
         i += 1
 
-    # Build result list — only complete hypotheses
+    # Build result list — only complete hypotheses with valid metrics
     results = []
     for hid in sorted(fields):
         f = fields[hid]
         if all(k in f for k in ("claim", "mechanism", "metric", "threshold")):
+            if f["metric"] not in VALID_METRICS:
+                logger.warning(
+                    "Hypothesis %d references unknown metric %r; skipping",
+                    hid,
+                    f["metric"],
+                )
+                continue
             results.append(
                 {
                     "id": hid,
@@ -231,7 +241,14 @@ def generate_knowledge_base_summary(ledger: dict, top_n: int = 5) -> str:
     """
     entries = ledger.get("entries", [])
     if not entries:
-        return "No hypothesis data yet."
+        lines = ["HYPOTHESIS KNOWLEDGE BASE:", "", "No hypothesis data yet."]
+        baseline = ledger.get("baseline", {})
+        if baseline:
+            lines.append("")
+            lines.append("BASELINE VALUES (initial program, static weights):")
+            for k, v in sorted(baseline.items()):
+                lines.append(f"  {k}: {v}")
+        return "\n".join(lines)
 
     # Aggregate per (metric, claim) pair
     # key = (metric, claim) -> list of {verdict, delta_pct}
@@ -309,9 +326,7 @@ def generate_knowledge_base_summary(ledger: dict, top_n: int = 5) -> str:
     if inconclusive:
         lines.append("=== INCONCLUSIVE ===")
         for s in inconclusive:
-            lines.append(
-                f"  [{s['metric']}] {s['claim']} (total={s['total']})"
-            )
+            lines.append(f"  [{s['metric']}] {s['claim']} (total={s['total']})")
         lines.append("")
 
     # Baseline values
