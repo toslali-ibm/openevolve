@@ -5,8 +5,9 @@ Evaluates evolved routing algorithms by:
 1. Extracting Go code from Python wrapper
 2. Writing evolved routing.go to BLIS source
 3. Building BLIS
-4. Running simulations on 3 workloads
-5. Computing score based on average end-to-end latency
+4. Running simulations on 5 hypothesis-aligned workloads
+5. Testing inline hypotheses against baseline (cached after first eval)
+6. Computing score based on average end-to-end latency
 
 Score = -avg_latency (negative because we're minimizing latency)
 Higher score = Lower latency = Better!
@@ -33,6 +34,50 @@ from hypothesis import (
 
 # Use logging instead of print() so output is captured in worker processes
 logger = logging.getLogger(__name__)
+
+# Hypothesis-aligned workloads: (name, filename) tuples.
+# Shared between get_or_compute_baseline() and evaluate().
+WORKLOADS = [
+    ("signal_freshness", "workload_signal_freshness.yaml"),
+    ("prefix_caching", "workload_prefix_caching.yaml"),
+    ("multiturn_affinity", "workload_multiturn_affinity.yaml"),
+    ("sjf_bimodal", "workload_sjf_bimodal.yaml"),
+    ("combined_stress", "workload_combined_stress.yaml"),
+]
+
+
+def _build_sim_cmd(
+    inference_sim_dir: Path, policy_config_path: Path, workload_path: Path
+) -> list[str]:
+    """Return the simulation command list for a single workload run."""
+    return [
+        "./simulation_worker",
+        "run",
+        "--model",
+        "Qwen/Qwen2.5-7B-Instruct",
+        "--hardware",
+        "H100",
+        "--tp",
+        "1",
+        "--num-instances",
+        "4",
+        "--policy-config",
+        str(policy_config_path),
+        "--workload-spec",
+        str(workload_path),
+        "--log",
+        "info",
+        "--alpha-coeffs",
+        "4680.303204056608,0.0,0.0",
+        "--beta-coeffs",
+        "7051.796874715078,19.538416565504026,25.431830886933543",
+        "--total-kv-blocks",
+        "65833",
+        "--max-num-running-reqs",
+        "256",
+        "--max-num-scheduled-tokens",
+        "4096",
+    ]
 
 
 def extract_evolve_block(code: str) -> str:
@@ -64,7 +109,7 @@ def print_diff(initial_code: str, current_code: str):
     logger.info(f"Diff vs initial: -{removed} / +{added} lines")
 
 
-def _parse_cluster_metrics(output_text: str) -> dict:
+def _parse_cluster_metrics(output_text: str) -> dict | None:
     """Parse cluster-wide metrics from simulation output JSON blocks."""
     json_blocks = []
     in_json = False
@@ -153,48 +198,13 @@ def get_or_compute_baseline(
         return {}
 
     # Run all workloads
-    workloads = [
-        ("signal_freshness", "workload_signal_freshness.yaml"),
-        ("prefix_caching", "workload_prefix_caching.yaml"),
-        ("multiturn_affinity", "workload_multiturn_affinity.yaml"),
-        ("sjf_bimodal", "workload_sjf_bimodal.yaml"),
-        ("combined_stress", "workload_combined_stress.yaml"),
-    ]
-
     baseline = {}
     latencies = []
     tail_latencies = []
 
-    for workload_name, workload_file in workloads:
+    for workload_name, workload_file in WORKLOADS:
         workload_path = script_dir / workload_file
-        cmd = [
-            "./simulation_worker",
-            "run",
-            "--model",
-            "Qwen/Qwen2.5-7B-Instruct",
-            "--hardware",
-            "H100",
-            "--tp",
-            "1",
-            "--num-instances",
-            "4",
-            "--policy-config",
-            str(policy_config_path),
-            "--workload-spec",
-            str(workload_path),
-            "--log",
-            "info",
-            "--alpha-coeffs",
-            "4680.303204056608,0.0,0.0",
-            "--beta-coeffs",
-            "7051.796874715078,19.538416565504026,25.431830886933543",
-            "--total-kv-blocks",
-            "65833",
-            "--max-num-running-reqs",
-            "256",
-            "--max-num-scheduled-tokens",
-            "4096",
-        ]
+        cmd = _build_sim_cmd(inference_sim_dir, policy_config_path, workload_path)
         try:
             sim_result = subprocess.run(
                 cmd,
@@ -310,9 +320,20 @@ def evaluate(program_path: str) -> EvaluationResult:
         except Exception as e:
             pass  # Silently skip if diff fails
 
-    # Compute (or load cached) baseline metrics for hypothesis testing
+    # On the very first evaluation, get_or_compute_baseline writes the initial
+    # routing.go, builds, and runs all workloads to populate the cache.  The
+    # evolved routing.go is then written and built again in Steps 2-3 below,
+    # resulting in a double-build on the first call only.  Subsequent evals skip
+    # straight to the cached baseline so no extra build occurs.
     baseline_metrics = get_or_compute_baseline(script_dir, inference_sim_dir, policy_config_path)
     hypotheses = parse_hypotheses(go_code)
+
+    if hypotheses:
+        logger.info(f"Parsed {len(hypotheses)} hypotheses from evolved code")
+        for h in hypotheses:
+            logger.info(f"  H{h['id']}: {h['claim']} (EXPECT: {h['metric']} < {h['threshold']})")
+    else:
+        logger.info("No hypotheses found in evolved code")
 
     # Step 2: Write evolved routing.go
     try:
@@ -407,56 +428,20 @@ def evaluate(program_path: str) -> EvaluationResult:
     # - multiturn_affinity: Prefix-Affinity (2.45x better TTFT, rate=5000)
     # - sjf_bimodal: H1 (SJF helps short requests, rate=3000, constant distributions)
     # - combined_stress: All hypotheses combined (rate=3000)
-    workloads = [
-        ("signal_freshness", "workload_signal_freshness.yaml"),
-        ("prefix_caching", "workload_prefix_caching.yaml"),
-        ("multiturn_affinity", "workload_multiturn_affinity.yaml"),
-        ("sjf_bimodal", "workload_sjf_bimodal.yaml"),
-        ("combined_stress", "workload_combined_stress.yaml"),
-    ]
-
     latencies = []
     tail_latencies = []  # p99 latencies
     request_counts = []  # for weighted averaging
     workload_results = {}
     failed_workloads = []
 
-    for workload_name, workload_file in workloads:
+    for workload_name, workload_file in WORKLOADS:
         try:
             logger.info(f"Running {workload_name} workload...")
 
             # Workload file path (relative to script directory)
             workload_path = script_dir / workload_file
 
-            cmd = [
-                "./simulation_worker",
-                "run",
-                "--model",
-                "Qwen/Qwen2.5-7B-Instruct",
-                "--hardware",
-                "H100",
-                "--tp",
-                "1",
-                "--num-instances",
-                "4",
-                "--policy-config",
-                str(policy_config_path),
-                "--workload-spec",
-                str(workload_path),
-                "--log",
-                "info",
-                # Blackbox mode with custom coefficients for Qwen/Qwen2.5-7B-Instruct
-                "--alpha-coeffs",
-                "4680.303204056608,0.0,0.0",
-                "--beta-coeffs",
-                "7051.796874715078,19.538416565504026,25.431830886933543",
-                "--total-kv-blocks",
-                "65833",
-                "--max-num-running-reqs",
-                "256",
-                "--max-num-scheduled-tokens",
-                "4096",
-            ]
+            cmd = _build_sim_cmd(inference_sim_dir, policy_config_path, workload_path)
 
             result = subprocess.run(
                 cmd, cwd=inference_sim_dir, capture_output=True, text=True, timeout=120
@@ -533,12 +518,12 @@ def evaluate(program_path: str) -> EvaluationResult:
                 "combined_score": -100000.0,  # Very bad score for all failures
                 "avg_e2e_ms": float("inf"),
                 "num_successful": 0,
-                "num_failed": len(workloads),
+                "num_failed": len(WORKLOADS),
                 "error": "All workloads failed",
             },
             artifacts={
                 "error_type": "AllWorkloadsFailed",
-                "error_message": f"All {len(workloads)} workloads failed to run or parse",
+                "error_message": f"All {len(WORKLOADS)} workloads failed to run or parse",
                 "failed_workloads": failed_workloads,
                 "workload_results": workload_results,
                 "suggestion": "Check BLIS simulation errors. May be routing logic causing crashes or timeouts.",
@@ -563,7 +548,7 @@ def evaluate(program_path: str) -> EvaluationResult:
     score = -0.5 * avg_latency - 0.5 * avg_tail_latency
 
     # Calculate success rate
-    success_rate = len(latencies) / len(workloads)
+    success_rate = len(latencies) / len(WORKLOADS)
 
     # Log evaluation summary
     summary_lines = ["EVALUATION COMPLETE"]
@@ -609,6 +594,7 @@ def evaluate(program_path: str) -> EvaluationResult:
         h_results = test_hypotheses(hypotheses, actual_for_hypothesis, baseline_metrics)
         baseline_score = baseline_metrics.get("combined_score", 0)
         hypothesis_results_text = format_hypothesis_results(h_results, score, baseline_score)
+        logger.info(f"Hypothesis results:\n{hypothesis_results_text}")
 
         ledger_path = script_dir / "hypothesis_ledger.json"
         ledger = load_ledger(ledger_path)
