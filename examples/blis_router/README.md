@@ -9,16 +9,19 @@ Evolve adaptive routing logic for a BLIS multi-instance LLM inference cluster us
 ## Quick Start
 
 ```bash
-# 1. Build BLIS
+# 1. Clean cached data (required when switching models or workloads)
+rm -f examples/blis_router/baseline_metrics.json examples/blis_router/hypothesis_ledger.json
+
+# 2. Build BLIS
 cd examples/blis_router/inference-sim
 go build -o simulation_worker main.go
 cd ../../..
 
-# 2. Test evaluator (also computes + caches baseline metrics on first run)
+# 3. Test evaluator (also computes + caches baseline metrics on first run)
 cd examples/blis_router
 python evaluator.py
 
-# 3. Run evolution
+# 4. Run evolution
 cd ../..
 python openevolve-run.py \
   examples/blis_router/initial_program.py \
@@ -26,7 +29,7 @@ python openevolve-run.py \
   --config examples/blis_router/config.yaml \
   --iterations 100 2>&1 | tee examples/blis_router/run_output.log
 
-# 4. Visualize evolution tree
+# 5. Visualize evolution tree
 python scripts/visualizer.py --path examples/blis_router/openevolve_output/
 ```
 
