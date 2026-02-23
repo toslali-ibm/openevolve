@@ -201,25 +201,27 @@ prompt:
 
     1. cache_warmup (rate=1000, 5000 reqs, 5s simulation):
        3 distinct prefix groups (~30% each: chatbot prefix=512, code assistant prefix=384,
-       API gateway prefix=128) + 15% no-prefix batch traffic. Early requests build cache
-       on specific instances; later requests should route to those instances for prefix reuse.
-       Validated: load-only is 26% better than baseline here — pure load balancing outperforms
-       equal prefix+load weighting because prefix-affinity can create imbalance.
+       API gateway prefix=128) + 15% no-prefix batch traffic. All inputs are <1000 tokens.
+       PREFIX-AFFINITY IS HARMFUL HERE: it maps 3 groups to 3 instances, leaving the 4th idle.
+       Validated: load-only is 26% better, oracle (load-dominant for small inputs) is 28% better.
+       A smart router should use load-balance as primary signal for small-input requests.
 
-    2. load_spikes (rate=1500, 6000 reqs, 4s simulation):
-       40% bursty batch (gamma CV=5 — extreme burstiness), 30% steady interactive with
-       long prefix (384 tokens), 30% realtime SLO-critical (streaming, short input).
-       Bursty traffic slams some instances while others idle. Prefix-only routing is 65%
-       worse here because it ignores load imbalance during spikes. A good router shifts
-       toward load-balance during bursts and prefix-affinity during calm periods.
+    2. load_spikes (rate=1000, 5000 reqs, 5s simulation):
+       50% heavy-hitter with LARGE shared prefix (512 tokens, bursty gamma CV=3),
+       25% realtime (no prefix, needs idle instances), 25% different prefix group (prefix=384).
+       PREFIX-AFFINITY IS CATASTROPHIC HERE: concentrates 50% of traffic on ONE instance.
+       Validated: prefix-only is 113% worse! Baseline survives because load-balance component
+       overrides prefix-affinity. Oracle is 1.5% better than baseline.
+       The router must avoid concentrating heavy-hitter prefix traffic on one instance.
 
-    3. multiturn (rate=800, 5000 reqs, 6.25s simulation):
-       50% multi-turn chat (prefix=256, max 5 rounds, think_time=50ms, context accumulates),
-       20% coding sessions (prefix=384, 4 rounds, think_time=100ms), 30% single-turn API
-       (no prefix, realtime). Multi-turn conversations MUST route back to the same instance
-       to reuse accumulated KV cache. req.SessionID is non-empty for multi-turn requests.
-       Both prefix-only and load-only match baseline here — the challenge is combining
-       session affinity with load awareness.
+    3. multiturn (rate=150, 1500 reqs, 10s simulation):
+       40% heavy coding sessions (prefix=4096, 5 rounds, short output=15 tokens),
+       25% chat sessions (prefix=2048, 4 rounds), 15% QA (prefix=1024, 3 rounds),
+       20% single-turn realtime (no prefix). All multi-turn inputs are >1000 tokens.
+       LOAD-ONLY IS HARMFUL HERE: sessions bounce between instances, losing KV cache.
+       Cache miss cost: 72ms for coding sessions (4096 * 17.67us/token) = 40% of request time.
+       Validated: load-only is 5.5% worse. Prefix-affinity (session stickiness) is correct here.
+       The router must keep multi-turn sessions pinned to their cached instance.
 
     Available metrics for EXPECT (lower = better, use < operator):
       - cache_warmup_e2e_ms: workload 1 above

@@ -98,7 +98,10 @@ SABOTAGED_EVOLVE_BLOCK = """\t// EVOLVE-BLOCK-START
 \tbestIdx := 0
 \t// EVOLVE-BLOCK-END"""
 
-# Oracle: load-enhanced scoring with SLO-awareness
+# Oracle: input-length-aware routing with SLO awareness
+# Key insight: large inputs (>1000 tokens) have cached prefixes and benefit
+# from prefix-affinity (session stickiness). Small inputs don't benefit from
+# prefix caching, so load-balance is better.
 ORACLE_EVOLVE_BLOCK = """\t// EVOLVE-BLOCK-START
 \t// Compute composite scores from all scorers
 \tscores := make(map[string]float64, len(snapshots))
@@ -116,13 +119,27 @@ ORACLE_EVOLVE_BLOCK = """\t// EVOLVE-BLOCK-START
 \t\t}
 \t}
 
-\t// Recompute: prefix-affinity creates 0.8 vs 0.0 gaps that dominate.
-\t// Load-balance adds ~0.02. Fix: 85% load, 15% original as tiebreaker.
-\tfor _, snap := range snapshots {
-\t\tload := float64(snap.EffectiveLoad())
-\t\tloadScore := 1.0 / (1.0 + load)
-\t\toriginal := scores[snap.ID]
-\t\tscores[snap.ID] = original*0.15 + loadScore*0.85
+\t// Input-length-aware routing:
+\t// Large inputs (>1000 tokens) have valuable cached prefixes.
+\t// Keep prefix-affinity for cache hits, add mild overload penalty.
+\t// Small inputs don't benefit from prefix caching — use load-balance.
+\tinputLen := len(req.InputTokens)
+\tif inputLen > 1000 {
+\t\t// Large prefix: keep prefix-affinity, penalize overloaded instances
+\t\tfor _, snap := range snapshots {
+\t\t\tload := float64(snap.EffectiveLoad())
+\t\t\tif load > 15 {
+\t\t\t\tscores[snap.ID] *= 0.7
+\t\t\t}
+\t\t}
+\t} else {
+\t\t// No significant prefix: use load-balance (85% load, 15% prefix tiebreaker)
+\t\tfor _, snap := range snapshots {
+\t\t\tload := float64(snap.EffectiveLoad())
+\t\t\tloadScore := 1.0 / (1.0 + load)
+\t\t\toriginal := scores[snap.ID]
+\t\t\tscores[snap.ID] = original*0.15 + loadScore*0.85
+\t\t}
 \t}
 
 \t// SLO-aware: realtime requests prefer idle instances

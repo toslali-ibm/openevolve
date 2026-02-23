@@ -428,10 +428,10 @@ def evaluate(program_path: str) -> EvaluationResult:
         )
 
     # Step 4: Run simulations on 3 routing-sensitive v2 workloads
-    # Validated: sabotaged (always-instance-0) is 242-315% worse than baseline.
-    # - cache_warmup: 3 prefix groups + no-prefix, rate=1000, 5s sim
-    # - load_spikes: bursty batch + steady interactive + realtime, rate=1500, 4s sim
-    # - multiturn: multi-turn chat + coding + single-turn API, rate=800, 6.25s sim
+    # Validated: sabotaged (always-instance-0) is 194-416% worse than baseline.
+    # - cache_warmup: 3 prefix groups + no-prefix, rate=1000, 5s sim (load-aware wins)
+    # - load_spikes: heavy-hitter prefix + realtime + light prefix, rate=1000, 5s sim (prefix-only = +113%)
+    # - multiturn: multi-turn sessions (prefix=4096/2048/1024) + realtime, rate=150, 10s sim (load-only = +5.5%)
     latencies = []
     tail_latencies = []  # p99 latencies
     request_counts = []  # for weighted averaging

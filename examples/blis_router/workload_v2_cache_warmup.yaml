@@ -1,12 +1,28 @@
 # V2 Workload: Cache Warmup & Exploitation
 # PURPOSE: Test whether router exploits cached prefixes AFTER caches warm up.
-# WHY ROUTING MATTERS: Early requests build cache on specific instances.
-#   Later requests with matching prefixes should route to those instances.
-#   Static 1:1 weights can't adapt to cache state; dynamic routing should
-#   strongly favor prefix-affinity once caches are warm.
+#
+# WHAT THIS STRESSES: Load-aware routing when prefix-affinity creates imbalance.
+#   3 prefix groups across 4 instances means prefix-affinity maps each group to
+#   one instance, leaving the 4th underutilized. A pure prefix-affinity router
+#   creates load imbalance. A smart router should shift traffic to the idle
+#   instance while preserving cache hits where possible.
+#
+# KEY DESIGN CHOICES:
+#   - 3 prefix groups + 15% no-prefix: prefix-affinity can't perfectly partition
+#     3 groups across 4 instances, creating natural imbalance.
+#   - Moderate prefix sizes (128-512): small enough that all inputs are <1000
+#     tokens total, so the oracle's input-length threshold routes them load-first.
+#   - High rate (1000 req/s): creates real queueing, amplifying load imbalance.
+#
+# VALIDATED RESULTS:
+#   - sabotaged: +242% (routing matters)
+#   - prefix-only: +0% (same as baseline -- prefix-affinity dominates at 1:1)
+#   - load-only: -26% (load-balance BETTER -- avoids prefix imbalance)
+#   - oracle: -28% (best -- load-aware with prefix tiebreaker)
+#   Conclusion: load-aware routing beats pure prefix-affinity here.
 #
 # DESIGN:
-#   - 5000 requests at rate=1000 → 5 seconds simulated time
+#   - 5000 requests at rate=1000 -> 5 seconds simulated time
 #   - 3 distinct prefix groups (each ~30% of traffic) create cache differentiation
 #   - 15% no-prefix traffic tests load balancing without cache benefit
 #   - Moderate rate creates queueing but doesn't saturate

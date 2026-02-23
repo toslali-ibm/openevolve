@@ -2,15 +2,20 @@
 Oracle Program: Hand-crafted adaptive router for validation.
 
 Same routing.go as initial_program.py but with a smarter EVOLVE-BLOCK that
-exploits dynamic weighting, SLO-awareness, and CacheHitRate signals.
-This is what we'd expect OpenEvolve to discover — it proves the search space
-contains solutions better than the static-weight baseline.
+uses input-length-aware routing and SLO awareness. This proves the search
+space contains solutions better than the static-weight baseline.
 
-Strategies (all suggested in the system prompt):
-  1. Overload penalty: penalize instances above average load (fixes cache_warmup)
-  2. SLO-aware: realtime requests strongly avoid queued instances (fixes load_spikes)
-  3. Large-request cache boost: big requests get CacheHitRate affinity
-  4. Load-adaptive weighting: shift toward load-balance when system is stressed
+Strategy: Input-Length-Aware Routing
+  - Large inputs (>1000 tokens): have cached prefixes, keep prefix-affinity
+    for session stickiness. Add mild overload penalty only for extreme cases.
+  - Small inputs (<1000 tokens): no significant prefix, use load-balance
+    (85% load, 15% prefix as tiebreaker).
+  - SLO-aware: realtime requests avoid queued instances.
+
+Validation results vs baseline:
+  - cache_warmup: -28.4% (load-aware routing avoids prefix imbalance)
+  - load_spikes:  -1.5%  (avoids prefix-affinity trap for heavy-hitter)
+  - multiturn:    +0.1%  (preserves prefix-affinity for session stickiness)
 """
 
 # Full routing.go file with EVOLVE-BLOCK markers (synced with inference-sim v0.6.1)
@@ -189,18 +194,27 @@ func (ws *WeightedScoring) Route(req *Request, state *RouterState) RoutingDecisi
 		}
 	}
 
-	// --- Oracle: load-dominant recompute ---
-	// Problem: prefix-affinity creates 0.8 vs 0.0 score gaps between instances.
-	// With [0.5, 0.5] normalized weights, load-balance adds only ~0.02 difference.
-	// The prefix scorer effectively makes all routing decisions alone.
-	//
-	// Fix: recompute scores with load as primary signal. Keep a fraction of the
-	// original score so prefix-affinity acts as a tiebreaker when load is equal.
-	for _, snap := range snapshots {
-		load := float64(snap.EffectiveLoad())
-		loadScore := 1.0 / (1.0 + load)
-		original := scores[snap.ID]
-		scores[snap.ID] = original*0.15 + loadScore*0.85
+	// --- Oracle: input-length-aware routing ---
+	// Key insight: large inputs (>1000 tokens) have cached prefixes and benefit
+	// from prefix-affinity (session stickiness). Small inputs don't benefit from
+	// prefix caching, so load-balance is better.
+	inputLen := len(req.InputTokens)
+	if inputLen > 1000 {
+		// Large prefix: keep prefix-affinity, penalize overloaded instances
+		for _, snap := range snapshots {
+			load := float64(snap.EffectiveLoad())
+			if load > 15 {
+				scores[snap.ID] *= 0.7
+			}
+		}
+	} else {
+		// No significant prefix: use load-balance (85% load, 15% prefix tiebreaker)
+		for _, snap := range snapshots {
+			load := float64(snap.EffectiveLoad())
+			loadScore := 1.0 / (1.0 + load)
+			original := scores[snap.ID]
+			scores[snap.ID] = original*0.15 + loadScore*0.85
+		}
 	}
 
 	// SLO-aware: realtime requests prefer idle instances

@@ -106,7 +106,7 @@ The LLM writes testable hypotheses alongside code mutations. Each iteration:
 
 **Per-iteration logging shows:**
 - Diff vs initial program
-- Per-workload results: `signal_freshness: e2e_mean=X.XXms, p95=X.XXms`
+- Per-workload results: `cache_warmup: e2e_mean=X.XXms, p95=X.XXms`
 - Evaluation summary with all workloads + combined score
 - Parsed hypotheses: `H1: <claim> (EXPECT: metric < threshold)`
 - Hypothesis verdicts: CONFIRMED/REFUTED with deltas vs baseline
@@ -143,13 +143,14 @@ routing:
 
 ### Workloads (3 routing-sensitive v2)
 
-All validated: sabotaged (always-instance-0) is 242-315% worse than baseline.
+All validated: sabotaged (always-instance-0) is 194-416% worse than baseline.
+No single static strategy is optimal — an adaptive router is needed.
 
-| Workload | File | Purpose | Rate | Duration |
-|----------|------|---------|------|----------|
-| Cache Warmup | `workload_v2_cache_warmup.yaml` | Prefix cache exploitation after warmup | 1000 req/s | 5s |
-| Load Spikes | `workload_v2_load_spikes.yaml` | Adaptation to bursty load imbalances | 1500 req/s | 4s |
-| Multi-turn | `workload_v2_multiturn.yaml` | Session affinity for multi-turn conversations | 800 req/s | 6.25s |
+| Workload | File | Rate | Duration | Key Finding |
+|----------|------|------|----------|-------------|
+| Cache Warmup | `workload_v2_cache_warmup.yaml` | 1000 req/s | 5s | Load-aware -28% (prefix-affinity creates imbalance) |
+| Load Spikes | `workload_v2_load_spikes.yaml` | 1000 req/s | 5s | Prefix-only +113% (concentrates 50% on one instance) |
+| Multi-turn | `workload_v2_multiturn.yaml` | 150 req/s | 10s | Load-only +5.5% (sessions bounce, cache misses) |
 
 ### Evolution Settings (`config.yaml`)
 ```yaml
@@ -300,8 +301,9 @@ rm -f examples/blis_router/baseline_metrics.json examples/blis_router/hypothesis
 | `config.yaml` | OpenEvolve settings (LLM, evolution, database) |
 | `routing_policy.yaml` | BLIS routing policy (prefix-affinity + load-balance, equal weights) |
 | `workload_v2_cache_warmup.yaml` | Cache warmup & exploitation (rate=1000, 5s) |
-| `workload_v2_load_spikes.yaml` | Bursty load with SLO tension (rate=1500, 4s) |
-| `workload_v2_multiturn.yaml` | Multi-turn sessions with context growth (rate=800, 6.25s) |
+| `workload_v2_load_spikes.yaml` | Heavy-hitter prefix with bursty arrival (rate=1000, 5s) |
+| `workload_v2_multiturn.yaml` | Multi-turn session affinity (rate=150, 10s) |
+| `oracle_program.py` | Hand-crafted adaptive router for validation ceiling |
 | `validate_workloads.py` | Routing sensitivity validation script (4 configs x N workloads) |
 | `baseline_metrics.json` | Auto-generated: cached baseline metrics from initial program |
 | `hypothesis_ledger.json` | Auto-generated: cumulative hypothesis results across iterations |
