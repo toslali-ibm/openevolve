@@ -11,6 +11,7 @@ Configurations tested:
   2. prefix-only - prefix-affinity=1.0, load-balance=0.01
   3. load-only   - prefix-affinity=0.01, load-balance=1.0
   4. baseline    - prefix-affinity=1.0, load-balance=1.0
+  5. oracle      - Hand-crafted adaptive router (oracle_program.py)
 
 Usage:
   # Test v2 workloads (default)
@@ -97,6 +98,52 @@ SABOTAGED_EVOLVE_BLOCK = """\t// EVOLVE-BLOCK-START
 \tbestIdx := 0
 \t// EVOLVE-BLOCK-END"""
 
+# Oracle: load-enhanced scoring with SLO-awareness
+ORACLE_EVOLVE_BLOCK = """\t// EVOLVE-BLOCK-START
+\t// Compute composite scores from all scorers
+\tscores := make(map[string]float64, len(snapshots))
+\tfor i, scorer := range ws.scorers {
+\t\tdimScores := scorer(req, snapshots)
+\t\tfor _, snap := range snapshots {
+\t\t\ts := dimScores[snap.ID]
+\t\t\tif s < 0 {
+\t\t\t\ts = 0
+\t\t\t}
+\t\t\tif s > 1 {
+\t\t\t\ts = 1
+\t\t\t}
+\t\t\tscores[snap.ID] += s * ws.weights[i]
+\t\t}
+\t}
+
+\t// Recompute: prefix-affinity creates 0.8 vs 0.0 gaps that dominate.
+\t// Load-balance adds ~0.02. Fix: 85% load, 15% original as tiebreaker.
+\tfor _, snap := range snapshots {
+\t\tload := float64(snap.EffectiveLoad())
+\t\tloadScore := 1.0 / (1.0 + load)
+\t\toriginal := scores[snap.ID]
+\t\tscores[snap.ID] = original*0.15 + loadScore*0.85
+\t}
+
+\t// SLO-aware: realtime requests prefer idle instances
+\tif req.SLOClass == "realtime" {
+\t\tfor _, snap := range snapshots {
+\t\t\tif snap.QueueDepth > 5 {
+\t\t\t\tscores[snap.ID] *= 0.7
+\t\t\t}
+\t\t}
+\t}
+
+\tbestScore := -1.0
+\tbestIdx := 0
+\tfor i, snap := range snapshots {
+\t\tif scores[snap.ID] > bestScore {
+\t\t\tbestScore = scores[snap.ID]
+\t\t\tbestIdx = i
+\t\t}
+\t}
+\t// EVOLVE-BLOCK-END"""
+
 # Policy YAML templates
 POLICY_TEMPLATE = """\
 admission:
@@ -119,25 +166,31 @@ CONFIGS = {
         "description": "Always route to instance 0",
         "prefix_weight": 1.0,
         "load_weight": 1.0,
-        "sabotage_code": True,
+        "custom_evolve_block": SABOTAGED_EVOLVE_BLOCK,
     },
     "prefix-only": {
         "description": "prefix-affinity=1.0, load-balance=0.01",
         "prefix_weight": 1.0,
         "load_weight": 0.01,
-        "sabotage_code": False,
+        "custom_evolve_block": None,
     },
     "load-only": {
         "description": "prefix-affinity=0.01, load-balance=1.0",
         "prefix_weight": 0.01,
         "load_weight": 1.0,
-        "sabotage_code": False,
+        "custom_evolve_block": None,
     },
     "baseline": {
         "description": "prefix-affinity=1.0, load-balance=1.0",
         "prefix_weight": 1.0,
         "load_weight": 1.0,
-        "sabotage_code": False,
+        "custom_evolve_block": None,
+    },
+    "oracle": {
+        "description": "Adaptive: load penalty + SLO-aware + cache boost",
+        "prefix_weight": 1.0,
+        "load_weight": 1.0,
+        "custom_evolve_block": ORACLE_EVOLVE_BLOCK,
     },
 }
 
@@ -216,13 +269,14 @@ def apply_config(config_name: str, original_go_code: str) -> bool:
     )
     POLICY_PATH.write_text(policy_text)
 
-    # Sabotage or restore Go code
-    if cfg["sabotage_code"]:
-        sabotaged = original_go_code.replace(NORMAL_EVOLVE_BLOCK, SABOTAGED_EVOLVE_BLOCK)
-        if sabotaged == original_go_code:
-            print(f"  ERROR: Could not find EVOLVE-BLOCK to sabotage")
+    # Replace EVOLVE-BLOCK if custom code provided, else restore original
+    custom_block = cfg.get("custom_evolve_block")
+    if custom_block:
+        modified = original_go_code.replace(NORMAL_EVOLVE_BLOCK, custom_block)
+        if modified == original_go_code:
+            print(f"  ERROR: Could not find EVOLVE-BLOCK to replace")
             return False
-        ROUTING_GO_PATH.write_text(sabotaged)
+        ROUTING_GO_PATH.write_text(modified)
     else:
         ROUTING_GO_PATH.write_text(original_go_code)
 
@@ -300,8 +354,14 @@ def main():
     print(f"Configs: {', '.join(args.configs)}")
     print()
 
-    # Save originals
-    original_go_code = ROUTING_GO_PATH.read_text()
+    # Extract Go code from initial_program.py (not routing.go which may be stale)
+    initial_program_path = SCRIPT_DIR / "initial_program.py"
+    initial_text = initial_program_path.read_text()
+    match = re.search(r'GO_ROUTING_CODE\s*=\s*"""(.*?)"""', initial_text, re.DOTALL)
+    if not match:
+        print("ERROR: Could not extract GO_ROUTING_CODE from initial_program.py")
+        sys.exit(1)
+    original_go_code = match.group(1).strip()
     original_policy = POLICY_PATH.read_text()
 
     # Results: config_name -> workload_name -> {e2e_mean_ms, e2e_p95_ms}
