@@ -55,6 +55,7 @@ markers = [
     "integration: marks tests as integration tests requiring external services",
 ]
 addopts = "--strict-markers"
+testpaths = ["tests"]
 
 [tool.setuptools.packages.find]
 include = ["openevolve*"]
