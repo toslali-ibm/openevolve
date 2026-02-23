@@ -188,6 +188,45 @@ prompt:
 
     EVALUATION: Score = -0.5 * avg_e2e_ms - 0.5 * p95_e2e_ms (lower latency = higher score)
 
+    HYPOTHESIS REQUIREMENTS:
+    You MUST include at least 1 hypothesis (max 3) as Go comments at the TOP of the EVOLVE-BLOCK,
+    BEFORE any code.
+
+    Format (each hypothesis needs all 3 lines):
+      // HYPOTHESIS-N: <one-line claim about what will improve and why>
+      // MECHANISM-N: <causal explanation - what signal/behavior drives the improvement>
+      // EXPECT-N: <metric_name> < <threshold>
+
+    Available metrics for EXPECT (lower = better, use < operator):
+      - prefix_caching_e2e_ms: prefix cache reuse workload (rate=500, shared system prompts)
+      - signal_freshness_e2e_ms: high-rate load signal freshness (rate=5000)
+      - multiturn_affinity_e2e_ms: multi-turn session affinity (rate=5000)
+      - sjf_bimodal_e2e_ms: bimodal request size distribution (rate=3000)
+      - combined_stress_e2e_ms: all patterns combined (rate=3000)
+      - avg_e2e_ms: average across all workloads
+      - avg_p95_ms: average p95 tail latency across all workloads
+
+    Hypothesis rules:
+      - Set thresholds based on baseline values shown in the HYPOTHESIS KNOWLEDGE BASE artifact
+      - Be specific: "helps latency" is too vague;
+        "reduces prefix_caching_e2e_ms by routing large-prefix requests to cache-warm instances" is good
+      - If a strategy was REFUTED in the knowledge base, explain why your new approach differs
+      - Build on CONFIRMED strategies; combine proven techniques
+      - If no knowledge base is shown yet (first iteration), set thresholds 5-10% below
+        the current metrics shown above
+
+    Example:
+    ```go
+    // HYPOTHESIS-1: Cache affinity boost helps large-prefix workloads
+    // MECHANISM-1: Requests with >400 tokens have more KV cache blocks to reuse
+    // EXPECT-1: prefix_caching_e2e_ms < 235
+    if len(req.InputTokens) > 400 {
+        for _, snap := range snapshots {
+            scores[snap.ID] *= (1.0 + snap.CacheHitRate * 0.5)
+        }
+    }
+    ```
+
   # Number of top-performing programs to show as examples to the LLM
   # 3 = show 3 best programs from database for inspiration
   # Higher values = more examples but longer prompts
