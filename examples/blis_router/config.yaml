@@ -140,27 +140,49 @@ prompt:
       - snap.KVUtilization: memory pressure (WARNING: stale at high rates)
       - snap.FreeKVBlocks: available memory blocks
 
-    WINNING STRATEGIES:
-    1. **Dynamic weighting by request size**: Large requests → boost prefix-affinity scores
-       Small requests → boost load-balance scores (they don't benefit as much from cache)
+    WINNING STRATEGIES (validated against all 3 workloads):
 
-    2. **SLO-aware adjustments**: "realtime" → penalize high-queue instances more heavily
+    1. **Input-length-aware routing** (MOST IMPORTANT):
+       Large inputs (>1000 tokens) have cached prefixes worth preserving → keep prefix-affinity.
+       Small inputs (<1000 tokens) don't benefit much from cache → use load-balance as primary.
+       WHY 1000: multiturn inputs are prefix(4096/2048/1024)+user(50-80) = 1074-4176 tokens.
+       cache_warmup inputs are prefix(128-512)+user(100-600) = 228-1112, mostly <1000.
+       This single threshold separates "needs cache affinity" from "needs load balance".
+
+    2. **Load-dominant recompute for small inputs**:
+       Prefix-affinity creates 0.8 vs 0.0 score gaps between instances.
+       Load-balance adds only ~0.02 difference. With equal weights, prefix-affinity
+       effectively makes ALL decisions alone. For small inputs that don't benefit from
+       cache, RECOMPUTE scores: scores[id] = original*0.15 + loadScore*0.85.
+       This makes load the primary signal with prefix as tiebreaker.
+
+    3. **SLO-aware adjustments**: "realtime" → penalize high-queue instances more heavily
        "batch" → can tolerate queuing, prioritize cache affinity
 
-    3. **CacheHitRate exploitation**: After scoring, multiply by (1 + snap.CacheHitRate * factor)
-       This favors instances with historically warm caches
+    4. **Overload penalty for large inputs**: Even when keeping prefix-affinity for large
+       requests, penalize instances with extreme load (>15) to prevent pile-on.
 
-    4. **Load-adaptive behavior**: Compute totalLoad = sum of EffectiveLoad across instances
-       High total load → weight load-balance more; low load → weight prefix-affinity more
-
-    5. **Smarter tie-breaking**: When scores are close, prefer higher CacheHitRate
+    5. **CacheHitRate exploitation**: After scoring, multiply by (1 + snap.CacheHitRate * factor)
+       This favors instances with historically warm caches.
 
     EXAMPLE CODE PATTERNS:
     ```go
-    // Boost scores for large requests based on cache performance
-    if len(req.InputTokens) > 400 {
+    // Route based on input size: large inputs benefit from cache, small don't
+    inputLen := len(req.InputTokens)
+    if inputLen > 1000 {
+        // Large prefix: keep prefix-affinity, add overload protection
         for _, snap := range snapshots {
-            scores[snap.ID] *= (1.0 + snap.CacheHitRate * 0.5)
+            if float64(snap.EffectiveLoad()) > 15 {
+                scores[snap.ID] *= 0.7
+            }
+        }
+    } else {
+        // Small input: load-balance as primary (85%), prefix as tiebreaker (15%)
+        for _, snap := range snapshots {
+            load := float64(snap.EffectiveLoad())
+            loadScore := 1.0 / (1.0 + load)
+            original := scores[snap.ID]
+            scores[snap.ID] = original*0.15 + loadScore*0.85
         }
     }
 
@@ -168,7 +190,7 @@ prompt:
     if req.SLOClass == "realtime" {
         for _, snap := range snapshots {
             if snap.QueueDepth > 5 {
-                scores[snap.ID] *= 0.8
+                scores[snap.ID] *= 0.7
             }
         }
     }
@@ -241,12 +263,15 @@ prompt:
 
     Example:
     ```go
-    // HYPOTHESIS-1: Cache affinity boost helps large-prefix workloads
-    // MECHANISM-1: Requests with >400 tokens have more KV cache blocks to reuse
-    // EXPECT-1: prefix_caching_e2e_ms < 235
-    if len(req.InputTokens) > 400 {
+    // HYPOTHESIS-1: Input-length routing reduces cache_warmup latency
+    // MECHANISM-1: Small inputs (<1000 tokens) don't benefit from prefix cache; load-balance avoids imbalance
+    // EXPECT-1: cache_warmup_e2e_ms < 5000
+    inputLen := len(req.InputTokens)
+    if inputLen <= 1000 {
         for _, snap := range snapshots {
-            scores[snap.ID] *= (1.0 + snap.CacheHitRate * 0.5)
+            load := float64(snap.EffectiveLoad())
+            loadScore := 1.0 / (1.0 + load)
+            scores[snap.ID] = scores[snap.ID]*0.15 + loadScore*0.85
         }
     }
     ```
