@@ -197,14 +197,43 @@ prompt:
       // MECHANISM-N: <causal explanation - what signal/behavior drives the improvement>
       // EXPECT-N: <metric_name> < <threshold>
 
+    EVALUATION WORKLOADS (your code is tested on all 5, understand them to form hypotheses):
+
+    1. signal_freshness (rate=5000, 1000 reqs):
+       50% interactive (input ~200 tokens), 30% bursty batch (input ~300, gamma CV=4),
+       20% realtime (input ~80, streaming). High rate makes kv-utilization stale;
+       queue-depth stays fresh. A good router uses queue-depth, not kv-util, under load.
+
+    2. prefix_caching (rate=500, 500 reqs):
+       30% long prefix (512 tokens), 30% medium (256), 25% short (128), 15% no prefix.
+       Small output (32-48 tokens) so TTFT dominates E2E. Routing to instances that
+       have the prefix cached gives huge TTFT savings. Cache-aware routing wins here.
+
+    3. multiturn_affinity (rate=5000, 2000 reqs):
+       50% multi-turn chat (prefix=256, max 5 rounds, context accumulates),
+       30% coding assistant (prefix=384, 4 rounds), 20% single-turn API (no prefix, realtime).
+       Multi-turn sessions MUST route back to the same instance to reuse cached context.
+       req.SessionID is non-empty for multi-turn requests.
+
+    4. sjf_bimodal (rate=3000, 1000 reqs):
+       50% short jobs (exactly 32 input tokens, interactive),
+       50% long jobs (exactly 1024 tokens, batch). Constant distributions create clean
+       bimodal split. Short requests suffer under FCFS behind long ones.
+       A router that sends short requests to less-loaded instances helps.
+
+    5. combined_stress (rate=3000, 1500 reqs):
+       25% bursty batch (gamma CV=5), 20% long-prefix cache, 25% multi-turn chat,
+       15% realtime critical, 15% unique no-prefix. Tests all patterns simultaneously.
+       Must balance signal freshness, cache affinity, and load distribution.
+
     Available metrics for EXPECT (lower = better, use < operator):
-      - prefix_caching_e2e_ms: prefix cache reuse workload (rate=500, shared system prompts)
-      - signal_freshness_e2e_ms: high-rate load signal freshness (rate=5000)
-      - multiturn_affinity_e2e_ms: multi-turn session affinity (rate=5000)
-      - sjf_bimodal_e2e_ms: bimodal request size distribution (rate=3000)
-      - combined_stress_e2e_ms: all patterns combined (rate=3000)
-      - avg_e2e_ms: average across all workloads
-      - avg_p95_ms: average p95 tail latency across all workloads
+      - signal_freshness_e2e_ms: workload 1 above
+      - prefix_caching_e2e_ms: workload 2 above
+      - multiturn_affinity_e2e_ms: workload 3 above
+      - sjf_bimodal_e2e_ms: workload 4 above
+      - combined_stress_e2e_ms: workload 5 above
+      - avg_e2e_ms: average across all 5 workloads
+      - avg_p95_ms: average p95 tail latency across all 5 workloads
 
     Hypothesis rules:
       - Set thresholds based on baseline values shown in the HYPOTHESIS KNOWLEDGE BASE artifact
