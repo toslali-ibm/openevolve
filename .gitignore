@@ -39,6 +39,7 @@ ENV/
 
 # Output files
 examples/*/output/
+examples/function_minimization/
 openevolve_output*/
 *.log
 
