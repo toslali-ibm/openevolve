@@ -64,8 +64,8 @@ class LLMModelConfig:
 
     # Generation parameters
     system_message: Optional[str] = None
-    temperature: float = None
-    top_p: float = None
+    temperature: Optional[float] = None
+    top_p: Optional[float] = None
     max_tokens: int = None
 
     # Request parameters
@@ -94,7 +94,7 @@ class LLMConfig(LLMModelConfig):
     # Generation parameters
     system_message: Optional[str] = "system_message"
     temperature: float = 0.7
-    top_p: float = 0.95
+    top_p: Optional[float] = 0.95
     max_tokens: int = 4096
 
     # Request parameters
