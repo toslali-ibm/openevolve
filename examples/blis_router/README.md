@@ -9,31 +9,23 @@ Evolve adaptive routing logic for a BLIS multi-instance LLM inference cluster us
 ## Quick Start
 
 ```bash
-# 1. Clean cached data (required when switching models or workloads)
-rm -f examples/blis_router/baseline_metrics.json examples/blis_router/hypothesis_ledger.json
+# 1. Clean cached data - remove or rename "openevolve_output" directory (to start clean)
+mv examples/blis_router/openevolve_output examples/blis_router/openevolve_output_old
 
-# 2. Build BLIS
-cd examples/blis_router/inference-sim
-go build -o simulation_worker main.go
-cd ../../..
-
-# 3. Test evaluator (also computes + caches baseline metrics on first run)
-cd examples/blis_router
-python evaluator.py
-
-# 4. Run evolution
-cd ../..
+# 2. Run evolution
+mkdir -p examples/blis_router/openevolve_output
 python openevolve-run.py \
   examples/blis_router/initial_program.py \
   examples/blis_router/evaluator.py \
   --config examples/blis_router/config.yaml \
-  --iterations 100 2>&1 | tee examples/blis_router/run_output.log
+  --iterations 100 2>&1 | tee examples/blis_router/openevolve_output/run_output.log
 
-# 5. Visualize evolution tree
+# 3. Visualize evolution tree
 python scripts/visualizer.py --path examples/blis_router/openevolve_output/
 ```
 
 **Expected Duration:** ~1-2 hours for 50 iterations
+
 
 ---
 
@@ -101,7 +93,7 @@ The LLM writes testable hypotheses alongside code mutations. Each iteration:
 5. Next iteration: the LLM sees what worked and what didn't
 
 **Hypothesis persistence:**
-- `hypothesis_ledger.json` - cumulative file on disk, grows across all iterations
+- `openevolve_output/hypothesis_ledger.json` - cumulative file on disk, grows across all iterations
 - OpenEvolve artifact database - `hypothesis_results` and `hypothesis_knowledge_base` stored per program, fed back to the LLM via the artifact pipeline
 
 **Per-iteration logging shows:**
@@ -124,7 +116,15 @@ The LLM writes testable hypotheses alongside code mutations. Each iteration:
 
 ```bash
 # Use Qwen model
-BLIS_MODEL="Qwen/Qwen2.5-7B-Instruct" python openevolve-run.py ...
+mv examples/blis_router/openevolve_output examples/blis_router/openevolve_output_old
+
+# 2. Run evolution
+mkdir -p examples/blis_router/openevolve_output
+BLIS_MODEL="Qwen/Qwen2.5-7B-Instruct" python openevolve-run.py \
+  examples/blis_router/initial_program.py \
+  examples/blis_router/evaluator.py \
+  --config examples/blis_router/config.yaml \
+  --iterations 50 2>&1 | tee examples/blis_router/openevolve_output/run_output.log
 
 # Use llama (default)
 python openevolve-run.py ...
@@ -212,10 +212,10 @@ cat examples/blis_router/openevolve_output/best_program.py
 tail -f examples/blis_router/openevolve_output/logs/openevolve_*.log
 
 # Hypothesis ledger
-cat examples/blis_router/hypothesis_ledger.json
+cat examples/blis_router/openevolve_output/hypothesis_ledger.json
 
 # Baseline metrics
-cat examples/blis_router/baseline_metrics.json
+cat examples/blis_router/openevolve_output/baseline_metrics.json
 
 # Checkpoints (saved every 5 iterations)
 ls examples/blis_router/openevolve_output/checkpoints/
@@ -280,7 +280,7 @@ python evaluator.py
 ### Stale Baseline
 If you switch models or change workloads, delete the cached baseline:
 ```bash
-rm -f examples/blis_router/baseline_metrics.json examples/blis_router/hypothesis_ledger.json
+rm -f examples/blis_router/openevolve_output/baseline_metrics.json examples/blis_router/openevolve_output/hypothesis_ledger.json
 ```
 
 ### No Improvement After 20+ Iterations
@@ -305,8 +305,8 @@ rm -f examples/blis_router/baseline_metrics.json examples/blis_router/hypothesis
 | `workload_v2_multiturn.yaml` | Multi-turn session affinity (rate=150, 10s) |
 | `oracle_program.py` | Hand-crafted adaptive router for validation ceiling |
 | `validate_workloads.py` | Routing sensitivity validation script (4 configs x N workloads) |
-| `baseline_metrics.json` | Auto-generated: cached baseline metrics from initial program |
-| `hypothesis_ledger.json` | Auto-generated: cumulative hypothesis results across iterations |
+| `openevolve_output/baseline_metrics.json` | Auto-generated: cached baseline metrics from initial program |
+| `openevolve_output/hypothesis_ledger.json` | Auto-generated: cumulative hypothesis results across iterations |
 | `inference-sim/` | BLIS simulator (submodule) |
 
 ---

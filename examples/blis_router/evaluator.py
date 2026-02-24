@@ -156,7 +156,9 @@ def get_or_compute_baseline(
         dict with per-workload e2e_ms keys plus avg_e2e_ms, avg_p95_ms,
         combined_score.  Returns empty dict on failure.
     """
-    cache_path = script_dir / "baseline_metrics.json"
+    output_dir = script_dir / "openevolve_output"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    cache_path = output_dir / "baseline_metrics.json"
     if cache_path.exists():
         try:
             with open(cache_path, "r") as f:
@@ -598,7 +600,7 @@ def evaluate(program_path: str) -> EvaluationResult:
         hypothesis_results_text = format_hypothesis_results(h_results, score, baseline_score)
         logger.info(f"Hypothesis results:\n{hypothesis_results_text}")
 
-        ledger_path = script_dir / "hypothesis_ledger.json"
+        ledger_path = script_dir / "openevolve_output" / "hypothesis_ledger.json"
         ledger = load_ledger(ledger_path)
         if not ledger["baseline"] and baseline_metrics:
             ledger["baseline"] = baseline_metrics
@@ -609,7 +611,7 @@ def evaluate(program_path: str) -> EvaluationResult:
         artifacts["hypothesis_knowledge_base"] = knowledge_base_text
     else:
         # Still show knowledge base even without hypotheses in this iteration
-        ledger_path = script_dir / "hypothesis_ledger.json"
+        ledger_path = script_dir / "openevolve_output" / "hypothesis_ledger.json"
         if ledger_path.exists():
             ledger = load_ledger(ledger_path)
             knowledge_base_text = generate_knowledge_base_summary(ledger)
