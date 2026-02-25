@@ -4,8 +4,8 @@
 #
 # EXPERIMENT: Evolve adaptive routing weights for BLIS multi-instance cluster
 # GOAL: Minimize average end-to-end latency across workload patterns
-# BASELINE: Static weights (cache=0.6, load=0.4)
-# TARGET: 5-10% latency reduction through adaptive weight calculation
+# BASELINE: Static weights (cache=1, load=1)
+# TARGET: 20-30% latency reduction through adaptive weight calculation
 #
 # ============================================================================
 
