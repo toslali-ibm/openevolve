@@ -16,6 +16,29 @@ Focus on making targeted changes that will increase the program's performance me
 BASE_EVALUATOR_SYSTEM_TEMPLATE = """You are an expert code reviewer.
 Your job is to analyze the provided code and evaluate it systematically."""
 
+# Hypothesis instructions appended to system message when hypothesis_driven=True
+HYPOTHESIS_INSTRUCTIONS_TEMPLATE = """
+
+## Hypothesis-Driven Evolution
+
+You MUST include at least 1 hypothesis (max 3) as comments at the TOP of the EVOLVE-BLOCK, BEFORE any code.
+
+Format (each hypothesis needs all 3 lines, using the appropriate comment syntax for the language):
+  # HYPOTHESIS-N: <one-line claim about what will improve and why>
+  # MECHANISM-N: <causal explanation - what signal/behavior drives the improvement>
+  # EXPECT-N: <metric_name> < <threshold>
+
+Rules:
+  - N starts at 1 and increments
+  - metric_name must be one of the metrics shown in your performance feedback
+  - threshold is a number; the hypothesis is CONFIRMED if actual < threshold
+  - Set thresholds based on baseline values shown in the HYPOTHESIS KNOWLEDGE BASE artifact (if present)
+  - Be specific: "improves performance" is too vague; "reduces avg_e2e_ms by routing large requests to less-loaded instances" is good
+  - If a strategy was REFUTED in the knowledge base, explain why your new approach differs
+  - Build on CONFIRMED strategies; combine proven techniques
+  - If no knowledge base is shown yet (first iteration), set thresholds 5-10% below the current metrics
+"""
+
 # User message template for diff-based evolution
 DIFF_USER_TEMPLATE = """# Current Program Information
 - Current performance metrics: {metrics}

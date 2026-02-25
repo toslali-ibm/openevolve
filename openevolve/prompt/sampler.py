@@ -107,6 +107,12 @@ class PromptSampler:
             if system_message in self.template_manager.templates:
                 system_message = self.template_manager.get_template(system_message)
 
+        # Append hypothesis instructions if enabled
+        hypothesis_driven = kwargs.pop("hypothesis_driven", False)
+        if hypothesis_driven:
+            from openevolve.prompt.templates import HYPOTHESIS_INSTRUCTIONS_TEMPLATE
+            system_message = system_message + HYPOTHESIS_INSTRUCTIONS_TEMPLATE
+
         # Format metrics
         metrics_str = self._format_metrics(program_metrics)
 
