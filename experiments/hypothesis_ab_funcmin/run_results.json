@@ -1,0 +1,92 @@
+[
+  {
+    "seed": 100,
+    "condition": "treatment",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": 1.4990601475658307
+      },
+      {
+        "iteration": 5,
+        "best_combined_score": 1.4990601475658307
+      }
+    ]
+  },
+  {
+    "seed": 101,
+    "condition": "treatment",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": 1.4992103364364944
+      },
+      {
+        "iteration": 5,
+        "best_combined_score": 1.4831591667140667
+      }
+    ]
+  },
+  {
+    "seed": 102,
+    "condition": "treatment",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": 1.4919310082588737
+      },
+      {
+        "iteration": 5,
+        "best_combined_score": 1.4919310082588737
+      }
+    ]
+  },
+  {
+    "seed": 100,
+    "condition": "control",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": 1.4873687921189425
+      },
+      {
+        "iteration": 5,
+        "best_combined_score": 1.4685760128051366
+      }
+    ]
+  },
+  {
+    "seed": 101,
+    "condition": "control",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": 1.4973754696488906
+      },
+      {
+        "iteration": 5,
+        "best_combined_score": 1.4515827630830054
+      }
+    ]
+  },
+  {
+    "seed": 102,
+    "condition": "control",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": 1.484531263523524
+      },
+      {
+        "iteration": 5,
+        "best_combined_score": 1.484531263523524
+      }
+    ]
+  }
+]

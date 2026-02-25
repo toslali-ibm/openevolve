@@ -1,0 +1,11 @@
+{
+  "treatment_median": 1.4990601475658307,
+  "treatment_iqr": 0.003639664088810335,
+  "control_median": 1.4873687921189425,
+  "control_iqr": 0.006422103062683426,
+  "n_treatment": 3,
+  "n_control": 3,
+  "mann_whitney_u": 8.0,
+  "p_value": 0.1,
+  "rank_biserial_r": 0.7777777777777777
+}
