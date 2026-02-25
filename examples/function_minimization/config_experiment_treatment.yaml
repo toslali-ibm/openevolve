@@ -28,11 +28,47 @@ prompt:
     Focus on improving the search_algorithm function to reliably find the global minimum,
     escaping local minima that might trap simple algorithms.
 
-    Available metrics for EXPECT thresholds (higher = better, use < for inverse):
-      - value_score: closeness of found value to global minimum (higher = closer)
-      - distance_score: closeness of (x,y) to global minimum location (higher = closer)
-      - reliability_score: fraction of trials that succeed (higher = more reliable)
-      - combined_score: weighted combination of above (higher = better overall)
+    HYPOTHESIS REQUIREMENTS:
+    You MUST include at least 1 hypothesis (max 3) as Python comments at the TOP of the
+    EVOLVE-BLOCK, BEFORE any code. This is MANDATORY — code without hypotheses will be penalized.
+
+    Format (each hypothesis needs all 3 lines):
+      # HYPOTHESIS-N: <one-line claim about what will improve and why>
+      # MECHANISM-N: <causal explanation - what signal/behavior drives the improvement>
+      # EXPECT-N: <metric_name> < <threshold>
+
+    Available metrics for EXPECT (higher = better for these scores):
+      - value_score: closeness of found value to global minimum (1.0 = perfect)
+      - distance_score: closeness of (x,y) to global minimum location (1.0 = perfect)
+      - reliability_score: fraction of trials that succeed (1.0 = all succeed)
+      - combined_score: weighted combination of above (max ~1.5)
+
+    Hypothesis rules:
+      - N starts at 1 and increments
+      - metric_name must be one of: value_score, distance_score, reliability_score, combined_score
+      - threshold is a number; the hypothesis is CONFIRMED if actual < threshold
+      - Be specific about WHY your change helps
+      - If a strategy was REFUTED in the knowledge base, explain why your new approach differs
+      - Build on CONFIRMED strategies; combine proven techniques
+
+    EXAMPLE of correct format (you MUST follow this pattern):
+    ```python
+    # EVOLVE-BLOCK-START
+    # HYPOTHESIS-1: Multi-start basin hopping improves distance_score by escaping local minima
+    # MECHANISM-1: Random restarts from diverse starting points increase probability of landing
+    #   in the basin of attraction of the global minimum
+    # EXPECT-1: distance_score < 0.95
+    # HYPOTHESIS-2: Adaptive step size improves reliability_score
+    # MECHANISM-2: Decreasing step size over iterations allows coarse-then-fine search,
+    #   reducing failed trials from overshooting
+    # EXPECT-2: reliability_score < 0.9
+    import numpy as np
+    def search_algorithm(iterations=1000, bounds=(-5, 5)):
+        # ... your improved code here ...
+    ```
+
+    IMPORTANT: Every response MUST start with hypothesis comments before any code.
+    Responses without hypothesis comments are invalid.
 
 # Database configuration
 database:
