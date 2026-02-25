@@ -1,0 +1,314 @@
+# ============================================================================
+# OpenEvolve Configuration: BLIS Router - CONTROL (vanilla OpenEvolve)
+# ============================================================================
+#
+# A/B Experiment: Control condition with hypothesis_driven=false
+# Based on: config.yaml (BLIS router weight optimization)
+#
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# Execution Settings
+# ----------------------------------------------------------------------------
+
+# Total number of evolution iterations to run
+# 50 iterations = ~1-2 hours depending on BLIS simulation time
+# Each iteration: sample programs → LLM generates mutation → evaluate → update database
+max_iterations: 10
+
+# Hypothesis-driven evolution disabled (control condition)
+hypothesis_driven: false
+
+# Save checkpoint every N iterations for resumability
+# Checkpoints include full database state, best program, and evolution progress
+checkpoint_interval: 5
+
+# Logging verbosity: DEBUG, INFO, WARNING, ERROR
+# INFO provides good balance between detail and readability
+log_level: "INFO"
+
+# ----------------------------------------------------------------------------
+# LLM Configuration
+# ----------------------------------------------------------------------------
+
+llm:
+  # Primary model for generating code mutations
+  # aws/claude-sonnet-4-5: High quality, good for code generation
+  # Alternative options: "GCP/claude-opus-4", "gcp/gemini-2.5-pro", "GCP/gemini-2.5-flash"
+  primary_model: aws/claude-sonnet-4-5
+
+  # Weight for primary model in ensemble (1.0 = use only primary)
+  # If using ensemble, this + secondary_model_weight should sum to 1.0
+  primary_model_weight: 0.7
+
+  # Optional: Secondary model for ensemble diversity
+  # Uncomment to enable two-model ensemble voting
+  secondary_model: aws/claude-opus-4-6
+  secondary_model_weight: 0.3
+
+  # Optional: API base URL for custom endpoints
+  # Uncomment if using custom LLM API endpoint
+  api_base: https://ete-litellm.ai-models.vpc-int.res.ibm.com
+
+  # Temperature controls randomness in LLM generation
+  # 0.7 = balanced creativity and consistency
+  # Lower (0.3-0.5) = more conservative, similar to past solutions
+  # Higher (0.8-1.0) = more creative, diverse mutations
+  temperature: 1
+
+  # Optional: Top-p (nucleus sampling) for generation diversity
+  # NOTE: AWS Bedrock (Claude) doesn't allow both temperature and top_p
+  # Set to null explicitly to avoid API error - using temperature only
+  top_p: null
+
+  # Maximum tokens in LLM response
+  # 16000 sufficient for routing.go file (~12KB source)
+  # Increase if evolving larger files
+  max_tokens: 32000
+
+  # Timeout for LLM API calls (seconds)
+  # 120s = 2 minutes, sufficient for most models
+  # Increase if using slower models or seeing timeout errors
+  timeout: 120
+
+# ----------------------------------------------------------------------------
+# Prompt Configuration
+# ----------------------------------------------------------------------------
+
+prompt:
+  # System message guides the LLM's optimization approach
+  # Focus: actionable hints for improving the WeightedScoring.Route() EVOLVE-BLOCK
+  system_message: |
+    You are optimizing a request router for LLM inference.
+
+    GOAL: Beat the baseline by making routing more dynamic and context-aware.
+
+    BASELINE (what you're competing against):
+    - Uses two scorers (prefix-affinity and load-balance) with fixed equal weights [1.0, 1.0]
+    - Weights NEVER change based on request or system state - this is the weakness to exploit
+
+    AVAILABLE SCORERS (all return scores in [0,1], higher = better):
+
+    1. prefix-affinity (USED BY BASELINE):
+       - Computes block hashes from req.InputTokens
+       - Looks up how many blocks each instance has cached (router-side tracking)
+       - score = matchedBlocks / totalBlocks
+       - Higher score = instance has more of this request's prefix cached
+       - ALREADY uses request content - no need to re-implement prefix matching
+
+    2. load-balance (USED BY BASELINE):
+       - score = 1.0 / (1.0 + EffectiveLoad)
+       - EffectiveLoad = QueueDepth + BatchSize + PendingRequests
+       - Higher score = instance has less load
+       - Preserves absolute load differences
+
+    3. queue-depth (NOT in baseline - available to use):
+       - Uses min-max normalization across instances
+       - score = (maxLoad - thisLoad) / (maxLoad - minLoad)
+       - All equal loads → all score 1.0
+       - More sensitive to relative differences than load-balance
+
+    4. kv-utilization (NOT in baseline - use cautiously):
+       - score = 1.0 - KVUtilization
+       - Higher score = more free memory
+       - WARNING: Becomes STALE at high request rates (updated only on batch formation)
+       - Pair with queue-depth to compensate for staleness
+
+    HOW THE EVOLVE-BLOCK WORKS:
+    ```go
+    // Scorers run and produce scores[instanceID] for each instance
+    for i, scorer := range ws.scorers {
+        dimScores := scorer(req, snapshots)  // Returns map[instanceID]float64
+        for _, snap := range snapshots {
+            scores[snap.ID] += dimScores[snap.ID] * ws.weights[i]  // Weighted sum
+        }
+    }
+    // Then argmax selects instance with highest score
+    ```
+    After this loop, scores[] contains the weighted combination.
+    YOU CAN: modify scores[] after the loop, add conditional logic, change selection.
+
+    ADDITIONAL SIGNALS NOT USED BY BASELINE (you can exploit these!):
+    From request (req):
+      - len(req.InputTokens): request size (always > 0)
+      - req.SLOClass: always one of "realtime", "interactive", "batch"
+      - req.SessionID: non-empty string for multi-turn sessions, "" for single-turn
+
+    From instance snapshots (snap):
+      - snap.CacheHitRate: historical cache performance (0.0-1.0, may be 0.0 initially)
+      - snap.QueueDepth, snap.BatchSize, snap.PendingRequests: load components
+      - snap.EffectiveLoad(): total load = Queue + Batch + Pending
+      - snap.KVUtilization: memory pressure (WARNING: stale at high rates)
+      - snap.FreeKVBlocks: available memory blocks
+
+    STRATEGY DIRECTIONS (explore and tune these ideas):
+
+    1. **Consider whether all requests benefit equally from prefix caching**:
+       Think about input size — requests with large prefixes have significant cached state
+       worth preserving. Shorter requests may have little or no cached prefix to exploit.
+       Can you find a threshold that separates these two regimes? Look at the workload
+       descriptions below to reason about where that boundary might be.
+
+    2. **Understand the score magnitude problem**:
+       Prefix-affinity produces large score gaps between instances (cached vs uncached).
+       Load-balance produces much smaller differences. When combined with equal weights,
+       one signal can dominate the other entirely. Think about when you'd want to
+       rebalance or override the default weighting — and how aggressively.
+
+    3. **SLO classes have different tolerance profiles**:
+       "realtime" requests are latency-sensitive — queuing hurts them most.
+       "batch" requests can tolerate queuing — cache benefits may matter more.
+       Can you adjust scoring based on urgency?
+
+    4. **Overload protection**:
+       Even when cache affinity is the right signal, there's a point where an instance
+       is too loaded to benefit from its cache advantage. Consider adding a penalty
+       for heavily loaded instances — but you'll need to discover what "heavily loaded" means.
+
+    5. **Historical cache performance**:
+       snap.CacheHitRate tells you which instances have been cache-warm historically.
+       This could be a useful tiebreaker or multiplier.
+
+    CODE STRUCTURE HINTS:
+    ```go
+    // You can branch on request characteristics:
+    inputLen := len(req.InputTokens)
+    // Think about: what input size separates cache-benefiting from non-cache-benefiting?
+
+    // You can recompute or adjust scores post-loop:
+    for _, snap := range snapshots {
+        // Use snap.EffectiveLoad(), snap.QueueDepth, etc. to adjust scores[snap.ID]
+        // Consider: when should load dominate vs prefix-affinity?
+        // Experiment with blending: scores[id] = original*alpha + newSignal*(1-alpha)
+    }
+
+    // You can condition on SLO class:
+    if req.SLOClass == "realtime" {
+        // What adjustments help latency-sensitive requests?
+    }
+    ```
+
+    ANTI-PATTERNS TO AVOID:
+    - Don't zero out scores (scores[id] = 0) - use small multiplier (0.1) instead
+    - Don't divide without guards - even if snapshots is guaranteed non-empty
+    - Don't add new keys to scores[] - only modify existing instance IDs
+
+    CRITICAL RULES:
+    1. Only modify code between EVOLVE-BLOCK-START and EVOLVE-BLOCK-END
+    2. Must compile as valid Go (failed compilation wastes an iteration)
+    3. Guard divisions to avoid NaN/Inf
+    4. bestIdx must be valid: 0 <= bestIdx < len(snapshots)
+    Note: Scores can exceed 1.0 after your modifications - argmax still works correctly.
+
+    EVALUATION: Score = -0.5 * avg_e2e_ms - 0.5 * p95_e2e_ms (lower latency = higher score)
+
+    EVALUATION WORKLOADS (your code is tested on all 3):
+
+    1. cache_warmup (rate=1000, 5000 reqs, 5s simulation):
+       Multiple distinct prefix groups of varying sizes, plus some no-prefix batch traffic.
+       All inputs are relatively short. Think about what happens when prefix-affinity
+       maps a small number of prefix groups to instances — does every instance stay busy?
+       HINT: When inputs are short, the cache savings may not justify routing imbalance.
+
+    2. load_spikes (rate=1000, 5000 reqs, 5s simulation):
+       One dominant prefix group generates a large fraction of traffic (bursty arrivals),
+       plus realtime traffic (no prefix, latency-sensitive) and another prefix group.
+       Think about what happens when prefix-affinity routes a dominant traffic pattern
+       to a single instance. How does the router avoid hot-spotting?
+       HINT: The baseline survives partly because its load-balance signal counteracts pile-on.
+
+    3. multiturn (rate=150, 1500 reqs, 10s simulation):
+       Multi-turn sessions with long prefixes (coding, chat, QA) across multiple rounds,
+       plus single-turn realtime traffic. Session inputs carry substantial prefix state.
+       Think about what happens when sessions bounce between instances — the KV cache
+       for long prefixes must be recomputed, which is expensive.
+       HINT: For long-prefix sessions, cache affinity is important for avoiding recomputation.
+
+  # Number of top-performing programs to show as examples to the LLM
+  # 3 = show 3 best programs from database for inspiration
+  # Higher values = more examples but longer prompts
+  num_top_programs: 3
+
+  # Number of diverse programs to show for exploration
+  # 2 = show 2 diverse programs to encourage variation
+  # Helps prevent premature convergence to local optima
+  num_diverse_programs: 2
+
+# ----------------------------------------------------------------------------
+# Database Configuration (MAP-Elites)
+# ----------------------------------------------------------------------------
+
+database:
+  # Path where evolution database is stored
+  # Contains program archive, scores, features, and evolution history
+  db_path: "./examples/blis_router/openevolve_output/blis_router_evolution"
+
+  # Total number of programs to maintain in population across all islands
+  # 50 = good balance between diversity and efficiency
+  # Larger = more diversity but slower evolution
+  population_size: 100
+
+  # Size of elite archive (best programs regardless of features)
+  # 15 = keep top 15 programs for guaranteed exploitation
+  # These are always available for sampling
+  archive_size: 15
+
+  # Number of islands for island-based evolution
+  # 3 islands = good diversity without too much overhead
+  # Each island evolves independently, with periodic migration
+  # Prevents premature convergence, explores different strategies
+  num_islands: 3
+
+  # Ratio of programs selected from elite (top performers)
+  # 0.3 = 30% of samples come from top 30% of population
+  # Higher = more exploitation of known good solutions
+  # Lower = more exploration of average solutions
+  elite_selection_ratio: 0.3
+
+  # Balance between exploitation (best programs) and exploration (diverse programs)
+  # exploitation_ratio: 0.65 = 65% of samples from best programs
+  # exploration_ratio: 0.35 = 35% of samples from diverse programs
+  # Should sum to 1.0
+  exploitation_ratio: 0.65
+  exploration_ratio: 0.35
+
+# ----------------------------------------------------------------------------
+# Evaluator Configuration
+# ----------------------------------------------------------------------------
+
+evaluator:
+  # Timeout for each program evaluation (seconds)
+  # 300s = 5 minutes per evaluation
+  # Includes: writing file, Go build, running 3 BLIS workloads, parsing
+  # Increase if BLIS simulations are slow or workloads are large
+  timeout: 60
+
+  # Number of programs to evaluate in parallel
+  # 1 = sequential evaluation (required for BLIS since Go build is sequential)
+  # BLIS writes to same routing.go file, so can't parallelize safely
+  parallel_evaluations: 1
+
+  # Disable cascade evaluation (not implemented for BLIS)
+  # BLIS uses direct evaluation: write file → build → run → score
+  cascade_evaluation: false
+
+# ----------------------------------------------------------------------------
+# Evolution Strategy Settings
+# ----------------------------------------------------------------------------
+
+# Use diff-based mutations (show only changes to LLM)
+# true = LLM sees "old code → new code" diffs (more efficient)
+# false = LLM sees full programs (more context but larger prompts)
+# Recommended: true for code evolution
+diff_based_evolution: true
+
+# Allow LLM to rewrite entire programs (not just EVOLVE-BLOCK)
+# false = LLM can only modify EVOLVE-BLOCK section (enforced)
+# true = LLM can modify entire file (risky, may break structure)
+# Recommended: false for safety
+allow_full_rewrites: false
+
+# Maximum allowed code length (characters)
+# 20000 = sufficient for routing.go with comments (~12KB base + mutations)
+# Safety limit to prevent runaway code generation
+max_code_length: 40000
