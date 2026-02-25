@@ -57,7 +57,7 @@ def run_single(task: str, condition: str, seed: int, output_dir: Path) -> dict:
         task_info["evaluator"],
         "--config", config_path,
         "--iterations", "10",
-        "--output-dir", str(run_dir),
+        "--output", str(run_dir),
     ]
 
     print(f"Starting {condition} run seed={seed} -> {run_dir}")
