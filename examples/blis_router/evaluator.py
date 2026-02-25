@@ -23,7 +23,7 @@ from difflib import unified_diff
 from pathlib import Path
 
 from openevolve.evaluation_result import EvaluationResult
-from hypothesis import (
+from openevolve.hypothesis import (
     parse_hypotheses,
     test_hypotheses,
     load_ledger,
@@ -31,6 +31,14 @@ from hypothesis import (
     generate_knowledge_base_summary,
     format_hypothesis_results,
 )
+
+VALID_METRICS = {
+    "cache_warmup_e2e_ms",
+    "load_spikes_e2e_ms",
+    "multiturn_e2e_ms",
+    "avg_e2e_ms",
+    "avg_p95_ms",
+}
 
 # Use logging instead of print() so output is captured in worker processes
 logger = logging.getLogger(__name__)
@@ -334,7 +342,7 @@ def evaluate(program_path: str) -> EvaluationResult:
     # resulting in a double-build on the first call only.  Subsequent evals skip
     # straight to the cached baseline so no extra build occurs.
     baseline_metrics = get_or_compute_baseline(script_dir, inference_sim_dir, policy_config_path)
-    hypotheses = parse_hypotheses(go_code)
+    hypotheses = parse_hypotheses(go_code, valid_metrics=VALID_METRICS)
 
     if hypotheses:
         logger.info(f"Parsed {len(hypotheses)} hypotheses from evolved code")

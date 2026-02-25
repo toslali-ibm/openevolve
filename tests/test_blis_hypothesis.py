@@ -1,37 +1,39 @@
 """
-Tests for examples/blis_router/hypothesis.py
+Tests for the BLIS router hypothesis integration (using openevolve.hypothesis core module).
 
 Covers all 6 public functions:
   parse_hypotheses, test_hypotheses, load_ledger,
   update_ledger, generate_knowledge_base_summary, format_hypothesis_results
 """
 
-import importlib.util
 import json
 import os
-import sys
 import tempfile
 import unittest
 from pathlib import Path
 
-# Load hypothesis.py from examples/blis_router via importlib.  We use a
-# non-standard module name ("_blis_hypothesis") so pytest does not try to
-# collect the source module's test_hypotheses function as a test item.
-_hyp_path = os.path.join(
-    os.path.dirname(__file__), "..", "examples", "blis_router", "hypothesis.py"
+from openevolve.hypothesis import (
+    parse_hypotheses as _parse_hypotheses_raw,
+    test_hypotheses as _test_hypotheses,
+    load_ledger,
+    update_ledger,
+    generate_knowledge_base_summary,
+    format_hypothesis_results,
 )
-_spec = importlib.util.spec_from_file_location("_blis_hypothesis", _hyp_path)
-_hypothesis = importlib.util.module_from_spec(_spec)
-_spec.loader.exec_module(_hypothesis)
 
-VALID_METRICS = _hypothesis.VALID_METRICS
-parse_hypotheses = _hypothesis.parse_hypotheses
-# Alias with underscore prefix to prevent pytest from collecting it as a test.
-_test_hypotheses = _hypothesis.test_hypotheses
-load_ledger = _hypothesis.load_ledger
-update_ledger = _hypothesis.update_ledger
-generate_knowledge_base_summary = _hypothesis.generate_knowledge_base_summary
-format_hypothesis_results = _hypothesis.format_hypothesis_results
+# BLIS-specific valid metrics (matches examples/blis_router/evaluator.py)
+VALID_METRICS = {
+    "cache_warmup_e2e_ms",
+    "load_spikes_e2e_ms",
+    "multiturn_e2e_ms",
+    "avg_e2e_ms",
+    "avg_p95_ms",
+}
+
+
+def parse_hypotheses(code):
+    """Convenience wrapper that passes BLIS VALID_METRICS."""
+    return _parse_hypotheses_raw(code, valid_metrics=VALID_METRICS)
 
 
 # ---------------------------------------------------------------------------
