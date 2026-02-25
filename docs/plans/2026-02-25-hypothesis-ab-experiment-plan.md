@@ -731,49 +731,26 @@ git commit -m "refactor: migrate blis_router to core hypothesis module, delete l
 - Create: `examples/blis_router/config_experiment_treatment.yaml`
 - Create: `examples/blis_router/config_experiment_control.yaml`
 
-**Step 1: Create treatment config (hypothesis-driven, Gemini Flash)**
+**Step 1: Create treatment config**
 
-```yaml
-# BLIS Router - Treatment (Hypothesis-Driven) - Gemini Flash
-max_iterations: 10
-checkpoint_interval: 5
+Copy the existing `examples/blis_router/config.yaml` as the base. Key changes:
+- Set `max_iterations: 10`
+- Set `checkpoint_interval: 5`
+- Add `hypothesis_driven: true`
+- Keep existing LLM config (Sonnet 70% + Opus 30% ensemble) exactly as-is
+- Keep existing system_message with hypothesis instructions exactly as-is
 
-llm:
-  primary_model: "gemini/gemini-2.0-flash"
-  primary_model_weight: 1.0
-  api_base: "https://generativelanguage.googleapis.com/v1beta/openai/"
-  temperature: 1.0
-  max_tokens: 32000
-  timeout: 120
-
-prompt:
-  system_message: |
-    <COPY THE FULL system_message FROM examples/blis_router/config.yaml>
-    <INCLUDING all hypothesis instructions>
-  num_top_programs: 3
-  num_diverse_programs: 2
-
-database:
-  population_size: 100
-  archive_size: 15
-  num_islands: 3
-  elite_selection_ratio: 0.3
-  exploitation_ratio: 0.65
-
-evaluator:
-  timeout: 60
-  parallel_evaluations: 1
-
-diff_based_evolution: true
-max_code_length: 40000
-hypothesis_driven: true
+```bash
+cp examples/blis_router/config.yaml examples/blis_router/config_experiment_treatment.yaml
+# Then edit: set max_iterations: 10, checkpoint_interval: 5, add hypothesis_driven: true
 ```
 
-**Step 2: Create control config (vanilla, Gemini Flash)**
+**Step 2: Create control config**
 
-Same as treatment but:
-- `hypothesis_driven: false`
-- `system_message`: stripped of all hypothesis-related instructions (remove "HYPOTHESIS REQUIREMENTS" section and hypothesis rules)
+Copy treatment config, then:
+- Set `hypothesis_driven: false`
+- Strip hypothesis-related sections from `system_message` (remove "HYPOTHESIS REQUIREMENTS" section and hypothesis rules)
+- Everything else stays identical (same LLM models, same database, same evaluator settings)
 
 **Step 3: Commit**
 
@@ -880,59 +857,67 @@ In the `evaluate()` function, after the EvaluationResult is built but before ret
 
 **Step 2: Create treatment config**
 
-```yaml
-# Function Minimization - Treatment (Hypothesis-Driven) - Gemini Flash
-max_iterations: 10
-checkpoint_interval: 5
-
-llm:
-  primary_model: "gemini/gemini-2.0-flash"
-  primary_model_weight: 1.0
-  api_base: "https://generativelanguage.googleapis.com/v1beta/openai/"
-  temperature: 0.7
-  max_tokens: 16000
-  timeout: 120
-
-prompt:
-  system_message: |
-    You are an expert programmer specializing in optimization algorithms.
-    Your task is to improve a function minimization algorithm to find the global minimum
-    of a complex function with many local minima.
-    The function is f(x, y) = sin(x) * cos(y) + sin(x*y) + (x^2 + y^2)/20.
-    Focus on improving the search_algorithm function to reliably find the global minimum.
-
-    Available metrics for EXPECT (lower = better for distance/value, higher = better for scores):
-      - value_score: how close found value is to global minimum (higher = better)
-      - distance_score: proximity in parameter space (higher = better)
-      - reliability_score: success rate across trials (higher = better)
-      - combined_score: weighted combination (higher = better)
-
-database:
-  population_size: 50
-  archive_size: 20
-  num_islands: 3
-  elite_selection_ratio: 0.2
-  exploitation_ratio: 0.7
-
-evaluator:
-  timeout: 60
-  cascade_thresholds: [1.3]
-  parallel_evaluations: 3
-
-diff_based_evolution: true
-max_code_length: 20000
-hypothesis_driven: true
-```
+Copy existing `examples/function_minimization/config.yaml` as base. Key changes:
+- Set `max_iterations: 10`, `checkpoint_interval: 5`
+- Add `hypothesis_driven: true`
+- Append metric hints to existing system_message (available metrics for EXPECT: value_score, distance_score, reliability_score, combined_score)
+- Keep existing LLM config (gemini-2.5-flash-lite 80% + gemini-2.5-flash 20%) as-is
 
 **Step 3: Create control config**
 
-Same but `hypothesis_driven: false` and no metric hints in system_message.
+Copy treatment, set `hypothesis_driven: false`, strip metric hints from system_message.
 
 **Step 4: Commit**
 
 ```bash
 git add examples/function_minimization/evaluator.py examples/function_minimization/config_experiment_treatment.yaml examples/function_minimization/config_experiment_control.yaml
 git commit -m "feat: add hypothesis support to function_minimization + experiment configs"
+```
+
+---
+
+### Task 6b: Adapt Signal Processing for Hypothesis-Driven Mode
+
+**Files:**
+- Modify: `examples/signal_processing/evaluator.py` (add hypothesis pipeline)
+- Create: `examples/signal_processing/config_experiment_treatment.yaml`
+- Create: `examples/signal_processing/config_experiment_control.yaml`
+
+**Step 1: Add hypothesis support to evaluator**
+
+Same pattern as function_minimization. Add hypothesis imports and pipeline after metrics are computed.
+
+```python
+from openevolve.hypothesis import (
+    parse_hypotheses, test_hypotheses, load_ledger,
+    update_ledger, generate_knowledge_base_summary, format_hypothesis_results,
+)
+
+VALID_METRICS = {
+    "composite_score", "slope_changes", "lag_error",
+    "correlation", "noise_reduction", "smoothness_score", "responsiveness_score",
+}
+```
+
+Add the same hypothesis pipeline block (parse → test → ledger → knowledge base → artifacts) after the evaluation computes its metrics dict.
+
+**Step 2: Create treatment config**
+
+Copy existing `examples/signal_processing/config.yaml` as base. Key changes:
+- Set `max_iterations: 10`, `checkpoint_interval: 5`
+- Add `hypothesis_driven: true`
+- Append metric hints to system_message (available metrics for EXPECT)
+- Keep existing LLM config (gemini-2.5-flash-lite 80% + gemini-2.5-flash 20%) as-is
+
+**Step 3: Create control config**
+
+Copy treatment, set `hypothesis_driven: false`, strip metric hints from system_message.
+
+**Step 4: Commit**
+
+```bash
+git add examples/signal_processing/evaluator.py examples/signal_processing/config_experiment_treatment.yaml examples/signal_processing/config_experiment_control.yaml
+git commit -m "feat: add hypothesis support to signal_processing + experiment configs"
 ```
 
 ---
@@ -981,6 +966,12 @@ TASK_CONFIGS = {
         "evaluator": "examples/function_minimization/evaluator.py",
         "treatment_config": "examples/function_minimization/config_experiment_treatment.yaml",
         "control_config": "examples/function_minimization/config_experiment_control.yaml",
+    },
+    "signal_processing": {
+        "initial_program": "examples/signal_processing/initial_program.py",
+        "evaluator": "examples/signal_processing/evaluator.py",
+        "treatment_config": "examples/signal_processing/config_experiment_treatment.yaml",
+        "control_config": "examples/signal_processing/config_experiment_control.yaml",
     },
 }
 
@@ -1335,7 +1326,7 @@ git commit -m "chore: validate experiment pipeline end-to-end"
 
 ### Task 10: Run Full Experiment
 
-**Step 1: Run BLIS router experiment**
+**Step 1: Run BLIS router experiment** (Sonnet+Opus ensemble)
 
 ```bash
 python scripts/run_experiment.py \
@@ -1346,7 +1337,7 @@ python scripts/run_experiment.py \
   --output-dir experiments/hypothesis_ab_blis
 ```
 
-**Step 2: Run function minimization experiment**
+**Step 2: Run function minimization experiment** (gemini-2.5-flash-lite + flash)
 
 ```bash
 python scripts/run_experiment.py \
@@ -1357,7 +1348,18 @@ python scripts/run_experiment.py \
   --output-dir experiments/hypothesis_ab_funcmin
 ```
 
-**Step 3: Analyze both**
+**Step 3: Run signal processing experiment** (gemini-2.5-flash-lite + flash)
+
+```bash
+python scripts/run_experiment.py \
+  --task signal_processing \
+  --condition both \
+  --runs 5 \
+  --seed-start 100 \
+  --output-dir experiments/hypothesis_ab_signal
+```
+
+**Step 4: Analyze all three**
 
 ```bash
 python scripts/analyze_experiment.py \
@@ -1369,11 +1371,16 @@ python scripts/analyze_experiment.py \
   --data experiments/hypothesis_ab_funcmin/convergence.csv \
   --output experiments/hypothesis_ab_funcmin/plots/ \
   --title " (Function Minimization)"
+
+python scripts/analyze_experiment.py \
+  --data experiments/hypothesis_ab_signal/convergence.csv \
+  --output experiments/hypothesis_ab_signal/plots/ \
+  --title " (Signal Processing)"
 ```
 
-**Step 4: Review results and commit**
+**Step 5: Review results and commit**
 
 ```bash
 git add experiments/
-git commit -m "results: hypothesis A/B experiment data and analysis"
+git commit -m "results: hypothesis A/B experiment data and analysis (3 tasks x 2 conditions x 5 runs)"
 ```

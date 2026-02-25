@@ -28,24 +28,45 @@ Hypothesis-driven evolution — where the LLM writes structured, testable predic
 
 | Parameter | Value |
 |-----------|-------|
-| LLM | Gemini Flash (single model, no ensemble) |
 | Iterations | 10 |
-| Temperature | 1.0 |
-| Seed program | `initial_program.py` (static weighted routing) |
-| Workloads | cache_warmup, load_spikes, multiturn |
-| Scoring | `score = -0.5 * avg_e2e_ms - 0.5 * avg_p95_ms` |
-| Database | 100 population, 3 islands, 15 archive |
 | Runs per condition | 5 (different random seeds) |
+
+Each task uses **its own existing LLM config** (not a shared model) to test hypothesis-driven evolution in realistic settings rather than a synthetic single-model setup.
 
 ## Tasks
 
 ### Task 1: BLIS Router (Primary)
 
-Evolve Go routing policy for LLM inference load balancing across 3 workloads with conflicting optimal strategies. This is the existing `examples/blis_router/` setup.
+Evolve Go routing policy for LLM inference load balancing across 3 workloads with conflicting optimal strategies.
 
-### Task 2: Simpler Task (Generality)
+| Parameter | Value |
+|-----------|-------|
+| LLM | Claude Sonnet (70%) + Claude Opus (30%) ensemble |
+| Temperature | 1.0 |
+| Scoring | `score = -0.5 * avg_e2e_ms - 0.5 * avg_p95_ms` |
+| Database | 100 population, 3 islands, 15 archive |
 
-Adapt one existing OpenEvolve example (e.g., function minimization) to support hypothesis-driven mode. Demonstrates the approach generalizes beyond BLIS router.
+### Task 2: Function Minimization
+
+Evolve Python optimization algorithm to find global minimum of a complex multi-modal function.
+
+| Parameter | Value |
+|-----------|-------|
+| LLM | gemini-2.5-flash-lite (80%) + gemini-2.5-flash (20%) |
+| Temperature | 0.7 |
+| Scoring | `combined_score = (0.5*value + 0.3*distance + 0.2*reliability) * quality_multiplier` |
+| Database | 50 population, 3 islands, 20 archive |
+
+### Task 3: Signal Processing
+
+Evolve Python adaptive filtering algorithm for non-stationary time series. Multi-objective optimization (slope changes, lag error, tracking accuracy, false reversals).
+
+| Parameter | Value |
+|-----------|-------|
+| LLM | gemini-2.5-flash-lite (80%) + gemini-2.5-flash (20%) |
+| Temperature | 0.6 |
+| Scoring | `composite_score = 0.3*S + 0.2*L_recent + 0.2*L_avg + 0.3*R` (multi-objective) |
+| Database | 80 population, 4 islands, 30 archive |
 
 ## Metrics
 
@@ -58,13 +79,12 @@ Adapt one existing OpenEvolve example (e.g., function minimization) to support h
 | AUCC | Area Under Convergence Curve — captures both speed and quality | Sum of best-so-far scores across all 10 iterations |
 | Build success rate | Fraction of iterations producing compilable code | `successful_builds / total_iterations` |
 
-### Per-Workload Breakdown
+### Per-Task Metric Breakdown
 
 For the best program at iteration 10:
-- `cache_warmup_e2e_ms`
-- `load_spikes_e2e_ms`
-- `multiturn_e2e_ms`
-- `avg_e2e_ms`, `avg_p95_ms`
+- **BLIS Router:** `cache_warmup_e2e_ms`, `load_spikes_e2e_ms`, `multiturn_e2e_ms`, `avg_e2e_ms`, `avg_p95_ms`
+- **Function Minimization:** `value_score`, `distance_score`, `reliability_score`
+- **Signal Processing:** `slope_changes`, `lag_error`, `correlation`, `noise_reduction`, `composite_score`
 
 ### Statistical Analysis
 
@@ -98,9 +118,9 @@ Move hypothesis support into OpenEvolve core as a configurable default:
 
 ### Configs Needed
 
-1. **Gemini Flash config** — single model (`gemini/gemini-2.0-flash`), no ensemble
-2. **Treatment config** — Gemini Flash + `hypothesis_driven: true` (the default)
-3. **Control config** — Gemini Flash + `hypothesis_driven: false`, system prompt stripped of hypothesis instructions
+Per task, two configs that are identical except for the hypothesis flag:
+1. **Treatment config** — existing LLM ensemble + `hypothesis_driven: true`, hypothesis instructions in system prompt
+2. **Control config** — existing LLM ensemble + `hypothesis_driven: false`, system prompt stripped of hypothesis instructions
 
 ### Experiment Runner
 
@@ -122,15 +142,14 @@ Move hypothesis support into OpenEvolve core as a configurable default:
 ```
 experiments/
   hypothesis_ab_blis/
-    treatment_run_1/
-    treatment_run_2/
-    ...
-    control_run_1/
-    control_run_2/
-    ...
-  hypothesis_ab_simple/
-    treatment_run_1/
-    ...
+    treatment_run_1/ ... treatment_run_5/
+    control_run_1/   ... control_run_5/
+  hypothesis_ab_funcmin/
+    treatment_run_1/ ... treatment_run_5/
+    control_run_1/   ... control_run_5/
+  hypothesis_ab_signal/
+    treatment_run_1/ ... treatment_run_5/
+    control_run_1/   ... control_run_5/
 ```
 
 ## Execution Order
@@ -140,14 +159,14 @@ experiments/
 3. Adapt simpler task for hypothesis-driven mode
 4. Build experiment runner script
 5. Run 1 pilot run per condition to validate setup
-6. Run full experiment: 5 runs × 2 conditions × 2 tasks = 20 runs
+6. Run full experiment: 5 runs × 2 conditions × 3 tasks = 30 runs
 7. Analyze results and generate plots
 8. Write paper sections
 
 ## Future Extensions
 
 After initial results, consider:
-- **Additional models**: Run with Claude Sonnet, Qwen, etc. to show model-agnostic benefit
+- **Single-model runs**: Re-run all tasks with a single shared model (e.g., Gemini Flash) to control for model effects
 - **Ablation: hypotheses without feedback**: LLM writes hypotheses but never sees knowledge base — isolates whether structured reasoning alone helps vs. the feedback loop
 - **Ablation: free-form reasoning**: Prompt says "explain your reasoning" without structured HYPOTHESIS/MECHANISM/EXPECT format
 - **Scale**: Increase to 50-100 iterations to measure asymptotic effects
