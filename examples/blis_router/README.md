@@ -303,8 +303,10 @@ rm -f examples/blis_router/openevolve_output/baseline_metrics.json examples/blis
 | `workload_v2_cache_warmup.yaml` | Cache warmup & exploitation (rate=1000, 5s) |
 | `workload_v2_load_spikes.yaml` | Heavy-hitter prefix with bursty arrival (rate=1000, 5s) |
 | `workload_v2_multiturn.yaml` | Multi-turn session affinity (rate=150, 10s) |
-| `oracle_program.py` | Hand-crafted adaptive router for validation ceiling |
-| `validate_workloads.py` | Routing sensitivity validation script (4 configs x N workloads) |
+| `test_workloads/oracle_program.py` | Hand-crafted adaptive router for validation ceiling |
+| `test_workloads/validate_workloads.py` | Routing sensitivity validation script (4 configs x N workloads) |
+| `test_workloads/validation_results.json` | Output from validation script |
+| `test_workloads/blis_workload.md` | Workload design documentation |
 | `openevolve_output/baseline_metrics.json` | Auto-generated: cached baseline metrics from initial program |
 | `openevolve_output/hypothesis_ledger.json` | Auto-generated: cumulative hypothesis results across iterations |
 | `inference-sim/` | BLIS simulator (submodule) |

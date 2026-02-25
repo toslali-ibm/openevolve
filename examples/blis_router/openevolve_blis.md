@@ -284,8 +284,7 @@ This is the key innovation that turns black-box evolution into interpretable, di
  │  config.yaml           Models, population size, system prompt       │
  │  system_prompt          Domain knowledge: scorers, signals, hints   │
  │  inference-sim/         The Go simulator binary + workload YAMLs    │
- │  validate_workloads.py  One-time: prove workloads are sensitive     │
- │  oracle_program.py      One-time: prove search space has solutions  │
+ │  test_workloads/        Validation scripts and oracle program        │
  └───────────────────────────────────┬─────────────────────────────────┘
                                      │ plugs into
                                      ▼
@@ -304,11 +303,13 @@ This is the key innovation that turns black-box evolution into interpretable, di
  ┌──────────────────────────────────────────────────────────────────────┐
  │  OUTSIDE THE LOOP (run once, before evolution)                      │
  │                                                                     │
- │  validate_workloads.py   Tests 5 routing configs × 3 workloads     │
+ │  test_workloads/validate_workloads.py                               │
+ │                          Tests 5 routing configs × 3 workloads     │
  │                          Proves no single static strategy wins all  │
  │                          Establishes baseline metrics               │
  │                                                                     │
- │  oracle_program.py       Hand-crafted adaptive router               │
+ │  test_workloads/oracle_program.py                                   │
+ │                          Hand-crafted adaptive router               │
  │                          Proves 28% improvement is achievable       │
  │                          Sets the ceiling for what evolution targets │
  │                                                                     │

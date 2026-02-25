@@ -37,9 +37,10 @@ import sys
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).parent
-INFERENCE_SIM_DIR = SCRIPT_DIR / "inference-sim"
+BLIS_ROUTER_DIR = SCRIPT_DIR.parent
+INFERENCE_SIM_DIR = BLIS_ROUTER_DIR / "inference-sim"
 ROUTING_GO_PATH = INFERENCE_SIM_DIR / "sim" / "routing.go"
-POLICY_PATH = SCRIPT_DIR / "routing_policy.yaml"
+POLICY_PATH = BLIS_ROUTER_DIR / "routing_policy.yaml"
 
 SIM_MODEL = os.environ.get("BLIS_MODEL", "meta-llama/llama-3.1-8b-instruct")
 
@@ -338,12 +339,12 @@ def find_workloads(args) -> list[Path]:
     if args.all:
         pattern = "workload_*.yaml"
     elif args.workloads:
-        return [SCRIPT_DIR / w for w in args.workloads]
+        return [BLIS_ROUTER_DIR / w for w in args.workloads]
     else:
         # Default: v2 workloads
         pattern = "workload_v2_*.yaml"
 
-    files = sorted(SCRIPT_DIR.glob(pattern))
+    files = sorted(BLIS_ROUTER_DIR.glob(pattern))
     if not files:
         print(f"No workloads found matching {pattern}")
         sys.exit(1)
@@ -372,7 +373,7 @@ def main():
     print()
 
     # Extract Go code from initial_program.py (not routing.go which may be stale)
-    initial_program_path = SCRIPT_DIR / "initial_program.py"
+    initial_program_path = BLIS_ROUTER_DIR / "initial_program.py"
     initial_text = initial_program_path.read_text()
     match = re.search(r'GO_ROUTING_CODE\s*=\s*"""(.*?)"""', initial_text, re.DOTALL)
     if not match:
