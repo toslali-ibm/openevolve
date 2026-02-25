@@ -157,5 +157,19 @@ class TestKnowledgeBaseSummary(unittest.TestCase):
         self.assertIn("42.0", summary)
 
 
+class TestConfigHypothesisDriven(unittest.TestCase):
+    """Test hypothesis_driven config flag."""
+
+    def test_config_hypothesis_driven_default(self):
+        from openevolve.config import Config
+        config = Config()
+        self.assertTrue(config.hypothesis_driven)
+
+    def test_config_hypothesis_driven_from_dict(self):
+        from openevolve.config import Config
+        config = Config.from_dict({"hypothesis_driven": False})
+        self.assertFalse(config.hypothesis_driven)
+
+
 if __name__ == "__main__":
     unittest.main()

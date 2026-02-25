@@ -407,6 +407,9 @@ class Config:
     convergence_threshold: float = 0.001
     early_stopping_metric: str = "combined_score"
 
+    # Hypothesis-driven evolution
+    hypothesis_driven: bool = True
+
     # Parallel controller settings
     max_tasks_per_child: Optional[int] = None
 
