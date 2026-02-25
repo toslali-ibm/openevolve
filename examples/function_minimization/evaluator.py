@@ -3,12 +3,27 @@ Evaluator for the function minimization example
 """
 
 import importlib.util
+import json
+import logging
 import numpy as np
 import time
 import concurrent.futures
 import traceback
 import signal
+from pathlib import Path
 from openevolve.evaluation_result import EvaluationResult
+from openevolve.hypothesis import (
+    parse_hypotheses,
+    test_hypotheses,
+    load_ledger,
+    update_ledger,
+    generate_knowledge_base_summary,
+    format_hypothesis_results,
+)
+
+logger = logging.getLogger(__name__)
+
+VALID_METRICS = {"value_score", "distance_score", "reliability_score", "combined_score"}
 
 
 def run_with_timeout(func, args=(), kwargs={}, timeout_seconds=5):
@@ -221,6 +236,64 @@ def evaluate(program_path):
             "average_distance_to_global": f"{avg_distance:.4f}",
             "search_efficiency": f"Success rate: {reliability_score:.2%}"
         }
+
+        # --- Hypothesis pipeline ---
+        try:
+            with open(program_path, "r") as f:
+                source_code = f.read()
+
+            hypotheses = parse_hypotheses(source_code, valid_metrics=VALID_METRICS)
+
+            if hypotheses:
+                script_dir = Path(__file__).parent
+                baseline_path = script_dir / "baseline_metrics.json"
+                ledger_path = script_dir / "openevolve_output" / "hypothesis_ledger.json"
+
+                # Load or compute baseline
+                if baseline_path.exists():
+                    with open(baseline_path, "r") as f:
+                        baseline_metrics = json.load(f)
+                else:
+                    # First run: current metrics become baseline
+                    baseline_metrics = {
+                        "value_score": value_score,
+                        "distance_score": distance_score,
+                        "reliability_score": reliability_score,
+                        "combined_score": combined_score,
+                    }
+                    with open(baseline_path, "w") as f:
+                        json.dump(baseline_metrics, f, indent=2)
+
+                actual_metrics = {
+                    "value_score": value_score,
+                    "distance_score": distance_score,
+                    "reliability_score": reliability_score,
+                    "combined_score": combined_score,
+                }
+
+                h_results = test_hypotheses(hypotheses, actual_metrics, baseline_metrics)
+                baseline_score = baseline_metrics.get("combined_score", 0)
+                hypothesis_results_text = format_hypothesis_results(h_results, combined_score, baseline_score)
+
+                ledger = load_ledger(ledger_path)
+                if not ledger["baseline"] and baseline_metrics:
+                    ledger["baseline"] = baseline_metrics
+                update_ledger(ledger, h_results, combined_score, ledger_path)
+                knowledge_base_text = generate_knowledge_base_summary(ledger)
+
+                artifacts["hypothesis_results"] = hypothesis_results_text
+                artifacts["hypothesis_knowledge_base"] = knowledge_base_text
+            else:
+                # Still show knowledge base even without hypotheses
+                script_dir = Path(__file__).parent
+                ledger_path = script_dir / "openevolve_output" / "hypothesis_ledger.json"
+                if ledger_path.exists():
+                    ledger = load_ledger(ledger_path)
+                    knowledge_base_text = generate_knowledge_base_summary(ledger)
+                    if knowledge_base_text:
+                        artifacts["hypothesis_knowledge_base"] = knowledge_base_text
+        except Exception as e:
+            logger.warning(f"Hypothesis pipeline error (non-fatal): {e}")
 
         return EvaluationResult(
             metrics={
