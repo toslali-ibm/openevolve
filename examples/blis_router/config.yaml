@@ -34,16 +34,16 @@ llm:
   # Primary model for generating code mutations
   # aws/claude-sonnet-4-5: High quality, good for code generation
   # Alternative options: "GCP/claude-opus-4", "gcp/gemini-2.5-pro", "GCP/gemini-2.5-flash"
-  primary_model: GCP/gemini-2.5-flash
+  primary_model: aws/claude-sonnet-4-5
 
   # Weight for primary model in ensemble (1.0 = use only primary)
   # If using ensemble, this + secondary_model_weight should sum to 1.0
-  primary_model_weight: 0.6
+  primary_model_weight: 0.7
 
   # Optional: Secondary model for ensemble diversity
   # Uncomment to enable two-model ensemble voting
-  secondary_model: gcp/gemini-2.5-pro
-  secondary_model_weight: 0.4
+  secondary_model: aws/claude-opus-4-6
+  secondary_model_weight: 0.3
 
   # Optional: API base URL for custom endpoints
   # Uncomment if using custom LLM API endpoint
@@ -58,7 +58,7 @@ llm:
   # Optional: Top-p (nucleus sampling) for generation diversity
   # NOTE: AWS Bedrock (Claude) doesn't allow both temperature and top_p
   # Set to null explicitly to avoid API error - using temperature only
-#   top_p: null
+  top_p: null
 
   # Maximum tokens in LLM response
   # 16000 sufficient for routing.go file (~12KB source)
