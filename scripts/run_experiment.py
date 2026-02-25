@@ -82,14 +82,16 @@ def collect_convergence(run_dir: Path) -> list:
     for cp_dir in sorted(checkpoints_dir.iterdir()):
         if not cp_dir.is_dir():
             continue
-        metrics_file = cp_dir / "best_metrics.json"
-        if metrics_file.exists():
-            with open(metrics_file) as f:
-                metrics = json.load(f)
+        # OpenEvolve saves best_program_info.json with metrics nested under "metrics"
+        info_file = cp_dir / "best_program_info.json"
+        if info_file.exists():
+            with open(info_file) as f:
+                info = json.load(f)
+            metrics = info.get("metrics", info)  # fallback to top-level if no nested metrics
             iteration = int(cp_dir.name.split("_")[-1]) if "_" in cp_dir.name else 0
             points.append({
                 "iteration": iteration,
-                "best_combined_score": metrics.get("combined_score", 0),
+                "best_combined_score": metrics.get("combined_score", metrics.get("overall_score", 0)),
             })
     return points
 
