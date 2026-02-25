@@ -6,6 +6,13 @@ Evolve adaptive routing logic for a BLIS multi-instance LLM inference cluster us
 
 ---
 
+## Prerequisites
+
+1. **OpenEvolve** installed (`pip install -e ".[dev]"` from repo root)
+2. **Go** installed (required to build the BLIS simulator)
+3. **OPENAI_API_KEY** environment variable set (used for LiteLLM-routed LLM calls)
+4. BLIS simulator builds: verify with `cd examples/blis_router/inference-sim && go build -o simulation_worker main.go`
+
 ## Quick Start
 
 ```bash
@@ -20,7 +27,13 @@ python openevolve-run.py \
   --config examples/blis_router/config.yaml \
   --iterations 100 2>&1 | tee examples/blis_router/openevolve_output/run_output.log
 
-# 3. Visualize evolution tree
+# 3. Generate metrics comparison plot
+python examples/blis_router/scripts/plot_metrics_comparison.py openevolve_output
+
+# 4. Generate best vs initial diff + LLM explanation
+OPENAI_API_KEY=$OPENAI_API_KEY python examples/blis_router/scripts/summarize_diff.py openevolve_output
+
+# 5. Visualize evolution tree
 python scripts/visualizer.py --path examples/blis_router/openevolve_output/
 ```
 
@@ -157,9 +170,10 @@ No single static strategy is optimal — an adaptive router is needed.
 max_iterations: 100
 checkpoint_interval: 5
 llm:
-  primary_model: GCP/gemini-2.5-flash (60%)
-  secondary_model: gcp/gemini-2.5-pro (40%)
+  primary_model: aws/claude-sonnet-4-5 (70%)
+  secondary_model: aws/claude-opus-4-6 (30%)
   temperature: 1.0
+  api_base: https://ete-litellm.ai-models.vpc-int.res.ibm.com
 database:
   population_size: 100
   num_islands: 3
@@ -229,6 +243,73 @@ python openevolve-run.py \
   --config examples/blis_router/config.yaml \
   --checkpoint examples/blis_router/openevolve_output/checkpoints/checkpoint_25 \
   --iterations 100
+```
+
+---
+
+## Post-Evolution Analysis
+
+Once evolution completes (or at any checkpoint), use these scripts to analyze results.
+
+### Metrics Comparison Plot (Best vs Baseline)
+
+Generate a side-by-side bar chart comparing baseline and best-evolved metrics:
+
+```bash
+python examples/blis_router/scripts/plot_metrics_comparison.py <experiment_dir_name>
+
+# Example:
+python examples/blis_router/scripts/plot_metrics_comparison.py openevolve_output
+```
+
+This reads `<experiment>/baseline_metrics.json` and `<experiment>/best/best_program_info.json`, then saves:
+- `<experiment>/metrics_comparison.png` — bar chart with percentage deltas (green = improvement, red = regression)
+
+Primary metrics (combined score, avg E2E, avg P95) are separated from per-workload breakdowns by a dashed line.
+
+### Best vs Initial Diff Summary
+
+Generate a unified diff between the initial and best-evolved program, with an LLM-generated explanation:
+
+```bash
+OPENAI_API_KEY=<your_key> python examples/blis_router/scripts/summarize_diff.py <experiment_dir_name>
+
+# Example:
+OPENAI_API_KEY=sk-... python examples/blis_router/scripts/summarize_diff.py openevolve_output
+```
+
+This saves two files to the experiment directory:
+- `best_vs_initial.diff` — unified diff between `initial_program.py` and the best evolved program
+- `explained.md` — short, presentation-ready Markdown summarizing each optimization with code snippets
+
+Uses Claude Opus via the LiteLLM endpoint.
+
+### Hypothesis Ledger Analysis
+
+The hypothesis ledger accumulates all hypothesis results across iterations:
+
+```bash
+# View baseline values
+cat examples/blis_router/openevolve_output/hypothesis_ledger.json | python -m json.tool | head -20
+
+# Count iterations with hypotheses
+cat examples/blis_router/openevolve_output/hypothesis_ledger.json | python -c "
+import json, sys
+data = json.load(sys.stdin)
+print(f'Baseline: {data[\"baseline\"]}')
+print(f'Total entries: {len(data[\"entries\"])}')
+confirmed = sum(1 for e in data['entries'] for h in e['hypotheses'] if h['verdict'] == 'CONFIRMED')
+refuted = sum(1 for e in data['entries'] for h in e['hypotheses'] if h['verdict'] == 'REFUTED')
+print(f'Confirmed: {confirmed}, Refuted: {refuted}')
+"
+```
+
+The knowledge base summary (confirmed/refuted strategies with success rates and average deltas) is automatically regenerated each iteration and fed back to the LLM via the artifact pipeline.
+
+### Evolution Tree Visualization
+
+```bash
+python scripts/visualizer.py --path examples/blis_router/openevolve_output/
 ```
 
 ---
@@ -309,6 +390,9 @@ rm -f examples/blis_router/openevolve_output/baseline_metrics.json examples/blis
 | `test_workloads/blis_workload.md` | Workload design documentation |
 | `openevolve_output/baseline_metrics.json` | Auto-generated: cached baseline metrics from initial program |
 | `openevolve_output/hypothesis_ledger.json` | Auto-generated: cumulative hypothesis results across iterations |
+| `scripts/plot_metrics_comparison.py` | Generate baseline vs best bar chart (PNG) |
+| `scripts/summarize_diff.py` | Generate diff + LLM-explained summary of optimizations |
+| `openevolve_blis.md` | Architecture diagrams and detailed flow documentation |
 | `inference-sim/` | BLIS simulator (submodule) |
 
 ---
