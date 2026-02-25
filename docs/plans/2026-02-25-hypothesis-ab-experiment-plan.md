@@ -1,3 +1,4 @@
+
 # Hypothesis-Driven Evolution A/B Experiment Implementation Plan
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
@@ -9,6 +10,29 @@
 **Tech Stack:** Python, OpenEvolve, Gemini Flash API, matplotlib/seaborn, scipy.stats, pandas
 
 **Design doc:** `docs/plans/2026-02-25-hypothesis-ab-experiment-design.md`
+
+---
+
+### Task 0: Create Experiment Branch
+
+Branch off `blis` to isolate all experiment work. The `blis` branch retains your existing results untouched.
+
+**Step 1: Create branch**
+
+```bash
+git checkout blis
+git checkout -b hypothesis-experiment
+```
+
+**Step 2: Verify you're on the new branch**
+
+```bash
+git branch --show-current
+```
+
+Expected: `hypothesis-experiment`
+
+All subsequent tasks happen on this branch. If anything goes wrong, `blis` is safe.
 
 ---
 
@@ -634,9 +658,12 @@ git commit -m "feat: inject hypothesis instructions into system prompt when enab
 
 ---
 
-### Task 4: Update BLIS Router to Use Core Module
+### Task 4: Migrate BLIS Router to Core Hypothesis Module
+
+Delete the local `examples/blis_router/hypothesis.py` and update the evaluator to import from the core module. The core module is functionally identical for Go/`//` comments — no behavior change.
 
 **Files:**
+- Delete: `examples/blis_router/hypothesis.py`
 - Modify: `examples/blis_router/evaluator.py:26-33` (change import)
 - Modify: `examples/blis_router/evaluator.py:337-344` (pass valid_metrics)
 
@@ -657,9 +684,9 @@ from openevolve.hypothesis import (
 )
 ```
 
-**Step 2: Update parse_hypotheses calls to pass valid_metrics**
+**Step 2: Define VALID_METRICS and update parse_hypotheses calls**
 
-Find all calls to `parse_hypotheses(go_code)` and change to:
+Add near the top of evaluator.py:
 ```python
 VALID_METRICS = {
     "cache_warmup_e2e_ms",
@@ -668,19 +695,32 @@ VALID_METRICS = {
     "avg_e2e_ms",
     "avg_p95_ms",
 }
+```
+
+Find all calls to `parse_hypotheses(go_code)` and change to:
+```python
 hypotheses = parse_hypotheses(go_code, valid_metrics=VALID_METRICS)
 ```
 
-**Step 3: Verify BLIS router still works**
+**Step 3: Delete the old local hypothesis.py**
+
+```bash
+git rm examples/blis_router/hypothesis.py
+```
+
+**Step 4: Verify BLIS router still works**
 
 Run: `python -c "from examples.blis_router.evaluator import evaluate; print('import OK')"`
 Expected: "import OK"
 
-**Step 4: Commit**
+Also run existing BLIS hypothesis tests if any:
+Run: `python -m pytest tests/test_blis_hypothesis.py -v` (skip if file doesn't exist)
+
+**Step 5: Commit**
 
 ```bash
 git add examples/blis_router/evaluator.py
-git commit -m "refactor: update blis_router to use core hypothesis module"
+git commit -m "refactor: migrate blis_router to core hypothesis module, delete local copy"
 ```
 
 ---
