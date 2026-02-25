@@ -1,0 +1,69 @@
+# Signal Processing - TREATMENT (hypothesis-driven)
+# A/B Experiment: Treatment condition with hypothesis_driven=true
+
+max_iterations: 10
+checkpoint_interval: 5
+log_level: "INFO"
+
+# Hypothesis-driven evolution (treatment condition)
+hypothesis_driven: true
+
+# LLM configuration
+llm:
+  primary_model: "GCP/gemini-2.5-flash"
+  primary_model_weight: 0.8
+  secondary_model: "gcp/gemini-3-flash-preview"
+  secondary_model_weight: 0.2
+  api_base: "https://ete-litellm.ai-models.vpc-int.res.ibm.com"
+  temperature: 0.6
+  top_p: 0.95
+  max_tokens: 32000
+
+# Prompt configuration
+prompt:
+  system_message: |
+    You are an expert signal processing engineer specializing in real-time adaptive filtering algorithms.
+    Your task is to improve a signal processing algorithm that filters volatile, non-stationary time series data
+    using a sliding window approach. The algorithm must minimize noise while preserving signal dynamics with
+    minimal computational latency and phase delay.
+
+    Focus on the multi-objective optimization of:
+    (1) Slope change minimization - reducing spurious directional reversals
+    (2) Lag error minimization - maintaining responsiveness
+    (3) Tracking accuracy - preserving genuine signal trends
+    (4) False reversal penalty - avoiding noise-induced trend changes
+
+    Consider advanced techniques like adaptive filtering (Kalman filters, particle filters),
+    multi-scale processing (wavelets, EMD), predictive enhancement (polynomial fitting, neural networks),
+    and trend detection methods.
+
+    Available metrics for EXPECT thresholds (lower = better unless noted):
+      - composite_score: J(theta) multi-objective score (lower = better)
+      - slope_changes: spurious directional reversals (lower = better)
+      - lag_error: instantaneous tracking lag (lower = better)
+      - correlation: correlation with clean signal (higher = better, use > threshold)
+      - noise_reduction: noise removal effectiveness (higher = better)
+      - smoothness_score: inverse of slope changes (higher = better)
+      - responsiveness_score: inverse of lag error (higher = better)
+  num_top_programs: 3
+  use_template_stochasticity: true
+
+# Database configuration
+database:
+  population_size: 80
+  archive_size: 30
+  num_islands: 4
+  elite_selection_ratio: 0.15
+  exploitation_ratio: 0.65
+
+# Evaluator configuration
+evaluator:
+  timeout: 120
+  cascade_evaluation: true
+  cascade_thresholds: [0.3, 0.6]
+  parallel_evaluations: 4
+  use_llm_feedback: false
+
+# Evolution settings
+diff_based_evolution: true
+max_code_length: 60000

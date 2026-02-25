@@ -13,12 +13,30 @@ Where:
 """
 
 import importlib.util
+import json
+import logging
 import numpy as np
 import time
 import concurrent.futures
 import traceback
+from pathlib import Path
 from scipy import signal
 from scipy.stats import pearsonr
+from openevolve.hypothesis import (
+    parse_hypotheses,
+    test_hypotheses,
+    load_ledger,
+    update_ledger,
+    generate_knowledge_base_summary,
+    format_hypothesis_results,
+)
+
+_hyp_logger = logging.getLogger(__name__)
+
+VALID_METRICS = {
+    "composite_score", "slope_changes", "lag_error",
+    "correlation", "noise_reduction", "smoothness_score", "responsiveness_score",
+}
 
 
 def run_with_timeout(func, args=(), kwargs={}, timeout_seconds=30):
@@ -430,7 +448,7 @@ def evaluate(program_path):
             + 0.1 * success_rate  # Reliability
         )
 
-        return {
+        metrics_dict = {
             "composite_score": safe_float(avg_composite_score),
             "overall_score": safe_float(overall_score),  # Primary selection metric
             "slope_changes": safe_float(avg_slope_changes),
@@ -446,6 +464,43 @@ def evaluate(program_path):
             "execution_time": safe_float(avg_execution_time),
             "success_rate": safe_float(success_rate),
         }
+
+        # --- Hypothesis pipeline ---
+        try:
+            with open(program_path, "r") as f:
+                source_code = f.read()
+
+            hypotheses = parse_hypotheses(source_code, valid_metrics=VALID_METRICS)
+
+            if hypotheses:
+                script_dir = Path(__file__).parent
+                baseline_path = script_dir / "baseline_metrics.json"
+                ledger_path = script_dir / "openevolve_output" / "hypothesis_ledger.json"
+
+                if baseline_path.exists():
+                    with open(baseline_path, "r") as f:
+                        baseline_metrics = json.load(f)
+                else:
+                    baseline_metrics = {k: v for k, v in metrics_dict.items() if k in VALID_METRICS}
+                    with open(baseline_path, "w") as f:
+                        json.dump(baseline_metrics, f, indent=2)
+
+                actual_metrics = {k: v for k, v in metrics_dict.items() if k in VALID_METRICS}
+                h_results = test_hypotheses(hypotheses, actual_metrics, baseline_metrics)
+                baseline_score = baseline_metrics.get("composite_score", 0)
+                metrics_dict["hypothesis_results"] = format_hypothesis_results(
+                    h_results, safe_float(avg_composite_score), baseline_score
+                )
+
+                ledger = load_ledger(ledger_path)
+                if not ledger["baseline"] and baseline_metrics:
+                    ledger["baseline"] = baseline_metrics
+                update_ledger(ledger, h_results, safe_float(avg_composite_score), ledger_path)
+                metrics_dict["hypothesis_knowledge_base"] = generate_knowledge_base_summary(ledger)
+        except Exception as e:
+            _hyp_logger.warning(f"Hypothesis pipeline error (non-fatal): {e}")
+
+        return metrics_dict
 
     except Exception as e:
         print(f"Evaluation failed: {str(e)}")
