@@ -140,59 +140,50 @@ prompt:
       - snap.KVUtilization: memory pressure (WARNING: stale at high rates)
       - snap.FreeKVBlocks: available memory blocks
 
-    WINNING STRATEGIES (validated against all 3 workloads):
+    STRATEGY DIRECTIONS (explore and tune these ideas):
 
-    1. **Input-length-aware routing** (MOST IMPORTANT):
-       Large inputs (>1000 tokens) have cached prefixes worth preserving → keep prefix-affinity.
-       Small inputs (<1000 tokens) don't benefit much from cache → use load-balance as primary.
-       WHY 1000: multiturn inputs are prefix(4096/2048/1024)+user(50-80) = 1074-4176 tokens.
-       cache_warmup inputs are prefix(128-512)+user(100-600) = 228-1112, mostly <1000.
-       This single threshold separates "needs cache affinity" from "needs load balance".
+    1. **Consider whether all requests benefit equally from prefix caching**:
+       Think about input size — requests with large prefixes have significant cached state
+       worth preserving. Shorter requests may have little or no cached prefix to exploit.
+       Can you find a threshold that separates these two regimes? Look at the workload
+       descriptions below to reason about where that boundary might be.
 
-    2. **Load-dominant recompute for small inputs**:
-       Prefix-affinity creates 0.8 vs 0.0 score gaps between instances.
-       Load-balance adds only ~0.02 difference. With equal weights, prefix-affinity
-       effectively makes ALL decisions alone. For small inputs that don't benefit from
-       cache, RECOMPUTE scores: scores[id] = original*0.15 + loadScore*0.85.
-       This makes load the primary signal with prefix as tiebreaker.
+    2. **Understand the score magnitude problem**:
+       Prefix-affinity produces large score gaps between instances (cached vs uncached).
+       Load-balance produces much smaller differences. When combined with equal weights,
+       one signal can dominate the other entirely. Think about when you'd want to
+       rebalance or override the default weighting — and how aggressively.
 
-    3. **SLO-aware adjustments**: "realtime" → penalize high-queue instances more heavily
-       "batch" → can tolerate queuing, prioritize cache affinity
+    3. **SLO classes have different tolerance profiles**:
+       "realtime" requests are latency-sensitive — queuing hurts them most.
+       "batch" requests can tolerate queuing — cache benefits may matter more.
+       Can you adjust scoring based on urgency?
 
-    4. **Overload penalty for large inputs**: Even when keeping prefix-affinity for large
-       requests, penalize instances with extreme load (>15) to prevent pile-on.
+    4. **Overload protection**:
+       Even when cache affinity is the right signal, there's a point where an instance
+       is too loaded to benefit from its cache advantage. Consider adding a penalty
+       for heavily loaded instances — but you'll need to discover what "heavily loaded" means.
 
-    5. **CacheHitRate exploitation**: After scoring, multiply by (1 + snap.CacheHitRate * factor)
-       This favors instances with historically warm caches.
+    5. **Historical cache performance**:
+       snap.CacheHitRate tells you which instances have been cache-warm historically.
+       This could be a useful tiebreaker or multiplier.
 
-    EXAMPLE CODE PATTERNS:
+    CODE STRUCTURE HINTS:
     ```go
-    // Route based on input size: large inputs benefit from cache, small don't
+    // You can branch on request characteristics:
     inputLen := len(req.InputTokens)
-    if inputLen > 1000 {
-        // Large prefix: keep prefix-affinity, add overload protection
-        for _, snap := range snapshots {
-            if float64(snap.EffectiveLoad()) > 15 {
-                scores[snap.ID] *= 0.7
-            }
-        }
-    } else {
-        // Small input: load-balance as primary (85%), prefix as tiebreaker (15%)
-        for _, snap := range snapshots {
-            load := float64(snap.EffectiveLoad())
-            loadScore := 1.0 / (1.0 + load)
-            original := scores[snap.ID]
-            scores[snap.ID] = original*0.15 + loadScore*0.85
-        }
+    // Think about: what input size separates cache-benefiting from non-cache-benefiting?
+
+    // You can recompute or adjust scores post-loop:
+    for _, snap := range snapshots {
+        // Use snap.EffectiveLoad(), snap.QueueDepth, etc. to adjust scores[snap.ID]
+        // Consider: when should load dominate vs prefix-affinity?
+        // Experiment with blending: scores[id] = original*alpha + newSignal*(1-alpha)
     }
 
-    // Penalize loaded instances more for realtime requests
+    // You can condition on SLO class:
     if req.SLOClass == "realtime" {
-        for _, snap := range snapshots {
-            if snap.QueueDepth > 5 {
-                scores[snap.ID] *= 0.7
-            }
-        }
+        // What adjustments help latency-sensitive requests?
     }
     ```
 
@@ -222,28 +213,24 @@ prompt:
     EVALUATION WORKLOADS (your code is tested on all 3, understand them to form hypotheses):
 
     1. cache_warmup (rate=1000, 5000 reqs, 5s simulation):
-       3 distinct prefix groups (~30% each: chatbot prefix=512, code assistant prefix=384,
-       API gateway prefix=128) + 15% no-prefix batch traffic. All inputs are <1000 tokens.
-       PREFIX-AFFINITY IS HARMFUL HERE: it maps 3 groups to 3 instances, leaving the 4th idle.
-       Validated: load-only is 26% better, oracle (load-dominant for small inputs) is 28% better.
-       A smart router should use load-balance as primary signal for small-input requests.
+       Multiple distinct prefix groups of varying sizes, plus some no-prefix batch traffic.
+       All inputs are relatively short. Think about what happens when prefix-affinity
+       maps a small number of prefix groups to instances — does every instance stay busy?
+       HINT: When inputs are short, the cache savings may not justify routing imbalance.
 
     2. load_spikes (rate=1000, 5000 reqs, 5s simulation):
-       50% heavy-hitter with LARGE shared prefix (512 tokens, bursty gamma CV=3),
-       25% realtime (no prefix, needs idle instances), 25% different prefix group (prefix=384).
-       PREFIX-AFFINITY IS CATASTROPHIC HERE: concentrates 50% of traffic on ONE instance.
-       Validated: prefix-only is 113% worse! Baseline survives because load-balance component
-       overrides prefix-affinity. Oracle is 1.5% better than baseline.
-       The router must avoid concentrating heavy-hitter prefix traffic on one instance.
+       One dominant prefix group generates a large fraction of traffic (bursty arrivals),
+       plus realtime traffic (no prefix, latency-sensitive) and another prefix group.
+       Think about what happens when prefix-affinity routes a dominant traffic pattern
+       to a single instance. How does the router avoid hot-spotting?
+       HINT: The baseline survives partly because its load-balance signal counteracts pile-on.
 
     3. multiturn (rate=150, 1500 reqs, 10s simulation):
-       40% heavy coding sessions (prefix=4096, 5 rounds, short output=15 tokens),
-       25% chat sessions (prefix=2048, 4 rounds), 15% QA (prefix=1024, 3 rounds),
-       20% single-turn realtime (no prefix). All multi-turn inputs are >1000 tokens.
-       LOAD-ONLY IS HARMFUL HERE: sessions bounce between instances, losing KV cache.
-       Cache miss cost: 72ms for coding sessions (4096 * 17.67us/token) = 40% of request time.
-       Validated: load-only is 5.5% worse. Prefix-affinity (session stickiness) is correct here.
-       The router must keep multi-turn sessions pinned to their cached instance.
+       Multi-turn sessions with long prefixes (coding, chat, QA) across multiple rounds,
+       plus single-turn realtime traffic. Session inputs carry substantial prefix state.
+       Think about what happens when sessions bounce between instances — the KV cache
+       for long prefixes must be recomputed, which is expensive.
+       HINT: For long-prefix sessions, cache affinity is important for avoiding recomputation.
 
     Available metrics for EXPECT (lower = better, use < operator):
       - cache_warmup_e2e_ms: workload 1 above
@@ -263,17 +250,10 @@ prompt:
 
     Example:
     ```go
-    // HYPOTHESIS-1: Input-length routing reduces cache_warmup latency
-    // MECHANISM-1: Small inputs (<1000 tokens) don't benefit from prefix cache; load-balance avoids imbalance
-    // EXPECT-1: cache_warmup_e2e_ms < 5000
-    inputLen := len(req.InputTokens)
-    if inputLen <= 1000 {
-        for _, snap := range snapshots {
-            load := float64(snap.EffectiveLoad())
-            loadScore := 1.0 / (1.0 + load)
-            scores[snap.ID] = scores[snap.ID]*0.15 + loadScore*0.85
-        }
-    }
+    // HYPOTHESIS-1: Adjusting scorer weights by request characteristics reduces avg latency
+    // MECHANISM-1: Different request types benefit from different routing signals; adapting weights avoids one-size-fits-all
+    // EXPECT-1: avg_e2e_ms < 5000
+    // ... your code here ...
     ```
 
   # Number of top-performing programs to show as examples to the LLM
