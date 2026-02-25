@@ -29,9 +29,10 @@ Hypothesis-driven evolution — where the LLM writes structured, testable predic
 | Parameter | Value |
 |-----------|-------|
 | Iterations | 10 |
-| Runs per condition | 5 (different random seeds) |
+| Runs per condition | 3 (different random seeds) |
+| API endpoint | `https://ete-litellm.ai-models.vpc-int.res.ibm.com` (all models) |
 
-Each task uses **its own existing LLM config** (not a shared model) to test hypothesis-driven evolution in realistic settings rather than a synthetic single-model setup.
+Each task uses **its own LLM ensemble** to test hypothesis-driven evolution in realistic settings.
 
 ## Tasks
 
@@ -41,7 +42,7 @@ Evolve Go routing policy for LLM inference load balancing across 3 workloads wit
 
 | Parameter | Value |
 |-----------|-------|
-| LLM | Claude Sonnet (70%) + Claude Opus (30%) ensemble |
+| LLM | `aws/claude-sonnet-4-5` (70%) + `aws/claude-opus-4-6` (30%) |
 | Temperature | 1.0 |
 | Scoring | `score = -0.5 * avg_e2e_ms - 0.5 * avg_p95_ms` |
 | Database | 100 population, 3 islands, 15 archive |
@@ -52,7 +53,7 @@ Evolve Python optimization algorithm to find global minimum of a complex multi-m
 
 | Parameter | Value |
 |-----------|-------|
-| LLM | gemini-2.5-flash-lite (80%) + gemini-2.5-flash (20%) |
+| LLM | `GCP/gemini-2.5-flash` (80%) + `gcp/gemini-3-flash-preview` (20%) |
 | Temperature | 0.7 |
 | Scoring | `combined_score = (0.5*value + 0.3*distance + 0.2*reliability) * quality_multiplier` |
 | Database | 50 population, 3 islands, 20 archive |
@@ -63,7 +64,7 @@ Evolve Python adaptive filtering algorithm for non-stationary time series. Multi
 
 | Parameter | Value |
 |-----------|-------|
-| LLM | gemini-2.5-flash-lite (80%) + gemini-2.5-flash (20%) |
+| LLM | `GCP/gemini-2.5-flash` (80%) + `gcp/gemini-3-flash-preview` (20%) |
 | Temperature | 0.6 |
 | Scoring | `composite_score = 0.3*S + 0.2*L_recent + 0.2*L_avg + 0.3*R` (multi-objective) |
 | Database | 80 population, 4 islands, 30 archive |
@@ -88,7 +89,7 @@ For the best program at iteration 10:
 
 ### Statistical Analysis
 
-- **N=5 per condition** — report median ± IQR (interquartile range)
+- **N=3 per condition** — report median ± IQR (interquartile range)
 - **Mann-Whitney U test** for comparing conditions (non-parametric, appropriate for small N)
 - **Effect size**: report rank-biserial correlation coefficient
 
@@ -159,7 +160,7 @@ experiments/
 3. Adapt simpler task for hypothesis-driven mode
 4. Build experiment runner script
 5. Run 1 pilot run per condition to validate setup
-6. Run full experiment: 5 runs × 2 conditions × 3 tasks = 30 runs
+6. Run full experiment: 3 runs × 2 conditions × 3 tasks = 18 runs
 7. Analyze results and generate plots
 8. Write paper sections
 

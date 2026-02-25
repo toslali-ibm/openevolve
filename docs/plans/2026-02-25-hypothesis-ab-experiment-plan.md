@@ -737,7 +737,10 @@ Copy the existing `examples/blis_router/config.yaml` as the base. Key changes:
 - Set `max_iterations: 10`
 - Set `checkpoint_interval: 5`
 - Add `hypothesis_driven: true`
-- Keep existing LLM config (Sonnet 70% + Opus 30% ensemble) exactly as-is
+- Keep existing LLM config exactly as-is:
+  - `primary_model: "aws/claude-sonnet-4-5"` (70%)
+  - `secondary_model: "aws/claude-opus-4-6"` (30%)
+  - `api_base: "https://ete-litellm.ai-models.vpc-int.res.ibm.com"`
 - Keep existing system_message with hypothesis instructions exactly as-is
 
 ```bash
@@ -861,7 +864,10 @@ Copy existing `examples/function_minimization/config.yaml` as base. Key changes:
 - Set `max_iterations: 10`, `checkpoint_interval: 5`
 - Add `hypothesis_driven: true`
 - Append metric hints to existing system_message (available metrics for EXPECT: value_score, distance_score, reliability_score, combined_score)
-- Keep existing LLM config (gemini-2.5-flash-lite 80% + gemini-2.5-flash 20%) as-is
+- Update LLM config to use ete-litellm endpoint with available models:
+  - `primary_model: "GCP/gemini-2.5-flash"` (80%)
+  - `secondary_model: "gcp/gemini-3-flash-preview"` (20%)
+  - `api_base: "https://ete-litellm.ai-models.vpc-int.res.ibm.com"`
 
 **Step 3: Create control config**
 
@@ -907,7 +913,10 @@ Copy existing `examples/signal_processing/config.yaml` as base. Key changes:
 - Set `max_iterations: 10`, `checkpoint_interval: 5`
 - Add `hypothesis_driven: true`
 - Append metric hints to system_message (available metrics for EXPECT)
-- Keep existing LLM config (gemini-2.5-flash-lite 80% + gemini-2.5-flash 20%) as-is
+- Update LLM config to use ete-litellm endpoint with available models:
+  - `primary_model: "GCP/gemini-2.5-flash"` (80%)
+  - `secondary_model: "gcp/gemini-3-flash-preview"` (20%)
+  - `api_base: "https://ete-litellm.ai-models.vpc-int.res.ibm.com"`
 
 **Step 3: Create control config**
 
@@ -938,7 +947,7 @@ Usage:
     python scripts/run_experiment.py \
         --task blis_router \
         --condition treatment \
-        --runs 5 \
+        --runs 3 \
         --seed-start 100 \
         --output-dir experiments/hypothesis_ab_blis
 
@@ -1057,7 +1066,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run hypothesis A/B experiment")
     parser.add_argument("--task", required=True, choices=list(TASK_CONFIGS.keys()))
     parser.add_argument("--condition", required=True, choices=["treatment", "control", "both"])
-    parser.add_argument("--runs", type=int, default=5)
+    parser.add_argument("--runs", type=int, default=3)
     parser.add_argument("--seed-start", type=int, default=100)
     parser.add_argument("--output-dir", required=True)
     args = parser.parse_args()
@@ -1332,7 +1341,7 @@ git commit -m "chore: validate experiment pipeline end-to-end"
 python scripts/run_experiment.py \
   --task blis_router \
   --condition both \
-  --runs 5 \
+  --runs 3 \
   --seed-start 100 \
   --output-dir experiments/hypothesis_ab_blis
 ```
@@ -1343,7 +1352,7 @@ python scripts/run_experiment.py \
 python scripts/run_experiment.py \
   --task function_minimization \
   --condition both \
-  --runs 5 \
+  --runs 3 \
   --seed-start 100 \
   --output-dir experiments/hypothesis_ab_funcmin
 ```
@@ -1354,7 +1363,7 @@ python scripts/run_experiment.py \
 python scripts/run_experiment.py \
   --task signal_processing \
   --condition both \
-  --runs 5 \
+  --runs 3 \
   --seed-start 100 \
   --output-dir experiments/hypothesis_ab_signal
 ```
@@ -1382,5 +1391,5 @@ python scripts/analyze_experiment.py \
 
 ```bash
 git add experiments/
-git commit -m "results: hypothesis A/B experiment data and analysis (3 tasks x 2 conditions x 5 runs)"
+git commit -m "results: hypothesis A/B experiment data and analysis (3 tasks x 2 conditions x 3 runs)"
 ```
