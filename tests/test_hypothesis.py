@@ -6,6 +6,8 @@ import unittest
 from pathlib import Path
 
 from openevolve.hypothesis import (
+    extract_hypothesis_comment_block,
+    rescue_hypotheses,
     parse_hypotheses,
     test_hypotheses,
     load_ledger,
@@ -205,6 +207,188 @@ class TestKnowledgeBaseSummary(unittest.TestCase):
         ledger = {"baseline": {"x": 42.0}, "entries": []}
         summary = generate_knowledge_base_summary(ledger)
         self.assertIn("42.0", summary)
+
+
+class TestExtractHypothesisCommentBlock(unittest.TestCase):
+    """Test extracting hypothesis comment lines from LLM responses."""
+
+    def test_extract_python_comments(self):
+        text = (
+            "Here is my improved code:\n"
+            "# HYPOTHESIS-1: Simulated annealing improves distance_score\n"
+            "# MECHANISM-1: Cooling schedule helps escape local minima\n"
+            "# EXPECT-1: distance_score > 0.8\n"
+            "\nimport numpy as np\n"
+        )
+        lines = extract_hypothesis_comment_block(text)
+        self.assertEqual(len(lines), 3)
+        self.assertIn("HYPOTHESIS-1", lines[0])
+        self.assertIn("MECHANISM-1", lines[1])
+        self.assertIn("EXPECT-1", lines[2])
+
+    def test_extract_go_comments(self):
+        text = (
+            "// HYPOTHESIS-1: Cache affinity reduces latency\n"
+            "// MECHANISM-1: Prefix reuse avoids recomputation\n"
+            "// EXPECT-1: avg_e2e_ms < 5000\n"
+        )
+        lines = extract_hypothesis_comment_block(text)
+        self.assertEqual(len(lines), 3)
+        self.assertTrue(lines[0].startswith("//"))
+
+    def test_extract_multiline_mechanism(self):
+        text = (
+            "# HYPOTHESIS-1: Better search\n"
+            "# MECHANISM-1: First line of mechanism\n"
+            "#   continuation line one\n"
+            "#   continuation line two\n"
+            "# EXPECT-1: metric > 0.5\n"
+        )
+        lines = extract_hypothesis_comment_block(text)
+        self.assertEqual(len(lines), 5)
+        self.assertIn("continuation line one", lines[2])
+        self.assertIn("continuation line two", lines[3])
+
+    def test_extract_multiple_hypotheses(self):
+        text = (
+            "# HYPOTHESIS-1: First claim\n"
+            "# MECHANISM-1: First mechanism\n"
+            "# EXPECT-1: metric_a > 0.5\n"
+            "# HYPOTHESIS-2: Second claim\n"
+            "# MECHANISM-2: Second mechanism\n"
+            "# EXPECT-2: metric_b < 10.0\n"
+        )
+        lines = extract_hypothesis_comment_block(text)
+        self.assertEqual(len(lines), 6)
+
+    def test_extract_empty_when_none(self):
+        text = "Just some code without hypotheses\nx = 1\n"
+        lines = extract_hypothesis_comment_block(text)
+        self.assertEqual(len(lines), 0)
+
+    def test_extract_from_gemini_style_response(self):
+        """Reproduce the real Gemini pattern: hypotheses as preamble before diffs."""
+        text = (
+            "# EVOLVE-BLOCK-START\n"
+            "# HYPOTHESIS-1: SA with local exploitation improves value_score\n"
+            "# MECHANISM-1: Combining exploration with Gaussian perturbations\n"
+            "#   allows escaping local minima\n"
+            "# EXPECT-1: combined_score > 1.3\n"
+            "\nimport numpy as np\n\n"
+            "<<<<<<< SEARCH\n"
+            "def search_algorithm():\n"
+            "    pass\n"
+            "=======\n"
+            "def search_algorithm():\n"
+            "    return 42\n"
+            ">>>>>>> REPLACE\n"
+        )
+        lines = extract_hypothesis_comment_block(text)
+        self.assertEqual(len(lines), 4)  # H1, M1 + continuation, E1
+        self.assertIn("HYPOTHESIS-1", lines[0])
+
+
+class TestRescueHypotheses(unittest.TestCase):
+    """Test rescuing hypotheses from LLM response into evolved code."""
+
+    def test_noop_when_code_already_has_hypotheses(self):
+        """Claude path: hypotheses already in REPLACE block, no rescue needed."""
+        code = (
+            "# EVOLVE-BLOCK-START\n"
+            "# HYPOTHESIS-1: Good search\n"
+            "# MECHANISM-1: Better algorithm\n"
+            "# EXPECT-1: score > 0.8\n"
+            "def search(): pass\n"
+            "# EVOLVE-BLOCK-END\n"
+        )
+        llm_response = "# HYPOTHESIS-1: Good search\n# MECHANISM-1: Better\n# EXPECT-1: score > 0.8\n"
+        result = rescue_hypotheses(code, llm_response)
+        self.assertEqual(result, code)
+
+    def test_noop_when_no_hypotheses_in_response(self):
+        code = "# EVOLVE-BLOCK-START\ndef f(): pass\n# EVOLVE-BLOCK-END\n"
+        llm_response = "Just some code changes"
+        result = rescue_hypotheses(code, llm_response)
+        self.assertEqual(result, code)
+
+    def test_inject_python_hypotheses(self):
+        """Gemini path: hypotheses in response preamble, missing from code."""
+        code = (
+            "# EVOLVE-BLOCK-START\n"
+            "import numpy as np\n"
+            "def search(): pass\n"
+            "# EVOLVE-BLOCK-END\n"
+        )
+        llm_response = (
+            "# HYPOTHESIS-1: SA improves distance_score\n"
+            "# MECHANISM-1: Cooling schedule escapes local minima\n"
+            "# EXPECT-1: distance_score > 0.8\n"
+            "\n<<<<<<< SEARCH\ndef search(): pass\n=======\ndef search(): return 42\n>>>>>>> REPLACE\n"
+        )
+        result = rescue_hypotheses(code, llm_response)
+        self.assertIn("HYPOTHESIS-1", result)
+        self.assertIn("MECHANISM-1", result)
+        self.assertIn("EXPECT-1", result)
+        # Hypotheses should appear after EVOLVE-BLOCK-START
+        lines = result.split("\n")
+        start_idx = next(i for i, l in enumerate(lines) if "EVOLVE-BLOCK-START" in l)
+        self.assertIn("HYPOTHESIS-1", lines[start_idx + 1])
+
+    def test_inject_go_hypotheses_with_tab_indent(self):
+        """Go code with tab indentation should preserve indent."""
+        code = (
+            '\tGO_CODE = """\n'
+            "\t// EVOLVE-BLOCK-START\n"
+            "\tinputLen := len(req.InputTokens)\n"
+            "\t// EVOLVE-BLOCK-END\n"
+            '"""'
+        )
+        llm_response = (
+            "// HYPOTHESIS-1: Weight tuning reduces latency\n"
+            "// MECHANISM-1: Adaptive weights match request characteristics\n"
+            "// EXPECT-1: avg_e2e_ms < 3000\n"
+            "\n<<<<<<< SEARCH\ninputLen := len(req.InputTokens)\n"
+            "=======\ninputLen := len(req.InputTokens)\nw0 := 0.5\n>>>>>>> REPLACE\n"
+        )
+        result = rescue_hypotheses(code, llm_response)
+        self.assertIn("HYPOTHESIS-1", result)
+        # Verify tab indentation was applied
+        lines = result.split("\n")
+        hyp_line = next(l for l in lines if "HYPOTHESIS-1" in l)
+        self.assertTrue(hyp_line.startswith("\t"))
+
+    def test_inject_multiline_mechanism(self):
+        code = "# EVOLVE-BLOCK-START\ndef f(): pass\n# EVOLVE-BLOCK-END\n"
+        llm_response = (
+            "# HYPOTHESIS-1: Better approach\n"
+            "# MECHANISM-1: First line\n"
+            "#   continuation line\n"
+            "# EXPECT-1: score > 0.9\n"
+        )
+        result = rescue_hypotheses(code, llm_response)
+        self.assertIn("HYPOTHESIS-1", result)
+        self.assertIn("continuation line", result)
+
+    def test_noop_when_no_evolve_block(self):
+        code = "def f(): pass\n"
+        llm_response = "# HYPOTHESIS-1: Claim\n# MECHANISM-1: Mech\n# EXPECT-1: x > 1\n"
+        result = rescue_hypotheses(code, llm_response)
+        self.assertEqual(result, code)
+
+    def test_parse_hypotheses_works_after_rescue(self):
+        """End-to-end: rescued hypotheses should be parseable."""
+        code = "# EVOLVE-BLOCK-START\ndef f(): pass\n# EVOLVE-BLOCK-END\n"
+        llm_response = (
+            "# HYPOTHESIS-1: Improves combined_score\n"
+            "# MECHANISM-1: Better algorithm\n"
+            "# EXPECT-1: combined_score > 1.3\n"
+        )
+        rescued = rescue_hypotheses(code, llm_response)
+        parsed = parse_hypotheses(rescued, valid_metrics={"combined_score"})
+        self.assertEqual(len(parsed), 1)
+        self.assertEqual(parsed[0]["metric"], "combined_score")
+        self.assertEqual(parsed[0]["operator"], ">")
+        self.assertAlmostEqual(parsed[0]["threshold"], 1.3)
 
 
 class TestConfigHypothesisDriven(unittest.TestCase):

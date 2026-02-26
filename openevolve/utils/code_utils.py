@@ -75,6 +75,28 @@ def apply_diff(
     return "\n".join(result_lines)
 
 
+def _strip_diff_markers(text: str) -> str:
+    """Remove stray ======= lines that LLMs sometimes embed in replacement text.
+
+    Some models (e.g. Claude with large diffs) produce responses that wrap the
+    replacement section with extra ``=======`` separators, treating the diff
+    like a three-way merge conflict::
+
+        <<<<<<< SEARCH
+        old code
+        =======           ← correct separator
+        new code
+        =======           ← spurious — leaks into replacement text
+        >>>>>>> REPLACE
+
+    Bare ``=======`` is never valid in any programming language, so stripping
+    it is safe.
+    """
+    return "\n".join(
+        line for line in text.split("\n") if line.strip() != "======="
+    )
+
+
 def extract_diffs(
     diff_text: str, diff_pattern: str = r"<<<<<<< SEARCH\n(.*?)=======\n(.*?)>>>>>>> REPLACE"
 ) -> List[Tuple[str, str]]:
@@ -89,7 +111,10 @@ def extract_diffs(
         List of tuples (search_text, replace_text)
     """
     diff_blocks = re.findall(diff_pattern, diff_text, re.DOTALL)
-    return [(match[0].rstrip(), match[1].rstrip()) for match in diff_blocks]
+    return [
+        (match[0].rstrip(), _strip_diff_markers(match[1]).rstrip())
+        for match in diff_blocks
+    ]
 
 
 def parse_full_rewrite(llm_response: str, language: str = "python") -> Optional[str]:

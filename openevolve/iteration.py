@@ -10,6 +10,7 @@ from openevolve.config import Config
 from openevolve.evaluator import Evaluator
 from openevolve.llm.ensemble import LLMEnsemble
 from openevolve.prompt.sampler import PromptSampler
+from openevolve.hypothesis import rescue_hypotheses
 from openevolve.utils.code_utils import (
     apply_diff,
     extract_diffs,
@@ -93,6 +94,9 @@ async def run_iteration_with_shared_db(
 
             # Apply the diffs
             child_code = apply_diff(parent.code, llm_response, config.diff_pattern)
+            # Rescue hypothesis comments that the LLM placed outside diff blocks
+            if config.hypothesis_driven:
+                child_code = rescue_hypotheses(child_code, llm_response)
             changes_summary = format_diff_summary(diff_blocks)
         else:
             # Parse full rewrite

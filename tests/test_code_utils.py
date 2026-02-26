@@ -89,5 +89,69 @@ class TestCodeUtils(unittest.TestCase):
         )
 
 
+class TestStripDiffMarkers(unittest.TestCase):
+    """Test that stray ======= markers are stripped from replacement text."""
+
+    def test_single_trailing_separator(self):
+        """LLM wraps replacement with extra ======= before >>>>>>> REPLACE."""
+        diff_text = (
+            "<<<<<<< SEARCH\n"
+            "old code\n"
+            "=======\n"
+            "new code\n"
+            "=======\n"
+            ">>>>>>> REPLACE\n"
+        )
+        diffs = extract_diffs(diff_text)
+        self.assertEqual(len(diffs), 1)
+        self.assertNotIn("=======", diffs[0][1])
+        self.assertEqual(diffs[0][1], "new code")
+
+    def test_multiple_separators(self):
+        """LLM generates 5 ======= in a single diff block."""
+        diff_text = (
+            "<<<<<<< SEARCH\n"
+            "old\n"
+            "=======\n"
+            "part1\n"
+            "=======\n"
+            "part2\n"
+            "=======\n"
+            "part3\n"
+            "=======\n"
+            "part4\n"
+            "=======\n"
+            ">>>>>>> REPLACE\n"
+        )
+        diffs = extract_diffs(diff_text)
+        self.assertEqual(len(diffs), 1)
+        self.assertNotIn("=======", diffs[0][1])
+        # All parts should be preserved (just markers removed)
+        self.assertIn("part1", diffs[0][1])
+        self.assertIn("part4", diffs[0][1])
+
+    def test_no_stripping_when_clean(self):
+        """Normal diff without extra separators is unchanged."""
+        diff_text = (
+            "<<<<<<< SEARCH\n"
+            "old\n"
+            "=======\n"
+            "new\n"
+            ">>>>>>> REPLACE\n"
+        )
+        diffs = extract_diffs(diff_text)
+        self.assertEqual(diffs[0][1], "new")
+
+    def test_apply_diff_strips_markers(self):
+        """End-to-end: apply_diff produces clean code even with extra =======."""
+        original = "// EVOLVE-BLOCK-START\nold code\n// EVOLVE-BLOCK-END\n"
+        diff_text = (
+            "<<<<<<< SEARCH\nold code\n=======\nnew code\n=======\n>>>>>>> REPLACE\n"
+        )
+        result = apply_diff(original, diff_text)
+        self.assertNotIn("=======", result)
+        self.assertIn("new code", result)
+
+
 if __name__ == "__main__":
     unittest.main()

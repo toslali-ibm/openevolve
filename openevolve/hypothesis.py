@@ -26,6 +26,91 @@ logger = logging.getLogger(__name__)
 _COMMENT_PREFIX = r"(?://|#|--)\s*"
 
 
+def extract_hypothesis_comment_block(text: str) -> list[str]:
+    """Extract raw HYPOTHESIS/MECHANISM/EXPECT comment lines from text.
+
+    Scans *all* lines (not just code) for hypothesis comment blocks.
+    Used to recover hypotheses from LLM responses when diff application
+    strips them from the final code.
+
+    Returns:
+        List of comment-line strings (stripped of leading whitespace).
+    """
+    hyp_pattern = re.compile(rf"^{_COMMENT_PREFIX}(HYPOTHESIS-\d+|EXPECT-\d+):\s*.+$")
+    mech_pattern = re.compile(rf"^{_COMMENT_PREFIX}MECHANISM-\d+:\s*.+$")
+    cont_pattern = re.compile(r"^(?://|#|--)\s{3,}.+$")
+
+    lines = text.splitlines()
+    result: list[str] = []
+    i = 0
+    while i < len(lines):
+        stripped = lines[i].strip()
+        if hyp_pattern.match(stripped):
+            result.append(stripped)
+            i += 1
+            continue
+        if mech_pattern.match(stripped):
+            result.append(stripped)
+            # Consume continuation lines
+            while i + 1 < len(lines):
+                next_stripped = lines[i + 1].strip()
+                if cont_pattern.match(next_stripped):
+                    result.append(next_stripped)
+                    i += 1
+                else:
+                    break
+            i += 1
+            continue
+        i += 1
+    return result
+
+
+def rescue_hypotheses(code: str, llm_response: str) -> str:
+    """Inject hypothesis comments into code if they exist only in the LLM response.
+
+    When diff-based evolution is used, some LLMs place hypothesis comments
+    outside the SEARCH/REPLACE blocks.  ``apply_diff`` only keeps the
+    REPLACE content, so the hypotheses are lost.  This function recovers
+    them from the raw LLM response and injects them right after the first
+    ``EVOLVE-BLOCK-START`` marker.
+
+    No-op when:
+      - code already contains hypothesis comments (e.g. Claude path)
+      - llm_response has no hypothesis comments
+      - code has no EVOLVE-BLOCK-START marker
+    """
+    # Already present in code? Nothing to do.
+    if re.search(r"(?://|#|--)\s*HYPOTHESIS-\d+:", code):
+        return code
+
+    hyp_lines = extract_hypothesis_comment_block(llm_response)
+    if not hyp_lines:
+        return code
+
+    # Find first EVOLVE-BLOCK-START
+    marker = "EVOLVE-BLOCK-START"
+    code_lines = code.split("\n")
+    insert_idx = None
+    indent = ""
+    for idx, line in enumerate(code_lines):
+        if marker in line:
+            insert_idx = idx
+            # Detect indentation: everything before the comment prefix
+            stripped = line.lstrip()
+            indent = line[: len(line) - len(stripped)]
+            break
+
+    if insert_idx is None:
+        return code
+
+    # Indent hypothesis lines to match the EVOLVE-BLOCK-START line
+    indented = [indent + hl for hl in hyp_lines]
+
+    code_lines[insert_idx + 1 : insert_idx + 1] = indented
+    logger.debug("Rescued %d hypothesis comment lines into evolved code", len(hyp_lines))
+    return "\n".join(code_lines)
+
+
 def parse_hypotheses(code: str, valid_metrics: set[str]) -> list:
     """Parse HYPOTHESIS-N, MECHANISM-N, EXPECT-N comment blocks from code.
 
