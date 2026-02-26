@@ -18,6 +18,32 @@ def load_data(csv_path: str) -> pd.DataFrame:
     return pd.read_csv(csv_path)
 
 
+def apply_locf(df: pd.DataFrame) -> pd.DataFrame:
+    """Apply Last-Observation-Carried-Forward so every run has a value at every checkpoint.
+
+    For each (condition, seed), if a checkpoint iteration is missing, carry forward
+    the last available score.  This prevents runs that ended early from being silently
+    dropped from statistics and plots.
+    """
+    all_iterations = sorted(df["iteration"].unique())
+    rows = []
+    for (condition, seed), group in df.groupby(["condition", "seed"]):
+        group = group.sort_values("iteration")
+        last_score = None
+        available = dict(zip(group["iteration"], group["best_combined_score"]))
+        for it in all_iterations:
+            if it in available:
+                last_score = available[it]
+            if last_score is not None:
+                rows.append({
+                    "condition": condition,
+                    "seed": seed,
+                    "iteration": it,
+                    "best_combined_score": last_score,
+                })
+    return pd.DataFrame(rows)
+
+
 def plot_convergence_curves(df: pd.DataFrame, output_dir: Path, title_suffix: str = ""):
     """Plot median convergence curves with IQR bands."""
     fig, ax = plt.subplots(figsize=(8, 5))
@@ -25,6 +51,7 @@ def plot_convergence_curves(df: pd.DataFrame, output_dir: Path, title_suffix: st
     for condition, color in [("treatment", "#2196F3"), ("control", "#FF5722")]:
         cond_data = df[df["condition"] == condition]
         if cond_data.empty:
+            print(f"WARNING: No data for condition '{condition}'")
             continue
 
         grouped = cond_data.groupby("iteration")["best_combined_score"]
@@ -32,8 +59,9 @@ def plot_convergence_curves(df: pd.DataFrame, output_dir: Path, title_suffix: st
         q25 = grouped.quantile(0.25)
         q75 = grouped.quantile(0.75)
 
-        label = "Hypothesis-Driven" if condition == "treatment" else "Vanilla OpenEvolve"
-        ax.plot(median.index, median.values, color=color, linewidth=2, label=label)
+        n_runs = cond_data["seed"].nunique()
+        label = f"Hypothesis-Driven (n={n_runs})" if condition == "treatment" else f"Vanilla OpenEvolve (n={n_runs})"
+        ax.plot(median.index, median.values, color=color, linewidth=2, label=label, marker="o", markersize=4)
         ax.fill_between(median.index, q25.values, q75.values, color=color, alpha=0.2)
 
     ax.set_xlabel("Iteration", fontsize=12)
@@ -51,21 +79,34 @@ def plot_convergence_curves(df: pd.DataFrame, output_dir: Path, title_suffix: st
 
 def plot_final_scores_boxplot(df: pd.DataFrame, output_dir: Path):
     """Box plot of final best scores at last iteration."""
-    max_iter = df["iteration"].max()
+    # Use the max iteration that BOTH conditions have data for
+    treatment_iters = set(df[df["condition"] == "treatment"]["iteration"].unique())
+    control_iters = set(df[df["condition"] == "control"]["iteration"].unique())
+    common_iters = treatment_iters & control_iters
+
+    if not common_iters:
+        print("WARNING: No common iterations between treatment and control — cannot create boxplot")
+        return
+
+    max_iter = max(common_iters)
     final = df[df["iteration"] == max_iter]
 
+    treatment_scores = final[final["condition"] == "treatment"]["best_combined_score"].values
+    control_scores = final[final["condition"] == "control"]["best_combined_score"].values
+
+    if len(treatment_scores) == 0 or len(control_scores) == 0:
+        print(f"WARNING: Empty data at iteration {max_iter} — treatment={len(treatment_scores)}, control={len(control_scores)}")
+        return
+
     fig, ax = plt.subplots(figsize=(6, 5))
-    data = [
-        final[final["condition"] == "treatment"]["best_combined_score"].values,
-        final[final["condition"] == "control"]["best_combined_score"].values,
-    ]
-    labels = ["Hypothesis-Driven", "Vanilla"]
+    data = [treatment_scores, control_scores]
+    labels = [f"Hypothesis-Driven\n(n={len(treatment_scores)})", f"Vanilla\n(n={len(control_scores)})"]
 
     bp = ax.boxplot(data, labels=labels, patch_artist=True)
     bp["boxes"][0].set_facecolor("#2196F3")
     bp["boxes"][1].set_facecolor("#FF5722")
 
-    ax.set_ylabel("Final Best Score (iteration {})".format(max_iter), fontsize=12)
+    ax.set_ylabel(f"Final Best Score (iteration {max_iter})", fontsize=12)
     ax.set_title("Final Score Distribution", fontsize=13)
     ax.grid(True, alpha=0.3, axis="y")
 
@@ -76,18 +117,29 @@ def plot_final_scores_boxplot(df: pd.DataFrame, output_dir: Path):
 
 
 def compute_statistics(df: pd.DataFrame) -> dict:
-    """Compute Mann-Whitney U test and summary statistics."""
-    max_iter = df["iteration"].max()
+    """Compute Mann-Whitney U test and summary statistics.
+
+    Uses the max iteration that both conditions share data for (after LOCF).
+    """
+    treatment_iters = set(df[df["condition"] == "treatment"]["iteration"].unique())
+    control_iters = set(df[df["condition"] == "control"]["iteration"].unique())
+    common_iters = treatment_iters & control_iters
+
+    if not common_iters:
+        return {"error": "no common iterations between treatment and control"}
+
+    max_iter = max(common_iters)
     final = df[df["iteration"] == max_iter]
 
     treatment = final[final["condition"] == "treatment"]["best_combined_score"]
     control = final[final["condition"] == "control"]["best_combined_score"]
 
     stats = {
-        "treatment_median": float(treatment.median()),
-        "treatment_iqr": float(treatment.quantile(0.75) - treatment.quantile(0.25)),
-        "control_median": float(control.median()),
-        "control_iqr": float(control.quantile(0.75) - control.quantile(0.25)),
+        "comparison_iteration": int(max_iter),
+        "treatment_median": float(treatment.median()) if len(treatment) > 0 else None,
+        "treatment_iqr": float(treatment.quantile(0.75) - treatment.quantile(0.25)) if len(treatment) > 0 else None,
+        "control_median": float(control.median()) if len(control) > 0 else None,
+        "control_iqr": float(control.quantile(0.75) - control.quantile(0.25)) if len(control) > 0 else None,
         "n_treatment": len(treatment),
         "n_control": len(control),
     }
@@ -117,6 +169,10 @@ def main():
     print(f"Conditions: {df['condition'].unique()}")
     print(f"Seeds: {df['seed'].unique()}")
     print(f"Iterations: {sorted(df['iteration'].unique())}")
+
+    # Apply LOCF so runs that ended early still contribute to later checkpoints
+    df = apply_locf(df)
+    print(f"After LOCF: {len(df)} data points")
 
     plot_convergence_curves(df, output_dir, args.title)
     plot_final_scores_boxplot(df, output_dir)

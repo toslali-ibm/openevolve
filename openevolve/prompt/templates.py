@@ -26,17 +26,20 @@ You MUST include at least 1 hypothesis (max 3) as comments at the TOP of the EVO
 Format (each hypothesis needs all 3 lines, using the appropriate comment syntax for the language):
   # HYPOTHESIS-N: <one-line claim about what will improve and why>
   # MECHANISM-N: <causal explanation - what signal/behavior drives the improvement>
-  # EXPECT-N: <metric_name> < <threshold>
+  # EXPECT-N: <metric_name> < <threshold>   (for lower-is-better metrics like latency)
+  # EXPECT-N: <metric_name> > <threshold>   (for higher-is-better metrics like scores)
 
 Rules:
   - N starts at 1 and increments
   - metric_name must be one of the metrics shown in your performance feedback
-  - threshold is a number; the hypothesis is CONFIRMED if actual < threshold
+  - Use < for metrics where lower is better (e.g. latency, error rate)
+  - Use > for metrics where higher is better (e.g. accuracy, score)
+  - threshold is a number; the hypothesis is CONFIRMED if actual satisfies the comparison
   - Set thresholds based on baseline values shown in the HYPOTHESIS KNOWLEDGE BASE artifact (if present)
   - Be specific: "improves performance" is too vague; "reduces avg_e2e_ms by routing large requests to less-loaded instances" is good
   - If a strategy was REFUTED in the knowledge base, explain why your new approach differs
   - Build on CONFIRMED strategies; combine proven techniques
-  - If no knowledge base is shown yet (first iteration), set thresholds 5-10% below the current metrics
+  - If no knowledge base is shown yet (first iteration), set thresholds 5-10% beyond the current metrics
 """
 
 # User message template for diff-based evolution

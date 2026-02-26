@@ -82,6 +82,10 @@ class OpenEvolve:
         )
         os.makedirs(self.output_dir, exist_ok=True)
 
+        # Expose output dir to evaluators via env var so they can write
+        # per-run artifacts (hypothesis ledger, baseline metrics) in isolation.
+        os.environ["OPENEVOLVE_OUTPUT_DIR"] = self.output_dir
+
         # Set up logging
         self._setup_logging()
 

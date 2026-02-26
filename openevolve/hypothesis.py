@@ -71,16 +71,17 @@ def parse_hypotheses(code: str, valid_metrics: set[str]) -> list:
             i += 1
             continue
 
-        # EXPECT-N: <metric> < <threshold>
+        # EXPECT-N: <metric> < <threshold>  OR  <metric> > <threshold>
         m = re.match(
-            rf"^{_COMMENT_PREFIX}EXPECT-(\d+):\s*(\S+)\s*<\s*([0-9]+(?:\.[0-9]+)?)\s*$",
+            rf"^{_COMMENT_PREFIX}EXPECT-(\d+):\s*(\S+)\s*([<>])\s*([0-9]+(?:\.[0-9]+)?)\s*$",
             line,
         )
         if m:
             hid = int(m.group(1))
             entry = fields.setdefault(hid, {})
             entry["metric"] = m.group(2).strip()
-            entry["threshold"] = float(m.group(3))
+            entry["operator"] = m.group(3)
+            entry["threshold"] = float(m.group(4))
             i += 1
             continue
 
@@ -101,6 +102,7 @@ def parse_hypotheses(code: str, valid_metrics: set[str]) -> list:
                     "claim": f["claim"],
                     "mechanism": f["mechanism"],
                     "metric": f["metric"],
+                    "operator": f.get("operator", "<"),
                     "threshold": f["threshold"],
                 }
             )
@@ -110,12 +112,16 @@ def parse_hypotheses(code: str, valid_metrics: set[str]) -> list:
 def test_hypotheses(hypotheses: list, actual_metrics: dict, baseline_metrics: dict) -> list:
     """Test each hypothesis against actual evaluation results and baseline.
 
-    Verdicts: CONFIRMED (actual < threshold), REFUTED, INCONCLUSIVE (metric missing).
+    Verdicts:
+      - CONFIRMED: actual satisfies the operator/threshold (< or >)
+      - REFUTED: actual does not satisfy
+      - INCONCLUSIVE: metric missing from actual_metrics
     """
     results = []
     for h in hypotheses:
         metric = h["metric"]
         threshold = h["threshold"]
+        operator = h.get("operator", "<")
         actual = actual_metrics.get(metric)
         baseline_value = baseline_metrics.get(metric)
 
@@ -123,7 +129,10 @@ def test_hypotheses(hypotheses: list, actual_metrics: dict, baseline_metrics: di
             verdict = "INCONCLUSIVE"
             delta_pct = None
         else:
-            verdict = "CONFIRMED" if actual < threshold else "REFUTED"
+            if operator == ">":
+                verdict = "CONFIRMED" if actual > threshold else "REFUTED"
+            else:
+                verdict = "CONFIRMED" if actual < threshold else "REFUTED"
             if baseline_value is not None and baseline_value != 0:
                 delta_pct = ((actual - baseline_value) / baseline_value) * 100.0
             else:
@@ -135,6 +144,7 @@ def test_hypotheses(hypotheses: list, actual_metrics: dict, baseline_metrics: di
                 "claim": h["claim"],
                 "mechanism": h["mechanism"],
                 "metric": metric,
+                "operator": operator,
                 "threshold": threshold,
                 "actual": actual,
                 "baseline_value": baseline_value,
@@ -279,9 +289,10 @@ def format_hypothesis_results(
         delta_str = ""
         if h["delta_vs_baseline_pct"] is not None:
             delta_str = f" (delta={h['delta_vs_baseline_pct']:+.1f}% vs baseline)"
+        op = h.get("operator", "<")
         lines.append(
             f"  H{h['id']} [{h['verdict']}]: "
-            f"EXPECT {h['metric']} < {h['threshold']:.1f}, "
+            f"EXPECT {h['metric']} {op} {h['threshold']:.1f}, "
             f"ACTUAL {actual_str}{delta_str}"
         )
         lines.append(f"    claim: {h['claim']}")

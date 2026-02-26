@@ -18,6 +18,9 @@
 # Each iteration: sample programs → LLM generates mutation → evaluate → update database
 max_iterations: 100
 
+# Hypothesis-driven evolution disabled by default (use config_experiment_treatment.yaml to enable)
+hypothesis_driven: false
+
 # Save checkpoint every N iterations for resumability
 # Checkpoints include full database state, best program, and evolution progress
 checkpoint_interval: 5
@@ -200,61 +203,6 @@ prompt:
     Note: Scores can exceed 1.0 after your modifications - argmax still works correctly.
 
     EVALUATION: Score = -0.5 * avg_e2e_ms - 0.5 * p95_e2e_ms (lower latency = higher score)
-
-    HYPOTHESIS REQUIREMENTS:
-    You MUST include at least 1 hypothesis (max 3) as Go comments at the TOP of the EVOLVE-BLOCK,
-    BEFORE any code.
-
-    Format (each hypothesis needs all 3 lines):
-      // HYPOTHESIS-N: <one-line claim about what will improve and why>
-      // MECHANISM-N: <causal explanation - what signal/behavior drives the improvement>
-      // EXPECT-N: <metric_name> < <threshold>
-
-    EVALUATION WORKLOADS (your code is tested on all 3, understand them to form hypotheses):
-
-    1. cache_warmup (rate=1000, 5000 reqs, 5s simulation):
-       Multiple distinct prefix groups of varying sizes, plus some no-prefix batch traffic.
-       All inputs are relatively short. Think about what happens when prefix-affinity
-       maps a small number of prefix groups to instances — does every instance stay busy?
-       HINT: When inputs are short, the cache savings may not justify routing imbalance.
-
-    2. load_spikes (rate=1000, 5000 reqs, 5s simulation):
-       One dominant prefix group generates a large fraction of traffic (bursty arrivals),
-       plus realtime traffic (no prefix, latency-sensitive) and another prefix group.
-       Think about what happens when prefix-affinity routes a dominant traffic pattern
-       to a single instance. How does the router avoid hot-spotting?
-       HINT: The baseline survives partly because its load-balance signal counteracts pile-on.
-
-    3. multiturn (rate=150, 1500 reqs, 10s simulation):
-       Multi-turn sessions with long prefixes (coding, chat, QA) across multiple rounds,
-       plus single-turn realtime traffic. Session inputs carry substantial prefix state.
-       Think about what happens when sessions bounce between instances — the KV cache
-       for long prefixes must be recomputed, which is expensive.
-       HINT: For long-prefix sessions, cache affinity is important for avoiding recomputation.
-
-    Available metrics for EXPECT (lower = better, use < operator):
-      - cache_warmup_e2e_ms: workload 1 above
-      - load_spikes_e2e_ms: workload 2 above
-      - multiturn_e2e_ms: workload 3 above
-      - avg_e2e_ms: average across all 3 workloads
-      - avg_p95_ms: average p95 tail latency across all 3 workloads
-
-    Hypothesis rules:
-      - Set thresholds based on baseline values shown in the HYPOTHESIS KNOWLEDGE BASE artifact
-      - Be specific: "helps latency" is too vague;
-        "reduces prefix_caching_e2e_ms by routing large-prefix requests to cache-warm instances" is good
-      - If a strategy was REFUTED in the knowledge base, explain why your new approach differs
-      - Build on CONFIRMED strategies; combine proven techniques
-      - If no knowledge base is shown yet (first iteration), set thresholds 5-10% below
-        the current metrics shown above
-
-    Example:
-    ```go
-    // HYPOTHESIS-1: Adjusting scorer weights by request characteristics reduces avg latency
-    // MECHANISM-1: Different request types benefit from different routing signals; adapting weights avoids one-size-fits-all
-    // EXPECT-1: avg_e2e_ms < 5000
-    // ... your code here ...
-    ```
 
   # Number of top-performing programs to show as examples to the LLM
   # 3 = show 3 best programs from database for inspiration

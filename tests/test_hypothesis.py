@@ -83,6 +83,41 @@ x = 1
         self.assertIn("First line", result[0]["mechanism"])
         self.assertIn("continuation", result[0]["mechanism"])
 
+    def test_parse_greater_than_operator(self):
+        code = """
+# HYPOTHESIS-1: Better search improves value_score
+# MECHANISM-1: Multi-start search covers more basins
+# EXPECT-1: value_score > 0.8
+"""
+        result = parse_hypotheses(code, valid_metrics={"value_score"})
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["operator"], ">")
+        self.assertAlmostEqual(result[0]["threshold"], 0.8)
+
+    def test_parse_less_than_operator_default(self):
+        code = """
+# HYPOTHESIS-1: Reduces latency
+# MECHANISM-1: Cache routing
+# EXPECT-1: avg_e2e_ms < 5000
+"""
+        result = parse_hypotheses(code, valid_metrics={"avg_e2e_ms"})
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["operator"], "<")
+
+    def test_parse_mixed_operators(self):
+        code = """
+# HYPOTHESIS-1: Reduces latency
+# MECHANISM-1: Cache routing
+# EXPECT-1: avg_e2e_ms < 5000
+# HYPOTHESIS-2: Improves accuracy
+# MECHANISM-2: Better search
+# EXPECT-2: accuracy > 0.95
+"""
+        result = parse_hypotheses(code, valid_metrics={"avg_e2e_ms", "accuracy"})
+        self.assertEqual(len(result), 2)
+        self.assertEqual(result[0]["operator"], "<")
+        self.assertEqual(result[1]["operator"], ">")
+
 
 class TestTestHypotheses(unittest.TestCase):
     """Test hypothesis verdict logic."""
@@ -106,6 +141,21 @@ class TestTestHypotheses(unittest.TestCase):
         hypotheses = [{"id": 1, "claim": "c", "mechanism": "m", "metric": "x", "threshold": 10.0}]
         results = test_hypotheses(hypotheses, {"x": 9.0}, {"x": 10.0})
         self.assertAlmostEqual(results[0]["delta_vs_baseline_pct"], -10.0)
+
+    def test_confirmed_greater_than(self):
+        hypotheses = [{"id": 1, "claim": "c", "mechanism": "m", "metric": "x", "operator": ">", "threshold": 0.8}]
+        results = test_hypotheses(hypotheses, {"x": 0.9}, {"x": 0.7})
+        self.assertEqual(results[0]["verdict"], "CONFIRMED")
+
+    def test_refuted_greater_than(self):
+        hypotheses = [{"id": 1, "claim": "c", "mechanism": "m", "metric": "x", "operator": ">", "threshold": 0.8}]
+        results = test_hypotheses(hypotheses, {"x": 0.5}, {"x": 0.7})
+        self.assertEqual(results[0]["verdict"], "REFUTED")
+
+    def test_operator_preserved_in_result(self):
+        hypotheses = [{"id": 1, "claim": "c", "mechanism": "m", "metric": "x", "operator": ">", "threshold": 0.8}]
+        results = test_hypotheses(hypotheses, {"x": 0.9}, {"x": 0.7})
+        self.assertEqual(results[0]["operator"], ">")
 
 
 class TestLedger(unittest.TestCase):
@@ -169,6 +219,51 @@ class TestConfigHypothesisDriven(unittest.TestCase):
         from openevolve.config import Config
         config = Config.from_dict({"hypothesis_driven": False})
         self.assertFalse(config.hypothesis_driven)
+
+
+class TestPromptInjection(unittest.TestCase):
+    """Test that hypothesis instructions are injected into prompts correctly."""
+
+    def test_hypothesis_driven_true_appends_template(self):
+        from openevolve.config import PromptConfig
+        from openevolve.prompt.sampler import PromptSampler
+        config = PromptConfig()
+        config.system_message = "You are a helpful assistant."
+        sampler = PromptSampler(config)
+        result = sampler.build_prompt(
+            current_program="x = 1",
+            hypothesis_driven=True,
+        )
+        self.assertIn("HYPOTHESIS-N", result["system"])
+        self.assertIn("MECHANISM-N", result["system"])
+        self.assertIn("EXPECT-N", result["system"])
+
+    def test_hypothesis_driven_false_no_template(self):
+        from openevolve.config import PromptConfig
+        from openevolve.prompt.sampler import PromptSampler
+        config = PromptConfig()
+        config.system_message = "You are a helpful assistant."
+        sampler = PromptSampler(config)
+        result = sampler.build_prompt(
+            current_program="x = 1",
+            hypothesis_driven=False,
+        )
+        self.assertNotIn("HYPOTHESIS-N", result["system"])
+
+    def test_hypothesis_driven_skips_if_already_present(self):
+        from openevolve.config import PromptConfig
+        from openevolve.prompt.sampler import PromptSampler
+        config = PromptConfig()
+        config.system_message = "You must write HYPOTHESIS comments."
+        sampler = PromptSampler(config)
+        result = sampler.build_prompt(
+            current_program="x = 1",
+            hypothesis_driven=True,
+        )
+        # Should not double-inject — the generic template has "HYPOTHESIS-N"
+        # but since config already contains "HYPOTHESIS", it should skip injection
+        count = result["system"].count("HYPOTHESIS-N")
+        self.assertEqual(count, 0)  # template NOT appended
 
 
 if __name__ == "__main__":

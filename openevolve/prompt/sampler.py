@@ -107,11 +107,17 @@ class PromptSampler:
             if system_message in self.template_manager.templates:
                 system_message = self.template_manager.get_template(system_message)
 
-        # Append hypothesis instructions if enabled
+        # Append hypothesis instructions if enabled AND not already present in config
         hypothesis_driven = kwargs.pop("hypothesis_driven", False)
         if hypothesis_driven:
-            from openevolve.prompt.templates import HYPOTHESIS_INSTRUCTIONS_TEMPLATE
-            system_message = system_message + HYPOTHESIS_INSTRUCTIONS_TEMPLATE
+            if "HYPOTHESIS" not in system_message.upper():
+                from openevolve.prompt.templates import HYPOTHESIS_INSTRUCTIONS_TEMPLATE
+                system_message = system_message + HYPOTHESIS_INSTRUCTIONS_TEMPLATE
+                logger.info("[HYPOTHESIS] Appended generic hypothesis template to system prompt")
+            else:
+                logger.info("[HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)")
+        else:
+            logger.debug("[HYPOTHESIS] hypothesis_driven=false, no hypothesis instructions in prompt")
 
         # Format metrics
         metrics_str = self._format_metrics(program_metrics)

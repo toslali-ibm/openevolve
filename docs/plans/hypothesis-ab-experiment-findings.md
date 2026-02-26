@@ -8,19 +8,29 @@
 
 ## Executive Summary
 
-The hypothesis-driven evolution treatment was successfully injected into the LLM system prompt, but **only Claude (Sonnet/Opus) consistently followed the structured hypothesis format**. Gemini Flash completely ignored the hypothesis instructions across all 6 runs (function_minimization + signal_processing). This makes the experiment primarily a test of **LLM instruction-following compliance** rather than a clean comparison of hypothesis-driven vs vanilla evolution.
+The hypothesis-driven evolution treatment was successfully injected into the LLM system prompt. **Claude (Sonnet/Opus) followed the structured hypothesis format in 100% of treatment runs.** Gemini Flash initially ignored the generic template (round 1), but after adding **few-shot examples with explicit format and "MANDATORY" language** (round 2), compliance jumped to **88% of evolved programs**. However, even with high compliance, performance differences between treatment and control were not statistically significant at n=3.
 
 ---
 
 ## 1. Hypothesis Compliance by LLM
 
-| Task | LLM | Treatment Runs with Hypotheses | Control Runs with Hypotheses | Expected |
-|------|-----|-------------------------------|------------------------------|----------|
-| blis_router | Claude Sonnet/Opus | **3/3 (100%)** | 1/3 (33%)* | 3/3 treatment, 0/3 control |
-| function_minimization | Gemini 2.5 Flash | **0/3 (0%)** | 0/3 (0%) | 3/3 treatment, 0/3 control |
-| signal_processing | Gemini 2.5 Flash | **0/3 (0%)** | 0/3 (0%) | 3/3 treatment, 0/3 control |
+### Round 1 (generic template only — no few-shot examples for Gemini tasks)
 
-*BLIS control seed=102 produced 3 hypotheses despite `hypothesis_driven=false`. This is because the BLIS config's existing `system_message` already contains hypothesis format examples (HYPOTHESIS REQUIREMENTS section was stripped from control config, but the LLM may have learned the pattern from training or previous context in the evolution loop).
+| Task | LLM | Treatment Compliance (best program) | Control Compliance | Notes |
+|------|-----|--------------------------------------|-------------------|-------|
+| blis_router | Claude Sonnet/Opus | **3/3 (100%)** | 1/3 (33%)* | System_message already had format examples |
+| function_minimization | Gemini 2.5 Flash | **0/3 (0%)** | 0/3 (0%) | Generic HYPOTHESIS_INSTRUCTIONS_TEMPLATE ignored |
+| signal_processing | Gemini 2.5 Flash | **0/3 (0%)** | 0/3 (0%) | Same — Gemini needs explicit examples |
+
+### Round 2 (few-shot examples added to function_minimization treatment config)
+
+| Task | LLM | Treatment Programs w/ Hypotheses | Control Programs w/ Hypotheses |
+|------|-----|----------------------------------|-------------------------------|
+| function_minimization | Gemini 2.5 Flash | **43/49 (88%)** | **0/52 (0%)** |
+
+Adding a concrete Python code example with `# HYPOTHESIS-1:` / `# MECHANISM-1:` / `# EXPECT-1:` format plus "MANDATORY" and "penalized" language brought Gemini compliance from 0% to 88%. The best program at each checkpoint still lacked hypotheses (it was the initial seed program in some cases), but the vast majority of evolved programs included them.
+
+*BLIS control seed=102 produced 3 hypotheses despite `hypothesis_driven=false` — the BLIS config's system_message contains workload descriptions that gave the LLM enough context to generate hypothesis-like structures from training.
 
 ### Hypothesis Detail (BLIS Treatment Runs)
 

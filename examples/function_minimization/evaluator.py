@@ -5,6 +5,7 @@ Evaluator for the function minimization example
 import importlib.util
 import json
 import logging
+import os
 import numpy as np
 import time
 import concurrent.futures
@@ -243,16 +244,29 @@ def evaluate(program_path):
                 source_code = f.read()
 
             hypotheses = parse_hypotheses(source_code, valid_metrics=VALID_METRICS)
+            logger.info("[HYPOTHESIS] Parsed %d hypotheses from evolved code", len(hypotheses))
+            for h in hypotheses:
+                logger.info("[HYPOTHESIS]   H%d: %s (EXPECT: %s < %s)", h["id"], h["claim"], h["metric"], h["threshold"])
 
             if hypotheses:
-                script_dir = Path(__file__).parent
-                baseline_path = script_dir / "baseline_metrics.json"
-                ledger_path = script_dir / "openevolve_output" / "hypothesis_ledger.json"
+                # Use run-specific output dir if available (set by controller),
+                # otherwise fall back to shared example directory.
+                run_output_dir = os.environ.get("OPENEVOLVE_OUTPUT_DIR")
+                if run_output_dir:
+                    artifact_dir = Path(run_output_dir)
+                else:
+                    artifact_dir = Path(__file__).parent / "openevolve_output"
+                artifact_dir.mkdir(parents=True, exist_ok=True)
+
+                baseline_path = artifact_dir / "baseline_metrics.json"
+                ledger_path = artifact_dir / "hypothesis_ledger.json"
+                logger.info("[HYPOTHESIS] Ledger path: %s", ledger_path)
 
                 # Load or compute baseline
                 if baseline_path.exists():
                     with open(baseline_path, "r") as f:
                         baseline_metrics = json.load(f)
+                    logger.info("[HYPOTHESIS] Loaded baseline from %s", baseline_path)
                 else:
                     # First run: current metrics become baseline
                     baseline_metrics = {
@@ -263,6 +277,7 @@ def evaluate(program_path):
                     }
                     with open(baseline_path, "w") as f:
                         json.dump(baseline_metrics, f, indent=2)
+                    logger.info("[HYPOTHESIS] Created baseline: %s", baseline_metrics)
 
                 actual_metrics = {
                     "value_score": value_score,
@@ -272,6 +287,8 @@ def evaluate(program_path):
                 }
 
                 h_results = test_hypotheses(hypotheses, actual_metrics, baseline_metrics)
+                for r in h_results:
+                    logger.info("[HYPOTHESIS]   H%d verdict=%s (actual=%s, threshold=%s)", r["id"], r["verdict"], r.get("actual"), r["threshold"])
                 baseline_score = baseline_metrics.get("combined_score", 0)
                 hypothesis_results_text = format_hypothesis_results(h_results, combined_score, baseline_score)
 
@@ -279,14 +296,20 @@ def evaluate(program_path):
                 if not ledger["baseline"] and baseline_metrics:
                     ledger["baseline"] = baseline_metrics
                 update_ledger(ledger, h_results, combined_score, ledger_path)
+                logger.info("[HYPOTHESIS] Updated ledger (%d total entries)", len(ledger.get("entries", [])))
                 knowledge_base_text = generate_knowledge_base_summary(ledger)
+                logger.info("[HYPOTHESIS] Knowledge base:\n%s", knowledge_base_text)
 
                 artifacts["hypothesis_results"] = hypothesis_results_text
                 artifacts["hypothesis_knowledge_base"] = knowledge_base_text
             else:
+                logger.info("[HYPOTHESIS] No hypotheses found in evolved code")
                 # Still show knowledge base even without hypotheses
-                script_dir = Path(__file__).parent
-                ledger_path = script_dir / "openevolve_output" / "hypothesis_ledger.json"
+                run_output_dir = os.environ.get("OPENEVOLVE_OUTPUT_DIR")
+                if run_output_dir:
+                    ledger_path = Path(run_output_dir) / "hypothesis_ledger.json"
+                else:
+                    ledger_path = Path(__file__).parent / "openevolve_output" / "hypothesis_ledger.json"
                 if ledger_path.exists():
                     ledger = load_ledger(ledger_path)
                     knowledge_base_text = generate_knowledge_base_summary(ledger)

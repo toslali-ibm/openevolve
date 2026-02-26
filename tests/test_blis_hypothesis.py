@@ -208,6 +208,7 @@ class TestTestHypotheses(unittest.TestCase):
             "claim",
             "mechanism",
             "metric",
+            "operator",
             "threshold",
             "actual",
             "baseline_value",
