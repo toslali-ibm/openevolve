@@ -14,28 +14,26 @@ def search_algorithm(iterations=1000, bounds=(-5, 5)):
     Returns:
         Tuple of (best_x, best_y, best_value)
     """
-    # Simulated Annealing with Local Search
-    curr_x = np.random.uniform(*bounds)
-    curr_y = np.random.uniform(*bounds)
-    curr_v = evaluate_function(curr_x, curr_y)
-    best_x, best_y, best_v = curr_x, curr_y, curr_v
-
+    # Multi-start Hill Climbing / Simulated Annealing hybrid
+    best_x, best_y = np.random.uniform(*bounds, 2)
+    best_value = evaluate_function(best_x, best_y)
+    
+    # Use 20% of budget for global sampling, 80% for refinement
     for i in range(iterations):
-        temp = 1 - i / iterations
-        # Mix global jumps with local refinement
-        if i % 10 == 0:
-            nx, ny = np.random.uniform(*bounds, 2)
-        else:
-            nx = np.clip(curr_x + np.random.normal(0, temp * 2), *bounds)
-            ny = np.clip(curr_y + np.random.normal(0, temp * 2), *bounds)
-        
-        nv = evaluate_function(nx, ny)
-        if nv < curr_v or np.random.rand() < np.exp((curr_v - nv) / (temp + 1e-9)):
-            curr_x, curr_y, curr_v = nx, ny, nv
-            if nv < best_v:
-                best_x, best_y, best_v = nx, ny, nv
+        temp = 1.0 - (i / iterations)
+        if i % 10 == 0: # Global jump
+            x, y = np.random.uniform(*bounds, 2)
+        else: # Local perturbation
+            scale = (bounds[1] - bounds[0]) * 0.1 * temp
+            x = np.clip(best_x + np.random.normal(0, scale), *bounds)
+            y = np.clip(best_y + np.random.normal(0, scale), *bounds)
+            
+        value = evaluate_function(x, y)
+        # Probabilistic acceptance to escape local minima
+        if value < best_value or np.random.rand() < np.exp((best_value - value) / (temp + 1e-9)):
+            best_x, best_y, best_value = x, y, value
 
-    return best_x, best_y, best_v
+    return best_x, best_y, best_value
 
 
 # EVOLVE-BLOCK-END

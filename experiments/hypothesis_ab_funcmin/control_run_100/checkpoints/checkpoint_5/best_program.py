@@ -14,30 +14,31 @@ def search_algorithm(iterations=1000, bounds=(-5, 5)):
     Returns:
         Tuple of (best_x, best_y, best_value)
     """
-    # Initialize with a random point
-    best_x = np.random.uniform(bounds[0], bounds[1])
-    best_y = np.random.uniform(bounds[0], bounds[1])
-    best_value = evaluate_function(best_x, best_y)
+    # Simulated Annealing with Local Refinement
+    curr_x = np.random.uniform(*bounds)
+    curr_y = np.random.uniform(*bounds)
+    curr_val = evaluate_function(curr_x, curr_y)
+    best_x, best_y, best_value = curr_x, curr_y, curr_val
 
-    curr_x, curr_y = best_x, best_y
     for i in range(iterations):
-        # Simulated Annealing: reduce step size over time
-        temp = 1 - (i / iterations)
-        step = (bounds[1] - bounds[0]) * 0.1 * temp
+        temp = 1.0 - (i / iterations)
+        # Scale step size with temperature
+        step = (bounds[1] - bounds[0]) * 0.1 * temp + 0.01
         
-        # Mix global exploration and local exploitation
-        if np.random.rand() < 0.1:
-            x, y = np.random.uniform(*bounds, 2)
-        else:
+        # Candidate point: mix of local perturbation and global reset
+        if np.random.rand() > 0.1:
             x = np.clip(curr_x + np.random.normal(0, step), *bounds)
             y = np.clip(curr_y + np.random.normal(0, step), *bounds)
+        else:
+            x, y = np.random.uniform(*bounds, 2)
             
-        value = evaluate_function(x, y)
-        # Acceptance probability
-        if value < best_value or np.random.rand() < np.exp((best_value - value) / (temp + 1e-9)):
-            curr_x, curr_y = x, y
-            if value < best_value:
-                best_x, best_y, best_value = x, y, value
+        val = evaluate_function(x, y)
+        
+        # Acceptance criteria (Metropolis-Hastings)
+        if val < curr_val or np.random.rand() < np.exp((curr_val - val) / (temp + 1e-9)):
+            curr_x, curr_y, curr_val = x, y, val
+            if val < best_value:
+                best_x, best_y, best_value = x, y, val
 
     return best_x, best_y, best_value
 

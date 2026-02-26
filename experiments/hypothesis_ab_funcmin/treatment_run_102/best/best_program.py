@@ -5,37 +5,46 @@ import numpy as np
 
 def search_algorithm(iterations=1000, bounds=(-5, 5)):
     """
-    A simple random search algorithm that often gets stuck in local minima.
-
-    Args:
-        iterations: Number of iterations to run
-        bounds: Bounds for the search space (min, max)
-
-    Returns:
-        Tuple of (best_x, best_y, best_value)
+    Hybrid Particle Swarm and Simulated Annealing with adaptive cooling.
     """
-    # Simulated Annealing with Local Search
-    curr_x = np.random.uniform(*bounds)
-    curr_y = np.random.uniform(*bounds)
-    curr_v = evaluate_function(curr_x, curr_y)
-    best_x, best_y, best_v = curr_x, curr_y, curr_v
-
+    low, high = bounds
+    num_particles = 5
+    # Initialize particles
+    particles = [np.random.uniform(low, high, 2) for _ in range(num_particles)]
+    p_best = [p.copy() for p in particles]
+    p_best_v = [evaluate_function(p[0], p[1]) for p in particles]
+    
+    idx = np.argmin(p_best_v)
+    gx, gy, gv = p_best[idx][0], p_best[idx][1], p_best_v[idx]
+    
     for i in range(iterations):
-        temp = 1 - i / iterations
-        # Mix global jumps with local refinement
-        if i % 10 == 0:
-            nx, ny = np.random.uniform(*bounds, 2)
-        else:
-            nx = np.clip(curr_x + np.random.normal(0, temp * 2), *bounds)
-            ny = np.clip(curr_y + np.random.normal(0, temp * 2), *bounds)
+        # Adaptive temperature: slower decay at start
+        temp = 1.0 / (1 + np.log(1 + i))
         
-        nv = evaluate_function(nx, ny)
-        if nv < curr_v or np.random.rand() < np.exp((curr_v - nv) / (temp + 1e-9)):
-            curr_x, curr_y, curr_v = nx, ny, nv
-            if nv < best_v:
-                best_x, best_y, best_v = nx, ny, nv
-
-    return best_x, best_y, best_v
+        for j in range(num_particles):
+            # Dynamic scale: global exploration early, local exploitation late
+            scale = 1.5 * (1 - i/iterations)**2
+            dx, dy = np.random.normal(0, scale, 2)
+            
+            # Particle move with momentum towards global best
+            nx = np.clip(particles[j][0] + dx + 0.1*(gx - particles[j][0]), low, high)
+            ny = np.clip(particles[j][1] + dy + 0.1*(gy - particles[j][1]), low, high)
+            nv = evaluate_function(nx, ny)
+            
+            # SA-style acceptance
+            if nv < p_best_v[j] or np.random.rand() < np.exp((p_best_v[j] - nv) / (temp + 1e-9)):
+                particles[j] = [nx, ny]
+                if nv < p_best_v[j]:
+                    p_best_v[j], p_best[j] = nv, [nx, ny]
+                    if nv < gv:
+                        gx, gy, gv = nx, ny, nv
+        
+        # Occasional chaotic jump for the worst particle
+        if i % 50 == 0:
+            w_idx = np.argmax(p_best_v)
+            particles[w_idx] = np.random.uniform(low, high, 2)
+            
+    return gx, gy, gv
 
 
 # EVOLVE-BLOCK-END

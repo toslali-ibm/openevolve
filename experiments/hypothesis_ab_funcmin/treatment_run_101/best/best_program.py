@@ -14,33 +14,36 @@ def search_algorithm(iterations=1000, bounds=(-5, 5)):
     Returns:
         Tuple of (best_x, best_y, best_value)
     """
-    # Multi-scale Random Search with Shrinking Radius
-    best_x, best_y = np.random.uniform(*bounds, 2)
-    best_v = evaluate_function(best_x, best_y)
+    # Multi-start Hill Climbing / Simulated Annealing hybrid with proper state management
+    current_x, current_y = np.random.uniform(*bounds, 2)
+    current_value = evaluate_function(current_x, current_y)
     
+    best_x, best_y, best_value = current_x, current_y, current_value # Initialize global best
+    
+    # Use 20% of budget for global sampling, 80% for refinement
     for i in range(iterations):
-        # Progress from 1.0 down to 0.0
-        ratio = i / iterations
-        # Adaptive step size: starts large, becomes very small
-        sigma = 3.0 * (1 - ratio)**2 + 0.01
+        temp = 1.0 - (i / iterations)
         
-        # Candidate 1: Local search around current best
-        x1 = np.clip(best_x + np.random.normal(0, sigma), *bounds)
-        y1 = np.clip(best_y + np.random.normal(0, sigma), *bounds)
-        
-        # Candidate 2: Global exploration or wide-area search
-        if i % 5 == 0:
-            x2, y2 = np.random.uniform(*bounds, 2)
-        else:
-            x2 = np.clip(best_x + np.random.standard_cauchy() * sigma, *bounds)
-            y2 = np.clip(best_y + np.random.standard_cauchy() * sigma, *bounds)
+        # Candidate point generation
+        if i % 10 == 0: # Global jump
+            candidate_x, candidate_y = np.random.uniform(*bounds, 2)
+        else: # Local perturbation around current_x, current_y
+            # Increased scale factor from 0.1 to 0.2 for better initial exploration (H2)
+            scale = (bounds[1] - bounds[0]) * 0.2 * temp 
+            candidate_x = np.clip(current_x + np.random.normal(0, scale), *bounds)
+            candidate_y = np.clip(current_y + np.random.normal(0, scale), *bounds)
             
-        for nx, ny in [(x1, y1), (x2, y2)]:
-            nv = evaluate_function(nx, ny)
-            if nv < best_v:
-                best_x, best_y, best_v = nx, ny, nv
+        candidate_value = evaluate_function(candidate_x, candidate_y)
+        
+        # Acceptance criterion for current state (H1)
+        if candidate_value < current_value or np.random.rand() < np.exp((current_value - candidate_value) / (temp + 1e-9)):
+            current_x, current_y, current_value = candidate_x, candidate_y, candidate_value
+            
+            # Update global best if current state is better
+            if current_value < best_value:
+                best_x, best_y, best_value = current_x, current_y, current_value
 
-    return best_x, best_y, best_v
+    return best_x, best_y, best_value
 
 
 # EVOLVE-BLOCK-END

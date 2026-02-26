@@ -6,11 +6,11 @@
     "convergence": [
       {
         "iteration": 10,
-        "best_combined_score": 1.4990601475658307
+        "best_combined_score": 1.4828881924142594
       },
       {
         "iteration": 5,
-        "best_combined_score": 1.4990601475658307
+        "best_combined_score": 1.4828881924142594
       }
     ]
   },
@@ -21,11 +21,11 @@
     "convergence": [
       {
         "iteration": 10,
-        "best_combined_score": 1.4992103364364944
+        "best_combined_score": 1.4583893024834764
       },
       {
         "iteration": 5,
-        "best_combined_score": 1.4831591667140667
+        "best_combined_score": 1.242305086460021
       }
     ]
   },
@@ -36,11 +36,11 @@
     "convergence": [
       {
         "iteration": 10,
-        "best_combined_score": 1.4919310082588737
+        "best_combined_score": 1.4994787726439538
       },
       {
         "iteration": 5,
-        "best_combined_score": 1.4919310082588737
+        "best_combined_score": 1.290908262824714
       }
     ]
   },
@@ -51,11 +51,11 @@
     "convergence": [
       {
         "iteration": 10,
-        "best_combined_score": 1.4873687921189425
+        "best_combined_score": 1.4739820746540118
       },
       {
         "iteration": 5,
-        "best_combined_score": 1.4685760128051366
+        "best_combined_score": 1.4739820746540118
       }
     ]
   },
@@ -66,11 +66,11 @@
     "convergence": [
       {
         "iteration": 10,
-        "best_combined_score": 1.4973754696488906
+        "best_combined_score": 1.4795484235876706
       },
       {
         "iteration": 5,
-        "best_combined_score": 1.4515827630830054
+        "best_combined_score": 1.4795484235876706
       }
     ]
   },
@@ -81,11 +81,11 @@
     "convergence": [
       {
         "iteration": 10,
-        "best_combined_score": 1.484531263523524
+        "best_combined_score": 1.4862490742324383
       },
       {
         "iteration": 5,
-        "best_combined_score": 1.484531263523524
+        "best_combined_score": 1.4779253569293447
       }
     ]
   }

@@ -21,21 +21,21 @@ def search_algorithm(iterations=1000, bounds=(-5, 5)):
     best_x, best_y, best_value = curr_x, curr_y, curr_val
 
     for i in range(iterations):
-        temp = (1.0 - i / iterations) ** 2
-        step = 2.0 * temp + 0.02
+        temp = 1.0 - (i / iterations)
+        # Scale step size with temperature
+        step = (bounds[1] - bounds[0]) * 0.1 * temp + 0.01
         
-        # Mix of local search, medium jumps, and global resets
-        r = np.random.rand()
-        if r > 0.15:
-            x, y = np.clip([curr_x, curr_y] + np.random.normal(0, step, 2), *bounds)
-        elif r > 0.05:
-            x, y = np.clip([best_x, best_y] + np.random.uniform(-1, 1, 2), *bounds)
+        # Candidate point: mix of local perturbation and global reset
+        if np.random.rand() > 0.1:
+            x = np.clip(curr_x + np.random.normal(0, step), *bounds)
+            y = np.clip(curr_y + np.random.normal(0, step), *bounds)
         else:
             x, y = np.random.uniform(*bounds, 2)
             
         val = evaluate_function(x, y)
         
-        if val < curr_val or np.random.rand() < np.exp((curr_val - val) / (temp + 1e-7)):
+        # Acceptance criteria (Metropolis-Hastings)
+        if val < curr_val or np.random.rand() < np.exp((curr_val - val) / (temp + 1e-9)):
             curr_x, curr_y, curr_val = x, y, val
             if val < best_value:
                 best_x, best_y, best_value = x, y, val

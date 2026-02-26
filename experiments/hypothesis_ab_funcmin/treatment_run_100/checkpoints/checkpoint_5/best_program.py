@@ -5,37 +5,41 @@ import numpy as np
 
 def search_algorithm(iterations=1000, bounds=(-5, 5)):
     """
-    A simple random search algorithm that often gets stuck in local minima.
-
-    Args:
-        iterations: Number of iterations to run
-        bounds: Bounds for the search space (min, max)
-
-    Returns:
-        Tuple of (best_x, best_y, best_value)
+    An improved search algorithm using simulated annealing and local refinement.
     """
-    # Multi-start Hill Climbing with Simulated Annealing characteristics
-    best_x, best_y = np.random.uniform(bounds[0], bounds[1], 2)
-    best_value = evaluate_function(best_x, best_y)
+    low, high = bounds
+    # Initial state
+    curr_x = np.random.uniform(low, high)
+    curr_y = np.random.uniform(low, high)
+    curr_v = evaluate_function(curr_x, curr_y)
     
-    # Use 20% of iterations for global exploration, 80% for refinement
-    for i in range(iterations):
-        temp = 1.0 - (i / iterations) # Linear cooling schedule
-        
-        if i < iterations * 0.2:
-            # Global exploration phase
-            x, y = np.random.uniform(bounds[0], bounds[1], 2)
-        else:
-            # Local refinement phase (Gaussian mutation)
-            scale = (bounds[1] - bounds[0]) * 0.1 * temp
-            x = np.clip(best_x + np.random.normal(0, scale), bounds[0], bounds[1])
-            y = np.clip(best_y + np.random.normal(0, scale), bounds[0], bounds[1])
-            
-        value = evaluate_function(x, y)
-        if value < best_value:
-            best_value, best_x, best_y = value, x, y
+    best_x, best_y, best_v = curr_x, curr_y, curr_v
 
-    return best_x, best_y, best_value
+    for i in range(iterations):
+        # Temperature schedule decreases linearly
+        temp = 1.0 * (1 - i / iterations)
+        
+        # Mix global jumps with local refinement
+        if i % 15 == 0:
+            # Global jump to explore new basins
+            nx = np.random.uniform(low, high)
+            ny = np.random.uniform(low, high)
+        else:
+            # Local Gaussian perturbation scaled by temperature for fine-tuning
+            scale = (high - low) * 0.1 * (temp + 0.01)
+            nx = np.clip(curr_x + np.random.normal(0, scale), low, high)
+            ny = np.clip(curr_y + np.random.normal(0, scale), low, high)
+            
+        nv = evaluate_function(nx, ny)
+        
+        # Metropolis criterion: always accept better, occasionally accept worse
+        if nv < curr_v or (temp > 0 and np.random.rand() < np.exp((curr_v - nv) / (temp * 0.5 + 1e-6))):
+            curr_x, curr_y, curr_v = nx, ny, nv
+            
+            if curr_v < best_v:
+                best_x, best_y, best_v = curr_x, curr_y, curr_v
+
+    return best_x, best_y, best_v
 
 
 # EVOLVE-BLOCK-END
