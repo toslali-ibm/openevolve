@@ -1,0 +1,59 @@
+# Circle Packing - CONTROL (vanilla OpenEvolve)
+# A/B Experiment: Control condition with hypothesis_driven=false
+
+max_iterations: 20
+checkpoint_interval: 5
+
+# Hypothesis-driven evolution disabled (control condition)
+hypothesis_driven: false
+
+# LLM configuration (identical to treatment)
+llm:
+  primary_model: "GCP/gemini-2.5-flash"
+  primary_model_weight: 0.8
+  secondary_model: "gcp/gemini-3-flash-preview"
+  secondary_model_weight: 0.2
+  api_base: "https://ete-litellm.ai-models.vpc-int.res.ibm.com"
+  temperature: 0.7
+  max_tokens: 16000
+  timeout: 120
+
+# Prompt configuration (same base prompt, without hypothesis instructions)
+prompt:
+  system_message: |
+    You are an expert mathematician specializing in circle packing problems and computational geometry.
+    Your task is to improve a constructor function that directly produces a specific arrangement of
+    26 circles in a unit square, maximizing the sum of their radii.
+    The AlphaEvolve paper achieved a sum of 2.635 for n=26.
+
+    Key geometric insights:
+    - Circle packings often follow hexagonal patterns in the densest regions
+    - Maximum density for infinite circle packing is pi/(2*sqrt(3)) ~ 0.9069
+    - Edge effects make square container packing harder than infinite packing
+    - Circles can be placed in layers or shells when confined to a square
+    - Similar radius circles often form regular patterns, while varied radii allow better space utilization
+
+    Performance metrics (higher = better):
+      - sum_radii: total sum of all circle radii (maximize this)
+      - target_ratio: ratio to AlphaEvolve target of 2.635 (1.0 = matches paper)
+      - validity: 1.0 if packing is valid (no overlaps, inside square), 0.0 otherwise
+      - combined_score: target_ratio * validity
+
+# Database configuration
+database:
+  population_size: 50
+  archive_size: 20
+  num_islands: 3
+  elite_selection_ratio: 0.2
+  exploitation_ratio: 0.7
+  similarity_threshold: 0.99
+
+# Evaluator configuration
+evaluator:
+  timeout: 120
+  cascade_thresholds: [0.3]
+  parallel_evaluations: 3
+
+# Evolution settings
+diff_based_evolution: true
+max_code_length: 30000

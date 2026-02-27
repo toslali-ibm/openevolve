@@ -1,15 +1,22 @@
 #!/usr/bin/env python3
 """
-Run A/B experiment: hypothesis-driven vs vanilla OpenEvolve.
+Run 2x2 factorial experiment: hypothesis (off/on) x evolution mode (diff/full-rewrite).
 
 Usage:
-    python scripts/run_experiment.py \
-        --task blis_router \
-        --condition both \
+    python scripts/run_factorial_experiment.py \
+        --task function_minimization \
+        --condition all \
         --runs 3 \
-        --seed-start 100 \
-        --iterations 10 \
-        --output-dir experiments/hypothesis_ab_blis
+        --seed-start 200 \
+        --iterations 20 \
+        --parallel \
+        --output-dir experiments/factorial_ab_funcmin
+
+Conditions:
+    control_diff      — hypothesis=off, diff-based evolution
+    treatment_diff    — hypothesis=on,  diff-based evolution
+    control_full      — hypothesis=off, full-rewrite evolution
+    treatment_full    — hypothesis=on,  full-rewrite evolution
 
 Each run gets an isolated output directory and random seed.
 After all runs complete, convergence data is collected into a CSV.
@@ -23,29 +30,37 @@ import sys
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 
+ALL_CONDITIONS = ["control_diff", "treatment_diff", "control_full", "treatment_full"]
+
 TASK_CONFIGS = {
-    "blis_router": {
-        "initial_program": "examples/blis_router/initial_program.py",
-        "evaluator": "examples/blis_router/evaluator.py",
-        "treatment_config": "examples/blis_router/config_experiment_treatment.yaml",
-        "control_config": "examples/blis_router/config_experiment_control.yaml",
-    },
     "function_minimization": {
         "initial_program": "examples/function_minimization/initial_program.py",
         "evaluator": "examples/function_minimization/evaluator.py",
-        "treatment_config": "examples/function_minimization/config_experiment_treatment.yaml",
-        "control_config": "examples/function_minimization/config_experiment_control.yaml",
+        "control_diff_config": "examples/function_minimization/config_factorial_control_diff.yaml",
+        "treatment_diff_config": "examples/function_minimization/config_factorial_treatment_diff.yaml",
+        "control_full_config": "examples/function_minimization/config_factorial_control_full.yaml",
+        "treatment_full_config": "examples/function_minimization/config_factorial_treatment_full.yaml",
     },
     "circle_packing": {
         "initial_program": "examples/circle_packing/initial_program.py",
         "evaluator": "examples/circle_packing/evaluator.py",
-        "treatment_config": "examples/circle_packing/config_experiment_treatment.yaml",
-        "control_config": "examples/circle_packing/config_experiment_control.yaml",
+        "control_diff_config": "examples/circle_packing/config_factorial_control_diff.yaml",
+        "treatment_diff_config": "examples/circle_packing/config_factorial_treatment_diff.yaml",
+        "control_full_config": "examples/circle_packing/config_factorial_control_full.yaml",
+        "treatment_full_config": "examples/circle_packing/config_factorial_treatment_full.yaml",
+    },
+    "kissing_number": {
+        "initial_program": "examples/alphaevolve_math_problems/kissing_number/initial_program.py",
+        "evaluator": "examples/alphaevolve_math_problems/kissing_number/evaluator.py",
+        "control_diff_config": "examples/alphaevolve_math_problems/kissing_number/config_factorial_control_diff.yaml",
+        "treatment_diff_config": "examples/alphaevolve_math_problems/kissing_number/config_factorial_treatment_diff.yaml",
+        "control_full_config": "examples/alphaevolve_math_problems/kissing_number/config_factorial_control_full.yaml",
+        "treatment_full_config": "examples/alphaevolve_math_problems/kissing_number/config_factorial_treatment_full.yaml",
     },
 }
 
 
-def run_single(task: str, condition: str, seed: int, output_dir: Path, iterations: int = 10) -> dict:
+def run_single(task: str, condition: str, seed: int, output_dir: Path, iterations: int = 20) -> dict:
     """Run a single OpenEvolve experiment and return convergence data."""
     task_info = TASK_CONFIGS[task]
     config_path = task_info[f"{condition}_config"]
@@ -62,15 +77,12 @@ def run_single(task: str, condition: str, seed: int, output_dir: Path, iteration
         "--output", str(run_dir),
     ]
 
-    # Pass run-specific output dir to child process so evaluators write
-    # hypothesis ledger / baseline metrics in isolation (not shared path).
     env = os.environ.copy()
     env["OPENEVOLVE_OUTPUT_DIR"] = str(run_dir)
 
     print(f"\nStarting {condition} run seed={seed} ({iterations} iters) -> {run_dir}")
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=3600, env=env)
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=7200, env=env)
 
-    # Save stdout/stderr for debugging regardless of outcome
     (run_dir / "experiment_stdout.txt").write_text(result.stdout)
     (run_dir / "experiment_stderr.txt").write_text(result.stderr)
 
@@ -78,12 +90,19 @@ def run_single(task: str, condition: str, seed: int, output_dir: Path, iteration
         print(f"  FAILED (exit {result.returncode}): {result.stderr[:500]}")
         return {"seed": seed, "condition": condition, "status": "failed", "error": result.stderr[:500]}
 
-    # Collect convergence data from checkpoints
     convergence = collect_convergence(run_dir)
     ledger_info = check_hypothesis_stats(run_dir)
+    diff_failures = count_diff_failures(run_dir)
 
-    print(f"  OK: {len(convergence)} checkpoints, {ledger_info}")
-    return {"seed": seed, "condition": condition, "status": "ok", "convergence": convergence, "hypothesis": ledger_info}
+    print(f"  OK: {len(convergence)} checkpoints, diff_failures={diff_failures}, {ledger_info}")
+    return {
+        "seed": seed,
+        "condition": condition,
+        "status": "ok",
+        "convergence": convergence,
+        "hypothesis": ledger_info,
+        "diff_failures": diff_failures,
+    }
 
 
 def collect_convergence(run_dir: Path) -> list:
@@ -96,12 +115,11 @@ def collect_convergence(run_dir: Path) -> list:
     for cp_dir in sorted(checkpoints_dir.iterdir()):
         if not cp_dir.is_dir():
             continue
-        # OpenEvolve saves best_program_info.json with metrics nested under "metrics"
         info_file = cp_dir / "best_program_info.json"
         if info_file.exists():
             with open(info_file) as f:
                 info = json.load(f)
-            metrics = info.get("metrics", info)  # fallback to top-level if no nested metrics
+            metrics = info.get("metrics", info)
             iteration = int(cp_dir.name.split("_")[-1]) if "_" in cp_dir.name else 0
             points.append({
                 "iteration": iteration,
@@ -124,7 +142,6 @@ def check_hypothesis_stats(run_dir: Path) -> dict:
         "best_program_has_hypotheses": False,
     }
 
-    # Check ledger
     ledger_path = run_dir / "hypothesis_ledger.json"
     if ledger_path.exists():
         stats["ledger_exists"] = True
@@ -146,7 +163,6 @@ def check_hypothesis_stats(run_dir: Path) -> dict:
         except (json.JSONDecodeError, KeyError):
             pass
 
-    # Check programs in checkpoints for hypothesis comments
     for checkpoint_dir in sorted((run_dir / "checkpoints").glob("checkpoint_*")):
         programs_dir = checkpoint_dir / "programs"
         if not programs_dir.exists():
@@ -161,15 +177,7 @@ def check_hypothesis_stats(run_dir: Path) -> dict:
             except (json.JSONDecodeError, KeyError):
                 pass
 
-    # Check if best program has hypotheses
     best_prog_path = run_dir / "best" / "best_program.py"
-    if not best_prog_path.exists():
-        # Try other extensions
-        for ext in [".go", ".r", ".rs"]:
-            alt = run_dir / "best" / f"best_program{ext}"
-            if alt.exists():
-                best_prog_path = alt
-                break
     if best_prog_path.exists():
         try:
             code = best_prog_path.read_text()
@@ -178,6 +186,30 @@ def check_hypothesis_stats(run_dir: Path) -> dict:
             pass
 
     return stats
+
+
+def count_diff_failures(run_dir: Path) -> int:
+    """Count diff parsing failures from stderr/logs."""
+    count = 0
+    for log_file in [run_dir / "experiment_stderr.txt"]:
+        if log_file.exists():
+            try:
+                text = log_file.read_text()
+                count += text.count("No valid diffs found")
+                count += text.count("No valid code found")
+            except OSError:
+                pass
+    # Also check log files in the logs directory
+    logs_dir = run_dir / "logs"
+    if logs_dir.exists():
+        for log_file in logs_dir.glob("*.log"):
+            try:
+                text = log_file.read_text()
+                count += text.count("No valid diffs found")
+                count += text.count("No valid code found")
+            except OSError:
+                pass
+    return count
 
 
 def write_csv(results: list, output_path: Path):
@@ -207,22 +239,25 @@ def write_csv(results: list, output_path: Path):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run hypothesis A/B experiment")
+    parser = argparse.ArgumentParser(description="Run 2x2 factorial hypothesis experiment")
     parser.add_argument("--task", required=True, choices=list(TASK_CONFIGS.keys()))
-    parser.add_argument("--condition", required=True, choices=["treatment", "control", "both"])
+    parser.add_argument(
+        "--condition", required=True,
+        choices=ALL_CONDITIONS + ["all"],
+        help="Which condition(s) to run. 'all' runs all 4.",
+    )
     parser.add_argument("--runs", type=int, default=3)
-    parser.add_argument("--seed-start", type=int, default=100)
-    parser.add_argument("--iterations", type=int, default=10, help="Iterations per run")
+    parser.add_argument("--seed-start", type=int, default=200)
+    parser.add_argument("--iterations", type=int, default=20, help="Iterations per run")
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--parallel", action="store_true", help="Run all conditions/seeds in parallel")
     args = parser.parse_args()
 
     output_dir = Path(args.output_dir)
-    conditions = ["treatment", "control"] if args.condition == "both" else [args.condition]
+    conditions = ALL_CONDITIONS if args.condition == "all" else [args.condition]
 
     total_runs = len(conditions) * args.runs
 
-    # Build list of (task, condition, seed) jobs
     jobs = []
     for condition in conditions:
         for i in range(args.runs):
@@ -268,7 +303,7 @@ def main():
 
     # Print summary
     print(f"\n{'='*70}")
-    print(f"EXPERIMENT COMPLETE: {args.task}")
+    print(f"FACTORIAL EXPERIMENT COMPLETE: {args.task}")
     print(f"{'='*70}")
     for condition in conditions:
         cond_results = [r for r in results if r["condition"] == condition]
@@ -282,17 +317,19 @@ def main():
                 progs = h.get("programs_with_hypotheses", 0)
                 total = h.get("total_evolved_programs", 0)
                 pct = f"{100*progs/total:.0f}%" if total > 0 else "N/A"
-                print(f"    seed={r['seed']}: {cp} checkpoints")
+                diff_fail = r.get("diff_failures", 0)
+                print(f"    seed={r['seed']}: {cp} checkpoints, diff_failures={diff_fail}")
                 print(f"      Hypothesis compliance: {progs}/{total} programs ({pct})")
                 print(f"      Ledger: {h.get('ledger_entries', 0)} entries | "
                       f"confirmed={h.get('confirmed', 0)} refuted={h.get('refuted', 0)} "
                       f"inconclusive={h.get('inconclusive', 0)}")
-                print(f"      Best program has hypotheses: {h.get('best_program_has_hypotheses', False)}")
             else:
                 print(f"    seed={r['seed']}: FAILED")
 
     print(f"\nResults in {output_dir}")
-    print(f"Run: python scripts/analyze_experiment.py --data {csv_path} --output {output_dir / 'plots'}")
+    print(f"Run: python scripts/analyze_factorial_experiment.py "
+          f"--data {csv_path} --results {output_dir / 'run_results.json'} "
+          f"--output {output_dir / 'plots'}")
 
 
 if __name__ == "__main__":

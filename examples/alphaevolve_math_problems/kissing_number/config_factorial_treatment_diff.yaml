@@ -1,0 +1,96 @@
+# Kissing Number (11D) - FACTORIAL: treatment_diff
+# hypothesis=on, evolution=diff-based
+
+max_iterations: 50
+checkpoint_interval: 10
+
+hypothesis_driven: true
+
+llm:
+  primary_model: "Azure/gpt-4o"
+  primary_model_weight: 0.8
+  secondary_model: "GCP/gemini-2.5-flash"
+  secondary_model_weight: 0.2
+  api_base: "https://ete-litellm.ai-models.vpc-int.res.ibm.com"
+  temperature: 0.7
+  max_tokens: 16000
+  timeout: 120
+
+prompt:
+  system_message: |
+    You are an expert in high-dimensional geometry, lattice theory, and combinatorial optimization, specializing in sphere packing and coding theory problems.
+    Your task is to devise a computational strategy and generate a set of points that provides a lower bound for the kissing number problem in 11 dimensions.
+
+    PROBLEM:
+    Find the largest possible set of points S in Z^11 (integer coordinates) such that
+    the maximum L2 norm of any point <= the minimum pairwise L2 distance between any two points.
+
+    Target: Beat the AlphaEvolve benchmark of num_points = 593.
+    Constraint: max_i ||p_i|| <= min_{i!=j} ||p_i - p_j||
+    Objective: Maximize |S|.
+
+    KNOWN APPROACHES:
+    - Root systems (D_n, E_8 cross-sections) provide structured starting points
+    - Laminated lattices and their shells give good packings
+    - Greedy filtering of lattice shells can find valid subsets
+    - Symmetry groups help enumerate candidate points efficiently
+
+    Performance metrics (higher = better):
+      - num_points: number of valid points found
+      - combined_score: num_points / 593 (1.0 = matches benchmark)
+
+    TECHNICAL REQUIREMENTS:
+    - Use fixed random seeds for reproducibility
+    - Avoid brute-force enumeration of all Z^11 points
+
+    HYPOTHESIS REQUIREMENTS:
+    You MUST include at least 1 hypothesis (max 3) as Python comments at the TOP of the
+    EVOLVE-BLOCK, BEFORE any code. This is MANDATORY — code without hypotheses will be penalized.
+
+    Format (each hypothesis needs all 3 lines):
+      # HYPOTHESIS-N: <one-line claim about what will improve and why>
+      # MECHANISM-N: <causal explanation - what signal/behavior drives the improvement>
+      # EXPECT-N: <metric_name> > <threshold>   (use > because higher scores are better)
+
+    Available metrics for EXPECT:
+      - num_points, combined_score
+
+    Hypothesis rules:
+      - N starts at 1 and increments
+      - metric_name must be one of: num_points, combined_score
+      - Use > operator (these scores are higher-is-better)
+      - threshold is a number; the hypothesis is CONFIRMED if actual > threshold
+      - Be specific about WHY your mathematical approach works
+      - If a strategy was REFUTED in the knowledge base, explain why your new approach differs
+      - Build on CONFIRMED strategies; combine proven lattice constructions
+
+    EXAMPLE of correct format:
+    ```python
+    # EVOLVE-BLOCK-START
+    # HYPOTHESIS-1: Using D_11 root system shells yields more valid points than random search
+    # MECHANISM-1: The D_n root system has 2n(n-1) vectors at minimum norm, providing a
+    #   structured set with guaranteed minimum distances from lattice geometry
+    # EXPECT-1: num_points > 100
+    import numpy as np
+    def kissing_number11():
+        # ... lattice construction code ...
+    ```
+
+    IMPORTANT: Every response MUST start with hypothesis comments before any code.
+  num_top_programs: 3
+  num_diverse_programs: 2
+
+database:
+  population_size: 40
+  num_islands: 3
+  elite_selection_ratio: 0.2
+  exploitation_ratio: 0.7
+  similarity_threshold: 0.99
+
+evaluator:
+  timeout: 360
+  cascade_thresholds: [0.01]
+  parallel_evaluations: 3
+
+diff_based_evolution: true
+max_code_length: 30000

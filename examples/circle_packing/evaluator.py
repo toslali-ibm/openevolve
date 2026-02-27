@@ -12,6 +12,11 @@ import tempfile
 import traceback
 import sys
 import pickle
+import logging
+
+logger = logging.getLogger("examples.circle_packing.evaluator")
+
+VALID_METRICS = {"sum_radii", "target_ratio", "combined_score"}
 
 
 class TimeoutError(Exception):
@@ -257,13 +262,91 @@ def evaluate(program_path):
             f"Evaluation: valid={valid}, sum_radii={sum_radii:.6f}, target={TARGET_VALUE}, ratio={target_ratio:.6f}, time={eval_time:.2f}s"
         )
 
-        return {
+        metrics = {
             "sum_radii": float(sum_radii),
             "target_ratio": float(target_ratio),
             "validity": float(validity),
             "eval_time": float(eval_time),
             "combined_score": float(combined_score),
         }
+        artifacts = {}
+
+        # --- Hypothesis pipeline (only when hypothesis_driven mode is enabled) ---
+        hypothesis_enabled = os.environ.get("HYPOTHESIS_DRIVEN", "false") == "true"
+        if hypothesis_enabled:
+            try:
+                from openevolve.hypothesis import (
+                    parse_hypotheses,
+                    test_hypotheses,
+                    load_ledger,
+                    update_ledger,
+                    generate_knowledge_base_summary,
+                    format_hypothesis_results,
+                )
+                from pathlib import Path
+
+                with open(program_path, "r") as f:
+                    source_code = f.read()
+
+                hypotheses = parse_hypotheses(source_code, valid_metrics=VALID_METRICS)
+                logger.info("[HYPOTHESIS] Parsed %d hypotheses from evolved code", len(hypotheses))
+
+                if hypotheses:
+                    run_output_dir = os.environ.get("OPENEVOLVE_OUTPUT_DIR")
+                    if run_output_dir:
+                        artifact_dir = Path(run_output_dir)
+                    else:
+                        artifact_dir = Path(__file__).parent / "openevolve_output"
+
+                    ledger_path = artifact_dir / "hypothesis_ledger.json"
+                    baseline_metrics_path = artifact_dir / "baseline_metrics.json"
+
+                    import json
+                    if baseline_metrics_path.exists():
+                        baseline_metrics = json.loads(baseline_metrics_path.read_text())
+                    else:
+                        baseline_metrics = {
+                            "sum_radii": 0.9598,
+                            "target_ratio": 0.3642,
+                            "combined_score": 0.3642,
+                        }
+                        baseline_metrics_path.parent.mkdir(parents=True, exist_ok=True)
+                        baseline_metrics_path.write_text(json.dumps(baseline_metrics, indent=2))
+
+                    h_results = test_hypotheses(hypotheses, metrics, baseline_metrics)
+                    hypothesis_results_text = format_hypothesis_results(
+                        h_results, combined_score, baseline_metrics.get("combined_score", 0)
+                    )
+                    logger.info("[HYPOTHESIS] Results:\n%s", hypothesis_results_text)
+
+                    ledger = load_ledger(ledger_path)
+                    if not ledger["baseline"] and baseline_metrics:
+                        ledger["baseline"] = baseline_metrics
+                    update_ledger(ledger, h_results, combined_score, ledger_path)
+                    logger.info("[HYPOTHESIS] Updated ledger (%d total entries)", len(ledger.get("entries", [])))
+                    knowledge_base_text = generate_knowledge_base_summary(ledger)
+                    logger.info("[HYPOTHESIS] Knowledge base:\n%s", knowledge_base_text)
+
+                    artifacts["hypothesis_results"] = hypothesis_results_text
+                    artifacts["hypothesis_knowledge_base"] = knowledge_base_text
+                else:
+                    logger.info("[HYPOTHESIS] No hypotheses found in evolved code")
+                    run_output_dir = os.environ.get("OPENEVOLVE_OUTPUT_DIR")
+                    if run_output_dir:
+                        ledger_path = Path(run_output_dir) / "hypothesis_ledger.json"
+                    else:
+                        ledger_path = Path(__file__).parent / "openevolve_output" / "hypothesis_ledger.json"
+                    if ledger_path.exists():
+                        ledger = load_ledger(ledger_path)
+                        knowledge_base_text = generate_knowledge_base_summary(ledger)
+                        if knowledge_base_text:
+                            artifacts["hypothesis_knowledge_base"] = knowledge_base_text
+
+            except Exception as e:
+                logger.warning("[HYPOTHESIS] Pipeline error (non-fatal): %s", e)
+
+        from openevolve.evaluation_result import EvaluationResult
+        return EvaluationResult(metrics=metrics, artifacts=artifacts)
 
     except Exception as e:
         print(f"Evaluation failed completely: {str(e)}")

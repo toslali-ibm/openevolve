@@ -189,6 +189,7 @@ def _run_iteration_worker(
             diff_based_evolution=_worker_config.diff_based_evolution,
             program_artifacts=parent_artifacts,
             feature_dimensions=db_snapshot.get("feature_dimensions", []),
+            hypothesis_driven=_worker_config.hypothesis_driven,
         )
 
         iteration_start = time.time()
@@ -220,6 +221,11 @@ def _run_iteration_worker(
                 )
 
             child_code = apply_diff(parent.code, llm_response, _worker_config.diff_pattern)
+            # Rescue hypothesis comments that the LLM placed outside diff blocks
+            if _worker_config.hypothesis_driven:
+                from openevolve.hypothesis import rescue_hypotheses
+
+                child_code = rescue_hypotheses(child_code, llm_response)
             changes_summary = format_diff_summary(diff_blocks)
         else:
             from openevolve.utils.code_utils import parse_full_rewrite
@@ -229,6 +235,12 @@ def _run_iteration_worker(
                 return SerializableResult(
                     error=f"No valid code found in response", iteration=iteration
                 )
+
+            # Rescue hypothesis comments from LLM response into code
+            if _worker_config.hypothesis_driven:
+                from openevolve.hypothesis import rescue_hypotheses
+
+                new_code = rescue_hypotheses(new_code, llm_response)
 
             child_code = new_code
             changes_summary = "Full rewrite"
@@ -339,6 +351,8 @@ class ProcessParallelController:
             "random_seed": config.random_seed,
             "diff_based_evolution": config.diff_based_evolution,
             "max_code_length": config.max_code_length,
+            "diff_pattern": config.diff_pattern,
+            "hypothesis_driven": config.hypothesis_driven,
             "language": config.language,
             "file_suffix": self.file_suffix,
         }

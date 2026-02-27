@@ -106,6 +106,10 @@ async def run_iteration_with_shared_db(
                 logger.warning(f"Iteration {iteration+1}: No valid code found in response")
                 return None
 
+            # Rescue hypothesis comments from LLM response into code
+            if config.hypothesis_driven:
+                new_code = rescue_hypotheses(new_code, llm_response)
+
             child_code = new_code
             changes_summary = "Full rewrite"
 

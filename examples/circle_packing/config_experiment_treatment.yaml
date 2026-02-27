@@ -1,4 +1,4 @@
-# Function Minimization - TREATMENT (hypothesis-driven)
+# Circle Packing - TREATMENT (hypothesis-driven)
 # A/B Experiment: Treatment condition with hypothesis_driven=true
 
 max_iterations: 20
@@ -21,18 +21,23 @@ llm:
 # Prompt configuration
 prompt:
   system_message: |
-    You are an expert programmer specializing in optimization algorithms.
-    Your task is to improve a function minimization algorithm to find the global minimum
-    of a complex function with many local minima.
-    The function is f(x, y) = sin(x) * cos(y) + sin(x*y) + (x^2 + y^2)/20.
-    Focus on improving the search_algorithm function to reliably find the global minimum,
-    escaping local minima that might trap simple algorithms.
+    You are an expert mathematician specializing in circle packing problems and computational geometry.
+    Your task is to improve a constructor function that directly produces a specific arrangement of
+    26 circles in a unit square, maximizing the sum of their radii.
+    The AlphaEvolve paper achieved a sum of 2.635 for n=26.
 
-    Performance metrics (higher = better for these scores):
-      - value_score: closeness of found value to global minimum (1.0 = perfect)
-      - distance_score: closeness of (x,y) to global minimum location (1.0 = perfect)
-      - reliability_score: fraction of trials that succeed (1.0 = all succeed)
-      - combined_score: weighted combination of above (max ~1.5)
+    Key geometric insights:
+    - Circle packings often follow hexagonal patterns in the densest regions
+    - Maximum density for infinite circle packing is pi/(2*sqrt(3)) ~ 0.9069
+    - Edge effects make square container packing harder than infinite packing
+    - Circles can be placed in layers or shells when confined to a square
+    - Similar radius circles often form regular patterns, while varied radii allow better space utilization
+
+    Performance metrics (higher = better):
+      - sum_radii: total sum of all circle radii (maximize this)
+      - target_ratio: ratio to AlphaEvolve target of 2.635 (1.0 = matches paper)
+      - validity: 1.0 if packing is valid (no overlaps, inside square), 0.0 otherwise
+      - combined_score: target_ratio * validity
 
     HYPOTHESIS REQUIREMENTS:
     You MUST include at least 1 hypothesis (max 3) as Python comments at the TOP of the
@@ -44,35 +49,34 @@ prompt:
       # EXPECT-N: <metric_name> > <threshold>   (use > because higher scores are better)
 
     Available metrics for EXPECT:
-      - value_score, distance_score, reliability_score, combined_score
+      - sum_radii, target_ratio, combined_score
 
     Hypothesis rules:
       - N starts at 1 and increments
-      - metric_name must be one of: value_score, distance_score, reliability_score, combined_score
+      - metric_name must be one of: sum_radii, target_ratio, combined_score
       - Use > operator (these scores are higher-is-better)
       - threshold is a number; the hypothesis is CONFIRMED if actual > threshold
       - Be specific about WHY your change helps
       - If a strategy was REFUTED in the knowledge base, explain why your new approach differs
       - Build on CONFIRMED strategies; combine proven techniques
 
-    EXAMPLE of correct format (you MUST follow this pattern):
+    EXAMPLE of correct format:
     ```python
     # EVOLVE-BLOCK-START
-    # HYPOTHESIS-1: Multi-start basin hopping improves distance_score by escaping local minima
-    # MECHANISM-1: Random restarts from diverse starting points increase probability of landing
-    #   in the basin of attraction of the global minimum
-    # EXPECT-1: distance_score > 0.6
-    # HYPOTHESIS-2: Adaptive step size improves reliability_score
-    # MECHANISM-2: Decreasing step size over iterations allows coarse-then-fine search,
-    #   reducing failed trials from overshooting
-    # EXPECT-2: reliability_score > 0.9
+    # HYPOTHESIS-1: Hexagonal close-packing in center improves sum_radii
+    # MECHANISM-1: Hexagonal arrangement maximizes local packing density,
+    #   allowing circles of similar size to pack with minimal wasted space
+    # EXPECT-1: sum_radii > 1.5
+    # HYPOTHESIS-2: Edge-aware placement avoids wasted boundary space
+    # MECHANISM-2: Placing smaller circles along edges fills gaps that large
+    #   circles cannot occupy, increasing total coverage
+    # EXPECT-2: target_ratio > 0.6
     import numpy as np
-    def search_algorithm(iterations=1000, bounds=(-5, 5)):
-        # ... your improved code here ...
+    def construct_packing():
+        # ... improved packing code ...
     ```
 
     IMPORTANT: Every response MUST start with hypothesis comments before any code.
-    Responses without hypothesis comments are invalid.
 
 # Database configuration
 database:
@@ -85,10 +89,10 @@ database:
 
 # Evaluator configuration
 evaluator:
-  timeout: 60
-  cascade_thresholds: [1.3]
+  timeout: 120
+  cascade_thresholds: [0.3]
   parallel_evaluations: 3
 
 # Evolution settings
 diff_based_evolution: true
-max_code_length: 20000
+max_code_length: 30000

@@ -342,14 +342,18 @@ def evaluate(program_path: str) -> EvaluationResult:
     # resulting in a double-build on the first call only.  Subsequent evals skip
     # straight to the cached baseline so no extra build occurs.
     baseline_metrics = get_or_compute_baseline(script_dir, inference_sim_dir, policy_config_path)
-    hypotheses = parse_hypotheses(go_code, valid_metrics=VALID_METRICS)
-
-    if hypotheses:
-        logger.info(f"Parsed {len(hypotheses)} hypotheses from evolved code")
-        for h in hypotheses:
-            logger.info(f"  H{h['id']}: {h['claim']} (EXPECT: {h['metric']} < {h['threshold']})")
+    # Only run hypothesis pipeline when hypothesis_driven mode is enabled
+    hypothesis_enabled = os.environ.get("HYPOTHESIS_DRIVEN", "false") == "true"
+    if hypothesis_enabled:
+        hypotheses = parse_hypotheses(go_code, valid_metrics=VALID_METRICS)
+        if hypotheses:
+            logger.info(f"Parsed {len(hypotheses)} hypotheses from evolved code")
+            for h in hypotheses:
+                logger.info(f"  H{h['id']}: {h['claim']} (EXPECT: {h['metric']} < {h['threshold']})")
+        else:
+            logger.info("No hypotheses found in evolved code")
     else:
-        logger.info("No hypotheses found in evolved code")
+        hypotheses = []
 
     # Step 2: Write evolved routing.go
     try:
@@ -592,51 +596,52 @@ def evaluate(program_path: str) -> EvaluationResult:
             "Check if evolved routing logic causes crashes or extreme slowdowns"
         )
 
-    # Hypothesis testing
-    actual_for_hypothesis = {
-        "cache_warmup_e2e_ms": workload_results.get("cache_warmup", {}).get("e2e_ms"),
-        "load_spikes_e2e_ms": workload_results.get("load_spikes", {}).get("e2e_ms"),
-        "multiturn_e2e_ms": workload_results.get("multiturn", {}).get("e2e_ms"),
-        "avg_e2e_ms": avg_latency if latencies else None,
-        "avg_p95_ms": avg_tail_latency if tail_latencies else None,
-    }
-    actual_for_hypothesis = {k: v for k, v in actual_for_hypothesis.items() if v is not None}
+    # Hypothesis testing — only when hypothesis_driven mode is enabled
+    if hypothesis_enabled:
+        actual_for_hypothesis = {
+            "cache_warmup_e2e_ms": workload_results.get("cache_warmup", {}).get("e2e_ms"),
+            "load_spikes_e2e_ms": workload_results.get("load_spikes", {}).get("e2e_ms"),
+            "multiturn_e2e_ms": workload_results.get("multiturn", {}).get("e2e_ms"),
+            "avg_e2e_ms": avg_latency if latencies else None,
+            "avg_p95_ms": avg_tail_latency if tail_latencies else None,
+        }
+        actual_for_hypothesis = {k: v for k, v in actual_for_hypothesis.items() if v is not None}
 
-    # Determine ledger path: use run-specific output dir if available
-    run_output_dir = os.environ.get("OPENEVOLVE_OUTPUT_DIR")
-    if run_output_dir:
-        ledger_path = Path(run_output_dir) / "hypothesis_ledger.json"
-    else:
-        ledger_path = script_dir / "openevolve_output" / "hypothesis_ledger.json"
+        # Determine ledger path: use run-specific output dir if available
+        run_output_dir = os.environ.get("OPENEVOLVE_OUTPUT_DIR")
+        if run_output_dir:
+            ledger_path = Path(run_output_dir) / "hypothesis_ledger.json"
+        else:
+            ledger_path = script_dir / "openevolve_output" / "hypothesis_ledger.json"
 
-    logger.info("[HYPOTHESIS] Ledger path: %s", ledger_path)
+        logger.info("[HYPOTHESIS] Ledger path: %s", ledger_path)
 
-    if hypotheses:
-        h_results = test_hypotheses(hypotheses, actual_for_hypothesis, baseline_metrics)
-        for r in h_results:
-            logger.info("[HYPOTHESIS]   H%d verdict=%s (actual=%s, threshold=%s)", r["id"], r["verdict"], r.get("actual"), r["threshold"])
-        baseline_score = baseline_metrics.get("combined_score", 0)
-        hypothesis_results_text = format_hypothesis_results(h_results, score, baseline_score)
-        logger.info("[HYPOTHESIS] Results:\n%s", hypothesis_results_text)
+        if hypotheses:
+            h_results = test_hypotheses(hypotheses, actual_for_hypothesis, baseline_metrics)
+            for r in h_results:
+                logger.info("[HYPOTHESIS]   H%d verdict=%s (actual=%s, threshold=%s)", r["id"], r["verdict"], r.get("actual"), r["threshold"])
+            baseline_score = baseline_metrics.get("combined_score", 0)
+            hypothesis_results_text = format_hypothesis_results(h_results, score, baseline_score)
+            logger.info("[HYPOTHESIS] Results:\n%s", hypothesis_results_text)
 
-        ledger = load_ledger(ledger_path)
-        if not ledger["baseline"] and baseline_metrics:
-            ledger["baseline"] = baseline_metrics
-        update_ledger(ledger, h_results, score, ledger_path)
-        logger.info("[HYPOTHESIS] Updated ledger (%d total entries)", len(ledger.get("entries", [])))
-        knowledge_base_text = generate_knowledge_base_summary(ledger)
-        logger.info("[HYPOTHESIS] Knowledge base:\n%s", knowledge_base_text)
-
-        artifacts["hypothesis_results"] = hypothesis_results_text
-        artifacts["hypothesis_knowledge_base"] = knowledge_base_text
-    else:
-        logger.info("[HYPOTHESIS] No hypotheses found in evolved code")
-        # Still show knowledge base even without hypotheses in this iteration
-        if ledger_path.exists():
             ledger = load_ledger(ledger_path)
+            if not ledger["baseline"] and baseline_metrics:
+                ledger["baseline"] = baseline_metrics
+            update_ledger(ledger, h_results, score, ledger_path)
+            logger.info("[HYPOTHESIS] Updated ledger (%d total entries)", len(ledger.get("entries", [])))
             knowledge_base_text = generate_knowledge_base_summary(ledger)
-            if knowledge_base_text:
-                artifacts["hypothesis_knowledge_base"] = knowledge_base_text
+            logger.info("[HYPOTHESIS] Knowledge base:\n%s", knowledge_base_text)
+
+            artifacts["hypothesis_results"] = hypothesis_results_text
+            artifacts["hypothesis_knowledge_base"] = knowledge_base_text
+        else:
+            logger.info("[HYPOTHESIS] No hypotheses found in evolved code")
+            # Still show knowledge base even without hypotheses in this iteration
+            if ledger_path.exists():
+                ledger = load_ledger(ledger_path)
+                knowledge_base_text = generate_knowledge_base_summary(ledger)
+                if knowledge_base_text:
+                    artifacts["hypothesis_knowledge_base"] = knowledge_base_text
 
     # Return metrics
     metrics = {

@@ -19,3 +19,8 @@
 when I run openevolve experiment blis_router, some files are generated (baseline_metric.json, hypothesis_ledger.json, run_output.log, anything   
   else?) in the blis_router directory, but I want them to be created under openevolve_output (or whatever provided in cli flag of openevolve       
   run). can you first update readme, and all other code/files that creates or uses these files  
+
+
+
+
+Use your superpowers if needed.. first answer all: hypothesis generation is provided as few shots, and parsed, and populated correctl, and incorporated next iterations of llm generate prompt, right? all configs tested have ete-litellm endpoint right? when you run an experiment, you will run blis router and function minimization in paralel with 3 repeats, and create findings and plots and inform me right? also, you will keep me notified about the progress of experiments right? if yes, then let's run an exepriemnt (Remove previous experiments)!!

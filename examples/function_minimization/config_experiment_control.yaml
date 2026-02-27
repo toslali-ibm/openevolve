@@ -1,7 +1,7 @@
 # Function Minimization - CONTROL (vanilla OpenEvolve)
 # A/B Experiment: Control condition with hypothesis_driven=false
 
-max_iterations: 10
+max_iterations: 20
 checkpoint_interval: 5
 
 # Hypothesis-driven evolution disabled (control condition)

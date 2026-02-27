@@ -82,9 +82,17 @@ class OpenEvolve:
         )
         os.makedirs(self.output_dir, exist_ok=True)
 
+        # When an explicit output_dir is provided, isolate the database to
+        # that directory so separate runs never share program state.
+        if output_dir and self.config.database.db_path:
+            self.config.database.db_path = os.path.join(self.output_dir, "db")
+
         # Expose output dir to evaluators via env var so they can write
         # per-run artifacts (hypothesis ledger, baseline metrics) in isolation.
         os.environ["OPENEVOLVE_OUTPUT_DIR"] = self.output_dir
+
+        # Tell evaluators whether hypothesis pipeline should run.
+        os.environ["HYPOTHESIS_DRIVEN"] = str(self.config.hypothesis_driven).lower()
 
         # Set up logging
         self._setup_logging()

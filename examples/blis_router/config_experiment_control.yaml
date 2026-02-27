@@ -14,14 +14,14 @@
 # Total number of evolution iterations to run
 # 50 iterations = ~1-2 hours depending on BLIS simulation time
 # Each iteration: sample programs → LLM generates mutation → evaluate → update database
-max_iterations: 10
+max_iterations: 50
 
 # Hypothesis-driven evolution disabled (control condition)
 hypothesis_driven: false
 
 # Save checkpoint every N iterations for resumability
 # Checkpoints include full database state, best program, and evolution progress
-checkpoint_interval: 5
+checkpoint_interval: 10
 
 # Logging verbosity: DEBUG, INFO, WARNING, ERROR
 # INFO provides good balance between detail and readability
