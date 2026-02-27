@@ -2,7 +2,7 @@
 
 ## Overview
 
-This experiment compares **hypothesis-driven evolution** (treatment) against **vanilla OpenEvolve** (control) across 3 tasks. The treatment condition injects structured hypothesis instructions into the LLM prompt and feeds back a knowledge base of confirmed/refuted strategies.
+This experiment compares **hypothesis-driven evolution** (treatment) against **vanilla OpenEvolve** (control) across multiple tasks. The treatment condition injects structured hypothesis instructions into the LLM prompt; after evaluation, the framework stamps RESULT-N verdict lines into the code so subsequent LLM calls can see what worked (CONFIRMED) and what failed (REFUTED) directly in parent/top program code.
 
 ## Prerequisites
 
@@ -124,9 +124,11 @@ experiments/hypothesis_ab_<task>/plots/
 | Aspect | Treatment | Control |
 |--------|-----------|---------|
 | `hypothesis_driven` config | `true` | `false` |
-| System prompt | Includes hypothesis instructions | No hypothesis instructions |
+| System prompt | Includes hypothesis instructions + RESULT-N docs | No hypothesis instructions |
 | Prompt injection | `HYPOTHESIS_INSTRUCTIONS_TEMPLATE` appended | Nothing appended |
-| Evaluator behavior | Parses HYPOTHESIS/EXPECT comments, updates ledger, returns knowledge base artifact | No hypothesis parsing (no comments to parse) |
+| Framework behavior | `rescue_hypotheses()` + `inject_result_comments()` called after eval | Neither called |
+| Evaluator behavior | Identical (hypothesis-unaware, just returns metrics) | Identical |
+| Code in database | Contains HYPOTHESIS/EXPECT/RESULT comments | No hypothesis comments |
 | LLM models | Identical | Identical |
 | Database/evolution settings | Identical | Identical |
 
