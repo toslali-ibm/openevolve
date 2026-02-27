@@ -1,0 +1,196 @@
+{
+  "baseline": {
+    "value_score": 0.9895851143053978,
+    "distance_score": 0.7068470597715358,
+    "reliability_score": 1.0,
+    "combined_score": 1.3602700126262395
+  },
+  "entries": [
+    {
+      "timestamp": "2026-02-26T16:57:20.470615+00:00",
+      "overall_combined_score": 1.3602700126262395,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with hybrid perturbation will significantly improve value_score and distance_score.",
+          "mechanism": "Probabilistic acceptance of worse solutions allows the algorithm to escape local minima. The hybrid perturbation (combining local steps with occasional global jumps) ensures both fine-grained search and broad exploration across the complex landscape, leading to better global minimum discovery.",
+          "metric": "value_score",
+          "operator": ">",
+          "threshold": 0.98,
+          "actual": 0.9895851143053978,
+          "baseline_value": 0.9895851143053978,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "An adaptive local perturbation step size tied to temperature will improve reliability_score.",
+          "mechanism": "Local step sizes that decrease with temperature allow for broader exploration at high temperatures and precise refinement at low temperatures. This adaptive approach ensures efficient convergence towards the global optimum, thereby reducing the number of trials that fail to find a good solution.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 3,
+          "claim": "Explicitly tracking the overall best solution found will improve combined_score.",
+          "mechanism": "Simulated Annealing's design allows it to accept \"worse\" solutions to escape local minima, meaning its `current_value` can temporarily increase. By always preserving the minimum `best_value` encountered throughout all iterations, the algorithm guarantees it returns the best point ever visited, maximizing overall performance.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.3,
+          "actual": 1.3602700126262395,
+          "baseline_value": 1.3602700126262395,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:23.384201+00:00",
+      "overall_combined_score": 1.4991413272209215,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Hybridizing a global search with a localized refinement improves distance_score.",
+          "mechanism": "Multi-start random sampling identifies the most promising basin, then a high-iteration local search converges precisely on the minimum within that basin.",
+          "metric": "distance_score",
+          "operator": ">",
+          "threshold": 0.9,
+          "actual": 0.9986194725130038,
+          "baseline_value": 0.7068470597715358,
+          "delta_vs_baseline_pct": 41.27801180014435,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a larger proportion of iterations for local refinement improves value_score.",
+          "mechanism": "The quadratic term (x^2+y^2)/20 creates a strong global pull toward (0,0), so focusing refinement near the center after exploration avoids trapping in peripheral minima.",
+          "metric": "value_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 0.9996834194534263,
+          "baseline_value": 0.9895851143053978,
+          "delta_vs_baseline_pct": 1.0204584731568735,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:25.956232+00:00",
+      "overall_combined_score": 1.4949822124992833,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Combining multi-start global sampling with local hill-climbing improves combined_score.",
+          "mechanism": "Multiple starting points ensure coverage of various basins of attraction,",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.3,
+          "actual": 1.4949822124992833,
+          "baseline_value": 1.3602700126262395,
+          "delta_vs_baseline_pct": 9.90334261746742,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a larger number of initial random samples improves reliability_score.",
+          "mechanism": "Increasing the initial sample density increases the probability of",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:43.117110+00:00",
+      "overall_combined_score": 1.4296514761079218,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with adaptive perturbation improves value_score and distance_score.",
+          "mechanism": "Probabilistic acceptance of worse solutions allows escaping local minima, while a decreasing temperature focuses the search. An adaptive step size balances global exploration early and local exploitation later, aiding convergence to the true minimum.",
+          "metric": "value_score",
+          "operator": ">",
+          "threshold": 0.96,
+          "actual": 0.9738821594852712,
+          "baseline_value": 0.9895851143053978,
+          "delta_vs_baseline_pct": -1.586822052305083,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Multi-start strategy combined with SA improves reliability_score.",
+          "mechanism": "Starting the search from multiple diverse points (or an initial broad search phase) increases the probability of hitting the global minimum's basin of attraction.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 3,
+          "claim": "Periodic re-initialization (global jumps) during SA further enhances reliability_score.",
+          "mechanism": "Occasionally forcing the current state to a completely new random location prevents prolonged stagnation in very deep local minima that SA might struggle to escape, especially towards lower temperatures, ensuring a more robust search across trials.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.35,
+          "actual": 1.4296514761079218,
+          "baseline_value": 1.3602700126262395,
+          "delta_vs_baseline_pct": 5.1005655375530345,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:58:31.533764+00:00",
+      "overall_combined_score": 1.4687932228434106,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Hybrid Simulated Annealing with multi-start initialization improves combined_score.",
+          "mechanism": "Multi-start sampling provides a robust initial search, increasing the probability of starting in a promising basin. Simulated Annealing (SA) then uses probabilistic acceptance of worse solutions and hybrid perturbations (local steps, occasional global jumps) to escape local minima and thoroughly explore the landscape, leading to both a highly accurate value and location.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.4,
+          "actual": 1.4687932228434106,
+          "baseline_value": 1.3602700126262395,
+          "delta_vs_baseline_pct": 7.97806385569348,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "An adaptive perturbation step size that scales with temperature improves reliability_score.",
+          "mechanism": "Larger perturbation steps at high temperatures encourage broad exploration of the search space. As temperature decreases, the step size shrinks, allowing for fine-grained search and precise convergence within a basin, which prevents overshooting the global minimum and improves the consistency of finding good solutions.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.98,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 3,
+          "claim": "Explicitly tracking the overall best solution found from all evaluated points improves value_score.",
+          "mechanism": "During Simulated Annealing, the algorithm's \"current state\" may temporarily worsen to escape local minima. By continuously comparing *every new candidate solution* (whether accepted as the current state or not) against an independently tracked global best, we ensure the absolute lowest value encountered throughout the search is always returned.",
+          "metric": "value_score",
+          "operator": ">",
+          "threshold": 0.995,
+          "actual": 0.9887843257850867,
+          "baseline_value": 0.9895851143053978,
+          "delta_vs_baseline_pct": -0.08092164167941757,
+          "verdict": "REFUTED"
+        }
+      ]
+    }
+  ]
+}

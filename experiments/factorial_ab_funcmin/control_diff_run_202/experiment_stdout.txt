@@ -1,0 +1,11 @@
+
+Evolution complete!
+Best program metrics:
+  runs_successfully: 1.0000
+  value_score: 0.9997
+  distance_score: 0.9972
+  combined_score: 1.4985
+  reliability_score: 1.0000
+
+Latest checkpoint saved at: experiments/factorial_ab_funcmin/control_diff_run_202/checkpoints/checkpoint_20
+To resume, use: --checkpoint experiments/factorial_ab_funcmin/control_diff_run_202/checkpoints/checkpoint_20

@@ -1,0 +1,368 @@
+2026-02-26 10:36:40,893 - INFO - Logging to experiments/hypothesis_ab_circpack/treatment_run_102/logs/openevolve_20260226_103640.log
+2026-02-26 10:36:40,905 - INFO - Set random seed to 42 for reproducibility
+2026-02-26 10:36:40,927 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 10:36:40,934 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:40,934 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 10:36:40,948 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 10:36:40,949 - INFO - Initialized prompt sampler
+2026-02-26 10:36:40,949 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 10:36:40,949 - INFO - Initialized program database with 0 programs
+2026-02-26 10:36:40,950 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 10:36:40,950 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 10:36:40,950 - INFO - Initialized OpenEvolve with examples/circle_packing/initial_program.py
+2026-02-26 10:36:40,950 - INFO - Adding initial program to database
+2026-02-26 10:36:41,156 - INFO - [HYPOTHESIS] Parsed 0 hypotheses from evolved code
+2026-02-26 10:36:41,156 - INFO - [HYPOTHESIS] No hypotheses found in evolved code
+2026-02-26 10:36:41,163 - INFO - Evaluated program 1ee25727-9a93-4a21-8682-112867886dbf in 0.21s: validity=1.0000, sum_radii=0.9598, target_ratio=0.3642, combined_score=0.3642, eval_time=0.1057
+2026-02-26 10:36:41,164 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-02-26 10:36:41,176 - INFO - Initialized process parallel controller with 3 workers
+2026-02-26 10:36:41,186 - INFO - Set max None tasks per child
+2026-02-26 10:36:41,186 - INFO - Started process pool with 3 processes
+2026-02-26 10:36:41,186 - INFO - Using island-based evolution with 3 islands
+2026-02-26 10:36:41,186 - INFO - Island Status:
+2026-02-26 10:36:41,186 - INFO -  * Island 0: 1 programs, best=0.3642, avg=0.3642, diversity=0.00, gen=0 (best: 1ee25727-9a93-4a21-8682-112867886dbf)
+2026-02-26 10:36:41,186 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 10:36:41,186 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 10:36:41,186 - INFO - Starting process-based evolution from iteration 1 for 20 iterations (total: 21)
+2026-02-26 10:36:41,234 - INFO - Early stopping disabled
+2026-02-26 10:36:42,300 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 10:36:42,309 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:42,309 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 10:36:42,310 - INFO - Initialized prompt sampler
+2026-02-26 10:36:42,317 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 10:36:42,328 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:42,328 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 10:36:42,328 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 10:36:42,329 - INFO - Initialized prompt sampler
+2026-02-26 10:36:42,330 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 10:36:42,331 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 10:36:42,331 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 10:36:42,331 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:36:42,332 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:42,380 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 10:36:42,387 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 10:36:42,387 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:42,387 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 10:36:42,388 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 10:36:42,388 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 10:36:42,388 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 10:36:42,388 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:36:42,389 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:42,389 - INFO - Initialized prompt sampler
+2026-02-26 10:36:42,419 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 10:36:42,425 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 10:36:42,425 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 10:36:42,425 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 10:36:42,426 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:36:42,426 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:48,622 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:36:48,632 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:36:48,632 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:48,635 - WARNING - Iteration 2 error: No valid diffs found in response
+2026-02-26 10:36:48,800 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:36:48,814 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:36:48,814 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:48,821 - WARNING - Iteration 1 error: No valid diffs found in response
+2026-02-26 10:36:49,070 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:36:49,078 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:36:49,078 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:49,084 - WARNING - Iteration 3 error: No valid diffs found in response
+2026-02-26 10:36:54,403 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:36:54,431 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:36:54,432 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:36:54,440 - WARNING - Iteration 5 error: No valid diffs found in response
+2026-02-26 10:36:54,454 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:36:54,458 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:36:54,458 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:36:54,463 - WARNING - Iteration 6 error: No valid diffs found in response
+2026-02-26 10:37:06,356 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:37:06,360 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:37:06,360 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:37:06,367 - WARNING - Iteration 4 error: No valid diffs found in response
+2026-02-26 10:37:45,145 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:37:45,334 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 10:37:45,335 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.5, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: Replace the inefficient concentric ring pattern with a 5x5 grid and add a 26th circle at the center.
+  H2 [REFUTED]: EXPECT sum_radii > 2.6, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: Remove the `np.clip` operation on circle centers.
+  OVERALL: combined_score=0.68 (delta=+0.31, +86.2% vs baseline=0.36)
+2026-02-26 10:37:45,335 - INFO - [HYPOTHESIS] Updated ledger (1 total entries)
+2026-02-26 10:37:45,335 - INFO - [HYPOTHESIS] Knowledge base:
+=== INCONCLUSIVE ===
+  [sum_radii] Replace the inefficient concentric ring pattern with a 5x5 grid and add a 26th circle at the center. (total=1)
+  [sum_radii] Remove the `np.clip` operation on circle centers. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 10:37:45,335 - INFO - Evaluated program 6cf0f1c8-cf7a-402d-a5f8-a3773c4f04b7 in 0.18s: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.0941
+2026-02-26 10:37:45,336 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:37:45,337 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:37:45,346 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 5}
+2026-02-26 10:37:45,346 - INFO - New best program 6cf0f1c8-cf7a-402d-a5f8-a3773c4f04b7 replaces 1ee25727-9a93-4a21-8682-112867886dbf (combined_score: 0.3642 → 0.6783, +0.3141)
+2026-02-26 10:37:45,346 - INFO - Iteration 7: Program 6cf0f1c8-cf7a-402d-a5f8-a3773c4f04b7 (parent: 1ee25727-9a93-4a21-8682-112867886dbf) completed in 50.90s
+2026-02-26 10:37:45,346 - INFO - Metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.0941
+2026-02-26 10:37:45,346 - INFO - 🌟 New best solution found at iteration 7: 6cf0f1c8-cf7a-402d-a5f8-a3773c4f04b7
+2026-02-26 10:37:45,476 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:37:45,665 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 10:37:45,665 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.5, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: Replace the inefficient concentric ring pattern with a 5x5 grid and add a 26th circle at the center.
+  H2 [REFUTED]: EXPECT sum_radii > 2.6, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: Remove the `np.clip` operation on circle centers.
+  OVERALL: combined_score=0.68 (delta=+0.31, +86.2% vs baseline=0.36)
+2026-02-26 10:37:45,666 - INFO - [HYPOTHESIS] Updated ledger (2 total entries)
+2026-02-26 10:37:45,666 - INFO - [HYPOTHESIS] Knowledge base:
+=== REFUTED STRATEGIES ===
+  [sum_radii] Replace the inefficient concentric ring pattern with a 5x5 grid and add a 26th circle at the center. (confirmed 0/2, avg_delta=+86.2%)
+    mechanism: The original concentric ring pattern for 25 circles (with the 26th circle effectively at (0,0) and radius 0) is a very poor packing for N=26. A 5x5 grid of circles provides a much denser and more structured arrangement, yielding a base sum of 2.5 for equal radii. Adding the 26th circle at the square's absolute center (0.5, 0.5) leverages an often underutilized central void, allowing for a potentially larger overall sum as `compute_max_radii` will efficiently fill the space.
+  [sum_radii] Remove the `np.clip` operation on circle centers. (confirmed 0/2, avg_delta=+86.2%)
+    mechanism: The `np.clip(centers, 0.01, 0.99)` operation in the original code incorrectly constrains circle centers, especially those intended to be near the boundaries (e.g., at 0.1). This artificial restriction forces their maximum possible radii to be smaller (e.g., 0.01 instead of 0.1), significantly reducing the overall sum of radii. The `compute_max_radii` function already correctly handles boundary constraints by calculating `min(x, y, 1-x, 1-y)`. Removing this redundant and detrimental clipping will allow circles to expand to their full potential near the edges, which is crucial for dense packings.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 10:37:45,666 - INFO - Evaluated program 5d775fc3-08af-491e-b38d-56e35df362cc in 0.18s: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.0819
+2026-02-26 10:37:45,667 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:37:45,667 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:37:45,677 - INFO - Iteration 8: Program 5d775fc3-08af-491e-b38d-56e35df362cc (parent: 1ee25727-9a93-4a21-8682-112867886dbf) completed in 51.21s
+2026-02-26 10:37:45,677 - INFO - Metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.0819
+2026-02-26 10:37:51,150 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:37:51,153 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:37:51,153 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:37:51,157 - WARNING - Iteration 10 error: No valid diffs found in response
+2026-02-26 10:37:51,423 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:37:51,426 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:37:51,427 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:37:51,430 - WARNING - Iteration 11 error: No valid diffs found in response
+2026-02-26 10:37:57,853 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:37:58,029 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 10:37:58,029 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.5, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: Replace the inefficient concentric ring pattern with a 5x5 grid and add a 26th circle at the center.
+  H2 [REFUTED]: EXPECT sum_radii > 2.6, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: Remove the `np.clip` operation on circle centers.
+  OVERALL: combined_score=0.68 (delta=+0.31, +86.2% vs baseline=0.36)
+2026-02-26 10:37:58,030 - INFO - [HYPOTHESIS] Updated ledger (3 total entries)
+2026-02-26 10:37:58,030 - INFO - [HYPOTHESIS] Knowledge base:
+=== REFUTED STRATEGIES ===
+  [sum_radii] Replace the inefficient concentric ring pattern with a 5x5 grid and add a 26th circle at the center. (confirmed 0/3, avg_delta=+86.2%)
+    mechanism: The original concentric ring pattern for 25 circles (with the 26th circle effectively at (0,0) and radius 0) is a very poor packing for N=26. A 5x5 grid of circles provides a much denser and more structured arrangement, yielding a base sum of 2.5 for equal radii. Adding the 26th circle at the square's absolute center (0.5, 0.5) leverages an often underutilized central void, allowing for a potentially larger overall sum as `compute_max_radii` will efficiently fill the space.
+  [sum_radii] Remove the `np.clip` operation on circle centers. (confirmed 0/3, avg_delta=+86.2%)
+    mechanism: The `np.clip(centers, 0.01, 0.99)` operation in the original code incorrectly constrains circle centers, especially those intended to be near the boundaries (e.g., at 0.1). This artificial restriction forces their maximum possible radii to be smaller (e.g., 0.01 instead of 0.1), significantly reducing the overall sum of radii. The `compute_max_radii` function already correctly handles boundary constraints by calculating `min(x, y, 1-x, 1-y)`. Removing this redundant and detrimental clipping will allow circles to expand to their full potential near the edges, which is crucial for dense packings.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 10:37:58,031 - INFO - Evaluated program f4762d4e-5b54-41e6-af10-f1e745182175 in 0.17s: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.0767
+2026-02-26 10:37:58,032 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:37:58,032 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:37:58,034 - INFO - Iteration 9: Program f4762d4e-5b54-41e6-af10-f1e745182175 (parent: 1ee25727-9a93-4a21-8682-112867886dbf) completed in 51.67s
+2026-02-26 10:37:58,034 - INFO - Metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.0767
+2026-02-26 10:38:13,030 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:38:13,222 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 10:38:13,222 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.0, ACTUAL 1.7 (delta=+77.1% vs baseline)
+    claim: A hexagonal packing arrangement is superior to a square grid for N=26.
+  H2 [REFUTED]: EXPECT sum_radii > 2.2, ACTUAL 1.7 (delta=+77.1% vs baseline)
+    claim: Iterative relaxation of radii improves the final sum compared to a single-pass proportional scaling.
+  OVERALL: combined_score=0.65 (delta=+0.28, +77.1% vs baseline=0.36)
+2026-02-26 10:38:13,223 - INFO - [HYPOTHESIS] Updated ledger (4 total entries)
+2026-02-26 10:38:13,223 - INFO - [HYPOTHESIS] Knowledge base:
+=== REFUTED STRATEGIES ===
+  [sum_radii] Replace the inefficient concentric ring pattern with a 5x5 grid and add a 26th circle at the center. (confirmed 0/3, avg_delta=+86.2%)
+    mechanism: The original concentric ring pattern for 25 circles (with the 26th circle effectively at (0,0) and radius 0) is a very poor packing for N=26. A 5x5 grid of circles provides a much denser and more structured arrangement, yielding a base sum of 2.5 for equal radii. Adding the 26th circle at the square's absolute center (0.5, 0.5) leverages an often underutilized central void, allowing for a potentially larger overall sum as `compute_max_radii` will efficiently fill the space.
+  [sum_radii] Remove the `np.clip` operation on circle centers. (confirmed 0/3, avg_delta=+86.2%)
+    mechanism: The `np.clip(centers, 0.01, 0.99)` operation in the original code incorrectly constrains circle centers, especially those intended to be near the boundaries (e.g., at 0.1). This artificial restriction forces their maximum possible radii to be smaller (e.g., 0.01 instead of 0.1), significantly reducing the overall sum of radii. The `compute_max_radii` function already correctly handles boundary constraints by calculating `min(x, y, 1-x, 1-y)`. Removing this redundant and detrimental clipping will allow circles to expand to their full potential near the edges, which is crucial for dense packings.
+
+=== INCONCLUSIVE ===
+  [sum_radii] A hexagonal packing arrangement is superior to a square grid for N=26. (total=1)
+  [sum_radii] Iterative relaxation of radii improves the final sum compared to a single-pass proportional scaling. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 10:38:13,224 - INFO - Evaluated program 681e3f84-d77d-4392-a528-d15197ea607e in 0.19s: validity=1.0000, sum_radii=1.6998, target_ratio=0.6451, combined_score=0.6451, eval_time=0.0974
+2026-02-26 10:38:13,225 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:38:13,225 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:38:13,230 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 9}
+2026-02-26 10:38:13,230 - INFO - Iteration 14: Program 681e3f84-d77d-4392-a528-d15197ea607e (parent: 6cf0f1c8-cf7a-402d-a5f8-a3773c4f04b7) completed in 15.19s
+2026-02-26 10:38:13,230 - INFO - Metrics: validity=1.0000, sum_radii=1.6998, target_ratio=0.6451, combined_score=0.6451, eval_time=0.0974
+2026-02-26 10:38:42,250 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:38:42,423 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 10:38:42,423 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.5, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: Replace the inefficient concentric ring pattern with a 5x5 grid and add a 26th circle at the center.
+  H2 [REFUTED]: EXPECT sum_radii > 2.6, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: Remove the `np.clip` operation on circle centers.
+  OVERALL: combined_score=0.68 (delta=+0.31, +86.2% vs baseline=0.36)
+2026-02-26 10:38:42,424 - INFO - [HYPOTHESIS] Updated ledger (5 total entries)
+2026-02-26 10:38:42,424 - INFO - [HYPOTHESIS] Knowledge base:
+=== REFUTED STRATEGIES ===
+  [sum_radii] Replace the inefficient concentric ring pattern with a 5x5 grid and add a 26th circle at the center. (confirmed 0/4, avg_delta=+86.2%)
+    mechanism: The original concentric ring pattern for 25 circles (with the 26th circle effectively at (0,0) and radius 0) is a very poor packing for N=26. A 5x5 grid of circles provides a much denser and more structured arrangement, yielding a base sum of 2.5 for equal radii. Adding the 26th circle at the square's absolute center (0.5, 0.5) leverages an often underutilized central void, allowing for a potentially larger overall sum as `compute_max_radii` will efficiently fill the space.
+  [sum_radii] Remove the `np.clip` operation on circle centers. (confirmed 0/4, avg_delta=+86.2%)
+    mechanism: The `np.clip(centers, 0.01, 0.99)` operation in the original code incorrectly constrains circle centers, especially those intended to be near the boundaries (e.g., at 0.1). This artificial restriction forces their maximum possible radii to be smaller (e.g., 0.01 instead of 0.1), significantly reducing the overall sum of radii. The `compute_max_radii` function already correctly handles boundary constraints by calculating `min(x, y, 1-x, 1-y)`. Removing this redundant and detrimental clipping will allow circles to expand to their full potential near the edges, which is crucial for dense packings.
+
+=== INCONCLUSIVE ===
+  [sum_radii] A hexagonal packing arrangement is superior to a square grid for N=26. (total=1)
+  [sum_radii] Iterative relaxation of radii improves the final sum compared to a single-pass proportional scaling. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 10:38:42,424 - INFO - Evaluated program 2992d463-047f-4add-9ae9-2a982d011b7b in 0.17s: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.0818
+2026-02-26 10:38:42,425 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:38:42,425 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 0}
+2026-02-26 10:38:42,425 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:38:42,426 - INFO - Iteration 12: Program 2992d463-047f-4add-9ae9-2a982d011b7b (parent: 1ee25727-9a93-4a21-8682-112867886dbf) completed in 51.27s
+2026-02-26 10:38:42,426 - INFO - Metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.0818
+2026-02-26 10:39:05,428 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:39:05,592 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 10:39:05,592 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 1.7, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: Adopt the 5x5 grid + 1 central circle pattern from previous successful attempts to improve sum_radii.
+  H2 [CONFIRMED]: EXPECT sum_radii > 1.8, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: Remove the `np.clip` operation on circle centers to allow circles to expand fully.
+  OVERALL: combined_score=0.68 (delta=+0.31, +86.2% vs baseline=0.36)
+2026-02-26 10:39:05,593 - INFO - [HYPOTHESIS] Updated ledger (6 total entries)
+2026-02-26 10:39:05,593 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] Adopt the 5x5 grid + 1 central circle pattern from previous successful attempts to improve sum_radii. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: The current concentric ring pattern only places 25 circles and is not an efficient packing for N=26. A 5x5 grid provides a structured, dense arrangement for 25 circles, and adding the 26th circle at the center efficiently utilizes space. This directly addresses the N=26 requirement and replaces an inefficient pattern with one known to perform significantly better.
+  [sum_radii] Remove the `np.clip` operation on circle centers to allow circles to expand fully. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: The `np.clip(centers, 0.01, 0.99)` in the current code artificially constrains circle centers, preventing circles near the boundaries from achieving their maximum possible radii. The `compute_max_radii` function already correctly handles boundary constraints by calculating `min(x, y, 1-x, 1-y)`, making the clip redundant and detrimental. Removing it will allow `compute_max_radii` to optimize radii without artificial limitations.
+
+=== REFUTED STRATEGIES ===
+  [sum_radii] Replace the inefficient concentric ring pattern with a 5x5 grid and add a 26th circle at the center. (confirmed 0/4, avg_delta=+86.2%)
+    mechanism: The original concentric ring pattern for 25 circles (with the 26th circle effectively at (0,0) and radius 0) is a very poor packing for N=26. A 5x5 grid of circles provides a much denser and more structured arrangement, yielding a base sum of 2.5 for equal radii. Adding the 26th circle at the square's absolute center (0.5, 0.5) leverages an often underutilized central void, allowing for a potentially larger overall sum as `compute_max_radii` will efficiently fill the space.
+  [sum_radii] Remove the `np.clip` operation on circle centers. (confirmed 0/4, avg_delta=+86.2%)
+    mechanism: The `np.clip(centers, 0.01, 0.99)` operation in the original code incorrectly constrains circle centers, especially those intended to be near the boundaries (e.g., at 0.1). This artificial restriction forces their maximum possible radii to be smaller (e.g., 0.01 instead of 0.1), significantly reducing the overall sum of radii. The `compute_max_radii` function already correctly handles boundary constraints by calculating `min(x, y, 1-x, 1-y)`. Removing this redundant and detrimental clipping will allow circles to expand to their full potential near the edges, which is crucial for dense packings.
+
+=== INCONCLUSIVE ===
+  [sum_radii] A hexagonal packing arrangement is superior to a square grid for N=26. (total=1)
+  [sum_radii] Iterative relaxation of radii improves the final sum compared to a single-pass proportional scaling. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 10:39:05,593 - INFO - Evaluated program b071cea2-5e08-4f64-9354-daae1903e544 in 0.16s: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.0801
+2026-02-26 10:39:05,595 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:39:05,596 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:39:05,605 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 8, 'diversity': 0}
+2026-02-26 10:39:05,605 - INFO - Iteration 16: Program b071cea2-5e08-4f64-9354-daae1903e544 (parent: 1ee25727-9a93-4a21-8682-112867886dbf) completed in 23.17s
+2026-02-26 10:39:05,605 - INFO - Metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.0801
+2026-02-26 10:39:09,628 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:39:09,635 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:39:09,636 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:39:09,637 - WARNING - Iteration 13 error: No valid diffs found in response
+2026-02-26 10:39:44,839 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:39:44,845 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:39:44,845 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:39:44,847 - WARNING - Iteration 15 error: No valid diffs found in response
+2026-02-26 10:40:13,058 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:40:13,078 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:40:13,078 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:40:13,083 - WARNING - Iteration 19 error: No valid diffs found in response
+2026-02-26 10:40:13,793 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:40:13,961 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 10:40:13,961 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.5, ACTUAL 1.9 (delta=+99.7% vs baseline)
+    claim: Replace the inefficient concentric ring pattern with a 5x5 grid and add a 26th circle at the center.
+  H2 [REFUTED]: EXPECT sum_radii > 2.6, ACTUAL 1.9 (delta=+99.7% vs baseline)
+    claim: Remove the `np.clip` operation on circle centers.
+  OVERALL: combined_score=0.73 (delta=+0.36, +99.8% vs baseline=0.36)
+2026-02-26 10:40:13,962 - INFO - [HYPOTHESIS] Updated ledger (7 total entries)
+2026-02-26 10:40:13,962 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] Adopt the 5x5 grid + 1 central circle pattern from previous successful attempts to improve sum_radii. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: The current concentric ring pattern only places 25 circles and is not an efficient packing for N=26. A 5x5 grid provides a structured, dense arrangement for 25 circles, and adding the 26th circle at the center efficiently utilizes space. This directly addresses the N=26 requirement and replaces an inefficient pattern with one known to perform significantly better.
+  [sum_radii] Remove the `np.clip` operation on circle centers to allow circles to expand fully. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: The `np.clip(centers, 0.01, 0.99)` in the current code artificially constrains circle centers, preventing circles near the boundaries from achieving their maximum possible radii. The `compute_max_radii` function already correctly handles boundary constraints by calculating `min(x, y, 1-x, 1-y)`, making the clip redundant and detrimental. Removing it will allow `compute_max_radii` to optimize radii without artificial limitations.
+
+=== REFUTED STRATEGIES ===
+  [sum_radii] Replace the inefficient concentric ring pattern with a 5x5 grid and add a 26th circle at the center. (confirmed 0/5, avg_delta=+88.9%)
+    mechanism: The original concentric ring pattern for 25 circles (with the 26th circle effectively at (0,0) and radius 0) is a very poor packing for N=26. A 5x5 grid of circles provides a much denser and more structured arrangement, yielding a base sum of 2.5 for equal radii. Adding the 26th circle at the square's absolute center (0.5, 0.5) leverages an often underutilized central void, allowing for a potentially larger overall sum as `compute_max_radii` will efficiently fill the space.
+  [sum_radii] Remove the `np.clip` operation on circle centers. (confirmed 0/5, avg_delta=+88.9%)
+    mechanism: The `np.clip(centers, 0.01, 0.99)` operation in the original code incorrectly constrains circle centers, especially those intended to be near the boundaries (e.g., at 0.1). This artificial restriction forces their maximum possible radii to be smaller (e.g., 0.01 instead of 0.1), significantly reducing the overall sum of radii. The `compute_max_radii` function already correctly handles boundary constraints by calculating `min(x, y, 1-x, 1-y)`. Removing this redundant and detrimental clipping will allow circles to expand to their full potential near the edges, which is crucial for dense packings.
+
+=== INCONCLUSIVE ===
+  [sum_radii] A hexagonal packing arrangement is superior to a square grid for N=26. (total=1)
+  [sum_radii] Iterative relaxation of radii improves the final sum compared to a single-pass proportional scaling. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 10:40:13,963 - INFO - Evaluated program 1467e0ea-3138-4e26-af06-6af0da4da05a in 0.16s: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=0.0758
+2026-02-26 10:40:13,969 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 9, 'diversity': 0} (fitness: 0.678 -> 0.727)
+2026-02-26 10:40:13,969 - INFO - New best program 1467e0ea-3138-4e26-af06-6af0da4da05a replaces 6cf0f1c8-cf7a-402d-a5f8-a3773c4f04b7 (combined_score: 0.6783 → 0.7275, +0.0492)
+2026-02-26 10:40:13,969 - INFO - Iteration 17: Program 1467e0ea-3138-4e26-af06-6af0da4da05a (parent: f4762d4e-5b54-41e6-af10-f1e745182175) completed in 68.37s
+2026-02-26 10:40:13,970 - INFO - Metrics: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=0.0758
+2026-02-26 10:40:13,970 - INFO - 🌟 New best solution found at iteration 17: 1467e0ea-3138-4e26-af06-6af0da4da05a
+2026-02-26 10:40:43,197 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:40:43,199 - WARNING - Iteration 18 error: No valid diffs found in response
+2026-02-26 10:41:05,194 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:41:05,433 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 10:41:05,434 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.5, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: Replace the inefficient concentric ring pattern with a 5x5 grid and add a 26th circle at the center.
+  H2 [REFUTED]: EXPECT sum_radii > 2.6, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: Remove the `np.clip` operation on circle centers.
+  OVERALL: combined_score=0.68 (delta=+0.31, +86.2% vs baseline=0.36)
+2026-02-26 10:41:05,434 - INFO - [HYPOTHESIS] Updated ledger (8 total entries)
+2026-02-26 10:41:05,435 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] Adopt the 5x5 grid + 1 central circle pattern from previous successful attempts to improve sum_radii. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: The current concentric ring pattern only places 25 circles and is not an efficient packing for N=26. A 5x5 grid provides a structured, dense arrangement for 25 circles, and adding the 26th circle at the center efficiently utilizes space. This directly addresses the N=26 requirement and replaces an inefficient pattern with one known to perform significantly better.
+  [sum_radii] Remove the `np.clip` operation on circle centers to allow circles to expand fully. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: The `np.clip(centers, 0.01, 0.99)` in the current code artificially constrains circle centers, preventing circles near the boundaries from achieving their maximum possible radii. The `compute_max_radii` function already correctly handles boundary constraints by calculating `min(x, y, 1-x, 1-y)`, making the clip redundant and detrimental. Removing it will allow `compute_max_radii` to optimize radii without artificial limitations.
+
+=== REFUTED STRATEGIES ===
+  [sum_radii] Replace the inefficient concentric ring pattern with a 5x5 grid and add a 26th circle at the center. (confirmed 0/6, avg_delta=+88.5%)
+    mechanism: The original concentric ring pattern for 25 circles (with the 26th circle effectively at (0,0) and radius 0) is a very poor packing for N=26. A 5x5 grid of circles provides a much denser and more structured arrangement, yielding a base sum of 2.5 for equal radii. Adding the 26th circle at the square's absolute center (0.5, 0.5) leverages an often underutilized central void, allowing for a potentially larger overall sum as `compute_max_radii` will efficiently fill the space.
+  [sum_radii] Remove the `np.clip` operation on circle centers. (confirmed 0/6, avg_delta=+88.5%)
+    mechanism: The `np.clip(centers, 0.01, 0.99)` operation in the original code incorrectly constrains circle centers, especially those intended to be near the boundaries (e.g., at 0.1). This artificial restriction forces their maximum possible radii to be smaller (e.g., 0.01 instead of 0.1), significantly reducing the overall sum of radii. The `compute_max_radii` function already correctly handles boundary constraints by calculating `min(x, y, 1-x, 1-y)`. Removing this redundant and detrimental clipping will allow circles to expand to their full potential near the edges, which is crucial for dense packings.
+
+=== INCONCLUSIVE ===
+  [sum_radii] A hexagonal packing arrangement is superior to a square grid for N=26. (total=1)
+  [sum_radii] Iterative relaxation of radii improves the final sum compared to a single-pass proportional scaling. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 10:41:05,435 - INFO - Evaluated program 7aa93dc0-fe36-47ca-9e8d-a9e81d6d0ddc in 0.23s: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.1067
+2026-02-26 10:41:05,447 - INFO - Iteration 20: Program 7aa93dc0-fe36-47ca-9e8d-a9e81d6d0ddc (parent: 2992d463-047f-4add-9ae9-2a982d011b7b) completed in 52.36s
+2026-02-26 10:41:05,448 - INFO - Metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.1067
+2026-02-26 10:41:05,448 - INFO - Checkpoint interval reached at iteration 20
+2026-02-26 10:41:05,448 - INFO - Island Status:
+2026-02-26 10:41:05,448 - INFO -  * Island 0: 8 programs, best=0.7275, avg=0.6411, diversity=228.08, gen=8 (best: 1467e0ea-3138-4e26-af06-6af0da4da05a)
+2026-02-26 10:41:05,448 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 10:41:05,448 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 10:41:05,452 - INFO - Saved database with 9 programs to experiments/hypothesis_ab_circpack/treatment_run_102/checkpoints/checkpoint_20
+2026-02-26 10:41:05,452 - INFO - Saved best program at checkpoint 20 with metrics: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=0.0758
+2026-02-26 10:41:05,452 - INFO - Saved checkpoint at iteration 20 to experiments/hypothesis_ab_circpack/treatment_run_102/checkpoints/checkpoint_20
+2026-02-26 10:41:05,453 - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-02-26 10:41:05,455 - INFO - Saved database with 9 programs to experiments/hypothesis_ab_circpack/treatment_run_102/checkpoints/checkpoint_20
+2026-02-26 10:41:05,456 - INFO - Saved best program at checkpoint 20 with metrics: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=0.0758
+2026-02-26 10:41:05,456 - INFO - Saved checkpoint at iteration 20 to experiments/hypothesis_ab_circpack/treatment_run_102/checkpoints/checkpoint_20
+2026-02-26 10:41:05,580 - INFO - Stopped process pool
+2026-02-26 10:41:05,580 - INFO - Using tracked best program: 1467e0ea-3138-4e26-af06-6af0da4da05a
+2026-02-26 10:41:05,580 - INFO - Evolution complete. Best program has metrics: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=0.0758
+2026-02-26 10:41:05,581 - INFO - Saved best program to experiments/hypothesis_ab_circpack/treatment_run_102/best/best_program.py with program info to experiments/hypothesis_ab_circpack/treatment_run_102/best/best_program_info.json

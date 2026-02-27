@@ -1,0 +1,48 @@
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 evaluation failed: invalid syntax (tmpx6xs6_84.py, line 98)
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 367, in evaluate_stage1
+    spec.loader.exec_module(program)
+  File "<frozen importlib._bootstrap_external>", line 936, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1074, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1004, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpx6xs6_84.py", line 98
+    ```
+    ^
+SyntaxError: invalid syntax
+
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 evaluation failed: invalid syntax (tmpknd2dv3q.py, line 106)
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 367, in evaluate_stage1
+    spec.loader.exec_module(program)
+  File "<frozen importlib._bootstrap_external>", line 936, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1074, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1004, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpknd2dv3q.py", line 106
+    ```
+    ^
+SyntaxError: invalid syntax
+
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 validation: Program does not have 'run_search' function
+
+Evolution complete!
+Best program metrics:
+  runs_successfully: 1.0000
+  value_score: 0.9996
+  distance_score: 0.9900
+  combined_score: 1.4952
+  reliability_score: 1.0000
+
+Latest checkpoint saved at: experiments/factorial_ab_funcmin/treatment_full_run_202/checkpoints/checkpoint_20
+To resume, use: --checkpoint experiments/factorial_ab_funcmin/treatment_full_run_202/checkpoints/checkpoint_20

@@ -1,0 +1,764 @@
+{
+  "baseline": {
+    "num_points": 2,
+    "combined_score": 0.003372681281618887
+  },
+  "entries": [
+    {
+      "timestamp": "2026-02-26T18:45:25.610328+00:00",
+      "overall_combined_score": 0.003372681281618887,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Filtering lattice shells from D_11 root system improves fitness",
+          "mechanism": "D_11 lattice provides structured points with high symmetry and guaranteed minimum distances, and filtering its shells based on pairwise distances ensures valid points",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Leveraging laminated lattice L_11 improves fitness further",
+          "mechanism": "Laminated lattices are optimized for high-dimensional sphere packing, providing large sets of valid points with minimal computational overhead",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining symmetry group filtering with lattice constructions improves efficiency",
+          "mechanism": "Symmetry group representations reduce redundant checks, focusing the search on unique candidate points",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.003372681281618887,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:47:05.107712+00:00",
+      "overall_combined_score": 0.003372681281618887,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Filtering lattice shells from D_11 improves fitness by generating structured points with optimal minimum distances.",
+          "mechanism": "D_11 root system provides symmetric lattice vectors with guaranteed minimum pairwise distances, and filtering its shells ensures valid sets of points.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Laminated lattice L_11 will outperform D_11 because it is optimized for sphere packing in high dimensions.",
+          "mechanism": "Laminated lattices are dense packings designed for high-dimensional geometry, yielding larger sets of points with minimal computational overhead.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining symmetry group filtering with lattice constructions will reduce redundancy and improve computational efficiency.",
+          "mechanism": "Symmetry group filtering avoids generating equivalent points, focusing computations on unique valid candidates.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.003372681281618887,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:47:09.931337+00:00",
+      "overall_combined_score": 0.003372681281618887,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Filtering lattice shells from D_11 improves fitness by generating structured points with optimal minimum distances.",
+          "mechanism": "D_11 root system provides symmetric lattice vectors with guaranteed minimum pairwise distances, and filtering its shells ensures valid sets of points.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Laminated lattice L_11 will outperform D_11 because it is optimized for sphere packing in high dimensions.",
+          "mechanism": "Laminated lattices are dense packings designed for high-dimensional geometry, yielding larger sets of points with minimal computational overhead.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining symmetry group filtering with lattice constructions will reduce redundancy and improve computational efficiency.",
+          "mechanism": "Symmetry group filtering avoids generating equivalent points, focusing computations on unique valid candidates.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.003372681281618887,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:47:15.981832+00:00",
+      "overall_combined_score": 0.003372681281618887,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Using the D_11 lattice system's shells as a basis provides structured candidate points with high symmetry.",
+          "mechanism": "The D_n lattice system is designed to maximize the density of sphere packing, ensuring minimum distances and symmetry in high dimensions.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Filtering shell points based on pairwise L2 distance and maximum norm improves fitness.",
+          "mechanism": "Filtering ensures all points meet the constraint max_i ||p_i|| <= min_{i!=j} ||p_i - p_j||, thereby maximizing the valid subset from the candidate pool.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining D_11 lattice shells with symmetry group filtering reduces computational overhead and improves the combined score.",
+          "mechanism": "Symmetry group filtering eliminates redundant checks, focusing computation on unique configurations.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.003372681281618887,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:47:37.102735+00:00",
+      "overall_combined_score": 0.003372681281618887,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Filtering lattice shells from D_11 improves fitness by generating structured points with optimal minimum distances.",
+          "mechanism": "D_11 root system provides symmetric lattice vectors with guaranteed minimum pairwise distances, and filtering its shells ensures valid sets of points.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Laminated lattice L_11 will outperform D_11 because it is optimized for sphere packing in high dimensions.",
+          "mechanism": "Laminated lattices are dense packings designed for high-dimensional geometry, yielding larger sets of points with minimal computational overhead.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining symmetry group filtering with lattice constructions will reduce redundancy and improve computational efficiency.",
+          "mechanism": "Symmetry group filtering avoids generating equivalent points, focusing computations on unique valid candidates.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.003372681281618887,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:47:41.550170+00:00",
+      "overall_combined_score": 0.006745362563237774,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Filtering lattice shells from D_11 improves fitness by generating structured points with optimal minimum distances.",
+          "mechanism": "D_11 root system provides symmetric lattice vectors with guaranteed minimum pairwise distances, and filtering its shells ensures valid sets of points.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 4,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 100.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Laminated lattice L_11 will outperform D_11 because it is optimized for sphere packing in high dimensions.",
+          "mechanism": "Laminated lattices are dense packings designed for high-dimensional geometry, yielding larger sets of points with minimal computational overhead.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 4,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 100.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining symmetry group filtering with lattice constructions will reduce redundancy and improve computational efficiency.",
+          "mechanism": "Symmetry group filtering avoids generating equivalent points, focusing computations on unique valid candidates.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.006745362563237774,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 100.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:47:55.199581+00:00",
+      "overall_combined_score": 0.003372681281618887,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Filtering lattice shells from D_11 improves fitness by generating structured points with optimal minimum distances.",
+          "mechanism": "D_11 root system provides symmetric lattice vectors with guaranteed minimum pairwise distances, and filtering its shells ensures valid sets of points.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Laminated lattice L_11 will outperform D_11 because it is optimized for sphere packing in high dimensions.",
+          "mechanism": "Laminated lattices are dense packings designed for high-dimensional geometry, yielding larger sets of points with minimal computational overhead.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining symmetry group filtering with lattice constructions will reduce redundancy and improve computational efficiency.",
+          "mechanism": "Symmetry group filtering avoids generating equivalent points, focusing computations on unique valid candidates.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.003372681281618887,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:49:15.635250+00:00",
+      "overall_combined_score": 0.003372681281618887,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Filtering lattice shells from D_11 root system improves fitness",
+          "mechanism": "D_11 lattice provides structured points with high symmetry and guaranteed minimum distances, and filtering its shells based on pairwise distances ensures valid points",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Leveraging laminated lattice L_11 improves fitness further",
+          "mechanism": "Laminated lattices are optimized for high-dimensional sphere packing, providing large sets of valid points with minimal computational overhead",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining symmetry group filtering with lattice constructions improves efficiency",
+          "mechanism": "Symmetry group representations reduce redundant checks, focusing the search on unique candidate points",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.003372681281618887,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:49:36.077925+00:00",
+      "overall_combined_score": 0.006745362563237774,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Filtering lattice shells from D_11 improves fitness by generating structured points with optimal minimum distances.",
+          "mechanism": "D_11 root system provides symmetric lattice vectors with guaranteed minimum pairwise distances, and filtering its shells ensures valid sets of points.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 4,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 100.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Laminated lattice L_11 will outperform D_11 because it is optimized for sphere packing in high dimensions.",
+          "mechanism": "Laminated lattices are dense packings designed for high-dimensional geometry, yielding larger sets of points with minimal computational overhead.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 4,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 100.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining symmetry group filtering with lattice constructions will reduce redundancy and improve computational efficiency.",
+          "mechanism": "Symmetry group filtering avoids generating equivalent points, focusing computations on unique valid candidates.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.006745362563237774,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 100.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:49:37.778952+00:00",
+      "overall_combined_score": 0.003372681281618887,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Using the D_11 lattice system's shells as a basis provides structured candidate points with high symmetry.",
+          "mechanism": "The D_n lattice system is designed to maximize the density of sphere packing, ensuring minimum distances and symmetry in high dimensions.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Filtering shell points based on pairwise L2 distance and maximum norm improves fitness.",
+          "mechanism": "Filtering ensures all points meet the constraint max_i ||p_i|| <= min_{i!=j} ||p_i - p_j||, thereby maximizing the valid subset from the candidate pool.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining D_11 lattice shells with symmetry group filtering reduces computational overhead and improves the combined score.",
+          "mechanism": "Symmetry group filtering eliminates redundant checks, focusing computation on unique configurations.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.003372681281618887,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:49:44.780312+00:00",
+      "overall_combined_score": 0.003372681281618887,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Using the D_11 lattice system's shells provides structured points with high symmetry and guaranteed minimum distances.",
+          "mechanism": "The D_n root system ensures lattice vectors are symmetrically distributed, and filtering its shells can generate large valid sets efficiently.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Filtering lattice shells using pairwise distance checks improves fitness by eliminating invalid points.",
+          "mechanism": "Pairwise distance checks ensure points satisfy the constraint max_i ||p_i|| <= min_{i!=j} ||p_i - p_j||, resulting in a valid subset.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining D_11 lattice shells with symmetry group filtering reduces computational redundancy and improves the combined score.",
+          "mechanism": "Symmetry group filtering avoids generating redundant points, focusing computations on unique configurations.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.003372681281618887,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:49:51.887512+00:00",
+      "overall_combined_score": 0.003372681281618887,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Filtering lattice shells from D_11 root system improves fitness",
+          "mechanism": "D_11 lattice provides structured points with high symmetry and guaranteed minimum distances, and filtering its shells based on pairwise distances ensures valid points",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Leveraging laminated lattice L_11 improves fitness further",
+          "mechanism": "Laminated lattices are optimized for high-dimensional sphere packing, providing large sets of valid points with minimal computational overhead",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining symmetry group filtering with lattice constructions improves efficiency",
+          "mechanism": "Symmetry group representations reduce redundant checks, focusing the search on unique candidate points",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.003372681281618887,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:50:17.495886+00:00",
+      "overall_combined_score": 0.003372681281618887,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Filtering lattice shells from D_11 root system improves fitness",
+          "mechanism": "D_11 lattice provides structured points with high symmetry and guaranteed minimum distances, and filtering its shells based on pairwise distances ensures valid points",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Leveraging laminated lattice L_11 improves fitness further",
+          "mechanism": "Laminated lattices are optimized for high-dimensional sphere packing, providing large sets of valid points with minimal computational overhead",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining symmetry group filtering with lattice constructions improves efficiency",
+          "mechanism": "Symmetry group representations reduce redundant checks, focusing the search on unique candidate points",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.003372681281618887,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:51:24.303076+00:00",
+      "overall_combined_score": 0.003372681281618887,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Filtering lattice shells from D_11 root system improves fitness",
+          "mechanism": "D_11 lattice provides structured points with high symmetry and guaranteed minimum distances, and filtering its shells based on pairwise distances ensures valid points",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Leveraging laminated lattice L_11 improves fitness further",
+          "mechanism": "Laminated lattices are optimized for high-dimensional sphere packing, providing large sets of valid points with minimal computational overhead",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining symmetry group filtering with lattice constructions improves efficiency",
+          "mechanism": "Symmetry group representations reduce redundant checks, focusing the search on unique candidate points",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.003372681281618887,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:53:18.982389+00:00",
+      "overall_combined_score": 0.003372681281618887,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Filtering lattice shells from D_11 improves fitness by generating structured points with optimal minimum distances.",
+          "mechanism": "D_11 root system provides symmetric lattice vectors with guaranteed minimum pairwise distances, and filtering its shells ensures valid sets of points.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Laminated lattice L_11 will outperform D_11 because it is optimized for sphere packing in high dimensions.",
+          "mechanism": "Laminated lattices are dense packings designed for high-dimensional geometry, yielding larger sets of points with minimal computational overhead.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining symmetry group filtering with lattice constructions will reduce redundancy and improve computational efficiency.",
+          "mechanism": "Symmetry group filtering avoids generating equivalent points, focusing computations on unique valid candidates.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.003372681281618887,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:53:49.962193+00:00",
+      "overall_combined_score": 0.003372681281618887,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Filtering lattice shells from D_11 improves fitness by generating structured points with optimal minimum distances.",
+          "mechanism": "D_11 root system provides symmetric lattice vectors with guaranteed minimum pairwise distances, and filtering its shells ensures valid sets of points.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Laminated lattice L_11 will outperform D_11 because it is optimized for sphere packing in high dimensions.",
+          "mechanism": "Laminated lattices are dense packings designed for high-dimensional geometry, yielding larger sets of points with minimal computational overhead.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining symmetry group filtering with lattice constructions will reduce redundancy and improve computational efficiency.",
+          "mechanism": "Symmetry group filtering avoids generating equivalent points, focusing computations on unique valid candidates.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.003372681281618887,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:53:51.421885+00:00",
+      "overall_combined_score": 0.006745362563237774,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Filtering lattice shells from D_11 improves fitness by generating structured points with optimal minimum distances.",
+          "mechanism": "D_11 root system provides symmetric lattice vectors with guaranteed minimum pairwise distances, and filtering its shells ensures valid sets of points.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 4,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 100.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Laminated lattice L_11 will outperform D_11 because it is optimized for sphere packing in high dimensions.",
+          "mechanism": "Laminated lattices are dense packings designed for high-dimensional geometry, yielding larger sets of points with minimal computational overhead.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 4,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 100.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining symmetry group filtering with lattice constructions will reduce redundancy and improve computational efficiency.",
+          "mechanism": "Symmetry group filtering avoids generating equivalent points, focusing computations on unique valid candidates.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.006745362563237774,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 100.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:53:55.985725+00:00",
+      "overall_combined_score": 0.003372681281618887,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Filtering lattice shells from D_11 root system improves fitness",
+          "mechanism": "D_11 lattice provides structured points with high symmetry and guaranteed minimum distances, and filtering its shells based on pairwise distances ensures valid points",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Leveraging laminated lattice L_11 improves fitness further",
+          "mechanism": "Laminated lattices are optimized for high-dimensional sphere packing, providing large sets of valid points with minimal computational overhead",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 2,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining symmetry group filtering with lattice constructions improves efficiency",
+          "mechanism": "Symmetry group representations reduce redundant checks, focusing the search on unique candidate points",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 0.003372681281618887,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    }
+  ]
+}

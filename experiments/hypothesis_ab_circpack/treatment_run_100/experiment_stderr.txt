@@ -1,0 +1,403 @@
+2026-02-26 10:36:40,882 - INFO - Logging to experiments/hypothesis_ab_circpack/treatment_run_100/logs/openevolve_20260226_103640.log
+2026-02-26 10:36:40,894 - INFO - Set random seed to 42 for reproducibility
+2026-02-26 10:36:40,917 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 10:36:40,924 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:40,925 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 10:36:40,937 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 10:36:40,938 - INFO - Initialized prompt sampler
+2026-02-26 10:36:40,939 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 10:36:40,939 - INFO - Initialized program database with 0 programs
+2026-02-26 10:36:40,940 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 10:36:40,941 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 10:36:40,941 - INFO - Initialized OpenEvolve with examples/circle_packing/initial_program.py
+2026-02-26 10:36:40,941 - INFO - Adding initial program to database
+2026-02-26 10:36:41,131 - INFO - [HYPOTHESIS] Parsed 0 hypotheses from evolved code
+2026-02-26 10:36:41,131 - INFO - [HYPOTHESIS] No hypotheses found in evolved code
+2026-02-26 10:36:41,137 - INFO - Evaluated program b88aa92f-b006-4aed-937c-d55eb413dd83 in 0.20s: validity=1.0000, sum_radii=0.9598, target_ratio=0.3642, combined_score=0.3642, eval_time=0.0899
+2026-02-26 10:36:41,138 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-02-26 10:36:41,152 - INFO - Initialized process parallel controller with 3 workers
+2026-02-26 10:36:41,153 - INFO - Set max None tasks per child
+2026-02-26 10:36:41,154 - INFO - Started process pool with 3 processes
+2026-02-26 10:36:41,154 - INFO - Using island-based evolution with 3 islands
+2026-02-26 10:36:41,154 - INFO - Island Status:
+2026-02-26 10:36:41,154 - INFO -  * Island 0: 1 programs, best=0.3642, avg=0.3642, diversity=0.00, gen=0 (best: b88aa92f-b006-4aed-937c-d55eb413dd83)
+2026-02-26 10:36:41,154 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 10:36:41,154 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 10:36:41,154 - INFO - Starting process-based evolution from iteration 1 for 20 iterations (total: 21)
+2026-02-26 10:36:41,172 - INFO - Early stopping disabled
+2026-02-26 10:36:42,289 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 10:36:42,323 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 10:36:42,334 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:42,334 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 10:36:42,335 - INFO - Initialized prompt sampler
+2026-02-26 10:36:42,347 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 10:36:42,348 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 10:36:42,349 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 10:36:42,349 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 10:36:42,349 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:36:42,349 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:42,372 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:42,372 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 10:36:42,373 - INFO - Initialized prompt sampler
+2026-02-26 10:36:42,425 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 10:36:42,447 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:42,448 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 10:36:42,451 - INFO - Initialized prompt sampler
+2026-02-26 10:36:42,466 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 10:36:42,466 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 10:36:42,467 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 10:36:42,467 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 10:36:42,467 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:36:42,467 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:42,468 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 10:36:42,471 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 10:36:42,471 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 10:36:42,471 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 10:36:42,471 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:36:42,472 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:54,777 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:36:54,777 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:36:54,855 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:36:54,884 - INFO - Evaluated program db0ba96d-0b3e-4402-beaf-8ec13c4dc1f2 in 0.10s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-02-26 10:36:54,885 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:36:54,886 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:54,888 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 5}
+2026-02-26 10:36:54,888 - INFO - Iteration 3: Program db0ba96d-0b3e-4402-beaf-8ec13c4dc1f2 (parent: b88aa92f-b006-4aed-937c-d55eb413dd83) completed in 12.42s
+2026-02-26 10:36:54,888 - INFO - Metrics: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-02-26 10:36:54,957 - INFO - Evaluated program 108453f2-482b-44bc-bb01-b9b802e334dc in 0.09s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-02-26 10:36:54,958 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:36:54,959 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:54,959 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 10:36:54,960 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 1.8, ACTUAL 2.2 (delta=+133.4% vs baseline)
+    claim: A 5x5 grid with one extra circle is more efficient than concentric rings.
+  H2 [CONFIRMED]: EXPECT target_ratio > 0.7, ACTUAL 0.9 (delta=+133.4% vs baseline)
+    claim: Jittered grid placement allows for better local optimization.
+  OVERALL: combined_score=0.85 (delta=+0.49, +133.4% vs baseline=0.36)
+2026-02-26 10:36:54,960 - INFO - [HYPOTHESIS] Updated ledger (1 total entries)
+2026-02-26 10:36:54,960 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 1/1, avg_delta=+133.4%)
+    mechanism: A regular grid minimizes empty space between circles in a square container, providing a higher baseline sum_radii than arbitrary rings.
+  [target_ratio] Jittered grid placement allows for better local optimization. (confirmed 1/1, avg_delta=+133.4%)
+    mechanism: Slight offsets from a perfect grid allow circles to "nestle" closer, reducing the impact of the rigid square boundaries.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 10:36:54,960 - INFO - Evaluated program f7cfc31b-e43a-4030-a541-0f86eda9605c in 0.17s: validity=1.0000, sum_radii=2.2400, target_ratio=0.8501, combined_score=0.8501, eval_time=0.0747
+2026-02-26 10:36:54,961 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:36:54,962 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:36:54,964 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 9}
+2026-02-26 10:36:54,964 - INFO - New best program f7cfc31b-e43a-4030-a541-0f86eda9605c replaces b88aa92f-b006-4aed-937c-d55eb413dd83 (combined_score: 0.3642 → 0.8501, +0.4859)
+2026-02-26 10:36:54,964 - INFO - Iteration 1: Program f7cfc31b-e43a-4030-a541-0f86eda9605c (parent: b88aa92f-b006-4aed-937c-d55eb413dd83) completed in 12.49s
+2026-02-26 10:36:54,964 - INFO - Metrics: validity=1.0000, sum_radii=2.2400, target_ratio=0.8501, combined_score=0.8501, eval_time=0.0747
+2026-02-26 10:36:54,964 - INFO - 🌟 New best solution found at iteration 1: f7cfc31b-e43a-4030-a541-0f86eda9605c
+2026-02-26 10:36:54,964 - INFO - Iteration 2: Program 108453f2-482b-44bc-bb01-b9b802e334dc (parent: b88aa92f-b006-4aed-937c-d55eb413dd83) completed in 12.61s
+2026-02-26 10:36:54,965 - INFO - Metrics: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-02-26 10:37:07,262 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:37:07,526 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 10:37:07,527 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 1.8, ACTUAL 2.2 (delta=+133.4% vs baseline)
+    claim: A 5x5 grid with one extra circle is more efficient than concentric rings.
+  H2 [CONFIRMED]: EXPECT target_ratio > 0.7, ACTUAL 0.9 (delta=+133.4% vs baseline)
+    claim: Jittered grid placement allows for better local optimization.
+  OVERALL: combined_score=0.85 (delta=+0.49, +133.4% vs baseline=0.36)
+2026-02-26 10:37:07,527 - INFO - [HYPOTHESIS] Updated ledger (2 total entries)
+2026-02-26 10:37:07,527 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 2/2, avg_delta=+133.4%)
+    mechanism: A regular grid minimizes empty space between circles in a square container, providing a higher baseline sum_radii than arbitrary rings.
+  [target_ratio] Jittered grid placement allows for better local optimization. (confirmed 2/2, avg_delta=+133.4%)
+    mechanism: Slight offsets from a perfect grid allow circles to "nestle" closer, reducing the impact of the rigid square boundaries.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 10:37:07,528 - INFO - Evaluated program e2074d8b-5cc9-4542-8f21-32ec44975557 in 0.17s: validity=1.0000, sum_radii=2.2400, target_ratio=0.8501, combined_score=0.8501, eval_time=0.0750
+2026-02-26 10:37:07,529 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:37:07,529 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:37:07,531 - INFO - Iteration 5: Program e2074d8b-5cc9-4542-8f21-32ec44975557 (parent: b88aa92f-b006-4aed-937c-d55eb413dd83) completed in 12.57s
+2026-02-26 10:37:07,531 - INFO - Metrics: validity=1.0000, sum_radii=2.2400, target_ratio=0.8501, combined_score=0.8501, eval_time=0.0750
+2026-02-26 10:37:07,531 - INFO - Checkpoint interval reached at iteration 5
+2026-02-26 10:37:07,532 - INFO - Island Status:
+2026-02-26 10:37:07,532 - INFO -  * Island 0: 5 programs, best=0.8501, avg=0.4129, diversity=244.58, gen=4 (best: f7cfc31b-e43a-4030-a541-0f86eda9605c)
+2026-02-26 10:37:07,532 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 10:37:07,532 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 10:37:07,534 - INFO - Saved database with 5 programs to experiments/hypothesis_ab_circpack/treatment_run_100/checkpoints/checkpoint_5
+2026-02-26 10:37:07,534 - INFO - Saved best program at checkpoint 5 with metrics: validity=1.0000, sum_radii=2.2400, target_ratio=0.8501, combined_score=0.8501, eval_time=0.0747
+2026-02-26 10:37:07,534 - INFO - Saved checkpoint at iteration 5 to experiments/hypothesis_ab_circpack/treatment_run_100/checkpoints/checkpoint_5
+2026-02-26 10:37:07,554 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:37:07,732 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 10:37:07,733 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 1.8, ACTUAL 2.2 (delta=+133.4% vs baseline)
+    claim: A 5x5 grid with one extra circle is more efficient than concentric rings.
+  H2 [CONFIRMED]: EXPECT target_ratio > 0.7, ACTUAL 0.9 (delta=+133.4% vs baseline)
+    claim: Jittered grid placement allows for better local optimization.
+  OVERALL: combined_score=0.85 (delta=+0.49, +133.4% vs baseline=0.36)
+2026-02-26 10:37:07,733 - INFO - [HYPOTHESIS] Updated ledger (3 total entries)
+2026-02-26 10:37:07,733 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 3/3, avg_delta=+133.4%)
+    mechanism: A regular grid minimizes empty space between circles in a square container, providing a higher baseline sum_radii than arbitrary rings.
+  [target_ratio] Jittered grid placement allows for better local optimization. (confirmed 3/3, avg_delta=+133.4%)
+    mechanism: Slight offsets from a perfect grid allow circles to "nestle" closer, reducing the impact of the rigid square boundaries.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 10:37:07,734 - INFO - Evaluated program 3e937ea4-b25a-492d-a3bc-b00dfe0fe612 in 0.18s: validity=1.0000, sum_radii=2.2400, target_ratio=0.8501, combined_score=0.8501, eval_time=0.0960
+2026-02-26 10:37:07,735 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:37:07,735 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:37:07,743 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 0}
+2026-02-26 10:37:07,743 - INFO - Iteration 6: Program 3e937ea4-b25a-492d-a3bc-b00dfe0fe612 (parent: b88aa92f-b006-4aed-937c-d55eb413dd83) completed in 12.77s
+2026-02-26 10:37:07,743 - INFO - Metrics: validity=1.0000, sum_radii=2.2400, target_ratio=0.8501, combined_score=0.8501, eval_time=0.0960
+2026-02-26 10:37:07,768 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:37:07,875 - INFO - Evaluated program 44466c75-0e49-4a30-b8c1-442697efa1c0 in 0.09s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-02-26 10:37:07,876 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:37:07,877 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:37:07,886 - INFO - Iteration 4: Program 44466c75-0e49-4a30-b8c1-442697efa1c0 (parent: b88aa92f-b006-4aed-937c-d55eb413dd83) completed in 12.99s
+2026-02-26 10:37:07,886 - INFO - Metrics: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-02-26 10:37:29,467 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:37:29,472 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:37:29,473 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:37:29,474 - WARNING - Iteration 9 error: No valid diffs found in response
+2026-02-26 10:37:35,933 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:37:35,937 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:37:35,938 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:37:35,938 - WARNING - Iteration 10 error: No valid diffs found in response
+2026-02-26 10:37:42,082 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:37:42,092 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:37:42,093 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:37:42,093 - WARNING - Iteration 8 error: No valid diffs found in response
+2026-02-26 10:37:43,772 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:37:43,780 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:37:43,781 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 10:37:43,789 - WARNING - Iteration 7 error: No valid diffs found in response
+2026-02-26 10:37:49,967 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:37:50,166 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 10:37:50,167 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 1.8, ACTUAL 1.5 (delta=+54.0% vs baseline)
+    claim: A 5x5 grid with one extra circle is more efficient than concentric rings.
+  H2 [REFUTED]: EXPECT target_ratio > 0.7, ACTUAL 0.6 (delta=+54.0% vs baseline)
+    claim: Jittered grid placement allows for better local optimization.
+  OVERALL: combined_score=0.56 (delta=+0.20, +54.0% vs baseline=0.36)
+2026-02-26 10:37:50,167 - INFO - [HYPOTHESIS] Updated ledger (4 total entries)
+2026-02-26 10:37:50,167 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 3/4, avg_delta=+113.5%)
+    mechanism: A regular grid minimizes empty space between circles in a square container, providing a higher baseline sum_radii than arbitrary rings.
+  [target_ratio] Jittered grid placement allows for better local optimization. (confirmed 3/4, avg_delta=+113.6%)
+    mechanism: Slight offsets from a perfect grid allow circles to "nestle" closer, reducing the impact of the rigid square boundaries.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 10:37:50,168 - INFO - Evaluated program f5fb3087-3f6b-4db5-8cc7-ca8d6bcf6966 in 0.19s: validity=1.0000, sum_radii=1.4779, target_ratio=0.5609, combined_score=0.5609, eval_time=0.0896
+2026-02-26 10:37:50,169 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:37:50,170 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:37:50,176 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 3, 'diversity': 0}
+2026-02-26 10:37:50,176 - INFO - Iteration 12: Program f5fb3087-3f6b-4db5-8cc7-ca8d6bcf6966 (parent: 3e937ea4-b25a-492d-a3bc-b00dfe0fe612) completed in 8.08s
+2026-02-26 10:37:50,176 - INFO - Metrics: validity=1.0000, sum_radii=1.4779, target_ratio=0.5609, combined_score=0.5609, eval_time=0.0896
+2026-02-26 10:37:54,710 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:37:54,914 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 10:37:54,914 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.3, ACTUAL 1.8 (delta=+86.8% vs baseline)
+    claim: A hexagonal-tilted grid is superior to a square grid for n=26.
+  H2 [REFUTED]: EXPECT combined_score > 0.9, ACTUAL 0.7 (delta=+86.8% vs baseline)
+    claim: Using a non-equalizing radius solver (greedy) preserves larger circles.
+  OVERALL: combined_score=0.68 (delta=+0.32, +86.8% vs baseline=0.36)
+2026-02-26 10:37:54,915 - INFO - [HYPOTHESIS] Updated ledger (5 total entries)
+2026-02-26 10:37:54,915 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 3/4, avg_delta=+113.5%)
+    mechanism: A regular grid minimizes empty space between circles in a square container, providing a higher baseline sum_radii than arbitrary rings.
+  [target_ratio] Jittered grid placement allows for better local optimization. (confirmed 3/4, avg_delta=+113.6%)
+    mechanism: Slight offsets from a perfect grid allow circles to "nestle" closer, reducing the impact of the rigid square boundaries.
+
+=== INCONCLUSIVE ===
+  [sum_radii] A hexagonal-tilted grid is superior to a square grid for n=26. (total=1)
+  [combined_score] Using a non-equalizing radius solver (greedy) preserves larger circles. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 10:37:54,915 - INFO - Evaluated program e6ac7dda-da7b-4448-a946-4a02cf6c0d72 in 0.20s: validity=1.0000, sum_radii=1.7925, target_ratio=0.6803, combined_score=0.6803, eval_time=0.0953
+2026-02-26 10:37:54,917 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:37:54,917 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:37:54,924 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 8, 'diversity': 1}
+2026-02-26 10:37:54,924 - INFO - Iteration 13: Program e6ac7dda-da7b-4448-a946-4a02cf6c0d72 (parent: 44466c75-0e49-4a30-b8c1-442697efa1c0) completed in 11.14s
+2026-02-26 10:37:54,924 - INFO - Metrics: validity=1.0000, sum_radii=1.7925, target_ratio=0.6803, combined_score=0.6803, eval_time=0.0953
+2026-02-26 10:38:25,636 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:38:25,873 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 10:38:25,874 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 1.8, ACTUAL 1.3 (delta=+32.1% vs baseline)
+    claim: A 5x5 grid with one extra circle is more efficient than concentric rings.
+  H2 [REFUTED]: EXPECT target_ratio > 0.7, ACTUAL 0.5 (delta=+32.1% vs baseline)
+    claim: Jittered grid placement allows for better local optimization.
+  OVERALL: combined_score=0.48 (delta=+0.12, +32.1% vs baseline=0.36)
+2026-02-26 10:38:25,874 - INFO - [HYPOTHESIS] Updated ledger (6 total entries)
+2026-02-26 10:38:25,874 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 3/5, avg_delta=+97.2%)
+    mechanism: A regular grid minimizes empty space between circles in a square container, providing a higher baseline sum_radii than arbitrary rings.
+  [target_ratio] Jittered grid placement allows for better local optimization. (confirmed 3/5, avg_delta=+97.3%)
+    mechanism: Slight offsets from a perfect grid allow circles to "nestle" closer, reducing the impact of the rigid square boundaries.
+
+=== INCONCLUSIVE ===
+  [sum_radii] A hexagonal-tilted grid is superior to a square grid for n=26. (total=1)
+  [combined_score] Using a non-equalizing radius solver (greedy) preserves larger circles. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 10:38:25,875 - INFO - Evaluated program 073c8a0b-7a13-4096-8850-9d5fce82e9dd in 0.21s: validity=1.0000, sum_radii=1.2675, target_ratio=0.4810, combined_score=0.4810, eval_time=0.1027
+2026-02-26 10:38:25,876 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:38:25,876 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:38:25,884 - INFO - Iteration 11: Program 073c8a0b-7a13-4096-8850-9d5fce82e9dd (parent: e2074d8b-5cc9-4542-8f21-32ec44975557) completed in 49.94s
+2026-02-26 10:38:25,884 - INFO - Metrics: validity=1.0000, sum_radii=1.2675, target_ratio=0.4810, combined_score=0.4810, eval_time=0.1027
+2026-02-26 10:38:50,770 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:38:50,775 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:38:50,775 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:38:50,781 - WARNING - Iteration 14 error: No valid diffs found in response
+2026-02-26 10:38:58,503 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:38:58,679 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 10:38:58,679 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 2.2, ACTUAL 2.2 (delta=+133.4% vs baseline)
+    claim: Reverting to the proven 5x5 grid with hexagonal offset will significantly increase sum_radii.
+  H2 [CONFIRMED]: EXPECT target_ratio > 0.8, ACTUAL 0.9 (delta=+133.4% vs baseline)
+    claim: Using the compute_max_radii strategy from the top-performing program will improve target_ratio.
+  OVERALL: combined_score=0.85 (delta=+0.49, +133.4% vs baseline=0.36)
+2026-02-26 10:38:58,680 - INFO - [HYPOTHESIS] Updated ledger (7 total entries)
+2026-02-26 10:38:58,680 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 3/5, avg_delta=+97.2%)
+    mechanism: A regular grid minimizes empty space between circles in a square container, providing a higher baseline sum_radii than arbitrary rings.
+  [target_ratio] Jittered grid placement allows for better local optimization. (confirmed 3/5, avg_delta=+97.3%)
+    mechanism: Slight offsets from a perfect grid allow circles to "nestle" closer, reducing the impact of the rigid square boundaries.
+  [sum_radii] Reverting to the proven 5x5 grid with hexagonal offset will significantly increase sum_radii. (confirmed 1/1, avg_delta=+133.4%)
+    mechanism: The current concentric ring pattern has a bug (only places 25 circles out of 26) and is inherently less dense for a square container than a grid-like arrangement, which better utilizes the rectangular boundaries. The hexagonal offset further improves local density.
+  [target_ratio] Using the compute_max_radii strategy from the top-performing program will improve target_ratio. (confirmed 1/1, avg_delta=+133.4%)
+    mechanism: The original program's compute_max_radii used proportional scaling which can lead to unnecessarily small radii. The top-performing compute_max_radii resolves overlaps by taking the minimum of the current radius and half the distance between centers, which is more effective for maximizing overall radius sum for this specific packing.
+
+=== INCONCLUSIVE ===
+  [sum_radii] A hexagonal-tilted grid is superior to a square grid for n=26. (total=1)
+  [combined_score] Using a non-equalizing radius solver (greedy) preserves larger circles. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 10:38:58,681 - INFO - Evaluated program 933279c7-1314-4250-94c5-2ea8d7a828c4 in 0.18s: validity=1.0000, sum_radii=2.2400, target_ratio=0.8501, combined_score=0.8501, eval_time=0.0865
+2026-02-26 10:38:58,682 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:38:58,682 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:38:58,683 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 4, 'diversity': 0}
+2026-02-26 10:38:58,683 - INFO - Iteration 16: Program 933279c7-1314-4250-94c5-2ea8d7a828c4 (parent: b88aa92f-b006-4aed-937c-d55eb413dd83) completed in 32.81s
+2026-02-26 10:38:58,683 - INFO - Metrics: validity=1.0000, sum_radii=2.2400, target_ratio=0.8501, combined_score=0.8501, eval_time=0.0865
+2026-02-26 10:38:59,418 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:38:59,423 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:38:59,424 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:38:59,433 - WARNING - Iteration 15 error: No valid diffs found in response
+2026-02-26 10:39:24,712 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:39:24,714 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 10:39:24,714 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 10:39:24,722 - WARNING - Iteration 19 error: No valid diffs found in response
+2026-02-26 10:39:41,375 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:39:41,407 - WARNING - Iteration 17 error: No valid diffs found in response
+2026-02-26 10:39:41,491 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:39:41,710 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 10:39:41,711 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 1.8, ACTUAL 1.7 (delta=+80.4% vs baseline)
+    claim: A 5x5 grid with one extra circle is more efficient than concentric rings.
+  H2 [REFUTED]: EXPECT target_ratio > 0.7, ACTUAL 0.7 (delta=+80.5% vs baseline)
+    claim: Jittered grid placement allows for better local optimization.
+  OVERALL: combined_score=0.66 (delta=+0.29, +80.5% vs baseline=0.36)
+2026-02-26 10:39:41,711 - INFO - [HYPOTHESIS] Updated ledger (8 total entries)
+2026-02-26 10:39:41,711 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 3/6, avg_delta=+94.4%)
+    mechanism: A regular grid minimizes empty space between circles in a square container, providing a higher baseline sum_radii than arbitrary rings.
+  [target_ratio] Jittered grid placement allows for better local optimization. (confirmed 3/6, avg_delta=+94.5%)
+    mechanism: Slight offsets from a perfect grid allow circles to "nestle" closer, reducing the impact of the rigid square boundaries.
+  [sum_radii] Reverting to the proven 5x5 grid with hexagonal offset will significantly increase sum_radii. (confirmed 1/1, avg_delta=+133.4%)
+    mechanism: The current concentric ring pattern has a bug (only places 25 circles out of 26) and is inherently less dense for a square container than a grid-like arrangement, which better utilizes the rectangular boundaries. The hexagonal offset further improves local density.
+  [target_ratio] Using the compute_max_radii strategy from the top-performing program will improve target_ratio. (confirmed 1/1, avg_delta=+133.4%)
+    mechanism: The original program's compute_max_radii used proportional scaling which can lead to unnecessarily small radii. The top-performing compute_max_radii resolves overlaps by taking the minimum of the current radius and half the distance between centers, which is more effective for maximizing overall radius sum for this specific packing.
+
+=== INCONCLUSIVE ===
+  [sum_radii] A hexagonal-tilted grid is superior to a square grid for n=26. (total=1)
+  [combined_score] Using a non-equalizing radius solver (greedy) preserves larger circles. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 10:39:41,712 - INFO - Evaluated program c194c468-8705-4314-8e34-846f6a97b8b4 in 0.22s: validity=1.0000, sum_radii=1.7318, target_ratio=0.6572, combined_score=0.6572, eval_time=0.1112
+2026-02-26 10:39:41,715 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 8, 'diversity': 0}
+2026-02-26 10:39:41,715 - INFO - Iteration 18: Program c194c468-8705-4314-8e34-846f6a97b8b4 (parent: e2074d8b-5cc9-4542-8f21-32ec44975557) completed in 43.03s
+2026-02-26 10:39:41,715 - INFO - Metrics: validity=1.0000, sum_radii=1.7318, target_ratio=0.6572, combined_score=0.6572, eval_time=0.1112
+2026-02-26 10:39:55,015 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 10:39:55,201 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 10:39:55,202 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 1.2, ACTUAL 2.2 (delta=+133.4% vs baseline)
+    claim: A 5x5 grid with one offset circle utilizes square area more efficiently than rings.
+  H2 [CONFIRMED]: EXPECT target_ratio > 0.5, ACTUAL 0.9 (delta=+133.4% vs baseline)
+    claim: Iterative relaxation of radii constraints leads to a more balanced distribution.
+  OVERALL: combined_score=0.85 (delta=+0.49, +133.4% vs baseline=0.36)
+2026-02-26 10:39:55,202 - INFO - [HYPOTHESIS] Updated ledger (9 total entries)
+2026-02-26 10:39:55,202 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 3/6, avg_delta=+94.4%)
+    mechanism: A regular grid minimizes empty space between circles in a square container, providing a higher baseline sum_radii than arbitrary rings.
+  [target_ratio] Jittered grid placement allows for better local optimization. (confirmed 3/6, avg_delta=+94.5%)
+    mechanism: Slight offsets from a perfect grid allow circles to "nestle" closer, reducing the impact of the rigid square boundaries.
+  [sum_radii] Reverting to the proven 5x5 grid with hexagonal offset will significantly increase sum_radii. (confirmed 1/1, avg_delta=+133.4%)
+    mechanism: The current concentric ring pattern has a bug (only places 25 circles out of 26) and is inherently less dense for a square container than a grid-like arrangement, which better utilizes the rectangular boundaries. The hexagonal offset further improves local density.
+  [sum_radii] A 5x5 grid with one offset circle utilizes square area more efficiently than rings. (confirmed 1/1, avg_delta=+133.4%)
+    mechanism: A grid minimizes the average distance between centers, which for n=26 is close to a 5x5 layout (25) plus one extra, allowing larger uniform radii.
+  [target_ratio] Using the compute_max_radii strategy from the top-performing program will improve target_ratio. (confirmed 1/1, avg_delta=+133.4%)
+    mechanism: The original program's compute_max_radii used proportional scaling which can lead to unnecessarily small radii. The top-performing compute_max_radii resolves overlaps by taking the minimum of the current radius and half the distance between centers, which is more effective for maximizing overall radius sum for this specific packing.
+
+=== INCONCLUSIVE ===
+  [sum_radii] A hexagonal-tilted grid is superior to a square grid for n=26. (total=1)
+  [combined_score] Using a non-equalizing radius solver (greedy) preserves larger circles. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 10:39:55,203 - INFO - Evaluated program 8a5048f1-f4db-4c7a-aacc-2b540d57db1f in 0.18s: validity=1.0000, sum_radii=2.2400, target_ratio=0.8501, combined_score=0.8501, eval_time=0.0850
+2026-02-26 10:39:55,211 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 1, 'diversity': 0}
+2026-02-26 10:39:55,211 - INFO - Iteration 20: Program 8a5048f1-f4db-4c7a-aacc-2b540d57db1f (parent: 108453f2-482b-44bc-bb01-b9b802e334dc) completed in 30.49s
+2026-02-26 10:39:55,211 - INFO - Metrics: validity=1.0000, sum_radii=2.2400, target_ratio=0.8501, combined_score=0.8501, eval_time=0.0850
+2026-02-26 10:39:55,211 - INFO - Checkpoint interval reached at iteration 20
+2026-02-26 10:39:55,211 - INFO - Island Status:
+2026-02-26 10:39:55,211 - INFO -  * Island 0: 13 programs, best=0.8501, avg=0.5380, diversity=75.83, gen=12 (best: f7cfc31b-e43a-4030-a541-0f86eda9605c)
+2026-02-26 10:39:55,211 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 10:39:55,211 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 10:39:55,218 - INFO - Saved database with 13 programs to experiments/hypothesis_ab_circpack/treatment_run_100/checkpoints/checkpoint_20
+2026-02-26 10:39:55,218 - INFO - Saved best program at checkpoint 20 with metrics: validity=1.0000, sum_radii=2.2400, target_ratio=0.8501, combined_score=0.8501, eval_time=0.0747
+2026-02-26 10:39:55,218 - INFO - Saved checkpoint at iteration 20 to experiments/hypothesis_ab_circpack/treatment_run_100/checkpoints/checkpoint_20
+2026-02-26 10:39:55,218 - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-02-26 10:39:55,222 - INFO - Saved database with 13 programs to experiments/hypothesis_ab_circpack/treatment_run_100/checkpoints/checkpoint_20
+2026-02-26 10:39:55,222 - INFO - Saved best program at checkpoint 20 with metrics: validity=1.0000, sum_radii=2.2400, target_ratio=0.8501, combined_score=0.8501, eval_time=0.0747
+2026-02-26 10:39:55,222 - INFO - Saved checkpoint at iteration 20 to experiments/hypothesis_ab_circpack/treatment_run_100/checkpoints/checkpoint_20
+2026-02-26 10:39:55,361 - INFO - Stopped process pool
+2026-02-26 10:39:55,361 - INFO - Using tracked best program: f7cfc31b-e43a-4030-a541-0f86eda9605c
+2026-02-26 10:39:55,361 - INFO - Evolution complete. Best program has metrics: validity=1.0000, sum_radii=2.2400, target_ratio=0.8501, combined_score=0.8501, eval_time=0.0747
+2026-02-26 10:39:55,362 - INFO - Saved best program to experiments/hypothesis_ab_circpack/treatment_run_100/best/best_program.py with program info to experiments/hypothesis_ab_circpack/treatment_run_100/best/best_program_info.json

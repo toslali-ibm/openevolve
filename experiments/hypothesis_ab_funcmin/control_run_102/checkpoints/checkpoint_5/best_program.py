@@ -14,31 +14,26 @@ def search_algorithm(iterations=1000, bounds=(-5, 5)):
     Returns:
         Tuple of (best_x, best_y, best_value)
     """
-    # Simulated Annealing with Local Refinement
-    curr_x = np.random.uniform(*bounds)
-    curr_y = np.random.uniform(*bounds)
-    curr_val = evaluate_function(curr_x, curr_y)
-    best_x, best_y, best_value = curr_x, curr_y, curr_val
+    # Adaptive simulated annealing approach
+    best_x = np.random.uniform(*bounds)
+    best_y = np.random.uniform(*bounds)
+    best_value = evaluate_function(best_x, best_y)
 
     for i in range(iterations):
+        # Progressively decrease search radius (cooling)
         temp = 1.0 - (i / iterations)
-        # Scale step size with temperature
-        step = (bounds[1] - bounds[0]) * 0.1 * temp + 0.01
+        scale = (bounds[1] - bounds[0]) * temp
         
-        # Candidate point: mix of local perturbation and global reset
-        if np.random.rand() > 0.1:
-            x = np.clip(curr_x + np.random.normal(0, step), *bounds)
-            y = np.clip(curr_y + np.random.normal(0, step), *bounds)
-        else:
+        # Perturb current best or explore globally early on
+        if i < iterations // 4:
             x, y = np.random.uniform(*bounds, 2)
+        else:
+            x = np.clip(best_x + np.random.normal(0, scale * 0.1), *bounds)
+            y = np.clip(best_y + np.random.normal(0, scale * 0.1), *bounds)
             
-        val = evaluate_function(x, y)
-        
-        # Acceptance criteria (Metropolis-Hastings)
-        if val < curr_val or np.random.rand() < np.exp((curr_val - val) / (temp + 1e-9)):
-            curr_x, curr_y, curr_val = x, y, val
-            if val < best_value:
-                best_x, best_y, best_value = x, y, val
+        value = evaluate_function(x, y)
+        if value < best_value:
+            best_value, best_x, best_y = value, x, y
 
     return best_x, best_y, best_value
 

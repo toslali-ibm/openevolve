@@ -1,0 +1,100 @@
+{
+  "baseline": {
+    "value_score": 0.9995271931034011,
+    "distance_score": 0.9882121997736812,
+    "reliability_score": 1.0,
+    "combined_score": 1.4943408847257071
+  },
+  "entries": [
+    {
+      "timestamp": "2026-02-26T16:57:14.996359+00:00",
+      "overall_combined_score": 1.4943408847257071,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A multi-restart basin-hopping approach will improve reliability_score.",
+          "mechanism": "Combining global random restarts with local stochastic hill-climbing ensures the search explores multiple basins while refining results in each.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.9,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a Cauchy-distributed jump instead of Uniform improves distance_score.",
+          "mechanism": "The heavy tails of the Cauchy distribution allow for occasional large jumps to escape local minima more effectively than uniform perturbations.",
+          "metric": "distance_score",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.9882121997736812,
+          "baseline_value": 0.9882121997736812,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:27.837107+00:00",
+      "overall_combined_score": 1.4945618903840328,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Multi-start Basin Hopping improves reliability_score and distance_score.",
+          "mechanism": "Combining random restarts with local hill-climbing ensures we don't just find a local basin but actively explore multiple basins to find the global one.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative step-size reduction improves value_score.",
+          "mechanism": "Starting with large jumps allows jumping between basins, while narrowing the search allows for high-precision convergence to the minimum.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.3,
+          "actual": 1.4945618903840328,
+          "baseline_value": 1.4943408847257071,
+          "delta_vs_baseline_pct": 0.014789507573847793,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:58:55.250005+00:00",
+      "overall_combined_score": 1.3615983923938675,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Re-implementing a true multi-start basin-hopping structure with a `run_search` wrapper improves reliability_score.",
+          "mechanism": "The previous error prevented execution. By fixing the missing `run_search` function and adopting a multi-start strategy, the algorithm performs several independent local searches from diverse initial points. This significantly increases the probability of exploring the global minimum's basin of attraction consistently, making the algorithm more reliable.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "A refined adaptive step-size schedule with a quadratic decay improves value_score and distance_score.",
+          "mechanism": "The chosen step-size formula (quadratic decay from a larger initial step to a small minimum step) allows for broad exploration early in each local search to escape local minima, and then fine-grained exploitation as the search progresses. This balance leads to more precise convergence to the global minimum's location and value.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.45,
+          "actual": 1.3615983923938675,
+          "baseline_value": 1.4943408847257071,
+          "delta_vs_baseline_pct": -8.883012817801953,
+          "verdict": "REFUTED"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+Stage 1 evaluation failed: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 390, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 46, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp1afr01d2.py", line 79, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp1afr01d2.py", line 55, in search_algorithm
+    if value_candidate < current_value:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+
+Evolution complete!
+Best program metrics:
+  runs_successfully: 1.0000
+  value_score: 0.9997
+  distance_score: 0.9952
+  combined_score: 1.4976
+  reliability_score: 1.0000
+
+Latest checkpoint saved at: experiments/hypothesis_ab_funcmin/control_run_100/checkpoints/checkpoint_20
+To resume, use: --checkpoint experiments/hypothesis_ab_funcmin/control_run_100/checkpoints/checkpoint_20

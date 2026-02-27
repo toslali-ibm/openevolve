@@ -1,0 +1,9 @@
+
+Evolution complete!
+Best program metrics:
+  num_points: 438.0000
+  combined_score: 0.7386
+  eval_time: 0.4219
+
+Latest checkpoint saved at: experiments/factorial_ab_kissing/treatment_diff_run_201/checkpoints/checkpoint_50
+To resume, use: --checkpoint experiments/factorial_ab_kissing/treatment_diff_run_201/checkpoints/checkpoint_50

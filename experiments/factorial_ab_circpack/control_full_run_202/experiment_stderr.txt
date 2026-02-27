@@ -1,0 +1,233 @@
+2026-02-26 11:56:33,734 - INFO - Logging to experiments/factorial_ab_circpack/control_full_run_202/logs/openevolve_20260226_115633.log
+2026-02-26 11:56:33,746 - INFO - Set random seed to 42 for reproducibility
+2026-02-26 11:56:33,775 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:33,781 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:33,782 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:33,796 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:33,797 - INFO - Initialized prompt sampler
+2026-02-26 11:56:33,798 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:33,798 - INFO - Initialized program database with 0 programs
+2026-02-26 11:56:33,799 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 11:56:33,799 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 11:56:33,799 - INFO - Initialized OpenEvolve with examples/circle_packing/initial_program.py
+2026-02-26 11:56:33,799 - INFO - Adding initial program to database
+2026-02-26 11:56:34,790 - INFO - [HYPOTHESIS] Parsed 0 hypotheses from evolved code
+2026-02-26 11:56:34,790 - INFO - [HYPOTHESIS] No hypotheses found in evolved code
+2026-02-26 11:56:34,802 - INFO - Evaluated program 17c22203-f262-41fe-8754-c4e108352e98 in 1.00s: validity=1.0000, sum_radii=0.9598, target_ratio=0.3642, combined_score=0.3642, eval_time=0.4914
+2026-02-26 11:56:34,803 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-02-26 11:56:34,816 - INFO - Initialized process parallel controller with 3 workers
+2026-02-26 11:56:34,826 - INFO - Set max None tasks per child
+2026-02-26 11:56:34,830 - INFO - Started process pool with 3 processes
+2026-02-26 11:56:34,830 - INFO - Using island-based evolution with 3 islands
+2026-02-26 11:56:34,830 - INFO - Island Status:
+2026-02-26 11:56:34,830 - INFO -  * Island 0: 1 programs, best=0.3642, avg=0.3642, diversity=0.00, gen=0 (best: 17c22203-f262-41fe-8754-c4e108352e98)
+2026-02-26 11:56:34,830 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:34,830 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:34,830 - INFO - Starting process-based evolution from iteration 1 for 20 iterations (total: 21)
+2026-02-26 11:56:34,850 - INFO - Early stopping disabled
+2026-02-26 11:56:37,792 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:37,802 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:37,802 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:37,809 - INFO - Initialized prompt sampler
+2026-02-26 11:56:37,836 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:37,842 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:37,843 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 11:56:37,843 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 11:56:37,846 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:37,870 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:37,878 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:37,878 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:37,878 - INFO - Initialized prompt sampler
+2026-02-26 11:56:37,920 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:37,927 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:37,930 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 11:56:37,930 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 11:56:37,935 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:37,963 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:38,031 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:38,031 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:38,032 - INFO - Initialized prompt sampler
+2026-02-26 11:56:38,059 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:38,059 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:38,059 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 11:56:38,060 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 11:56:38,063 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:45,292 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:45,390 - INFO - Evaluated program d1d6db47-5c94-402c-94bb-80c37f7e8706 in 0.09s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:45,392 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:45,392 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 5}
+2026-02-26 11:56:45,392 - INFO - Iteration 1: Program d1d6db47-5c94-402c-94bb-80c37f7e8706 (parent: 17c22203-f262-41fe-8754-c4e108352e98) completed in 7.33s
+2026-02-26 11:56:45,392 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:46,057 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:46,159 - INFO - Evaluated program 8286eae4-b8ae-4caf-914f-b5b2df9f9456 in 0.10s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:46,160 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:46,161 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 0}
+2026-02-26 11:56:46,161 - INFO - Iteration 3: Program 8286eae4-b8ae-4caf-914f-b5b2df9f9456 (parent: 17c22203-f262-41fe-8754-c4e108352e98) completed in 8.32s
+2026-02-26 11:56:46,161 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:46,422 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:46,540 - INFO - Evaluated program c912ea59-d072-455b-937c-2880c33b0d8e in 0.11s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:46,543 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:46,545 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 2, 'diversity': 9}
+2026-02-26 11:56:46,545 - INFO - Iteration 2: Program c912ea59-d072-455b-937c-2880c33b0d8e (parent: 17c22203-f262-41fe-8754-c4e108352e98) completed in 8.61s
+2026-02-26 11:56:46,545 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:51,294 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:51,383 - INFO - Evaluated program b853cde2-70af-43fa-b418-48733c2487c1 in 0.09s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:51,385 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:56:51,385 - INFO - Iteration 4: Program b853cde2-70af-43fa-b418-48733c2487c1 (parent: 17c22203-f262-41fe-8754-c4e108352e98) completed in 5.99s
+2026-02-26 11:56:51,385 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:52,126 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:52,212 - INFO - Evaluated program 09166977-a64c-4c8c-9789-6ce06fececdd in 0.08s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:52,213 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:56:52,215 - INFO - Iteration 5: Program 09166977-a64c-4c8c-9789-6ce06fececdd (parent: 17c22203-f262-41fe-8754-c4e108352e98) completed in 6.05s
+2026-02-26 11:56:52,215 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:52,215 - INFO - Checkpoint interval reached at iteration 5
+2026-02-26 11:56:52,215 - INFO - Island Status:
+2026-02-26 11:56:52,215 - INFO -  * Island 0: 6 programs, best=0.3642, avg=0.0607, diversity=467.83, gen=5 (best: 17c22203-f262-41fe-8754-c4e108352e98)
+2026-02-26 11:56:52,215 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:52,215 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:52,218 - INFO - Saved database with 6 programs to experiments/factorial_ab_circpack/control_full_run_202/checkpoints/checkpoint_5
+2026-02-26 11:56:52,219 - INFO - Saved best program at checkpoint 5 with metrics: validity=1.0000, sum_radii=0.9598, target_ratio=0.3642, combined_score=0.3642, eval_time=0.4914
+2026-02-26 11:56:52,219 - INFO - Saved checkpoint at iteration 5 to experiments/factorial_ab_circpack/control_full_run_202/checkpoints/checkpoint_5
+2026-02-26 11:56:52,357 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:52,446 - INFO - Evaluated program fe47a524-dd59-4248-af24-fd6fdf62bd35 in 0.09s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:52,447 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:56:52,449 - INFO - Iteration 6: Program fe47a524-dd59-4248-af24-fd6fdf62bd35 (parent: 17c22203-f262-41fe-8754-c4e108352e98) completed in 5.90s
+2026-02-26 11:56:52,450 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:57:50,739 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:50,831 - INFO - Evaluated program ff90bcd4-c39a-44ab-b1da-a64580ab9a40 in 0.09s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:57:50,833 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:57:50,837 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 9}
+2026-02-26 11:57:50,837 - INFO - Iteration 8: Program ff90bcd4-c39a-44ab-b1da-a64580ab9a40 (parent: 17c22203-f262-41fe-8754-c4e108352e98) completed in 58.62s
+2026-02-26 11:57:50,837 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:57:58,179 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:58,474 - INFO - [HYPOTHESIS] Parsed 0 hypotheses from evolved code
+2026-02-26 11:57:58,474 - INFO - [HYPOTHESIS] No hypotheses found in evolved code
+2026-02-26 11:57:58,474 - INFO - Evaluated program 343b544f-6e1e-4dcf-be7c-c3125e70ad0d in 0.29s: validity=1.0000, sum_radii=1.7388, target_ratio=0.6599, combined_score=0.6599, eval_time=0.1420
+2026-02-26 11:57:58,476 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:58,476 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 2, 'diversity': 0}
+2026-02-26 11:57:58,476 - INFO - New best program 343b544f-6e1e-4dcf-be7c-c3125e70ad0d replaces 17c22203-f262-41fe-8754-c4e108352e98 (combined_score: 0.3642 → 0.6599, +0.2956)
+2026-02-26 11:57:58,476 - INFO - Iteration 10: Program 343b544f-6e1e-4dcf-be7c-c3125e70ad0d (parent: 17c22203-f262-41fe-8754-c4e108352e98) completed in 7.64s
+2026-02-26 11:57:58,476 - INFO - Metrics: validity=1.0000, sum_radii=1.7388, target_ratio=0.6599, combined_score=0.6599, eval_time=0.1420
+2026-02-26 11:57:58,476 - INFO - 🌟 New best solution found at iteration 10: 343b544f-6e1e-4dcf-be7c-c3125e70ad0d
+2026-02-26 11:57:58,476 - INFO - Checkpoint interval reached at iteration 10
+2026-02-26 11:57:58,477 - INFO - Island Status:
+2026-02-26 11:57:58,477 - INFO -  * Island 0: 9 programs, best=0.6599, avg=0.1138, diversity=467.33, gen=8 (best: 343b544f-6e1e-4dcf-be7c-c3125e70ad0d)
+2026-02-26 11:57:58,477 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:57:58,477 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:57:58,481 - INFO - Saved database with 9 programs to experiments/factorial_ab_circpack/control_full_run_202/checkpoints/checkpoint_10
+2026-02-26 11:57:58,481 - INFO - Saved best program at checkpoint 10 with metrics: validity=1.0000, sum_radii=1.7388, target_ratio=0.6599, combined_score=0.6599, eval_time=0.1420
+2026-02-26 11:57:58,481 - INFO - Saved checkpoint at iteration 10 to experiments/factorial_ab_circpack/control_full_run_202/checkpoints/checkpoint_10
+2026-02-26 11:58:11,506 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:11,593 - INFO - Evaluated program bc547bbe-9fac-4142-bda9-b2eef5524ec1 in 0.09s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:58:11,595 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:58:11,605 - INFO - Iteration 9: Program bc547bbe-9fac-4142-bda9-b2eef5524ec1 (parent: c912ea59-d072-455b-937c-2880c33b0d8e) completed in 79.15s
+2026-02-26 11:58:11,605 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:58:16,267 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:16,360 - INFO - Evaluated program 41d18d93-00aa-4802-b836-1df84f98ab42 in 0.09s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:58:16,362 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:58:16,367 - INFO - Iteration 7: Program 41d18d93-00aa-4802-b836-1df84f98ab42 (parent: d1d6db47-5c94-402c-94bb-80c37f7e8706) completed in 84.98s
+2026-02-26 11:58:16,367 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:58:18,503 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:18,759 - INFO - [HYPOTHESIS] Parsed 0 hypotheses from evolved code
+2026-02-26 11:58:18,759 - INFO - [HYPOTHESIS] No hypotheses found in evolved code
+2026-02-26 11:58:18,759 - INFO - Evaluated program b332d863-67f7-4576-bc1b-01821d976c8a in 0.25s: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.1220
+2026-02-26 11:58:18,761 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:18,762 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 1, 'diversity': 1}
+2026-02-26 11:58:18,763 - INFO - New best program b332d863-67f7-4576-bc1b-01821d976c8a replaces 343b544f-6e1e-4dcf-be7c-c3125e70ad0d (combined_score: 0.6599 → 0.6783, +0.0184)
+2026-02-26 11:58:18,763 - INFO - Iteration 12: Program b332d863-67f7-4576-bc1b-01821d976c8a (parent: d1d6db47-5c94-402c-94bb-80c37f7e8706) completed in 7.16s
+2026-02-26 11:58:18,763 - INFO - Metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.1220
+2026-02-26 11:58:18,763 - INFO - 🌟 New best solution found at iteration 12: b332d863-67f7-4576-bc1b-01821d976c8a
+2026-02-26 11:58:24,114 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:24,638 - INFO - [HYPOTHESIS] Parsed 0 hypotheses from evolved code
+2026-02-26 11:58:24,638 - INFO - [HYPOTHESIS] No hypotheses found in evolved code
+2026-02-26 11:58:24,638 - INFO - Evaluated program d823075c-558a-4d2a-bc37-693c1b422c0d in 0.52s: validity=1.0000, sum_radii=1.6528, target_ratio=0.6273, combined_score=0.6273, eval_time=0.2574
+2026-02-26 11:58:24,640 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:24,646 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 1, 'diversity': 0}
+2026-02-26 11:58:24,647 - INFO - Iteration 13: Program d823075c-558a-4d2a-bc37-693c1b422c0d (parent: c912ea59-d072-455b-937c-2880c33b0d8e) completed in 8.28s
+2026-02-26 11:58:24,647 - INFO - Metrics: validity=1.0000, sum_radii=1.6528, target_ratio=0.6273, combined_score=0.6273, eval_time=0.2574
+2026-02-26 11:59:03,241 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:03,331 - INFO - Evaluated program 513c77eb-25fa-4d57-b39c-9f00c0378ece in 0.09s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:59:03,332 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:59:03,335 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 3, 'diversity': 1}
+2026-02-26 11:59:03,336 - INFO - Iteration 11: Program 513c77eb-25fa-4d57-b39c-9f00c0378ece (parent: b853cde2-70af-43fa-b418-48733c2487c1) completed in 64.86s
+2026-02-26 11:59:03,336 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:59:19,244 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:20,988 - INFO - [HYPOTHESIS] Parsed 0 hypotheses from evolved code
+2026-02-26 11:59:20,988 - INFO - [HYPOTHESIS] No hypotheses found in evolved code
+2026-02-26 11:59:20,988 - INFO - Evaluated program 4f110795-38c7-4473-bda1-337fa6ed29a2 in 1.74s: validity=1.0000, sum_radii=1.7887, target_ratio=0.6788, combined_score=0.6788, eval_time=0.8806
+2026-02-26 11:59:20,990 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:59:21,000 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 7}
+2026-02-26 11:59:21,001 - INFO - Island 0 MAP-Elites coverage reached 10.0% (10/100 cells)
+2026-02-26 11:59:21,001 - INFO - New best program 4f110795-38c7-4473-bda1-337fa6ed29a2 replaces b332d863-67f7-4576-bc1b-01821d976c8a (combined_score: 0.6783 → 0.6788, +0.0005)
+2026-02-26 11:59:21,001 - INFO - Iteration 14: Program 4f110795-38c7-4473-bda1-337fa6ed29a2 (parent: 8286eae4-b8ae-4caf-914f-b5b2df9f9456) completed in 62.23s
+2026-02-26 11:59:21,001 - INFO - Metrics: validity=1.0000, sum_radii=1.7887, target_ratio=0.6788, combined_score=0.6788, eval_time=0.8806
+2026-02-26 11:59:21,001 - INFO - 🌟 New best solution found at iteration 14: 4f110795-38c7-4473-bda1-337fa6ed29a2
+2026-02-26 11:59:22,043 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:22,416 - INFO - [HYPOTHESIS] Parsed 0 hypotheses from evolved code
+2026-02-26 11:59:22,416 - INFO - [HYPOTHESIS] No hypotheses found in evolved code
+2026-02-26 11:59:22,417 - INFO - Evaluated program 87039ffc-ddc3-43a1-a6c4-53f4b582d426 in 0.37s: validity=1.0000, sum_radii=1.7207, target_ratio=0.6530, combined_score=0.6530, eval_time=0.1695
+2026-02-26 11:59:22,418 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:59:22,424 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 9, 'diversity': 9} (fitness: 0.000 -> 0.653)
+2026-02-26 11:59:22,424 - INFO - Iteration 15: Program 87039ffc-ddc3-43a1-a6c4-53f4b582d426 (parent: 17c22203-f262-41fe-8754-c4e108352e98) completed in 57.78s
+2026-02-26 11:59:22,424 - INFO - Metrics: validity=1.0000, sum_radii=1.7207, target_ratio=0.6530, combined_score=0.6530, eval_time=0.1695
+2026-02-26 11:59:22,424 - INFO - Checkpoint interval reached at iteration 15
+2026-02-26 11:59:22,425 - INFO - Island Status:
+2026-02-26 11:59:22,425 - INFO -  * Island 0: 15 programs, best=0.6788, avg=0.2441, diversity=921.93, gen=15 (best: 4f110795-38c7-4473-bda1-337fa6ed29a2)
+2026-02-26 11:59:22,425 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:59:22,425 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:59:22,431 - INFO - Saved database with 16 programs to experiments/factorial_ab_circpack/control_full_run_202/checkpoints/checkpoint_15
+2026-02-26 11:59:22,432 - INFO - Saved best program at checkpoint 15 with metrics: validity=1.0000, sum_radii=1.7887, target_ratio=0.6788, combined_score=0.6788, eval_time=0.8806
+2026-02-26 11:59:22,432 - INFO - Saved checkpoint at iteration 15 to experiments/factorial_ab_circpack/control_full_run_202/checkpoints/checkpoint_15
+2026-02-26 11:59:50,256 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:50,818 - INFO - [HYPOTHESIS] Parsed 0 hypotheses from evolved code
+2026-02-26 11:59:50,818 - INFO - [HYPOTHESIS] No hypotheses found in evolved code
+2026-02-26 11:59:50,818 - INFO - Evaluated program d3c3e20d-8c48-4cd9-8a32-6caca1b74a28 in 0.55s: validity=1.0000, sum_radii=2.1766, target_ratio=0.8261, combined_score=0.8261, eval_time=0.2584
+2026-02-26 11:59:50,820 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:59:50,825 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 9, 'diversity': 9} (fitness: 0.653 -> 0.826)
+2026-02-26 11:59:50,825 - INFO - New best program d3c3e20d-8c48-4cd9-8a32-6caca1b74a28 replaces 4f110795-38c7-4473-bda1-337fa6ed29a2 (combined_score: 0.6788 → 0.8261, +0.1472)
+2026-02-26 11:59:50,825 - INFO - Iteration 16: Program d3c3e20d-8c48-4cd9-8a32-6caca1b74a28 (parent: b853cde2-70af-43fa-b418-48733c2487c1) completed in 47.49s
+2026-02-26 11:59:50,825 - INFO - Metrics: validity=1.0000, sum_radii=2.1766, target_ratio=0.8261, combined_score=0.8261, eval_time=0.2584
+2026-02-26 11:59:50,825 - INFO - 🌟 New best solution found at iteration 16: d3c3e20d-8c48-4cd9-8a32-6caca1b74a28
+2026-02-26 12:00:17,856 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 12:00:17,973 - INFO - Evaluated program 547e66c4-045f-4900-abf7-169a25d6fb55 in 0.11s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 12:00:17,975 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 12:00:17,976 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 6}
+2026-02-26 12:00:17,976 - INFO - Iteration 17: Program 547e66c4-045f-4900-abf7-169a25d6fb55 (parent: ff90bcd4-c39a-44ab-b1da-a64580ab9a40) completed in 56.98s
+2026-02-26 12:00:17,976 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 12:00:21,044 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 12:00:21,532 - INFO - [HYPOTHESIS] Parsed 0 hypotheses from evolved code
+2026-02-26 12:00:21,533 - INFO - [HYPOTHESIS] No hypotheses found in evolved code
+2026-02-26 12:00:21,535 - INFO - Evaluated program 77266e80-b26e-4769-a7fd-bf91cdcda04a in 0.49s: validity=1.0000, sum_radii=1.8351, target_ratio=0.6964, combined_score=0.6964, eval_time=0.2537
+2026-02-26 12:00:21,542 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 5}
+2026-02-26 12:00:21,543 - INFO - Iteration 18: Program 77266e80-b26e-4769-a7fd-bf91cdcda04a (parent: bc547bbe-9fac-4142-bda9-b2eef5524ec1) completed in 59.12s
+2026-02-26 12:00:21,543 - INFO - Metrics: validity=1.0000, sum_radii=1.8351, target_ratio=0.6964, combined_score=0.6964, eval_time=0.2537
+2026-02-26 12:00:45,154 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 12:00:45,654 - INFO - [HYPOTHESIS] Parsed 0 hypotheses from evolved code
+2026-02-26 12:00:45,654 - INFO - [HYPOTHESIS] No hypotheses found in evolved code
+2026-02-26 12:00:45,655 - INFO - Evaluated program f075d964-d1d8-4139-ad05-560486bfabc3 in 0.49s: validity=1.0000, sum_radii=1.0605, target_ratio=0.4025, combined_score=0.4025, eval_time=0.2441
+2026-02-26 12:00:45,668 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 3}
+2026-02-26 12:00:45,668 - INFO - Iteration 19: Program f075d964-d1d8-4139-ad05-560486bfabc3 (parent: 343b544f-6e1e-4dcf-be7c-c3125e70ad0d) completed in 54.84s
+2026-02-26 12:00:45,668 - INFO - Metrics: validity=1.0000, sum_radii=1.0605, target_ratio=0.4025, combined_score=0.4025, eval_time=0.2441
+2026-02-26 12:00:56,951 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 12:01:00,468 - INFO - [HYPOTHESIS] Parsed 0 hypotheses from evolved code
+2026-02-26 12:01:00,468 - INFO - [HYPOTHESIS] No hypotheses found in evolved code
+2026-02-26 12:01:00,469 - INFO - Evaluated program 9b286ff1-07dd-4067-9ac4-3055f12ec7f6 in 3.52s: validity=1.0000, sum_radii=1.4624, target_ratio=0.5550, combined_score=0.5550, eval_time=1.7476
+2026-02-26 12:01:00,476 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 6, 'diversity': 3}
+2026-02-26 12:01:00,476 - INFO - Iteration 20: Program 9b286ff1-07dd-4067-9ac4-3055f12ec7f6 (parent: 343b544f-6e1e-4dcf-be7c-c3125e70ad0d) completed in 42.49s
+2026-02-26 12:01:00,476 - INFO - Metrics: validity=1.0000, sum_radii=1.4624, target_ratio=0.5550, combined_score=0.5550, eval_time=1.7476
+2026-02-26 12:01:00,476 - INFO - Checkpoint interval reached at iteration 20
+2026-02-26 12:01:00,476 - INFO - Island Status:
+2026-02-26 12:01:00,476 - INFO -  * Island 0: 19 programs, best=0.8261, avg=0.2889, diversity=921.93, gen=20 (best: d3c3e20d-8c48-4cd9-8a32-6caca1b74a28)
+2026-02-26 12:01:00,476 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 12:01:00,476 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 12:01:00,485 - INFO - Saved database with 21 programs to experiments/factorial_ab_circpack/control_full_run_202/checkpoints/checkpoint_20
+2026-02-26 12:01:00,485 - INFO - Saved best program at checkpoint 20 with metrics: validity=1.0000, sum_radii=2.1766, target_ratio=0.8261, combined_score=0.8261, eval_time=0.2584
+2026-02-26 12:01:00,485 - INFO - Saved checkpoint at iteration 20 to experiments/factorial_ab_circpack/control_full_run_202/checkpoints/checkpoint_20
+2026-02-26 12:01:00,485 - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-02-26 12:01:00,491 - INFO - Saved database with 21 programs to experiments/factorial_ab_circpack/control_full_run_202/checkpoints/checkpoint_20
+2026-02-26 12:01:00,492 - INFO - Saved best program at checkpoint 20 with metrics: validity=1.0000, sum_radii=2.1766, target_ratio=0.8261, combined_score=0.8261, eval_time=0.2584
+2026-02-26 12:01:00,492 - INFO - Saved checkpoint at iteration 20 to experiments/factorial_ab_circpack/control_full_run_202/checkpoints/checkpoint_20
+2026-02-26 12:01:00,606 - INFO - Stopped process pool
+2026-02-26 12:01:00,606 - INFO - Using tracked best program: d3c3e20d-8c48-4cd9-8a32-6caca1b74a28
+2026-02-26 12:01:00,606 - INFO - Evolution complete. Best program has metrics: validity=1.0000, sum_radii=2.1766, target_ratio=0.8261, combined_score=0.8261, eval_time=0.2584
+2026-02-26 12:01:00,606 - INFO - Saved best program to experiments/factorial_ab_circpack/control_full_run_202/best/best_program.py with program info to experiments/factorial_ab_circpack/control_full_run_202/best/best_program_info.json

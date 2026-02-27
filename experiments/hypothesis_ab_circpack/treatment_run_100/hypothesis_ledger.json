@@ -1,0 +1,279 @@
+{
+  "baseline": {
+    "sum_radii": 0.9598,
+    "target_ratio": 0.3642,
+    "combined_score": 0.3642
+  },
+  "entries": [
+    {
+      "timestamp": "2026-02-26T15:36:54.960359+00:00",
+      "overall_combined_score": 0.8500948766603416,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle is more efficient than concentric rings.",
+          "mechanism": "A regular grid minimizes empty space between circles in a square container, providing a higher baseline sum_radii than arbitrary rings.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.8,
+          "actual": 2.2399999999999998,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 133.38195457386954,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Jittered grid placement allows for better local optimization.",
+          "mechanism": "Slight offsets from a perfect grid allow circles to \"nestle\" closer, reducing the impact of the rigid square boundaries.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.7,
+          "actual": 0.8500948766603416,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 133.4142989182706,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:37:07.527475+00:00",
+      "overall_combined_score": 0.8500948766603416,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle is more efficient than concentric rings.",
+          "mechanism": "A regular grid minimizes empty space between circles in a square container, providing a higher baseline sum_radii than arbitrary rings.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.8,
+          "actual": 2.2399999999999998,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 133.38195457386954,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Jittered grid placement allows for better local optimization.",
+          "mechanism": "Slight offsets from a perfect grid allow circles to \"nestle\" closer, reducing the impact of the rigid square boundaries.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.7,
+          "actual": 0.8500948766603416,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 133.4142989182706,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:37:07.733402+00:00",
+      "overall_combined_score": 0.8500948766603416,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle is more efficient than concentric rings.",
+          "mechanism": "A regular grid minimizes empty space between circles in a square container, providing a higher baseline sum_radii than arbitrary rings.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.8,
+          "actual": 2.2399999999999998,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 133.38195457386954,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Jittered grid placement allows for better local optimization.",
+          "mechanism": "Slight offsets from a perfect grid allow circles to \"nestle\" closer, reducing the impact of the rigid square boundaries.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.7,
+          "actual": 0.8500948766603416,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 133.4142989182706,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:37:50.167319+00:00",
+      "overall_combined_score": 0.5608726538072194,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle is more efficient than concentric rings.",
+          "mechanism": "A regular grid minimizes empty space between circles in a square container, providing a higher baseline sum_radii than arbitrary rings.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.8,
+          "actual": 1.477899442782023,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 53.97993777683089,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Jittered grid placement allows for better local optimization.",
+          "mechanism": "Slight offsets from a perfect grid allow circles to \"nestle\" closer, reducing the impact of the rigid square boundaries.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.7,
+          "actual": 0.5608726538072194,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 54.00127781636995,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:37:54.914710+00:00",
+      "overall_combined_score": 0.680269756965566,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A hexagonal-tilted grid is superior to a square grid for n=26.",
+          "mechanism": "Hexagonal packing has a higher theoretical density (0.906) than square packing (0.785). By arranging 26 circles in a slightly compressed hexagonal lattice, we increase the average radius possible.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.3,
+          "actual": 1.7925108096042663,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 86.75878408046117,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a non-equalizing radius solver (greedy) preserves larger circles.",
+          "mechanism": "The previous iterative solver reduced radii equally. A greedy approach that respects the boundary first and then checks neighbors allows circles near corners to stay larger.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.88,
+          "actual": 0.680269756965566,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 86.78466693178638,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:38:25.874150+00:00",
+      "overall_combined_score": 0.4810302386181852,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle is more efficient than concentric rings.",
+          "mechanism": "A regular grid minimizes empty space between circles in a square container, providing a higher baseline sum_radii than arbitrary rings.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.8,
+          "actual": 1.267514678758918,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 32.0602915981369,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Jittered grid placement allows for better local optimization.",
+          "mechanism": "Slight offsets from a perfect grid allow circles to \"nestle\" closer, reducing the impact of the rigid square boundaries.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.7,
+          "actual": 0.4810302386181852,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 32.07859379961153,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:38:58.680030+00:00",
+      "overall_combined_score": 0.8500948766603416,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Reverting to the proven 5x5 grid with hexagonal offset will significantly increase sum_radii.",
+          "mechanism": "The current concentric ring pattern has a bug (only places 25 circles out of 26) and is inherently less dense for a square container than a grid-like arrangement, which better utilizes the rectangular boundaries. The hexagonal offset further improves local density.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.2,
+          "actual": 2.2399999999999998,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 133.38195457386954,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using the compute_max_radii strategy from the top-performing program will improve target_ratio.",
+          "mechanism": "The original program's compute_max_radii used proportional scaling which can lead to unnecessarily small radii. The top-performing compute_max_radii resolves overlaps by taking the minimum of the current radius and half the distance between centers, which is more effective for maximizing overall radius sum for this specific packing.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.8500948766603416,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 133.4142989182706,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:39:41.711426+00:00",
+      "overall_combined_score": 0.657231664155758,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle is more efficient than concentric rings.",
+          "mechanism": "A regular grid minimizes empty space between circles in a square container, providing a higher baseline sum_radii than arbitrary rings.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.8,
+          "actual": 1.731805435050422,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 80.43398989898124,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Jittered grid placement allows for better local optimization.",
+          "mechanism": "Slight offsets from a perfect grid allow circles to \"nestle\" closer, reducing the impact of the rigid square boundaries.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.7,
+          "actual": 0.657231664155758,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 80.4589961987254,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:39:55.202232+00:00",
+      "overall_combined_score": 0.8500948766603416,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one offset circle utilizes square area more efficiently than rings.",
+          "mechanism": "A grid minimizes the average distance between centers, which for n=26 is close to a 5x5 layout (25) plus one extra, allowing larger uniform radii.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 2.2399999999999998,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 133.38195457386954,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of radii constraints leads to a more balanced distribution.",
+          "mechanism": "Rather than scaling proportionally in one pass, multiple passes allow smaller circles to \"give\" space to larger ones, increasing the total sum.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.5,
+          "actual": 0.8500948766603416,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 133.4142989182706,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,370 @@
+{
+  "baseline": {
+    "value_score": 0.9899305513279686,
+    "distance_score": 0.7121182033145762,
+    "reliability_score": 1.0,
+    "combined_score": 1.3629011049875355
+  },
+  "entries": [
+    {
+      "timestamp": "2026-02-26T16:56:40.909282+00:00",
+      "overall_combined_score": 1.3629011049875355,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local exploitation improves value_score and distance_score.",
+          "mechanism": "Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.3,
+          "actual": 1.3629011049875355,
+          "baseline_value": 1.3629011049875355,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative narrowing of search radius improves reliability_score.",
+          "mechanism": "Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing \"jumping out\" of the optimal basin.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:56:42.720270+00:00",
+      "overall_combined_score": 1.363142822625488,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local exploitation improves value_score and distance_score.",
+          "mechanism": "Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.3,
+          "actual": 1.363142822625488,
+          "baseline_value": 1.3629011049875355,
+          "delta_vs_baseline_pct": 0.017735522927378136,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative narrowing of search radius improves reliability_score.",
+          "mechanism": "Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing \"jumping out\" of the optimal basin.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:56:52.607822+00:00",
+      "overall_combined_score": 1.3628862321680941,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local exploitation improves value_score and distance_score.",
+          "mechanism": "Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.3,
+          "actual": 1.3628862321680941,
+          "baseline_value": 1.3629011049875355,
+          "delta_vs_baseline_pct": -0.0010912618228072562,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative narrowing of search radius improves reliability_score.",
+          "mechanism": "Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing \"jumping out\" of the optimal basin.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:22.630603+00:00",
+      "overall_combined_score": 1.45312933073886,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local exploitation improves value_score and distance_score.",
+          "mechanism": "Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.3,
+          "actual": 1.45312933073886,
+          "baseline_value": 1.3629011049875355,
+          "delta_vs_baseline_pct": 6.620306155827035,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative narrowing of search radius improves reliability_score.",
+          "mechanism": "Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing \"jumping out\" of the optimal basin.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:28.728903+00:00",
+      "overall_combined_score": 1.499468565275123,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local exploitation improves value_score and distance_score.",
+          "mechanism": "Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.3,
+          "actual": 1.499468565275123,
+          "baseline_value": 1.3629011049875355,
+          "delta_vs_baseline_pct": 10.020349957001207,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative narrowing of search radius improves reliability_score.",
+          "mechanism": "Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing \"jumping out\" of the optimal basin.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:31.736257+00:00",
+      "overall_combined_score": 1.028436270845215,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local exploitation improves value_score and distance_score.",
+          "mechanism": "Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.3,
+          "actual": 1.028436270845215,
+          "baseline_value": 1.3629011049875355,
+          "delta_vs_baseline_pct": -24.54065323729995,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative narrowing of search radius improves reliability_score.",
+          "mechanism": "Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing \"jumping out\" of the optimal basin.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:35.617890+00:00",
+      "overall_combined_score": 1.0170276116524113,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "An adaptive global jump probability based on temperature will improve reliability and combined score.",
+          "mechanism": "By making global jumps more probable at higher temperatures and less probable at lower temperatures, the algorithm effectively balances exploration (finding new basins) early on with exploitation (refining within basins) later, reducing the chance of getting stuck in local minima.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using an exponential cooling schedule for temperature will improve value and combined score.",
+          "mechanism": "An exponential decay allows for a slower temperature decrease initially, promoting more extensive exploration and acceptance of worse solutions to escape local minima, followed by a faster decrease for precise convergence.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.4,
+          "actual": 1.0170276116524113,
+          "baseline_value": 1.3629011049875355,
+          "delta_vs_baseline_pct": -25.37773959309303,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:41.904067+00:00",
+      "overall_combined_score": 1.468626876941192,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Hybrid Simulated Annealing with global restarts improves distance_score.",
+          "mechanism": "Periodically jumping to a random global position prevents the search from getting trapped in a local basin, while Gaussian steps refine the current best.",
+          "metric": "distance_score",
+          "operator": ">",
+          "threshold": 0.9,
+          "actual": 0.9421223113981761,
+          "baseline_value": 0.7121182033145762,
+          "delta_vs_baseline_pct": 32.298585686061486,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "A dynamic temperature schedule improves value_score.",
+          "mechanism": "Higher temperature at the start allows exploring the landscape, while lower temperature at the end ensures convergence to the exact local minimum.",
+          "metric": "value_score",
+          "operator": ">",
+          "threshold": 0.98,
+          "actual": 0.9928957824160173,
+          "baseline_value": 0.9899305513279686,
+          "delta_vs_baseline_pct": 0.29953930445634835,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:58:08.943319+00:00",
+      "overall_combined_score": 1.3640340985405428,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local exploitation improves value_score and distance_score.",
+          "mechanism": "Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.3,
+          "actual": 1.3640340985405428,
+          "baseline_value": 1.3629011049875355,
+          "delta_vs_baseline_pct": 0.08313101727345765,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative narrowing of search radius improves reliability_score.",
+          "mechanism": "Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing \"jumping out\" of the optimal basin.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:58:38.481173+00:00",
+      "overall_combined_score": 1.4702772503187127,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local exploitation improves value_score and distance_score.",
+          "mechanism": "Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.3,
+          "actual": 1.4702772503187127,
+          "baseline_value": 1.3629011049875355,
+          "delta_vs_baseline_pct": 7.878498662759485,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative narrowing of search radius improves reliability_score.",
+          "mechanism": "Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing \"jumping out\" of the optimal basin.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:58:44.863886+00:00",
+      "overall_combined_score": 1.4995114617026313,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local exploitation improves value_score and distance_score.",
+          "mechanism": "Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.3,
+          "actual": 1.4995114617026313,
+          "baseline_value": 1.3629011049875355,
+          "delta_vs_baseline_pct": 10.023497392082986,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative narrowing of search radius improves reliability_score.",
+          "mechanism": "Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing \"jumping out\" of the optimal basin.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:59:02.947886+00:00",
+      "overall_combined_score": 1.4459435362234627,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "An adaptive global jump probability based on temperature will improve reliability and combined score.",
+          "mechanism": "By making global jumps more probable at higher temperatures and less probable at lower temperatures, the algorithm effectively balances exploration (finding new basins) early on with exploitation (refining within basins) later, reducing the chance of getting stuck in local minima.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using an exponential cooling schedule for temperature will improve value and combined score.",
+          "mechanism": "An exponential decay allows for a slower temperature decrease initially, promoting more extensive exploration and acceptance of worse solutions to escape local minima, followed by a faster decrease for precise convergence.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.4,
+          "actual": 1.4459435362234627,
+          "baseline_value": 1.3629011049875355,
+          "delta_vs_baseline_pct": 6.093063607625934,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    }
+  ]
+}

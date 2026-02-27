@@ -1,0 +1,301 @@
+2026-02-26 11:56:28,423 - INFO - Logging to experiments/factorial_ab_funcmin/treatment_full_run_200/logs/openevolve_20260226_115628.log
+2026-02-26 11:56:28,453 - INFO - Set random seed to 42 for reproducibility
+2026-02-26 11:56:28,527 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:28,535 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:28,535 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:28,551 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:28,553 - INFO - Initialized prompt sampler
+2026-02-26 11:56:28,555 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:28,555 - INFO - Initialized program database with 0 programs
+2026-02-26 11:56:28,557 - INFO - Successfully loaded evaluation function from examples/function_minimization/evaluator.py
+2026-02-26 11:56:28,557 - INFO - Initialized evaluator with examples/function_minimization/evaluator.py
+2026-02-26 11:56:28,557 - INFO - Initialized OpenEvolve with examples/function_minimization/initial_program.py
+2026-02-26 11:56:28,557 - INFO - Adding initial program to database
+2026-02-26 11:56:28,570 - INFO - Evaluated program a815f937-78c9-4e1d-8bd3-e6c76a05ff49 in 0.01s: runs_successfully=1.0000, value_score=0.9418, distance_score=0.7566, combined_score=1.2148
+2026-02-26 11:56:28,570 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-02-26 11:56:28,582 - INFO - Initialized process parallel controller with 3 workers
+2026-02-26 11:56:28,583 - INFO - Set max None tasks per child
+2026-02-26 11:56:28,583 - INFO - Started process pool with 3 processes
+2026-02-26 11:56:28,583 - INFO - Using island-based evolution with 3 islands
+2026-02-26 11:56:28,584 - INFO - Island Status:
+2026-02-26 11:56:28,584 - INFO -  * Island 0: 1 programs, best=1.2148, avg=1.2148, diversity=0.00, gen=0 (best: a815f937-78c9-4e1d-8bd3-e6c76a05ff49)
+2026-02-26 11:56:28,584 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:28,584 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:28,584 - INFO - Starting process-based evolution from iteration 1 for 20 iterations (total: 21)
+2026-02-26 11:56:28,602 - INFO - Early stopping disabled
+2026-02-26 11:56:31,048 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:31,063 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:31,063 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:31,064 - INFO - Initialized prompt sampler
+2026-02-26 11:56:31,099 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:31,101 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:31,113 - INFO - Successfully loaded evaluation function from examples/function_minimization/evaluator.py
+2026-02-26 11:56:31,113 - INFO - Initialized evaluator with examples/function_minimization/evaluator.py
+2026-02-26 11:56:31,114 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:31,114 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:31,459 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:31,471 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:31,471 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:31,471 - INFO - Initialized prompt sampler
+2026-02-26 11:56:31,577 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:31,578 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:31,582 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:31,583 - INFO - Successfully loaded evaluation function from examples/function_minimization/evaluator.py
+2026-02-26 11:56:31,583 - INFO - Initialized evaluator with examples/function_minimization/evaluator.py
+2026-02-26 11:56:31,583 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:31,593 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:31,593 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:31,593 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:31,616 - INFO - Initialized prompt sampler
+2026-02-26 11:56:31,768 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:31,769 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:31,770 - INFO - Successfully loaded evaluation function from examples/function_minimization/evaluator.py
+2026-02-26 11:56:31,770 - INFO - Initialized evaluator with examples/function_minimization/evaluator.py
+2026-02-26 11:56:31,770 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:31,771 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:37,711 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:37,735 - INFO - Evaluated program 3d2a4b7e-66e9-43c9-864d-dfbffba32214 in 0.00s: runs_successfully=0.0000, combined_score=0.0000, error=Missing run_search function
+2026-02-26 11:56:37,738 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:37,738 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:37,738 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 5}
+2026-02-26 11:56:37,739 - INFO - Iteration 2: Program 3d2a4b7e-66e9-43c9-864d-dfbffba32214 (parent: a815f937-78c9-4e1d-8bd3-e6c76a05ff49) completed in 6.15s
+2026-02-26 11:56:37,739 - INFO - Metrics: runs_successfully=0.0000, combined_score=0.0000, error=Missing run_search function
+2026-02-26 11:56:38,965 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:38,984 - INFO - Evaluated program 43e084cc-de57-4a4b-b31a-10df56ddc33d in 0.00s: runs_successfully=0.0000, combined_score=0.0000, error=Missing run_search function
+2026-02-26 11:56:38,991 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:38,992 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:38,997 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 9}
+2026-02-26 11:56:38,997 - INFO - Iteration 3: Program 43e084cc-de57-4a4b-b31a-10df56ddc33d (parent: a815f937-78c9-4e1d-8bd3-e6c76a05ff49) completed in 7.22s
+2026-02-26 11:56:38,997 - INFO - Metrics: runs_successfully=0.0000, combined_score=0.0000, error=Missing run_search function
+2026-02-26 11:56:39,292 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:39,331 - INFO - Evaluated program 9271478c-66ff-4e0e-95c9-e7529cbde8ed in 0.00s: runs_successfully=0.0000, combined_score=0.0000, error=Missing run_search function
+2026-02-26 11:56:39,335 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:39,336 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:39,337 - INFO - Iteration 1: Program 9271478c-66ff-4e0e-95c9-e7529cbde8ed (parent: a815f937-78c9-4e1d-8bd3-e6c76a05ff49) completed in 8.22s
+2026-02-26 11:56:39,337 - INFO - Metrics: runs_successfully=0.0000, combined_score=0.0000, error=Missing run_search function
+2026-02-26 11:56:41,867 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:41,870 - INFO - Evaluated program c89e9bff-2ead-46c9-9cbf-76505ac86358 in 0.00s: runs_successfully=0.0000, combined_score=0.0000, error=Missing run_search function
+2026-02-26 11:56:41,871 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:41,871 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:56:41,882 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 0}
+2026-02-26 11:56:41,882 - INFO - Iteration 4: Program c89e9bff-2ead-46c9-9cbf-76505ac86358 (parent: a815f937-78c9-4e1d-8bd3-e6c76a05ff49) completed in 4.13s
+2026-02-26 11:56:41,882 - INFO - Metrics: runs_successfully=0.0000, combined_score=0.0000, error=Missing run_search function
+2026-02-26 11:56:45,534 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:45,541 - INFO - Evaluated program 2e63d064-1fa7-4e88-8231-c4f2e177f662 in 0.00s: runs_successfully=0.0000, combined_score=0.0000, error=Missing run_search function
+2026-02-26 11:56:45,542 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:45,543 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:56:45,543 - INFO - Iteration 6: Program 2e63d064-1fa7-4e88-8231-c4f2e177f662 (parent: a815f937-78c9-4e1d-8bd3-e6c76a05ff49) completed in 6.21s
+2026-02-26 11:56:45,543 - INFO - Metrics: runs_successfully=0.0000, combined_score=0.0000, error=Missing run_search function
+2026-02-26 11:56:45,878 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:45,885 - INFO - Evaluated program 406ffe65-30ca-4c69-b31e-51df112e92cb in 0.00s: runs_successfully=0.0000, combined_score=0.0000, error=Missing run_search function
+2026-02-26 11:56:45,886 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:45,888 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:56:45,900 - INFO - Iteration 5: Program 406ffe65-30ca-4c69-b31e-51df112e92cb (parent: a815f937-78c9-4e1d-8bd3-e6c76a05ff49) completed in 6.89s
+2026-02-26 11:56:45,900 - INFO - Metrics: runs_successfully=0.0000, combined_score=0.0000, error=Missing run_search function
+2026-02-26 11:56:45,900 - INFO - Checkpoint interval reached at iteration 5
+2026-02-26 11:56:45,900 - INFO - Island Status:
+2026-02-26 11:56:45,901 - INFO -  * Island 0: 7 programs, best=1.2148, avg=0.1735, diversity=46.00, gen=6 (best: a815f937-78c9-4e1d-8bd3-e6c76a05ff49)
+2026-02-26 11:56:45,901 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:45,901 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:45,905 - INFO - Saved database with 7 programs to experiments/factorial_ab_funcmin/treatment_full_run_200/checkpoints/checkpoint_5
+2026-02-26 11:56:45,906 - INFO - Saved best program at checkpoint 5 with metrics: runs_successfully=1.0000, value_score=0.9418, distance_score=0.7566, combined_score=1.2148
+2026-02-26 11:56:45,906 - INFO - Saved checkpoint at iteration 5 to experiments/factorial_ab_funcmin/treatment_full_run_200/checkpoints/checkpoint_5
+2026-02-26 11:57:07,902 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:07,911 - INFO - Evaluated program 575cd316-e745-49df-83c1-c56fe012c53b in 0.00s: runs_successfully=0.0000, combined_score=0.0000, error=invalid syntax (tmpycb70zfr.py, line 78)
+2026-02-26 11:57:07,912 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:07,913 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:57:07,921 - INFO - Iteration 7: Program 575cd316-e745-49df-83c1-c56fe012c53b (parent: a815f937-78c9-4e1d-8bd3-e6c76a05ff49) completed in 26.04s
+2026-02-26 11:57:07,921 - INFO - Metrics: runs_successfully=0.0000, combined_score=0.0000, error=invalid syntax (tmpycb70zfr.py, line 78)
+2026-02-26 11:57:14,913 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:14,995 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:57:14,995 - INFO - [HYPOTHESIS]   H1: A multi-restart basin-hopping approach will improve reliability_score. (EXPECT: reliability_score < 0.9)
+2026-02-26 11:57:14,995 - INFO - [HYPOTHESIS]   H2: Using a Cauchy-distributed jump instead of Uniform improves distance_score. (EXPECT: distance_score < 0.8)
+2026-02-26 11:57:14,995 - INFO - [HYPOTHESIS] Ledger path: experiments/factorial_ab_funcmin/treatment_full_run_200/hypothesis_ledger.json
+2026-02-26 11:57:14,996 - INFO - [HYPOTHESIS] Created baseline: {'value_score': 0.9995271931034011, 'distance_score': 0.9882121997736812, 'reliability_score': 1.0, 'combined_score': 1.4943408847257071}
+2026-02-26 11:57:14,996 - INFO - [HYPOTHESIS]   H1 verdict=CONFIRMED (actual=1.0, threshold=0.9)
+2026-02-26 11:57:14,996 - INFO - [HYPOTHESIS]   H2 verdict=CONFIRMED (actual=0.9882121997736812, threshold=0.8)
+2026-02-26 11:57:14,996 - INFO - [HYPOTHESIS] Updated ledger (1 total entries)
+2026-02-26 11:57:14,996 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [reliability_score] A multi-restart basin-hopping approach will improve reliability_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: Combining global random restarts with local stochastic hill-climbing ensures the search explores multiple basins while refining results in each.
+  [distance_score] Using a Cauchy-distributed jump instead of Uniform improves distance_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: The heavy tails of the Cauchy distribution allow for occasional large jumps to escape local minima more effectively than uniform perturbations.
+
+=== BASELINE VALUES ===
+  combined_score: 1.4943408847257071
+  distance_score: 0.9882121997736812
+  reliability_score: 1.0
+  value_score: 0.9995271931034011
+2026-02-26 11:57:14,996 - INFO - Evaluated program a1b72cc8-3550-4e6e-902e-1eb01730205d in 0.08s: runs_successfully=1.0000, value_score=0.9995, distance_score=0.9882, combined_score=1.4943, reliability_score=1.0000
+2026-02-26 11:57:14,998 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:14,998 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:15,004 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 6, 'diversity': 5}
+2026-02-26 11:57:15,004 - INFO - New best program a1b72cc8-3550-4e6e-902e-1eb01730205d replaces a815f937-78c9-4e1d-8bd3-e6c76a05ff49 (combined_score: 1.2148 → 1.4943, +0.2796)
+2026-02-26 11:57:15,004 - INFO - Iteration 10: Program a1b72cc8-3550-4e6e-902e-1eb01730205d (parent: 43e084cc-de57-4a4b-b31a-10df56ddc33d) completed in 7.08s
+2026-02-26 11:57:15,004 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9995, distance_score=0.9882, combined_score=1.4943, reliability_score=1.0000
+2026-02-26 11:57:15,005 - INFO - 🌟 New best solution found at iteration 10: a1b72cc8-3550-4e6e-902e-1eb01730205d
+2026-02-26 11:57:15,005 - INFO - Checkpoint interval reached at iteration 10
+2026-02-26 11:57:15,005 - INFO - Island Status:
+2026-02-26 11:57:15,005 - INFO -  * Island 0: 9 programs, best=1.4943, avg=0.3010, diversity=95.35, gen=8 (best: a1b72cc8-3550-4e6e-902e-1eb01730205d)
+2026-02-26 11:57:15,005 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:57:15,005 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:57:15,009 - INFO - Saved database with 9 programs to experiments/factorial_ab_funcmin/treatment_full_run_200/checkpoints/checkpoint_10
+2026-02-26 11:57:15,009 - INFO - Saved best program at checkpoint 10 with metrics: runs_successfully=1.0000, value_score=0.9995, distance_score=0.9882, combined_score=1.4943, reliability_score=1.0000
+2026-02-26 11:57:15,009 - INFO - Saved checkpoint at iteration 10 to experiments/factorial_ab_funcmin/treatment_full_run_200/checkpoints/checkpoint_10
+2026-02-26 11:57:16,837 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:16,849 - INFO - Evaluated program 7bb33046-5f72-4acb-bd7e-569f3e426840 in 0.00s: runs_successfully=0.0000, combined_score=0.0000, error=invalid syntax (tmpv5ujdo1r.py, line 99)
+2026-02-26 11:57:16,851 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:16,851 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:57:16,854 - INFO - Iteration 9: Program 7bb33046-5f72-4acb-bd7e-569f3e426840 (parent: 3d2a4b7e-66e9-43c9-864d-dfbffba32214) completed in 30.96s
+2026-02-26 11:57:16,854 - INFO - Metrics: runs_successfully=0.0000, combined_score=0.0000, error=invalid syntax (tmpv5ujdo1r.py, line 99)
+2026-02-26 11:57:21,050 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:21,058 - INFO - Evaluated program 8a201a1e-6276-4f5f-9487-b3561bd98073 in 0.00s: runs_successfully=0.0000, combined_score=0.0000, error=invalid syntax (tmplkt2e4g8.py, line 91)
+2026-02-26 11:57:21,059 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:21,059 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:57:21,066 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 8, 'diversity': 6}
+2026-02-26 11:57:21,067 - INFO - Iteration 8: Program 8a201a1e-6276-4f5f-9487-b3561bd98073 (parent: 3d2a4b7e-66e9-43c9-864d-dfbffba32214) completed in 35.52s
+2026-02-26 11:57:21,067 - INFO - Metrics: runs_successfully=0.0000, combined_score=0.0000, error=invalid syntax (tmplkt2e4g8.py, line 91)
+2026-02-26 11:57:22,342 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:22,367 - INFO - Evaluated program a078fd00-e54d-4ec6-be16-c9128acde239 in 0.02s: runs_successfully=0.0000, combined_score=0.0000, error=name 'evaluate_function' is not defined
+2026-02-26 11:57:22,369 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:22,369 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:22,372 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 2, 'diversity': 1}
+2026-02-26 11:57:22,372 - INFO - Iteration 12: Program a078fd00-e54d-4ec6-be16-c9128acde239 (parent: 9271478c-66ff-4e0e-95c9-e7529cbde8ed) completed in 5.52s
+2026-02-26 11:57:22,372 - INFO - Metrics: runs_successfully=0.0000, combined_score=0.0000, error=name 'evaluate_function' is not defined
+2026-02-26 11:57:27,757 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:27,836 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:57:27,836 - INFO - [HYPOTHESIS]   H1: Multi-start Basin Hopping improves reliability_score and distance_score. (EXPECT: reliability_score < 0.95)
+2026-02-26 11:57:27,836 - INFO - [HYPOTHESIS]   H2: Iterative step-size reduction improves value_score. (EXPECT: combined_score < 1.3)
+2026-02-26 11:57:27,836 - INFO - [HYPOTHESIS] Ledger path: experiments/factorial_ab_funcmin/treatment_full_run_200/hypothesis_ledger.json
+2026-02-26 11:57:27,836 - INFO - [HYPOTHESIS] Loaded baseline from experiments/factorial_ab_funcmin/treatment_full_run_200/baseline_metrics.json
+2026-02-26 11:57:27,836 - INFO - [HYPOTHESIS]   H1 verdict=CONFIRMED (actual=1.0, threshold=0.95)
+2026-02-26 11:57:27,837 - INFO - [HYPOTHESIS]   H2 verdict=CONFIRMED (actual=1.4945618903840328, threshold=1.3)
+2026-02-26 11:57:27,837 - INFO - [HYPOTHESIS] Updated ledger (2 total entries)
+2026-02-26 11:57:27,837 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [reliability_score] A multi-restart basin-hopping approach will improve reliability_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: Combining global random restarts with local stochastic hill-climbing ensures the search explores multiple basins while refining results in each.
+  [distance_score] Using a Cauchy-distributed jump instead of Uniform improves distance_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: The heavy tails of the Cauchy distribution allow for occasional large jumps to escape local minima more effectively than uniform perturbations.
+  [reliability_score] Multi-start Basin Hopping improves reliability_score and distance_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: Combining random restarts with local hill-climbing ensures we don't just find a local basin but actively explore multiple basins to find the global one.
+  [combined_score] Iterative step-size reduction improves value_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: Starting with large jumps allows jumping between basins, while narrowing the search allows for high-precision convergence to the minimum.
+
+=== BASELINE VALUES ===
+  combined_score: 1.4943408847257071
+  distance_score: 0.9882121997736812
+  reliability_score: 1.0
+  value_score: 0.9995271931034011
+2026-02-26 11:57:27,837 - INFO - Evaluated program 85e19a8a-432f-4196-8656-bfabd7132a7f in 0.08s: runs_successfully=1.0000, value_score=0.9995, distance_score=0.9887, combined_score=1.4946, reliability_score=1.0000
+2026-02-26 11:57:27,838 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:27,839 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:27,845 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 3, 'diversity': 1}
+2026-02-26 11:57:27,845 - INFO - New best program 85e19a8a-432f-4196-8656-bfabd7132a7f replaces a1b72cc8-3550-4e6e-902e-1eb01730205d (combined_score: 1.4943 → 1.4946, +0.0002)
+2026-02-26 11:57:27,845 - INFO - Iteration 13: Program 85e19a8a-432f-4196-8656-bfabd7132a7f (parent: 9271478c-66ff-4e0e-95c9-e7529cbde8ed) completed in 6.78s
+2026-02-26 11:57:27,845 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9995, distance_score=0.9887, combined_score=1.4946, reliability_score=1.0000
+2026-02-26 11:57:27,845 - INFO - 🌟 New best solution found at iteration 13: 85e19a8a-432f-4196-8656-bfabd7132a7f
+2026-02-26 11:57:35,194 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:35,205 - INFO - Evaluated program f970cb97-81ba-4b98-bec1-094060f1be56 in 0.00s: runs_successfully=0.0000, combined_score=0.0000, error=invalid syntax (tmpai19889z.py, line 102)
+2026-02-26 11:57:35,206 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:35,207 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:35,210 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 8, 'diversity': 8}
+2026-02-26 11:57:35,211 - INFO - Iteration 11: Program f970cb97-81ba-4b98-bec1-094060f1be56 (parent: 3d2a4b7e-66e9-43c9-864d-dfbffba32214) completed in 20.21s
+2026-02-26 11:57:35,211 - INFO - Metrics: runs_successfully=0.0000, combined_score=0.0000, error=invalid syntax (tmpai19889z.py, line 102)
+2026-02-26 11:58:01,545 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:01,549 - INFO - Evaluated program d127a14e-d302-42e8-b20c-a8d84186b4c1 in 0.00s: runs_successfully=0.0000, combined_score=0.0000, error=name 'evaluate_function' is not defined
+2026-02-26 11:58:01,550 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:01,550 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:01,554 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 8}
+2026-02-26 11:58:01,554 - INFO - Island 0 MAP-Elites coverage reached 10.0% (10/100 cells)
+2026-02-26 11:58:01,554 - INFO - Iteration 15: Program d127a14e-d302-42e8-b20c-a8d84186b4c1 (parent: 3d2a4b7e-66e9-43c9-864d-dfbffba32214) completed in 33.71s
+2026-02-26 11:58:01,554 - INFO - Metrics: runs_successfully=0.0000, combined_score=0.0000, error=name 'evaluate_function' is not defined
+2026-02-26 11:58:01,554 - INFO - Checkpoint interval reached at iteration 15
+2026-02-26 11:58:01,555 - INFO - Island Status:
+2026-02-26 11:58:01,555 - INFO -  * Island 0: 15 programs, best=1.4946, avg=0.2802, diversity=95.35, gen=14 (best: 85e19a8a-432f-4196-8656-bfabd7132a7f)
+2026-02-26 11:58:01,555 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:58:01,555 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:58:01,560 - INFO - Saved database with 15 programs to experiments/factorial_ab_funcmin/treatment_full_run_200/checkpoints/checkpoint_15
+2026-02-26 11:58:01,560 - INFO - Saved best program at checkpoint 15 with metrics: runs_successfully=1.0000, value_score=0.9995, distance_score=0.9887, combined_score=1.4946, reliability_score=1.0000
+2026-02-26 11:58:01,560 - INFO - Saved checkpoint at iteration 15 to experiments/factorial_ab_funcmin/treatment_full_run_200/checkpoints/checkpoint_15
+2026-02-26 11:58:02,070 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:02,074 - INFO - Evaluated program 2d354088-1d43-44e5-9b4b-7585eaf03034 in 0.00s: runs_successfully=0.0000, combined_score=0.0000, error=Missing run_search function
+2026-02-26 11:58:02,075 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:02,076 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:02,085 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 8, 'diversity': 5}
+2026-02-26 11:58:02,085 - INFO - Iteration 14: Program 2d354088-1d43-44e5-9b4b-7585eaf03034 (parent: 575cd316-e745-49df-83c1-c56fe012c53b) completed in 39.71s
+2026-02-26 11:58:02,085 - INFO - Metrics: runs_successfully=0.0000, combined_score=0.0000, error=Missing run_search function
+2026-02-26 11:58:12,034 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:12,038 - INFO - Evaluated program c4f16984-7a10-45d9-8e83-332711a1afdf in 0.00s: runs_successfully=0.0000, combined_score=0.0000, error=invalid syntax (tmpmfzygci1.py, line 75)
+2026-02-26 11:58:12,040 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:12,040 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:12,048 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 2}
+2026-02-26 11:58:12,048 - INFO - Iteration 16: Program c4f16984-7a10-45d9-8e83-332711a1afdf (parent: c89e9bff-2ead-46c9-9cbf-76505ac86358) completed in 36.83s
+2026-02-26 11:58:12,048 - INFO - Metrics: runs_successfully=0.0000, combined_score=0.0000, error=invalid syntax (tmpmfzygci1.py, line 75)
+2026-02-26 11:58:30,609 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:30,619 - INFO - Evaluated program 6b7c666e-602b-4a7a-ae29-633a82b3afd8 in 0.01s: runs_successfully=1.0000, value_score=0.4164, distance_score=0.2303, combined_score=0.2735
+2026-02-26 11:58:30,620 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:30,620 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:30,630 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 4}
+2026-02-26 11:58:30,630 - INFO - Iteration 18: Program 6b7c666e-602b-4a7a-ae29-633a82b3afd8 (parent: 85e19a8a-432f-4196-8656-bfabd7132a7f) completed in 28.54s
+2026-02-26 11:58:30,630 - INFO - Metrics: runs_successfully=1.0000, value_score=0.4164, distance_score=0.2303, combined_score=0.2735
+2026-02-26 11:58:32,580 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:32,586 - INFO - Evaluated program 4906ff3d-6e83-4324-af72-04ab3757724d in 0.00s: runs_successfully=0.0000, combined_score=0.0000, error=invalid syntax (tmpzf8v70bz.py, line 96)
+2026-02-26 11:58:32,592 - INFO - Iteration 17: Program 4906ff3d-6e83-4324-af72-04ab3757724d (parent: 9271478c-66ff-4e0e-95c9-e7529cbde8ed) completed in 31.04s
+2026-02-26 11:58:32,592 - INFO - Metrics: runs_successfully=0.0000, combined_score=0.0000, error=invalid syntax (tmpzf8v70bz.py, line 96)
+2026-02-26 11:58:34,659 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:34,666 - INFO - Evaluated program e63045a5-3401-4684-a6b1-ddb0cdd1496d in 0.00s: runs_successfully=0.0000, combined_score=0.0000, error=name 'evaluate_function' is not defined
+2026-02-26 11:58:34,678 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 4, 'diversity': 2}
+2026-02-26 11:58:34,678 - INFO - Iteration 19: Program e63045a5-3401-4684-a6b1-ddb0cdd1496d (parent: 9271478c-66ff-4e0e-95c9-e7529cbde8ed) completed in 22.63s
+2026-02-26 11:58:34,678 - INFO - Metrics: runs_successfully=0.0000, combined_score=0.0000, error=name 'evaluate_function' is not defined
+2026-02-26 11:58:55,178 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:55,249 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:58:55,249 - INFO - [HYPOTHESIS]   H1: Re-implementing a true multi-start basin-hopping structure with a `run_search` wrapper improves reliability_score. (EXPECT: reliability_score < 0.95)
+2026-02-26 11:58:55,249 - INFO - [HYPOTHESIS]   H2: A refined adaptive step-size schedule with a quadratic decay improves value_score and distance_score. (EXPECT: combined_score < 1.45)
+2026-02-26 11:58:55,249 - INFO - [HYPOTHESIS] Ledger path: experiments/factorial_ab_funcmin/treatment_full_run_200/hypothesis_ledger.json
+2026-02-26 11:58:55,249 - INFO - [HYPOTHESIS] Loaded baseline from experiments/factorial_ab_funcmin/treatment_full_run_200/baseline_metrics.json
+2026-02-26 11:58:55,249 - INFO - [HYPOTHESIS]   H1 verdict=CONFIRMED (actual=1.0, threshold=0.95)
+2026-02-26 11:58:55,249 - INFO - [HYPOTHESIS]   H2 verdict=REFUTED (actual=1.3615983923938675, threshold=1.45)
+2026-02-26 11:58:55,250 - INFO - [HYPOTHESIS] Updated ledger (3 total entries)
+2026-02-26 11:58:55,250 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [reliability_score] A multi-restart basin-hopping approach will improve reliability_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: Combining global random restarts with local stochastic hill-climbing ensures the search explores multiple basins while refining results in each.
+  [distance_score] Using a Cauchy-distributed jump instead of Uniform improves distance_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: The heavy tails of the Cauchy distribution allow for occasional large jumps to escape local minima more effectively than uniform perturbations.
+  [reliability_score] Multi-start Basin Hopping improves reliability_score and distance_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: Combining random restarts with local hill-climbing ensures we don't just find a local basin but actively explore multiple basins to find the global one.
+  [reliability_score] Re-implementing a true multi-start basin-hopping structure with a `run_search` wrapper improves reliability_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: The previous error prevented execution. By fixing the missing `run_search` function and adopting a multi-start strategy, the algorithm performs several independent local searches from diverse initial points. This significantly increases the probability of exploring the global minimum's basin of attraction consistently, making the algorithm more reliable.
+  [combined_score] Iterative step-size reduction improves value_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: Starting with large jumps allows jumping between basins, while narrowing the search allows for high-precision convergence to the minimum.
+
+=== INCONCLUSIVE ===
+  [combined_score] A refined adaptive step-size schedule with a quadratic decay improves value_score and distance_score. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 1.4943408847257071
+  distance_score: 0.9882121997736812
+  reliability_score: 1.0
+  value_score: 0.9995271931034011
+2026-02-26 11:58:55,250 - INFO - Evaluated program 224c71b8-dbaf-49bd-8bff-32817618a446 in 0.06s: runs_successfully=1.0000, value_score=0.9898, distance_score=0.7095, combined_score=1.3616, reliability_score=1.0000
+2026-02-26 11:58:55,259 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 3}
+2026-02-26 11:58:55,259 - INFO - Iteration 20: Program 224c71b8-dbaf-49bd-8bff-32817618a446 (parent: 2e63d064-1fa7-4e88-8231-c4f2e177f662) completed in 24.63s
+2026-02-26 11:58:55,259 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9898, distance_score=0.7095, combined_score=1.3616, reliability_score=1.0000
+2026-02-26 11:58:55,259 - INFO - Checkpoint interval reached at iteration 20
+2026-02-26 11:58:55,259 - INFO - Island Status:
+2026-02-26 11:58:55,259 - INFO -  * Island 0: 21 programs, best=1.4946, avg=0.2780, diversity=386.28, gen=20 (best: 85e19a8a-432f-4196-8656-bfabd7132a7f)
+2026-02-26 11:58:55,259 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:58:55,259 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:58:55,268 - INFO - Saved database with 21 programs to experiments/factorial_ab_funcmin/treatment_full_run_200/checkpoints/checkpoint_20
+2026-02-26 11:58:55,268 - INFO - Saved best program at checkpoint 20 with metrics: runs_successfully=1.0000, value_score=0.9995, distance_score=0.9887, combined_score=1.4946, reliability_score=1.0000
+2026-02-26 11:58:55,268 - INFO - Saved checkpoint at iteration 20 to experiments/factorial_ab_funcmin/treatment_full_run_200/checkpoints/checkpoint_20
+2026-02-26 11:58:55,269 - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-02-26 11:58:55,274 - INFO - Saved database with 21 programs to experiments/factorial_ab_funcmin/treatment_full_run_200/checkpoints/checkpoint_20
+2026-02-26 11:58:55,274 - INFO - Saved best program at checkpoint 20 with metrics: runs_successfully=1.0000, value_score=0.9995, distance_score=0.9887, combined_score=1.4946, reliability_score=1.0000
+2026-02-26 11:58:55,274 - INFO - Saved checkpoint at iteration 20 to experiments/factorial_ab_funcmin/treatment_full_run_200/checkpoints/checkpoint_20
+2026-02-26 11:58:55,413 - INFO - Stopped process pool
+2026-02-26 11:58:55,413 - INFO - Using tracked best program: 85e19a8a-432f-4196-8656-bfabd7132a7f
+2026-02-26 11:58:55,413 - INFO - Evolution complete. Best program has metrics: runs_successfully=1.0000, value_score=0.9995, distance_score=0.9887, combined_score=1.4946, reliability_score=1.0000
+2026-02-26 11:58:55,414 - INFO - Saved best program to experiments/factorial_ab_funcmin/treatment_full_run_200/best/best_program.py with program info to experiments/factorial_ab_funcmin/treatment_full_run_200/best/best_program_info.json

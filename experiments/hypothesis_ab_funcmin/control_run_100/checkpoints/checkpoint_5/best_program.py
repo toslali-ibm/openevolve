@@ -14,31 +14,29 @@ def search_algorithm(iterations=1000, bounds=(-5, 5)):
     Returns:
         Tuple of (best_x, best_y, best_value)
     """
-    # Simulated Annealing with Local Refinement
-    curr_x = np.random.uniform(*bounds)
-    curr_y = np.random.uniform(*bounds)
-    curr_val = evaluate_function(curr_x, curr_y)
-    best_x, best_y, best_value = curr_x, curr_y, curr_val
+    # Initialize with a random point
+    best_x = np.random.uniform(bounds[0], bounds[1])
+    best_y = np.random.uniform(bounds[0], bounds[1])
+    best_value = evaluate_function(best_x, best_y)
 
+    # Use a cooling schedule for simulated annealing/local search
     for i in range(iterations):
+        # Calculate temperature/step scale (decreases over time)
         temp = 1.0 - (i / iterations)
-        # Scale step size with temperature
-        step = (bounds[1] - bounds[0]) * 0.1 * temp + 0.01
         
-        # Candidate point: mix of local perturbation and global reset
-        if np.random.rand() > 0.1:
-            x = np.clip(curr_x + np.random.normal(0, step), *bounds)
-            y = np.clip(curr_y + np.random.normal(0, step), *bounds)
+        if i < iterations // 4:
+            # Global exploration phase
+            x, y = np.random.uniform(bounds[0], bounds[1], 2)
         else:
-            x, y = np.random.uniform(*bounds, 2)
+            # Local exploitation phase: perturb current best
+            scale = (bounds[1] - bounds[0]) * temp
+            x = np.clip(best_x + np.random.normal(0, scale * 0.5), bounds[0], bounds[1])
+            y = np.clip(best_y + np.random.normal(0, scale * 0.5), bounds[0], bounds[1])
             
-        val = evaluate_function(x, y)
-        
-        # Acceptance criteria (Metropolis-Hastings)
-        if val < curr_val or np.random.rand() < np.exp((curr_val - val) / (temp + 1e-9)):
-            curr_x, curr_y, curr_val = x, y, val
-            if val < best_value:
-                best_x, best_y, best_value = x, y, val
+        value = evaluate_function(x, y)
+
+        if value < best_value:
+            best_value, best_x, best_y = value, x, y
 
     return best_x, best_y, best_value
 

@@ -1,0 +1,400 @@
+{
+  "baseline": {
+    "value_score": 0.9927638400114926,
+    "distance_score": 0.932191526237914,
+    "reliability_score": 1.0,
+    "combined_score": 1.4640590668156808
+  },
+  "entries": [
+    {
+      "timestamp": "2026-02-26T15:25:50.866730+00:00",
+      "overall_combined_score": 1.4640590668156808,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local refinement improves distance_score.",
+          "mechanism": "Probabilistically accepting worse solutions allows the search to escape shallow local minima, while a cooling schedule narrows focus on the global basin.",
+          "metric": "distance_score",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.932191526237914,
+          "baseline_value": 0.932191526237914,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a hybrid of global exploration and local Gaussian mutation",
+          "mechanism": "Global uniform sampling finds potential basins, while Gaussian steps converge precisely to the actual minimum within those basins.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.35,
+          "actual": 1.4640590668156808,
+          "baseline_value": 1.4640590668156808,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:25:53.228401+00:00",
+      "overall_combined_score": 1.465569254074002,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local refinement improves distance_score.",
+          "mechanism": "Probabilistically accepting worse solutions allows the search to escape shallow local minima, while a cooling schedule narrows focus on the global basin.",
+          "metric": "distance_score",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.9391303350563538,
+          "baseline_value": 0.932191526237914,
+          "delta_vs_baseline_pct": 0.7443544189296627,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a hybrid of global exploration and local Gaussian mutation",
+          "mechanism": "Global uniform sampling finds potential basins, while Gaussian steps converge precisely to the actual minimum within those basins.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.35,
+          "actual": 1.465569254074002,
+          "baseline_value": 1.4640590668156808,
+          "delta_vs_baseline_pct": 0.10315070563415461,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:25:53.443486+00:00",
+      "overall_combined_score": 1.4675874112011749,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local refinement improves distance_score.",
+          "mechanism": "Probabilistically accepting worse solutions allows the search to escape shallow local minima, while a cooling schedule narrows focus on the global basin.",
+          "metric": "distance_score",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.9393236524715145,
+          "baseline_value": 0.932191526237914,
+          "delta_vs_baseline_pct": 0.7650923692027025,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a hybrid of global exploration and local Gaussian mutation",
+          "mechanism": "Global uniform sampling finds potential basins, while Gaussian steps converge precisely to the actual minimum within those basins.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.35,
+          "actual": 1.4675874112011749,
+          "baseline_value": 1.4640590668156808,
+          "delta_vs_baseline_pct": 0.24099740683060175,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:25:56.889022+00:00",
+      "overall_combined_score": 1.4735626321715585,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local refinement improves distance_score.",
+          "mechanism": "Probabilistically accepting worse solutions allows the search to escape shallow local minima, while a cooling schedule narrows focus on the global basin.",
+          "metric": "distance_score",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.9492499029247621,
+          "baseline_value": 0.932191526237914,
+          "delta_vs_baseline_pct": 1.8299218783602658,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a hybrid of global exploration and local Gaussian mutation",
+          "mechanism": "Global uniform sampling finds potential basins, while Gaussian steps converge precisely to the actual minimum within those basins.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.35,
+          "actual": 1.4735626321715585,
+          "baseline_value": 1.4640590668156808,
+          "delta_vs_baseline_pct": 0.6491244493671899,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:25:59.093550+00:00",
+      "overall_combined_score": 1.459254097657732,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local refinement improves distance_score.",
+          "mechanism": "Probabilistically accepting worse solutions allows the search to escape shallow local minima, while a cooling schedule narrows focus on the global basin.",
+          "metric": "distance_score",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.9263142789146297,
+          "baseline_value": 0.932191526237914,
+          "delta_vs_baseline_pct": -0.630476372919134,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a hybrid of global exploration and local Gaussian mutation",
+          "mechanism": "Global uniform sampling finds potential basins, while Gaussian steps converge precisely to the actual minimum within those basins.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.35,
+          "actual": 1.459254097657732,
+          "baseline_value": 1.4640590668156808,
+          "delta_vs_baseline_pct": -0.32819503439841335,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:26:07.367008+00:00",
+      "overall_combined_score": 1.461757400060614,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local refinement improves distance_score.",
+          "mechanism": "Probabilistically accepting worse solutions allows the search to escape shallow local minima, while a cooling schedule narrows focus on the global basin.",
+          "metric": "distance_score",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.9293810668649736,
+          "baseline_value": 0.932191526237914,
+          "delta_vs_baseline_pct": -0.30148947870001963,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a hybrid of global exploration and local Gaussian mutation",
+          "mechanism": "Global uniform sampling finds potential basins, while Gaussian steps converge precisely to the actual minimum within those basins.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.35,
+          "actual": 1.461757400060614,
+          "baseline_value": 1.4640590668156808,
+          "delta_vs_baseline_pct": -0.1572113316488612,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:26:25.427876+00:00",
+      "overall_combined_score": 1.4441420430242418,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Adopting Simulated Annealing will significantly improve global minimum finding.",
+          "mechanism": "The Metropolis criterion allows the search to probabilistically accept inferior solutions, enabling escape from local minima. The cooling schedule balances exploration and exploitation over iterations.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.4,
+          "actual": 1.4441420430242418,
+          "baseline_value": 1.4640590668156808,
+          "delta_vs_baseline_pct": -1.3603975579180971,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "A hybrid exploration strategy of global jumps and local Gaussian mutations enhances search effectiveness.",
+          "mechanism": "Periodic global random sampling ensures diverse starting points for exploration, while temperature-dependent local Gaussian steps facilitate precise convergence within promising regions.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:26:33.590164+00:00",
+      "overall_combined_score": 1.463411564571497,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Exponential cooling and reduced global jump frequency improve value_score.",
+          "mechanism": "Spending more time at lower temperatures allows for finer convergence in the global basin, while fewer jumps prevent disrupting late-stage convergence.",
+          "metric": "value_score",
+          "operator": ">",
+          "threshold": 0.996,
+          "actual": 0.9803647769594634,
+          "baseline_value": 0.9927638400114926,
+          "delta_vs_baseline_pct": -1.2489438628108842,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Dynamic step-size scaling improves distance_score.",
+          "mechanism": "Using a power-law decay for the mutation step size ensures the search transitions from broad exploration to high-precision local optimization.",
+          "metric": "distance_score",
+          "operator": ">",
+          "threshold": 0.96,
+          "actual": 0.9514177374486653,
+          "baseline_value": 0.932191526237914,
+          "delta_vs_baseline_pct": 2.0624743595710804,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:26:41.466936+00:00",
+      "overall_combined_score": 1.4874126102009426,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local refinement improves distance_score.",
+          "mechanism": "Probabilistically accepting worse solutions allows the search to escape shallow local minima, while a cooling schedule narrows focus on the global basin.",
+          "metric": "distance_score",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.9738721080897025,
+          "baseline_value": 0.932191526237914,
+          "delta_vs_baseline_pct": 4.471246592425122,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a hybrid of global exploration and local Gaussian mutation",
+          "mechanism": "Global uniform sampling finds potential basins, while Gaussian steps converge precisely to the actual minimum within those basins.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.35,
+          "actual": 1.4874126102009426,
+          "baseline_value": 1.4640590668156808,
+          "delta_vs_baseline_pct": 1.5951230325737926,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:27:04.768624+00:00",
+      "overall_combined_score": 1.4679781334821431,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local refinement improves distance_score.",
+          "mechanism": "Probabilistically accepting worse solutions allows the search to escape shallow local minima, while a cooling schedule narrows focus on the global basin.",
+          "metric": "distance_score",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.9421139046836513,
+          "baseline_value": 0.932191526237914,
+          "delta_vs_baseline_pct": 1.0644141430657994,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a hybrid of global exploration and local Gaussian mutation",
+          "mechanism": "Global uniform sampling finds potential basins, while Gaussian steps converge precisely to the actual minimum within those basins.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.35,
+          "actual": 1.4679781334821431,
+          "baseline_value": 1.4640590668156808,
+          "delta_vs_baseline_pct": 0.2676850104815991,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:27:09.564502+00:00",
+      "overall_combined_score": 1.3602225636668164,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local refinement improves distance_score.",
+          "mechanism": "Probabilistically accepting worse solutions allows the search to escape shallow local minima, while a cooling schedule narrows focus on the global basin.",
+          "metric": "distance_score",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.706982460899463,
+          "baseline_value": 0.932191526237914,
+          "delta_vs_baseline_pct": -24.159098103727356,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a hybrid of global exploration and local Gaussian mutation",
+          "mechanism": "Global uniform sampling finds potential basins, while Gaussian steps converge precisely to the actual minimum within those basins.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.35,
+          "actual": 1.3602225636668164,
+          "baseline_value": 1.4640590668156808,
+          "delta_vs_baseline_pct": -7.092371168788164,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:27:13.218345+00:00",
+      "overall_combined_score": 1.4524125623893347,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local refinement improves distance_score.",
+          "mechanism": "Probabilistically accepting worse solutions allows the search to escape shallow local minima, while a cooling schedule narrows focus on the global basin.",
+          "metric": "distance_score",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.9144281684192209,
+          "baseline_value": 0.932191526237914,
+          "delta_vs_baseline_pct": -1.9055480894984587,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a hybrid of global exploration and local Gaussian mutation",
+          "mechanism": "Global uniform sampling finds potential basins, while Gaussian steps converge precisely to the actual minimum within those basins.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.35,
+          "actual": 1.4524125623893347,
+          "baseline_value": 1.4640590668156808,
+          "delta_vs_baseline_pct": -0.7954941634750533,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:27:34.916800+00:00",
+      "overall_combined_score": 1.3594314981109377,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Simulated Annealing with local refinement improves distance_score.",
+          "mechanism": "Probabilistically accepting worse solutions allows the search to escape shallow local minima, while a cooling schedule narrows focus on the global basin.",
+          "metric": "distance_score",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.7050281436797355,
+          "baseline_value": 0.932191526237914,
+          "delta_vs_baseline_pct": -24.368745709902733,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a hybrid of global exploration and local Gaussian mutation",
+          "mechanism": "Global uniform sampling finds potential basins, while Gaussian steps converge precisely to the actual minimum within those basins.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.35,
+          "actual": 1.3594314981109377,
+          "baseline_value": 1.4640590668156808,
+          "delta_vs_baseline_pct": -7.14640352129422,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    }
+  ]
+}

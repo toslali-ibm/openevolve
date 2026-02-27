@@ -1,0 +1,227 @@
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpwtsdi8wz.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 0.9597642169962064
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpbfco44ih.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpwtsdi8wz.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 0.9597642169962064
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpx020o0w1.py.results
+
+Evaluation: valid=True, sum_radii=0.959764, target=2.635, ratio=0.364237, time=0.11s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpdetwp014.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 2.320710678118654
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp8fi0gs4j.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpdetwp014.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 2.320710678118654
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpdfxrx7_j.py.results
+
+Evaluation: valid=True, sum_radii=2.320711, target=2.635, ratio=0.880725, time=0.08s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpw_whvif7.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.2236652647831545
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp0n03v5em.py.results
+
+Circles 14 and 25 overlap: dist=0.0, r1+r2=0.018296426585638403
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmptm_w13ng.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.0281450684608673
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp4oqmf8w2.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmptm_w13ng.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.0281450684608673
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpk8j7fuel.py.results
+
+Evaluation: valid=True, sum_radii=1.028145, target=2.635, ratio=0.390188, time=0.08s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpmsns2b1m.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.8103611901269172
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpgfsysx5u.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpmsns2b1m.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.8103611901269172
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpwzbla1p3.py.results
+
+Evaluation: valid=True, sum_radii=1.810361, target=2.635, ratio=0.687044, time=0.08s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpys5rcnkh.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.2236652647831545
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpe3gd9k0a.py.results
+
+Circles 14 and 25 overlap: dist=0.0, r1+r2=0.018296426585638403
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpg21h97ms.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.2236652647831545
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpq8jl1vw3.py.results
+
+Circles 14 and 25 overlap: dist=0.0, r1+r2=0.018296426585638403
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp4rhqinpz.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 2.320710678118654
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpjry6o2sc.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp4rhqinpz.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 2.320710678118654
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp3023s8db.py.results
+
+Evaluation: valid=True, sum_radii=2.320711, target=2.635, ratio=0.880725, time=0.08s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp5iyzkk7r.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.5964335421279092
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp3t9uisk2.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp5iyzkk7r.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.5964335421279092
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpyvqhydtu.py.results
+
+Evaluation: valid=True, sum_radii=1.596434, target=2.635, ratio=0.605857, time=0.10s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpimwkbfml.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 2.320710678118654
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpr6ll9uzh.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpimwkbfml.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 2.320710678118654
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpcw_j1yfl.py.results
+
+Evaluation: valid=True, sum_radii=2.320711, target=2.635, ratio=0.880725, time=0.09s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpbezsqhlo.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 2.320710678118654
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpqcyfxot8.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpbezsqhlo.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 2.320710678118654
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpbv4tslns.py.results
+
+Evaluation: valid=True, sum_radii=2.320711, target=2.635, ratio=0.880725, time=0.08s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpb8ic235r.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.8987174742355442
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpcbd4yqfe.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpb8ic235r.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.8987174742355442
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmptq5gprqq.py.results
+
+Evaluation: valid=True, sum_radii=1.898717, target=2.635, ratio=0.720576, time=0.09s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpg3yrfr18.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 2.2167832167832167
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpodnrwljo.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpg3yrfr18.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 2.2167832167832167
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmplmwwy9ae.py.results
+
+Evaluation: valid=True, sum_radii=2.216783, target=2.635, ratio=0.841284, time=0.10s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp29svl5lz.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 2.3075147260647633
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpvmvvjoz9.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp29svl5lz.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 2.3075147260647633
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpw4kclaq2.py.results
+
+Evaluation: valid=True, sum_radii=2.307515, target=2.635, ratio=0.875717, time=0.12s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp9tmi9f8o.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 0.5272973356102517
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpx2kbpy8y.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmphngn_mob.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.2236652647831545
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpb_y9hvqo.py.results
+
+Circles 14 and 25 overlap: dist=0.0, r1+r2=0.018296426585638403
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpb1l_tqfz.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 2.357512726064763
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpnious523.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpb1l_tqfz.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 2.357512726064763
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpce_inucp.py.results
+
+Evaluation: valid=True, sum_radii=2.357513, target=2.635, ratio=0.894692, time=0.09s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpje7jw2gn.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.799662981908949
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpaq2_o1ah.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpje7jw2gn.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.799662981908949
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp_3ijqc6o.py.results
+
+Evaluation: valid=True, sum_radii=1.799663, target=2.635, ratio=0.682984, time=0.09s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmponr13zf0.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.9991984213972143
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp5iasdf_m.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmponr13zf0.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.9991984213972143
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp57r8rnnn.py.results
+
+Evaluation: valid=True, sum_radii=1.999198, target=2.635, ratio=0.758709, time=0.11s
+
+Evolution complete!
+Best program metrics:
+  validity: 1.0000
+  sum_radii: 2.3575
+  target_ratio: 0.8947
+  combined_score: 0.8947
+  eval_time: 0.0898
+
+Latest checkpoint saved at: experiments/hypothesis_ab_circpack/control_run_100/checkpoints/checkpoint_20
+To resume, use: --checkpoint experiments/hypothesis_ab_circpack/control_run_100/checkpoints/checkpoint_20

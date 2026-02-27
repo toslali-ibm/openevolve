@@ -1,0 +1,458 @@
+[
+  {
+    "seed": 200,
+    "condition": "treatment_diff",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 20,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 30,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 40,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 50,
+        "best_combined_score": 0.7386172006745363
+      }
+    ],
+    "hypothesis": {
+      "ledger_exists": false,
+      "ledger_entries": 0,
+      "total_hypotheses_tested": 0,
+      "confirmed": 0,
+      "refuted": 0,
+      "inconclusive": 0,
+      "programs_with_hypotheses": 109,
+      "total_evolved_programs": 113,
+      "best_program_has_hypotheses": true
+    },
+    "diff_failures": 20
+  },
+  {
+    "seed": 201,
+    "condition": "treatment_full",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 20,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 30,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 40,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 50,
+        "best_combined_score": 0.7386172006745363
+      }
+    ],
+    "hypothesis": {
+      "ledger_exists": false,
+      "ledger_entries": 0,
+      "total_hypotheses_tested": 0,
+      "confirmed": 0,
+      "refuted": 0,
+      "inconclusive": 0,
+      "programs_with_hypotheses": 136,
+      "total_evolved_programs": 141,
+      "best_program_has_hypotheses": true
+    },
+    "diff_failures": 0
+  },
+  {
+    "seed": 200,
+    "condition": "treatment_full",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": 0.4924114671163575
+      },
+      {
+        "iteration": 20,
+        "best_combined_score": 0.6795952782462057
+      },
+      {
+        "iteration": 30,
+        "best_combined_score": 0.6795952782462057
+      },
+      {
+        "iteration": 40,
+        "best_combined_score": 0.6795952782462057
+      },
+      {
+        "iteration": 50,
+        "best_combined_score": 0.7386172006745363
+      }
+    ],
+    "hypothesis": {
+      "ledger_exists": false,
+      "ledger_entries": 0,
+      "total_hypotheses_tested": 0,
+      "confirmed": 0,
+      "refuted": 0,
+      "inconclusive": 0,
+      "programs_with_hypotheses": 142,
+      "total_evolved_programs": 147,
+      "best_program_has_hypotheses": true
+    },
+    "diff_failures": 0
+  },
+  {
+    "seed": 202,
+    "condition": "control_diff",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 20,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 30,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 40,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 50,
+        "best_combined_score": 0.7386172006745363
+      }
+    ],
+    "hypothesis": {
+      "ledger_exists": false,
+      "ledger_entries": 0,
+      "total_hypotheses_tested": 0,
+      "confirmed": 0,
+      "refuted": 0,
+      "inconclusive": 0,
+      "programs_with_hypotheses": 0,
+      "total_evolved_programs": 143,
+      "best_program_has_hypotheses": false
+    },
+    "diff_failures": 2
+  },
+  {
+    "seed": 201,
+    "condition": "treatment_diff",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": 0.4924114671163575
+      },
+      {
+        "iteration": 20,
+        "best_combined_score": 0.7032040472175379
+      },
+      {
+        "iteration": 30,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 50,
+        "best_combined_score": 0.7386172006745363
+      }
+    ],
+    "hypothesis": {
+      "ledger_exists": false,
+      "ledger_entries": 0,
+      "total_hypotheses_tested": 0,
+      "confirmed": 0,
+      "refuted": 0,
+      "inconclusive": 0,
+      "programs_with_hypotheses": 81,
+      "total_evolved_programs": 85,
+      "best_program_has_hypotheses": true
+    },
+    "diff_failures": 26
+  },
+  {
+    "seed": 202,
+    "condition": "treatment_full",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 20,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 30,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 40,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 50,
+        "best_combined_score": 0.7386172006745363
+      }
+    ],
+    "hypothesis": {
+      "ledger_exists": false,
+      "ledger_entries": 0,
+      "total_hypotheses_tested": 0,
+      "confirmed": 0,
+      "refuted": 0,
+      "inconclusive": 0,
+      "programs_with_hypotheses": 143,
+      "total_evolved_programs": 150,
+      "best_program_has_hypotheses": true
+    },
+    "diff_failures": 0
+  },
+  {
+    "seed": 201,
+    "condition": "control_diff",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 20,
+        "best_combined_score": 0.8195615514333895
+      },
+      {
+        "iteration": 30,
+        "best_combined_score": 0.8195615514333895
+      },
+      {
+        "iteration": 40,
+        "best_combined_score": 0.8195615514333895
+      },
+      {
+        "iteration": 50,
+        "best_combined_score": 0.8195615514333895
+      }
+    ],
+    "hypothesis": {
+      "ledger_exists": false,
+      "ledger_entries": 0,
+      "total_hypotheses_tested": 0,
+      "confirmed": 0,
+      "refuted": 0,
+      "inconclusive": 0,
+      "programs_with_hypotheses": 0,
+      "total_evolved_programs": 149,
+      "best_program_has_hypotheses": false
+    },
+    "diff_failures": 0
+  },
+  {
+    "seed": 202,
+    "condition": "treatment_diff",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": 0.4924114671163575
+      },
+      {
+        "iteration": 20,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 40,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 50,
+        "best_combined_score": 0.7386172006745363
+      }
+    ],
+    "hypothesis": {
+      "ledger_exists": false,
+      "ledger_entries": 0,
+      "total_hypotheses_tested": 0,
+      "confirmed": 0,
+      "refuted": 0,
+      "inconclusive": 0,
+      "programs_with_hypotheses": 82,
+      "total_evolved_programs": 86,
+      "best_program_has_hypotheses": true
+    },
+    "diff_failures": 34
+  },
+  {
+    "seed": 201,
+    "condition": "control_full",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 20,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 30,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 40,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 50,
+        "best_combined_score": 0.7386172006745363
+      }
+    ],
+    "hypothesis": {
+      "ledger_exists": false,
+      "ledger_entries": 0,
+      "total_hypotheses_tested": 0,
+      "confirmed": 0,
+      "refuted": 0,
+      "inconclusive": 0,
+      "programs_with_hypotheses": 0,
+      "total_evolved_programs": 146,
+      "best_program_has_hypotheses": false
+    },
+    "diff_failures": 0
+  },
+  {
+    "seed": 200,
+    "condition": "control_diff",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 20,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 30,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 40,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 50,
+        "best_combined_score": 0.7386172006745363
+      }
+    ],
+    "hypothesis": {
+      "ledger_exists": false,
+      "ledger_entries": 0,
+      "total_hypotheses_tested": 0,
+      "confirmed": 0,
+      "refuted": 0,
+      "inconclusive": 0,
+      "programs_with_hypotheses": 0,
+      "total_evolved_programs": 133,
+      "best_program_has_hypotheses": false
+    },
+    "diff_failures": 10
+  },
+  {
+    "seed": 200,
+    "condition": "control_full",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": 0.12478920741989882
+      },
+      {
+        "iteration": 20,
+        "best_combined_score": 0.4856661045531197
+      },
+      {
+        "iteration": 30,
+        "best_combined_score": 0.5750421585160203
+      },
+      {
+        "iteration": 40,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 50,
+        "best_combined_score": 0.7386172006745363
+      }
+    ],
+    "hypothesis": {
+      "ledger_exists": false,
+      "ledger_entries": 0,
+      "total_hypotheses_tested": 0,
+      "confirmed": 0,
+      "refuted": 0,
+      "inconclusive": 0,
+      "programs_with_hypotheses": 0,
+      "total_evolved_programs": 152,
+      "best_program_has_hypotheses": false
+    },
+    "diff_failures": 0
+  },
+  {
+    "seed": 202,
+    "condition": "control_full",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": 0.12478920741989882
+      },
+      {
+        "iteration": 20,
+        "best_combined_score": 0.4856661045531197
+      },
+      {
+        "iteration": 30,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 40,
+        "best_combined_score": 0.7386172006745363
+      },
+      {
+        "iteration": 50,
+        "best_combined_score": 0.7386172006745363
+      }
+    ],
+    "hypothesis": {
+      "ledger_exists": false,
+      "ledger_entries": 0,
+      "total_hypotheses_tested": 0,
+      "confirmed": 0,
+      "refuted": 0,
+      "inconclusive": 0,
+      "programs_with_hypotheses": 0,
+      "total_evolved_programs": 139,
+      "best_program_has_hypotheses": false
+    },
+    "diff_failures": 0
+  }
+]

@@ -1,39 +1,48 @@
 # EVOLVE-BLOCK-START
+# HYPOTHESIS-1: Simulated Annealing with local refinement improves distance_score.
+# MECHANISM-1: Probabilistically accepting worse solutions allows the search to escape
+#   shallow local minima, while a cooling schedule narrows focus on the global basin.
+# EXPECT-1: distance_score > 0.85
+# HYPOTHESIS-2: Using a hybrid of global exploration and local Gaussian mutation
+# MECHANISM-2: Global uniform sampling finds potential basins, while Gaussian steps
+#   converge precisely to the actual minimum within those basins.
+# EXPECT-2: combined_score > 1.35
 """Function minimization example for OpenEvolve"""
 import numpy as np
 
 
 def search_algorithm(iterations=1000, bounds=(-5, 5)):
     """
-    A simple random search algorithm that often gets stuck in local minima.
-
-    Args:
-        iterations: Number of iterations to run
-        bounds: Bounds for the search space (min, max)
-
-    Returns:
-        Tuple of (best_x, best_y, best_value)
+    Hybrid Simulated Annealing and Random Search.
     """
-    # Multi-start Hill Climbing / Simulated Annealing hybrid
-    best_x, best_y = np.random.uniform(*bounds, 2)
-    best_value = evaluate_function(best_x, best_y)
+    low, high = bounds
+    # Start at a random point
+    curr_x = np.random.uniform(low, high)
+    curr_y = np.random.uniform(low, high)
+    curr_val = evaluate_function(curr_x, curr_y)
     
-    # Use 20% of budget for global sampling, 80% for refinement
+    best_x, best_y, best_val = curr_x, curr_y, curr_val
+    
     for i in range(iterations):
         temp = 1.0 - (i / iterations)
-        if i % 10 == 0: # Global jump
-            x, y = np.random.uniform(*bounds, 2)
-        else: # Local perturbation
-            scale = (bounds[1] - bounds[0]) * 0.1 * temp
-            x = np.clip(best_x + np.random.normal(0, scale), *bounds)
-            y = np.clip(best_y + np.random.normal(0, scale), *bounds)
+        # Mix global jumps and local refinement
+        if i % 10 == 0:
+            nx, ny = np.random.uniform(low, high, 2)
+        else:
+            step = 2.0 * temp
+            nx = np.clip(curr_x + np.random.normal(0, step), low, high)
+            ny = np.clip(curr_y + np.random.normal(0, step), low, high)
             
-        value = evaluate_function(x, y)
-        # Probabilistic acceptance to escape local minima
-        if value < best_value or np.random.rand() < np.exp((best_value - value) / (temp + 1e-9)):
-            best_x, best_y, best_value = x, y, value
-
-    return best_x, best_y, best_value
+        n_val = evaluate_function(nx, ny)
+        
+        # Metropolis Criterion
+        if n_val < curr_val or np.random.rand() < np.exp((curr_val - n_val) / (temp + 1e-9)):
+            curr_x, curr_y, curr_val = nx, ny, n_val
+            
+        if curr_val < best_val:
+            best_x, best_y, best_val = curr_x, curr_y, curr_val
+            
+    return best_x, best_y, best_val
 
 
 # EVOLVE-BLOCK-END

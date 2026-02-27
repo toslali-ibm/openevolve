@@ -1,0 +1,1118 @@
+{
+  "baseline": {
+    "num_points": 2,
+    "combined_score": 0.003372681281618887
+  },
+  "entries": [
+    {
+      "timestamp": "2026-02-26T18:45:17.362991+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Using the D_11 root system's first shell gives a higher number of valid points.",
+          "mechanism": "The D_n lattice's root system provides structured points with equal norm and large minimum distances due to its symmetry properties.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 220.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Filtering the points from the D_11 first shell based on the kissing number condition improves the combined_score.",
+          "mechanism": "The condition max_i ||p_i|| <= min_{i!=j} ||p_i - p_j|| eliminates points that violate the sphere-packing constraints, ensuring the set is valid.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.5,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:45:24.286919+00:00",
+      "overall_combined_score": 0.07419898819561552,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Using the D_11 lattice's first shell and filtering points with pairwise distances ensures structured and valid configurations.",
+          "mechanism": "The D_n root lattice is highly symmetrical and provides vectors with fixed minimum distances, making it suitable for maximizing point sets under the kissing number condition.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 220.0,
+          "actual": 44,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 2100.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Extending beyond the first shell to higher shells while preserving the distance constraints increases the number of valid points.",
+          "mechanism": "Higher shells have more vectors, and with careful selection, they can meet the norm and distance constraints, improving the total count of valid points.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 300.0,
+          "actual": 44,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 2100.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Using efficient filtering algorithms (e.g., distance matrix computation) ensures scalability to higher dimensions and larger point sets.",
+          "mechanism": "Precomputing pairwise distances and applying constraints reduces computational overhead compared to naive enumeration.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.6,
+          "actual": 0.07419898819561552,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 2100.0000000000005,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:45:41.061479+00:00",
+      "overall_combined_score": 0.18549747048903878,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Using the D_11 root lattice's first shell will yield more valid points than the current trivial solution.",
+          "mechanism": "The D_n root lattice provides a structured set of vectors with uniform norm and guaranteed minimum distances, maximizing the number of valid points.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 220.0,
+          "actual": 110,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 5400.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Filtering points from the D_11 lattice based on the additional condition max(||p||) <= min(||p_i - p_j||) will further increase the valid set size.",
+          "mechanism": "By ensuring points satisfy the problem's constraints, we avoid invalid points and maximize the effective size of the set.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 220.0,
+          "actual": 110,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 5400.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Adding symmetry-based pruning will reduce redundancy in the lattice and increase computational efficiency.",
+          "mechanism": "The symmetry of the D_11 lattice allows us to enumerate only unique configurations, avoiding unnecessary calculations for equivalent points.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.5,
+          "actual": 0.18549747048903878,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 5400.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:46:05.415959+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Leveraging the first shell of the D_11 lattice and filtering by pairwise distance will yield more valid points.",
+          "mechanism": "The D_11 lattice's first shell provides structured points with known norms and a minimum pairwise distance, which ensures geometric validity under the constraints.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 220.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Adding an iterative greedy selection process to maximize valid points improves the combined_score.",
+          "mechanism": "Iteratively checking each candidate against the current set ensures each addition respects the kissing number condition, gradually increasing the size of the valid set.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.7,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:46:14.178625+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Using the D_11 root lattice's first shell combined with symmetry-based filtering",
+          "mechanism": "The D_11 lattice is highly symmetric, and its first shell guarantees fixed minimum distances between points due to its geometric properties.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 220.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Extending the point set by considering higher shells increases valid points",
+          "mechanism": "Higher shells contribute additional points with larger norms, and filtering ensures that the condition max_i ||p_i|| <= min_{i!=j} ||p_i - p_j|| is satisfied.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 300.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Using efficient pairwise distance computation (via matrix operations) improves scalability.",
+          "mechanism": "Matrix-based filtering reduces computational overhead compared to naive iteration by leveraging vectorized operations in NumPy.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.6,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:46:57.873002+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Using the D_11 root system's first shell and leveraging its symmetry properties",
+          "mechanism": "The D_n lattice root system has a fixed norm and guaranteed minimum pairwise distances between points, which ensures that the kissing number condition is satisfied.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 220.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Extending the point set to include higher shells while filtering based on",
+          "mechanism": "Higher shells contain more points with larger norms, and filtering them ensures that the kissing number condition holds while increasing the size of the point set.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 400.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Using efficient computational pruning methods (e.g., symmetry-based reduction)",
+          "mechanism": "Symmetry-based pruning ensures that equivalent configurations are identified and eliminated, speeding up filtering and increasing efficiency in higher dimensions.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.5,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:47:08.439413+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Using the D_11 lattice's first shell as a base and applying greedy selection improves num_points.",
+          "mechanism": "The D_11 lattice's first shell provides structured points with a fixed minimum distance, and greedy selection ensures points satisfy the kissing number condition.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 220.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Leveraging symmetry-based pruning reduces redundant calculations and increases efficiency, allowing exploration of larger shells.",
+          "mechanism": "The symmetry of the D_11 lattice ensures equivalent points are grouped, minimizing redundant computations, thereby allowing efficient filtering of valid points.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.5,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Iteratively adding higher shells while preserving constraints increases valid point count.",
+          "mechanism": "Higher shells contain more points, and iterative filtering ensures only points satisfying the kissing number condition are added, expanding the valid set size.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 300.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:47:22.951266+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Using the D_11 root lattice's shells beyond the first (up to second or third) will yield more valid points.",
+          "mechanism": "Higher shells provide more vectors with larger norms, and filtering ensures that the condition max(||p||) <= min(||p_i - p_j||) is satisfied, increasing valid set size.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 300.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Leveraging distance matrix computation (vectorized operations) ensures scalability and faster filtering of valid points.",
+          "mechanism": "Pairwise distance matrix computation reduces the overhead of checking constraints individually for each point.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.6,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Including symmetry-based pruning to eliminate redundant permutations of points improves computational efficiency and reduces unnecessary checks.",
+          "mechanism": "The symmetry of the D_11 lattice ensures many equivalent configurations can be pruned without affecting results.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:47:28.623108+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Using the D_11 root system's first shell and leveraging its geometric properties",
+          "mechanism": "The D_11 root system has fixed vectors of squared norm 2 and guaranteed minimum distances due to lattice symmetry, ensuring valid points.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 220.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Extending the point set to higher shells (squared norm > 2) while filtering",
+          "mechanism": "Higher shells contain more points with larger norms, and filtering ensures that the kissing number condition holds while increasing the size of the set.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 400.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Optimizing filtering using matrix operations will improve efficiency and scalability.",
+          "mechanism": "Matrix-based pairwise distance calculations leverage NumPy's vectorized operations, reducing computational overhead compared to iterative checks.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.5,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:47:36.832491+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Using the D_11 lattice's first shell combined with symmetry and norm constraints will yield a valid set of points.",
+          "mechanism": "The D_11 lattice's first shell provides structured points with fixed pairwise distances, ensuring the kissing number condition is satisfied.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 220.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Extending the point set by including higher shells with iterative filtering will increase the valid point count.",
+          "mechanism": "Higher shells contribute additional points, and iterative filtering ensures the constraints max_i ||p_i|| <= min_{i!=j} ||p_i - p_j|| are satisfied.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 400.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Using vectorized distance computation improves scalability and allows efficient filtering of larger point sets.",
+          "mechanism": "Vectorized operations reduce computational overhead compared to pairwise iteration, enabling faster processing of higher-dimensional data.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.5,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:48:50.059983+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Utilizing the D_11 lattice's first two shells and filtering by the kissing number condition will yield a larger set of valid points.",
+          "mechanism": "The D_11 lattice's shells have structured points with high symmetry and known minimum distances, and filtering ensures only points satisfying the kissing number condition are included.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 300.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Implementing a distance matrix for pairwise checks will speed up the filtering process and allow for more points to be processed efficiently.",
+          "mechanism": "A precomputed distance matrix reduces computational overhead by vectorizing pairwise distance calculations, enabling faster filtering of large point sets.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.6,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Iteratively combining shells and filtering valid points increases the size of the valid set while maintaining the kissing number condition.",
+          "mechanism": "Higher shells introduce additional points, and iterative filtering ensures compatibility with the existing valid set, maximizing the total number of points.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:49:14.947282+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Using the first shell of the D_11 lattice combined with vectorized filtering will yield more valid points.",
+          "mechanism": "The first shell provides structured points with equal norm and large minimum pairwise distances, and vectorized operations ensure efficient filtering.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 300.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Adding higher shells with iterative filtering will increase the number of valid points while maintaining constraints.",
+          "mechanism": "Higher shells contribute additional points with larger norms, and iterative filtering ensures that max(||p||) <= min(||p_i - p_j||) remains valid.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 400.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Symmetry-based pruning reduces redundant configurations, improving computational efficiency.",
+          "mechanism": "The symmetry of the D_11 lattice ensures many equivalent points can be pruned without affecting the results, speeding up filtering.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.6,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:49:24.666086+00:00",
+      "overall_combined_score": 0.03709949409780776,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Using the second shell of the D_11 lattice will yield more valid points than the first shell.",
+          "mechanism": "The second shell contains a larger number of points with higher symmetry, and all points satisfy the condition max(||p||) <= min(||p_i - p_j||) due to uniform squared norms and large minimum distances.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 400.0,
+          "actual": 22,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 1000.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Leveraging symmetry-based pruning will reduce redundant calculations and improve computational efficiency.",
+          "mechanism": "By removing equivalent configurations, we reduce the size of the candidate set and improve computational performance while retaining valid points.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.7,
+          "actual": 0.03709949409780776,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 1000.0000000000002,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Iteratively combining points from multiple shells while preserving constraints increases the final valid set size.",
+          "mechanism": "Higher shells provide additional points with larger norms, and filtering ensures only points satisfying the kissing number condition are included.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 22,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 1000.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:49:28.722620+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Using the D_11 lattice's first three shells and filtering by the kissing number condition will yield a larger set of valid points.",
+          "mechanism": "The D_11 lattice's shells provide highly symmetric points with structured minimum distances, and filtering ensures only points satisfying the kissing number condition are included.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 300.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Implementing a pairwise distance matrix for efficient filtering minimizes computational overhead and allows for larger point sets to be processed quickly.",
+          "mechanism": "Vectorized computation of pairwise distances reduces redundant calculations compared to iterative methods, enabling faster filtering of valid points.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.6,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Iteratively combining points from higher shells with strict filtering maximizes the size of the valid set while maintaining the kissing number condition.",
+          "mechanism": "Higher shells provide additional points, and iterative filtering ensures compatibility with existing valid points, optimizing the size of the set.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:49:33.927018+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Utilizing multiple shells from the D_11 lattice and applying iterative filtering will yield more valid points.",
+          "mechanism": "The D_11 lattice's shells provide structured points with known norms and minimum distances, ensuring that filtering respects the kissing number condition.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Combining shells with symmetry-based pruning will improve computational efficiency and increase the valid point count.",
+          "mechanism": "Symmetry reduces redundant checks, allowing for faster filtering and expansion of the valid set.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.0,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Using a greedy selection process over precomputed pairwise distances will maximize the number of valid points iteratively.",
+          "mechanism": "Greedy selection ensures points are added only if they respect the kissing number condition, gradually increasing the valid set size.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 700.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:49:37.869872+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Utilizing higher shells of the D_11 lattice, combined with symmetry-based pruning, will yield more valid points while maintaining computational efficiency.",
+          "mechanism": "Higher shells introduce more candidate points with structured minimum distances due to lattice geometry, while symmetry pruning eliminates redundant configurations to reduce computational overhead.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 300.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a greedy iterative selection process ensures compatibility of new points with the existing set, gradually increasing the valid point count.",
+          "mechanism": "By checking each candidate point against the current valid set, only points satisfying the kissing number condition are added, ensuring the set remains valid and maximized.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Vectorized distance computation improves scalability and allows efficient filtering of larger point sets from higher shells.",
+          "mechanism": "Precomputing pairwise distances using vectorized operations reduces computational overhead compared to nested iterations, enabling faster processing of higher-dimensional data.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.0,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:50:44.828856+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Expanding to higher shells of the D_11 lattice beyond the first two will increase the number of valid points.",
+          "mechanism": "Higher shells provide additional points with larger norms and structured symmetry, and iterative filtering ensures compatibility with the kissing number condition.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 300.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Employing a greedy selection strategy that prioritizes points with smaller norms first will maximize the valid set size efficiently.",
+          "mechanism": "Points with smaller norms are more likely to satisfy the kissing number condition with others, allowing the set to grow incrementally without violating constraints.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 400.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Using vectorized computations for distance matrices will improve scalability and reduce runtime, allowing exploration of larger point sets.",
+          "mechanism": "Pairwise distance matrix computations are computationally efficient and scalable, enabling faster filtering of large point sets.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.6,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:50:58.742141+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Including up to the third shell of the D_11 lattice will increase the number of valid points significantly.",
+          "mechanism": "The third shell introduces additional points with structured geometry, and filtering ensures they satisfy the kissing number condition.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 300.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a combined filtering and greedy selection process ensures that new points are compatible with existing ones, improving set size.",
+          "mechanism": "Filtering ensures candidate points satisfy the basic condition, and greedy selection optimizes the final set size by gradual compatibility checks.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Vectorized distance computation for candidate filtering improves scalability and computational efficiency, allowing larger point sets to be processed.",
+          "mechanism": "Precomputing pairwise distances in a vectorized manner reduces the overhead of nested loops and enables efficient filtering of high-dimensional points.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.0,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:51:13.465586+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Utilizing higher shells of the D_11 lattice and combining them with symmetry-based pruning will yield a larger set of valid points.",
+          "mechanism": "Higher shells contain structured points with guaranteed minimum distances due to lattice geometry. Symmetry pruning eliminates redundant configurations, ensuring computational efficiency.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 300.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Using distance matrix computation for pairwise checks improves scalability and allows efficient filtering of larger point sets.",
+          "mechanism": "A precomputed distance matrix reduces computational overhead, enabling faster validation of the kissing number condition for larger sets.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Iteratively combining shells and applying greedy filtering maximizes the valid point set while maintaining the kissing number condition.",
+          "mechanism": "Incremental addition of filtered points from higher shells ensures compatibility with the existing set, maximizing the total number of valid points.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.0,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:51:22.757110+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "By leveraging higher shells of the D_11 lattice and ensuring symmetry pruning, we can maximize the number of valid points.",
+          "mechanism": "Higher shells provide additional structured points with guaranteed minimum distances, while symmetry pruning avoids redundant configurations, increasing computational efficiency.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 300.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Incorporating a greedy algorithm ensures incremental construction of a valid set, optimizing compatibility while maximizing the number of points.",
+          "mechanism": "Iterative selection ensures that only points satisfying the kissing number condition are added, maintaining the validity and increasing the size of the set.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Using precomputed pairwise distances for filtering and optimization improves scalability and accelerates computation.",
+          "mechanism": "Distance matrix computation avoids redundant calculations, allowing efficient filtering and selection of valid points.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.0,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:51:52.746508+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Including higher shells of the D_11 lattice (up to squared norm 6) and symmetry-based filtering will increase the number of valid points.",
+          "mechanism": "Higher shells introduce more candidate points with structured geometry, while symmetry-based pruning eliminates redundant configurations and ensures computational efficiency.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 300.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Using greedy selection based on pairwise distance ensures compatibility of new points with the existing set, gradually increasing the valid point count.",
+          "mechanism": "Iteratively adding points that satisfy the kissing number condition ensures the set remains valid while maximizing the number of points.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Vectorized operations for filtering and selection improve scalability and computational efficiency, allowing larger shells to be processed efficiently.",
+          "mechanism": "Precomputing pairwise distances and leveraging numpy's vectorized operations minimizes computational overhead compared to nested loops.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.0,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:52:05.377647+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Including the first four shells of the D_11 lattice will significantly increase the number of valid points.",
+          "mechanism": "Higher shells introduce more candidate points with structured geometry, and filtering ensures they satisfy the kissing number condition.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 400.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Using symmetry pruning combined with greedy selection ensures compatibility and maximizes the valid set size.",
+          "mechanism": "Symmetry pruning eliminates redundant configurations, and greedy selection incrementally builds a valid set by ensuring compatibility of new points.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Efficient distance matrix computation improves scalability, allowing larger sets of points to be processed efficiently.",
+          "mechanism": "Vectorized operations for pairwise distance computation reduce computational overhead compared to nested loops, enabling faster filtering.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.0,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:52:21.894420+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Including higher shells of the D_11 lattice will increase the number of valid points beyond the first shell.",
+          "mechanism": "Higher shells introduce additional points with structured minimum distances due to lattice geometry, and filtering ensures they satisfy the kissing number condition.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 300.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a combination of filtering and greedy selection ensures compatibility of points, maximizing the valid set size under the constraints.",
+          "mechanism": "Filtering removes candidates violating the kissing number condition, while greedy selection optimizes the final set size by maintaining compatibility between points incrementally.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Vectorized computation of pairwise distances improves scalability and computational efficiency, allowing larger point sets to be filtered effectively.",
+          "mechanism": "Using numpy's vectorized operations for distance calculations avoids nested loops, enabling faster processing of higher-dimensional data.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.0,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:52:36.067969+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Including up to the third shell of the D_11 lattice will increase the number of valid points significantly.",
+          "mechanism": "The third shell introduces additional points with structured geometry, and filtering ensures they satisfy the kissing number condition.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 300.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a combined filtering and enhanced greedy selection process ensures that new points are compatible with existing ones, improving set size.",
+          "mechanism": "Enhanced greedy selection optimizes the valid set size by carefully selecting points that maximize the minimum pairwise distance while maintaining the kissing number condition.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Precomputing pairwise distances with efficient matrix operations improves scalability and allows processing of larger shells for better results.",
+          "mechanism": "Vectorized distance calculations minimize computational overhead, enabling faster filtering and selection from larger candidate sets.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.0,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:53:34.513598+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Including up to the fourth shell of the D_11 lattice increases the number of valid points due to the structured geometry of higher shells.",
+          "mechanism": "The fourth shell introduces points with larger minimum pairwise distances, allowing for more points to satisfy the kissing number condition.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 400.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Using hierarchical filtering ensures higher compatibility between points and avoids redundant checks, improving computational efficiency.",
+          "mechanism": "Hierarchical filtering reduces the candidate pool incrementally, ensuring only the most promising points are processed in the final step.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.6,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Combining symmetry pruning with greedy selection maximizes valid point count while maintaining computational scalability.",
+          "mechanism": "Symmetry pruning reduces duplicate configurations, and greedy selection ensures incremental compatibility, optimizing the final set size.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:53:44.056597+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Using the first three shells of the D_11 lattice provides a larger candidate set of points, leading to more valid configurations.",
+          "mechanism": "The first three shells of the D_11 lattice contain structured points with high symmetry, ensuring minimum pairwise distances, while filtering ensures the kissing number condition is satisfied.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 300.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "A greedy selection approach combined with vectorized distance computation ensures valid points are selected efficiently, maximizing the final set size.",
+          "mechanism": "Vectorized operations reduce computational overhead for distance calculations, while greedy selection ensures that newly added points meet the kissing number constraint.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Including higher shells (up to shell radius 6) improves the diversity of candidate points and increases the likelihood of finding larger valid sets.",
+          "mechanism": "Higher shells introduce more candidate points with structured distances, and filtering ensures compatibility with the kissing number constraint.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.0,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T18:55:05.995688+00:00",
+      "overall_combined_score": 0.37099494097807756,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Correctly generating *all* D_11 lattice points for squared norms 2, 4, and 6 will significantly increase the pool of valid candidate points.",
+          "mechanism": "The previous implementation under-generated points for shells 4 and 6. By generating all D_11 points for these shells, we ensure a more complete and structured set of candidates, which are known to form good sphere packings.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 300.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Sorting candidate points by their L2 norm before greedy selection, combined with a refined greedy approach, will lead to a larger final set.",
+          "mechanism": "Prioritizing points with smaller norms in greedy selection tends to maximize the density and reduce the \"wasted space\" around early-selected points, allowing more subsequent points to fit. The refined greedy approach will correctly maintain the global `max_norm <= min_dist` condition.",
+          "metric": "num_points",
+          "operator": ">",
+          "threshold": 593.0,
+          "actual": 220,
+          "baseline_value": 2,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Using a fully vectorized approach for checking the kissing number condition within the greedy selection will improve efficiency and scalability, allowing larger candidate sets to be processed effectively.",
+          "mechanism": "Instead of an inner Python loop in `greedy_selection`, convert `valid_points` to a numpy array and use vectorized operations for distance calculations and norm checks. This will mitigate the `O(N^2)` bottleneck.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.0,
+          "actual": 0.37099494097807756,
+          "baseline_value": 0.003372681281618887,
+          "delta_vs_baseline_pct": 10900.0,
+          "verdict": "REFUTED"
+        }
+      ]
+    }
+  ]
+}

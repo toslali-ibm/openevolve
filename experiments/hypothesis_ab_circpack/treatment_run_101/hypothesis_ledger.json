@@ -1,0 +1,405 @@
+{
+  "baseline": {
+    "sum_radii": 0.9598,
+    "target_ratio": 0.3642,
+    "combined_score": 0.3642
+  },
+  "entries": [
+    {
+      "timestamp": "2026-02-26T15:36:57.101586+00:00",
+      "overall_combined_score": 0.6234072307933024,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle improves sum_radii over concentric rings.",
+          "mechanism": "Grid-based initialization provides a more uniform distribution, reducing the extreme overlap of the outer ring which was clipped at 0.7 radius.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.0,
+          "actual": 1.6426780531403518,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 71.147953025667,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of radii increases total sum.",
+          "mechanism": "The current compute_max_radii scales both circles equally; a greedy approach can better fill gaps by prioritizing smaller constraints.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.6234072307933024,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 71.17167237597539,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:37:57.571101+00:00",
+      "overall_combined_score": 0.6458953079741415,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Replacing the concentric ring pattern with a jittered 5x5 grid plus a central 26th circle will provide a significantly better initial packing configuration.",
+          "mechanism": "The current concentric ring pattern fails to place the 26th circle and has large initial overlaps, leading to small radii after resolution. A jittered grid offers a more uniform distribution, better leveraging the square's area, especially when the 26th circle is placed centrally to fill the grid's natural gap.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.7,
+          "actual": 1.7019341365118628,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 77.32174791746851,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Adding an iterative center relaxation step before radius calculation will optimize circle positions for larger overall radii.",
+          "mechanism": "Even with a good initial grid, circles might be slightly off optimal positions. Applying a repulsive force between centers that are too close allows them to spread out, creating more space for individual radii to grow, which the subsequent compute_max_radii can then exploit. This is a common technique in physical simulation-based packing.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.7,
+          "actual": 0.6458953079741415,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 77.34632289240567,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Making the compute_max_radii function iterative will ensure full overlap resolution.",
+          "mechanism": "The current compute_max_radii only performs a single pass over circle pairs to resolve overlaps. If shrinking two circles i and j creates a new overlap between i and k, it won't be resolved in the same pass. An outer iteration loop ensures that overlaps are repeatedly checked and resolved until convergence, leading to a valid and potentially larger set of radii.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.75,
+          "actual": 0.6458953079741415,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 77.34632289240567,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:38:04.119645+00:00",
+      "overall_combined_score": 0.727497576650456,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Denser initial placement using a 5x5 grid plus one extra circle will significantly improve `sum_radii`.",
+          "mechanism": "The current concentric ring pattern for N=26 is inefficient, leaves large empty spaces, and contains a bug by only placing 25 circles instead of 26. A 5x5 grid provides a much more uniform and dense distribution, utilizing space more effectively, and fixing the circle count bug.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.2,
+          "actual": 1.9169561144739513,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 99.72453786975947,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterating the radius adjustment in `compute_max_radii` will improve the overall `sum_radii` and `validity`.",
+          "mechanism": "The `compute_max_radii` function currently performs only a single pass of overlap resolution. Overlaps can be cascaded, meaning reducing one pair's radii can cause or exacerbate overlaps with other circles. Multiple iterations allow the radii to converge to a more stable, non-overlapping state, maximizing the sum of radii given the center positions.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.727497576650456,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 99.75221764153102,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:38:06.965834+00:00",
+      "overall_combined_score": 0.6105656413682342,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with an extra circle allows for uniform radius distribution.",
+          "mechanism": "Grid-based placement minimizes overlap while filling the square evenly, providing a high baseline sum_radii for n=26.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.2,
+          "actual": 1.608840465005297,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 67.62246978592384,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of centers increases available space for radii.",
+          "mechanism": "Moving centers away from their nearest neighbors (repulsion) reduces bottlenecks where small distances force very small radii.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.6105656413682342,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 67.64570054042673,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:38:13.018596+00:00",
+      "overall_combined_score": 0.7268691942062537,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with an extra circle allows for uniform radius distribution.",
+          "mechanism": "Grid-based placement minimizes overlap while filling the square evenly, providing a high baseline sum_radii for n=26.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.2,
+          "actual": 1.9153003267334785,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 99.55202403974562,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of centers increases available space for radii.",
+          "mechanism": "Moving centers away from their nearest neighbors (repulsion) reduces bottlenecks where small distances force very small radii.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.7268691942062537,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 99.57967990287031,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:38:16.191063+00:00",
+      "overall_combined_score": 0.6565440836985247,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with an extra circle allows for uniform radius distribution.",
+          "mechanism": "Grid-based placement minimizes overlap while filling the square evenly, providing a high baseline sum_radii for n=26.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.2,
+          "actual": 1.7299936605456123,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 80.24522406184751,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of centers increases available space for radii.",
+          "mechanism": "Moving centers away from their nearest neighbors (repulsion) reduces bottlenecks where small distances force very small radii.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.6565440836985247,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 80.27020420058338,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:38:26.151910+00:00",
+      "overall_combined_score": 0.7035966927032729,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with an extra circle allows for uniform radius distribution.",
+          "mechanism": "Grid-based placement minimizes overlap while filling the square evenly, providing a high baseline sum_radii for n=26.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.2,
+          "actual": 1.8539772852731238,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 93.16287614848133,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of centers increases available space for radii.",
+          "mechanism": "Moving centers away from their nearest neighbors (repulsion) reduces bottlenecks where small distances force very small radii.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.7035966927032729,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 93.18964654126106,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:38:47.521999+00:00",
+      "overall_combined_score": 0.727497576650456,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Replacing the inefficient concentric ring pattern with a 5x5 grid plus one extra circle will significantly improve `sum_radii`.",
+          "mechanism": "The current concentric ring pattern (Program D2) fails to place all 26 circles and is an inefficient initial configuration for dense packing in a square. A 5x5 grid provides a more uniform and dense distribution, utilizing the square's area much more effectively from the start, and correctly places all 26 circles.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.2,
+          "actual": 1.9169561144739513,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 99.72453786975947,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterating the radius adjustment in `compute_max_radii` multiple times will improve the overall `sum_radii` and `validity`.",
+          "mechanism": "The current `compute_max_radii` function performs only a single pass of overlap resolution. Overlaps can be cascaded, meaning reducing one pair's radii can cause or exacerbate overlaps with other circles. Multiple iterations (e.g., 50) allow the radii to converge to a more stable, non-overlapping state, maximizing the sum of radii given the center positions.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.727497576650456,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 99.75221764153102,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:39:19.724964+00:00",
+      "overall_combined_score": 0.6293703405211392,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with an extra circle allows for uniform radius distribution.",
+          "mechanism": "Grid-based placement minimizes overlap while filling the square evenly, providing a high baseline sum_radii for n=26.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.2,
+          "actual": 1.6583908472732014,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 72.78504347501578,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of centers increases available space for radii.",
+          "mechanism": "Moving centers away from their nearest neighbors (repulsion) reduces bottlenecks where small distances force very small radii.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.6293703405211392,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 72.8089897092639,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:39:27.107427+00:00",
+      "overall_combined_score": 0.7319107054378885,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Replacing the concentric ring pattern with a 5x5 grid plus one additional circle will significantly improve `sum_radii` and `validity`.",
+          "mechanism": "The current concentric ring pattern only places 25 circles (missing one) and uses very large initial offsets (0.3, 0.7) that place centers far outside the unit square, leading to excessively small radii after clipping. A 5x5 grid correctly places 25 circles in a uniform, dense configuration, and adding the 26th ensures all circles are accounted for. This provides a much better starting point for radius calculation.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.9,
+          "actual": 1.928584708828836,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 100.93610219096018,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Making the `compute_max_radii` function iterative will ensure full overlap resolution and maximize `sum_radii`.",
+          "mechanism": "The current `compute_max_radii` performs only a single pass to resolve overlaps. Overlaps are often cascaded; shrinking one pair of circles can cause or exacerbate overlaps with other circles. Multiple iterations (e.g., 50) allow the radii to converge to a stable, non-overlapping state, leading to a higher overall sum of radii.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.75,
+          "actual": 0.7319107054378885,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 100.963949873116,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Adding an iterative center relaxation step will improve `sum_radii` by optimizing circle positions.",
+          "mechanism": "Even a good initial grid might not be optimal. Applying a repulsive force between circles that are too close, and clipping them towards the center, helps to evenly distribute them and create more space for radii to grow, leading to a higher total radius sum.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.7319107054378885,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 100.963949873116,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:39:52.019020+00:00",
+      "overall_combined_score": 0.727497576650456,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Replacing the concentric ring pattern with a jittered 5x5 grid plus a central 26th circle will provide a significantly better initial packing configuration.",
+          "mechanism": "The current concentric ring pattern fails to place the 26th circle and has large initial overlaps, leading to small radii after resolution. A jittered grid offers a more uniform distribution, better leveraging the square's area, especially when the 26th circle is placed centrally to fill the grid's natural gap.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.7,
+          "actual": 1.9169561144739513,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 99.72453786975947,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Adding an iterative center relaxation step before radius calculation will optimize circle positions for larger overall radii.",
+          "mechanism": "Even with a good initial grid, circles might be slightly off optimal positions. Applying a repulsive force between centers that are too close allows them to spread out, creating more space for individual radii to grow, which the subsequent compute_max_radii can then exploit. This is a common technique in physical simulation-based packing.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.7,
+          "actual": 0.727497576650456,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 99.75221764153102,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 3,
+          "claim": "Making the compute_max_radii function iterative will ensure full overlap resolution.",
+          "mechanism": "The current compute_max_radii only performs a single pass over circle pairs to resolve overlaps. If shrinking two circles i and j creates a new overlap between i and k, it won't be resolved in the same pass. An outer iteration loop ensures that overlaps are repeatedly checked and resolved until convergence, leading to a valid and potentially larger set of radii.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.75,
+          "actual": 0.727497576650456,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 99.75221764153102,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T15:40:09.275045+00:00",
+      "overall_combined_score": 0.727497576650456,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with an extra circle allows for uniform radius distribution.",
+          "mechanism": "Grid-based placement minimizes overlap while filling the square evenly, providing a high baseline sum_radii for n=26.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.2,
+          "actual": 1.9169561144739513,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 99.72453786975947,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of centers increases available space for radii.",
+          "mechanism": "Moving centers away from their nearest neighbors (repulsion) reduces bottlenecks where small distances force very small radii.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.727497576650456,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 99.75221764153102,
+          "verdict": "REFUTED"
+        }
+      ]
+    }
+  ]
+}

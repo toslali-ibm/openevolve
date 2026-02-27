@@ -1,0 +1,765 @@
+2026-02-26 11:56:33,345 - INFO - Logging to experiments/factorial_ab_circpack/treatment_diff_run_200/logs/openevolve_20260226_115633.log
+2026-02-26 11:56:33,367 - INFO - Set random seed to 42 for reproducibility
+2026-02-26 11:56:33,455 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:33,461 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:33,461 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:33,478 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:33,481 - INFO - Initialized prompt sampler
+2026-02-26 11:56:33,483 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:33,483 - INFO - Initialized program database with 0 programs
+2026-02-26 11:56:33,486 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 11:56:33,486 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 11:56:33,486 - INFO - Initialized OpenEvolve with examples/circle_packing/initial_program.py
+2026-02-26 11:56:33,486 - INFO - Adding initial program to database
+2026-02-26 11:56:34,601 - INFO - [HYPOTHESIS] Parsed 0 hypotheses from evolved code
+2026-02-26 11:56:34,601 - INFO - [HYPOTHESIS] No hypotheses found in evolved code
+2026-02-26 11:56:34,602 - INFO - Evaluated program 9d283863-a100-4528-8d44-f840bb97f667 in 1.12s: validity=1.0000, sum_radii=0.9598, target_ratio=0.3642, combined_score=0.3642, eval_time=0.2770
+2026-02-26 11:56:34,602 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-02-26 11:56:34,610 - INFO - Initialized process parallel controller with 3 workers
+2026-02-26 11:56:34,615 - INFO - Set max None tasks per child
+2026-02-26 11:56:34,618 - INFO - Started process pool with 3 processes
+2026-02-26 11:56:34,618 - INFO - Using island-based evolution with 3 islands
+2026-02-26 11:56:34,618 - INFO - Island Status:
+2026-02-26 11:56:34,618 - INFO -  * Island 0: 1 programs, best=0.3642, avg=0.3642, diversity=0.00, gen=0 (best: 9d283863-a100-4528-8d44-f840bb97f667)
+2026-02-26 11:56:34,618 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:34,618 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:34,618 - INFO - Starting process-based evolution from iteration 1 for 20 iterations (total: 21)
+2026-02-26 11:56:34,658 - INFO - Early stopping disabled
+2026-02-26 11:56:37,497 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:37,558 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:37,558 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:37,560 - INFO - Initialized prompt sampler
+2026-02-26 11:56:37,582 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:37,583 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:37,584 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 11:56:37,584 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 11:56:37,584 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:37,585 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:37,635 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:37,659 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:37,659 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:37,660 - INFO - Initialized prompt sampler
+2026-02-26 11:56:37,764 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:37,773 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:37,774 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:37,776 - INFO - Initialized prompt sampler
+2026-02-26 11:56:37,816 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:37,823 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:37,882 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 11:56:37,882 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 11:56:37,882 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:37,900 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:37,913 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:37,946 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:37,947 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 11:56:37,947 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 11:56:37,948 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:37,949 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:52,119 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:52,318 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:56:52,319 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 1.2, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: A 5x5 grid with one extra circle improves sum_radii over concentric rings.
+  H2 [CONFIRMED]: EXPECT target_ratio > 0.5, ACTUAL 0.7 (delta=+86.2% vs baseline)
+    claim: Iterative radius equalization improves the sum of radii.
+  OVERALL: combined_score=0.68 (delta=+0.31, +86.2% vs baseline=0.36)
+2026-02-26 11:56:52,319 - INFO - [HYPOTHESIS] Updated ledger (1 total entries)
+2026-02-26 11:56:52,319 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:56:52,319 - INFO - Evaluated program 0adaf31c-a4d6-4cc0-abb0-5d0c95dc6b60 in 0.19s: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.0866
+2026-02-26 11:56:52,320 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:52,321 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:52,324 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 5}
+2026-02-26 11:56:52,325 - INFO - New best program 0adaf31c-a4d6-4cc0-abb0-5d0c95dc6b60 replaces 9d283863-a100-4528-8d44-f840bb97f667 (combined_score: 0.3642 → 0.6783, +0.3141)
+2026-02-26 11:56:52,325 - INFO - Iteration 2: Program 0adaf31c-a4d6-4cc0-abb0-5d0c95dc6b60 (parent: 9d283863-a100-4528-8d44-f840bb97f667) completed in 14.44s
+2026-02-26 11:56:52,325 - INFO - Metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.0866
+2026-02-26 11:56:52,325 - INFO - 🌟 New best solution found at iteration 2: 0adaf31c-a4d6-4cc0-abb0-5d0c95dc6b60
+2026-02-26 11:56:53,700 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:54,136 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:54,374 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:56:54,374 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.0, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: A 5x5 grid with one extra circle improves sum_radii over concentric rings.
+  H2 [REFUTED]: EXPECT target_ratio > 0.8, ACTUAL 0.7 (delta=+86.2% vs baseline)
+    claim: Iterative radius equalization improves the total sum of radii.
+  OVERALL: combined_score=0.68 (delta=+0.31, +86.2% vs baseline=0.36)
+2026-02-26 11:56:54,374 - INFO - [HYPOTHESIS] Updated ledger (2 total entries)
+2026-02-26 11:56:54,375 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 1/2, avg_delta=+86.2%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+
+=== INCONCLUSIVE ===
+  [target_ratio] Iterative radius equalization improves the total sum of radii. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:56:54,375 - INFO - Evaluated program c1eeb0e5-96d3-4ca3-a244-887133e5ccad in 0.67s: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.3429
+2026-02-26 11:56:54,377 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:54,377 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:54,384 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 0}
+2026-02-26 11:56:54,384 - INFO - Iteration 1: Program c1eeb0e5-96d3-4ca3-a244-887133e5ccad (parent: 9d283863-a100-4528-8d44-f840bb97f667) completed in 16.79s
+2026-02-26 11:56:54,384 - INFO - Metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.3429
+2026-02-26 11:56:54,837 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:56:54,838 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.0, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: A 5x5 grid with one extra circle improves sum_radii over concentric rings.
+  H2 [REFUTED]: EXPECT target_ratio > 0.8, ACTUAL 0.7 (delta=+86.2% vs baseline)
+    claim: Iterative radius equalization improves the total sum of radii.
+  OVERALL: combined_score=0.68 (delta=+0.31, +86.2% vs baseline=0.36)
+2026-02-26 11:56:54,838 - INFO - [HYPOTHESIS] Updated ledger (3 total entries)
+2026-02-26 11:56:54,838 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+
+=== REFUTED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the total sum of radii. (confirmed 0/2, avg_delta=+86.2%)
+    mechanism: By balancing the radii of neighboring circles rather than scaling proportionally to current (possibly small) values, we reach a more uniform distribution.
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 1/3, avg_delta=+86.2%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:56:54,839 - INFO - Evaluated program 3c054b23-966b-4afb-8245-19695c0e78df in 0.66s: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.3254
+2026-02-26 11:56:54,840 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:54,840 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:54,847 - INFO - Iteration 3: Program 3c054b23-966b-4afb-8245-19695c0e78df (parent: 9d283863-a100-4528-8d44-f840bb97f667) completed in 16.89s
+2026-02-26 11:56:54,847 - INFO - Metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.3254
+2026-02-26 11:57:03,987 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:04,184 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:57:04,184 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 1.2, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: A 5x5 grid with one extra circle improves sum_radii over concentric rings.
+  H2 [CONFIRMED]: EXPECT target_ratio > 0.5, ACTUAL 0.7 (delta=+86.2% vs baseline)
+    claim: Iterative radius equalization improves the sum of radii.
+  OVERALL: combined_score=0.68 (delta=+0.31, +86.2% vs baseline=0.36)
+2026-02-26 11:57:04,184 - INFO - [HYPOTHESIS] Updated ledger (4 total entries)
+2026-02-26 11:57:04,184 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 2/4, avg_delta=+86.2%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 2/2, avg_delta=+86.2%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+
+=== REFUTED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the total sum of radii. (confirmed 0/2, avg_delta=+86.2%)
+    mechanism: By balancing the radii of neighboring circles rather than scaling proportionally to current (possibly small) values, we reach a more uniform distribution.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:57:04,185 - INFO - Evaluated program 4bdcb7b5-dd7c-4de3-8639-346d66d9c8d4 in 0.19s: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.1024
+2026-02-26 11:57:04,186 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:04,187 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:04,197 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 9}
+2026-02-26 11:57:04,197 - INFO - Iteration 4: Program 4bdcb7b5-dd7c-4de3-8639-346d66d9c8d4 (parent: 9d283863-a100-4528-8d44-f840bb97f667) completed in 11.87s
+2026-02-26 11:57:04,197 - INFO - Metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.1024
+2026-02-26 11:57:08,217 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:08,647 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:08,906 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:57:08,906 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.0, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: A 5x5 grid with one extra circle improves sum_radii over concentric rings.
+  H2 [REFUTED]: EXPECT target_ratio > 0.8, ACTUAL 0.7 (delta=+86.2% vs baseline)
+    claim: Iterative radius equalization improves the total sum of radii.
+  OVERALL: combined_score=0.68 (delta=+0.31, +86.2% vs baseline=0.36)
+2026-02-26 11:57:08,906 - INFO - [HYPOTHESIS] Updated ledger (5 total entries)
+2026-02-26 11:57:08,907 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 2/2, avg_delta=+86.2%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+
+=== REFUTED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the total sum of radii. (confirmed 0/3, avg_delta=+86.2%)
+    mechanism: By balancing the radii of neighboring circles rather than scaling proportionally to current (possibly small) values, we reach a more uniform distribution.
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 2/5, avg_delta=+86.2%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:57:08,907 - INFO - Evaluated program 0861d612-2097-4c00-b584-8eae1a539551 in 0.64s: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.3170
+2026-02-26 11:57:08,908 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:08,909 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:08,911 - INFO - Iteration 5: Program 0861d612-2097-4c00-b584-8eae1a539551 (parent: 9d283863-a100-4528-8d44-f840bb97f667) completed in 14.53s
+2026-02-26 11:57:08,911 - INFO - Metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.3170
+2026-02-26 11:57:08,911 - INFO - Checkpoint interval reached at iteration 5
+2026-02-26 11:57:08,911 - INFO - Island Status:
+2026-02-26 11:57:08,911 - INFO -  * Island 0: 6 programs, best=0.6783, avg=0.6260, diversity=68.38, gen=5 (best: 0adaf31c-a4d6-4cc0-abb0-5d0c95dc6b60)
+2026-02-26 11:57:08,911 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:57:08,912 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:57:08,915 - INFO - Saved database with 6 programs to experiments/factorial_ab_circpack/treatment_diff_run_200/checkpoints/checkpoint_5
+2026-02-26 11:57:08,915 - INFO - Saved best program at checkpoint 5 with metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.0866
+2026-02-26 11:57:08,915 - INFO - Saved checkpoint at iteration 5 to experiments/factorial_ab_circpack/treatment_diff_run_200/checkpoints/checkpoint_5
+2026-02-26 11:57:09,290 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:57:09,291 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.0, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: A 5x5 grid with one extra circle improves sum_radii over concentric rings.
+  H2 [REFUTED]: EXPECT target_ratio > 0.8, ACTUAL 0.7 (delta=+86.2% vs baseline)
+    claim: Iterative radius equalization improves the total sum of radii.
+  OVERALL: combined_score=0.68 (delta=+0.31, +86.2% vs baseline=0.36)
+2026-02-26 11:57:09,291 - INFO - [HYPOTHESIS] Updated ledger (6 total entries)
+2026-02-26 11:57:09,291 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 2/2, avg_delta=+86.2%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+
+=== REFUTED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the total sum of radii. (confirmed 0/4, avg_delta=+86.2%)
+    mechanism: By balancing the radii of neighboring circles rather than scaling proportionally to current (possibly small) values, we reach a more uniform distribution.
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 2/6, avg_delta=+86.2%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:57:09,292 - INFO - Evaluated program 4ec414ba-5de6-4e6e-b016-8ea2ce6155a7 in 0.64s: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.3226
+2026-02-26 11:57:09,294 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:09,294 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:09,295 - INFO - Iteration 6: Program 4ec414ba-5de6-4e6e-b016-8ea2ce6155a7 (parent: 9d283863-a100-4528-8d44-f840bb97f667) completed in 14.45s
+2026-02-26 11:57:09,295 - INFO - Metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.3226
+2026-02-26 11:57:28,761 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:28,939 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:57:28,940 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 1.5, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: A 5x5 grid arrangement for 25 circles, with the 26th at the center, will significantly improve sum_radii compared to concentric rings.
+  H2 [CONFIRMED]: EXPECT target_ratio > 0.6, ACTUAL 0.7 (delta=+86.2% vs baseline)
+    claim: Iteratively resolving overlaps in compute_max_radii will improve sum_radii.
+  OVERALL: combined_score=0.68 (delta=+0.31, +86.2% vs baseline=0.36)
+2026-02-26 11:57:28,940 - INFO - [HYPOTHESIS] Updated ledger (7 total entries)
+2026-02-26 11:57:28,940 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid arrangement for 25 circles, with the 26th at the center, will significantly improve sum_radii compared to concentric rings. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: A uniform grid better utilizes the rectangular geometry of the container, reducing large empty spaces and edge waste inherent in circular arrangements within a square. This provides a denser initial packing.
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 2/2, avg_delta=+86.2%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+  [target_ratio] Iteratively resolving overlaps in compute_max_radii will improve sum_radii. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: A single pass of proportional scaling for overlaps is insufficient. Iterating multiple times allows circles to "push" each other apart or shrink more appropriately, leading to a more stable and potentially larger set of radii as the available space is more effectively distributed.
+
+=== REFUTED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the total sum of radii. (confirmed 0/4, avg_delta=+86.2%)
+    mechanism: By balancing the radii of neighboring circles rather than scaling proportionally to current (possibly small) values, we reach a more uniform distribution.
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 2/6, avg_delta=+86.2%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:57:28,941 - INFO - Evaluated program a368b004-a5c5-4582-aeb9-6d740dd586d1 in 0.17s: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.0817
+2026-02-26 11:57:28,942 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:28,943 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:57:28,945 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 0}
+2026-02-26 11:57:28,946 - INFO - Iteration 8: Program a368b004-a5c5-4582-aeb9-6d740dd586d1 (parent: 9d283863-a100-4528-8d44-f840bb97f667) completed in 20.03s
+2026-02-26 11:57:28,946 - INFO - Metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.0817
+2026-02-26 11:57:39,825 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:42,414 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:57:42,414 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 1.2, ACTUAL 1.7 (delta=+77.3% vs baseline)
+    claim: A 5x5 grid with one extra circle improves sum_radii over concentric rings.
+  H2 [CONFIRMED]: EXPECT target_ratio > 0.5, ACTUAL 0.6 (delta=+77.3% vs baseline)
+    claim: Iterative radius equalization improves the sum of radii.
+  OVERALL: combined_score=0.65 (delta=+0.28, +77.3% vs baseline=0.36)
+2026-02-26 11:57:42,415 - INFO - [HYPOTHESIS] Updated ledger (8 total entries)
+2026-02-26 11:57:42,415 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 3/3, avg_delta=+83.3%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+  [sum_radii] A 5x5 grid arrangement for 25 circles, with the 26th at the center, will significantly improve sum_radii compared to concentric rings. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: A uniform grid better utilizes the rectangular geometry of the container, reducing large empty spaces and edge waste inherent in circular arrangements within a square. This provides a denser initial packing.
+  [target_ratio] Iteratively resolving overlaps in compute_max_radii will improve sum_radii. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: A single pass of proportional scaling for overlaps is insufficient. Iterating multiple times allows circles to "push" each other apart or shrink more appropriately, leading to a more stable and potentially larger set of radii as the available space is more effectively distributed.
+
+=== REFUTED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the total sum of radii. (confirmed 0/4, avg_delta=+86.2%)
+    mechanism: By balancing the radii of neighboring circles rather than scaling proportionally to current (possibly small) values, we reach a more uniform distribution.
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 3/7, avg_delta=+84.9%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:57:42,415 - INFO - Evaluated program 1717e46b-97c4-446e-a79a-2923df3b417c in 2.59s: validity=1.0000, sum_radii=1.7016, target_ratio=0.6458, combined_score=0.6458, eval_time=1.2951
+2026-02-26 11:57:42,416 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:42,417 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:42,423 - INFO - Iteration 10: Program 1717e46b-97c4-446e-a79a-2923df3b417c (parent: 0adaf31c-a4d6-4cc0-abb0-5d0c95dc6b60) completed in 13.47s
+2026-02-26 11:57:42,423 - INFO - Metrics: validity=1.0000, sum_radii=1.7016, target_ratio=0.6458, combined_score=0.6458, eval_time=1.2951
+2026-02-26 11:57:42,423 - INFO - Checkpoint interval reached at iteration 10
+2026-02-26 11:57:42,424 - INFO - Island Status:
+2026-02-26 11:57:42,424 - INFO -  * Island 0: 9 programs, best=0.6783, avg=0.6398, diversity=82.17, gen=8 (best: 0adaf31c-a4d6-4cc0-abb0-5d0c95dc6b60)
+2026-02-26 11:57:42,424 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:57:42,424 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:57:42,428 - INFO - Saved database with 9 programs to experiments/factorial_ab_circpack/treatment_diff_run_200/checkpoints/checkpoint_10
+2026-02-26 11:57:42,429 - INFO - Saved best program at checkpoint 10 with metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.0866
+2026-02-26 11:57:42,429 - INFO - Saved checkpoint at iteration 10 to experiments/factorial_ab_circpack/treatment_diff_run_200/checkpoints/checkpoint_10
+2026-02-26 11:57:48,253 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:48,905 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 11:57:48,905 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.0, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: Initializing centers with a 5x5 grid + 1 central circle will significantly improve `sum_radii`.
+  H2 [REFUTED]: EXPECT target_ratio > 0.8, ACTUAL 0.7 (delta=+86.2% vs baseline)
+    claim: Applying a Lloyd-like relaxation to circle centers will further increase `sum_radii`.
+  H3 [REFUTED]: EXPECT combined_score > 0.7, ACTUAL 0.7 (delta=+86.2% vs baseline)
+    claim: Making the `compute_max_radii` function iterative for overlap resolution will improve `sum_radii`.
+  OVERALL: combined_score=0.68 (delta=+0.31, +86.2% vs baseline=0.36)
+2026-02-26 11:57:48,906 - INFO - [HYPOTHESIS] Updated ledger (9 total entries)
+2026-02-26 11:57:48,906 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 3/3, avg_delta=+83.3%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+  [sum_radii] A 5x5 grid arrangement for 25 circles, with the 26th at the center, will significantly improve sum_radii compared to concentric rings. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: A uniform grid better utilizes the rectangular geometry of the container, reducing large empty spaces and edge waste inherent in circular arrangements within a square. This provides a denser initial packing.
+  [target_ratio] Iteratively resolving overlaps in compute_max_radii will improve sum_radii. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: A single pass of proportional scaling for overlaps is insufficient. Iterating multiple times allows circles to "push" each other apart or shrink more appropriately, leading to a more stable and potentially larger set of radii as the available space is more effectively distributed.
+
+=== REFUTED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the total sum of radii. (confirmed 0/4, avg_delta=+86.2%)
+    mechanism: By balancing the radii of neighboring circles rather than scaling proportionally to current (possibly small) values, we reach a more uniform distribution.
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 3/7, avg_delta=+84.9%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+
+=== INCONCLUSIVE ===
+  [sum_radii] Initializing centers with a 5x5 grid + 1 central circle will significantly improve `sum_radii`. (total=1)
+  [target_ratio] Applying a Lloyd-like relaxation to circle centers will further increase `sum_radii`. (total=1)
+  [combined_score] Making the `compute_max_radii` function iterative for overlap resolution will improve `sum_radii`. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:57:48,906 - INFO - Evaluated program deb76fab-3bd3-4008-b502-fdee43696c87 in 0.65s: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.3184
+2026-02-26 11:57:48,908 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:48,909 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:57:48,912 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 4}
+2026-02-26 11:57:48,912 - INFO - Iteration 9: Program deb76fab-3bd3-4008-b502-fdee43696c87 (parent: 9d283863-a100-4528-8d44-f840bb97f667) completed in 39.61s
+2026-02-26 11:57:48,912 - INFO - Metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=0.3184
+2026-02-26 11:57:54,463 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:54,724 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:57:54,724 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 1.2, ACTUAL 1.9 (delta=+99.7% vs baseline)
+    claim: A 5x5 grid with one extra circle improves sum_radii over concentric rings.
+  H2 [CONFIRMED]: EXPECT target_ratio > 0.5, ACTUAL 0.7 (delta=+99.8% vs baseline)
+    claim: Iterative radius equalization improves the sum of radii.
+  OVERALL: combined_score=0.73 (delta=+0.36, +99.8% vs baseline=0.36)
+2026-02-26 11:57:54,725 - INFO - [HYPOTHESIS] Updated ledger (10 total entries)
+2026-02-26 11:57:54,725 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid arrangement for 25 circles, with the 26th at the center, will significantly improve sum_radii compared to concentric rings. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: A uniform grid better utilizes the rectangular geometry of the container, reducing large empty spaces and edge waste inherent in circular arrangements within a square. This provides a denser initial packing.
+  [target_ratio] Iteratively resolving overlaps in compute_max_radii will improve sum_radii. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: A single pass of proportional scaling for overlaps is insufficient. Iterating multiple times allows circles to "push" each other apart or shrink more appropriately, leading to a more stable and potentially larger set of radii as the available space is more effectively distributed.
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 4/8, avg_delta=+86.8%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 4/4, avg_delta=+87.4%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+
+=== REFUTED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the total sum of radii. (confirmed 0/4, avg_delta=+86.2%)
+    mechanism: By balancing the radii of neighboring circles rather than scaling proportionally to current (possibly small) values, we reach a more uniform distribution.
+
+=== INCONCLUSIVE ===
+  [sum_radii] Initializing centers with a 5x5 grid + 1 central circle will significantly improve `sum_radii`. (total=1)
+  [target_ratio] Applying a Lloyd-like relaxation to circle centers will further increase `sum_radii`. (total=1)
+  [combined_score] Making the `compute_max_radii` function iterative for overlap resolution will improve `sum_radii`. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:57:54,725 - INFO - Evaluated program aba8ee82-4e01-4341-a3d4-64b5173af553 in 0.25s: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=0.1181
+2026-02-26 11:57:54,727 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:54,727 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:57:54,729 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 0, 'diversity': 0} (fitness: 0.678 -> 0.727)
+2026-02-26 11:57:54,729 - INFO - New best program aba8ee82-4e01-4341-a3d4-64b5173af553 replaces 0adaf31c-a4d6-4cc0-abb0-5d0c95dc6b60 (combined_score: 0.6783 → 0.7275, +0.0492)
+2026-02-26 11:57:54,729 - INFO - Iteration 7: Program aba8ee82-4e01-4341-a3d4-64b5173af553 (parent: 0adaf31c-a4d6-4cc0-abb0-5d0c95dc6b60) completed in 50.54s
+2026-02-26 11:57:54,729 - INFO - Metrics: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=0.1181
+2026-02-26 11:57:54,729 - INFO - 🌟 New best solution found at iteration 7: aba8ee82-4e01-4341-a3d4-64b5173af553
+2026-02-26 11:58:00,496 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:05,434 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:58:05,435 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.0, ACTUAL 1.7 (delta=+74.9% vs baseline)
+    claim: A 5x5 grid with one extra circle improves sum_radii over concentric rings.
+  H2 [REFUTED]: EXPECT target_ratio > 0.8, ACTUAL 0.6 (delta=+74.9% vs baseline)
+    claim: Iterative radius equalization improves the total sum of radii.
+  OVERALL: combined_score=0.64 (delta=+0.27, +74.9% vs baseline=0.36)
+2026-02-26 11:58:05,435 - INFO - [HYPOTHESIS] Updated ledger (11 total entries)
+2026-02-26 11:58:05,436 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid arrangement for 25 circles, with the 26th at the center, will significantly improve sum_radii compared to concentric rings. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: A uniform grid better utilizes the rectangular geometry of the container, reducing large empty spaces and edge waste inherent in circular arrangements within a square. This provides a denser initial packing.
+  [target_ratio] Iteratively resolving overlaps in compute_max_radii will improve sum_radii. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: A single pass of proportional scaling for overlaps is insufficient. Iterating multiple times allows circles to "push" each other apart or shrink more appropriately, leading to a more stable and potentially larger set of radii as the available space is more effectively distributed.
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 4/4, avg_delta=+87.4%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+
+=== REFUTED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 4/9, avg_delta=+85.5%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+  [target_ratio] Iterative radius equalization improves the total sum of radii. (confirmed 0/5, avg_delta=+84.0%)
+    mechanism: By balancing the radii of neighboring circles rather than scaling proportionally to current (possibly small) values, we reach a more uniform distribution.
+
+=== INCONCLUSIVE ===
+  [sum_radii] Initializing centers with a 5x5 grid + 1 central circle will significantly improve `sum_radii`. (total=1)
+  [target_ratio] Applying a Lloyd-like relaxation to circle centers will further increase `sum_radii`. (total=1)
+  [combined_score] Making the `compute_max_radii` function iterative for overlap resolution will improve `sum_radii`. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:58:05,436 - INFO - Evaluated program 483641d2-9923-4b65-8b74-9e46d5737d14 in 4.93s: validity=1.0000, sum_radii=1.6785, target_ratio=0.6370, combined_score=0.6370, eval_time=2.5014
+2026-02-26 11:58:05,438 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:05,438 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:05,443 - INFO - Iteration 12: Program 483641d2-9923-4b65-8b74-9e46d5737d14 (parent: 4ec414ba-5de6-4e6e-b016-8ea2ce6155a7) completed in 16.53s
+2026-02-26 11:58:05,443 - INFO - Metrics: validity=1.0000, sum_radii=1.6785, target_ratio=0.6370, combined_score=0.6370, eval_time=2.5014
+2026-02-26 11:58:07,839 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:10,035 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:58:10,035 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 1.2, ACTUAL 1.6 (delta=+67.9% vs baseline)
+    claim: A 5x5 grid with one extra circle improves sum_radii over concentric rings.
+  H2 [CONFIRMED]: EXPECT target_ratio > 0.5, ACTUAL 0.6 (delta=+67.9% vs baseline)
+    claim: Iterative radius equalization improves the sum of radii.
+  OVERALL: combined_score=0.61 (delta=+0.25, +67.9% vs baseline=0.36)
+2026-02-26 11:58:10,036 - INFO - [HYPOTHESIS] Updated ledger (12 total entries)
+2026-02-26 11:58:10,036 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 5/5, avg_delta=+83.5%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 5/10, avg_delta=+83.7%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+  [sum_radii] A 5x5 grid arrangement for 25 circles, with the 26th at the center, will significantly improve sum_radii compared to concentric rings. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: A uniform grid better utilizes the rectangular geometry of the container, reducing large empty spaces and edge waste inherent in circular arrangements within a square. This provides a denser initial packing.
+  [target_ratio] Iteratively resolving overlaps in compute_max_radii will improve sum_radii. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: A single pass of proportional scaling for overlaps is insufficient. Iterating multiple times allows circles to "push" each other apart or shrink more appropriately, leading to a more stable and potentially larger set of radii as the available space is more effectively distributed.
+
+=== REFUTED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the total sum of radii. (confirmed 0/5, avg_delta=+84.0%)
+    mechanism: By balancing the radii of neighboring circles rather than scaling proportionally to current (possibly small) values, we reach a more uniform distribution.
+
+=== INCONCLUSIVE ===
+  [sum_radii] Initializing centers with a 5x5 grid + 1 central circle will significantly improve `sum_radii`. (total=1)
+  [target_ratio] Applying a Lloyd-like relaxation to circle centers will further increase `sum_radii`. (total=1)
+  [combined_score] Making the `compute_max_radii` function iterative for overlap resolution will improve `sum_radii`. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:58:10,036 - INFO - Evaluated program c895d802-bcdb-4e2e-9e9d-53c921007066 in 2.20s: validity=1.0000, sum_radii=1.6111, target_ratio=0.6114, combined_score=0.6114, eval_time=1.0962
+2026-02-26 11:58:10,038 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:10,038 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:10,047 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 2, 'diversity': 0}
+2026-02-26 11:58:10,047 - INFO - Iteration 13: Program c895d802-bcdb-4e2e-9e9d-53c921007066 (parent: 4bdcb7b5-dd7c-4de3-8639-346d66d9c8d4) completed in 15.31s
+2026-02-26 11:58:10,047 - INFO - Metrics: validity=1.0000, sum_radii=1.6111, target_ratio=0.6114, combined_score=0.6114, eval_time=1.0962
+2026-02-26 11:58:44,876 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:46,050 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:58:46,051 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.0, ACTUAL 1.8 (delta=+85.5% vs baseline)
+    claim: A 5x5 grid with one extra circle improves sum_radii over concentric rings.
+  H2 [REFUTED]: EXPECT target_ratio > 0.8, ACTUAL 0.7 (delta=+85.5% vs baseline)
+    claim: Iterative radius equalization improves the total sum of radii.
+  OVERALL: combined_score=0.68 (delta=+0.31, +85.5% vs baseline=0.36)
+2026-02-26 11:58:46,051 - INFO - [HYPOTHESIS] Updated ledger (13 total entries)
+2026-02-26 11:58:46,052 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 5/5, avg_delta=+83.5%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+  [sum_radii] A 5x5 grid arrangement for 25 circles, with the 26th at the center, will significantly improve sum_radii compared to concentric rings. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: A uniform grid better utilizes the rectangular geometry of the container, reducing large empty spaces and edge waste inherent in circular arrangements within a square. This provides a denser initial packing.
+  [target_ratio] Iteratively resolving overlaps in compute_max_radii will improve sum_radii. (confirmed 1/1, avg_delta=+86.2%)
+    mechanism: A single pass of proportional scaling for overlaps is insufficient. Iterating multiple times allows circles to "push" each other apart or shrink more appropriately, leading to a more stable and potentially larger set of radii as the available space is more effectively distributed.
+
+=== REFUTED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the total sum of radii. (confirmed 0/6, avg_delta=+84.2%)
+    mechanism: By balancing the radii of neighboring circles rather than scaling proportionally to current (possibly small) values, we reach a more uniform distribution.
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 5/11, avg_delta=+83.9%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+
+=== INCONCLUSIVE ===
+  [sum_radii] Initializing centers with a 5x5 grid + 1 central circle will significantly improve `sum_radii`. (total=1)
+  [target_ratio] Applying a Lloyd-like relaxation to circle centers will further increase `sum_radii`. (total=1)
+  [combined_score] Making the `compute_max_radii` function iterative for overlap resolution will improve `sum_radii`. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:58:46,052 - INFO - Evaluated program 5a25d478-ad90-4a7c-9275-bc8ae78af730 in 1.17s: validity=1.0000, sum_radii=1.7800, target_ratio=0.6755, combined_score=0.6755, eval_time=0.5912
+2026-02-26 11:58:46,053 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:46,054 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:46,056 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 2, 'diversity': 0} (fitness: 0.611 -> 0.676)
+2026-02-26 11:58:46,056 - INFO - Iteration 15: Program 5a25d478-ad90-4a7c-9275-bc8ae78af730 (parent: 3c054b23-966b-4afb-8245-19695c0e78df) completed in 36.01s
+2026-02-26 11:58:46,056 - INFO - Metrics: validity=1.0000, sum_radii=1.7800, target_ratio=0.6755, combined_score=0.6755, eval_time=0.5912
+2026-02-26 11:58:46,056 - INFO - Checkpoint interval reached at iteration 15
+2026-02-26 11:58:46,057 - INFO - Island Status:
+2026-02-26 11:58:46,057 - INFO -  * Island 0: 12 programs, best=0.7275, avg=0.6499, diversity=85.78, gen=13 (best: aba8ee82-4e01-4341-a3d4-64b5173af553)
+2026-02-26 11:58:46,057 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:58:46,057 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:58:46,064 - INFO - Saved database with 14 programs to experiments/factorial_ab_circpack/treatment_diff_run_200/checkpoints/checkpoint_15
+2026-02-26 11:58:46,064 - INFO - Saved best program at checkpoint 15 with metrics: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=0.1181
+2026-02-26 11:58:46,064 - INFO - Saved checkpoint at iteration 15 to experiments/factorial_ab_circpack/treatment_diff_run_200/checkpoints/checkpoint_15
+2026-02-26 11:58:53,144 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:55,310 - INFO - Evaluated program ded4c242-9bdd-4007-89e4-584bbb7cafba in 2.15s: validity=1.0000, sum_radii=0.5828, target_ratio=0.2212, combined_score=0.2212
+2026-02-26 11:58:55,312 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:55,312 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:55,313 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 4}
+2026-02-26 11:58:55,313 - INFO - Iteration 11: Program ded4c242-9bdd-4007-89e4-584bbb7cafba (parent: 3c054b23-966b-4afb-8245-19695c0e78df) completed in 72.89s
+2026-02-26 11:58:55,313 - INFO - Metrics: validity=1.0000, sum_radii=0.5828, target_ratio=0.2212, combined_score=0.2212
+2026-02-26 11:59:02,164 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:02,361 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:02,631 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:59:02,631 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 1.5, ACTUAL 1.9 (delta=+99.7% vs baseline)
+    claim: A 5x5 grid arrangement for 25 circles, with the 26th at the center, will significantly improve sum_radii compared to concentric rings.
+  H2 [CONFIRMED]: EXPECT target_ratio > 0.6, ACTUAL 0.7 (delta=+99.8% vs baseline)
+    claim: Iteratively resolving overlaps in compute_max_radii will improve sum_radii.
+  OVERALL: combined_score=0.73 (delta=+0.36, +99.8% vs baseline=0.36)
+2026-02-26 11:59:02,632 - INFO - [HYPOTHESIS] Updated ledger (14 total entries)
+2026-02-26 11:59:02,632 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 5/5, avg_delta=+83.5%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+  [sum_radii] A 5x5 grid arrangement for 25 circles, with the 26th at the center, will significantly improve sum_radii compared to concentric rings. (confirmed 2/2, avg_delta=+93.0%)
+    mechanism: A uniform grid better utilizes the rectangular geometry of the container, reducing large empty spaces and edge waste inherent in circular arrangements within a square. This provides a denser initial packing.
+  [target_ratio] Iteratively resolving overlaps in compute_max_radii will improve sum_radii. (confirmed 2/2, avg_delta=+93.0%)
+    mechanism: A single pass of proportional scaling for overlaps is insufficient. Iterating multiple times allows circles to "push" each other apart or shrink more appropriately, leading to a more stable and potentially larger set of radii as the available space is more effectively distributed.
+
+=== REFUTED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the total sum of radii. (confirmed 0/6, avg_delta=+84.2%)
+    mechanism: By balancing the radii of neighboring circles rather than scaling proportionally to current (possibly small) values, we reach a more uniform distribution.
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 5/11, avg_delta=+83.9%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+
+=== INCONCLUSIVE ===
+  [sum_radii] Initializing centers with a 5x5 grid + 1 central circle will significantly improve `sum_radii`. (total=1)
+  [target_ratio] Applying a Lloyd-like relaxation to circle centers will further increase `sum_radii`. (total=1)
+  [combined_score] Making the `compute_max_radii` function iterative for overlap resolution will improve `sum_radii`. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:59:02,632 - INFO - Evaluated program 6350e014-50f3-4f68-b8f6-b052249e82eb in 0.27s: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=0.1279
+2026-02-26 11:59:02,634 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:59:02,634 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:59:02,643 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 1}
+2026-02-26 11:59:02,643 - INFO - Iteration 16: Program 6350e014-50f3-4f68-b8f6-b052249e82eb (parent: a368b004-a5c5-4582-aeb9-6d740dd586d1) completed in 16.58s
+2026-02-26 11:59:02,643 - INFO - Metrics: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=0.1279
+2026-02-26 11:59:04,747 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:59:04,747 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 1.2, ACTUAL 1.8 (delta=+86.2% vs baseline)
+    claim: A 5x5 grid with one extra circle improves sum_radii over concentric rings.
+  H2 [CONFIRMED]: EXPECT target_ratio > 0.5, ACTUAL 0.7 (delta=+86.2% vs baseline)
+    claim: Iterative radius equalization improves the sum of radii.
+  OVERALL: combined_score=0.68 (delta=+0.31, +86.2% vs baseline=0.36)
+2026-02-26 11:59:04,748 - INFO - [HYPOTHESIS] Updated ledger (15 total entries)
+2026-02-26 11:59:04,748 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 6/6, avg_delta=+83.9%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 6/12, avg_delta=+84.1%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+  [sum_radii] A 5x5 grid arrangement for 25 circles, with the 26th at the center, will significantly improve sum_radii compared to concentric rings. (confirmed 2/2, avg_delta=+93.0%)
+    mechanism: A uniform grid better utilizes the rectangular geometry of the container, reducing large empty spaces and edge waste inherent in circular arrangements within a square. This provides a denser initial packing.
+  [target_ratio] Iteratively resolving overlaps in compute_max_radii will improve sum_radii. (confirmed 2/2, avg_delta=+93.0%)
+    mechanism: A single pass of proportional scaling for overlaps is insufficient. Iterating multiple times allows circles to "push" each other apart or shrink more appropriately, leading to a more stable and potentially larger set of radii as the available space is more effectively distributed.
+
+=== REFUTED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the total sum of radii. (confirmed 0/6, avg_delta=+84.2%)
+    mechanism: By balancing the radii of neighboring circles rather than scaling proportionally to current (possibly small) values, we reach a more uniform distribution.
+
+=== INCONCLUSIVE ===
+  [sum_radii] Initializing centers with a 5x5 grid + 1 central circle will significantly improve `sum_radii`. (total=1)
+  [target_ratio] Applying a Lloyd-like relaxation to circle centers will further increase `sum_radii`. (total=1)
+  [combined_score] Making the `compute_max_radii` function iterative for overlap resolution will improve `sum_radii`. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:59:04,749 - INFO - Evaluated program 1264c5a5-3e14-49ee-9f7d-0fd62983d561 in 2.58s: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=1.2836
+2026-02-26 11:59:04,750 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:59:04,751 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:59:04,753 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 9}
+2026-02-26 11:59:04,753 - INFO - Island 0 MAP-Elites coverage reached 10.0% (10/100 cells)
+2026-02-26 11:59:04,753 - INFO - Iteration 14: Program 1264c5a5-3e14-49ee-9f7d-0fd62983d561 (parent: 0adaf31c-a4d6-4cc0-abb0-5d0c95dc6b60) completed in 59.31s
+2026-02-26 11:59:04,753 - INFO - Metrics: validity=1.0000, sum_radii=1.7874, target_ratio=0.6783, combined_score=0.6783, eval_time=1.2836
+2026-02-26 11:59:15,585 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:15,591 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:59:15,591 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:59:15,595 - WARNING - Iteration 17 error: No valid diffs found in response
+2026-02-26 11:59:32,536 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:37,162 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:40,704 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:59:40,704 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.0, ACTUAL 1.9 (delta=+99.7% vs baseline)
+    claim: A 5x5 grid with one extra circle improves sum_radii over concentric rings.
+  H2 [REFUTED]: EXPECT target_ratio > 0.8, ACTUAL 0.7 (delta=+99.8% vs baseline)
+    claim: Iterative radius equalization improves the total sum of radii.
+  OVERALL: combined_score=0.73 (delta=+0.36, +99.8% vs baseline=0.36)
+2026-02-26 11:59:40,705 - INFO - [HYPOTHESIS] Updated ledger (16 total entries)
+2026-02-26 11:59:40,705 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 6/6, avg_delta=+83.9%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+  [sum_radii] A 5x5 grid arrangement for 25 circles, with the 26th at the center, will significantly improve sum_radii compared to concentric rings. (confirmed 2/2, avg_delta=+93.0%)
+    mechanism: A uniform grid better utilizes the rectangular geometry of the container, reducing large empty spaces and edge waste inherent in circular arrangements within a square. This provides a denser initial packing.
+  [target_ratio] Iteratively resolving overlaps in compute_max_radii will improve sum_radii. (confirmed 2/2, avg_delta=+93.0%)
+    mechanism: A single pass of proportional scaling for overlaps is insufficient. Iterating multiple times allows circles to "push" each other apart or shrink more appropriately, leading to a more stable and potentially larger set of radii as the available space is more effectively distributed.
+
+=== REFUTED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the total sum of radii. (confirmed 0/7, avg_delta=+86.4%)
+    mechanism: By balancing the radii of neighboring circles rather than scaling proportionally to current (possibly small) values, we reach a more uniform distribution.
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 6/13, avg_delta=+85.3%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+
+=== INCONCLUSIVE ===
+  [sum_radii] Initializing centers with a 5x5 grid + 1 central circle will significantly improve `sum_radii`. (total=1)
+  [target_ratio] Applying a Lloyd-like relaxation to circle centers will further increase `sum_radii`. (total=1)
+  [combined_score] Making the `compute_max_radii` function iterative for overlap resolution will improve `sum_radii`. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:59:40,705 - INFO - Evaluated program fc5d3e32-b429-410f-ae12-0d0a1cd387a8 in 8.16s: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=4.0920
+2026-02-26 11:59:40,711 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 2, 'diversity': 0} (fitness: 0.676 -> 0.727)
+2026-02-26 11:59:40,711 - INFO - Iteration 19: Program fc5d3e32-b429-410f-ae12-0d0a1cd387a8 (parent: 5a25d478-ad90-4a7c-9275-bc8ae78af730) completed in 35.96s
+2026-02-26 11:59:40,712 - INFO - Metrics: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=4.0920
+2026-02-26 11:59:41,473 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 11:59:41,473 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 1.9, ACTUAL 1.9 (delta=+99.7% vs baseline)
+    claim: Changing the initial placement from concentric rings to a 5x5 grid plus one additional circle will significantly increase `sum_radii`.
+  H2 [REFUTED]: EXPECT target_ratio > 0.8, ACTUAL 0.7 (delta=+99.8% vs baseline)
+    claim: Increasing the number of iterations in `compute_max_radii` for overlap resolution will improve `sum_radii`.
+  H3 [REFUTED]: EXPECT combined_score > 0.8, ACTUAL 0.7 (delta=+99.8% vs baseline)
+    claim: Introducing a Lloyd-like relaxation step to adjust circle centers will further enhance `sum_radii` by allowing circles to move into more optimal positions.
+  OVERALL: combined_score=0.73 (delta=+0.36, +99.8% vs baseline=0.36)
+2026-02-26 11:59:41,484 - INFO - [HYPOTHESIS] Updated ledger (17 total entries)
+2026-02-26 11:59:41,484 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 6/6, avg_delta=+83.9%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+  [sum_radii] A 5x5 grid arrangement for 25 circles, with the 26th at the center, will significantly improve sum_radii compared to concentric rings. (confirmed 2/2, avg_delta=+93.0%)
+    mechanism: A uniform grid better utilizes the rectangular geometry of the container, reducing large empty spaces and edge waste inherent in circular arrangements within a square. This provides a denser initial packing.
+  [target_ratio] Iteratively resolving overlaps in compute_max_radii will improve sum_radii. (confirmed 2/2, avg_delta=+93.0%)
+    mechanism: A single pass of proportional scaling for overlaps is insufficient. Iterating multiple times allows circles to "push" each other apart or shrink more appropriately, leading to a more stable and potentially larger set of radii as the available space is more effectively distributed.
+  [sum_radii] Changing the initial placement from concentric rings to a 5x5 grid plus one additional circle will significantly increase `sum_radii`. (confirmed 1/1, avg_delta=+99.7%)
+    mechanism: A regular grid arrangement provides a more uniform initial distribution of circles within a square container, which is more efficient for square packing than circular patterns. This also correctly accounts for N=26 circles (25 from grid + 1 extra), fixing an apparent bug in the previous ring pattern which only placed 25 circles.
+
+=== REFUTED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the total sum of radii. (confirmed 0/7, avg_delta=+86.4%)
+    mechanism: By balancing the radii of neighboring circles rather than scaling proportionally to current (possibly small) values, we reach a more uniform distribution.
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 6/13, avg_delta=+85.3%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+
+=== INCONCLUSIVE ===
+  [sum_radii] Initializing centers with a 5x5 grid + 1 central circle will significantly improve `sum_radii`. (total=1)
+  [target_ratio] Applying a Lloyd-like relaxation to circle centers will further increase `sum_radii`. (total=1)
+  [combined_score] Making the `compute_max_radii` function iterative for overlap resolution will improve `sum_radii`. (total=1)
+  [target_ratio] Increasing the number of iterations in `compute_max_radii` for overlap resolution will improve `sum_radii`. (total=1)
+  [combined_score] Introducing a Lloyd-like relaxation step to adjust circle centers will further enhance `sum_radii` by allowing circles to move into more optimal positions. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:59:41,485 - INFO - Evaluated program 0921ca97-fe1d-403b-a17d-c8c8fd23b6ff in 4.32s: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=2.2196
+2026-02-26 11:59:41,493 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 9, 'diversity': 9} (fitness: 0.678 -> 0.727)
+2026-02-26 11:59:41,493 - INFO - Iteration 18: Program 0921ca97-fe1d-403b-a17d-c8c8fd23b6ff (parent: 9d283863-a100-4528-8d44-f840bb97f667) completed in 38.85s
+2026-02-26 11:59:41,493 - INFO - Metrics: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=2.2196
+2026-02-26 11:59:42,960 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:43,211 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:59:43,212 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.0, ACTUAL 1.9 (delta=+99.7% vs baseline)
+    claim: A 5x5 grid with one extra circle improves sum_radii over concentric rings.
+  H2 [REFUTED]: EXPECT target_ratio > 0.8, ACTUAL 0.7 (delta=+99.8% vs baseline)
+    claim: Iterative radius equalization improves the total sum of radii.
+  OVERALL: combined_score=0.73 (delta=+0.36, +99.8% vs baseline=0.36)
+2026-02-26 11:59:43,213 - INFO - [HYPOTHESIS] Updated ledger (18 total entries)
+2026-02-26 11:59:43,213 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the sum of radii. (confirmed 6/6, avg_delta=+83.9%)
+    mechanism: The initial compute_max_radii scales both radii proportionally, but iteratively redistributing slack allows smaller circles to grow into available gaps.
+  [sum_radii] A 5x5 grid arrangement for 25 circles, with the 26th at the center, will significantly improve sum_radii compared to concentric rings. (confirmed 2/2, avg_delta=+93.0%)
+    mechanism: A uniform grid better utilizes the rectangular geometry of the container, reducing large empty spaces and edge waste inherent in circular arrangements within a square. This provides a denser initial packing.
+  [target_ratio] Iteratively resolving overlaps in compute_max_radii will improve sum_radii. (confirmed 2/2, avg_delta=+93.0%)
+    mechanism: A single pass of proportional scaling for overlaps is insufficient. Iterating multiple times allows circles to "push" each other apart or shrink more appropriately, leading to a more stable and potentially larger set of radii as the available space is more effectively distributed.
+  [sum_radii] Changing the initial placement from concentric rings to a 5x5 grid plus one additional circle will significantly increase `sum_radii`. (confirmed 1/1, avg_delta=+99.7%)
+    mechanism: A regular grid arrangement provides a more uniform initial distribution of circles within a square container, which is more efficient for square packing than circular patterns. This also correctly accounts for N=26 circles (25 from grid + 1 extra), fixing an apparent bug in the previous ring pattern which only placed 25 circles.
+
+=== REFUTED STRATEGIES ===
+  [target_ratio] Iterative radius equalization improves the total sum of radii. (confirmed 0/8, avg_delta=+88.1%)
+    mechanism: By balancing the radii of neighboring circles rather than scaling proportionally to current (possibly small) values, we reach a more uniform distribution.
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings. (confirmed 6/14, avg_delta=+86.3%)
+    mechanism: Grid-based packing provides a more uniform distribution in square containers, reducing the large gaps created by sparse circular rings.
+
+=== INCONCLUSIVE ===
+  [sum_radii] Initializing centers with a 5x5 grid + 1 central circle will significantly improve `sum_radii`. (total=1)
+  [target_ratio] Applying a Lloyd-like relaxation to circle centers will further increase `sum_radii`. (total=1)
+  [combined_score] Making the `compute_max_radii` function iterative for overlap resolution will improve `sum_radii`. (total=1)
+  [target_ratio] Increasing the number of iterations in `compute_max_radii` for overlap resolution will improve `sum_radii`. (total=1)
+  [combined_score] Introducing a Lloyd-like relaxation step to adjust circle centers will further enhance `sum_radii` by allowing circles to move into more optimal positions. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:59:43,213 - INFO - Evaluated program 50d3fc7a-2cf6-4f4f-a638-9717d99cd0cf in 0.25s: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=0.1197
+2026-02-26 11:59:43,217 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 3}
+2026-02-26 11:59:43,217 - INFO - Iteration 20: Program 50d3fc7a-2cf6-4f4f-a638-9717d99cd0cf (parent: 483641d2-9923-4b65-8b74-9e46d5737d14) completed in 27.62s
+2026-02-26 11:59:43,217 - INFO - Metrics: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=0.1197
+2026-02-26 11:59:43,217 - INFO - Checkpoint interval reached at iteration 20
+2026-02-26 11:59:43,218 - INFO - Island Status:
+2026-02-26 11:59:43,218 - INFO -  * Island 0: 16 programs, best=0.7275, avg=0.6409, diversity=356.27, gen=19 (best: aba8ee82-4e01-4341-a3d4-64b5173af553)
+2026-02-26 11:59:43,218 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:59:43,218 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:59:43,226 - INFO - Saved database with 20 programs to experiments/factorial_ab_circpack/treatment_diff_run_200/checkpoints/checkpoint_20
+2026-02-26 11:59:43,226 - INFO - Saved best program at checkpoint 20 with metrics: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=0.1181
+2026-02-26 11:59:43,227 - INFO - Saved checkpoint at iteration 20 to experiments/factorial_ab_circpack/treatment_diff_run_200/checkpoints/checkpoint_20
+2026-02-26 11:59:43,227 - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-02-26 11:59:43,233 - INFO - Saved database with 20 programs to experiments/factorial_ab_circpack/treatment_diff_run_200/checkpoints/checkpoint_20
+2026-02-26 11:59:43,233 - INFO - Saved best program at checkpoint 20 with metrics: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=0.1181
+2026-02-26 11:59:43,233 - INFO - Saved checkpoint at iteration 20 to experiments/factorial_ab_circpack/treatment_diff_run_200/checkpoints/checkpoint_20
+2026-02-26 11:59:43,394 - INFO - Stopped process pool
+2026-02-26 11:59:43,394 - INFO - Using tracked best program: aba8ee82-4e01-4341-a3d4-64b5173af553
+2026-02-26 11:59:43,394 - INFO - Evolution complete. Best program has metrics: validity=1.0000, sum_radii=1.9170, target_ratio=0.7275, combined_score=0.7275, eval_time=0.1181
+2026-02-26 11:59:43,394 - INFO - Saved best program to experiments/factorial_ab_circpack/treatment_diff_run_200/best/best_program.py with program info to experiments/factorial_ab_circpack/treatment_diff_run_200/best/best_program_info.json

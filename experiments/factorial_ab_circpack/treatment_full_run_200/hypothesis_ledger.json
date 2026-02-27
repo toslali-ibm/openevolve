@@ -1,0 +1,171 @@
+{
+  "baseline": {
+    "sum_radii": 0.9598,
+    "target_ratio": 0.3642,
+    "combined_score": 0.3642
+  },
+  "entries": [
+    {
+      "timestamp": "2026-02-26T16:57:52.734163+00:00",
+      "overall_combined_score": 0.7304012550820205,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A hexagonal-like packing is more efficient than concentric rings for n=26.",
+          "mechanism": "Hexagonal arrangements maximize local density by ensuring most circles have 6 neighbors, reducing empty space compared to polar or square grid layouts.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.8,
+          "actual": 1.9246073071411238,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 100.52170318203,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative force-directed relaxation with radius equalization improves sum of radii.",
+          "mechanism": "By treating overlaps as repulsive forces and iteratively adjusting positions while keeping radii balanced, the packing converges to a more uniform and dense state.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.6,
+          "actual": 0.7304012550820205,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 100.54949343273488,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:54.146843+00:00",
+      "overall_combined_score": 0.6968867264987106,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A hexagonal-tiled grid with 26 circles will outperform a square 5x5 grid.",
+          "mechanism": "Hexagonal packing has a higher theoretical density (0.9069) than square packing (0.7854), allowing for larger radii in the same container.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.8,
+          "actual": 1.8362965243241025,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 91.32074643926886,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative repulsion with a decaying step size (simulated annealing-like) improves spacing.",
+          "mechanism": "Gradually reducing the 'push' distance allows the packing to settle into a local optimum without oscillating, maximizing the available gap for each circle.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.6,
+          "actual": 0.6968867264987106,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 91.34726153177117,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:58:18.485309+00:00",
+      "overall_combined_score": 0.30955084451004283,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Hexagonal packing with a 5-6-5-6-4 row structure improves sum_radii.",
+          "mechanism": "Hexagonal arrangements (staggered rows) achieve higher density than square grids, reducing gaps and allowing larger radii for all 26 circles.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.5,
+          "actual": 0.8156664752839627,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": -15.017037374040138,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative center relaxation based on local density improves packing.",
+          "mechanism": "Moving centers away from their closest neighbors and the boundary iteratively allows the system to settle into a more optimal distribution.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 0.30955084451004283,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": -15.005259607346838,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:59:50.521220+00:00",
+      "overall_combined_score": 0.6122918039046155,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Explicit boundary repulsion forces during relaxation will significantly improve validity and sum_radii.",
+          "mechanism": "Directly pushing circles away from container walls ensures they maintain sufficient distance for their radii, preventing invalid packings and allowing larger overall radii by better distributing space. This prevents centers from being too close to the boundary, which would force their radii to be tiny or zero.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.75,
+          "actual": 0.6122918039046155,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 68.11966059983949,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Increasing relaxation iterations and fine-tuning the learning rate will allow the packing to converge to a denser, more stable configuration.",
+          "mechanism": "More iterations provide greater opportunity for circles to settle into optimal positions, while a tuned learning rate ensures efficient movement without oscillation, leading to better space utilization and higher sum of radii.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.05,
+          "actual": 1.6133889032886617,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 68.09636416843735,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "A hexagonal-inspired initial layout (e.g., staggered rows) for 26 circles will provide a better starting configuration than a simple square grid.",
+          "mechanism": "Hexagonal packing is theoretically denser than square packing. Starting closer to an optimal arrangement reduces the burden on the relaxation algorithm, allowing it to find a better local optimum faster and achieve a higher sum of radii.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.78,
+          "actual": 0.6122918039046155,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 68.11966059983949,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T17:00:01.765613+00:00",
+      "overall_combined_score": 0.6398342613180541,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Improved hexagonal initial placement combined with linear force relaxation will increase sum_radii.",
+          "mechanism": "A more accurately calculated hexagonal initial grid provides a better starting point for optimization, while stable linear repulsion forces (instead of inverse square) prevent overshooting and allow for smoother convergence. Boundary forces tied to a target radius ensure circles are effectively constrained.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.9,
+          "actual": 1.6859632785730725,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 75.65777022015759,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Increased relaxation iterations and a decaying learning rate will improve combined_score.",
+          "mechanism": "More iterations allow the system to reach a deeper local optimum, while a decaying learning rate ensures efficient convergence without oscillation, leading to a denser and more stable packing.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.75,
+          "actual": 0.6398342613180541,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 75.68211458485834,
+          "verdict": "REFUTED"
+        }
+      ]
+    }
+  ]
+}

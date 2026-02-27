@@ -1,0 +1,447 @@
+2026-02-26 13:20:23,199 - INFO - Logging to experiments/factorial_ab_kissing/control_full_run_200/logs/openevolve_20260226_132023.log
+2026-02-26 13:20:23,215 - INFO - Set random seed to 42 for reproducibility
+2026-02-26 13:20:23,289 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 13:20:23,308 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 13:20:23,308 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 13:20:23,323 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 13:20:23,324 - INFO - Initialized prompt sampler
+2026-02-26 13:20:23,325 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 13:20:23,325 - INFO - Initialized program database with 0 programs
+2026-02-26 13:20:23,325 - INFO - Successfully loaded evaluation function from examples/alphaevolve_math_problems/kissing_number/evaluator.py
+2026-02-26 13:20:23,325 - WARNING - Configuration has 'cascade_evaluation: true' but evaluator 'examples/alphaevolve_math_problems/kissing_number/evaluator.py' does not define 'evaluate_stage1' function. This will fall back to direct evaluation, making the cascade setting useless. Consider setting 'cascade_evaluation: false' or implementing cascade functions.
+2026-02-26 13:20:23,326 - INFO - Initialized evaluator with examples/alphaevolve_math_problems/kissing_number/evaluator.py
+2026-02-26 13:20:23,326 - INFO - Initialized OpenEvolve with examples/alphaevolve_math_problems/kissing_number/initial_program.py
+2026-02-26 13:20:23,326 - INFO - Adding initial program to database
+2026-02-26 13:20:23,330 - INFO - Evaluated program de6fe1fa-8294-4593-8042-8df9559b9f30 in 0.00s: num_points=2.0000, combined_score=0.0034, eval_time=0.0000
+2026-02-26 13:20:23,330 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-02-26 13:20:23,336 - INFO - Initialized process parallel controller with 3 workers
+2026-02-26 13:20:23,337 - INFO - Set max None tasks per child
+2026-02-26 13:20:23,337 - INFO - Started process pool with 3 processes
+2026-02-26 13:20:23,337 - INFO - Using island-based evolution with 3 islands
+2026-02-26 13:20:23,337 - INFO - Island Status:
+2026-02-26 13:20:23,337 - INFO -  * Island 0: 1 programs, best=0.0034, avg=0.0034, diversity=0.00, gen=0 (best: de6fe1fa-8294-4593-8042-8df9559b9f30)
+2026-02-26 13:20:23,337 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:20:23,337 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:20:23,337 - INFO - Starting process-based evolution from iteration 1 for 50 iterations (total: 51)
+2026-02-26 13:20:23,350 - INFO - Early stopping disabled
+2026-02-26 13:20:25,380 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 13:20:25,395 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 13:20:25,395 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 13:20:25,400 - INFO - Initialized prompt sampler
+2026-02-26 13:20:25,436 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 13:20:25,490 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 13:20:25,495 - INFO - Successfully loaded evaluation function from examples/alphaevolve_math_problems/kissing_number/evaluator.py
+2026-02-26 13:20:25,504 - WARNING - Configuration has 'cascade_evaluation: true' but evaluator 'examples/alphaevolve_math_problems/kissing_number/evaluator.py' does not define 'evaluate_stage1' function. This will fall back to direct evaluation, making the cascade setting useless. Consider setting 'cascade_evaluation: false' or implementing cascade functions.
+2026-02-26 13:20:25,504 - INFO - Initialized evaluator with examples/alphaevolve_math_problems/kissing_number/evaluator.py
+2026-02-26 13:20:25,504 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:20:25,687 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 13:20:25,707 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 13:20:25,707 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 13:20:25,708 - INFO - Initialized prompt sampler
+2026-02-26 13:20:25,810 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 13:20:25,810 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 13:20:25,841 - INFO - Successfully loaded evaluation function from examples/alphaevolve_math_problems/kissing_number/evaluator.py
+2026-02-26 13:20:25,841 - WARNING - Configuration has 'cascade_evaluation: true' but evaluator 'examples/alphaevolve_math_problems/kissing_number/evaluator.py' does not define 'evaluate_stage1' function. This will fall back to direct evaluation, making the cascade setting useless. Consider setting 'cascade_evaluation: false' or implementing cascade functions.
+2026-02-26 13:20:25,841 - INFO - Initialized evaluator with examples/alphaevolve_math_problems/kissing_number/evaluator.py
+2026-02-26 13:20:25,845 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:20:26,019 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 13:20:26,085 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 13:20:26,085 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 13:20:26,086 - INFO - Initialized prompt sampler
+2026-02-26 13:20:26,151 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 13:20:26,178 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 13:20:26,178 - INFO - Successfully loaded evaluation function from examples/alphaevolve_math_problems/kissing_number/evaluator.py
+2026-02-26 13:20:26,178 - WARNING - Configuration has 'cascade_evaluation: true' but evaluator 'examples/alphaevolve_math_problems/kissing_number/evaluator.py' does not define 'evaluate_stage1' function. This will fall back to direct evaluation, making the cascade setting useless. Consider setting 'cascade_evaluation: false' or implementing cascade functions.
+2026-02-26 13:20:26,178 - INFO - Initialized evaluator with examples/alphaevolve_math_problems/kissing_number/evaluator.py
+2026-02-26 13:20:26,203 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:20:36,778 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:20:36,949 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:20:37,172 - INFO - Evaluated program f8225747-6d84-47ac-8496-d6ac99ccf4ba in 0.39s: combined_score=0.0000, error=Verification failed because the minimum squared distance = 2 < 4 = maximum squared norm.
+2026-02-26 13:20:37,174 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:20:37,180 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 5}
+2026-02-26 13:20:37,180 - INFO - Iteration 1: Program f8225747-6d84-47ac-8496-d6ac99ccf4ba (parent: de6fe1fa-8294-4593-8042-8df9559b9f30) completed in 11.67s
+2026-02-26 13:20:37,180 - INFO - Metrics: combined_score=0.0000, error=Verification failed because the minimum squared distance = 2 < 4 = maximum squared norm.
+2026-02-26 13:20:37,357 - INFO - Evaluated program 03a52290-6bf3-49ef-b66e-9c5e64453290 in 0.39s: combined_score=0.0000, error=Verification failed because the minimum squared distance = 2 < 4 = maximum squared norm.
+2026-02-26 13:20:37,358 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:20:37,368 - INFO - Iteration 3: Program 03a52290-6bf3-49ef-b66e-9c5e64453290 (parent: de6fe1fa-8294-4593-8042-8df9559b9f30) completed in 11.16s
+2026-02-26 13:20:37,368 - INFO - Metrics: combined_score=0.0000, error=Verification failed because the minimum squared distance = 2 < 4 = maximum squared norm.
+2026-02-26 13:20:37,459 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:20:37,939 - INFO - Evaluated program 7e891e97-2b00-461f-bdf0-855a1da6e02f in 0.47s: combined_score=0.0000, error=Verification failed because the minimum squared distance = 2 < 4 = maximum squared norm.
+2026-02-26 13:20:37,941 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:20:37,951 - INFO - Iteration 2: Program 7e891e97-2b00-461f-bdf0-855a1da6e02f (parent: de6fe1fa-8294-4593-8042-8df9559b9f30) completed in 12.10s
+2026-02-26 13:20:37,951 - INFO - Metrics: combined_score=0.0000, error=Verification failed because the minimum squared distance = 2 < 4 = maximum squared norm.
+2026-02-26 13:20:46,644 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:20:47,031 - INFO - Evaluated program a6c1c601-a53b-4600-b6b6-aa7a873fcb8e in 0.37s: combined_score=0.0000, error=Verification failed because the minimum squared distance = 2 < 4 = maximum squared norm.
+2026-02-26 13:20:47,033 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:20:47,039 - INFO - Iteration 4: Program a6c1c601-a53b-4600-b6b6-aa7a873fcb8e (parent: de6fe1fa-8294-4593-8042-8df9559b9f30) completed in 9.86s
+2026-02-26 13:20:47,040 - INFO - Metrics: combined_score=0.0000, error=Verification failed because the minimum squared distance = 2 < 4 = maximum squared norm.
+2026-02-26 13:20:47,559 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:20:47,669 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:20:47,933 - INFO - Evaluated program 553bc5f4-406b-419c-ae52-ba9ccfe7de26 in 0.37s: combined_score=0.0000, error=Verification failed because the minimum squared distance = 2 < 4 = maximum squared norm.
+2026-02-26 13:20:47,934 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:20:47,944 - INFO - Iteration 6: Program 553bc5f4-406b-419c-ae52-ba9ccfe7de26 (parent: de6fe1fa-8294-4593-8042-8df9559b9f30) completed in 9.99s
+2026-02-26 13:20:47,944 - INFO - Metrics: combined_score=0.0000, error=Verification failed because the minimum squared distance = 2 < 4 = maximum squared norm.
+2026-02-26 13:20:48,037 - INFO - Evaluated program 4d1260a6-d065-4096-a61d-6a96e7c88b33 in 0.37s: combined_score=0.0000, error=Verification failed because the minimum squared distance = 2 < 4 = maximum squared norm.
+2026-02-26 13:20:48,038 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:20:48,043 - INFO - Iteration 5: Program 4d1260a6-d065-4096-a61d-6a96e7c88b33 (parent: de6fe1fa-8294-4593-8042-8df9559b9f30) completed in 10.68s
+2026-02-26 13:20:48,043 - INFO - Metrics: combined_score=0.0000, error=Verification failed because the minimum squared distance = 2 < 4 = maximum squared norm.
+2026-02-26 13:21:50,657 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:21:50,660 - INFO - Evaluated program 45379605-e242-489e-bccc-e1f2b9024f3e in 0.00s: combined_score=0.0000, error=unterminated string literal (detected at line 11) (tmpimkoat8g.py, line 11)
+2026-02-26 13:21:50,661 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:21:50,671 - INFO - Iteration 9: Program 45379605-e242-489e-bccc-e1f2b9024f3e (parent: 03a52290-6bf3-49ef-b66e-9c5e64453290) completed in 62.62s
+2026-02-26 13:21:50,671 - INFO - Metrics: combined_score=0.0000, error=unterminated string literal (detected at line 11) (tmpimkoat8g.py, line 11)
+2026-02-26 13:21:58,718 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:21:58,727 - INFO - Evaluated program 4506f0aa-2335-4b27-8f88-5376df976e97 in 0.01s: num_points=74.0000, combined_score=0.1248, eval_time=0.0006
+2026-02-26 13:21:58,728 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:21:58,737 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 0}
+2026-02-26 13:21:58,737 - INFO - New best program 4506f0aa-2335-4b27-8f88-5376df976e97 replaces de6fe1fa-8294-4593-8042-8df9559b9f30 (combined_score: 0.0034 → 0.1248, +0.1214)
+2026-02-26 13:21:58,737 - INFO - Iteration 10: Program 4506f0aa-2335-4b27-8f88-5376df976e97 (parent: de6fe1fa-8294-4593-8042-8df9559b9f30) completed in 8.07s
+2026-02-26 13:21:58,737 - INFO - Metrics: num_points=74.0000, combined_score=0.1248, eval_time=0.0006
+2026-02-26 13:21:58,737 - INFO - 🌟 New best solution found at iteration 10: 4506f0aa-2335-4b27-8f88-5376df976e97
+2026-02-26 13:21:58,737 - INFO - Checkpoint interval reached at iteration 10
+2026-02-26 13:21:58,738 - INFO - Island Status:
+2026-02-26 13:21:58,738 - INFO -  * Island 0: 9 programs, best=0.1248, avg=0.0142, diversity=302.28, gen=8 (best: 4506f0aa-2335-4b27-8f88-5376df976e97)
+2026-02-26 13:21:58,738 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:21:58,738 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:21:58,741 - INFO - Saved database with 9 programs to experiments/factorial_ab_kissing/control_full_run_200/checkpoints/checkpoint_10
+2026-02-26 13:21:58,741 - INFO - Saved best program at checkpoint 10 with metrics: num_points=74.0000, combined_score=0.1248, eval_time=0.0006
+2026-02-26 13:21:58,741 - INFO - Saved checkpoint at iteration 10 to experiments/factorial_ab_kissing/control_full_run_200/checkpoints/checkpoint_10
+2026-02-26 13:22:07,634 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:22:07,637 - INFO - Evaluated program 09af16a0-fa86-4e65-abc7-b66941efe5f2 in 0.00s: combined_score=0.0000, error=unterminated string literal (detected at line 7) (tmp643yzv0b.py, line 7)
+2026-02-26 13:22:07,638 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:22:07,648 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 4, 'diversity': 3}
+2026-02-26 13:22:07,648 - INFO - Iteration 8: Program 09af16a0-fa86-4e65-abc7-b66941efe5f2 (parent: 03a52290-6bf3-49ef-b66e-9c5e64453290) completed in 79.70s
+2026-02-26 13:22:07,648 - INFO - Metrics: combined_score=0.0000, error=unterminated string literal (detected at line 7) (tmp643yzv0b.py, line 7)
+2026-02-26 13:22:11,403 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:22:11,406 - INFO - Evaluated program 84b2c412-811c-47a8-8be6-f9276296506a in 0.00s: combined_score=0.0000, error=unterminated string literal (detected at line 7) (tmphbaypsuw.py, line 7)
+2026-02-26 13:22:11,407 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:22:11,407 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 3, 'diversity': 1}
+2026-02-26 13:22:11,408 - INFO - Iteration 7: Program 84b2c412-811c-47a8-8be6-f9276296506a (parent: de6fe1fa-8294-4593-8042-8df9559b9f30) completed in 84.37s
+2026-02-26 13:22:11,408 - INFO - Metrics: combined_score=0.0000, error=unterminated string literal (detected at line 7) (tmphbaypsuw.py, line 7)
+2026-02-26 13:22:15,750 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:22:15,757 - INFO - Evaluated program b18f1e42-c41e-44b7-a203-c5e9412fab3a in 0.01s: num_points=74.0000, combined_score=0.1248, eval_time=0.0005
+2026-02-26 13:22:15,758 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:22:15,769 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 8, 'diversity': 0}
+2026-02-26 13:22:15,769 - INFO - Iteration 12: Program b18f1e42-c41e-44b7-a203-c5e9412fab3a (parent: 7e891e97-2b00-461f-bdf0-855a1da6e02f) completed in 8.12s
+2026-02-26 13:22:15,769 - INFO - Metrics: num_points=74.0000, combined_score=0.1248, eval_time=0.0005
+2026-02-26 13:22:17,745 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:22:17,753 - INFO - Evaluated program 36dc090f-30a6-4a09-84fe-5e73a734c50b in 0.01s: num_points=74.0000, combined_score=0.1248, eval_time=0.0005
+2026-02-26 13:22:17,754 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:22:17,762 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 6, 'diversity': 0}
+2026-02-26 13:22:17,762 - INFO - Iteration 13: Program 36dc090f-30a6-4a09-84fe-5e73a734c50b (parent: 45379605-e242-489e-bccc-e1f2b9024f3e) completed in 6.35s
+2026-02-26 13:22:17,762 - INFO - Metrics: num_points=74.0000, combined_score=0.1248, eval_time=0.0005
+2026-02-26 13:23:22,118 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:23:22,123 - INFO - Evaluated program 4c543245-5db1-45d6-87eb-97c0dc030254 in 0.00s: combined_score=0.0000, error=unterminated string literal (detected at line 1) (tmpk63vvqvw.py, line 1)
+2026-02-26 13:23:22,124 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:23:22,129 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 2}
+2026-02-26 13:23:22,129 - INFO - Iteration 11: Program 4c543245-5db1-45d6-87eb-97c0dc030254 (parent: 03a52290-6bf3-49ef-b66e-9c5e64453290) completed in 83.40s
+2026-02-26 13:23:22,129 - INFO - Metrics: combined_score=0.0000, error=unterminated string literal (detected at line 1) (tmpk63vvqvw.py, line 1)
+2026-02-26 13:23:29,006 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:23:29,008 - INFO - Evaluated program b70841c8-f63e-4337-826e-cdb6f9bfd6e6 in 0.00s: combined_score=0.0000, error=unterminated string literal (detected at line 5) (tmpsqzrgawi.py, line 5)
+2026-02-26 13:23:29,009 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:23:29,012 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 3, 'diversity': 4}
+2026-02-26 13:23:29,012 - INFO - Iteration 14: Program b70841c8-f63e-4337-826e-cdb6f9bfd6e6 (parent: 4506f0aa-2335-4b27-8f88-5376df976e97) completed in 73.25s
+2026-02-26 13:23:29,012 - INFO - Metrics: combined_score=0.0000, error=unterminated string literal (detected at line 5) (tmpsqzrgawi.py, line 5)
+2026-02-26 13:23:31,289 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:23:31,293 - INFO - Evaluated program 86b1b116-9175-4fe9-9c99-ffd5b0b09f64 in 0.00s: combined_score=0.0000, error=unterminated string literal (detected at line 18) (tmpije0agf1.py, line 18)
+2026-02-26 13:23:31,294 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:23:31,298 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 4, 'diversity': 2}
+2026-02-26 13:23:31,298 - INFO - Island 0 MAP-Elites coverage reached 10.0% (10/100 cells)
+2026-02-26 13:23:31,298 - INFO - Iteration 15: Program 86b1b116-9175-4fe9-9c99-ffd5b0b09f64 (parent: 03a52290-6bf3-49ef-b66e-9c5e64453290) completed in 73.54s
+2026-02-26 13:23:31,298 - INFO - Metrics: combined_score=0.0000, error=unterminated string literal (detected at line 18) (tmpije0agf1.py, line 18)
+2026-02-26 13:24:42,815 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:24:42,818 - INFO - Evaluated program cb2ec4f8-b7c5-4e4a-aa18-c3d2a315f860 in 0.00s: combined_score=0.0000, error=unterminated string literal (detected at line 5) (tmpdj3zj40f.py, line 5)
+2026-02-26 13:24:42,819 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:24:42,830 - INFO - Iteration 16: Program cb2ec4f8-b7c5-4e4a-aa18-c3d2a315f860 (parent: 45379605-e242-489e-bccc-e1f2b9024f3e) completed in 80.69s
+2026-02-26 13:24:42,830 - INFO - Metrics: combined_score=0.0000, error=unterminated string literal (detected at line 5) (tmpdj3zj40f.py, line 5)
+2026-02-26 13:24:46,877 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:24:46,880 - INFO - Evaluated program 17a2cc97-0bea-45b5-a42e-1d0e85d0629a in 0.00s: combined_score=0.0000, error=invalid decimal literal (tmpp82ff5qy.py, line 5)
+2026-02-26 13:24:46,881 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:24:46,892 - INFO - Iteration 17: Program 17a2cc97-0bea-45b5-a42e-1d0e85d0629a (parent: 09af16a0-fa86-4e65-abc7-b66941efe5f2) completed in 77.87s
+2026-02-26 13:24:46,893 - INFO - Metrics: combined_score=0.0000, error=invalid decimal literal (tmpp82ff5qy.py, line 5)
+2026-02-26 13:24:53,854 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:24:53,858 - INFO - Evaluated program 92cc6d71-ec3b-418f-85c2-f39e10af978a in 0.00s: combined_score=0.0000, error=invalid syntax (tmpxzo1o4_7.py, line 1)
+2026-02-26 13:24:53,859 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:24:53,862 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 3, 'diversity': 3}
+2026-02-26 13:24:53,862 - INFO - Iteration 18: Program 92cc6d71-ec3b-418f-85c2-f39e10af978a (parent: 553bc5f4-406b-419c-ae52-ba9ccfe7de26) completed in 82.56s
+2026-02-26 13:24:53,862 - INFO - Metrics: combined_score=0.0000, error=invalid syntax (tmpxzo1o4_7.py, line 1)
+2026-02-26 13:25:23,928 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:25:24,155 - INFO - Evaluated program 11db581e-863c-4f84-9188-70985f4ed033 in 0.23s: num_points=288.0000, combined_score=0.4857, eval_time=0.1561
+2026-02-26 13:25:24,156 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:25:24,167 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 4}
+2026-02-26 13:25:24,167 - INFO - New best program 11db581e-863c-4f84-9188-70985f4ed033 replaces 4506f0aa-2335-4b27-8f88-5376df976e97 (combined_score: 0.1248 → 0.4857, +0.3609)
+2026-02-26 13:25:24,167 - INFO - Iteration 19: Program 11db581e-863c-4f84-9188-70985f4ed033 (parent: 553bc5f4-406b-419c-ae52-ba9ccfe7de26) completed in 41.34s
+2026-02-26 13:25:24,167 - INFO - Metrics: num_points=288.0000, combined_score=0.4857, eval_time=0.1561
+2026-02-26 13:25:24,167 - INFO - 🌟 New best solution found at iteration 19: 11db581e-863c-4f84-9188-70985f4ed033
+2026-02-26 13:25:32,835 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:25:33,076 - INFO - Evaluated program aa093a57-9b25-4d39-9e64-fb5725bfb9c6 in 0.24s: num_points=207.0000, combined_score=0.3491, eval_time=0.1920
+2026-02-26 13:25:33,077 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:25:33,086 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 6}
+2026-02-26 13:25:33,086 - INFO - Iteration 22: Program aa093a57-9b25-4d39-9e64-fb5725bfb9c6 (parent: 553bc5f4-406b-419c-ae52-ba9ccfe7de26) completed in 8.92s
+2026-02-26 13:25:33,086 - INFO - Metrics: num_points=207.0000, combined_score=0.3491, eval_time=0.1920
+2026-02-26 13:25:59,893 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:26:00,069 - INFO - Evaluated program c8158560-faf0-449a-94b8-759dd1b9ba74 in 0.17s: num_points=255.0000, combined_score=0.4300, eval_time=0.1102
+2026-02-26 13:26:00,070 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:26:00,077 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 7}
+2026-02-26 13:26:00,078 - INFO - Iteration 21: Program c8158560-faf0-449a-94b8-759dd1b9ba74 (parent: 4d1260a6-d065-4096-a61d-6a96e7c88b33) completed in 66.21s
+2026-02-26 13:26:00,078 - INFO - Metrics: num_points=255.0000, combined_score=0.4300, eval_time=0.1102
+2026-02-26 13:26:07,562 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:26:07,565 - INFO - Evaluated program f99710d0-776c-404b-9534-0ee6c22df742 in 0.00s: combined_score=0.0000, error=unterminated string literal (detected at line 12) (tmp1wkqgl_1.py, line 12)
+2026-02-26 13:26:07,566 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:26:07,570 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 3, 'diversity': 2}
+2026-02-26 13:26:07,570 - INFO - Iteration 20: Program f99710d0-776c-404b-9534-0ee6c22df742 (parent: b70841c8-f63e-4337-826e-cdb6f9bfd6e6) completed in 80.68s
+2026-02-26 13:26:07,570 - INFO - Metrics: combined_score=0.0000, error=unterminated string literal (detected at line 12) (tmp1wkqgl_1.py, line 12)
+2026-02-26 13:26:07,570 - INFO - Checkpoint interval reached at iteration 20
+2026-02-26 13:26:07,570 - INFO - Island Status:
+2026-02-26 13:26:07,570 - INFO -  * Island 0: 23 programs, best=0.4857, avg=0.0714, diversity=388.53, gen=22 (best: 11db581e-863c-4f84-9188-70985f4ed033)
+2026-02-26 13:26:07,570 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:26:07,570 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:26:07,583 - INFO - Saved database with 23 programs to experiments/factorial_ab_kissing/control_full_run_200/checkpoints/checkpoint_20
+2026-02-26 13:26:07,583 - INFO - Saved best program at checkpoint 20 with metrics: num_points=288.0000, combined_score=0.4857, eval_time=0.1561
+2026-02-26 13:26:07,583 - INFO - Saved checkpoint at iteration 20 to experiments/factorial_ab_kissing/control_full_run_200/checkpoints/checkpoint_20
+2026-02-26 13:26:08,286 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:26:08,452 - INFO - Evaluated program 82eda46b-474f-4dc1-92a7-3cce37c3b2aa in 0.17s: num_points=230.0000, combined_score=0.3879, eval_time=0.1205
+2026-02-26 13:26:08,454 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:26:08,456 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 4}
+2026-02-26 13:26:08,456 - INFO - Iteration 24: Program 82eda46b-474f-4dc1-92a7-3cce37c3b2aa (parent: 7e891e97-2b00-461f-bdf0-855a1da6e02f) completed in 8.38s
+2026-02-26 13:26:08,456 - INFO - Metrics: num_points=230.0000, combined_score=0.3879, eval_time=0.1205
+2026-02-26 13:26:15,611 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:26:15,696 - INFO - Evaluated program 97b259ef-3618-4735-8b4b-dbabb5804e94 in 0.08s: num_points=256.0000, combined_score=0.4317, eval_time=0.0273
+2026-02-26 13:26:15,697 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:26:15,700 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 7, 'diversity': 2} (fitness: 0.000 -> 0.432)
+2026-02-26 13:26:15,700 - INFO - Iteration 25: Program 97b259ef-3618-4735-8b4b-dbabb5804e94 (parent: 09af16a0-fa86-4e65-abc7-b66941efe5f2) completed in 8.13s
+2026-02-26 13:26:15,700 - INFO - Metrics: num_points=256.0000, combined_score=0.4317, eval_time=0.0273
+2026-02-26 13:26:48,737 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:26:48,739 - INFO - Evaluated program bdd63c75-c4c0-4b21-a646-6cfe95228075 in 0.00s: combined_score=0.0000, error=invalid decimal literal (tmpbh4w8yti.py, line 15)
+2026-02-26 13:26:48,740 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:26:48,746 - INFO - Iteration 23: Program bdd63c75-c4c0-4b21-a646-6cfe95228075 (parent: de6fe1fa-8294-4593-8042-8df9559b9f30) completed in 75.66s
+2026-02-26 13:26:48,746 - INFO - Metrics: combined_score=0.0000, error=invalid decimal literal (tmpbh4w8yti.py, line 15)
+2026-02-26 13:27:33,469 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:27:33,717 - INFO - Evaluated program d084506d-d204-4447-83c3-7f58c116fb42 in 0.25s: num_points=341.0000, combined_score=0.5750, eval_time=0.1508
+2026-02-26 13:27:33,718 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:27:33,726 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 8, 'diversity': 6}
+2026-02-26 13:27:33,726 - INFO - New best program d084506d-d204-4447-83c3-7f58c116fb42 replaces 11db581e-863c-4f84-9188-70985f4ed033 (combined_score: 0.4857 → 0.5750, +0.0894)
+2026-02-26 13:27:33,726 - INFO - Iteration 26: Program d084506d-d204-4447-83c3-7f58c116fb42 (parent: 92cc6d71-ec3b-418f-85c2-f39e10af978a) completed in 85.26s
+2026-02-26 13:27:33,726 - INFO - Metrics: num_points=341.0000, combined_score=0.5750, eval_time=0.1508
+2026-02-26 13:27:33,726 - INFO - 🌟 New best solution found at iteration 26: d084506d-d204-4447-83c3-7f58c116fb42
+2026-02-26 13:27:35,823 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:27:36,045 - INFO - Evaluated program c0d15a58-c1c4-4646-af98-3b86f411dcda in 0.22s: num_points=288.0000, combined_score=0.4857, eval_time=0.1494
+2026-02-26 13:27:36,046 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:27:36,057 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 8, 'diversity': 5}
+2026-02-26 13:27:36,057 - INFO - Iteration 28: Program c0d15a58-c1c4-4646-af98-3b86f411dcda (parent: 553bc5f4-406b-419c-ae52-ba9ccfe7de26) completed in 47.31s
+2026-02-26 13:27:36,057 - INFO - Metrics: num_points=288.0000, combined_score=0.4857, eval_time=0.1494
+2026-02-26 13:27:37,135 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:27:37,207 - INFO - Evaluated program b8293da1-a065-45cc-aa61-4e023adc7c8a in 0.07s: num_points=259.0000, combined_score=0.4368, eval_time=0.0158
+2026-02-26 13:27:37,209 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:27:37,218 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 9}
+2026-02-26 13:27:37,218 - INFO - Iteration 27: Program b8293da1-a065-45cc-aa61-4e023adc7c8a (parent: 45379605-e242-489e-bccc-e1f2b9024f3e) completed in 81.51s
+2026-02-26 13:27:37,218 - INFO - Metrics: num_points=259.0000, combined_score=0.4368, eval_time=0.0158
+2026-02-26 13:28:15,510 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:28:15,733 - INFO - Evaluated program c232a550-623a-4be9-9805-017e9118551a in 0.22s: num_points=288.0000, combined_score=0.4857, eval_time=0.1541
+2026-02-26 13:28:15,734 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:28:15,739 - INFO - Iteration 29: Program c232a550-623a-4be9-9805-017e9118551a (parent: b18f1e42-c41e-44b7-a203-c5e9412fab3a) completed in 42.02s
+2026-02-26 13:28:15,739 - INFO - Metrics: num_points=288.0000, combined_score=0.4857, eval_time=0.1541
+2026-02-26 13:28:24,726 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:28:24,827 - INFO - Evaluated program 93604a0a-26b6-45bb-b508-7b02929fe305 in 0.10s: num_points=296.0000, combined_score=0.4992, eval_time=0.0266
+2026-02-26 13:28:24,828 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:28:24,839 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 8, 'diversity': 5} (fitness: 0.486 -> 0.499)
+2026-02-26 13:28:24,839 - INFO - Iteration 31: Program 93604a0a-26b6-45bb-b508-7b02929fe305 (parent: 11db581e-863c-4f84-9188-70985f4ed033) completed in 47.62s
+2026-02-26 13:28:24,839 - INFO - Metrics: num_points=296.0000, combined_score=0.4992, eval_time=0.0266
+2026-02-26 13:28:33,029 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:28:33,131 - INFO - Evaluated program c69e78ea-2b09-4fe2-83ba-ea0fcf6b6040 in 0.10s: num_points=296.0000, combined_score=0.4992, eval_time=0.0278
+2026-02-26 13:28:33,133 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:28:33,139 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 3}
+2026-02-26 13:28:33,139 - INFO - Iteration 30: Program c69e78ea-2b09-4fe2-83ba-ea0fcf6b6040 (parent: 11db581e-863c-4f84-9188-70985f4ed033) completed in 57.09s
+2026-02-26 13:28:33,139 - INFO - Metrics: num_points=296.0000, combined_score=0.4992, eval_time=0.0278
+2026-02-26 13:28:33,139 - INFO - Checkpoint interval reached at iteration 30
+2026-02-26 13:28:33,140 - INFO - Island Status:
+2026-02-26 13:28:33,140 - INFO -  * Island 0: 30 programs, best=0.5750, avg=0.1653, diversity=388.53, gen=31 (best: d084506d-d204-4447-83c3-7f58c116fb42)
+2026-02-26 13:28:33,140 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:28:33,140 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:28:33,153 - INFO - Saved database with 32 programs to experiments/factorial_ab_kissing/control_full_run_200/checkpoints/checkpoint_30
+2026-02-26 13:28:33,153 - INFO - Saved best program at checkpoint 30 with metrics: num_points=341.0000, combined_score=0.5750, eval_time=0.1508
+2026-02-26 13:28:33,153 - INFO - Saved checkpoint at iteration 30 to experiments/factorial_ab_kissing/control_full_run_200/checkpoints/checkpoint_30
+2026-02-26 13:29:05,997 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:29:06,209 - INFO - Evaluated program 92ae738d-bbdf-4ca3-b133-81d86df8c927 in 0.21s: num_points=438.0000, combined_score=0.7386, eval_time=0.0579
+2026-02-26 13:29:06,211 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:29:06,214 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 8, 'diversity': 6} (fitness: 0.575 -> 0.739)
+2026-02-26 13:29:06,214 - INFO - New best program 92ae738d-bbdf-4ca3-b133-81d86df8c927 replaces d084506d-d204-4447-83c3-7f58c116fb42 (combined_score: 0.5750 → 0.7386, +0.1636)
+2026-02-26 13:29:06,215 - INFO - Iteration 32: Program 92ae738d-bbdf-4ca3-b133-81d86df8c927 (parent: 17a2cc97-0bea-45b5-a42e-1d0e85d0629a) completed in 50.48s
+2026-02-26 13:29:06,215 - INFO - Metrics: num_points=438.0000, combined_score=0.7386, eval_time=0.0579
+2026-02-26 13:29:06,215 - INFO - 🌟 New best solution found at iteration 32: 92ae738d-bbdf-4ca3-b133-81d86df8c927
+2026-02-26 13:29:27,011 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:29:27,155 - INFO - Evaluated program dc97fdd3-a6f1-4fc0-82bf-d4098544797b in 0.14s: num_points=341.0000, combined_score=0.5750, eval_time=0.0458
+2026-02-26 13:29:27,157 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:29:27,160 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 7, 'diversity': 2} (fitness: 0.432 -> 0.575)
+2026-02-26 13:29:27,160 - INFO - Iteration 34: Program dc97fdd3-a6f1-4fc0-82bf-d4098544797b (parent: 45379605-e242-489e-bccc-e1f2b9024f3e) completed in 54.02s
+2026-02-26 13:29:27,160 - INFO - Metrics: num_points=341.0000, combined_score=0.5750, eval_time=0.0458
+2026-02-26 13:29:36,405 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:29:36,490 - INFO - Evaluated program ac888b27-2986-4d9d-ae51-55b323463bda in 0.08s: num_points=267.0000, combined_score=0.4503, eval_time=0.0227
+2026-02-26 13:29:36,491 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:29:36,501 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 1}
+2026-02-26 13:29:36,501 - INFO - Iteration 36: Program ac888b27-2986-4d9d-ae51-55b323463bda (parent: f99710d0-776c-404b-9534-0ee6c22df742) completed in 9.33s
+2026-02-26 13:29:36,501 - INFO - Metrics: num_points=267.0000, combined_score=0.4503, eval_time=0.0227
+2026-02-26 13:29:43,941 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:29:43,944 - INFO - Evaluated program 2c2dccc2-aebf-4c0b-8ddd-bd9071673834 in 0.00s: combined_score=0.0000, error=invalid syntax (tmpokpdlqcp.py, line 1)
+2026-02-26 13:29:43,945 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:29:43,947 - INFO - Iteration 33: Program 2c2dccc2-aebf-4c0b-8ddd-bd9071673834 (parent: 84b2c412-811c-47a8-8be6-f9276296506a) completed in 79.12s
+2026-02-26 13:29:43,947 - INFO - Metrics: combined_score=0.0000, error=invalid syntax (tmpokpdlqcp.py, line 1)
+2026-02-26 13:30:22,267 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:30:22,505 - INFO - Evaluated program 19683afa-db1f-4a55-9a05-f2277f6693f6 in 0.24s: num_points=302.0000, combined_score=0.5093, eval_time=0.1565
+2026-02-26 13:30:22,507 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:30:22,509 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 9, 'diversity': 9} (fitness: 0.437 -> 0.509)
+2026-02-26 13:30:22,509 - INFO - Iteration 35: Program 19683afa-db1f-4a55-9a05-f2277f6693f6 (parent: d084506d-d204-4447-83c3-7f58c116fb42) completed in 76.30s
+2026-02-26 13:30:22,509 - INFO - Metrics: num_points=302.0000, combined_score=0.5093, eval_time=0.1565
+2026-02-26 13:30:28,549 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:30:28,751 - INFO - Evaluated program 784afe27-477d-4554-97b6-37dca0a23cbc in 0.20s: num_points=438.0000, combined_score=0.7386, eval_time=0.0368
+2026-02-26 13:30:28,752 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:30:28,763 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 4, 'diversity': 1}
+2026-02-26 13:30:28,763 - INFO - Iteration 39: Program 784afe27-477d-4554-97b6-37dca0a23cbc (parent: aa093a57-9b25-4d39-9e64-fb5725bfb9c6) completed in 6.24s
+2026-02-26 13:30:28,763 - INFO - Metrics: num_points=438.0000, combined_score=0.7386, eval_time=0.0368
+2026-02-26 13:30:46,666 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:30:46,748 - INFO - Evaluated program 3ac4430e-5fdb-4f5c-bedc-9ed70889f2ec in 0.07s: num_points=254.0000, combined_score=0.4283, eval_time=0.0014
+2026-02-26 13:30:46,750 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:30:46,759 - INFO - Iteration 37: Program 3ac4430e-5fdb-4f5c-bedc-9ed70889f2ec (parent: d084506d-d204-4447-83c3-7f58c116fb42) completed in 70.26s
+2026-02-26 13:30:46,759 - INFO - Metrics: num_points=254.0000, combined_score=0.4283, eval_time=0.0014
+2026-02-26 13:31:03,961 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:31:04,304 - INFO - Evaluated program 39c6e4cd-f098-461d-afaf-b996a0522dfa in 0.34s: num_points=438.0000, combined_score=0.7386, eval_time=0.1854
+2026-02-26 13:31:04,306 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:31:04,312 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 9, 'diversity': 9} (fitness: 0.509 -> 0.739)
+2026-02-26 13:31:04,312 - INFO - Iteration 38: Program 39c6e4cd-f098-461d-afaf-b996a0522dfa (parent: 45379605-e242-489e-bccc-e1f2b9024f3e) completed in 80.36s
+2026-02-26 13:31:04,312 - INFO - Metrics: num_points=438.0000, combined_score=0.7386, eval_time=0.1854
+2026-02-26 13:31:12,138 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:31:12,359 - INFO - Evaluated program 4c1980c9-b708-4033-9efc-7ac035ef19b8 in 0.22s: num_points=438.0000, combined_score=0.7386, eval_time=0.0597
+2026-02-26 13:31:12,360 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:31:12,364 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 3, 'diversity': 1} (fitness: 0.000 -> 0.739)
+2026-02-26 13:31:12,364 - INFO - Population size (41) exceeds limit (40), removing 1 programs
+2026-02-26 13:31:12,364 - INFO - Population size after cleanup: 40
+2026-02-26 13:31:12,364 - INFO - Iteration 42: Program 4c1980c9-b708-4033-9efc-7ac035ef19b8 (parent: c232a550-623a-4be9-9805-017e9118551a) completed in 8.05s
+2026-02-26 13:31:12,364 - INFO - Metrics: num_points=438.0000, combined_score=0.7386, eval_time=0.0597
+2026-02-26 13:31:43,390 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:31:43,608 - INFO - Evaluated program a32de5d5-1c60-48cd-8b6d-fd3749d574e5 in 0.21s: num_points=438.0000, combined_score=0.7386, eval_time=0.0592
+2026-02-26 13:31:43,609 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:31:43,620 - INFO - Population size (41) exceeds limit (40), removing 1 programs
+2026-02-26 13:31:43,620 - INFO - Population size after cleanup: 40
+2026-02-26 13:31:43,620 - INFO - Iteration 40: Program a32de5d5-1c60-48cd-8b6d-fd3749d574e5 (parent: 86b1b116-9175-4fe9-9c99-ffd5b0b09f64) completed in 74.86s
+2026-02-26 13:31:43,620 - INFO - Metrics: num_points=438.0000, combined_score=0.7386, eval_time=0.0592
+2026-02-26 13:31:43,620 - INFO - Checkpoint interval reached at iteration 40
+2026-02-26 13:31:43,620 - INFO - Island Status:
+2026-02-26 13:31:43,620 - INFO -  * Island 0: 33 programs, best=0.7386, avg=0.2625, diversity=465.28, gen=41 (best: 92ae738d-bbdf-4ca3-b133-81d86df8c927)
+2026-02-26 13:31:43,620 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:31:43,620 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:31:43,638 - INFO - Saved database with 40 programs to experiments/factorial_ab_kissing/control_full_run_200/checkpoints/checkpoint_40
+2026-02-26 13:31:43,639 - INFO - Saved best program at checkpoint 40 with metrics: num_points=438.0000, combined_score=0.7386, eval_time=0.0579
+2026-02-26 13:31:43,639 - INFO - Saved checkpoint at iteration 40 to experiments/factorial_ab_kissing/control_full_run_200/checkpoints/checkpoint_40
+2026-02-26 13:31:44,320 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:31:44,522 - INFO - Evaluated program d6a8ca20-ac57-4781-935f-66f8c5cf02db in 0.20s: num_points=438.0000, combined_score=0.7386, eval_time=0.0434
+2026-02-26 13:31:44,523 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:31:44,534 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 8, 'diversity': 5} (fitness: 0.499 -> 0.739)
+2026-02-26 13:31:44,534 - INFO - Population size (41) exceeds limit (40), removing 1 programs
+2026-02-26 13:31:44,534 - INFO - Population size after cleanup: 40
+2026-02-26 13:31:44,534 - INFO - Iteration 43: Program d6a8ca20-ac57-4781-935f-66f8c5cf02db (parent: 82eda46b-474f-4dc1-92a7-3cce37c3b2aa) completed in 32.16s
+2026-02-26 13:31:44,534 - INFO - Metrics: num_points=438.0000, combined_score=0.7386, eval_time=0.0434
+2026-02-26 13:32:07,197 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:32:07,204 - INFO - Evaluated program f06fcca6-1627-463a-9d89-3ddb7a187e99 in 0.00s: combined_score=0.0000, error=unterminated string literal (detected at line 5) (tmpzuc1esjk.py, line 5)
+2026-02-26 13:32:07,206 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:32:07,211 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 2, 'diversity': 1}
+2026-02-26 13:32:07,212 - INFO - Population size (41) exceeds limit (40), removing 1 programs
+2026-02-26 13:32:07,212 - INFO - Population size after cleanup: 40
+2026-02-26 13:32:07,212 - INFO - Iteration 41: Program f06fcca6-1627-463a-9d89-3ddb7a187e99 (parent: 93604a0a-26b6-45bb-b508-7b02929fe305) completed in 80.45s
+2026-02-26 13:32:07,212 - INFO - Metrics: combined_score=0.0000, error=unterminated string literal (detected at line 5) (tmpzuc1esjk.py, line 5)
+2026-02-26 13:32:13,751 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:32:13,840 - INFO - Evaluated program 44d91ffd-928a-417f-8bd0-899125349b07 in 0.09s: num_points=267.0000, combined_score=0.4503, eval_time=0.0227
+2026-02-26 13:32:13,841 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:32:13,846 - INFO - Population size (41) exceeds limit (40), removing 1 programs
+2026-02-26 13:32:13,846 - INFO - Population size after cleanup: 40
+2026-02-26 13:32:13,846 - INFO - Iteration 46: Program 44d91ffd-928a-417f-8bd0-899125349b07 (parent: 36dc090f-30a6-4a09-84fe-5e73a734c50b) completed in 6.64s
+2026-02-26 13:32:13,846 - INFO - Metrics: num_points=267.0000, combined_score=0.4503, eval_time=0.0227
+2026-02-26 13:32:19,612 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:32:19,858 - INFO - Evaluated program 8c51eb19-98f5-4dc6-95b1-e3be3bdfc19f in 0.24s: num_points=438.0000, combined_score=0.7386, eval_time=0.0868
+2026-02-26 13:32:19,859 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:32:19,868 - WARNING - Parent a6c1c601-a53b-4600-b6b6-aa7a873fcb8e not found, using current_island 0
+2026-02-26 13:32:19,869 - INFO - Population size (41) exceeds limit (40), removing 1 programs
+2026-02-26 13:32:19,869 - INFO - Population size after cleanup: 40
+2026-02-26 13:32:19,869 - INFO - Iteration 47: Program 8c51eb19-98f5-4dc6-95b1-e3be3bdfc19f (parent: a6c1c601-a53b-4600-b6b6-aa7a873fcb8e) completed in 6.02s
+2026-02-26 13:32:19,869 - INFO - Metrics: num_points=438.0000, combined_score=0.7386, eval_time=0.0868
+2026-02-26 13:32:37,366 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:32:37,415 - INFO - Evaluated program f20c3f04-1d9a-48d7-8cd9-44cf50033973 in 0.05s: num_points=230.0000, combined_score=0.3879, eval_time=0.0011
+2026-02-26 13:32:37,417 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:32:37,427 - INFO - Population size (41) exceeds limit (40), removing 1 programs
+2026-02-26 13:32:37,427 - INFO - Population size after cleanup: 40
+2026-02-26 13:32:37,427 - INFO - Iteration 44: Program f20c3f04-1d9a-48d7-8cd9-44cf50033973 (parent: dc97fdd3-a6f1-4fc0-82bf-d4098544797b) completed in 53.81s
+2026-02-26 13:32:37,427 - INFO - Metrics: num_points=230.0000, combined_score=0.3879, eval_time=0.0011
+2026-02-26 13:32:44,448 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:32:44,645 - INFO - Evaluated program 44fc857f-c352-48ac-901d-67de973a3704 in 0.20s: num_points=438.0000, combined_score=0.7386, eval_time=0.0414
+2026-02-26 13:32:44,647 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 13:32:44,650 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 5, 'diversity': 1} (fitness: 0.450 -> 0.739)
+2026-02-26 13:32:44,650 - INFO - Population size (41) exceeds limit (40), removing 1 programs
+2026-02-26 13:32:44,650 - INFO - Population size after cleanup: 40
+2026-02-26 13:32:44,650 - INFO - Iteration 49: Program 44fc857f-c352-48ac-901d-67de973a3704 (parent: 4c1980c9-b708-4033-9efc-7ac035ef19b8) completed in 7.23s
+2026-02-26 13:32:44,650 - INFO - Metrics: num_points=438.0000, combined_score=0.7386, eval_time=0.0414
+2026-02-26 13:32:50,922 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:32:51,131 - INFO - Evaluated program 50f1f061-753f-4980-abdf-6483077e20d7 in 0.21s: num_points=438.0000, combined_score=0.7386, eval_time=0.0537
+2026-02-26 13:32:51,136 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 6, 'diversity': 3}
+2026-02-26 13:32:51,136 - INFO - Population size (41) exceeds limit (40), removing 1 programs
+2026-02-26 13:32:51,136 - INFO - Population size after cleanup: 40
+2026-02-26 13:32:51,136 - INFO - Iteration 50: Program 50f1f061-753f-4980-abdf-6483077e20d7 (parent: de6fe1fa-8294-4593-8042-8df9559b9f30) completed in 6.48s
+2026-02-26 13:32:51,136 - INFO - Metrics: num_points=438.0000, combined_score=0.7386, eval_time=0.0537
+2026-02-26 13:32:51,136 - INFO - Checkpoint interval reached at iteration 50
+2026-02-26 13:32:51,137 - INFO - Island Status:
+2026-02-26 13:32:51,137 - INFO -  * Island 0: 32 programs, best=0.7386, avg=0.3595, diversity=441.10, gen=48 (best: 92ae738d-bbdf-4ca3-b133-81d86df8c927)
+2026-02-26 13:32:51,137 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:32:51,137 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:32:51,153 - INFO - Saved database with 40 programs to experiments/factorial_ab_kissing/control_full_run_200/checkpoints/checkpoint_50
+2026-02-26 13:32:51,153 - INFO - Saved best program at checkpoint 50 with metrics: num_points=438.0000, combined_score=0.7386, eval_time=0.0579
+2026-02-26 13:32:51,153 - INFO - Saved checkpoint at iteration 50 to experiments/factorial_ab_kissing/control_full_run_200/checkpoints/checkpoint_50
+2026-02-26 13:32:52,816 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:32:53,016 - INFO - Evaluated program 7186010f-b382-4502-a438-86398f435f52 in 0.20s: num_points=438.0000, combined_score=0.7386, eval_time=0.0408
+2026-02-26 13:32:53,018 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 7, 'diversity': 4} (fitness: 0.388 -> 0.739)
+2026-02-26 13:32:53,018 - INFO - Population size (41) exceeds limit (40), removing 1 programs
+2026-02-26 13:32:53,019 - INFO - Population size after cleanup: 40
+2026-02-26 13:32:53,019 - INFO - Iteration 45: Program 7186010f-b382-4502-a438-86398f435f52 (parent: de6fe1fa-8294-4593-8042-8df9559b9f30) completed in 68.49s
+2026-02-26 13:32:53,019 - INFO - Metrics: num_points=438.0000, combined_score=0.7386, eval_time=0.0408
+2026-02-26 13:33:17,756 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:33:18,117 - INFO - Evaluated program 213e8f05-6402-49c5-8ee4-e0f7949d6ec6 in 0.36s: num_points=438.0000, combined_score=0.7386, eval_time=0.2044
+2026-02-26 13:33:18,122 - INFO - Population size (41) exceeds limit (40), removing 1 programs
+2026-02-26 13:33:18,122 - INFO - Population size after cleanup: 40
+2026-02-26 13:33:18,122 - INFO - Performing migration at iteration 48
+2026-02-26 13:33:18,122 - INFO - Performing migration between islands
+2026-02-26 13:33:18,122 - INFO - New MAP-Elites cell occupied in island 1: {'complexity': 7, 'diversity': 5}
+2026-02-26 13:33:18,122 - INFO - Population size (41) exceeds limit (40), removing 1 programs
+2026-02-26 13:33:18,122 - INFO - Population size after cleanup: 40
+2026-02-26 13:33:18,122 - INFO - Program 48107225 migrated to island 1
+2026-02-26 13:33:18,122 - INFO - New MAP-Elites cell occupied in island 2: {'complexity': 7, 'diversity': 5}
+2026-02-26 13:33:18,122 - INFO - Population size (41) exceeds limit (40), removing 1 programs
+2026-02-26 13:33:18,122 - INFO - Population size after cleanup: 40
+2026-02-26 13:33:18,122 - INFO - Program 9adf93b7 migrated to island 2
+2026-02-26 13:33:18,122 - INFO - New MAP-Elites cell occupied in island 1: {'complexity': 7, 'diversity': 4}
+2026-02-26 13:33:18,122 - INFO - Population size (41) exceeds limit (40), removing 1 programs
+2026-02-26 13:33:18,122 - INFO - Population size after cleanup: 40
+2026-02-26 13:33:18,122 - INFO - Program d7cddb52 migrated to island 1
+2026-02-26 13:33:18,122 - INFO - New MAP-Elites cell occupied in island 2: {'complexity': 7, 'diversity': 4}
+2026-02-26 13:33:18,122 - INFO - Population size (41) exceeds limit (40), removing 1 programs
+2026-02-26 13:33:18,122 - INFO - Population size after cleanup: 40
+2026-02-26 13:33:18,122 - INFO - Program 7a82b5c6 migrated to island 2
+2026-02-26 13:33:18,122 - INFO - New MAP-Elites cell occupied in island 1: {'complexity': 4, 'diversity': 1}
+2026-02-26 13:33:18,122 - INFO - Population size (41) exceeds limit (40), removing 1 programs
+2026-02-26 13:33:18,122 - INFO - Population size after cleanup: 40
+2026-02-26 13:33:18,122 - INFO - Program 480235f3 migrated to island 1
+2026-02-26 13:33:18,123 - INFO - New MAP-Elites cell occupied in island 2: {'complexity': 4, 'diversity': 1}
+2026-02-26 13:33:18,123 - INFO - Population size (41) exceeds limit (40), removing 1 programs
+2026-02-26 13:33:18,123 - INFO - Population size after cleanup: 40
+2026-02-26 13:33:18,123 - INFO - Program a383b830 migrated to island 2
+2026-02-26 13:33:18,123 - INFO - Migration completed at generation 50
+2026-02-26 13:33:18,123 - INFO - Island Status:
+2026-02-26 13:33:18,123 - INFO -  * Island 0: 26 programs, best=0.7386, avg=0.4844, diversity=643.60, gen=50 (best: 92ae738d-bbdf-4ca3-b133-81d86df8c927)
+2026-02-26 13:33:18,123 - INFO -    Island 1: 3 programs, best=0.7386, avg=0.7386, diversity=219.53, gen=0 (best: 48107225-9d9d-4167-87ec-09637b10d8a7)
+2026-02-26 13:33:18,123 - INFO -    Island 2: 3 programs, best=0.7386, avg=0.7386, diversity=219.53, gen=0 (best: 9adf93b7-5655-4db7-9b46-55397f030ee2)
+2026-02-26 13:33:18,123 - INFO - Iteration 48: Program 213e8f05-6402-49c5-8ee4-e0f7949d6ec6 (parent: 36dc090f-30a6-4a09-84fe-5e73a734c50b) completed in 58.26s
+2026-02-26 13:33:18,124 - INFO - Metrics: num_points=438.0000, combined_score=0.7386, eval_time=0.2044
+2026-02-26 13:33:18,124 - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-02-26 13:33:18,135 - INFO - Saved database with 40 programs to experiments/factorial_ab_kissing/control_full_run_200/checkpoints/checkpoint_50
+2026-02-26 13:33:18,135 - INFO - Saved best program at checkpoint 50 with metrics: num_points=438.0000, combined_score=0.7386, eval_time=0.0579
+2026-02-26 13:33:18,135 - INFO - Saved checkpoint at iteration 50 to experiments/factorial_ab_kissing/control_full_run_200/checkpoints/checkpoint_50
+2026-02-26 13:33:18,269 - INFO - Stopped process pool
+2026-02-26 13:33:18,269 - INFO - Using tracked best program: 92ae738d-bbdf-4ca3-b133-81d86df8c927
+2026-02-26 13:33:18,269 - INFO - Evolution complete. Best program has metrics: num_points=438.0000, combined_score=0.7386, eval_time=0.0579
+2026-02-26 13:33:18,270 - INFO - Saved best program to experiments/factorial_ab_kissing/control_full_run_200/best/best_program.py with program info to experiments/factorial_ab_kissing/control_full_run_200/best/best_program_info.json

@@ -1,0 +1,107 @@
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 evaluation failed: invalid syntax (tmprv6ab8o5.py, line 98)
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 367, in evaluate_stage1
+    spec.loader.exec_module(program)
+  File "<frozen importlib._bootstrap_external>", line 936, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1074, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1004, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmprv6ab8o5.py", line 98
+    ```
+    ^
+SyntaxError: invalid syntax
+
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 evaluation failed: name 'evaluate_function' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 390, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 46, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpverxxjcm.py", line 127, in run_search
+    return search_algorithm()
+           ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpverxxjcm.py", line 31, in search_algorithm
+    current_value = evaluate_function(current_x, current_y)
+                    ^^^^^^^^^^^^^^^^^
+NameError: name 'evaluate_function' is not defined
+
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 evaluation failed: invalid syntax (tmp85vrmgif.py, line 133)
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 367, in evaluate_stage1
+    spec.loader.exec_module(program)
+  File "<frozen importlib._bootstrap_external>", line 936, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1074, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1004, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp85vrmgif.py", line 133
+    ```
+    ^
+SyntaxError: invalid syntax
+
+Stage 1 evaluation failed: name 'evaluate_function' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 390, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 46, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmplnvrv546.py", line 98, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmplnvrv546.py", line 39, in search_algorithm
+    best_value = evaluate_function(best_x, best_y)
+                 ^^^^^^^^^^^^^^^^^
+NameError: name 'evaluate_function' is not defined
+
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 validation: Program does not have 'run_search' function
+Stage 1 evaluation failed: invalid syntax (tmpgobxz_eq.py, line 102)
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 367, in evaluate_stage1
+    spec.loader.exec_module(program)
+  File "<frozen importlib._bootstrap_external>", line 936, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1074, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1004, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpgobxz_eq.py", line 102
+    ```
+    ^
+SyntaxError: invalid syntax
+
+
+Evolution complete!
+Best program metrics:
+  runs_successfully: 1.0000
+  value_score: 0.9997
+  distance_score: 0.9986
+  combined_score: 1.4991
+  reliability_score: 1.0000
+
+Latest checkpoint saved at: experiments/factorial_ab_funcmin/treatment_full_run_201/checkpoints/checkpoint_20
+To resume, use: --checkpoint experiments/factorial_ab_funcmin/treatment_full_run_201/checkpoints/checkpoint_20

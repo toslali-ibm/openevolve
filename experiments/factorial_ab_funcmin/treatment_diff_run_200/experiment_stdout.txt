@@ -1,0 +1,35 @@
+Stage 1 evaluation failed: not enough values to unpack (expected 3, got 2)
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 390, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 46, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp8lg9mll7.py", line 65, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp8lg9mll7.py", line 17, in search_algorithm
+    curr_x, curr_y, curr_value = np.random.uniform(low, high, 2) # Initialize randomly for safety
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 2)
+
+
+Evolution complete!
+Best program metrics:
+  runs_successfully: 1.0000
+  value_score: 0.9997
+  distance_score: 0.9995
+  combined_score: 1.4995
+  reliability_score: 1.0000
+
+Latest checkpoint saved at: experiments/factorial_ab_funcmin/treatment_diff_run_200/checkpoints/checkpoint_20
+To resume, use: --checkpoint experiments/factorial_ab_funcmin/treatment_diff_run_200/checkpoints/checkpoint_20

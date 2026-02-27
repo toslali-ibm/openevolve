@@ -1,0 +1,483 @@
+{
+  "baseline": {
+    "sum_radii": 0.9598,
+    "target_ratio": 0.3642,
+    "combined_score": 0.3642
+  },
+  "entries": [
+    {
+      "timestamp": "2026-02-26T16:56:53.151058+00:00",
+      "overall_combined_score": 0.6783180556535733,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one additional circle improves packing density.",
+          "mechanism": "Grid-based initialization provides uniform distribution, and for n=26, a 5x5 base (25 circles) plus one central or edge-filler circle minimizes wasted space.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.0,
+          "actual": 1.7873680766471653,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 86.22297110305954,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of centers increases radii sum.",
+          "mechanism": "Moving centers away from their nearest neighbors iteratively allows radii to expand, balancing local constraints more effectively than a static ring.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.6783180556535733,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 86.24877969620353,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:56:53.352722+00:00",
+      "overall_combined_score": 0.6783180556535733,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one additional circle improves packing density.",
+          "mechanism": "Grid-based initialization provides uniform distribution, and for n=26, a 5x5 base (25 circles) plus one central or edge-filler circle minimizes wasted space.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.0,
+          "actual": 1.7873680766471653,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 86.22297110305954,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of centers increases radii sum.",
+          "mechanism": "Moving centers away from their nearest neighbors iteratively allows radii to expand, balancing local constraints more effectively than a static ring.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.6783180556535733,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 86.24877969620353,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:06.259604+00:00",
+      "overall_combined_score": 0.6783180556535733,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one additional circle improves packing density.",
+          "mechanism": "Grid-based initialization provides uniform distribution, and for n=26, a 5x5 base (25 circles) plus one central or edge-filler circle minimizes wasted space.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.0,
+          "actual": 1.7873680766471653,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 86.22297110305954,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of centers increases radii sum.",
+          "mechanism": "Moving centers away from their nearest neighbors iteratively allows radii to expand, balancing local constraints more effectively than a static ring.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.6783180556535733,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 86.24877969620353,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:29.856436+00:00",
+      "overall_combined_score": 0.6783180556535733,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Adopting a 5x5 grid initial placement with one extra circle and iterative repulsion of centers will significantly improve the sum of radii.",
+          "mechanism": "The grid provides a more uniform distribution than concentric rings, reducing wasted space. Iterative repulsion then optimizes these initial positions by pushing circles apart, allowing them to expand their radii more effectively while respecting boundary conditions, leading to larger individual radii and a higher total sum.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.0,
+          "actual": 1.7873680766471653,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 86.22297110305954,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Using an iterative shrinking process in compute_max_radii will ensure better utilization of space without overlaps.",
+          "mechanism": "By repeatedly checking and resolving overlaps, even small ones that might be introduced by center adjustments, the algorithm can converge to a more optimal set of radii where circles are tightly packed but still valid. The current code only does one pass, which might leave small overlaps.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.7,
+          "actual": 0.6783180556535733,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 86.24877969620353,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:35.871150+00:00",
+      "overall_combined_score": 0.6783180531388671,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Switching from concentric rings to a 5x5 grid plus one additional circle will significantly improve sum_radii and target_ratio.",
+          "mechanism": "Concentric rings are generally less efficient for square packing than grid-like or hexagonal patterns, especially for n=26. A 5x5 grid provides a better initial distribution, and fixing the bug of only 25 circles will allow all 26 to contribute.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.5,
+          "actual": 1.7873680700209147,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 86.22297041268125,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Introducing an iterative repulsion process for circle centers will further increase sum_radii and target_ratio.",
+          "mechanism": "The repulsion method dynamically adjusts center positions to maximize distances between circles, allowing them to expand more without overlap, thus utilizing available space more effectively.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.6,
+          "actual": 0.6783180531388671,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 86.24877900572955,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 3,
+          "claim": "Iterating the radius shrinkage process in compute_max_radii will ensure tighter packing and higher sum_radii.",
+          "mechanism": "A single pass of shrinkage might not fully resolve all overlaps, especially for a complex packing. Multiple iterations allow radii to relax into their maximum possible sizes without overlap, globally optimizing.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.65,
+          "actual": 0.6783180531388671,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 86.24877900572955,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:47.140246+00:00",
+      "overall_combined_score": 0.6057013679696346,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle is more efficient than concentric rings.",
+          "mechanism": "A regular grid minimizes empty space between circles of equal radii, providing a higher baseline sum_radii than arbitrary rings.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 1.596023104599987,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 66.28704986455377,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Proportional scaling in compute_max_radii is suboptimal; a greedy approach preserves larger radii.",
+          "mechanism": "By assigning radii based on the nearest neighbor distance rather than scaling both, we can maintain the size of \"anchor\" circles.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.5,
+          "actual": 0.6057013679696346,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 66.310095543557,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:48.956632+00:00",
+      "overall_combined_score": 0.4601679735580775,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one additional circle improves packing density.",
+          "mechanism": "Grid-based initialization provides uniform distribution, and for n=26, a 5x5 base (25 circles) plus one central or edge-filler circle minimizes wasted space.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.0,
+          "actual": 1.2125426103255341,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 26.332841250837063,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of centers increases radii sum.",
+          "mechanism": "Moving centers away from their nearest neighbors iteratively allows radii to expand, balancing local constraints more effectively than a static ring.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.4601679735580775,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 26.350349686457292,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:56.217158+00:00",
+      "overall_combined_score": 0.7094312523010385,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle is more efficient than concentric rings.",
+          "mechanism": "A regular grid minimizes empty space between circles of equal radii, providing a higher baseline sum_radii than arbitrary rings.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 1.8693513498132364,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 94.76467491281896,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Proportional scaling in compute_max_radii is suboptimal; a greedy approach preserves larger radii.",
+          "mechanism": "By assigning radii based on the nearest neighbor distance rather than scaling both, we can maintain the size of \"anchor\" circles.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.5,
+          "actual": 0.7094312523010385,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 94.79166729847294,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:58:25.242139+00:00",
+      "overall_combined_score": 0.7368267952194812,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Switching from concentric rings to a 5x5 grid plus one additional circle will significantly improve sum_radii and target_ratio.",
+          "mechanism": "Concentric rings are generally less efficient for square packing than grid-like or hexagonal patterns, especially for n=26. A 5x5 grid provides a better initial distribution, and fixing the bug of only 25 circles will allow all 26 to contribute.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.5,
+          "actual": 1.9415386054033328,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 102.28574759359583,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Introducing an iterative repulsion process for circle centers will further increase sum_radii and target_ratio.",
+          "mechanism": "The repulsion method dynamically adjusts center positions to maximize distances between circles, allowing them to expand more without overlap, thus utilizing available space more effectively.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.6,
+          "actual": 0.7368267952194812,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 102.31378232275705,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 3,
+          "claim": "Iterating the radius shrinkage process in compute_max_radii will ensure tighter packing and higher sum_radii.",
+          "mechanism": "A single pass of shrinkage might not fully resolve all overlaps, especially for a complex packing. Multiple iterations allow radii to relax into their maximum possible sizes without overlap, globally optimizing.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.65,
+          "actual": 0.7368267952194812,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 102.31378232275705,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:58:29.842573+00:00",
+      "overall_combined_score": 0.7361417290745301,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one additional circle improves packing density.",
+          "mechanism": "Grid-based initialization provides uniform distribution, and for n=26, a 5x5 base (25 circles) plus one central or edge-filler circle minimizes wasted space.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.0,
+          "actual": 1.9397334561113868,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 102.09767202660834,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of centers increases radii sum.",
+          "mechanism": "Moving centers away from their nearest neighbors iteratively allows radii to expand, balancing local constraints more effectively than a static ring.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.7361417290745301,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 102.1256806904256,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:58:55.210543+00:00",
+      "overall_combined_score": 0.7094312523010385,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle is more efficient than concentric rings.",
+          "mechanism": "A regular grid minimizes empty space between circles of equal radii, providing a higher baseline sum_radii than arbitrary rings.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 1.8693513498132364,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 94.76467491281896,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Proportional scaling in compute_max_radii is suboptimal; a greedy approach preserves larger radii.",
+          "mechanism": "By assigning radii based on the nearest neighbor distance rather than scaling both, we can maintain the size of \"anchor\" circles.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.5,
+          "actual": 0.7094312523010385,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 94.79166729847294,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:59:02.176493+00:00",
+      "overall_combined_score": 0.6783180531388671,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle is more efficient than concentric rings.",
+          "mechanism": "A regular grid minimizes empty space between circles of equal radii, providing a higher baseline sum_radii than arbitrary rings.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 1.7873680700209147,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 86.22297041268125,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Proportional scaling in compute_max_radii is suboptimal; a greedy approach preserves larger radii.",
+          "mechanism": "By assigning radii based on the nearest neighbor distance rather than scaling both, we can maintain the size of \"anchor\" circles.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.5,
+          "actual": 0.6783180531388671,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 86.24877900572955,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:59:11.886232+00:00",
+      "overall_combined_score": 0.7053344755564656,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one additional circle improves packing density.",
+          "mechanism": "Grid-based initialization provides uniform distribution, and for n=26, a 5x5 base (25 circles) plus one central or edge-filler circle minimizes wasted space.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.0,
+          "actual": 1.8585563430912866,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 93.63996073049454,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of centers increases radii sum.",
+          "mechanism": "Moving centers away from their nearest neighbors iteratively allows radii to expand, balancing local constraints more effectively than a static ring.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.7053344755564656,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 93.66679724230245,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:59:20.882136+00:00",
+      "overall_combined_score": 0.7368267978141813,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one additional circle improves packing density.",
+          "mechanism": "Grid-based initialization provides uniform distribution, and for n=26, a 5x5 base (25 circles) plus one central or edge-filler circle minimizes wasted space.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.0,
+          "actual": 1.9415386122403675,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 102.28574830593536,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of centers increases radii sum.",
+          "mechanism": "Moving centers away from their nearest neighbors iteratively allows radii to expand, balancing local constraints more effectively than a static ring.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.7368267978141813,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 102.31378303519527,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:59:24.601756+00:00",
+      "overall_combined_score": 0.7368267952194812,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle is more efficient than concentric rings.",
+          "mechanism": "A regular grid minimizes empty space between circles of equal radii, providing a higher baseline sum_radii than arbitrary rings.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 1.2,
+          "actual": 1.9415386054033328,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 102.28574759359583,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Proportional scaling in compute_max_radii is suboptimal; a greedy approach preserves larger radii.",
+          "mechanism": "By assigning radii based on the nearest neighbor distance rather than scaling both, we can maintain the size of \"anchor\" circles.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.5,
+          "actual": 0.7368267952194812,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 102.31378232275705,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    }
+  ]
+}

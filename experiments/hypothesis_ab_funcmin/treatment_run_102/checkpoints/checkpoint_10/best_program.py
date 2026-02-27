@@ -1,50 +1,48 @@
 # EVOLVE-BLOCK-START
+# HYPOTHESIS-1: Simulated Annealing with local refinement improves distance_score.
+# MECHANISM-1: Probabilistically accepting worse solutions allows the search to escape
+#   shallow local minima, while a cooling schedule narrows focus on the global basin.
+# EXPECT-1: distance_score > 0.85
+# HYPOTHESIS-2: Using a hybrid of global exploration and local Gaussian mutation
+# MECHANISM-2: Global uniform sampling finds potential basins, while Gaussian steps
+#   converge precisely to the actual minimum within those basins.
+# EXPECT-2: combined_score > 1.35
 """Function minimization example for OpenEvolve"""
 import numpy as np
 
 
 def search_algorithm(iterations=1000, bounds=(-5, 5)):
     """
-    Hybrid Particle Swarm and Simulated Annealing with adaptive cooling.
+    Hybrid Simulated Annealing and Random Search.
     """
     low, high = bounds
-    num_particles = 5
-    # Initialize particles
-    particles = [np.random.uniform(low, high, 2) for _ in range(num_particles)]
-    p_best = [p.copy() for p in particles]
-    p_best_v = [evaluate_function(p[0], p[1]) for p in particles]
+    # Start at a random point
+    curr_x = np.random.uniform(low, high)
+    curr_y = np.random.uniform(low, high)
+    curr_val = evaluate_function(curr_x, curr_y)
     
-    idx = np.argmin(p_best_v)
-    gx, gy, gv = p_best[idx][0], p_best[idx][1], p_best_v[idx]
+    best_x, best_y, best_val = curr_x, curr_y, curr_val
     
     for i in range(iterations):
-        # Adaptive temperature: slower decay at start
-        temp = 1.0 / (1 + np.log(1 + i))
+        temp = 1.0 - (i / iterations)
+        # Mix global jumps and local refinement
+        if i % 10 == 0:
+            nx, ny = np.random.uniform(low, high, 2)
+        else:
+            step = 2.0 * temp
+            nx = np.clip(curr_x + np.random.normal(0, step), low, high)
+            ny = np.clip(curr_y + np.random.normal(0, step), low, high)
+            
+        n_val = evaluate_function(nx, ny)
         
-        for j in range(num_particles):
-            # Dynamic scale: global exploration early, local exploitation late
-            scale = 1.5 * (1 - i/iterations)**2
-            dx, dy = np.random.normal(0, scale, 2)
+        # Metropolis Criterion
+        if n_val < curr_val or np.random.rand() < np.exp((curr_val - n_val) / (temp + 1e-9)):
+            curr_x, curr_y, curr_val = nx, ny, n_val
             
-            # Particle move with momentum towards global best
-            nx = np.clip(particles[j][0] + dx + 0.1*(gx - particles[j][0]), low, high)
-            ny = np.clip(particles[j][1] + dy + 0.1*(gy - particles[j][1]), low, high)
-            nv = evaluate_function(nx, ny)
+        if curr_val < best_val:
+            best_x, best_y, best_val = curr_x, curr_y, curr_val
             
-            # SA-style acceptance
-            if nv < p_best_v[j] or np.random.rand() < np.exp((p_best_v[j] - nv) / (temp + 1e-9)):
-                particles[j] = [nx, ny]
-                if nv < p_best_v[j]:
-                    p_best_v[j], p_best[j] = nv, [nx, ny]
-                    if nv < gv:
-                        gx, gy, gv = nx, ny, nv
-        
-        # Occasional chaotic jump for the worst particle
-        if i % 50 == 0:
-            w_idx = np.argmax(p_best_v)
-            particles[w_idx] = np.random.uniform(low, high, 2)
-            
-    return gx, gy, gv
+    return best_x, best_y, best_val
 
 
 # EVOLVE-BLOCK-END

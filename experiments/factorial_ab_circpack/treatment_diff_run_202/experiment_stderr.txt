@@ -1,0 +1,454 @@
+2026-02-26 11:56:35,272 - INFO - Logging to experiments/factorial_ab_circpack/treatment_diff_run_202/logs/openevolve_20260226_115635.log
+2026-02-26 11:56:35,363 - INFO - Set random seed to 42 for reproducibility
+2026-02-26 11:56:35,561 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:35,582 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:35,582 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:35,799 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:35,800 - INFO - Initialized prompt sampler
+2026-02-26 11:56:35,812 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:35,826 - INFO - Initialized program database with 0 programs
+2026-02-26 11:56:35,828 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 11:56:35,828 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 11:56:35,829 - INFO - Initialized OpenEvolve with examples/circle_packing/initial_program.py
+2026-02-26 11:56:35,829 - INFO - Adding initial program to database
+2026-02-26 11:56:36,780 - INFO - [HYPOTHESIS] Parsed 0 hypotheses from evolved code
+2026-02-26 11:56:36,780 - INFO - [HYPOTHESIS] No hypotheses found in evolved code
+2026-02-26 11:56:36,793 - INFO - Evaluated program 095a4245-4510-499d-a65d-26e5065ff841 in 0.96s: validity=1.0000, sum_radii=0.9598, target_ratio=0.3642, combined_score=0.3642, eval_time=0.4177
+2026-02-26 11:56:36,794 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-02-26 11:56:36,821 - INFO - Initialized process parallel controller with 3 workers
+2026-02-26 11:56:36,822 - INFO - Set max None tasks per child
+2026-02-26 11:56:36,822 - INFO - Started process pool with 3 processes
+2026-02-26 11:56:36,822 - INFO - Using island-based evolution with 3 islands
+2026-02-26 11:56:36,822 - INFO - Island Status:
+2026-02-26 11:56:36,822 - INFO -  * Island 0: 1 programs, best=0.3642, avg=0.3642, diversity=0.00, gen=0 (best: 095a4245-4510-499d-a65d-26e5065ff841)
+2026-02-26 11:56:36,822 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:36,822 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:36,822 - INFO - Starting process-based evolution from iteration 1 for 20 iterations (total: 21)
+2026-02-26 11:56:36,846 - INFO - Early stopping disabled
+2026-02-26 11:56:39,059 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:39,065 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:39,066 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:39,067 - INFO - Initialized prompt sampler
+2026-02-26 11:56:39,087 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:39,091 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:39,091 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 11:56:39,091 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 11:56:39,091 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:39,092 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:39,134 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:39,141 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:39,141 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:39,142 - INFO - Initialized prompt sampler
+2026-02-26 11:56:39,161 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:39,162 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:39,162 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 11:56:39,162 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 11:56:39,162 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:39,164 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:39,211 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:39,220 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:39,220 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:39,222 - INFO - Initialized prompt sampler
+2026-02-26 11:56:39,238 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:39,239 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:39,240 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 11:56:39,240 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 11:56:39,240 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:39,241 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:52,167 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:52,520 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:56:52,521 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 2.0, ACTUAL 2.2 (delta=+125.0% vs baseline)
+    claim: A 5x5 grid with one extra circle improves sum_radii over concentric rings
+  H2 [CONFIRMED]: EXPECT target_ratio > 0.8, ACTUAL 0.8 (delta=+125.1% vs baseline)
+    claim: Iterative relaxation of radii increases total sum
+  OVERALL: combined_score=0.82 (delta=+0.46, +125.1% vs baseline=0.36)
+2026-02-26 11:56:52,521 - INFO - [HYPOTHESIS] Updated ledger (1 total entries)
+2026-02-26 11:56:52,521 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings (confirmed 1/1, avg_delta=+125.0%)
+    mechanism: A grid-based layout provides a more uniform distribution of space for 26 circles than polar rings, which tend to cluster circles too tightly or leave gaps.
+  [target_ratio] Iterative relaxation of radii increases total sum (confirmed 1/1, avg_delta=+125.1%)
+    mechanism: The initial proportional scaling is greedy; by iterating the radius calculation, we can distribute "slack" from smaller circles to larger neighbors.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:56:52,522 - INFO - Evaluated program b90d9eb6-8050-4e91-bdc5-0ac756c7d231 in 0.34s: validity=1.0000, sum_radii=2.1600, target_ratio=0.8197, combined_score=0.8197, eval_time=0.1683
+2026-02-26 11:56:52,522 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:52,523 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:52,529 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 5}
+2026-02-26 11:56:52,529 - INFO - New best program b90d9eb6-8050-4e91-bdc5-0ac756c7d231 replaces 095a4245-4510-499d-a65d-26e5065ff841 (combined_score: 0.3642 → 0.8197, +0.4555)
+2026-02-26 11:56:52,529 - INFO - Iteration 2: Program b90d9eb6-8050-4e91-bdc5-0ac756c7d231 (parent: 095a4245-4510-499d-a65d-26e5065ff841) completed in 13.36s
+2026-02-26 11:56:52,529 - INFO - Metrics: validity=1.0000, sum_radii=2.1600, target_ratio=0.8197, combined_score=0.8197, eval_time=0.1683
+2026-02-26 11:56:52,529 - INFO - 🌟 New best solution found at iteration 2: b90d9eb6-8050-4e91-bdc5-0ac756c7d231
+2026-02-26 11:56:58,435 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:58,435 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:58,438 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:58,438 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:56:58,441 - WARNING - Iteration 4 error: No valid diffs found in response
+2026-02-26 11:56:58,444 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:58,444 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:58,453 - WARNING - Iteration 1 error: No valid diffs found in response
+2026-02-26 11:56:58,901 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:58,906 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:58,907 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:58,908 - WARNING - Iteration 3 error: No valid diffs found in response
+2026-02-26 11:57:07,924 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:08,227 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:57:08,228 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 2.1, ACTUAL 2.2 (delta=+131.3% vs baseline)
+    claim: A 5x5 grid with one extra circle is more efficient than concentric rings.
+  H2 [CONFIRMED]: EXPECT combined_score > 0.8, ACTUAL 0.8 (delta=+131.3% vs baseline)
+    claim: Iterative radius relaxation improves the sum over proportional scaling.
+  OVERALL: combined_score=0.84 (delta=+0.48, +131.3% vs baseline=0.36)
+2026-02-26 11:57:08,229 - INFO - [HYPOTHESIS] Updated ledger (2 total entries)
+2026-02-26 11:57:08,229 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings (confirmed 1/1, avg_delta=+125.0%)
+    mechanism: A grid-based layout provides a more uniform distribution of space for 26 circles than polar rings, which tend to cluster circles too tightly or leave gaps.
+  [target_ratio] Iterative relaxation of radii increases total sum (confirmed 1/1, avg_delta=+125.1%)
+    mechanism: The initial proportional scaling is greedy; by iterating the radius calculation, we can distribute "slack" from smaller circles to larger neighbors.
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 1/1, avg_delta=+131.3%)
+    mechanism: Grid-based layouts distribute circles more uniformly in a square container, reducing the extreme overlaps found in polar coordinates when applied to a square.
+  [combined_score] Iterative radius relaxation improves the sum over proportional scaling. (confirmed 1/1, avg_delta=+131.3%)
+    mechanism: Proportional scaling is a one-pass greedy approach; iterative relaxation allows circles with more "room" to expand, filling gaps left by constrained neighbors.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:57:08,229 - INFO - Evaluated program 13b363b9-9189-4c1d-9941-e4eb0c9f5607 in 0.30s: validity=1.0000, sum_radii=2.2200, target_ratio=0.8425, combined_score=0.8425, eval_time=0.1452
+2026-02-26 11:57:08,230 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:08,231 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:08,234 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 0}
+2026-02-26 11:57:08,234 - INFO - New best program 13b363b9-9189-4c1d-9941-e4eb0c9f5607 replaces b90d9eb6-8050-4e91-bdc5-0ac756c7d231 (combined_score: 0.8197 → 0.8425, +0.0228)
+2026-02-26 11:57:08,235 - INFO - Iteration 7: Program 13b363b9-9189-4c1d-9941-e4eb0c9f5607 (parent: 095a4245-4510-499d-a65d-26e5065ff841) completed in 9.32s
+2026-02-26 11:57:08,235 - INFO - Metrics: validity=1.0000, sum_radii=2.2200, target_ratio=0.8425, combined_score=0.8425, eval_time=0.1452
+2026-02-26 11:57:08,235 - INFO - 🌟 New best solution found at iteration 7: 13b363b9-9189-4c1d-9941-e4eb0c9f5607
+2026-02-26 11:57:10,370 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:10,728 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:57:10,728 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 2.0, ACTUAL 2.2 (delta=+125.0% vs baseline)
+    claim: A 5x5 grid with one extra circle improves sum_radii over concentric rings
+  H2 [CONFIRMED]: EXPECT target_ratio > 0.8, ACTUAL 0.8 (delta=+125.1% vs baseline)
+    claim: Iterative relaxation of radii increases total sum
+  OVERALL: combined_score=0.82 (delta=+0.46, +125.1% vs baseline=0.36)
+2026-02-26 11:57:10,728 - INFO - [HYPOTHESIS] Updated ledger (3 total entries)
+2026-02-26 11:57:10,728 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings (confirmed 2/2, avg_delta=+125.0%)
+    mechanism: A grid-based layout provides a more uniform distribution of space for 26 circles than polar rings, which tend to cluster circles too tightly or leave gaps.
+  [target_ratio] Iterative relaxation of radii increases total sum (confirmed 2/2, avg_delta=+125.1%)
+    mechanism: The initial proportional scaling is greedy; by iterating the radius calculation, we can distribute "slack" from smaller circles to larger neighbors.
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 1/1, avg_delta=+131.3%)
+    mechanism: Grid-based layouts distribute circles more uniformly in a square container, reducing the extreme overlaps found in polar coordinates when applied to a square.
+  [combined_score] Iterative radius relaxation improves the sum over proportional scaling. (confirmed 1/1, avg_delta=+131.3%)
+    mechanism: Proportional scaling is a one-pass greedy approach; iterative relaxation allows circles with more "room" to expand, filling gaps left by constrained neighbors.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:57:10,729 - INFO - Evaluated program 9167fa4b-b002-435a-8acb-776953c2b294 in 0.35s: validity=1.0000, sum_radii=2.1600, target_ratio=0.8197, combined_score=0.8197, eval_time=0.1888
+2026-02-26 11:57:10,730 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:10,730 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 2, 'diversity': 9}
+2026-02-26 11:57:10,731 - INFO - Iteration 6: Program 9167fa4b-b002-435a-8acb-776953c2b294 (parent: 095a4245-4510-499d-a65d-26e5065ff841) completed in 12.29s
+2026-02-26 11:57:10,731 - INFO - Metrics: validity=1.0000, sum_radii=2.1600, target_ratio=0.8197, combined_score=0.8197, eval_time=0.1888
+2026-02-26 11:57:10,731 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:54,567 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:54,583 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:54,583 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:57:54,589 - WARNING - Iteration 8 error: No valid diffs found in response
+2026-02-26 11:58:01,026 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:01,027 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:01,028 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:58:01,035 - WARNING - Iteration 5 error: No valid diffs found in response
+2026-02-26 11:58:04,168 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:04,456 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:58:04,456 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 2.1, ACTUAL 2.2 (delta=+131.3% vs baseline)
+    claim: A 5x5 grid with one extra circle is more efficient than concentric rings.
+  H2 [CONFIRMED]: EXPECT combined_score > 0.8, ACTUAL 0.8 (delta=+131.3% vs baseline)
+    claim: Iterative radius relaxation improves the sum over proportional scaling.
+  OVERALL: combined_score=0.84 (delta=+0.48, +131.3% vs baseline=0.36)
+2026-02-26 11:58:04,456 - INFO - [HYPOTHESIS] Updated ledger (4 total entries)
+2026-02-26 11:58:04,456 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings (confirmed 2/2, avg_delta=+125.0%)
+    mechanism: A grid-based layout provides a more uniform distribution of space for 26 circles than polar rings, which tend to cluster circles too tightly or leave gaps.
+  [target_ratio] Iterative relaxation of radii increases total sum (confirmed 2/2, avg_delta=+125.1%)
+    mechanism: The initial proportional scaling is greedy; by iterating the radius calculation, we can distribute "slack" from smaller circles to larger neighbors.
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 2/2, avg_delta=+131.3%)
+    mechanism: Grid-based layouts distribute circles more uniformly in a square container, reducing the extreme overlaps found in polar coordinates when applied to a square.
+  [combined_score] Iterative radius relaxation improves the sum over proportional scaling. (confirmed 2/2, avg_delta=+131.3%)
+    mechanism: Proportional scaling is a one-pass greedy approach; iterative relaxation allows circles with more "room" to expand, filling gaps left by constrained neighbors.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:58:04,457 - INFO - Evaluated program ca34652e-03bd-4851-9a49-2b111d3f67a8 in 0.29s: validity=1.0000, sum_radii=2.2200, target_ratio=0.8425, combined_score=0.8425, eval_time=0.1361
+2026-02-26 11:58:04,458 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:04,458 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:04,466 - INFO - Iteration 10: Program ca34652e-03bd-4851-9a49-2b111d3f67a8 (parent: 095a4245-4510-499d-a65d-26e5065ff841) completed in 9.87s
+2026-02-26 11:58:04,466 - INFO - Metrics: validity=1.0000, sum_radii=2.2200, target_ratio=0.8425, combined_score=0.8425, eval_time=0.1361
+2026-02-26 11:58:04,466 - INFO - Checkpoint interval reached at iteration 10
+2026-02-26 11:58:04,466 - INFO - Island Status:
+2026-02-26 11:58:04,466 - INFO -  * Island 0: 5 programs, best=0.8425, avg=0.7377, diversity=344.40, gen=4 (best: 13b363b9-9189-4c1d-9941-e4eb0c9f5607)
+2026-02-26 11:58:04,466 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:58:04,466 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:58:04,469 - INFO - Saved database with 5 programs to experiments/factorial_ab_circpack/treatment_diff_run_202/checkpoints/checkpoint_10
+2026-02-26 11:58:04,469 - INFO - Saved best program at checkpoint 10 with metrics: validity=1.0000, sum_radii=2.2200, target_ratio=0.8425, combined_score=0.8425, eval_time=0.1452
+2026-02-26 11:58:04,469 - INFO - Saved checkpoint at iteration 10 to experiments/factorial_ab_circpack/treatment_diff_run_202/checkpoints/checkpoint_10
+2026-02-26 11:58:09,434 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:09,837 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:58:09,837 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 2.1, ACTUAL 2.2 (delta=+131.3% vs baseline)
+    claim: A 5x5 grid with one extra circle is more efficient than concentric rings.
+  H2 [CONFIRMED]: EXPECT combined_score > 0.8, ACTUAL 0.8 (delta=+131.3% vs baseline)
+    claim: Iterative radius relaxation improves the sum over proportional scaling.
+  OVERALL: combined_score=0.84 (delta=+0.48, +131.3% vs baseline=0.36)
+2026-02-26 11:58:09,838 - INFO - [HYPOTHESIS] Updated ledger (5 total entries)
+2026-02-26 11:58:09,838 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings (confirmed 2/2, avg_delta=+125.0%)
+    mechanism: A grid-based layout provides a more uniform distribution of space for 26 circles than polar rings, which tend to cluster circles too tightly or leave gaps.
+  [target_ratio] Iterative relaxation of radii increases total sum (confirmed 2/2, avg_delta=+125.1%)
+    mechanism: The initial proportional scaling is greedy; by iterating the radius calculation, we can distribute "slack" from smaller circles to larger neighbors.
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 3/3, avg_delta=+131.3%)
+    mechanism: Grid-based layouts distribute circles more uniformly in a square container, reducing the extreme overlaps found in polar coordinates when applied to a square.
+  [combined_score] Iterative radius relaxation improves the sum over proportional scaling. (confirmed 3/3, avg_delta=+131.3%)
+    mechanism: Proportional scaling is a one-pass greedy approach; iterative relaxation allows circles with more "room" to expand, filling gaps left by constrained neighbors.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:58:09,839 - INFO - Evaluated program c27127a4-2107-4c98-93b4-28a483ab7819 in 0.40s: validity=1.0000, sum_radii=2.2200, target_ratio=0.8425, combined_score=0.8425, eval_time=0.1814
+2026-02-26 11:58:09,840 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:09,840 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:09,850 - INFO - Iteration 11: Program c27127a4-2107-4c98-93b4-28a483ab7819 (parent: 095a4245-4510-499d-a65d-26e5065ff841) completed in 8.81s
+2026-02-26 11:58:09,850 - INFO - Metrics: validity=1.0000, sum_radii=2.2200, target_ratio=0.8425, combined_score=0.8425, eval_time=0.1814
+2026-02-26 11:58:19,409 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:19,413 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:19,414 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:19,420 - WARNING - Iteration 13 error: No valid diffs found in response
+2026-02-26 11:58:21,484 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:21,486 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:21,486 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:58:21,493 - WARNING - Iteration 9 error: No valid diffs found in response
+2026-02-26 11:58:35,400 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:35,429 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:35,786 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:58:35,787 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 2.0, ACTUAL 2.2 (delta=+131.3% vs baseline)
+    claim: A 5x5 grid with one extra circle improves sum_radii over concentric rings
+  H2 [CONFIRMED]: EXPECT target_ratio > 0.8, ACTUAL 0.8 (delta=+131.3% vs baseline)
+    claim: Iterative relaxation of radii increases total sum
+  OVERALL: combined_score=0.84 (delta=+0.48, +131.3% vs baseline=0.36)
+2026-02-26 11:58:35,787 - INFO - [HYPOTHESIS] Updated ledger (6 total entries)
+2026-02-26 11:58:35,787 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings (confirmed 3/3, avg_delta=+127.1%)
+    mechanism: A grid-based layout provides a more uniform distribution of space for 26 circles than polar rings, which tend to cluster circles too tightly or leave gaps.
+  [target_ratio] Iterative relaxation of radii increases total sum (confirmed 3/3, avg_delta=+127.2%)
+    mechanism: The initial proportional scaling is greedy; by iterating the radius calculation, we can distribute "slack" from smaller circles to larger neighbors.
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 3/3, avg_delta=+131.3%)
+    mechanism: Grid-based layouts distribute circles more uniformly in a square container, reducing the extreme overlaps found in polar coordinates when applied to a square.
+  [combined_score] Iterative radius relaxation improves the sum over proportional scaling. (confirmed 3/3, avg_delta=+131.3%)
+    mechanism: Proportional scaling is a one-pass greedy approach; iterative relaxation allows circles with more "room" to expand, filling gaps left by constrained neighbors.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:58:35,788 - INFO - Evaluated program 951184b1-8015-45b3-8a1e-a7861c1bd39f in 0.36s: validity=1.0000, sum_radii=2.2200, target_ratio=0.8425, combined_score=0.8425, eval_time=0.1770
+2026-02-26 11:58:35,789 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:35,789 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:35,795 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 2, 'diversity': 0}
+2026-02-26 11:58:35,796 - INFO - Iteration 14: Program 951184b1-8015-45b3-8a1e-a7861c1bd39f (parent: 9167fa4b-b002-435a-8acb-776953c2b294) completed in 16.37s
+2026-02-26 11:58:35,796 - INFO - Metrics: validity=1.0000, sum_radii=2.2200, target_ratio=0.8425, combined_score=0.8425, eval_time=0.1770
+2026-02-26 11:58:39,478 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:58:39,478 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.3, ACTUAL 1.7 (delta=+82.0% vs baseline)
+    claim: Hexagonal shifting of rows in the grid improves packing density.
+  H2 [REFUTED]: EXPECT combined_score > 0.9, ACTUAL 0.7 (delta=+82.0% vs baseline)
+    claim: Iterative center-position optimization further increases radii.
+  OVERALL: combined_score=0.66 (delta=+0.30, +82.0% vs baseline=0.36)
+2026-02-26 11:58:39,479 - INFO - [HYPOTHESIS] Updated ledger (7 total entries)
+2026-02-26 11:58:39,479 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings (confirmed 3/3, avg_delta=+127.1%)
+    mechanism: A grid-based layout provides a more uniform distribution of space for 26 circles than polar rings, which tend to cluster circles too tightly or leave gaps.
+  [target_ratio] Iterative relaxation of radii increases total sum (confirmed 3/3, avg_delta=+127.2%)
+    mechanism: The initial proportional scaling is greedy; by iterating the radius calculation, we can distribute "slack" from smaller circles to larger neighbors.
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 3/3, avg_delta=+131.3%)
+    mechanism: Grid-based layouts distribute circles more uniformly in a square container, reducing the extreme overlaps found in polar coordinates when applied to a square.
+  [combined_score] Iterative radius relaxation improves the sum over proportional scaling. (confirmed 3/3, avg_delta=+131.3%)
+    mechanism: Proportional scaling is a one-pass greedy approach; iterative relaxation allows circles with more "room" to expand, filling gaps left by constrained neighbors.
+
+=== INCONCLUSIVE ===
+  [sum_radii] Hexagonal shifting of rows in the grid improves packing density. (total=1)
+  [combined_score] Iterative center-position optimization further increases radii. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:58:39,479 - INFO - Evaluated program 301d19a3-793e-4e0c-8ab5-9cd4f516c4de in 4.08s: validity=1.0000, sum_radii=1.7467, target_ratio=0.6629, combined_score=0.6629, eval_time=2.0562
+2026-02-26 11:58:39,481 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:39,481 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:39,482 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 4, 'diversity': 1}
+2026-02-26 11:58:39,482 - INFO - Iteration 15: Program 301d19a3-793e-4e0c-8ab5-9cd4f516c4de (parent: ca34652e-03bd-4851-9a49-2b111d3f67a8) completed in 17.99s
+2026-02-26 11:58:39,482 - INFO - Metrics: validity=1.0000, sum_radii=1.7467, target_ratio=0.6629, combined_score=0.6629, eval_time=2.0562
+2026-02-26 11:58:39,482 - INFO - Checkpoint interval reached at iteration 15
+2026-02-26 11:58:39,482 - INFO - Island Status:
+2026-02-26 11:58:39,482 - INFO -  * Island 0: 8 programs, best=0.8425, avg=0.7546, diversity=329.10, gen=7 (best: 13b363b9-9189-4c1d-9941-e4eb0c9f5607)
+2026-02-26 11:58:39,482 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:58:39,482 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:58:39,486 - INFO - Saved database with 8 programs to experiments/factorial_ab_circpack/treatment_diff_run_202/checkpoints/checkpoint_15
+2026-02-26 11:58:39,486 - INFO - Saved best program at checkpoint 15 with metrics: validity=1.0000, sum_radii=2.2200, target_ratio=0.8425, combined_score=0.8425, eval_time=0.1452
+2026-02-26 11:58:39,486 - INFO - Saved checkpoint at iteration 15 to experiments/factorial_ab_circpack/treatment_diff_run_202/checkpoints/checkpoint_15
+2026-02-26 11:58:58,230 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:58,246 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:58,246 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:58,247 - WARNING - Iteration 12 error: No valid diffs found in response
+2026-02-26 11:59:36,685 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:37,007 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:59:37,008 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.1, ACTUAL 1.8 (delta=+91.9% vs baseline)
+    claim: A 5x5 grid with one extra circle is more efficient than concentric rings.
+  H2 [REFUTED]: EXPECT combined_score > 0.8, ACTUAL 0.7 (delta=+91.9% vs baseline)
+    claim: Iterative radius relaxation improves the sum over proportional scaling.
+  OVERALL: combined_score=0.70 (delta=+0.33, +91.9% vs baseline=0.36)
+2026-02-26 11:59:37,008 - INFO - [HYPOTHESIS] Updated ledger (8 total entries)
+2026-02-26 11:59:37,008 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 3/4, avg_delta=+121.4%)
+    mechanism: Grid-based layouts distribute circles more uniformly in a square container, reducing the extreme overlaps found in polar coordinates when applied to a square.
+  [combined_score] Iterative radius relaxation improves the sum over proportional scaling. (confirmed 3/4, avg_delta=+121.5%)
+    mechanism: Proportional scaling is a one-pass greedy approach; iterative relaxation allows circles with more "room" to expand, filling gaps left by constrained neighbors.
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings (confirmed 3/3, avg_delta=+127.1%)
+    mechanism: A grid-based layout provides a more uniform distribution of space for 26 circles than polar rings, which tend to cluster circles too tightly or leave gaps.
+  [target_ratio] Iterative relaxation of radii increases total sum (confirmed 3/3, avg_delta=+127.2%)
+    mechanism: The initial proportional scaling is greedy; by iterating the radius calculation, we can distribute "slack" from smaller circles to larger neighbors.
+
+=== INCONCLUSIVE ===
+  [sum_radii] Hexagonal shifting of rows in the grid improves packing density. (total=1)
+  [combined_score] Iterative center-position optimization further increases radii. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:59:37,009 - INFO - Evaluated program b3438b21-5ce3-4162-91d9-b275dbd32b7a in 0.32s: validity=1.0000, sum_radii=1.8414, target_ratio=0.6988, combined_score=0.6988, eval_time=0.1593
+2026-02-26 11:59:37,010 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:59:37,010 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:59:37,020 - INFO - Iteration 18: Program b3438b21-5ce3-4162-91d9-b275dbd32b7a (parent: c27127a4-2107-4c98-93b4-28a483ab7819) completed in 38.76s
+2026-02-26 11:59:37,020 - INFO - Metrics: validity=1.0000, sum_radii=1.8414, target_ratio=0.6988, combined_score=0.6988, eval_time=0.1593
+2026-02-26 11:59:39,063 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:39,444 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 11:59:39,444 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.3, ACTUAL 2.2 (delta=+126.7% vs baseline)
+    claim: Initial placement of the 26th circle in an interstitial gap and allowing centers closer to the boundary will improve sum_radii.
+  H2 [REFUTED]: EXPECT sum_radii > 2.4, ACTUAL 2.2 (delta=+126.7% vs baseline)
+    claim: Introducing small random perturbations to all initial center positions will break symmetry and improve the sum of radii.
+  H3 [REFUTED]: EXPECT sum_radii > 2.4, ACTUAL 2.2 (delta=+126.7% vs baseline)
+    claim: Randomizing the iteration order for radius updates in the relaxation process will enhance optimization.
+  OVERALL: combined_score=0.83 (delta=+0.46, +126.7% vs baseline=0.36)
+2026-02-26 11:59:39,445 - INFO - [HYPOTHESIS] Updated ledger (9 total entries)
+2026-02-26 11:59:39,445 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 3/4, avg_delta=+121.4%)
+    mechanism: Grid-based layouts distribute circles more uniformly in a square container, reducing the extreme overlaps found in polar coordinates when applied to a square.
+  [combined_score] Iterative radius relaxation improves the sum over proportional scaling. (confirmed 3/4, avg_delta=+121.5%)
+    mechanism: Proportional scaling is a one-pass greedy approach; iterative relaxation allows circles with more "room" to expand, filling gaps left by constrained neighbors.
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings (confirmed 3/3, avg_delta=+127.1%)
+    mechanism: A grid-based layout provides a more uniform distribution of space for 26 circles than polar rings, which tend to cluster circles too tightly or leave gaps.
+  [target_ratio] Iterative relaxation of radii increases total sum (confirmed 3/3, avg_delta=+127.2%)
+    mechanism: The initial proportional scaling is greedy; by iterating the radius calculation, we can distribute "slack" from smaller circles to larger neighbors.
+
+=== INCONCLUSIVE ===
+  [sum_radii] Hexagonal shifting of rows in the grid improves packing density. (total=1)
+  [combined_score] Iterative center-position optimization further increases radii. (total=1)
+  [sum_radii] Initial placement of the 26th circle in an interstitial gap and allowing centers closer to the boundary will improve sum_radii. (total=1)
+  [sum_radii] Introducing small random perturbations to all initial center positions will break symmetry and improve the sum of radii. (total=1)
+  [sum_radii] Randomizing the iteration order for radius updates in the relaxation process will enhance optimization. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:59:39,445 - INFO - Evaluated program d4f50ad2-ef27-4aa3-9e83-7e04e719aa97 in 0.38s: validity=1.0000, sum_radii=2.1754, target_ratio=0.8256, combined_score=0.8256, eval_time=0.1835
+2026-02-26 11:59:39,447 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:59:39,447 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:59:39,450 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 1}
+2026-02-26 11:59:39,450 - INFO - Iteration 16: Program d4f50ad2-ef27-4aa3-9e83-7e04e719aa97 (parent: c27127a4-2107-4c98-93b4-28a483ab7819) completed in 63.66s
+2026-02-26 11:59:39,450 - INFO - Metrics: validity=1.0000, sum_radii=2.1754, target_ratio=0.8256, combined_score=0.8256, eval_time=0.1835
+2026-02-26 11:59:46,411 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:46,415 - WARNING - Iteration 17 error: No valid diffs found in response
+2026-02-26 11:59:50,494 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:50,948 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:59:50,948 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.2, ACTUAL 2.1 (delta=+117.7% vs baseline)
+    claim: A 5x5 grid with a central circle and localized jittering is more stable than a forced hexagonal lattice.
+  H2 [REFUTED]: EXPECT combined_score > 0.8, ACTUAL 0.8 (delta=+117.7% vs baseline)
+    claim: Increasing relaxation iterations while removing the "push" logic prevents divergence.
+  OVERALL: combined_score=0.79 (delta=+0.43, +117.7% vs baseline=0.36)
+2026-02-26 11:59:50,949 - INFO - [HYPOTHESIS] Updated ledger (10 total entries)
+2026-02-26 11:59:50,949 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A 5x5 grid with one extra circle is more efficient than concentric rings. (confirmed 3/4, avg_delta=+121.4%)
+    mechanism: Grid-based layouts distribute circles more uniformly in a square container, reducing the extreme overlaps found in polar coordinates when applied to a square.
+  [combined_score] Iterative radius relaxation improves the sum over proportional scaling. (confirmed 3/4, avg_delta=+121.5%)
+    mechanism: Proportional scaling is a one-pass greedy approach; iterative relaxation allows circles with more "room" to expand, filling gaps left by constrained neighbors.
+  [sum_radii] A 5x5 grid with one extra circle improves sum_radii over concentric rings (confirmed 3/3, avg_delta=+127.1%)
+    mechanism: A grid-based layout provides a more uniform distribution of space for 26 circles than polar rings, which tend to cluster circles too tightly or leave gaps.
+  [target_ratio] Iterative relaxation of radii increases total sum (confirmed 3/3, avg_delta=+127.2%)
+    mechanism: The initial proportional scaling is greedy; by iterating the radius calculation, we can distribute "slack" from smaller circles to larger neighbors.
+
+=== INCONCLUSIVE ===
+  [sum_radii] Hexagonal shifting of rows in the grid improves packing density. (total=1)
+  [combined_score] Iterative center-position optimization further increases radii. (total=1)
+  [sum_radii] Initial placement of the 26th circle in an interstitial gap and allowing centers closer to the boundary will improve sum_radii. (total=1)
+  [sum_radii] Introducing small random perturbations to all initial center positions will break symmetry and improve the sum of radii. (total=1)
+  [sum_radii] Randomizing the iteration order for radius updates in the relaxation process will enhance optimization. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:59:50,949 - INFO - Evaluated program 63b97ff3-a356-435d-a562-d282683a9d4e in 0.45s: validity=1.0000, sum_radii=2.0890, target_ratio=0.7928, combined_score=0.7928, eval_time=0.2166
+2026-02-26 11:59:50,960 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 1, 'diversity': 0}
+2026-02-26 11:59:50,960 - INFO - Iteration 20: Program 63b97ff3-a356-435d-a562-d282683a9d4e (parent: 301d19a3-793e-4e0c-8ab5-9cd4f516c4de) completed in 11.50s
+2026-02-26 11:59:50,960 - INFO - Metrics: validity=1.0000, sum_radii=2.0890, target_ratio=0.7928, combined_score=0.7928, eval_time=0.2166
+2026-02-26 11:59:50,960 - INFO - Checkpoint interval reached at iteration 20
+2026-02-26 11:59:50,961 - INFO - Island Status:
+2026-02-26 11:59:50,961 - INFO -  * Island 0: 11 programs, best=0.8425, avg=0.7594, diversity=330.05, gen=10 (best: 13b363b9-9189-4c1d-9941-e4eb0c9f5607)
+2026-02-26 11:59:50,961 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:59:50,961 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:59:50,966 - INFO - Saved database with 11 programs to experiments/factorial_ab_circpack/treatment_diff_run_202/checkpoints/checkpoint_20
+2026-02-26 11:59:50,966 - INFO - Saved best program at checkpoint 20 with metrics: validity=1.0000, sum_radii=2.2200, target_ratio=0.8425, combined_score=0.8425, eval_time=0.1452
+2026-02-26 11:59:50,966 - INFO - Saved checkpoint at iteration 20 to experiments/factorial_ab_circpack/treatment_diff_run_202/checkpoints/checkpoint_20
+2026-02-26 12:00:02,127 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 12:00:02,136 - WARNING - Iteration 19 error: No valid diffs found in response
+2026-02-26 12:00:02,136 - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-02-26 12:00:02,141 - INFO - Saved database with 11 programs to experiments/factorial_ab_circpack/treatment_diff_run_202/checkpoints/checkpoint_20
+2026-02-26 12:00:02,141 - INFO - Saved best program at checkpoint 20 with metrics: validity=1.0000, sum_radii=2.2200, target_ratio=0.8425, combined_score=0.8425, eval_time=0.1452
+2026-02-26 12:00:02,141 - INFO - Saved checkpoint at iteration 20 to experiments/factorial_ab_circpack/treatment_diff_run_202/checkpoints/checkpoint_20
+2026-02-26 12:00:02,300 - INFO - Stopped process pool
+2026-02-26 12:00:02,300 - INFO - Using tracked best program: 13b363b9-9189-4c1d-9941-e4eb0c9f5607
+2026-02-26 12:00:02,300 - INFO - Evolution complete. Best program has metrics: validity=1.0000, sum_radii=2.2200, target_ratio=0.8425, combined_score=0.8425, eval_time=0.1452
+2026-02-26 12:00:02,300 - INFO - Saved best program to experiments/factorial_ab_circpack/treatment_diff_run_202/best/best_program.py with program info to experiments/factorial_ab_circpack/treatment_diff_run_202/best/best_program_info.json

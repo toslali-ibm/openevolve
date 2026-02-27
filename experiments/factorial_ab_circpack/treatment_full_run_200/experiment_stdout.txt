@@ -1,0 +1,419 @@
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmptsg87xj2.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 0.9597642169962064
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmphvssm0w_.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmptsg87xj2.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 0.9597642169962064
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpujae2vvr.py.results
+
+Evaluation: valid=True, sum_radii=0.959764, target=2.635, ratio=0.364237, time=0.51s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp1tm5kalo.py
+Calling run_packing()...
+Error in subprocess: module 'program' has no attribute 'run_packing'
+Error saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmproazhanu.py.results
+
+Subprocess stderr: Traceback (most recent call last):
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmproazhanu.py", line 23, in <module>
+    centers, radii, sum_radii = program.run_packing()
+                                ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'program' has no attribute 'run_packing'
+
+Stage 1 evaluation failed: Program execution failed: module 'program' has no attribute 'run_packing'
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 369, in evaluate_stage1
+    centers, radii, sum_radii = run_with_timeout(program_path, timeout_seconds=600)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 171, in run_with_timeout
+    raise RuntimeError(f"Program execution failed: {results['error']}")
+RuntimeError: Program execution failed: module 'program' has no attribute 'run_packing'
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp__cvo8f8.py
+Calling run_packing()...
+Error in subprocess: module 'program' has no attribute 'run_packing'
+Error saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpis1m4huf.py.results
+
+Subprocess stderr: Traceback (most recent call last):
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpis1m4huf.py", line 23, in <module>
+    centers, radii, sum_radii = program.run_packing()
+                                ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'program' has no attribute 'run_packing'
+
+Stage 1 evaluation failed: Program execution failed: module 'program' has no attribute 'run_packing'
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 369, in evaluate_stage1
+    centers, radii, sum_radii = run_with_timeout(program_path, timeout_seconds=600)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 171, in run_with_timeout
+    raise RuntimeError(f"Program execution failed: {results['error']}")
+RuntimeError: Program execution failed: module 'program' has no attribute 'run_packing'
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp8z1ate37.py
+Calling run_packing()...
+Error in subprocess: module 'program' has no attribute 'run_packing'
+Error saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpkwaz_seq.py.results
+
+Subprocess stderr: Traceback (most recent call last):
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpkwaz_seq.py", line 23, in <module>
+    centers, radii, sum_radii = program.run_packing()
+                                ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'program' has no attribute 'run_packing'
+
+Stage 1 evaluation failed: Program execution failed: module 'program' has no attribute 'run_packing'
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 369, in evaluate_stage1
+    centers, radii, sum_radii = run_with_timeout(program_path, timeout_seconds=600)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 171, in run_with_timeout
+    raise RuntimeError(f"Program execution failed: {results['error']}")
+RuntimeError: Program execution failed: module 'program' has no attribute 'run_packing'
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp6ko31zni.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 0.8156664752839627
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpdtn6d7dm.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp6ko31zni.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 0.8156664752839627
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpg2n8k4a2.py.results
+
+Evaluation: valid=True, sum_radii=0.815666, target=2.635, ratio=0.309551, time=0.26s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp5avmflv5.py
+Error in subprocess: invalid syntax (tmp5avmflv5.py, line 127)
+Error saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp8lyvndpc.py.results
+
+Subprocess stderr: Traceback (most recent call last):
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp8lyvndpc.py", line 19, in <module>
+    spec.loader.exec_module(program)
+  File "<frozen importlib._bootstrap_external>", line 936, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1074, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1004, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp5avmflv5.py", line 127
+    ```
+    ^
+SyntaxError: invalid syntax
+
+Stage 1 evaluation failed: Program execution failed: invalid syntax (tmp5avmflv5.py, line 127)
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 369, in evaluate_stage1
+    centers, radii, sum_radii = run_with_timeout(program_path, timeout_seconds=600)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 171, in run_with_timeout
+    raise RuntimeError(f"Program execution failed: {results['error']}")
+RuntimeError: Program execution failed: invalid syntax (tmp5avmflv5.py, line 127)
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmppye1m2zs.py
+Calling run_packing()...
+Error in subprocess: module 'program' has no attribute 'run_packing'
+Error saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp3_vuyh66.py.results
+
+Subprocess stderr: Traceback (most recent call last):
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp3_vuyh66.py", line 23, in <module>
+    centers, radii, sum_radii = program.run_packing()
+                                ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'program' has no attribute 'run_packing'
+
+Stage 1 evaluation failed: Program execution failed: module 'program' has no attribute 'run_packing'
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 369, in evaluate_stage1
+    centers, radii, sum_radii = run_with_timeout(program_path, timeout_seconds=600)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 171, in run_with_timeout
+    raise RuntimeError(f"Program execution failed: {results['error']}")
+RuntimeError: Program execution failed: module 'program' has no attribute 'run_packing'
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp8klxl1od.py
+Calling run_packing()...
+Error in subprocess: module 'program' has no attribute 'run_packing'
+Error saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp51b827z6.py.results
+
+Subprocess stderr: Traceback (most recent call last):
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp51b827z6.py", line 23, in <module>
+    centers, radii, sum_radii = program.run_packing()
+                                ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'program' has no attribute 'run_packing'
+
+Stage 1 evaluation failed: Program execution failed: module 'program' has no attribute 'run_packing'
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 369, in evaluate_stage1
+    centers, radii, sum_radii = run_with_timeout(program_path, timeout_seconds=600)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 171, in run_with_timeout
+    raise RuntimeError(f"Program execution failed: {results['error']}")
+RuntimeError: Program execution failed: module 'program' has no attribute 'run_packing'
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp8aot2v54.py
+Calling run_packing()...
+Error in subprocess: module 'program' has no attribute 'run_packing'
+Error saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp651xx9y4.py.results
+
+Subprocess stderr: Traceback (most recent call last):
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp651xx9y4.py", line 23, in <module>
+    centers, radii, sum_radii = program.run_packing()
+                                ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'program' has no attribute 'run_packing'
+
+Stage 1 evaluation failed: Program execution failed: module 'program' has no attribute 'run_packing'
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 369, in evaluate_stage1
+    centers, radii, sum_radii = run_with_timeout(program_path, timeout_seconds=600)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 171, in run_with_timeout
+    raise RuntimeError(f"Program execution failed: {results['error']}")
+RuntimeError: Program execution failed: module 'program' has no attribute 'run_packing'
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpkp07ydov.py
+Calling run_packing()...
+Error in subprocess: module 'program' has no attribute 'run_packing'
+Error saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpttjak61h.py.results
+
+Subprocess stderr: Traceback (most recent call last):
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpttjak61h.py", line 23, in <module>
+    centers, radii, sum_radii = program.run_packing()
+                                ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'program' has no attribute 'run_packing'
+
+Stage 1 evaluation failed: Program execution failed: module 'program' has no attribute 'run_packing'
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 369, in evaluate_stage1
+    centers, radii, sum_radii = run_with_timeout(program_path, timeout_seconds=600)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 171, in run_with_timeout
+    raise RuntimeError(f"Program execution failed: {results['error']}")
+RuntimeError: Program execution failed: module 'program' has no attribute 'run_packing'
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpu191l8aj.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.8362965243241025
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpyh2fj088.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpu191l8aj.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.8362965243241025
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpvgppb9ar.py.results
+
+Evaluation: valid=True, sum_radii=1.836297, target=2.635, ratio=0.696887, time=0.12s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp9ymm2noq.py
+Calling run_packing()...
+Error in subprocess: module 'program' has no attribute 'run_packing'
+Error saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp5usvoai5.py.results
+
+Subprocess stderr: Traceback (most recent call last):
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp5usvoai5.py", line 23, in <module>
+    centers, radii, sum_radii = program.run_packing()
+                                ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'program' has no attribute 'run_packing'
+
+Stage 1 evaluation failed: Program execution failed: module 'program' has no attribute 'run_packing'
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 369, in evaluate_stage1
+    centers, radii, sum_radii = run_with_timeout(program_path, timeout_seconds=600)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 171, in run_with_timeout
+    raise RuntimeError(f"Program execution failed: {results['error']}")
+RuntimeError: Program execution failed: module 'program' has no attribute 'run_packing'
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpdtys6snj.py
+Error in subprocess: invalid syntax (tmpdtys6snj.py, line 129)
+Error saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpypa6rfed.py.results
+
+Subprocess stderr: Traceback (most recent call last):
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpypa6rfed.py", line 19, in <module>
+    spec.loader.exec_module(program)
+  File "<frozen importlib._bootstrap_external>", line 936, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1074, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1004, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpdtys6snj.py", line 129
+    ```
+    ^
+SyntaxError: invalid syntax
+
+Stage 1 evaluation failed: Program execution failed: invalid syntax (tmpdtys6snj.py, line 129)
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 369, in evaluate_stage1
+    centers, radii, sum_radii = run_with_timeout(program_path, timeout_seconds=600)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 171, in run_with_timeout
+    raise RuntimeError(f"Program execution failed: {results['error']}")
+RuntimeError: Program execution failed: invalid syntax (tmpdtys6snj.py, line 129)
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpxp_pc0cg.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.6133889032886617
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpaacf5ujk.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpxp_pc0cg.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.6133889032886617
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp8cbru8no.py.results
+
+Evaluation: valid=True, sum_radii=1.613389, target=2.635, ratio=0.612292, time=0.23s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpgvpho6xc.py
+Calling run_packing()...
+Error in subprocess: module 'program' has no attribute 'run_packing'
+Error saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpoba_82i0.py.results
+
+Subprocess stderr: Traceback (most recent call last):
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpoba_82i0.py", line 23, in <module>
+    centers, radii, sum_radii = program.run_packing()
+                                ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'program' has no attribute 'run_packing'
+
+Stage 1 evaluation failed: Program execution failed: module 'program' has no attribute 'run_packing'
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 369, in evaluate_stage1
+    centers, radii, sum_radii = run_with_timeout(program_path, timeout_seconds=600)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 171, in run_with_timeout
+    raise RuntimeError(f"Program execution failed: {results['error']}")
+RuntimeError: Program execution failed: module 'program' has no attribute 'run_packing'
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpe8hvbhyd.py
+Calling run_packing()...
+Error in subprocess: module 'program' has no attribute 'run_packing'
+Error saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmphwft7hg5.py.results
+
+Subprocess stderr: Traceback (most recent call last):
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmphwft7hg5.py", line 23, in <module>
+    centers, radii, sum_radii = program.run_packing()
+                                ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'program' has no attribute 'run_packing'
+
+Stage 1 evaluation failed: Program execution failed: module 'program' has no attribute 'run_packing'
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 369, in evaluate_stage1
+    centers, radii, sum_radii = run_with_timeout(program_path, timeout_seconds=600)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 171, in run_with_timeout
+    raise RuntimeError(f"Program execution failed: {results['error']}")
+RuntimeError: Program execution failed: module 'program' has no attribute 'run_packing'
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp2675kf31.py
+Error in subprocess: invalid syntax (tmp2675kf31.py, line 131)
+Error saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpl82p3afg.py.results
+
+Subprocess stderr: Traceback (most recent call last):
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpl82p3afg.py", line 19, in <module>
+    spec.loader.exec_module(program)
+  File "<frozen importlib._bootstrap_external>", line 936, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1074, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1004, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp2675kf31.py", line 131
+    ```
+    ^
+SyntaxError: invalid syntax
+
+Stage 1 evaluation failed: Program execution failed: invalid syntax (tmp2675kf31.py, line 131)
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 369, in evaluate_stage1
+    centers, radii, sum_radii = run_with_timeout(program_path, timeout_seconds=600)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 171, in run_with_timeout
+    raise RuntimeError(f"Program execution failed: {results['error']}")
+RuntimeError: Program execution failed: invalid syntax (tmp2675kf31.py, line 131)
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmprybwp7az.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.9246073071411238
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpmewtai4g.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmprybwp7az.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.9246073071411238
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpyl7egatn.py.results
+
+Evaluation: valid=True, sum_radii=1.924607, target=2.635, ratio=0.730401, time=0.13s
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp_k1udsi2.py
+Calling run_packing()...
+Error in subprocess: module 'program' has no attribute 'run_packing'
+Error saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp9_9fcrh4.py.results
+
+Subprocess stderr: Traceback (most recent call last):
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp9_9fcrh4.py", line 23, in <module>
+    centers, radii, sum_radii = program.run_packing()
+                                ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'program' has no attribute 'run_packing'
+
+Stage 1 evaluation failed: Program execution failed: module 'program' has no attribute 'run_packing'
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 369, in evaluate_stage1
+    centers, radii, sum_radii = run_with_timeout(program_path, timeout_seconds=600)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 171, in run_with_timeout
+    raise RuntimeError(f"Program execution failed: {results['error']}")
+RuntimeError: Program execution failed: module 'program' has no attribute 'run_packing'
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmptw9rapl1.py
+Calling run_packing()...
+Error in subprocess: module 'program' has no attribute 'run_packing'
+Error saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpzsxtsla9.py.results
+
+Subprocess stderr: Traceback (most recent call last):
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpzsxtsla9.py", line 23, in <module>
+    centers, radii, sum_radii = program.run_packing()
+                                ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'program' has no attribute 'run_packing'
+
+Stage 1 evaluation failed: Program execution failed: module 'program' has no attribute 'run_packing'
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 369, in evaluate_stage1
+    centers, radii, sum_radii = run_with_timeout(program_path, timeout_seconds=600)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/circle_packing/evaluator.py", line 171, in run_with_timeout
+    raise RuntimeError(f"Program execution failed: {results['error']}")
+RuntimeError: Program execution failed: module 'program' has no attribute 'run_packing'
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpeppgc9p0.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.6859632785730725
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp_u7ucr12.py.results
+
+Subprocess stdout: Running in subprocess, Python version: 3.11.7 (main, Dec 15 2023, 12:09:56) [Clang 14.0.6 ]
+Program path: /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpeppgc9p0.py
+Calling run_packing()...
+run_packing() returned successfully: sum_radii = 1.6859632785730725
+Results saved to /var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpeilu298w.py.results
+
+Evaluation: valid=True, sum_radii=1.685963, target=2.635, ratio=0.639834, time=0.21s
+
+Evolution complete!
+Best program metrics:
+  validity: 1.0000
+  sum_radii: 1.9246
+  target_ratio: 0.7304
+  combined_score: 0.7304
+  eval_time: 0.1270
+
+Latest checkpoint saved at: experiments/factorial_ab_circpack/treatment_full_run_200/checkpoints/checkpoint_20
+To resume, use: --checkpoint experiments/factorial_ab_circpack/treatment_full_run_200/checkpoints/checkpoint_20

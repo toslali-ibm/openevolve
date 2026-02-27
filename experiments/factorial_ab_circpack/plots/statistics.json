@@ -1,0 +1,107 @@
+{
+  "comparison_iteration": 20,
+  "conditions": {
+    "control_diff": {
+      "n": 3,
+      "median": 0.7865479736331566,
+      "mean": 0.7924030431410816,
+      "std": 0.013012180918617016,
+      "iqr": 0.011983550102196205
+    },
+    "treatment_diff": {
+      "n": 3,
+      "median": 0.7368267978141813,
+      "mean": 0.7689430394325513,
+      "std": 0.06387684915214999,
+      "iqr": 0.05750358359128038
+    },
+    "control_full": {
+      "n": 3,
+      "median": 0.6594294298924476,
+      "mean": 0.6872209003171358,
+      "std": 0.12723326863413256,
+      "iqr": 0.12493610477380268
+    },
+    "treatment_full": {
+      "n": 3,
+      "median": 0.6544030146681873,
+      "mean": 0.5830137214153073,
+      "std": 0.19323925101866327,
+      "iqr": 0.18308218029315326
+    }
+  },
+  "kruskal_wallis": {
+    "H": 4.435897435897445,
+    "p": 0.2180798553343489
+  },
+  "pairwise_mann_whitney": {
+    "control_diff_vs_treatment_diff": {
+      "U": 6.0,
+      "p_raw": 0.7,
+      "p_bonferroni": 1.0,
+      "rank_biserial_r": 0.33333333333333326,
+      "n1": 3,
+      "n2": 3
+    },
+    "control_diff_vs_control_full": {
+      "U": 6.0,
+      "p_raw": 0.7,
+      "p_bonferroni": 1.0,
+      "rank_biserial_r": 0.33333333333333326,
+      "n1": 3,
+      "n2": 3
+    },
+    "control_diff_vs_treatment_full": {
+      "U": 9.0,
+      "p_raw": 0.1,
+      "p_bonferroni": 0.6000000000000001,
+      "rank_biserial_r": 1.0,
+      "n1": 3,
+      "n2": 3
+    },
+    "treatment_diff_vs_control_full": {
+      "U": 7.0,
+      "p_raw": 0.4,
+      "p_bonferroni": 1.0,
+      "rank_biserial_r": 0.5555555555555556,
+      "n1": 3,
+      "n2": 3
+    },
+    "treatment_diff_vs_treatment_full": {
+      "U": 8.0,
+      "p_raw": 0.2,
+      "p_bonferroni": 1.0,
+      "rank_biserial_r": 0.7777777777777777,
+      "n1": 3,
+      "n2": 3
+    },
+    "control_full_vs_treatment_full": {
+      "U": 6.0,
+      "p_raw": 0.7,
+      "p_bonferroni": 1.0,
+      "rank_biserial_r": 0.33333333333333326,
+      "n1": 3,
+      "n2": 3
+    }
+  },
+  "main_effect_hypothesis": {
+    "U": 13.0,
+    "p": 0.48484848484848486,
+    "rank_biserial_r": -0.2777777777777778,
+    "median_on": 0.7289494158662382,
+    "median_off": 0.7849475007130022
+  },
+  "main_effect_mode": {
+    "U": 30.0,
+    "p": 0.06493506493506493,
+    "rank_biserial_r": 0.6666666666666667,
+    "median_diff": 0.7849475007130022,
+    "median_full": 0.6569162222803174
+  },
+  "interaction": {
+    "hypothesis_effect_full_mode": -0.005026415224260283,
+    "hypothesis_effect_diff_mode": -0.049721175818975394,
+    "interaction_estimate": 0.04469476059471511,
+    "interpretation": "Positive interaction: hypothesis helps MORE in full-rewrite mode"
+  }
+}

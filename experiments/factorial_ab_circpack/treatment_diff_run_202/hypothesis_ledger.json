@@ -1,0 +1,321 @@
+{
+  "baseline": {
+    "sum_radii": 0.9598,
+    "target_ratio": 0.3642,
+    "combined_score": 0.3642
+  },
+  "entries": [
+    {
+      "timestamp": "2026-02-26T16:56:52.521551+00:00",
+      "overall_combined_score": 0.8197343453510436,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle improves sum_radii over concentric rings",
+          "mechanism": "A grid-based layout provides a more uniform distribution of space for 26 circles than polar rings, which tend to cluster circles too tightly or leave gaps.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.0,
+          "actual": 2.1599999999999997,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 125.0468847676599,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of radii increases total sum",
+          "mechanism": "The initial proportional scaling is greedy; by iterating the radius calculation, we can distribute \"slack\" from smaller circles to larger neighbors.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.8197343453510436,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 125.07807395690378,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:08.228535+00:00",
+      "overall_combined_score": 0.8425047438330169,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle is more efficient than concentric rings.",
+          "mechanism": "Grid-based layouts distribute circles more uniformly in a square container, reducing the extreme overlaps found in polar coordinates when applied to a square.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.1,
+          "actual": 2.2199999999999993,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 131.2981871223171,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative radius relaxation improves the sum over proportional scaling.",
+          "mechanism": "Proportional scaling is a one-pass greedy approach; iterative relaxation allows circles with more \"room\" to expand, filling gaps left by constrained neighbors.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.8425047438330169,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 131.33024267792882,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:10.728504+00:00",
+      "overall_combined_score": 0.8197343453510436,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle improves sum_radii over concentric rings",
+          "mechanism": "A grid-based layout provides a more uniform distribution of space for 26 circles than polar rings, which tend to cluster circles too tightly or leave gaps.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.0,
+          "actual": 2.1599999999999997,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 125.0468847676599,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of radii increases total sum",
+          "mechanism": "The initial proportional scaling is greedy; by iterating the radius calculation, we can distribute \"slack\" from smaller circles to larger neighbors.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.8197343453510436,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 125.07807395690378,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:58:04.456416+00:00",
+      "overall_combined_score": 0.8425047438330169,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle is more efficient than concentric rings.",
+          "mechanism": "Grid-based layouts distribute circles more uniformly in a square container, reducing the extreme overlaps found in polar coordinates when applied to a square.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.1,
+          "actual": 2.2199999999999993,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 131.2981871223171,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative radius relaxation improves the sum over proportional scaling.",
+          "mechanism": "Proportional scaling is a one-pass greedy approach; iterative relaxation allows circles with more \"room\" to expand, filling gaps left by constrained neighbors.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.8425047438330169,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 131.33024267792882,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:58:09.838050+00:00",
+      "overall_combined_score": 0.8425047438330169,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle is more efficient than concentric rings.",
+          "mechanism": "Grid-based layouts distribute circles more uniformly in a square container, reducing the extreme overlaps found in polar coordinates when applied to a square.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.1,
+          "actual": 2.2199999999999993,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 131.2981871223171,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative radius relaxation improves the sum over proportional scaling.",
+          "mechanism": "Proportional scaling is a one-pass greedy approach; iterative relaxation allows circles with more \"room\" to expand, filling gaps left by constrained neighbors.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.8425047438330169,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 131.33024267792882,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:58:35.787417+00:00",
+      "overall_combined_score": 0.8425047438330169,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle improves sum_radii over concentric rings",
+          "mechanism": "A grid-based layout provides a more uniform distribution of space for 26 circles than polar rings, which tend to cluster circles too tightly or leave gaps.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.0,
+          "actual": 2.2199999999999993,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 131.2981871223171,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative relaxation of radii increases total sum",
+          "mechanism": "The initial proportional scaling is greedy; by iterating the radius calculation, we can distribute \"slack\" from smaller circles to larger neighbors.",
+          "metric": "target_ratio",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.8425047438330169,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 131.33024267792882,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:58:39.478730+00:00",
+      "overall_combined_score": 0.6628887330188569,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Hexagonal shifting of rows in the grid improves packing density.",
+          "mechanism": "Offsetting alternating rows by half the inter-circle distance creates a hexagonal lattice, which is the optimal packing for circles.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.3,
+          "actual": 1.7467118115046876,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 81.98706100278054,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative center-position optimization further increases radii.",
+          "mechanism": "Moving circle centers away from their nearest neighbors after calculating radii allows for more expansion in the next iteration.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.88,
+          "actual": 0.6628887330188569,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 82.01228254224515,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:59:37.008249+00:00",
+      "overall_combined_score": 0.6988316342456584,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with one extra circle is more efficient than concentric rings.",
+          "mechanism": "Grid-based layouts distribute circles more uniformly in a square container, reducing the extreme overlaps found in polar coordinates when applied to a square.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.1,
+          "actual": 1.8414213562373098,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 91.85469433603978,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Iterative radius relaxation improves the sum over proportional scaling.",
+          "mechanism": "Proportional scaling is a one-pass greedy approach; iterative relaxation allows circles with more \"room\" to expand, filling gaps left by constrained neighbors.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.8,
+          "actual": 0.6988316342456584,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 91.88128342824228,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:59:39.444501+00:00",
+      "overall_combined_score": 0.8255975541158186,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Initial placement of the 26th circle in an interstitial gap and allowing centers closer to the boundary will improve sum_radii.",
+          "mechanism": "Placing the 26th circle in an unoccupied interstitial location (e.g., 0.25, 0.25) ensures it doesn't immediately overlap with an existing circle, allowing it to grow. Allowing centers closer to the boundary (e.g., 0.005 instead of 0.01) provides more flexibility for edge circles to expand, enabling larger radii.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.3,
+          "actual": 2.175449555095182,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 126.65654877007519,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Introducing small random perturbations to all initial center positions will break symmetry and improve the sum of radii.",
+          "mechanism": "A slight random jitter applied to all initial center coordinates helps to move the system away from potentially suboptimal symmetrical grid alignments, allowing the iterative radius relaxation to explore a wider solution space and find a better local optimum.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.35,
+          "actual": 2.175449555095182,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 126.65654877007519,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Randomizing the iteration order for radius updates in the relaxation process will enhance optimization.",
+          "mechanism": "By shuffling the order in which circles are processed during each relaxation step, the algorithm can prevent certain circles from consistently dominating space and allow for a more equitable and efficient distribution of radii, potentially escaping local optima.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.4,
+          "actual": 2.175449555095182,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 126.65654877007519,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:59:50.948791+00:00",
+      "overall_combined_score": 0.792792938598133,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A 5x5 grid with a central circle and localized jittering is more stable than a forced hexagonal lattice.",
+          "mechanism": "The 5x5 grid provides a balanced starting point for a square container; localized jittering breaks the symmetry to allow the 26th circle to fit without collapsing the radii of neighbors.",
+          "metric": "sum_radii",
+          "operator": ">",
+          "threshold": 2.23,
+          "actual": 2.0890093932060805,
+          "baseline_value": 0.9598,
+          "delta_vs_baseline_pct": 117.6504889775037,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Increasing relaxation iterations while removing the \"push\" logic prevents divergence.",
+          "mechanism": "The previous \"push\" logic (moving centers) was too aggressive, causing the fitness drop. Pure radius relaxation on a fixed, slightly optimized grid is more robust for high-sum results.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 0.84,
+          "actual": 0.792792938598133,
+          "baseline_value": 0.3642,
+          "delta_vs_baseline_pct": 117.68065310217818,
+          "verdict": "REFUTED"
+        }
+      ]
+    }
+  ]
+}

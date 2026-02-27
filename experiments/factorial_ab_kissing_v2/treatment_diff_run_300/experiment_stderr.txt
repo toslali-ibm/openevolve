@@ -1,0 +1,413 @@
+2026-02-26 13:42:33,398 - INFO - Logging to experiments/factorial_ab_kissing_v2/treatment_diff_run_300/logs/openevolve_20260226_134233.log
+2026-02-26 13:42:33,415 - INFO - Set random seed to 42 for reproducibility
+2026-02-26 13:42:33,446 - INFO - Initialized OpenAI LLM with model: Azure/gpt-4o
+2026-02-26 13:42:33,455 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 13:42:33,455 - INFO - Initialized LLM ensemble with models: Azure/gpt-4o (weight: 0.80), GCP/gemini-2.5-flash (weight: 0.20)
+2026-02-26 13:42:33,471 - INFO - Initialized LLM ensemble with models: Azure/gpt-4o (weight: 0.80), GCP/gemini-2.5-flash (weight: 0.20)
+2026-02-26 13:42:33,473 - INFO - Initialized prompt sampler
+2026-02-26 13:42:33,474 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 13:42:33,474 - INFO - Initialized program database with 0 programs
+2026-02-26 13:42:33,475 - INFO - Successfully loaded evaluation function from examples/alphaevolve_math_problems/kissing_number/evaluator.py
+2026-02-26 13:42:33,475 - WARNING - Configuration has 'cascade_evaluation: true' but evaluator 'examples/alphaevolve_math_problems/kissing_number/evaluator.py' does not define 'evaluate_stage1' function. This will fall back to direct evaluation, making the cascade setting useless. Consider setting 'cascade_evaluation: false' or implementing cascade functions.
+2026-02-26 13:42:33,475 - INFO - Initialized evaluator with examples/alphaevolve_math_problems/kissing_number/evaluator.py
+2026-02-26 13:42:33,475 - INFO - Initialized OpenEvolve with examples/alphaevolve_math_problems/kissing_number/initial_program.py
+2026-02-26 13:42:33,475 - INFO - Adding initial program to database
+2026-02-26 13:42:33,480 - INFO - [HYPOTHESIS] Parsed 0 hypotheses from evolved code
+2026-02-26 13:42:33,480 - INFO - [HYPOTHESIS] No hypotheses found in evolved code
+2026-02-26 13:42:33,480 - INFO - Evaluated program 0b2d434a-4cda-47d2-8876-5e5ab7ad871b in 0.00s: num_points=2.0000, combined_score=0.0034, eval_time=0.0000
+2026-02-26 13:42:33,480 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-02-26 13:42:33,489 - INFO - Initialized process parallel controller with 3 workers
+2026-02-26 13:42:33,490 - INFO - Set max None tasks per child
+2026-02-26 13:42:33,490 - INFO - Started process pool with 3 processes
+2026-02-26 13:42:33,490 - INFO - Using island-based evolution with 3 islands
+2026-02-26 13:42:33,490 - INFO - Island Status:
+2026-02-26 13:42:33,490 - INFO -  * Island 0: 1 programs, best=0.0034, avg=0.0034, diversity=0.00, gen=0 (best: 0b2d434a-4cda-47d2-8876-5e5ab7ad871b)
+2026-02-26 13:42:33,490 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:42:33,490 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:42:33,490 - INFO - Starting process-based evolution from iteration 1 for 50 iterations (total: 51)
+2026-02-26 13:42:33,537 - INFO - Early stopping disabled
+2026-02-26 13:42:34,991 - INFO - Initialized OpenAI LLM with model: Azure/gpt-4o
+2026-02-26 13:42:35,011 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 13:42:35,011 - INFO - Initialized LLM ensemble with models: Azure/gpt-4o (weight: 0.80), GCP/gemini-2.5-flash (weight: 0.20)
+2026-02-26 13:42:35,012 - INFO - Initialized prompt sampler
+2026-02-26 13:42:35,031 - INFO - Initialized OpenAI LLM with model: Azure/gpt-4o
+2026-02-26 13:42:35,033 - INFO - Initialized LLM ensemble with models: Azure/gpt-4o (weight: 0.80), GCP/gemini-2.5-flash (weight: 0.20)
+2026-02-26 13:42:35,036 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 13:42:35,037 - INFO - Successfully loaded evaluation function from examples/alphaevolve_math_problems/kissing_number/evaluator.py
+2026-02-26 13:42:35,037 - WARNING - Configuration has 'cascade_evaluation: true' but evaluator 'examples/alphaevolve_math_problems/kissing_number/evaluator.py' does not define 'evaluate_stage1' function. This will fall back to direct evaluation, making the cascade setting useless. Consider setting 'cascade_evaluation: false' or implementing cascade functions.
+2026-02-26 13:42:35,037 - INFO - Initialized evaluator with examples/alphaevolve_math_problems/kissing_number/evaluator.py
+2026-02-26 13:42:35,037 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:42:35,049 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 13:42:35,049 - INFO - Initialized LLM ensemble with models: Azure/gpt-4o (weight: 0.80), GCP/gemini-2.5-flash (weight: 0.20)
+2026-02-26 13:42:35,050 - INFO - Initialized prompt sampler
+2026-02-26 13:42:35,060 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:42:35,152 - INFO - Initialized OpenAI LLM with model: Azure/gpt-4o
+2026-02-26 13:42:35,193 - INFO - Initialized LLM ensemble with models: Azure/gpt-4o (weight: 0.80), GCP/gemini-2.5-flash (weight: 0.20)
+2026-02-26 13:42:35,194 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 13:42:35,194 - INFO - Successfully loaded evaluation function from examples/alphaevolve_math_problems/kissing_number/evaluator.py
+2026-02-26 13:42:35,194 - WARNING - Configuration has 'cascade_evaluation: true' but evaluator 'examples/alphaevolve_math_problems/kissing_number/evaluator.py' does not define 'evaluate_stage1' function. This will fall back to direct evaluation, making the cascade setting useless. Consider setting 'cascade_evaluation: false' or implementing cascade functions.
+2026-02-26 13:42:35,194 - INFO - Initialized evaluator with examples/alphaevolve_math_problems/kissing_number/evaluator.py
+2026-02-26 13:42:35,194 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:42:35,195 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:42:35,274 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 13:42:35,274 - INFO - Initialized LLM ensemble with models: Azure/gpt-4o (weight: 0.80), GCP/gemini-2.5-flash (weight: 0.20)
+2026-02-26 13:42:35,275 - INFO - Initialized prompt sampler
+2026-02-26 13:42:35,340 - INFO - Initialized LLM ensemble with models: Azure/gpt-4o (weight: 0.80), GCP/gemini-2.5-flash (weight: 0.20)
+2026-02-26 13:42:35,340 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 13:42:35,341 - INFO - Successfully loaded evaluation function from examples/alphaevolve_math_problems/kissing_number/evaluator.py
+2026-02-26 13:42:35,341 - WARNING - Configuration has 'cascade_evaluation: true' but evaluator 'examples/alphaevolve_math_problems/kissing_number/evaluator.py' does not define 'evaluate_stage1' function. This will fall back to direct evaluation, making the cascade setting useless. Consider setting 'cascade_evaluation: false' or implementing cascade functions.
+2026-02-26 13:42:35,341 - INFO - Initialized evaluator with examples/alphaevolve_math_problems/kissing_number/evaluator.py
+2026-02-26 13:42:35,341 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:42:35,343 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:43:55,434 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:43:55,440 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:43:55,441 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:43:55,450 - WARNING - Iteration 1 error: No valid diffs found in response
+2026-02-26 13:43:56,412 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:43:56,418 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:43:56,418 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:43:56,419 - WARNING - Iteration 2 error: No valid diffs found in response
+2026-02-26 13:43:58,646 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:43:58,654 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:43:58,655 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:43:58,662 - WARNING - Iteration 3 error: No valid diffs found in response
+2026-02-26 13:45:14,692 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:45:14,695 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:45:14,696 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:45:14,701 - WARNING - Iteration 4 error: No valid diffs found in response
+2026-02-26 13:45:18,934 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:45:18,938 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:45:18,938 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:45:18,948 - WARNING - Iteration 5 error: No valid diffs found in response
+2026-02-26 13:45:21,178 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:45:21,180 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:45:21,180 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:45:21,186 - WARNING - Iteration 6 error: No valid diffs found in response
+2026-02-26 13:45:25,606 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:45:25,610 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:45:25,610 - INFO - [HYPOTHESIS] Updated ledger (1 entries)
+2026-02-26 13:45:25,610 - INFO - Evaluated program 5c6b806b-e00e-44e2-bfc1-740c103580c5 in 0.00s: num_points=2.0000, combined_score=0.0034, eval_time=0.0001
+2026-02-26 13:45:25,611 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:45:25,611 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:45:25,617 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 5}
+2026-02-26 13:45:25,618 - INFO - Iteration 7: Program 5c6b806b-e00e-44e2-bfc1-740c103580c5 (parent: 0b2d434a-4cda-47d2-8876-5e5ab7ad871b) completed in 10.92s
+2026-02-26 13:45:25,618 - INFO - Metrics: num_points=2.0000, combined_score=0.0034, eval_time=0.0001
+2026-02-26 13:45:29,626 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:45:29,627 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:45:29,627 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:45:29,629 - WARNING - Iteration 8 error: No valid diffs found in response
+2026-02-26 13:45:34,889 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:45:34,890 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:45:34,891 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:45:34,900 - WARNING - Iteration 9 error: No valid diffs found in response
+2026-02-26 13:46:42,951 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:46:42,957 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:46:42,958 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:46:42,965 - WARNING - Iteration 10 error: No valid diffs found in response
+2026-02-26 13:46:53,478 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:46:53,485 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:46:53,485 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:46:53,497 - WARNING - Iteration 11 error: No valid diffs found in response
+2026-02-26 13:47:01,843 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:47:01,853 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:47:01,853 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:47:01,859 - WARNING - Iteration 12 error: No valid diffs found in response
+2026-02-26 13:47:05,067 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:47:05,100 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:47:05,108 - INFO - [HYPOTHESIS] Updated ledger (2 entries)
+2026-02-26 13:47:05,112 - INFO - Evaluated program cbf10001-1b27-4e71-a2ed-01c6fac33d7b in 0.02s: num_points=2.0000, combined_score=0.0034, eval_time=0.0001
+2026-02-26 13:47:05,126 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:47:05,128 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:47:05,135 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 0}
+2026-02-26 13:47:05,135 - INFO - Iteration 13: Program cbf10001-1b27-4e71-a2ed-01c6fac33d7b (parent: 0b2d434a-4cda-47d2-8876-5e5ab7ad871b) completed in 22.17s
+2026-02-26 13:47:05,135 - INFO - Metrics: num_points=2.0000, combined_score=0.0034, eval_time=0.0001
+2026-02-26 13:47:09,918 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:47:09,928 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:47:09,931 - INFO - [HYPOTHESIS] Updated ledger (3 entries)
+2026-02-26 13:47:09,932 - INFO - Evaluated program 99a56e3b-ed36-40a0-a2da-de26783e79db in 0.01s: num_points=2.0000, combined_score=0.0034, eval_time=0.0002
+2026-02-26 13:47:09,934 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:47:09,934 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:47:09,942 - INFO - Iteration 14: Program 99a56e3b-ed36-40a0-a2da-de26783e79db (parent: 0b2d434a-4cda-47d2-8876-5e5ab7ad871b) completed in 16.45s
+2026-02-26 13:47:09,942 - INFO - Metrics: num_points=2.0000, combined_score=0.0034, eval_time=0.0002
+2026-02-26 13:47:15,951 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:47:15,979 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:47:15,983 - INFO - [HYPOTHESIS] Updated ledger (4 entries)
+2026-02-26 13:47:15,984 - INFO - Evaluated program 9d730409-4709-4e08-a32d-eb027d25974f in 0.02s: num_points=2.0000, combined_score=0.0034, eval_time=0.0002
+2026-02-26 13:47:15,990 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:47:15,990 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:47:15,994 - INFO - Iteration 15: Program 9d730409-4709-4e08-a32d-eb027d25974f (parent: 0b2d434a-4cda-47d2-8876-5e5ab7ad871b) completed in 14.14s
+2026-02-26 13:47:15,994 - INFO - Metrics: num_points=2.0000, combined_score=0.0034, eval_time=0.0002
+2026-02-26 13:47:21,091 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:47:21,120 - INFO - Evaluated program c19551f1-be85-4ac3-9ebb-dd17ac972a01 in 0.01s: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:47:21,128 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:47:21,130 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:47:21,146 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 3}
+2026-02-26 13:47:21,151 - INFO - Iteration 17: Program c19551f1-be85-4ac3-9ebb-dd17ac972a01 (parent: 0b2d434a-4cda-47d2-8876-5e5ab7ad871b) completed in 11.19s
+2026-02-26 13:47:21,152 - INFO - Metrics: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:47:22,686 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:47:22,694 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:47:22,695 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:47:22,704 - WARNING - Iteration 16 error: No valid diffs found in response
+2026-02-26 13:47:24,741 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:47:24,743 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:47:24,744 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:47:24,751 - WARNING - Iteration 18 error: No valid diffs found in response
+2026-02-26 13:47:37,096 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:47:37,102 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:47:37,103 - INFO - [HYPOTHESIS] Updated ledger (5 entries)
+2026-02-26 13:47:37,103 - INFO - Evaluated program a790cbc9-bda9-45ae-8080-6aca2f359c33 in 0.00s: num_points=2.0000, combined_score=0.0034, eval_time=0.0002
+2026-02-26 13:47:37,106 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:47:37,107 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:47:37,110 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 8, 'diversity': 3}
+2026-02-26 13:47:37,111 - INFO - Iteration 20: Program a790cbc9-bda9-45ae-8080-6aca2f359c33 (parent: cbf10001-1b27-4e71-a2ed-01c6fac33d7b) completed in 14.41s
+2026-02-26 13:47:37,111 - INFO - Metrics: num_points=2.0000, combined_score=0.0034, eval_time=0.0002
+2026-02-26 13:47:37,111 - INFO - Checkpoint interval reached at iteration 20
+2026-02-26 13:47:37,111 - INFO - Island Status:
+2026-02-26 13:47:37,111 - INFO -  * Island 0: 7 programs, best=0.0034, avg=0.0029, diversity=129.75, gen=6 (best: 0b2d434a-4cda-47d2-8876-5e5ab7ad871b)
+2026-02-26 13:47:37,111 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:47:37,111 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:47:37,114 - INFO - Saved database with 7 programs to experiments/factorial_ab_kissing_v2/treatment_diff_run_300/checkpoints/checkpoint_20
+2026-02-26 13:47:37,115 - INFO - Saved best program at checkpoint 20 with metrics: num_points=2.0000, combined_score=0.0034, eval_time=0.0000
+2026-02-26 13:47:37,115 - INFO - Saved checkpoint at iteration 20 to experiments/factorial_ab_kissing_v2/treatment_diff_run_300/checkpoints/checkpoint_20
+2026-02-26 13:47:41,508 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:47:41,549 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:47:41,550 - INFO - [HYPOTHESIS] Updated ledger (6 entries)
+2026-02-26 13:47:41,553 - INFO - Evaluated program 859df8b1-1944-44be-8f16-c080e0e3972a in 0.02s: num_points=4.0000, combined_score=0.0067, eval_time=0.0034
+2026-02-26 13:47:41,558 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:47:41,558 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:47:41,568 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 9}
+2026-02-26 13:47:41,568 - INFO - New best program 859df8b1-1944-44be-8f16-c080e0e3972a replaces 0b2d434a-4cda-47d2-8876-5e5ab7ad871b (combined_score: 0.0034 → 0.0067, +0.0034)
+2026-02-26 13:47:41,568 - INFO - Iteration 21: Program 859df8b1-1944-44be-8f16-c080e0e3972a (parent: 99a56e3b-ed36-40a0-a2da-de26783e79db) completed in 16.81s
+2026-02-26 13:47:41,569 - INFO - Metrics: num_points=4.0000, combined_score=0.0067, eval_time=0.0034
+2026-02-26 13:47:41,569 - INFO - 🌟 New best solution found at iteration 21: 859df8b1-1944-44be-8f16-c080e0e3972a
+2026-02-26 13:47:55,121 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:47:55,198 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:47:55,200 - INFO - [HYPOTHESIS] Updated ledger (7 entries)
+2026-02-26 13:47:55,200 - INFO - Evaluated program f50dba5b-bb50-44e5-979a-489ee4d321cb in 0.01s: num_points=2.0000, combined_score=0.0034, eval_time=0.0000
+2026-02-26 13:47:55,202 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:47:55,203 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:47:55,210 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 4, 'diversity': 1}
+2026-02-26 13:47:55,212 - INFO - Iteration 19: Program f50dba5b-bb50-44e5-979a-489ee4d321cb (parent: cbf10001-1b27-4e71-a2ed-01c6fac33d7b) completed in 34.07s
+2026-02-26 13:47:55,212 - INFO - Metrics: num_points=2.0000, combined_score=0.0034, eval_time=0.0000
+2026-02-26 13:48:39,573 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:48:39,941 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:48:39,963 - INFO - Evaluated program 15f71d0f-85af-42c1-aaed-a436f51333e2 in 0.02s: combined_score=0.0000, error=Verification failed because the set contains 0.
+2026-02-26 13:48:39,964 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:48:39,964 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:48:39,968 - INFO - Iteration 22: Program 15f71d0f-85af-42c1-aaed-a436f51333e2 (parent: 99a56e3b-ed36-40a0-a2da-de26783e79db) completed in 62.86s
+2026-02-26 13:48:39,968 - INFO - Metrics: combined_score=0.0000, error=Verification failed because the set contains 0.
+2026-02-26 13:49:01,453 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:49:01,459 - INFO - Evaluated program f2a3f875-1aef-4d55-a492-a3d2c4fa1491 in 0.00s: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:49:01,463 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:49:01,463 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:49:01,467 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 4, 'diversity': 2}
+2026-02-26 13:49:01,468 - INFO - Iteration 25: Program f2a3f875-1aef-4d55-a492-a3d2c4fa1491 (parent: 0b2d434a-4cda-47d2-8876-5e5ab7ad871b) completed in 21.50s
+2026-02-26 13:49:01,469 - INFO - Metrics: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:49:15,627 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:49:15,634 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:49:15,635 - INFO - [HYPOTHESIS] Updated ledger (8 entries)
+2026-02-26 13:49:15,642 - INFO - Evaluated program 8e7f2f17-c55e-440d-a178-b82be8edd976 in 0.01s: num_points=2.0000, combined_score=0.0034, eval_time=0.0000
+2026-02-26 13:49:15,643 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:49:15,644 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:49:15,652 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 3, 'diversity': 2}
+2026-02-26 13:49:15,653 - INFO - Iteration 26: Program 8e7f2f17-c55e-440d-a178-b82be8edd976 (parent: 5c6b806b-e00e-44e2-bfc1-740c103580c5) completed in 14.18s
+2026-02-26 13:49:15,653 - INFO - Metrics: num_points=2.0000, combined_score=0.0034, eval_time=0.0000
+2026-02-26 13:49:16,334 - INFO - Evaluated program 65982281-f9d5-4d34-a699-d30e167913e1 in 36.76s: combined_score=0.0000, error=Verification failed because the minimum squared distance = 2 < 4 = maximum squared norm.
+2026-02-26 13:49:16,349 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:49:16,350 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:49:16,351 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 8, 'diversity': 6}
+2026-02-26 13:49:16,351 - INFO - Island 0 MAP-Elites coverage reached 10.0% (10/100 cells)
+2026-02-26 13:49:16,351 - INFO - Iteration 23: Program 65982281-f9d5-4d34-a699-d30e167913e1 (parent: cbf10001-1b27-4e71-a2ed-01c6fac33d7b) completed in 94.79s
+2026-02-26 13:49:16,351 - INFO - Metrics: combined_score=0.0000, error=Verification failed because the minimum squared distance = 2 < 4 = maximum squared norm.
+2026-02-26 13:49:17,109 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:49:17,111 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:49:17,112 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:49:17,118 - WARNING - Iteration 24 error: No valid diffs found in response
+2026-02-26 13:49:28,588 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:49:28,607 - INFO - Evaluated program e7aef407-a432-4e03-ad0d-9494c9e5cac3 in 0.01s: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:49:28,616 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:49:28,616 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:49:28,618 - INFO - Iteration 27: Program e7aef407-a432-4e03-ad0d-9494c9e5cac3 (parent: c19551f1-be85-4ac3-9ebb-dd17ac972a01) completed in 12.97s
+2026-02-26 13:49:28,618 - INFO - Metrics: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:49:36,036 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:49:36,076 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:49:36,078 - INFO - [HYPOTHESIS] Updated ledger (9 entries)
+2026-02-26 13:49:36,079 - INFO - Evaluated program 7ab0a19e-6e84-40c7-9972-f4adefa841c6 in 0.01s: num_points=4.0000, combined_score=0.0067, eval_time=0.0008
+2026-02-26 13:49:36,081 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:49:36,082 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:49:36,095 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 8}
+2026-02-26 13:49:36,097 - INFO - Iteration 29: Program 7ab0a19e-6e84-40c7-9972-f4adefa841c6 (parent: 859df8b1-1944-44be-8f16-c080e0e3972a) completed in 18.97s
+2026-02-26 13:49:36,098 - INFO - Metrics: num_points=4.0000, combined_score=0.0067, eval_time=0.0008
+2026-02-26 13:49:37,761 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:49:37,778 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:49:37,779 - INFO - [HYPOTHESIS] Updated ledger (10 entries)
+2026-02-26 13:49:37,779 - INFO - Evaluated program 0d85a990-bd9c-44b8-b89f-676bcf9a6b31 in 0.01s: num_points=2.0000, combined_score=0.0034, eval_time=0.0005
+2026-02-26 13:49:37,783 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:49:37,784 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:49:37,790 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 3, 'diversity': 0}
+2026-02-26 13:49:37,790 - INFO - Iteration 28: Program 0d85a990-bd9c-44b8-b89f-676bcf9a6b31 (parent: 9d730409-4709-4e08-a32d-eb027d25974f) completed in 21.43s
+2026-02-26 13:49:37,790 - INFO - Metrics: num_points=2.0000, combined_score=0.0034, eval_time=0.0005
+2026-02-26 13:49:44,767 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:49:44,779 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:49:44,780 - INFO - [HYPOTHESIS] Updated ledger (11 entries)
+2026-02-26 13:49:44,781 - INFO - Evaluated program 7c4dd081-849f-45c8-b59c-9ec99cf4607a in 0.01s: num_points=2.0000, combined_score=0.0034, eval_time=0.0003
+2026-02-26 13:49:44,789 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:49:44,790 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:49:44,801 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 3, 'diversity': 1}
+2026-02-26 13:49:44,803 - INFO - Iteration 30: Program 7c4dd081-849f-45c8-b59c-9ec99cf4607a (parent: 0b2d434a-4cda-47d2-8876-5e5ab7ad871b) completed in 16.17s
+2026-02-26 13:49:44,803 - INFO - Metrics: num_points=2.0000, combined_score=0.0034, eval_time=0.0003
+2026-02-26 13:49:44,803 - INFO - Checkpoint interval reached at iteration 30
+2026-02-26 13:49:44,804 - INFO - Island Status:
+2026-02-26 13:49:44,804 - INFO -  * Island 0: 17 programs, best=0.0067, avg=0.0028, diversity=346.92, gen=16 (best: 859df8b1-1944-44be-8f16-c080e0e3972a)
+2026-02-26 13:49:44,804 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:49:44,804 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:49:44,825 - INFO - Saved database with 17 programs to experiments/factorial_ab_kissing_v2/treatment_diff_run_300/checkpoints/checkpoint_30
+2026-02-26 13:49:44,826 - INFO - Saved best program at checkpoint 30 with metrics: num_points=4.0000, combined_score=0.0067, eval_time=0.0034
+2026-02-26 13:49:44,826 - INFO - Saved checkpoint at iteration 30 to experiments/factorial_ab_kissing_v2/treatment_diff_run_300/checkpoints/checkpoint_30
+2026-02-26 13:49:51,873 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:49:51,886 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:49:51,888 - INFO - [HYPOTHESIS] Updated ledger (12 entries)
+2026-02-26 13:49:51,888 - INFO - Evaluated program 5f93665f-af41-454d-8a0b-931a5d2ae435 in 0.01s: num_points=2.0000, combined_score=0.0034, eval_time=0.0000
+2026-02-26 13:49:51,892 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:49:51,893 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:49:51,892 - INFO - Iteration 32: Program 5f93665f-af41-454d-8a0b-931a5d2ae435 (parent: 5c6b806b-e00e-44e2-bfc1-740c103580c5) completed in 14.11s
+2026-02-26 13:49:51,893 - INFO - Metrics: num_points=2.0000, combined_score=0.0034, eval_time=0.0000
+2026-02-26 13:49:54,396 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:50:02,665 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:50:02,705 - INFO - Evaluated program cfb26424-9d5c-4f19-938a-eb98aa117e2c in 0.01s: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:50:02,710 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:50:02,711 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:50:02,719 - INFO - Iteration 34: Program cfb26424-9d5c-4f19-938a-eb98aa117e2c (parent: f2a3f875-1aef-4d55-a492-a3d2c4fa1491) completed in 10.81s
+2026-02-26 13:50:02,721 - INFO - Metrics: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:50:17,484 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:50:17,494 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:50:17,497 - INFO - [HYPOTHESIS] Updated ledger (13 entries)
+2026-02-26 13:50:17,502 - INFO - Evaluated program 717b2542-ff52-44fc-90ce-fc37e918a667 in 0.01s: num_points=2.0000, combined_score=0.0034, eval_time=0.0002
+2026-02-26 13:50:17,506 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:50:17,507 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:50:17,521 - INFO - Iteration 35: Program 717b2542-ff52-44fc-90ce-fc37e918a667 (parent: 5c6b806b-e00e-44e2-bfc1-740c103580c5) completed in 14.79s
+2026-02-26 13:50:17,522 - INFO - Metrics: num_points=2.0000, combined_score=0.0034, eval_time=0.0002
+2026-02-26 13:50:54,683 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:50:54,813 - INFO - Evaluated program a1765091-ca46-4674-8cac-56d9daaa7489 in 0.11s: combined_score=0.0000, error=Verification failed because the set contains 0.
+2026-02-26 13:50:54,816 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:50:54,819 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:50:54,868 - INFO - Iteration 33: Program a1765091-ca46-4674-8cac-56d9daaa7489 (parent: 15f71d0f-85af-42c1-aaed-a436f51333e2) completed in 70.02s
+2026-02-26 13:50:54,869 - INFO - Metrics: combined_score=0.0000, error=Verification failed because the set contains 0.
+2026-02-26 13:51:09,058 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:51:09,078 - INFO - Evaluated program 5f076923-6f1c-4114-83f6-4dbb0a4dc681 in 0.01s: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:51:09,083 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:51:09,085 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:51:09,097 - INFO - Iteration 37: Program 5f076923-6f1c-4114-83f6-4dbb0a4dc681 (parent: f2a3f875-1aef-4d55-a492-a3d2c4fa1491) completed in 14.26s
+2026-02-26 13:51:09,098 - INFO - Metrics: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:51:24,289 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:51:24,300 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:51:24,303 - INFO - [HYPOTHESIS] Updated ledger (14 entries)
+2026-02-26 13:51:24,304 - INFO - Evaluated program 05ea4268-6de6-462c-98dc-9da7531874e2 in 0.01s: num_points=2.0000, combined_score=0.0034, eval_time=0.0003
+2026-02-26 13:51:24,307 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:51:24,307 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:51:24,312 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 2, 'diversity': 2}
+2026-02-26 13:51:24,313 - INFO - Iteration 38: Program 05ea4268-6de6-462c-98dc-9da7531874e2 (parent: 5c6b806b-e00e-44e2-bfc1-740c103580c5) completed in 15.22s
+2026-02-26 13:51:24,313 - INFO - Metrics: num_points=2.0000, combined_score=0.0034, eval_time=0.0003
+2026-02-26 13:51:33,677 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:51:33,691 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:51:33,691 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:51:33,696 - WARNING - Iteration 36 error: No valid diffs found in response
+2026-02-26 13:51:51,982 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:51:52,006 - INFO - Evaluated program 25649f53-f069-4829-b1cb-b7c2bbaa3ee9 in 0.00s: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:51:52,011 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:51:52,013 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:51:52,031 - INFO - Iteration 40: Program 25649f53-f069-4829-b1cb-b7c2bbaa3ee9 (parent: c19551f1-be85-4ac3-9ebb-dd17ac972a01) completed in 18.32s
+2026-02-26 13:51:52,031 - INFO - Metrics: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:51:52,031 - INFO - Checkpoint interval reached at iteration 40
+2026-02-26 13:51:52,032 - INFO - Island Status:
+2026-02-26 13:51:52,032 - INFO -  * Island 0: 24 programs, best=0.0067, avg=0.0024, diversity=274.28, gen=23 (best: 859df8b1-1944-44be-8f16-c080e0e3972a)
+2026-02-26 13:51:52,032 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:51:52,032 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:51:52,049 - INFO - Saved database with 24 programs to experiments/factorial_ab_kissing_v2/treatment_diff_run_300/checkpoints/checkpoint_40
+2026-02-26 13:51:52,049 - INFO - Saved best program at checkpoint 40 with metrics: num_points=4.0000, combined_score=0.0067, eval_time=0.0034
+2026-02-26 13:51:52,049 - INFO - Saved checkpoint at iteration 40 to experiments/factorial_ab_kissing_v2/treatment_diff_run_300/checkpoints/checkpoint_40
+2026-02-26 13:52:06,663 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:52:06,678 - INFO - Evaluated program 8cbb83f0-9668-4555-88e9-5de2487a37b6 in 0.00s: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:52:06,682 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:52:06,683 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:52:06,685 - INFO - Iteration 41: Program 8cbb83f0-9668-4555-88e9-5de2487a37b6 (parent: e7aef407-a432-4e03-ad0d-9494c9e5cac3) completed in 14.67s
+2026-02-26 13:52:06,686 - INFO - Metrics: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:52:45,393 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:52:45,432 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:52:45,441 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:52:45,445 - WARNING - Iteration 39 error: No valid diffs found in response
+2026-02-26 13:52:56,229 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:52:56,238 - WARNING - Iteration 42 error: No valid diffs found in response
+2026-02-26 13:52:56,239 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:52:56,243 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 13:53:18,958 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:53:18,985 - INFO - [HYPOTHESIS] Updated ledger (15 entries)
+2026-02-26 13:53:19,002 - INFO - Evaluated program 21628afc-cc18-4cf3-bfea-b34a616552dc in 204.59s: num_points=2.0000, combined_score=0.0034, eval_time=204.5125
+2026-02-26 13:53:19,033 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:53:19,042 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:53:19,044 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 6}
+2026-02-26 13:53:19,050 - INFO - Iteration 31: Program 21628afc-cc18-4cf3-bfea-b34a616552dc (parent: cbf10001-1b27-4e71-a2ed-01c6fac33d7b) completed in 222.94s
+2026-02-26 13:53:19,050 - INFO - Metrics: num_points=2.0000, combined_score=0.0034, eval_time=204.5125
+2026-02-26 13:53:26,093 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:53:26,113 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:53:26,110 - WARNING - Iteration 43 error: No valid diffs found in response
+2026-02-26 13:53:26,114 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:53:32,907 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:53:32,926 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:53:32,927 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:53:32,934 - WARNING - Iteration 44 error: No valid diffs found in response
+2026-02-26 13:53:42,078 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:53:42,089 - INFO - Evaluated program 6842a5c2-7ae7-43cd-a075-38b1a4724228 in 0.00s: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:53:42,095 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:53:42,095 - INFO - Iteration 46: Program 6842a5c2-7ae7-43cd-a075-38b1a4724228 (parent: c19551f1-be85-4ac3-9ebb-dd17ac972a01) completed in 15.98s
+2026-02-26 13:53:42,095 - INFO - Metrics: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:53:42,096 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:53:49,939 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:53:49,959 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:53:49,963 - INFO - [HYPOTHESIS] Updated ledger (16 entries)
+2026-02-26 13:53:49,982 - INFO - Evaluated program 489b5d1a-16d6-425b-8f23-c94d3e2f220c in 0.03s: num_points=2.0000, combined_score=0.0034, eval_time=0.0019
+2026-02-26 13:53:49,991 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:53:49,994 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:53:50,001 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 2, 'diversity': 0}
+2026-02-26 13:53:50,005 - INFO - Iteration 47: Program 489b5d1a-16d6-425b-8f23-c94d3e2f220c (parent: f50dba5b-bb50-44e5-979a-489ee4d321cb) completed in 17.06s
+2026-02-26 13:53:50,005 - INFO - Metrics: num_points=2.0000, combined_score=0.0034, eval_time=0.0019
+2026-02-26 13:53:51,395 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:53:51,421 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:53:51,422 - INFO - [HYPOTHESIS] Updated ledger (17 entries)
+2026-02-26 13:53:51,423 - INFO - Evaluated program 99cb07be-bfa3-4933-a91a-2cc4fb45fbc1 in 0.01s: num_points=4.0000, combined_score=0.0067, eval_time=0.0010
+2026-02-26 13:53:51,427 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 13:53:51,428 - INFO - Sampled model: Azure/gpt-4o
+2026-02-26 13:53:51,430 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 6}
+2026-02-26 13:53:51,430 - INFO - Iteration 45: Program 99cb07be-bfa3-4933-a91a-2cc4fb45fbc1 (parent: 7ab0a19e-6e84-40c7-9972-f4adefa841c6) completed in 32.38s
+2026-02-26 13:53:51,430 - INFO - Metrics: num_points=4.0000, combined_score=0.0067, eval_time=0.0010
+2026-02-26 13:53:55,968 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:53:55,981 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 13:53:55,989 - INFO - [HYPOTHESIS] Updated ledger (18 entries)
+2026-02-26 13:53:55,989 - INFO - Evaluated program 95d55295-bb03-4ffb-8481-08c8662aad2e in 0.01s: num_points=2.0000, combined_score=0.0034, eval_time=0.0002
+2026-02-26 13:53:55,991 - INFO - Iteration 48: Program 95d55295-bb03-4ffb-8481-08c8662aad2e (parent: 05ea4268-6de6-462c-98dc-9da7531874e2) completed in 13.89s
+2026-02-26 13:53:55,992 - INFO - Metrics: num_points=2.0000, combined_score=0.0034, eval_time=0.0002
+2026-02-26 13:54:07,788 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:54:07,798 - INFO - Evaluated program 5ed3e733-8918-47af-85a4-a3ec4178fc86 in 0.00s: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:54:07,809 - INFO - Iteration 49: Program 5ed3e733-8918-47af-85a4-a3ec4178fc86 (parent: 8cbb83f0-9668-4555-88e9-5de2487a37b6) completed in 17.81s
+2026-02-26 13:54:07,810 - INFO - Metrics: combined_score=0.0000, error=name 'generate_d11_lattice_shell' is not defined
+2026-02-26 13:54:13,617 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 13:54:13,729 - INFO - Evaluated program a7b9f54d-640a-4913-bece-564259278863 in 0.10s: combined_score=0.0000, error=Verification failed because the set contains 0.
+2026-02-26 13:54:13,732 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 6, 'diversity': 6}
+2026-02-26 13:54:13,733 - INFO - Iteration 50: Program a7b9f54d-640a-4913-bece-564259278863 (parent: 5f93665f-af41-454d-8a0b-931a5d2ae435) completed in 22.30s
+2026-02-26 13:54:13,733 - INFO - Metrics: combined_score=0.0000, error=Verification failed because the set contains 0.
+2026-02-26 13:54:13,733 - INFO - Checkpoint interval reached at iteration 50
+2026-02-26 13:54:13,733 - INFO - Island Status:
+2026-02-26 13:54:13,733 - INFO -  * Island 0: 32 programs, best=0.0067, avg=0.0023, diversity=336.72, gen=31 (best: 859df8b1-1944-44be-8f16-c080e0e3972a)
+2026-02-26 13:54:13,733 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:54:13,733 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 13:54:13,753 - INFO - Saved database with 32 programs to experiments/factorial_ab_kissing_v2/treatment_diff_run_300/checkpoints/checkpoint_50
+2026-02-26 13:54:13,753 - INFO - Saved best program at checkpoint 50 with metrics: num_points=4.0000, combined_score=0.0067, eval_time=0.0034
+2026-02-26 13:54:13,753 - INFO - Saved checkpoint at iteration 50 to experiments/factorial_ab_kissing_v2/treatment_diff_run_300/checkpoints/checkpoint_50
+2026-02-26 13:54:13,754 - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-02-26 13:54:13,767 - INFO - Saved database with 32 programs to experiments/factorial_ab_kissing_v2/treatment_diff_run_300/checkpoints/checkpoint_50
+2026-02-26 13:54:13,767 - INFO - Saved best program at checkpoint 50 with metrics: num_points=4.0000, combined_score=0.0067, eval_time=0.0034
+2026-02-26 13:54:13,767 - INFO - Saved checkpoint at iteration 50 to experiments/factorial_ab_kissing_v2/treatment_diff_run_300/checkpoints/checkpoint_50
+2026-02-26 13:54:14,143 - INFO - Stopped process pool
+2026-02-26 13:54:14,143 - INFO - Using tracked best program: 859df8b1-1944-44be-8f16-c080e0e3972a
+2026-02-26 13:54:14,144 - INFO - Evolution complete. Best program has metrics: num_points=4.0000, combined_score=0.0067, eval_time=0.0034
+2026-02-26 13:54:14,145 - INFO - Saved best program to experiments/factorial_ab_kissing_v2/treatment_diff_run_300/best/best_program.py with program info to experiments/factorial_ab_kissing_v2/treatment_diff_run_300/best/best_program_info.json

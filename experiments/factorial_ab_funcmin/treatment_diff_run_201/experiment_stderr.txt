@@ -1,0 +1,420 @@
+2026-02-26 11:56:28,494 - INFO - Logging to experiments/factorial_ab_funcmin/treatment_diff_run_201/logs/openevolve_20260226_115628.log
+2026-02-26 11:56:28,512 - INFO - Set random seed to 42 for reproducibility
+2026-02-26 11:56:28,806 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:28,834 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:28,834 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:28,957 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:28,960 - INFO - Initialized prompt sampler
+2026-02-26 11:56:28,961 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:28,961 - INFO - Initialized program database with 0 programs
+2026-02-26 11:56:28,966 - INFO - Successfully loaded evaluation function from examples/function_minimization/evaluator.py
+2026-02-26 11:56:28,967 - INFO - Initialized evaluator with examples/function_minimization/evaluator.py
+2026-02-26 11:56:28,967 - INFO - Initialized OpenEvolve with examples/function_minimization/initial_program.py
+2026-02-26 11:56:28,967 - INFO - Adding initial program to database
+2026-02-26 11:56:29,050 - INFO - Evaluated program f267baeb-fd38-428d-a870-43722889a52c in 0.08s: runs_successfully=1.0000, value_score=0.9418, distance_score=0.7566, combined_score=1.2148
+2026-02-26 11:56:29,090 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-02-26 11:56:29,098 - INFO - Initialized process parallel controller with 3 workers
+2026-02-26 11:56:29,159 - INFO - Set max None tasks per child
+2026-02-26 11:56:29,160 - INFO - Started process pool with 3 processes
+2026-02-26 11:56:29,160 - INFO - Using island-based evolution with 3 islands
+2026-02-26 11:56:29,161 - INFO - Island Status:
+2026-02-26 11:56:29,161 - INFO -  * Island 0: 1 programs, best=1.2148, avg=1.2148, diversity=0.00, gen=0 (best: f267baeb-fd38-428d-a870-43722889a52c)
+2026-02-26 11:56:29,161 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:29,161 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:29,161 - INFO - Starting process-based evolution from iteration 1 for 20 iterations (total: 21)
+2026-02-26 11:56:29,196 - INFO - Early stopping disabled
+2026-02-26 11:56:31,993 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:32,011 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:32,012 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:32,012 - INFO - Initialized prompt sampler
+2026-02-26 11:56:32,059 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:32,060 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:32,064 - INFO - Successfully loaded evaluation function from examples/function_minimization/evaluator.py
+2026-02-26 11:56:32,064 - INFO - Initialized evaluator with examples/function_minimization/evaluator.py
+2026-02-26 11:56:32,071 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:32,078 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:32,111 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:32,194 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:32,194 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:32,195 - INFO - Initialized prompt sampler
+2026-02-26 11:56:32,217 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:32,233 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:32,233 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:32,234 - INFO - Successfully loaded evaluation function from examples/function_minimization/evaluator.py
+2026-02-26 11:56:32,234 - INFO - Initialized evaluator with examples/function_minimization/evaluator.py
+2026-02-26 11:56:32,234 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:32,238 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:32,244 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:32,245 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:32,245 - INFO - Initialized prompt sampler
+2026-02-26 11:56:32,295 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:32,296 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:32,297 - INFO - Successfully loaded evaluation function from examples/function_minimization/evaluator.py
+2026-02-26 11:56:32,297 - INFO - Initialized evaluator with examples/function_minimization/evaluator.py
+2026-02-26 11:56:32,297 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:32,297 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:41,575 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:41,657 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:56:41,657 - INFO - [HYPOTHESIS]   H1: Simulated Annealing with local exploitation improves value_score and distance_score. (EXPECT: combined_score < 1.3)
+2026-02-26 11:56:41,657 - INFO - [HYPOTHESIS]   H2: Iterative narrowing of search radius improves reliability_score. (EXPECT: reliability_score < 0.95)
+2026-02-26 11:56:41,657 - INFO - [HYPOTHESIS] Ledger path: experiments/factorial_ab_funcmin/treatment_diff_run_201/hypothesis_ledger.json
+2026-02-26 11:56:41,658 - INFO - [HYPOTHESIS] Created baseline: {'value_score': 0.9899059888554105, 'distance_score': 0.7124650434242138, 'reliability_score': 1.0, 'combined_score': 1.3630387611824542}
+2026-02-26 11:56:41,658 - INFO - [HYPOTHESIS]   H1 verdict=CONFIRMED (actual=1.3630387611824542, threshold=1.3)
+2026-02-26 11:56:41,658 - INFO - [HYPOTHESIS]   H2 verdict=CONFIRMED (actual=1.0, threshold=0.95)
+2026-02-26 11:56:41,658 - INFO - [HYPOTHESIS] Updated ledger (1 total entries)
+2026-02-26 11:56:41,658 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [combined_score] Simulated Annealing with local exploitation improves value_score and distance_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.
+  [reliability_score] Iterative narrowing of search radius improves reliability_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing "jumping out" of the optimal basin.
+
+=== BASELINE VALUES ===
+  combined_score: 1.3630387611824542
+  distance_score: 0.7124650434242138
+  reliability_score: 1.0
+  value_score: 0.9899059888554105
+2026-02-26 11:56:41,658 - INFO - Evaluated program d0bdd70d-caf0-4b28-87c8-5ae1e2543726 in 0.08s: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7125, combined_score=1.3630, reliability_score=1.0000
+2026-02-26 11:56:41,659 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:41,660 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:41,664 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 5}
+2026-02-26 11:56:41,664 - INFO - New best program d0bdd70d-caf0-4b28-87c8-5ae1e2543726 replaces f267baeb-fd38-428d-a870-43722889a52c (combined_score: 1.2148 → 1.3630, +0.1483)
+2026-02-26 11:56:41,665 - INFO - Iteration 3: Program d0bdd70d-caf0-4b28-87c8-5ae1e2543726 (parent: f267baeb-fd38-428d-a870-43722889a52c) completed in 9.36s
+2026-02-26 11:56:41,665 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7125, combined_score=1.3630, reliability_score=1.0000
+2026-02-26 11:56:41,665 - INFO - 🌟 New best solution found at iteration 3: d0bdd70d-caf0-4b28-87c8-5ae1e2543726
+2026-02-26 11:56:42,444 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:42,538 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:56:42,538 - INFO - [HYPOTHESIS]   H1: Simulated Annealing with local exploitation improves value_score and distance_score. (EXPECT: combined_score < 1.3)
+2026-02-26 11:56:42,538 - INFO - [HYPOTHESIS]   H2: Iterative narrowing of search radius improves reliability_score. (EXPECT: reliability_score < 0.95)
+2026-02-26 11:56:42,538 - INFO - [HYPOTHESIS] Ledger path: experiments/factorial_ab_funcmin/treatment_diff_run_201/hypothesis_ledger.json
+2026-02-26 11:56:42,538 - INFO - [HYPOTHESIS] Loaded baseline from experiments/factorial_ab_funcmin/treatment_diff_run_201/baseline_metrics.json
+2026-02-26 11:56:42,539 - INFO - [HYPOTHESIS]   H1 verdict=CONFIRMED (actual=1.362507122987724, threshold=1.3)
+2026-02-26 11:56:42,539 - INFO - [HYPOTHESIS]   H2 verdict=CONFIRMED (actual=1.0, threshold=0.95)
+2026-02-26 11:56:42,539 - INFO - [HYPOTHESIS] Updated ledger (2 total entries)
+2026-02-26 11:56:42,539 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [combined_score] Simulated Annealing with local exploitation improves value_score and distance_score. (confirmed 2/2, avg_delta=-0.0%)
+    mechanism: Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.
+  [reliability_score] Iterative narrowing of search radius improves reliability_score. (confirmed 2/2, avg_delta=+0.0%)
+    mechanism: Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing "jumping out" of the optimal basin.
+
+=== BASELINE VALUES ===
+  combined_score: 1.3630387611824542
+  distance_score: 0.7124650434242138
+  reliability_score: 1.0
+  value_score: 0.9899059888554105
+2026-02-26 11:56:42,539 - INFO - Evaluated program b8930ddb-cd75-47fe-9714-ba51403f0e8e in 0.07s: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7113, combined_score=1.3625, reliability_score=1.0000
+2026-02-26 11:56:42,540 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:42,541 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:42,550 - INFO - Iteration 2: Program b8930ddb-cd75-47fe-9714-ba51403f0e8e (parent: f267baeb-fd38-428d-a870-43722889a52c) completed in 10.31s
+2026-02-26 11:56:42,550 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7113, combined_score=1.3625, reliability_score=1.0000
+2026-02-26 11:56:49,294 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:49,358 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:56:49,358 - INFO - [HYPOTHESIS]   H1: Simulated Annealing with local exploitation improves value_score and distance_score. (EXPECT: combined_score < 1.3)
+2026-02-26 11:56:49,358 - INFO - [HYPOTHESIS]   H2: Iterative narrowing of search radius improves reliability_score. (EXPECT: reliability_score < 0.95)
+2026-02-26 11:56:49,359 - INFO - [HYPOTHESIS] Ledger path: experiments/factorial_ab_funcmin/treatment_diff_run_201/hypothesis_ledger.json
+2026-02-26 11:56:49,359 - INFO - [HYPOTHESIS] Loaded baseline from experiments/factorial_ab_funcmin/treatment_diff_run_201/baseline_metrics.json
+2026-02-26 11:56:49,359 - INFO - [HYPOTHESIS]   H1 verdict=CONFIRMED (actual=1.3626529956329696, threshold=1.3)
+2026-02-26 11:56:49,359 - INFO - [HYPOTHESIS]   H2 verdict=CONFIRMED (actual=1.0, threshold=0.95)
+2026-02-26 11:56:49,359 - INFO - [HYPOTHESIS] Updated ledger (3 total entries)
+2026-02-26 11:56:49,359 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [combined_score] Simulated Annealing with local exploitation improves value_score and distance_score. (confirmed 3/3, avg_delta=-0.0%)
+    mechanism: Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.
+  [reliability_score] Iterative narrowing of search radius improves reliability_score. (confirmed 3/3, avg_delta=+0.0%)
+    mechanism: Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing "jumping out" of the optimal basin.
+
+=== BASELINE VALUES ===
+  combined_score: 1.3630387611824542
+  distance_score: 0.7124650434242138
+  reliability_score: 1.0
+  value_score: 0.9899059888554105
+2026-02-26 11:56:49,359 - INFO - Evaluated program 7b5f9bb1-7fb7-422c-a7c3-eb9cd0371df7 in 0.06s: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7116, combined_score=1.3627, reliability_score=1.0000
+2026-02-26 11:56:49,360 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:49,360 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:56:49,370 - INFO - Iteration 4: Program 7b5f9bb1-7fb7-422c-a7c3-eb9cd0371df7 (parent: f267baeb-fd38-428d-a870-43722889a52c) completed in 7.70s
+2026-02-26 11:56:49,370 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7116, combined_score=1.3627, reliability_score=1.0000
+2026-02-26 11:56:50,042 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:50,100 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:56:50,100 - INFO - [HYPOTHESIS]   H1: Simulated Annealing with local exploitation improves value_score and distance_score. (EXPECT: combined_score < 1.3)
+2026-02-26 11:56:50,100 - INFO - [HYPOTHESIS]   H2: Iterative narrowing of search radius improves reliability_score. (EXPECT: reliability_score < 0.95)
+2026-02-26 11:56:50,100 - INFO - [HYPOTHESIS] Ledger path: experiments/factorial_ab_funcmin/treatment_diff_run_201/hypothesis_ledger.json
+2026-02-26 11:56:50,100 - INFO - [HYPOTHESIS] Loaded baseline from experiments/factorial_ab_funcmin/treatment_diff_run_201/baseline_metrics.json
+2026-02-26 11:56:50,100 - INFO - [HYPOTHESIS]   H1 verdict=CONFIRMED (actual=1.3630862720393588, threshold=1.3)
+2026-02-26 11:56:50,100 - INFO - [HYPOTHESIS]   H2 verdict=CONFIRMED (actual=1.0, threshold=0.95)
+2026-02-26 11:56:50,101 - INFO - [HYPOTHESIS] Updated ledger (4 total entries)
+2026-02-26 11:56:50,101 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [combined_score] Simulated Annealing with local exploitation improves value_score and distance_score. (confirmed 4/4, avg_delta=-0.0%)
+    mechanism: Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.
+  [reliability_score] Iterative narrowing of search radius improves reliability_score. (confirmed 4/4, avg_delta=+0.0%)
+    mechanism: Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing "jumping out" of the optimal basin.
+
+=== BASELINE VALUES ===
+  combined_score: 1.3630387611824542
+  distance_score: 0.7124650434242138
+  reliability_score: 1.0
+  value_score: 0.9899059888554105
+2026-02-26 11:56:50,101 - INFO - Evaluated program 9282b58e-e6c3-4329-bdae-a6e58545c06b in 0.06s: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7125, combined_score=1.3631, reliability_score=1.0000
+2026-02-26 11:56:50,102 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:50,102 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:56:50,110 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 9, 'diversity': 5} (fitness: 1.363 -> 1.363)
+2026-02-26 11:56:50,110 - INFO - New best program 9282b58e-e6c3-4329-bdae-a6e58545c06b replaces d0bdd70d-caf0-4b28-87c8-5ae1e2543726 (combined_score: 1.3630 → 1.3631, +0.0000)
+2026-02-26 11:56:50,110 - INFO - Iteration 5: Program 9282b58e-e6c3-4329-bdae-a6e58545c06b (parent: f267baeb-fd38-428d-a870-43722889a52c) completed in 7.56s
+2026-02-26 11:56:50,110 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7125, combined_score=1.3631, reliability_score=1.0000
+2026-02-26 11:56:50,110 - INFO - 🌟 New best solution found at iteration 5: 9282b58e-e6c3-4329-bdae-a6e58545c06b
+2026-02-26 11:56:50,110 - INFO - Checkpoint interval reached at iteration 5
+2026-02-26 11:56:50,111 - INFO - Island Status:
+2026-02-26 11:56:50,111 - INFO -  * Island 0: 4 programs, best=1.3631, avg=1.3258, diversity=116.25, gen=4 (best: 9282b58e-e6c3-4329-bdae-a6e58545c06b)
+2026-02-26 11:56:50,111 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:50,111 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:50,113 - INFO - Saved database with 5 programs to experiments/factorial_ab_funcmin/treatment_diff_run_201/checkpoints/checkpoint_5
+2026-02-26 11:56:50,113 - INFO - Saved best program at checkpoint 5 with metrics: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7125, combined_score=1.3631, reliability_score=1.0000
+2026-02-26 11:56:50,113 - INFO - Saved checkpoint at iteration 5 to experiments/factorial_ab_funcmin/treatment_diff_run_201/checkpoints/checkpoint_5
+2026-02-26 11:57:06,675 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:06,711 - INFO - Evaluated program affed676-8ba9-409e-a7b0-d8f18db1f6eb in 0.02s: runs_successfully=1.0000, value_score=0.9103, distance_score=0.2003, combined_score=0.5010
+2026-02-26 11:57:06,712 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:06,713 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:57:06,720 - INFO - Iteration 1: Program affed676-8ba9-409e-a7b0-d8f18db1f6eb (parent: f267baeb-fd38-428d-a870-43722889a52c) completed in 34.64s
+2026-02-26 11:57:06,720 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9103, distance_score=0.2003, combined_score=0.5010
+2026-02-26 11:57:11,431 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:11,436 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:11,437 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:11,444 - WARNING - Iteration 8 error: No valid diffs found in response
+2026-02-26 11:57:23,019 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:23,081 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:57:23,081 - INFO - [HYPOTHESIS]   H1: Implementing a true Simulated Annealing (SA) acceptance criterion will improve reliability_score and value_score. (EXPECT: reliability_score < 0.98)
+2026-02-26 11:57:23,081 - INFO - [HYPOTHESIS]   H2: A balanced hybrid approach combining global random jumps and local Gaussian perturbations with a decaying step size will optimize distance_score and combined_score. (EXPECT: combined_score < 1.4)
+2026-02-26 11:57:23,081 - INFO - [HYPOTHESIS] Ledger path: experiments/factorial_ab_funcmin/treatment_diff_run_201/hypothesis_ledger.json
+2026-02-26 11:57:23,081 - INFO - [HYPOTHESIS] Loaded baseline from experiments/factorial_ab_funcmin/treatment_diff_run_201/baseline_metrics.json
+2026-02-26 11:57:23,081 - INFO - [HYPOTHESIS]   H1 verdict=CONFIRMED (actual=1.0, threshold=0.98)
+2026-02-26 11:57:23,081 - INFO - [HYPOTHESIS]   H2 verdict=CONFIRMED (actual=1.4776717616159813, threshold=1.4)
+2026-02-26 11:57:23,082 - INFO - [HYPOTHESIS] Updated ledger (5 total entries)
+2026-02-26 11:57:23,082 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [combined_score] Simulated Annealing with local exploitation improves value_score and distance_score. (confirmed 4/4, avg_delta=-0.0%)
+    mechanism: Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.
+  [reliability_score] Iterative narrowing of search radius improves reliability_score. (confirmed 4/4, avg_delta=+0.0%)
+    mechanism: Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing "jumping out" of the optimal basin.
+  [reliability_score] Implementing a true Simulated Annealing (SA) acceptance criterion will improve reliability_score and value_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: SA's probabilistic acceptance of worse solutions, especially at higher temperatures, enables the algorithm to escape local minima more effectively than a purely greedy search or simple random jumps. As temperature cools, the search becomes more exploitative, converging on a minimum.
+  [combined_score] A balanced hybrid approach combining global random jumps and local Gaussian perturbations with a decaying step size will optimize distance_score and combined_score. (confirmed 1/1, avg_delta=+8.4%)
+    mechanism: Global jumps provide broad exploration to find basins of attraction, while local perturbations refine the search within those basins. The decaying step size (controlled by temperature) ensures convergence to a precise minimum.
+
+=== BASELINE VALUES ===
+  combined_score: 1.3630387611824542
+  distance_score: 0.7124650434242138
+  reliability_score: 1.0
+  value_score: 0.9899059888554105
+2026-02-26 11:57:23,082 - INFO - Evaluated program 1f6d5ea7-9bbe-4a3b-ab44-c7273daebec3 in 0.06s: runs_successfully=1.0000, value_score=0.9968, distance_score=0.9557, combined_score=1.4777, reliability_score=1.0000
+2026-02-26 11:57:23,083 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:23,084 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:57:23,086 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 9}
+2026-02-26 11:57:23,086 - INFO - New best program 1f6d5ea7-9bbe-4a3b-ab44-c7273daebec3 replaces 9282b58e-e6c3-4329-bdae-a6e58545c06b (combined_score: 1.3631 → 1.4777, +0.1146)
+2026-02-26 11:57:23,086 - INFO - Iteration 7: Program 1f6d5ea7-9bbe-4a3b-ab44-c7273daebec3 (parent: f267baeb-fd38-428d-a870-43722889a52c) completed in 32.98s
+2026-02-26 11:57:23,086 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9968, distance_score=0.9557, combined_score=1.4777, reliability_score=1.0000
+2026-02-26 11:57:23,086 - INFO - 🌟 New best solution found at iteration 7: 1f6d5ea7-9bbe-4a3b-ab44-c7273daebec3
+2026-02-26 11:57:23,798 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:23,799 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:23,800 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:57:23,804 - WARNING - Iteration 6 error: No valid diffs found in response
+2026-02-26 11:57:28,632 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:28,646 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:28,647 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:28,647 - WARNING - Iteration 10 error: No valid diffs found in response
+2026-02-26 11:57:29,041 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:29,105 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:57:29,105 - INFO - [HYPOTHESIS]   H1: Simulated Annealing with local exploitation improves value_score and distance_score. (EXPECT: combined_score < 1.3)
+2026-02-26 11:57:29,105 - INFO - [HYPOTHESIS]   H2: Iterative narrowing of search radius improves reliability_score. (EXPECT: reliability_score < 0.95)
+2026-02-26 11:57:29,105 - INFO - [HYPOTHESIS] Ledger path: experiments/factorial_ab_funcmin/treatment_diff_run_201/hypothesis_ledger.json
+2026-02-26 11:57:29,105 - INFO - [HYPOTHESIS] Loaded baseline from experiments/factorial_ab_funcmin/treatment_diff_run_201/baseline_metrics.json
+2026-02-26 11:57:29,105 - INFO - [HYPOTHESIS]   H1 verdict=CONFIRMED (actual=1.3558303006167205, threshold=1.3)
+2026-02-26 11:57:29,105 - INFO - [HYPOTHESIS]   H2 verdict=CONFIRMED (actual=1.0, threshold=0.95)
+2026-02-26 11:57:29,105 - INFO - [HYPOTHESIS] Updated ledger (6 total entries)
+2026-02-26 11:57:29,105 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [combined_score] Simulated Annealing with local exploitation improves value_score and distance_score. (confirmed 5/5, avg_delta=-0.1%)
+    mechanism: Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.
+  [reliability_score] Iterative narrowing of search radius improves reliability_score. (confirmed 5/5, avg_delta=+0.0%)
+    mechanism: Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing "jumping out" of the optimal basin.
+  [reliability_score] Implementing a true Simulated Annealing (SA) acceptance criterion will improve reliability_score and value_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: SA's probabilistic acceptance of worse solutions, especially at higher temperatures, enables the algorithm to escape local minima more effectively than a purely greedy search or simple random jumps. As temperature cools, the search becomes more exploitative, converging on a minimum.
+  [combined_score] A balanced hybrid approach combining global random jumps and local Gaussian perturbations with a decaying step size will optimize distance_score and combined_score. (confirmed 1/1, avg_delta=+8.4%)
+    mechanism: Global jumps provide broad exploration to find basins of attraction, while local perturbations refine the search within those basins. The decaying step size (controlled by temperature) ensures convergence to a precise minimum.
+
+=== BASELINE VALUES ===
+  combined_score: 1.3630387611824542
+  distance_score: 0.7124650434242138
+  reliability_score: 1.0
+  value_score: 0.9899059888554105
+2026-02-26 11:57:29,106 - INFO - Evaluated program b9923718-940a-4cdb-b950-86aa1c3632d7 in 0.06s: runs_successfully=1.0000, value_score=0.9871, distance_score=0.7012, combined_score=1.3558, reliability_score=1.0000
+2026-02-26 11:57:29,107 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:29,107 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:29,114 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 4, 'diversity': 0}
+2026-02-26 11:57:29,114 - INFO - Iteration 11: Program b9923718-940a-4cdb-b950-86aa1c3632d7 (parent: affed676-8ba9-409e-a7b0-d8f18db1f6eb) completed in 5.31s
+2026-02-26 11:57:29,114 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9871, distance_score=0.7012, combined_score=1.3558, reliability_score=1.0000
+2026-02-26 11:57:45,626 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:45,699 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:57:45,699 - INFO - [HYPOTHESIS]   H1: Simulated Annealing with local exploitation improves value_score and distance_score. (EXPECT: combined_score < 1.3)
+2026-02-26 11:57:45,699 - INFO - [HYPOTHESIS]   H2: Iterative narrowing of search radius improves reliability_score. (EXPECT: reliability_score < 0.95)
+2026-02-26 11:57:45,699 - INFO - [HYPOTHESIS] Ledger path: experiments/factorial_ab_funcmin/treatment_diff_run_201/hypothesis_ledger.json
+2026-02-26 11:57:45,699 - INFO - [HYPOTHESIS] Loaded baseline from experiments/factorial_ab_funcmin/treatment_diff_run_201/baseline_metrics.json
+2026-02-26 11:57:45,699 - INFO - [HYPOTHESIS]   H1 verdict=CONFIRMED (actual=1.4645120114691177, threshold=1.3)
+2026-02-26 11:57:45,699 - INFO - [HYPOTHESIS]   H2 verdict=CONFIRMED (actual=1.0, threshold=0.95)
+2026-02-26 11:57:45,700 - INFO - [HYPOTHESIS] Updated ledger (7 total entries)
+2026-02-26 11:57:45,700 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [reliability_score] Iterative narrowing of search radius improves reliability_score. (confirmed 6/6, avg_delta=+0.0%)
+    mechanism: Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing "jumping out" of the optimal basin.
+  [reliability_score] Implementing a true Simulated Annealing (SA) acceptance criterion will improve reliability_score and value_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: SA's probabilistic acceptance of worse solutions, especially at higher temperatures, enables the algorithm to escape local minima more effectively than a purely greedy search or simple random jumps. As temperature cools, the search becomes more exploitative, converging on a minimum.
+  [combined_score] Simulated Annealing with local exploitation improves value_score and distance_score. (confirmed 6/6, avg_delta=+1.1%)
+    mechanism: Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.
+  [combined_score] A balanced hybrid approach combining global random jumps and local Gaussian perturbations with a decaying step size will optimize distance_score and combined_score. (confirmed 1/1, avg_delta=+8.4%)
+    mechanism: Global jumps provide broad exploration to find basins of attraction, while local perturbations refine the search within those basins. The decaying step size (controlled by temperature) ensures convergence to a precise minimum.
+
+=== BASELINE VALUES ===
+  combined_score: 1.3630387611824542
+  distance_score: 0.7124650434242138
+  reliability_score: 1.0
+  value_score: 0.9899059888554105
+2026-02-26 11:57:45,701 - INFO - Evaluated program a305a585-3524-4f7c-b63e-90facc39df6f in 0.07s: runs_successfully=1.0000, value_score=0.9909, distance_score=0.9364, combined_score=1.4645, reliability_score=1.0000
+2026-02-26 11:57:45,702 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:45,702 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:57:45,710 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 3}
+2026-02-26 11:57:45,710 - INFO - Iteration 9: Program a305a585-3524-4f7c-b63e-90facc39df6f (parent: d0bdd70d-caf0-4b28-87c8-5ae1e2543726) completed in 34.26s
+2026-02-26 11:57:45,710 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9909, distance_score=0.9364, combined_score=1.4645, reliability_score=1.0000
+2026-02-26 11:57:51,183 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:51,192 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:51,192 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:51,198 - WARNING - Iteration 14 error: No valid diffs found in response
+2026-02-26 11:57:51,677 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:51,751 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:57:51,751 - INFO - [HYPOTHESIS]   H1: Simulated Annealing with local exploitation improves value_score and distance_score. (EXPECT: combined_score < 1.3)
+2026-02-26 11:57:51,751 - INFO - [HYPOTHESIS]   H2: Iterative narrowing of search radius improves reliability_score. (EXPECT: reliability_score < 0.95)
+2026-02-26 11:57:51,751 - INFO - [HYPOTHESIS] Ledger path: experiments/factorial_ab_funcmin/treatment_diff_run_201/hypothesis_ledger.json
+2026-02-26 11:57:51,751 - INFO - [HYPOTHESIS] Loaded baseline from experiments/factorial_ab_funcmin/treatment_diff_run_201/baseline_metrics.json
+2026-02-26 11:57:51,751 - INFO - [HYPOTHESIS]   H1 verdict=CONFIRMED (actual=1.4834220422294082, threshold=1.3)
+2026-02-26 11:57:51,751 - INFO - [HYPOTHESIS]   H2 verdict=CONFIRMED (actual=1.0, threshold=0.95)
+2026-02-26 11:57:51,752 - INFO - [HYPOTHESIS] Updated ledger (8 total entries)
+2026-02-26 11:57:51,752 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [reliability_score] Iterative narrowing of search radius improves reliability_score. (confirmed 7/7, avg_delta=+0.0%)
+    mechanism: Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing "jumping out" of the optimal basin.
+  [reliability_score] Implementing a true Simulated Annealing (SA) acceptance criterion will improve reliability_score and value_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: SA's probabilistic acceptance of worse solutions, especially at higher temperatures, enables the algorithm to escape local minima more effectively than a purely greedy search or simple random jumps. As temperature cools, the search becomes more exploitative, converging on a minimum.
+  [combined_score] Simulated Annealing with local exploitation improves value_score and distance_score. (confirmed 7/7, avg_delta=+2.2%)
+    mechanism: Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.
+  [combined_score] A balanced hybrid approach combining global random jumps and local Gaussian perturbations with a decaying step size will optimize distance_score and combined_score. (confirmed 1/1, avg_delta=+8.4%)
+    mechanism: Global jumps provide broad exploration to find basins of attraction, while local perturbations refine the search within those basins. The decaying step size (controlled by temperature) ensures convergence to a precise minimum.
+
+=== BASELINE VALUES ===
+  combined_score: 1.3630387611824542
+  distance_score: 0.7124650434242138
+  reliability_score: 1.0
+  value_score: 0.9899059888554105
+2026-02-26 11:57:51,752 - INFO - Evaluated program 889e94fb-daa9-4a8b-b661-73f970c7fb63 in 0.06s: runs_successfully=1.0000, value_score=0.9980, distance_score=0.9664, combined_score=1.4834, reliability_score=1.0000
+2026-02-26 11:57:51,753 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:51,753 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:51,753 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 8, 'diversity': 6}
+2026-02-26 11:57:51,753 - INFO - New best program 889e94fb-daa9-4a8b-b661-73f970c7fb63 replaces 1f6d5ea7-9bbe-4a3b-ab44-c7273daebec3 (combined_score: 1.4777 → 1.4834, +0.0058)
+2026-02-26 11:57:51,754 - INFO - Iteration 13: Program 889e94fb-daa9-4a8b-b661-73f970c7fb63 (parent: 9282b58e-e6c3-4329-bdae-a6e58545c06b) completed in 22.65s
+2026-02-26 11:57:51,754 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9980, distance_score=0.9664, combined_score=1.4834, reliability_score=1.0000
+2026-02-26 11:57:51,754 - INFO - 🌟 New best solution found at iteration 13: 889e94fb-daa9-4a8b-b661-73f970c7fb63
+2026-02-26 11:58:11,541 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:11,551 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:11,552 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:11,561 - WARNING - Iteration 16 error: No valid diffs found in response
+2026-02-26 11:58:15,269 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:15,312 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:15,312 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:15,315 - WARNING - Iteration 12 error: No valid diffs found in response
+2026-02-26 11:58:17,877 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:17,888 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:17,888 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:17,895 - WARNING - Iteration 15 error: No valid diffs found in response
+2026-02-26 11:58:31,679 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:31,683 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:31,684 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:58:31,686 - WARNING - Iteration 17 error: No valid diffs found in response
+2026-02-26 11:58:42,625 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:42,702 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:58:42,702 - INFO - [HYPOTHESIS]   H1: Simulated Annealing with local exploitation improves value_score and distance_score. (EXPECT: combined_score < 1.3)
+2026-02-26 11:58:42,702 - INFO - [HYPOTHESIS]   H2: Iterative narrowing of search radius improves reliability_score. (EXPECT: reliability_score < 0.95)
+2026-02-26 11:58:42,702 - INFO - [HYPOTHESIS] Ledger path: experiments/factorial_ab_funcmin/treatment_diff_run_201/hypothesis_ledger.json
+2026-02-26 11:58:42,703 - INFO - [HYPOTHESIS] Loaded baseline from experiments/factorial_ab_funcmin/treatment_diff_run_201/baseline_metrics.json
+2026-02-26 11:58:42,703 - INFO - [HYPOTHESIS]   H1 verdict=CONFIRMED (actual=1.4758329946837376, threshold=1.3)
+2026-02-26 11:58:42,703 - INFO - [HYPOTHESIS]   H2 verdict=CONFIRMED (actual=1.0, threshold=0.95)
+2026-02-26 11:58:42,703 - INFO - [HYPOTHESIS] Updated ledger (9 total entries)
+2026-02-26 11:58:42,703 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [reliability_score] Iterative narrowing of search radius improves reliability_score. (confirmed 8/8, avg_delta=+0.0%)
+    mechanism: Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing "jumping out" of the optimal basin.
+  [reliability_score] Implementing a true Simulated Annealing (SA) acceptance criterion will improve reliability_score and value_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: SA's probabilistic acceptance of worse solutions, especially at higher temperatures, enables the algorithm to escape local minima more effectively than a purely greedy search or simple random jumps. As temperature cools, the search becomes more exploitative, converging on a minimum.
+  [combined_score] Simulated Annealing with local exploitation improves value_score and distance_score. (confirmed 8/8, avg_delta=+3.0%)
+    mechanism: Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.
+  [combined_score] A balanced hybrid approach combining global random jumps and local Gaussian perturbations with a decaying step size will optimize distance_score and combined_score. (confirmed 1/1, avg_delta=+8.4%)
+    mechanism: Global jumps provide broad exploration to find basins of attraction, while local perturbations refine the search within those basins. The decaying step size (controlled by temperature) ensures convergence to a precise minimum.
+
+=== BASELINE VALUES ===
+  combined_score: 1.3630387611824542
+  distance_score: 0.7124650434242138
+  reliability_score: 1.0
+  value_score: 0.9899059888554105
+2026-02-26 11:58:42,703 - INFO - Evaluated program 712481e3-2727-436b-be9a-c14a49523b2d in 0.08s: runs_successfully=1.0000, value_score=0.9973, distance_score=0.9508, combined_score=1.4758, reliability_score=1.0000
+2026-02-26 11:58:42,705 - INFO - Iteration 19: Program 712481e3-2727-436b-be9a-c14a49523b2d (parent: 7b5f9bb1-7fb7-422c-a7c3-eb9cd0371df7) completed in 24.82s
+2026-02-26 11:58:42,705 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9973, distance_score=0.9508, combined_score=1.4758, reliability_score=1.0000
+2026-02-26 11:58:46,243 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:46,317 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:58:46,317 - INFO - [HYPOTHESIS]   H1: A multi-phase search with a "re-heating" or multi-start strategy will improve distance_score. (EXPECT: distance_score < 0.97)
+2026-02-26 11:58:46,317 - INFO - [HYPOTHESIS]   H2: Increasing the proportion of local exploitation in the final stages of the search will improve value_score. (EXPECT: value_score < 0.999)
+2026-02-26 11:58:46,317 - INFO - [HYPOTHESIS] Ledger path: experiments/factorial_ab_funcmin/treatment_diff_run_201/hypothesis_ledger.json
+2026-02-26 11:58:46,318 - INFO - [HYPOTHESIS] Loaded baseline from experiments/factorial_ab_funcmin/treatment_diff_run_201/baseline_metrics.json
+2026-02-26 11:58:46,318 - INFO - [HYPOTHESIS]   H1 verdict=REFUTED (actual=0.9539348883443161, threshold=0.97)
+2026-02-26 11:58:46,318 - INFO - [HYPOTHESIS]   H2 verdict=REFUTED (actual=0.9963785267026801, threshold=0.999)
+2026-02-26 11:58:46,318 - INFO - [HYPOTHESIS] Updated ledger (10 total entries)
+2026-02-26 11:58:46,318 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [reliability_score] Iterative narrowing of search radius improves reliability_score. (confirmed 8/8, avg_delta=+0.0%)
+    mechanism: Reducing the step size over time ensures convergence on the global minimum once the general vicinity is located, preventing "jumping out" of the optimal basin.
+  [reliability_score] Implementing a true Simulated Annealing (SA) acceptance criterion will improve reliability_score and value_score. (confirmed 1/1, avg_delta=+0.0%)
+    mechanism: SA's probabilistic acceptance of worse solutions, especially at higher temperatures, enables the algorithm to escape local minima more effectively than a purely greedy search or simple random jumps. As temperature cools, the search becomes more exploitative, converging on a minimum.
+  [combined_score] Simulated Annealing with local exploitation improves value_score and distance_score. (confirmed 8/8, avg_delta=+3.0%)
+    mechanism: Combining wide-range exploration with localized Gaussian perturbations allows the algorithm to escape local minima while refining the search in promising regions.
+  [combined_score] A balanced hybrid approach combining global random jumps and local Gaussian perturbations with a decaying step size will optimize distance_score and combined_score. (confirmed 1/1, avg_delta=+8.4%)
+    mechanism: Global jumps provide broad exploration to find basins of attraction, while local perturbations refine the search within those basins. The decaying step size (controlled by temperature) ensures convergence to a precise minimum.
+
+=== INCONCLUSIVE ===
+  [distance_score] A multi-phase search with a "re-heating" or multi-start strategy will improve distance_score. (total=1)
+  [value_score] Increasing the proportion of local exploitation in the final stages of the search will improve value_score. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 1.3630387611824542
+  distance_score: 0.7124650434242138
+  reliability_score: 1.0
+  value_score: 0.9899059888554105
+2026-02-26 11:58:46,318 - INFO - Evaluated program 58471998-efe6-4c30-8425-90a0ff5263c9 in 0.07s: runs_successfully=1.0000, value_score=0.9964, distance_score=0.9539, combined_score=1.4766, reliability_score=1.0000
+2026-02-26 11:58:46,329 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 4, 'diversity': 1}
+2026-02-26 11:58:46,329 - INFO - Iteration 20: Program 58471998-efe6-4c30-8425-90a0ff5263c9 (parent: 1f6d5ea7-9bbe-4a3b-ab44-c7273daebec3) completed in 14.64s
+2026-02-26 11:58:46,329 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9964, distance_score=0.9539, combined_score=1.4766, reliability_score=1.0000
+2026-02-26 11:58:46,329 - INFO - Checkpoint interval reached at iteration 20
+2026-02-26 11:58:46,329 - INFO - Island Status:
+2026-02-26 11:58:46,329 - INFO -  * Island 0: 11 programs, best=1.4834, avg=1.3216, diversity=217.18, gen=11 (best: 889e94fb-daa9-4a8b-b661-73f970c7fb63)
+2026-02-26 11:58:46,329 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:58:46,329 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:58:46,335 - INFO - Saved database with 12 programs to experiments/factorial_ab_funcmin/treatment_diff_run_201/checkpoints/checkpoint_20
+2026-02-26 11:58:46,335 - INFO - Saved best program at checkpoint 20 with metrics: runs_successfully=1.0000, value_score=0.9980, distance_score=0.9664, combined_score=1.4834, reliability_score=1.0000
+2026-02-26 11:58:46,335 - INFO - Saved checkpoint at iteration 20 to experiments/factorial_ab_funcmin/treatment_diff_run_201/checkpoints/checkpoint_20
+2026-02-26 11:58:46,654 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:46,664 - INFO - Evaluated program 5c6a0e38-3b23-47e6-809f-ea68d44c84c4 in 0.01s: runs_successfully=1.0000, value_score=0.9549, distance_score=0.8353, combined_score=1.2699
+2026-02-26 11:58:46,675 - INFO - Iteration 18: Program 5c6a0e38-3b23-47e6-809f-ea68d44c84c4 (parent: a305a585-3524-4f7c-b63e-90facc39df6f) completed in 31.35s
+2026-02-26 11:58:46,675 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9549, distance_score=0.8353, combined_score=1.2699
+2026-02-26 11:58:46,675 - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-02-26 11:58:46,680 - INFO - Saved database with 13 programs to experiments/factorial_ab_funcmin/treatment_diff_run_201/checkpoints/checkpoint_20
+2026-02-26 11:58:46,680 - INFO - Saved best program at checkpoint 20 with metrics: runs_successfully=1.0000, value_score=0.9980, distance_score=0.9664, combined_score=1.4834, reliability_score=1.0000
+2026-02-26 11:58:46,681 - INFO - Saved checkpoint at iteration 20 to experiments/factorial_ab_funcmin/treatment_diff_run_201/checkpoints/checkpoint_20
+2026-02-26 11:58:46,876 - INFO - Stopped process pool
+2026-02-26 11:58:46,876 - INFO - Using tracked best program: 889e94fb-daa9-4a8b-b661-73f970c7fb63
+2026-02-26 11:58:46,876 - INFO - Evolution complete. Best program has metrics: runs_successfully=1.0000, value_score=0.9980, distance_score=0.9664, combined_score=1.4834, reliability_score=1.0000
+2026-02-26 11:58:46,877 - INFO - Saved best program to experiments/factorial_ab_funcmin/treatment_diff_run_201/best/best_program.py with program info to experiments/factorial_ab_funcmin/treatment_diff_run_201/best/best_program_info.json

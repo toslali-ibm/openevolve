@@ -1,0 +1,172 @@
+{
+  "baseline": {
+    "value_score": 0.9994538659900666,
+    "distance_score": 0.9872954629440776,
+    "reliability_score": 1.0,
+    "combined_score": 1.4938733578173848
+  },
+  "entries": [
+    {
+      "timestamp": "2026-02-26T16:57:17.582558+00:00",
+      "overall_combined_score": 1.4938733578173848,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Multi-start Basin Hopping with local L-BFGS-like refinement improves distance_score",
+          "mechanism": "Combining global random restarts with local hill-climbing ensures we explore",
+          "metric": "distance_score",
+          "operator": ">",
+          "threshold": 0.85,
+          "actual": 0.9872954629440776,
+          "baseline_value": 0.9872954629440776,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a jittered grid for initial sampling improves reliability_score",
+          "mechanism": "Ensuring a more uniform coverage of the search space during initialization",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:57:19.929102+00:00",
+      "overall_combined_score": 1.4910267244653066,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "A multi-restart Basin Hopping approach improves reliability_score and distance_score.",
+          "mechanism": "Combining random global restarts with local stochastic hill-climbing allows the algorithm to explore multiple basins of attraction and converge to their local minima.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.9,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a decaying step size (simulated annealing) within each restart improves value_score.",
+          "mechanism": "Large initial steps allow escaping local bumps, while smaller final steps allow precise convergence to the true minimum of a basin.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.3,
+          "actual": 1.4910267244653066,
+          "baseline_value": 1.4938733578173848,
+          "delta_vs_baseline_pct": -0.19055386035114116,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:58:25.033894+00:00",
+      "overall_combined_score": 1.3835512767425462,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Increasing the number of multi-starts to improve global exploration.",
+          "mechanism": "More independent restarts (20 instead of 10) increase the probability of sampling the basin of attraction for the global minimum, thus improving the chance of finding the true minimum more reliably across trials.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.99,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "Using a higher initial temperature and slightly slower cooling rate in Simulated Annealing improves value_score and distance_score.",
+          "mechanism": "A higher initial temperature (5.0 instead of 1.0) allows the algorithm to accept more uphill moves early on, enabling it to escape deeper local minima. A slightly slower cooling rate (0.98 instead of 0.95) provides more time for exploration at higher temperatures before converging, leading to a better final solution.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.495,
+          "actual": 1.3835512767425462,
+          "baseline_value": 1.4938733578173848,
+          "delta_vs_baseline_pct": -7.384968779148997,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 3,
+          "claim": "Increasing the initial step size for local perturbations in Simulated Annealing improves value_score.",
+          "mechanism": "A larger initial step size (4.0 instead of 2.0) allows the local search to make bigger jumps in the early stages of each restart, facilitating escape from immediate local traps and exploring a wider area within each basin of attraction, leading to a better final minimum.",
+          "metric": "value_score",
+          "operator": ">",
+          "threshold": 0.9995,
+          "actual": 0.9483063813464682,
+          "baseline_value": 0.9994538659900666,
+          "delta_vs_baseline_pct": -5.117543328819018,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:58:30.484675+00:00",
+      "overall_combined_score": 1.495172133644334,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Integrating a Simulated Annealing-like acceptance criterion into the local search will improve value_score and distance_score.",
+          "mechanism": "By allowing the local search to probabilistically accept slightly worse solutions (Metropolis criterion), it can temporarily escape shallow local minima within a basin, preventing premature convergence and leading to a deeper, more accurate minimum. The decreasing 'temperature' ensures eventual convergence.",
+          "metric": "value_score",
+          "operator": ">",
+          "threshold": 0.9996,
+          "actual": 0.9995779244155918,
+          "baseline_value": 0.9994538659900666,
+          "delta_vs_baseline_pct": 0.01241262150727842,
+          "verdict": "REFUTED"
+        },
+        {
+          "id": 2,
+          "claim": "Refining the adaptive step size and temperature cooling schedule for the local search will improve combined_score.",
+          "mechanism": "A more carefully tuned exponential decay for the step size (exploration) and a geometric cooling schedule for temperature (acceptance probability) within each local search phase will balance exploration and exploitation better, leading to more consistent and higher quality results.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.5,
+          "actual": 1.495172133644334,
+          "baseline_value": 1.4938733578173848,
+          "delta_vs_baseline_pct": 0.08694015594780531,
+          "verdict": "REFUTED"
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-02-26T16:58:45.341728+00:00",
+      "overall_combined_score": 1.470773085197589,
+      "hypotheses": [
+        {
+          "id": 1,
+          "claim": "Multi-start Simulated Annealing improves reliability_score and distance_score.",
+          "mechanism": "By dividing the total computational budget into multiple independent searches starting from diverse random points, the algorithm increases its probability of exploring the global minimum's basin of attraction and escaping entrapment in distant local minima.",
+          "metric": "reliability_score",
+          "operator": ">",
+          "threshold": 0.95,
+          "actual": 1.0,
+          "baseline_value": 1.0,
+          "delta_vs_baseline_pct": 0.0,
+          "verdict": "CONFIRMED"
+        },
+        {
+          "id": 2,
+          "claim": "An adaptive cooling schedule and step size in Simulated Annealing improves",
+          "mechanism": "A high initial temperature and large step size allow for broad exploration and escaping local minima, while a decreasing temperature and step size enable fine-grained exploitation and precise convergence to the minimum within a promising basin.",
+          "metric": "combined_score",
+          "operator": ">",
+          "threshold": 1.4,
+          "actual": 1.470773085197589,
+          "baseline_value": 1.4938733578173848,
+          "delta_vs_baseline_pct": -1.54633406499372,
+          "verdict": "CONFIRMED"
+        }
+      ]
+    }
+  ]
+}

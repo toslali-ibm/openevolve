@@ -1,0 +1,364 @@
+2026-02-26 11:56:33,480 - INFO - Logging to experiments/factorial_ab_circpack/treatment_full_run_200/logs/openevolve_20260226_115633.log
+2026-02-26 11:56:33,495 - INFO - Set random seed to 42 for reproducibility
+2026-02-26 11:56:33,548 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:33,560 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:33,560 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:33,581 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:33,582 - INFO - Initialized prompt sampler
+2026-02-26 11:56:33,583 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:33,583 - INFO - Initialized program database with 0 programs
+2026-02-26 11:56:33,583 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 11:56:33,583 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 11:56:33,583 - INFO - Initialized OpenEvolve with examples/circle_packing/initial_program.py
+2026-02-26 11:56:33,583 - INFO - Adding initial program to database
+2026-02-26 11:56:34,355 - INFO - [HYPOTHESIS] Parsed 0 hypotheses from evolved code
+2026-02-26 11:56:34,355 - INFO - [HYPOTHESIS] No hypotheses found in evolved code
+2026-02-26 11:56:34,356 - INFO - Evaluated program 163cb564-0c23-46f1-a2be-4750654d57d6 in 0.77s: validity=1.0000, sum_radii=0.9598, target_ratio=0.3642, combined_score=0.3642, eval_time=0.5118
+2026-02-26 11:56:34,356 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-02-26 11:56:34,367 - INFO - Initialized process parallel controller with 3 workers
+2026-02-26 11:56:34,368 - INFO - Set max None tasks per child
+2026-02-26 11:56:34,368 - INFO - Started process pool with 3 processes
+2026-02-26 11:56:34,368 - INFO - Using island-based evolution with 3 islands
+2026-02-26 11:56:34,368 - INFO - Island Status:
+2026-02-26 11:56:34,368 - INFO -  * Island 0: 1 programs, best=0.3642, avg=0.3642, diversity=0.00, gen=0 (best: 163cb564-0c23-46f1-a2be-4750654d57d6)
+2026-02-26 11:56:34,368 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:34,368 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:34,368 - INFO - Starting process-based evolution from iteration 1 for 20 iterations (total: 21)
+2026-02-26 11:56:34,383 - INFO - Early stopping disabled
+2026-02-26 11:56:37,256 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:37,283 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:37,283 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:37,284 - INFO - Initialized prompt sampler
+2026-02-26 11:56:37,334 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:37,352 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:37,353 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:37,354 - INFO - Initialized prompt sampler
+2026-02-26 11:56:37,418 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-26 11:56:37,434 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:37,435 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:37,436 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:37,436 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 11:56:37,436 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 11:56:37,436 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:37,436 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:37,437 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 11:56:37,437 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 11:56:37,437 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:37,442 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:37,442 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:37,518 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:37,518 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:37,532 - INFO - Initialized prompt sampler
+2026-02-26 11:56:37,710 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-26 11:56:37,711 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-26 11:56:37,711 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-02-26 11:56:37,711 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-02-26 11:56:37,711 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:37,722 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:45,534 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:45,646 - INFO - Evaluated program 0036e808-93bd-43b5-be15-3338f450c9bc in 0.10s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:45,648 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:45,648 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:45,657 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 5}
+2026-02-26 11:56:45,657 - INFO - Iteration 2: Program 0036e808-93bd-43b5-be15-3338f450c9bc (parent: 163cb564-0c23-46f1-a2be-4750654d57d6) completed in 8.21s
+2026-02-26 11:56:45,657 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:47,258 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:47,270 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:47,368 - INFO - Evaluated program 4242241f-42f4-44a3-ae3d-c09b5e655100 in 0.09s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:47,368 - INFO - Evaluated program f2e29ec5-0fb4-4f8a-bec4-5a2a2e4f0f73 in 0.09s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:47,370 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:47,370 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:47,370 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:47,370 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:56:47,377 - INFO - Iteration 1: Program f2e29ec5-0fb4-4f8a-bec4-5a2a2e4f0f73 (parent: 163cb564-0c23-46f1-a2be-4750654d57d6) completed in 9.93s
+2026-02-26 11:56:47,378 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:47,378 - INFO - Iteration 3: Program 4242241f-42f4-44a3-ae3d-c09b5e655100 (parent: 163cb564-0c23-46f1-a2be-4750654d57d6) completed in 9.66s
+2026-02-26 11:56:47,378 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:52,358 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:52,445 - INFO - Evaluated program b10aff07-83bb-4b0b-a1d3-a1067892a6d8 in 0.09s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:52,447 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:52,447 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 9}
+2026-02-26 11:56:52,447 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:56:52,447 - INFO - Iteration 4: Program b10aff07-83bb-4b0b-a1d3-a1067892a6d8 (parent: 163cb564-0c23-46f1-a2be-4750654d57d6) completed in 6.80s
+2026-02-26 11:56:52,447 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:54,135 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:54,276 - INFO - Evaluated program 00d6083d-c8a8-4883-a04e-4ce29bc5d49e in 0.10s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:54,278 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:54,279 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:56:54,286 - INFO - Iteration 6: Program 00d6083d-c8a8-4883-a04e-4ce29bc5d49e (parent: 163cb564-0c23-46f1-a2be-4750654d57d6) completed in 6.91s
+2026-02-26 11:56:54,286 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:54,475 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:56:54,575 - INFO - Evaluated program 6139ec65-172c-49d9-b51c-bb5d4fb8d5c8 in 0.09s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:54,577 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:56:54,577 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:56:54,578 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 3, 'diversity': 0}
+2026-02-26 11:56:54,578 - INFO - Iteration 5: Program 6139ec65-172c-49d9-b51c-bb5d4fb8d5c8 (parent: 163cb564-0c23-46f1-a2be-4750654d57d6) completed in 7.21s
+2026-02-26 11:56:54,578 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:56:54,578 - INFO - Checkpoint interval reached at iteration 5
+2026-02-26 11:56:54,578 - INFO - Island Status:
+2026-02-26 11:56:54,578 - INFO -  * Island 0: 7 programs, best=0.3642, avg=0.0520, diversity=266.40, gen=6 (best: 163cb564-0c23-46f1-a2be-4750654d57d6)
+2026-02-26 11:56:54,578 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:54,578 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:56:54,582 - INFO - Saved database with 7 programs to experiments/factorial_ab_circpack/treatment_full_run_200/checkpoints/checkpoint_5
+2026-02-26 11:56:54,583 - INFO - Saved best program at checkpoint 5 with metrics: validity=1.0000, sum_radii=0.9598, target_ratio=0.3642, combined_score=0.3642, eval_time=0.5118
+2026-02-26 11:56:54,583 - INFO - Saved checkpoint at iteration 5 to experiments/factorial_ab_circpack/treatment_full_run_200/checkpoints/checkpoint_5
+2026-02-26 11:57:44,566 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:44,651 - INFO - Evaluated program 1774f806-28fb-46f6-88c1-bd66cb93dfeb in 0.08s: validity=0.0000, combined_score=0.0000, error=Program execution failed: invalid syntax (tmp2675kf31.py, line 131)
+2026-02-26 11:57:44,653 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:44,653 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:57:44,655 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 9}
+2026-02-26 11:57:44,655 - INFO - Iteration 7: Program 1774f806-28fb-46f6-88c1-bd66cb93dfeb (parent: 0036e808-93bd-43b5-be15-3338f450c9bc) completed in 52.21s
+2026-02-26 11:57:44,655 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: invalid syntax (tmp2675kf31.py, line 131)
+2026-02-26 11:57:45,559 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:45,666 - INFO - Evaluated program c499420e-237d-4f0e-b749-ea9d32a40258 in 0.10s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:57:45,668 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:45,668 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:57:45,669 - INFO - Iteration 8: Program c499420e-237d-4f0e-b749-ea9d32a40258 (parent: 163cb564-0c23-46f1-a2be-4750654d57d6) completed in 51.39s
+2026-02-26 11:57:45,669 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:57:52,466 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:52,733 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:57:52,734 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 1.8, ACTUAL 1.9 (delta=+100.5% vs baseline)
+    claim: A hexagonal-like packing is more efficient than concentric rings for n=26.
+  H2 [CONFIRMED]: EXPECT target_ratio > 0.6, ACTUAL 0.7 (delta=+100.5% vs baseline)
+    claim: Iterative force-directed relaxation with radius equalization improves sum of radii.
+  OVERALL: combined_score=0.73 (delta=+0.37, +100.5% vs baseline=0.36)
+2026-02-26 11:57:52,734 - INFO - [HYPOTHESIS] Updated ledger (1 total entries)
+2026-02-26 11:57:52,734 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A hexagonal-like packing is more efficient than concentric rings for n=26. (confirmed 1/1, avg_delta=+100.5%)
+    mechanism: Hexagonal arrangements maximize local density by ensuring most circles have 6 neighbors, reducing empty space compared to polar or square grid layouts.
+  [target_ratio] Iterative force-directed relaxation with radius equalization improves sum of radii. (confirmed 1/1, avg_delta=+100.5%)
+    mechanism: By treating overlaps as repulsive forces and iteratively adjusting positions while keeping radii balanced, the packing converges to a more uniform and dense state.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:57:52,734 - INFO - Evaluated program 2b0ab44e-86a6-43a7-935d-04b208b219cb in 0.26s: validity=1.0000, sum_radii=1.9246, target_ratio=0.7304, combined_score=0.7304, eval_time=0.1270
+2026-02-26 11:57:52,736 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:52,736 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:52,743 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 1, 'diversity': 2}
+2026-02-26 11:57:52,743 - INFO - New best program 2b0ab44e-86a6-43a7-935d-04b208b219cb replaces 163cb564-0c23-46f1-a2be-4750654d57d6 (combined_score: 0.3642 → 0.7304, +0.3662)
+2026-02-26 11:57:52,744 - INFO - Iteration 10: Program 2b0ab44e-86a6-43a7-935d-04b208b219cb (parent: 163cb564-0c23-46f1-a2be-4750654d57d6) completed in 8.08s
+2026-02-26 11:57:52,744 - INFO - Metrics: validity=1.0000, sum_radii=1.9246, target_ratio=0.7304, combined_score=0.7304, eval_time=0.1270
+2026-02-26 11:57:52,744 - INFO - 🌟 New best solution found at iteration 10: 2b0ab44e-86a6-43a7-935d-04b208b219cb
+2026-02-26 11:57:52,744 - INFO - Checkpoint interval reached at iteration 10
+2026-02-26 11:57:52,744 - INFO - Island Status:
+2026-02-26 11:57:52,744 - INFO -  * Island 0: 10 programs, best=0.7304, avg=0.1095, diversity=600.88, gen=9 (best: 2b0ab44e-86a6-43a7-935d-04b208b219cb)
+2026-02-26 11:57:52,744 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:57:52,744 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:57:52,749 - INFO - Saved database with 10 programs to experiments/factorial_ab_circpack/treatment_full_run_200/checkpoints/checkpoint_10
+2026-02-26 11:57:52,749 - INFO - Saved best program at checkpoint 10 with metrics: validity=1.0000, sum_radii=1.9246, target_ratio=0.7304, combined_score=0.7304, eval_time=0.1270
+2026-02-26 11:57:52,749 - INFO - Saved checkpoint at iteration 10 to experiments/factorial_ab_circpack/treatment_full_run_200/checkpoints/checkpoint_10
+2026-02-26 11:57:53,873 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:57:54,146 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:57:54,146 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [CONFIRMED]: EXPECT sum_radii > 1.8, ACTUAL 1.8 (delta=+91.3% vs baseline)
+    claim: A hexagonal-tiled grid with 26 circles will outperform a square 5x5 grid.
+  H2 [CONFIRMED]: EXPECT combined_score > 0.6, ACTUAL 0.7 (delta=+91.3% vs baseline)
+    claim: Iterative repulsion with a decaying step size (simulated annealing-like) improves spacing.
+  OVERALL: combined_score=0.70 (delta=+0.33, +91.3% vs baseline=0.36)
+2026-02-26 11:57:54,147 - INFO - [HYPOTHESIS] Updated ledger (2 total entries)
+2026-02-26 11:57:54,147 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A hexagonal-tiled grid with 26 circles will outperform a square 5x5 grid. (confirmed 1/1, avg_delta=+91.3%)
+    mechanism: Hexagonal packing has a higher theoretical density (0.9069) than square packing (0.7854), allowing for larger radii in the same container.
+  [combined_score] Iterative repulsion with a decaying step size (simulated annealing-like) improves spacing. (confirmed 1/1, avg_delta=+91.3%)
+    mechanism: Gradually reducing the 'push' distance allows the packing to settle into a local optimum without oscillating, maximizing the available gap for each circle.
+  [sum_radii] A hexagonal-like packing is more efficient than concentric rings for n=26. (confirmed 1/1, avg_delta=+100.5%)
+    mechanism: Hexagonal arrangements maximize local density by ensuring most circles have 6 neighbors, reducing empty space compared to polar or square grid layouts.
+  [target_ratio] Iterative force-directed relaxation with radius equalization improves sum of radii. (confirmed 1/1, avg_delta=+100.5%)
+    mechanism: By treating overlaps as repulsive forces and iteratively adjusting positions while keeping radii balanced, the packing converges to a more uniform and dense state.
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:57:54,147 - INFO - Evaluated program f3f796df-f5a1-48f8-911f-a89d3dab8a0f in 0.26s: validity=1.0000, sum_radii=1.8363, target_ratio=0.6969, combined_score=0.6969, eval_time=0.1233
+2026-02-26 11:57:54,148 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:57:54,149 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:57:54,157 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 1}
+2026-02-26 11:57:54,157 - INFO - Iteration 11: Program f3f796df-f5a1-48f8-911f-a89d3dab8a0f (parent: b10aff07-83bb-4b0b-a1d3-a1067892a6d8) completed in 8.48s
+2026-02-26 11:57:54,157 - INFO - Metrics: validity=1.0000, sum_radii=1.8363, target_ratio=0.6969, combined_score=0.6969, eval_time=0.1233
+2026-02-26 11:58:09,009 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:09,097 - INFO - Evaluated program cb72742c-8194-4eb8-8c29-584716f884e5 in 0.09s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:58:09,101 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:09,101 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-26 11:58:09,105 - INFO - Iteration 9: Program cb72742c-8194-4eb8-8c29-584716f884e5 (parent: 163cb564-0c23-46f1-a2be-4750654d57d6) completed in 74.52s
+2026-02-26 11:58:09,105 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:58:17,936 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:18,484 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 11:58:18,485 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 2.5, ACTUAL 0.8 (delta=-15.0% vs baseline)
+    claim: Hexagonal packing with a 5-6-5-6-4 row structure improves sum_radii.
+  H2 [REFUTED]: EXPECT target_ratio > 0.9, ACTUAL 0.3 (delta=-15.0% vs baseline)
+    claim: Iterative center relaxation based on local density improves packing.
+  OVERALL: combined_score=0.31 (delta=-0.05, -15.0% vs baseline=0.36)
+2026-02-26 11:58:18,485 - INFO - [HYPOTHESIS] Updated ledger (3 total entries)
+2026-02-26 11:58:18,485 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A hexagonal-tiled grid with 26 circles will outperform a square 5x5 grid. (confirmed 1/1, avg_delta=+91.3%)
+    mechanism: Hexagonal packing has a higher theoretical density (0.9069) than square packing (0.7854), allowing for larger radii in the same container.
+  [combined_score] Iterative repulsion with a decaying step size (simulated annealing-like) improves spacing. (confirmed 1/1, avg_delta=+91.3%)
+    mechanism: Gradually reducing the 'push' distance allows the packing to settle into a local optimum without oscillating, maximizing the available gap for each circle.
+  [sum_radii] A hexagonal-like packing is more efficient than concentric rings for n=26. (confirmed 1/1, avg_delta=+100.5%)
+    mechanism: Hexagonal arrangements maximize local density by ensuring most circles have 6 neighbors, reducing empty space compared to polar or square grid layouts.
+  [target_ratio] Iterative force-directed relaxation with radius equalization improves sum of radii. (confirmed 1/1, avg_delta=+100.5%)
+    mechanism: By treating overlaps as repulsive forces and iteratively adjusting positions while keeping radii balanced, the packing converges to a more uniform and dense state.
+
+=== INCONCLUSIVE ===
+  [sum_radii] Hexagonal packing with a 5-6-5-6-4 row structure improves sum_radii. (total=1)
+  [target_ratio] Iterative center relaxation based on local density improves packing. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:58:18,486 - INFO - Evaluated program 79e74913-4922-4dd5-a2f1-6cc125ee63fd in 0.55s: validity=1.0000, sum_radii=0.8157, target_ratio=0.3096, combined_score=0.3096, eval_time=0.2634
+2026-02-26 11:58:18,487 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:18,487 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:18,488 - INFO - Iteration 14: Program 79e74913-4922-4dd5-a2f1-6cc125ee63fd (parent: 0036e808-93bd-43b5-be15-3338f450c9bc) completed in 9.39s
+2026-02-26 11:58:18,488 - INFO - Metrics: validity=1.0000, sum_radii=0.8157, target_ratio=0.3096, combined_score=0.3096, eval_time=0.2634
+2026-02-26 11:58:31,251 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:31,344 - INFO - Evaluated program ffcc61a8-e8b3-4ccf-9ad1-b53c5301e723 in 0.08s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:58:31,346 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:31,346 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:31,353 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 6}
+2026-02-26 11:58:31,353 - INFO - Iteration 13: Program ffcc61a8-e8b3-4ccf-9ad1-b53c5301e723 (parent: 00d6083d-c8a8-4883-a04e-4ce29bc5d49e) completed in 37.20s
+2026-02-26 11:58:31,353 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:58:46,653 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:58:46,747 - INFO - Evaluated program 7feb50e3-9240-4c3a-b344-af8f6ad7200c in 0.09s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:58:46,749 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:58:46,749 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:58:46,760 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 6, 'diversity': 4}
+2026-02-26 11:58:46,765 - INFO - Iteration 12: Program 7feb50e3-9240-4c3a-b344-af8f6ad7200c (parent: 163cb564-0c23-46f1-a2be-4750654d57d6) completed in 54.01s
+2026-02-26 11:58:46,765 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:59:00,277 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:00,368 - INFO - Evaluated program 5311c2a3-73ca-4527-85e1-6f739c5d36b4 in 0.09s: validity=0.0000, combined_score=0.0000, error=Program execution failed: invalid syntax (tmp5avmflv5.py, line 127)
+2026-02-26 11:59:00,369 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:59:00,370 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:59:00,377 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 4}
+2026-02-26 11:59:00,378 - INFO - Island 0 MAP-Elites coverage reached 10.0% (10/100 cells)
+2026-02-26 11:59:00,378 - INFO - Iteration 15: Program 5311c2a3-73ca-4527-85e1-6f739c5d36b4 (parent: 0036e808-93bd-43b5-be15-3338f450c9bc) completed in 41.88s
+2026-02-26 11:59:00,378 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: invalid syntax (tmp5avmflv5.py, line 127)
+2026-02-26 11:59:00,378 - INFO - Checkpoint interval reached at iteration 15
+2026-02-26 11:59:00,378 - INFO - Island Status:
+2026-02-26 11:59:00,378 - INFO -  * Island 0: 16 programs, best=0.7304, avg=0.1313, diversity=600.88, gen=15 (best: 2b0ab44e-86a6-43a7-935d-04b208b219cb)
+2026-02-26 11:59:00,378 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:59:00,378 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 11:59:00,385 - INFO - Saved database with 16 programs to experiments/factorial_ab_circpack/treatment_full_run_200/checkpoints/checkpoint_15
+2026-02-26 11:59:00,386 - INFO - Saved best program at checkpoint 15 with metrics: validity=1.0000, sum_radii=1.9246, target_ratio=0.7304, combined_score=0.7304, eval_time=0.1270
+2026-02-26 11:59:00,386 - INFO - Saved checkpoint at iteration 15 to experiments/factorial_ab_circpack/treatment_full_run_200/checkpoints/checkpoint_15
+2026-02-26 11:59:03,594 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:03,686 - INFO - Evaluated program b70826f0-46c5-4c92-bb0c-bbeee63c830e in 0.09s: validity=0.0000, combined_score=0.0000, error=Program execution failed: invalid syntax (tmpdtys6snj.py, line 129)
+2026-02-26 11:59:03,687 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:59:03,687 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:59:03,692 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 8, 'diversity': 4}
+2026-02-26 11:59:03,692 - INFO - Iteration 16: Program b70826f0-46c5-4c92-bb0c-bbeee63c830e (parent: 163cb564-0c23-46f1-a2be-4750654d57d6) completed in 32.34s
+2026-02-26 11:59:03,692 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: invalid syntax (tmpdtys6snj.py, line 129)
+2026-02-26 11:59:20,272 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:20,361 - INFO - Evaluated program 392dd5a3-b190-42f1-a497-784e00c25b16 in 0.08s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:59:20,362 - INFO - [HYPOTHESIS] hypothesis_driven=true, config already contains hypothesis instructions (skipping template)
+2026-02-26 11:59:20,363 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-26 11:59:20,368 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 6, 'diversity': 3}
+2026-02-26 11:59:20,368 - INFO - Iteration 17: Program 392dd5a3-b190-42f1-a497-784e00c25b16 (parent: b10aff07-83bb-4b0b-a1d3-a1067892a6d8) completed in 33.61s
+2026-02-26 11:59:20,368 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:59:49,032 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:49,125 - INFO - Evaluated program 4225299d-63e5-4406-a515-40e6097d5e2f in 0.09s: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:59:49,132 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 8}
+2026-02-26 11:59:49,133 - INFO - Iteration 18: Program 4225299d-63e5-4406-a515-40e6097d5e2f (parent: 163cb564-0c23-46f1-a2be-4750654d57d6) completed in 48.76s
+2026-02-26 11:59:49,133 - INFO - Metrics: validity=0.0000, combined_score=0.0000, error=Program execution failed: module 'program' has no attribute 'run_packing'
+2026-02-26 11:59:50,068 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 11:59:50,520 - INFO - [HYPOTHESIS] Parsed 3 hypotheses from evolved code
+2026-02-26 11:59:50,521 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT combined_score > 0.8, ACTUAL 0.6 (delta=+68.1% vs baseline)
+    claim: Explicit boundary repulsion forces during relaxation will significantly improve validity and sum_radii.
+  H2 [REFUTED]: EXPECT sum_radii > 2.0, ACTUAL 1.6 (delta=+68.1% vs baseline)
+    claim: Increasing relaxation iterations and fine-tuning the learning rate will allow the packing to converge to a denser, more stable configuration.
+  H3 [REFUTED]: EXPECT target_ratio > 0.8, ACTUAL 0.6 (delta=+68.1% vs baseline)
+    claim: A hexagonal-inspired initial layout (e.g., staggered rows) for 26 circles will provide a better starting configuration than a simple square grid.
+  OVERALL: combined_score=0.61 (delta=+0.25, +68.1% vs baseline=0.36)
+2026-02-26 11:59:50,521 - INFO - [HYPOTHESIS] Updated ledger (4 total entries)
+2026-02-26 11:59:50,521 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A hexagonal-tiled grid with 26 circles will outperform a square 5x5 grid. (confirmed 1/1, avg_delta=+91.3%)
+    mechanism: Hexagonal packing has a higher theoretical density (0.9069) than square packing (0.7854), allowing for larger radii in the same container.
+  [combined_score] Iterative repulsion with a decaying step size (simulated annealing-like) improves spacing. (confirmed 1/1, avg_delta=+91.3%)
+    mechanism: Gradually reducing the 'push' distance allows the packing to settle into a local optimum without oscillating, maximizing the available gap for each circle.
+  [sum_radii] A hexagonal-like packing is more efficient than concentric rings for n=26. (confirmed 1/1, avg_delta=+100.5%)
+    mechanism: Hexagonal arrangements maximize local density by ensuring most circles have 6 neighbors, reducing empty space compared to polar or square grid layouts.
+  [target_ratio] Iterative force-directed relaxation with radius equalization improves sum of radii. (confirmed 1/1, avg_delta=+100.5%)
+    mechanism: By treating overlaps as repulsive forces and iteratively adjusting positions while keeping radii balanced, the packing converges to a more uniform and dense state.
+
+=== INCONCLUSIVE ===
+  [sum_radii] Hexagonal packing with a 5-6-5-6-4 row structure improves sum_radii. (total=1)
+  [target_ratio] Iterative center relaxation based on local density improves packing. (total=1)
+  [combined_score] Explicit boundary repulsion forces during relaxation will significantly improve validity and sum_radii. (total=1)
+  [sum_radii] Increasing relaxation iterations and fine-tuning the learning rate will allow the packing to converge to a denser, more stable configuration. (total=1)
+  [target_ratio] A hexagonal-inspired initial layout (e.g., staggered rows) for 26 circles will provide a better starting configuration than a simple square grid. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 11:59:50,522 - INFO - Evaluated program bc8ebb85-3f50-4e4f-9194-cc9a3a5265d9 in 0.45s: validity=1.0000, sum_radii=1.6134, target_ratio=0.6123, combined_score=0.6123, eval_time=0.2279
+2026-02-26 11:59:50,551 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 8, 'diversity': 5}
+2026-02-26 11:59:50,552 - INFO - Iteration 19: Program bc8ebb85-3f50-4e4f-9194-cc9a3a5265d9 (parent: 00d6083d-c8a8-4883-a04e-4ce29bc5d49e) completed in 46.84s
+2026-02-26 11:59:50,552 - INFO - Metrics: validity=1.0000, sum_radii=1.6134, target_ratio=0.6123, combined_score=0.6123, eval_time=0.2279
+2026-02-26 12:00:01,305 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-26 12:00:01,765 - INFO - [HYPOTHESIS] Parsed 2 hypotheses from evolved code
+2026-02-26 12:00:01,765 - INFO - [HYPOTHESIS] Results:
+--- Hypothesis Verdicts ---
+  H1 [REFUTED]: EXPECT sum_radii > 1.9, ACTUAL 1.7 (delta=+75.7% vs baseline)
+    claim: Improved hexagonal initial placement combined with linear force relaxation will increase sum_radii.
+  H2 [REFUTED]: EXPECT combined_score > 0.8, ACTUAL 0.6 (delta=+75.7% vs baseline)
+    claim: Increased relaxation iterations and a decaying learning rate will improve combined_score.
+  OVERALL: combined_score=0.64 (delta=+0.28, +75.7% vs baseline=0.36)
+2026-02-26 12:00:01,766 - INFO - [HYPOTHESIS] Updated ledger (5 total entries)
+2026-02-26 12:00:01,766 - INFO - [HYPOTHESIS] Knowledge base:
+=== CONFIRMED STRATEGIES ===
+  [sum_radii] A hexagonal-tiled grid with 26 circles will outperform a square 5x5 grid. (confirmed 1/1, avg_delta=+91.3%)
+    mechanism: Hexagonal packing has a higher theoretical density (0.9069) than square packing (0.7854), allowing for larger radii in the same container.
+  [combined_score] Iterative repulsion with a decaying step size (simulated annealing-like) improves spacing. (confirmed 1/1, avg_delta=+91.3%)
+    mechanism: Gradually reducing the 'push' distance allows the packing to settle into a local optimum without oscillating, maximizing the available gap for each circle.
+  [sum_radii] A hexagonal-like packing is more efficient than concentric rings for n=26. (confirmed 1/1, avg_delta=+100.5%)
+    mechanism: Hexagonal arrangements maximize local density by ensuring most circles have 6 neighbors, reducing empty space compared to polar or square grid layouts.
+  [target_ratio] Iterative force-directed relaxation with radius equalization improves sum of radii. (confirmed 1/1, avg_delta=+100.5%)
+    mechanism: By treating overlaps as repulsive forces and iteratively adjusting positions while keeping radii balanced, the packing converges to a more uniform and dense state.
+
+=== INCONCLUSIVE ===
+  [sum_radii] Hexagonal packing with a 5-6-5-6-4 row structure improves sum_radii. (total=1)
+  [target_ratio] Iterative center relaxation based on local density improves packing. (total=1)
+  [combined_score] Explicit boundary repulsion forces during relaxation will significantly improve validity and sum_radii. (total=1)
+  [sum_radii] Increasing relaxation iterations and fine-tuning the learning rate will allow the packing to converge to a denser, more stable configuration. (total=1)
+  [target_ratio] A hexagonal-inspired initial layout (e.g., staggered rows) for 26 circles will provide a better starting configuration than a simple square grid. (total=1)
+
+=== BASELINE VALUES ===
+  combined_score: 0.3642
+  sum_radii: 0.9598
+  target_ratio: 0.3642
+2026-02-26 12:00:01,766 - INFO - Evaluated program 440b28d4-d502-4ba0-b319-777755be23e5 in 0.46s: validity=1.0000, sum_radii=1.6860, target_ratio=0.6398, combined_score=0.6398, eval_time=0.2119
+2026-02-26 12:00:01,775 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 7, 'diversity': 4} (fitness: 0.000 -> 0.640)
+2026-02-26 12:00:01,775 - INFO - Iteration 20: Program 440b28d4-d502-4ba0-b319-777755be23e5 (parent: 79e74913-4922-4dd5-a2f1-6cc125ee63fd) completed in 41.40s
+2026-02-26 12:00:01,775 - INFO - Metrics: validity=1.0000, sum_radii=1.6860, target_ratio=0.6398, combined_score=0.6398, eval_time=0.2119
+2026-02-26 12:00:01,775 - INFO - Checkpoint interval reached at iteration 20
+2026-02-26 12:00:01,775 - INFO - Island Status:
+2026-02-26 12:00:01,775 - INFO -  * Island 0: 20 programs, best=0.7304, avg=0.1677, diversity=600.88, gen=20 (best: 2b0ab44e-86a6-43a7-935d-04b208b219cb)
+2026-02-26 12:00:01,775 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 12:00:01,775 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-26 12:00:01,785 - INFO - Saved database with 21 programs to experiments/factorial_ab_circpack/treatment_full_run_200/checkpoints/checkpoint_20
+2026-02-26 12:00:01,785 - INFO - Saved best program at checkpoint 20 with metrics: validity=1.0000, sum_radii=1.9246, target_ratio=0.7304, combined_score=0.7304, eval_time=0.1270
+2026-02-26 12:00:01,785 - INFO - Saved checkpoint at iteration 20 to experiments/factorial_ab_circpack/treatment_full_run_200/checkpoints/checkpoint_20
+2026-02-26 12:00:01,785 - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-02-26 12:00:01,792 - INFO - Saved database with 21 programs to experiments/factorial_ab_circpack/treatment_full_run_200/checkpoints/checkpoint_20
+2026-02-26 12:00:01,792 - INFO - Saved best program at checkpoint 20 with metrics: validity=1.0000, sum_radii=1.9246, target_ratio=0.7304, combined_score=0.7304, eval_time=0.1270
+2026-02-26 12:00:01,792 - INFO - Saved checkpoint at iteration 20 to experiments/factorial_ab_circpack/treatment_full_run_200/checkpoints/checkpoint_20
+2026-02-26 12:00:01,957 - INFO - Stopped process pool
+2026-02-26 12:00:01,957 - INFO - Using tracked best program: 2b0ab44e-86a6-43a7-935d-04b208b219cb
+2026-02-26 12:00:01,958 - INFO - Evolution complete. Best program has metrics: validity=1.0000, sum_radii=1.9246, target_ratio=0.7304, combined_score=0.7304, eval_time=0.1270
+2026-02-26 12:00:01,958 - INFO - Saved best program to experiments/factorial_ab_circpack/treatment_full_run_200/best/best_program.py with program info to experiments/factorial_ab_circpack/treatment_full_run_200/best/best_program_info.json

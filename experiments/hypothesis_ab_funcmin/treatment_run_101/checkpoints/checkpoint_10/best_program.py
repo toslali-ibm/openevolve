@@ -1,11 +1,20 @@
 # EVOLVE-BLOCK-START
+# HYPOTHESIS-1: Implementing Simulated Annealing with a hybrid exploration strategy will significantly improve the combined_score.
+# MECHANISM-1: SA's probabilistic acceptance of worse solutions allows escaping local minima, while the cooling schedule focuses the search. The hybrid exploration (periodic global jumps + local Gaussian steps) balances broad exploration with fine-grained exploitation.
+# EXPECT-1: combined_score > 1.35
+# HYPOTHESIS-2: Periodic global jumps embedded in SA will enhance the reliability_score by preventing premature convergence.
+# MECHANISM-2: By occasionally forcing the search to explore distant regions, the algorithm reduces the chance of getting permanently trapped in a sub-optimal local minimum, increasing the likelihood of finding the global minimum across multiple runs.
+# EXPECT-2: reliability_score > 0.95
 """Function minimization example for OpenEvolve"""
 import numpy as np
 
 
 def search_algorithm(iterations=1000, bounds=(-5, 5)):
     """
-    A simple random search algorithm that often gets stuck in local minima.
+    Hybrid Simulated Annealing for global optimization.
+    It combines probabilistic acceptance of worse solutions to escape local minima
+    with a cooling schedule to guide convergence. Periodic global jumps ensure
+    broader exploration.
 
     Args:
         iterations: Number of iterations to run
@@ -14,36 +23,45 @@ def search_algorithm(iterations=1000, bounds=(-5, 5)):
     Returns:
         Tuple of (best_x, best_y, best_value)
     """
-    # Multi-start Hill Climbing / Simulated Annealing hybrid with proper state management
-    current_x, current_y = np.random.uniform(*bounds, 2)
-    current_value = evaluate_function(current_x, current_y)
+    low, high = bounds
+    # Start at a random point within the bounds
+    curr_x = np.random.uniform(low, high)
+    curr_y = np.random.uniform(low, high)
+    curr_val = evaluate_function(curr_x, curr_y)
     
-    best_x, best_y, best_value = current_x, current_y, current_value # Initialize global best
+    # Initialize the best found solution
+    best_x, best_y, best_val = curr_x, curr_y, curr_val
     
-    # Use 20% of budget for global sampling, 80% for refinement
     for i in range(iterations):
+        # Linear cooling schedule: temperature decreases from 1.0 to 0.0
         temp = 1.0 - (i / iterations)
         
-        # Candidate point generation
-        if i % 10 == 0: # Global jump
-            candidate_x, candidate_y = np.random.uniform(*bounds, 2)
-        else: # Local perturbation around current_x, current_y
-            # Increased scale factor from 0.1 to 0.2 for better initial exploration (H2)
-            scale = (bounds[1] - bounds[0]) * 0.2 * temp 
-            candidate_x = np.clip(current_x + np.random.normal(0, scale), *bounds)
-            candidate_y = np.clip(current_y + np.random.normal(0, scale), *bounds)
+        # Exploration strategy: mix global jumps with local steps
+        # Every 10th iteration, make a large, uniform global jump to explore widely
+        if i % 10 == 0:
+            next_x, next_y = np.random.uniform(low, high, 2)
+        else:
+            # Otherwise, make a local step using a Gaussian distribution
+            # Step size decreases with temperature, allowing for finer search later
+            step_size = 2.0 * temp 
+            next_x = np.clip(curr_x + np.random.normal(0, step_size), low, high)
+            next_y = np.clip(curr_y + np.random.normal(0, step_size), low, high)
             
-        candidate_value = evaluate_function(candidate_x, candidate_y)
+        next_val = evaluate_function(next_x, next_y)
         
-        # Acceptance criterion for current state (H1)
-        if candidate_value < current_value or np.random.rand() < np.exp((current_value - candidate_value) / (temp + 1e-9)):
-            current_x, current_y, current_value = candidate_x, candidate_y, candidate_value
+        # Metropolis Criterion:
+        # Accept the new state if it's better, or probabilistically if it's worse.
+        # The probability of accepting a worse state decreases with temperature.
+        # Add a small constant to temp in the denominator to avoid division by zero
+        # and ensure a valid probability even at very low temperatures.
+        if next_val < curr_val or (temp > 1e-9 and np.random.rand() < np.exp((curr_val - next_val) / temp)):
+            curr_x, curr_y, curr_val = next_x, next_y, next_val
             
-            # Update global best if current state is better
-            if current_value < best_value:
-                best_x, best_y, best_value = current_x, current_y, current_value
-
-    return best_x, best_y, best_value
+        # Always update the overall best solution found so far
+        if curr_val < best_val:
+            best_x, best_y, best_val = curr_x, curr_y, curr_val
+            
+    return best_x, best_y, best_val
 
 
 # EVOLVE-BLOCK-END

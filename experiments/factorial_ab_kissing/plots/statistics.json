@@ -1,0 +1,107 @@
+{
+  "comparison_iteration": 50,
+  "conditions": {
+    "control_diff": {
+      "n": 3,
+      "median": 0.7386172006745363,
+      "mean": 0.7655986509274874,
+      "std": 0.04673324270000338,
+      "iqr": 0.0404721753794266
+    },
+    "treatment_diff": {
+      "n": 3,
+      "median": 0.7386172006745363,
+      "mean": 0.7386172006745363,
+      "std": 0.0,
+      "iqr": 0.0
+    },
+    "control_full": {
+      "n": 3,
+      "median": 0.7386172006745363,
+      "mean": 0.7386172006745363,
+      "std": 0.0,
+      "iqr": 0.0
+    },
+    "treatment_full": {
+      "n": 3,
+      "median": 0.7386172006745363,
+      "mean": 0.7386172006745363,
+      "std": 0.0,
+      "iqr": 0.0
+    }
+  },
+  "kruskal_wallis": {
+    "H": 3.0000000000000053,
+    "p": 0.3916251762710879
+  },
+  "pairwise_mann_whitney": {
+    "control_diff_vs_treatment_diff": {
+      "U": 6.0,
+      "p_raw": 0.5049850750938458,
+      "p_bonferroni": 1.0,
+      "rank_biserial_r": 0.33333333333333326,
+      "n1": 3,
+      "n2": 3
+    },
+    "control_diff_vs_control_full": {
+      "U": 6.0,
+      "p_raw": 0.5049850750938458,
+      "p_bonferroni": 1.0,
+      "rank_biserial_r": 0.33333333333333326,
+      "n1": 3,
+      "n2": 3
+    },
+    "control_diff_vs_treatment_full": {
+      "U": 6.0,
+      "p_raw": 0.5049850750938458,
+      "p_bonferroni": 1.0,
+      "rank_biserial_r": 0.33333333333333326,
+      "n1": 3,
+      "n2": 3
+    },
+    "treatment_diff_vs_control_full": {
+      "U": 4.5,
+      "p_raw": 1.0,
+      "p_bonferroni": 1.0,
+      "rank_biserial_r": 0.0,
+      "n1": 3,
+      "n2": 3
+    },
+    "treatment_diff_vs_treatment_full": {
+      "U": 4.5,
+      "p_raw": 1.0,
+      "p_bonferroni": 1.0,
+      "rank_biserial_r": 0.0,
+      "n1": 3,
+      "n2": 3
+    },
+    "control_full_vs_treatment_full": {
+      "U": 4.5,
+      "p_raw": 1.0,
+      "p_bonferroni": 1.0,
+      "rank_biserial_r": 0.0,
+      "n1": 3,
+      "n2": 3
+    }
+  },
+  "main_effect_hypothesis": {
+    "U": 15.0,
+    "p": 0.40465676192728617,
+    "rank_biserial_r": -0.16666666666666663,
+    "median_on": 0.7386172006745363,
+    "median_off": 0.7386172006745363
+  },
+  "main_effect_mode": {
+    "U": 21.0,
+    "p": 0.40465676192728617,
+    "rank_biserial_r": 0.16666666666666674,
+    "median_diff": 0.7386172006745363,
+    "median_full": 0.7386172006745363
+  },
+  "interaction": {
+    "hypothesis_effect_full_mode": 0.0,
+    "hypothesis_effect_diff_mode": 0.0,
+    "interaction_estimate": 0.0,
+    "interpretation": "Negative interaction: hypothesis helps MORE in diff mode"
+  }
+}
