@@ -3,9 +3,10 @@
 
 Usage:
     python examples/blis_router/scripts/plot_metrics_comparison.py <experiment_name>
+    python examples/blis_router/scripts/plot_metrics_comparison.py <experiment_name> --all
 
-Example:
-    python examples/blis_router/scripts/plot_metrics_comparison.py openevolve_output_succss_dynwrkld_qwen
+By default, plots only per-workload metrics (cache_warmup, load_spikes, multiturn).
+Use --all to also include combined_score, avg_e2e_ms, and avg_p95_ms.
 
 This reads:
     examples/blis_router/<experiment_name>/baseline_metrics.json
@@ -50,9 +51,13 @@ def compute_pct_diff(baseline_val, best_val):
     return ((best_val - baseline_val) / abs(baseline_val)) * 100
 
 
-def plot_comparison(baseline, best, experiment_name, output_path):
+def plot_comparison(baseline, best, experiment_name, output_path, show_all=False):
     skip = {"success_rate", "num_successful", "num_failed"}
+    aggregate = {"combined_score", "avg_e2e_ms", "avg_p95_ms", "avg_mean_improvement_pct", "regression_count"}
     common = [k for k in baseline if k in best and k not in skip]
+
+    if not show_all:
+        common = [k for k in common if k not in aggregate]
 
     if not common:
         sys.exit("Error: no common metrics found between baseline and best")
@@ -60,12 +65,16 @@ def plot_comparison(baseline, best, experiment_name, output_path):
     # Negate combined_score so it becomes positive (originally negative)
     negate = {"combined_score"}
 
-    # Order: primary metrics first, then the rest separated by a dashed line
-    primary = ["combined_score", "avg_e2e_ms", "avg_p95_ms"]
-    primary_keys = [k for k in primary if k in common]
-    secondary_keys = [k for k in common if k not in primary]
-    ordered = primary_keys + secondary_keys
-    divider_pos = len(primary_keys) - 0.5  # x position for vertical dashed line
+    if show_all:
+        # Order: primary metrics first, then the rest separated by a dashed line
+        primary = ["combined_score", "avg_e2e_ms", "avg_p95_ms"]
+        primary_keys = [k for k in primary if k in common]
+        secondary_keys = [k for k in common if k not in primary]
+        ordered = primary_keys + secondary_keys
+        divider_pos = len(primary_keys) - 0.5  # x position for vertical dashed line
+    else:
+        ordered = common
+        divider_pos = None
 
     n = len(ordered)
     x = np.arange(n)
@@ -80,7 +89,7 @@ def plot_comparison(baseline, best, experiment_name, output_path):
     ax.bar(x + width / 2, best_vals, width, label="Best (Evolved)", color="#ED7D31", edgecolor="white")
 
     # Vertical dashed line separating primary from secondary metrics
-    if primary_keys and secondary_keys:
+    if divider_pos is not None and show_all:
         ax.axvline(divider_pos, color="gray", linestyle="--", linewidth=1.2, alpha=0.7)
 
     # Add percentage diff annotations
@@ -123,6 +132,7 @@ def plot_comparison(baseline, best, experiment_name, output_path):
 def main():
     parser = argparse.ArgumentParser(description="Plot baseline vs best metrics comparison")
     parser.add_argument("experiment", help="Experiment directory name (e.g. openevolve_output_succss_dynwrkld_qwen)")
+    parser.add_argument("--all", action="store_true", help="Include aggregate metrics (combined_score, avg_e2e_ms, avg_p95_ms)")
     args = parser.parse_args()
 
     experiment_dir = os.path.join(BLIS_ROUTER_DIR, args.experiment)
@@ -131,7 +141,7 @@ def main():
 
     baseline, best = load_metrics(experiment_dir)
     output_path = os.path.join(experiment_dir, "metrics_comparison.png")
-    plot_comparison(baseline, best, args.experiment, output_path)
+    plot_comparison(baseline, best, args.experiment, output_path, show_all=args.all)
 
 
 if __name__ == "__main__":

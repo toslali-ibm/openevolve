@@ -7,10 +7,11 @@ Evaluates evolved routing algorithms by:
 3. Building BLIS
 4. Running simulations on 3 routing-sensitive v2 workloads
 5. Testing inline hypotheses against baseline (cached after first eval)
-6. Computing score based on average end-to-end latency
+6. Computing normalized per-workload improvement score
 
-Score = -avg_latency (negative because we're minimizing latency)
-Higher score = Lower latency = Better!
+Score = average improvement percentage across all workloads (mean latency).
+Each workload contributes equally. Regressing any workload >1% incurs a penalty.
+Positive score = better than baseline. 0 = same as baseline.
 """
 
 import json
@@ -91,6 +92,55 @@ def extract_evolve_block(code: str) -> str:
     pattern = r"// EVOLVE-BLOCK-START(.*?)// EVOLVE-BLOCK-END"
     match = re.search(pattern, code, re.DOTALL)
     return match.group(1).strip() if match else ""
+
+
+def _extract_go_imports(code: str) -> str:
+    """Extract the import block from Go code, e.g. import (\n\t"fmt"\n)."""
+    match = re.search(r'import \(\n(.*?)\)', code, re.DOTALL)
+    return match.group(1) if match else ""
+
+
+def enforce_evolve_block_boundary(evolved_code: str, template_code: str) -> str:
+    """Splice the EVOLVE-BLOCK and imports from evolved code into the template.
+
+    The LLM sometimes generates diffs that modify struct definitions or other code
+    outside the EVOLVE-BLOCK, causing build failures. This function takes:
+      - The EVOLVE-BLOCK from the evolved code (the creative part)
+      - The import block from the evolved code (LLM may need math, sort, etc.)
+      - Everything else from the initial program template (known-good)
+
+    Returns the spliced code, or the original evolved_code if markers are missing.
+    """
+    evolved_block = extract_evolve_block(evolved_code)
+    if not evolved_block:
+        return evolved_code  # No markers found — pass through unchanged
+
+    # Replace the EVOLVE-BLOCK in the template with the evolved version
+    block_pattern = r"(// EVOLVE-BLOCK-START\n)(.*?)([ \t]*// EVOLVE-BLOCK-END)"
+    template_match = re.search(block_pattern, template_code, re.DOTALL)
+    if not template_match:
+        return evolved_code  # Template has no markers — pass through
+
+    spliced = (
+        template_code[: template_match.start()]
+        + template_match.group(1)
+        + evolved_block
+        + "\n\t"
+        + template_match.group(3)
+        + template_code[template_match.end() :]
+    )
+
+    # Also carry over evolved imports (LLM may add "math", "sort", etc.)
+    evolved_imports = _extract_go_imports(evolved_code)
+    template_imports = _extract_go_imports(spliced)
+    if evolved_imports and template_imports and evolved_imports != template_imports:
+        spliced = spliced.replace(
+            f"import (\n{template_imports})",
+            f"import (\n{evolved_imports})",
+            1,
+        )
+
+    return spliced
 
 
 def print_diff(initial_code: str, current_code: str):
@@ -242,7 +292,7 @@ def get_or_compute_baseline(
         avg_p95 = sum(tail_latencies) / len(tail_latencies)
         baseline["avg_e2e_ms"] = avg_e2e
         baseline["avg_p95_ms"] = avg_p95
-        baseline["combined_score"] = -0.5 * avg_e2e - 0.5 * avg_p95
+        baseline["combined_score"] = 0.0  # Baseline is the reference point
 
     # Cache
     try:
@@ -312,6 +362,19 @@ def evaluate(program_path: str) -> EvaluationResult:
         )
 
     logger.info(f"Extracted Go code: {len(go_code)} chars, first line: {go_code.split(chr(10))[0]}")
+
+    # Enforce EVOLVE-BLOCK boundary: only take the evolved block, keep the rest
+    # from the initial program template. This prevents LLM diffs that modify
+    # imports, struct definitions, or other code outside the EVOLVE-BLOCK.
+    initial_program_path = script_dir / "initial_program.py"
+    if initial_program_path.exists():
+        with open(initial_program_path, "r") as f:
+            template_go_code = extract_go_code(f.read())
+        if template_go_code:
+            go_code_before = go_code
+            go_code = enforce_evolve_block_boundary(go_code, template_go_code)
+            if go_code != go_code_before:
+                logger.info("Enforced EVOLVE-BLOCK boundary (reverted out-of-block changes)")
 
     # Show diff vs initial program if enabled
     show_diffs = os.environ.get("OPENEVOLVE_SHOW_DIFFS", "true").lower() == "true"
@@ -536,37 +599,57 @@ def evaluate(program_path: str) -> EvaluationResult:
             },
         )
 
-    # Calculate average latency from successful runs
-    # Default: equal weighting. Set WEIGHTED_LATENCY=true to weight by request count.
-    use_weighted = os.environ.get("WEIGHTED_LATENCY", "false").lower() == "true"
-    if use_weighted:
-        total_requests = sum(request_counts)
-        avg_latency = sum(lat * cnt for lat, cnt in zip(latencies, request_counts)) / total_requests
-        avg_tail_latency = (
-            sum(lat * cnt for lat, cnt in zip(tail_latencies, request_counts)) / total_requests
-        )
-    else:
-        avg_latency = sum(latencies) / len(latencies)
-        avg_tail_latency = sum(tail_latencies) / len(tail_latencies)
+    # Per-workload mean improvement (each workload contributes equally)
+    # ADRS finding: use smooth, proportional scoring — no discontinuous flat penalties
+    mean_improvements = []
+    regression_count = 0
+    regression_penalty = 0.0
+    REGRESSION_TOLERANCE_PCT = 1.0  # 1% tolerance before penalty kicks in
+    REGRESSION_PENALTY_RATE = 3.0  # extra cost per percentage point of regression beyond tolerance
 
-    # Score = negative of combined latency (50% mean + 50% p95 tail)
-    # Lower latency = higher score
-    score = -0.5 * avg_latency - 0.5 * avg_tail_latency
+    for workload_name, workload_file in WORKLOADS:
+        result = workload_results.get(workload_name)
+        if result is None or result.get("e2e_ms") is None:
+            continue
+        actual_mean = result["e2e_ms"]
+        baseline_mean = baseline_metrics.get(f"{workload_name}_e2e_ms")
+        if baseline_mean and baseline_mean > 0:
+            imp = (baseline_mean - actual_mean) / baseline_mean * 100.0
+            mean_improvements.append(imp)
+            if imp < -REGRESSION_TOLERANCE_PCT:
+                regression_count += 1
+                # Proportional penalty: 2% regression → 3pts, 5% → 12pts, 10% → 27pts
+                excess = abs(imp) - REGRESSION_TOLERANCE_PCT
+                regression_penalty += excess * REGRESSION_PENALTY_RATE
+
+    score = (sum(mean_improvements) / len(mean_improvements)) if mean_improvements else -100.0
+    score -= regression_penalty
+
+    # Keep raw averages for backward compat / logging
+    avg_latency = sum(latencies) / len(latencies)
+    avg_tail_latency = sum(tail_latencies) / len(tail_latencies)
 
     # Calculate success rate
     success_rate = len(latencies) / len(WORKLOADS)
 
-    # Log evaluation summary
+    # Log evaluation summary with improvement percentages
     summary_lines = ["EVALUATION COMPLETE"]
-    for name, result in workload_results.items():
-        if result.get("e2e_ms") is not None:
+    for workload_name, workload_file in WORKLOADS:
+        result = workload_results.get(workload_name)
+        if result is not None and result.get("e2e_ms") is not None:
+            baseline_mean = baseline_metrics.get(f"{workload_name}_e2e_ms")
+            imp_str = ""
+            if baseline_mean and baseline_mean > 0:
+                imp = (baseline_mean - result["e2e_ms"]) / baseline_mean * 100.0
+                imp_str = f" ({imp:+.1f}%)"
             summary_lines.append(
-                f"  {name}: mean={result['e2e_ms']:.0f}ms p95={result.get('e2e_p95_ms', 0):.0f}ms"
+                f"  {workload_name}: mean={result['e2e_ms']:.0f}ms{imp_str}"
             )
         else:
-            summary_lines.append(f"  {name}: FAILED")
+            summary_lines.append(f"  {workload_name}: FAILED")
+    avg_imp = (sum(mean_improvements) / len(mean_improvements)) if mean_improvements else 0.0
     summary_lines.append(
-        f"  Avg mean={avg_latency:.0f}ms p95={avg_tail_latency:.0f}ms | Score: {score:.2f}"
+        f"  Avg improvement={avg_imp:+.1f}% regressions={regression_count} | Score: {score:.2f}"
     )
     logger.info(" | ".join(summary_lines))
 
@@ -623,6 +706,8 @@ def evaluate(program_path: str) -> EvaluationResult:
         "combined_score": score,
         "avg_e2e_ms": avg_latency,
         "avg_p95_ms": avg_tail_latency,
+        "avg_mean_improvement_pct": (sum(mean_improvements) / len(mean_improvements)) if mean_improvements else 0.0,
+        "regression_count": regression_count,
         # V2 workload metrics
         "cache_warmup_e2e_ms": workload_results.get("cache_warmup", {}).get("e2e_ms"),
         "load_spikes_e2e_ms": workload_results.get("load_spikes", {}).get("e2e_ms"),

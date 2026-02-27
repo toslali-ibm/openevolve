@@ -1,16 +1,20 @@
 """
 Initial Program: BLIS Router Weight Optimization
 
-This contains the full routing.go file (synced with inference-sim v0.6.1)
+This contains the full routing.go file (synced with inference-sim origin/main)
 with EVOLVE-BLOCK markers around the WeightedScoring logic.
 
 Goal: Evolve the routing policy to minimize end-to-end latency across workloads.
 """
 
-# Full routing.go file with EVOLVE-BLOCK markers (synced with inference-sim v0.6.1)
+# Full routing.go file with EVOLVE-BLOCK markers (synced with inference-sim origin/main)
 GO_ROUTING_CODE = """package sim
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/inference-sim/inference-sim/sim/internal/hash"
+)
 
 // RoutingSnapshot is a lightweight view of instance state for policy decisions.
 // Populated by ClusterSimulator from cluster.InstanceSnapshot when building RouterState
@@ -226,13 +230,13 @@ func (pa *PrefixAffinity) Route(req *Request, state *RouterState) RoutingDecisio
 	}
 
 	// Compute block-aligned prefix hashes; use the last (longest prefix) as affinity key
-	blockHashes := computeBlockHashes(int(pa.blockSize), req.InputTokens)
+	blockHashes := hash.ComputeBlockHashes(int(pa.blockSize), req.InputTokens)
 	var prefixHash string
 	if len(blockHashes) > 0 {
 		prefixHash = blockHashes[len(blockHashes)-1]
 	} else {
 		// Tokens shorter than one block: fall back to whole-input hash
-		prefixHash = hashTokens(req.InputTokens)
+		prefixHash = hash.HashTokens(req.InputTokens)
 	}
 
 	// Check cache for existing mapping
@@ -253,24 +257,6 @@ func (pa *PrefixAffinity) Route(req *Request, state *RouterState) RoutingDecisio
 	pa.prefixMap[prefixHash] = decision.TargetInstance
 
 	return NewRoutingDecision(decision.TargetInstance, "prefix-affinity (cache-miss, fallback to least-loaded)")
-}
-
-// computeBlockHashes returns hierarchical block hashes without requiring a PrefixCacheIndex.
-// Reuses the same hashBlock function from prefix_cache_index.go for consistency.
-func computeBlockHashes(blockSize int, tokens []int) []string {
-	numBlocks := len(tokens) / blockSize
-	if numBlocks == 0 {
-		return nil
-	}
-	hashes := make([]string, numBlocks)
-	prevHash := ""
-	for i := 0; i < numBlocks; i++ {
-		start := i * blockSize
-		end := start + blockSize
-		hashes[i] = hashBlock(prevHash, tokens[start:end])
-		prevHash = hashes[i]
-	}
-	return hashes
 }
 
 // AlwaysBusiest routes requests to the instance with maximum (QueueDepth + BatchSize + PendingRequests).

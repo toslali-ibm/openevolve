@@ -62,7 +62,7 @@ llm:
   # Maximum tokens in LLM response
   # 16000 sufficient for routing.go file (~12KB source)
   # Increase if evolving larger files
-  max_tokens: 40000
+  max_tokens: 32000
 
   # Timeout for LLM API calls (seconds)
   # 120s = 2 minutes, sufficient for most models
@@ -158,6 +158,26 @@ prompt:
     3. multiturn (rate=1000, 5000 reqs): 65% multi-turn sessions with long prefixes
        (standard + sheddable SLO), 35% single-turn critical traffic.
 
+    HYPOTHESIS REQUIREMENTS:
+    You MUST include at least 1 hypothesis (max 3) as Go comments at the TOP of the
+    EVOLVE-BLOCK, BEFORE any code.
+
+    Format (each hypothesis needs all 3 lines):
+      // HYPOTHESIS-N: <one-line claim about what will improve and why>
+      // MECHANISM-N: <causal explanation - what signal/behavior drives the improvement>
+      // EXPECT-N: <metric_name> < <threshold>
+
+    Available metrics for EXPECT (lower = better, use < operator):
+      - cache_warmup_e2e_ms, load_spikes_e2e_ms, multiturn_e2e_ms
+      - avg_e2e_ms: average across all 3 workloads
+
+    Hypothesis rules:
+      - Set thresholds based on baseline values shown in the HYPOTHESIS KNOWLEDGE BASE
+      - Be specific: "helps latency" is too vague;
+        "reduces cache_warmup_e2e_ms by load-balancing short-input requests" is good
+      - If a strategy was REFUTED in the knowledge base, explain why yours differs
+      - Build on CONFIRMED strategies; combine proven techniques
+      - If no knowledge base yet (first iteration), set thresholds 5-10% below baseline
 
   # Number of top-performing programs to show as examples to the LLM
   # 3 = show 3 best programs from database for inspiration
@@ -245,4 +265,4 @@ allow_full_rewrites: false
 # Maximum allowed code length (characters)
 # 20000 = sufficient for routing.go with comments (~12KB base + mutations)
 # Safety limit to prevent runaway code generation
-max_code_length: 50000
+max_code_length: 40000

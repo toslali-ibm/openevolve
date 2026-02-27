@@ -14,21 +14,16 @@
 #     tokens total, so the oracle's input-length threshold routes them load-first.
 #   - High rate (1000 req/s): creates real queueing, amplifying load imbalance.
 #
-# VALIDATED RESULTS:
-#   - sabotaged: +242% (routing matters)
-#   - prefix-only: +0% (same as baseline -- prefix-affinity dominates at 1:1)
-#   - load-only: -26% (load-balance BETTER -- avoids prefix imbalance)
-#   - oracle: -28% (best -- load-aware with prefix tiebreaker)
-#   Conclusion: load-aware routing beats pure prefix-affinity here.
+# VALIDATED RESULTS: TBD after v2 workload tuning
 #
 # DESIGN:
 #   - 5000 requests at rate=1000 -> 5 seconds simulated time
-#   - 3 distinct prefix groups (each ~30% of traffic) create cache differentiation
-#   - 15% no-prefix traffic tests load balancing without cache benefit
+#   - 3 distinct prefix groups (each ~25-30% of traffic) create cache differentiation
+#   - 15% no-prefix background traffic tests load balancing without cache benefit
 #   - Moderate rate creates queueing but doesn't saturate
 #   - Long enough for caches to warm (~1250 reqs/instance before halfway point)
 
-version: "1"
+version: "2"
 seed: 42
 category: language
 aggregate_rate: 1000.0
@@ -37,7 +32,7 @@ num_requests: 5000
 clients:
   # Group A: Shared system prompt (e.g., chatbot)
   - id: "prefix-group-a"
-    slo_class: "interactive"
+    slo_class: "standard"
     rate_fraction: 0.30
     streaming: false
     arrival:
@@ -58,7 +53,7 @@ clients:
 
   # Group B: Different system prompt (e.g., code assistant)
   - id: "prefix-group-b"
-    slo_class: "interactive"
+    slo_class: "standard"
     rate_fraction: 0.30
     streaming: false
     arrival:
@@ -79,7 +74,7 @@ clients:
 
   # Group C: Short shared prefix (e.g., API gateway)
   - id: "prefix-group-c"
-    slo_class: "realtime"
+    slo_class: "critical"
     rate_fraction: 0.25
     streaming: true
     arrival:
@@ -98,9 +93,9 @@ clients:
     prefix_group: "api-gateway-prompt"
     prefix_length: 128
 
-  # No-prefix traffic: pure load balancing test
+  # No-prefix traffic: pure load balancing test, lowest priority
   - id: "unique-requests"
-    slo_class: "batch"
+    slo_class: "background"
     rate_fraction: 0.15
     streaming: false
     arrival:

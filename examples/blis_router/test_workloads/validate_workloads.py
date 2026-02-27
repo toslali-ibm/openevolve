@@ -99,10 +99,12 @@ SABOTAGED_EVOLVE_BLOCK = """\t// EVOLVE-BLOCK-START
 \tbestIdx := 0
 \t// EVOLVE-BLOCK-END"""
 
-# Oracle: input-length-aware routing with SLO awareness
-# Key insight: large inputs (>1000 tokens) have cached prefixes and benefit
-# from prefix-affinity (session stickiness). Small inputs don't benefit from
-# prefix caching, so load-balance is better.
+# Oracle: combined SLO + session + input-length classification
+# Path 1: sheddable → keep prefix + aggressive overload cliff
+# Path 2: session + long input → preserve stickiness + overload
+# Path 3: non-session medium/long (>=600) → load-balance dominant
+# Path 4: short critical/background → load-balance dominant
+# Path 5: short standard/batch → keep original (baseline behavior)
 ORACLE_EVOLVE_BLOCK = """\t// EVOLVE-BLOCK-START
 \t// Compute composite scores from all scorers
 \tscores := make(map[string]float64, len(snapshots))
@@ -120,37 +122,55 @@ ORACLE_EVOLVE_BLOCK = """\t// EVOLVE-BLOCK-START
 \t\t}
 \t}
 
-\t// Input-length-aware routing:
-\t// Large inputs (>1000 tokens) have valuable cached prefixes.
-\t// Keep prefix-affinity for cache hits, add mild overload penalty.
-\t// Small inputs don't benefit from prefix caching — use load-balance.
+\t// --- Combined oracle: SLO + session + input-length ---
 \tinputLen := len(req.InputTokens)
-\tif inputLen > 1000 {
-\t\t// Large prefix: keep prefix-affinity, penalize overloaded instances
+
+\tif req.SLOClass == "sheddable" {
+\t\t// Path 1: Sheddable → keep original scores + aggressive overload cliff
 \t\tfor _, snap := range snapshots {
 \t\t\tload := float64(snap.EffectiveLoad())
-\t\t\tif load > 15 {
-\t\t\t\tscores[snap.ID] *= 0.7
+\t\t\tif load > 8 {
+\t\t\t\tscores[snap.ID] *= 0.4
 \t\t\t}
 \t\t}
-\t} else {
-\t\t// No significant prefix: use load-balance (85% load, 15% prefix tiebreaker)
+\t} else if req.SessionID != "" && inputLen > 800 {
+\t\t// Path 2: Session with valuable prefix → preserve stickiness + overload
+\t\tfor _, snap := range snapshots {
+\t\t\tload := float64(snap.EffectiveLoad())
+\t\t\tif load > 20 {
+\t\t\t\tscores[snap.ID] *= 0.5
+\t\t\t} else if load > 10 {
+\t\t\t\tscores[snap.ID] *= 0.8
+\t\t\t}
+\t\t}
+\t} else if inputLen >= 600 {
+\t\t// Path 3: Non-session, medium/long input → load-balance dominant
 \t\tfor _, snap := range snapshots {
 \t\t\tload := float64(snap.EffectiveLoad())
 \t\t\tloadScore := 1.0 / (1.0 + load)
 \t\t\toriginal := scores[snap.ID]
 \t\t\tscores[snap.ID] = original*0.15 + loadScore*0.85
 \t\t}
-\t}
-
-\t// SLO-aware: realtime requests prefer idle instances
-\tif req.SLOClass == "realtime" {
+\t} else if req.SLOClass == "critical" || req.SLOClass == "background" {
+\t\t// Path 4: Short critical/background → load-balance dominant
 \t\tfor _, snap := range snapshots {
-\t\t\tif snap.QueueDepth > 5 {
-\t\t\t\tscores[snap.ID] *= 0.7
+\t\t\tload := float64(snap.EffectiveLoad())
+\t\t\tloadScore := 1.0 / (1.0 + load)
+\t\t\toriginal := scores[snap.ID]
+\t\t\tscores[snap.ID] = original*0.15 + loadScore*0.85
+\t\t}
+\t\tif req.SLOClass == "critical" {
+\t\t\tfor _, snap := range snapshots {
+\t\t\t\tif snap.QueueDepth > 5 {
+\t\t\t\t\tscores[snap.ID] *= 0.6
+\t\t\t\t}
 \t\t\t}
 \t\t}
+\t} else {
+\t\t// Path 5: Short standard/batch without session → keep original scores
 \t}
+
+\t_ = inputLen
 
 \tbestScore := -1.0
 \tbestIdx := 0
@@ -205,7 +225,7 @@ CONFIGS = {
         "custom_evolve_block": None,
     },
     "oracle": {
-        "description": "Adaptive: load penalty + SLO-aware + cache boost",
+        "description": "Three-signal oracle + SLO-aware (critical/sheddable)",
         "prefix_weight": 1.0,
         "load_weight": 1.0,
         "custom_evolve_block": ORACLE_EVOLVE_BLOCK,

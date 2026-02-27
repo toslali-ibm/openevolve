@@ -2,26 +2,35 @@
 Oracle Program: Hand-crafted adaptive router for validation.
 
 Same routing.go as initial_program.py but with a smarter EVOLVE-BLOCK that
-uses input-length-aware routing and SLO awareness. This proves the search
-space contains solutions better than the static-weight baseline.
+combines SLO class, session awareness, and input length for per-request routing.
 
-Strategy: Input-Length-Aware Routing
-  - Large inputs (>1000 tokens): have cached prefixes, keep prefix-affinity
-    for session stickiness. Add mild overload penalty only for extreme cases.
-  - Small inputs (<1000 tokens): no significant prefix, use load-balance
-    (85% load, 15% prefix as tiebreaker).
-  - SLO-aware: realtime requests avoid queued instances.
+Strategy: Combined SLO + Session + Input-Length Classification (5 paths)
+  Path 1: sheddable → keep prefix + aggressive overload cliff (load>8: *0.4)
+  Path 2: session + inputLen > 800 → preserve stickiness + tiered overload
+  Path 3: non-session + inputLen >= 600 → 85% load-balance, 15% prefix
+  Path 4: short critical/background → 85% load-balance + critical congestion penalty
+  Path 5: short standard/batch (no session) → keep original scores (baseline behavior)
 
-Validation results vs baseline:
-  - cache_warmup: -28.4% (load-aware routing avoids prefix imbalance)
-  - load_spikes:  -1.5%  (avoids prefix-affinity trap for heavy-hitter)
-  - multiturn:    +0.1%  (preserves prefix-affinity for session stickiness)
+Why this beats or ties baseline on all 3 workloads:
+  - cache_warmup (-27.6%): groups A,B (standard, inputLen ~812,784) → Path 3 → load-balanced;
+    group C (critical, inputLen ~228) → Path 4 → load-balanced;
+    background → Path 4 → load-balanced. Redistributes 3-group imbalance.
+  - load_spikes (tied): sheddable heavy-hitter (60%, inputLen ~912) → Path 1 → keeps cache
+    under normal load, redistributes during burst spikes;
+    critical (20%) → Path 4 → load-balanced (no prefix anyway);
+    standard (20%, inputLen ~584) → Path 5 → keeps baseline prefix-affinity.
+  - multiturn (tied): coding/chat sessions → Path 2 → stickiness preserved;
+    sheddable QA → Path 1 → bounced under load; critical → Path 4 → load-balanced.
 """
 
-# Full routing.go file with EVOLVE-BLOCK markers (synced with inference-sim v0.6.1)
+# Full routing.go file with EVOLVE-BLOCK markers (synced with inference-sim origin/main)
 GO_ROUTING_CODE = """package sim
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/inference-sim/inference-sim/sim/internal/hash"
+)
 
 // RoutingSnapshot is a lightweight view of instance state for policy decisions.
 // Populated by ClusterSimulator from cluster.InstanceSnapshot when building RouterState
@@ -194,36 +203,60 @@ func (ws *WeightedScoring) Route(req *Request, state *RouterState) RoutingDecisi
 		}
 	}
 
-	// --- Oracle: input-length-aware routing ---
-	// Key insight: large inputs (>1000 tokens) have cached prefixes and benefit
-	// from prefix-affinity (session stickiness). Small inputs don't benefit from
-	// prefix caching, so load-balance is better.
+	// --- Combined oracle: SLO + session + input-length ---
 	inputLen := len(req.InputTokens)
-	if inputLen > 1000 {
-		// Large prefix: keep prefix-affinity, penalize overloaded instances
+
+	if req.SLOClass == "sheddable" {
+		// Path 1: Sheddable → keep original scores + aggressive overload cliff
+		// Handles: load_spikes heavy-hitter (preserves cache under normal load,
+		// redistributes during bursts) and multiturn QA (bounced under load)
 		for _, snap := range snapshots {
 			load := float64(snap.EffectiveLoad())
-			if load > 15 {
-				scores[snap.ID] *= 0.7
+			if load > 8 {
+				scores[snap.ID] *= 0.4
 			}
 		}
-	} else {
-		// No significant prefix: use load-balance (85% load, 15% prefix tiebreaker)
+	} else if req.SessionID != "" && inputLen > 800 {
+		// Path 2: Session with valuable prefix → preserve stickiness + overload
+		// Handles: multiturn coding/chat sessions (72ms/36ms cache miss cost)
+		for _, snap := range snapshots {
+			load := float64(snap.EffectiveLoad())
+			if load > 20 {
+				scores[snap.ID] *= 0.5
+			} else if load > 10 {
+				scores[snap.ID] *= 0.8
+			}
+		}
+	} else if inputLen >= 600 {
+		// Path 3: Non-session, medium/long input → load-balance dominant
+		// Handles: cache_warmup groups A (mean=812) and B (mean=784)
 		for _, snap := range snapshots {
 			load := float64(snap.EffectiveLoad())
 			loadScore := 1.0 / (1.0 + load)
 			original := scores[snap.ID]
 			scores[snap.ID] = original*0.15 + loadScore*0.85
 		}
-	}
-
-	// SLO-aware: realtime requests prefer idle instances
-	if req.SLOClass == "realtime" {
+	} else if req.SLOClass == "critical" || req.SLOClass == "background" {
+		// Path 4: Short critical/background → load-balance dominant
+		// Handles: cache_warmup group C (critical, mean=228), background traffic,
+		// load_spikes critical (no prefix, needs fast routing)
 		for _, snap := range snapshots {
-			if snap.QueueDepth > 5 {
-				scores[snap.ID] *= 0.7
+			load := float64(snap.EffectiveLoad())
+			loadScore := 1.0 / (1.0 + load)
+			original := scores[snap.ID]
+			scores[snap.ID] = original*0.15 + loadScore*0.85
+		}
+		if req.SLOClass == "critical" {
+			for _, snap := range snapshots {
+				if snap.QueueDepth > 5 {
+					scores[snap.ID] *= 0.6
+				}
 			}
 		}
+	} else {
+		// Path 5: Short standard/batch without session → keep original scores
+		// Handles: load_spikes light-prefix group (standard, mean=584)
+		// No modification — preserves prefix-affinity for groups that benefit
 	}
 
 	// Argmax: select instance with highest composite score.
@@ -268,13 +301,13 @@ func (pa *PrefixAffinity) Route(req *Request, state *RouterState) RoutingDecisio
 	}
 
 	// Compute block-aligned prefix hashes; use the last (longest prefix) as affinity key
-	blockHashes := computeBlockHashes(int(pa.blockSize), req.InputTokens)
+	blockHashes := hash.ComputeBlockHashes(int(pa.blockSize), req.InputTokens)
 	var prefixHash string
 	if len(blockHashes) > 0 {
 		prefixHash = blockHashes[len(blockHashes)-1]
 	} else {
 		// Tokens shorter than one block: fall back to whole-input hash
-		prefixHash = hashTokens(req.InputTokens)
+		prefixHash = hash.HashTokens(req.InputTokens)
 	}
 
 	// Check cache for existing mapping
@@ -295,24 +328,6 @@ func (pa *PrefixAffinity) Route(req *Request, state *RouterState) RoutingDecisio
 	pa.prefixMap[prefixHash] = decision.TargetInstance
 
 	return NewRoutingDecision(decision.TargetInstance, "prefix-affinity (cache-miss, fallback to least-loaded)")
-}
-
-// computeBlockHashes returns hierarchical block hashes without requiring a PrefixCacheIndex.
-// Reuses the same hashBlock function from prefix_cache_index.go for consistency.
-func computeBlockHashes(blockSize int, tokens []int) []string {
-	numBlocks := len(tokens) / blockSize
-	if numBlocks == 0 {
-		return nil
-	}
-	hashes := make([]string, numBlocks)
-	prevHash := ""
-	for i := 0; i < numBlocks; i++ {
-		start := i * blockSize
-		end := start + blockSize
-		hashes[i] = hashBlock(prevHash, tokens[start:end])
-		prevHash = hashes[i]
-	}
-	return hashes
 }
 
 // AlwaysBusiest routes requests to the instance with maximum (QueueDepth + BatchSize + PendingRequests).
