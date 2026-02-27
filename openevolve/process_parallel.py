@@ -258,6 +258,12 @@ def _run_iteration_worker(
         child_id = str(uuid.uuid4())
         child_metrics = asyncio.run(_worker_evaluator.evaluate_program(child_code, child_id))
 
+        # Stamp hypothesis verdicts into child code
+        if _worker_config.hypothesis_driven and child_metrics:
+            from openevolve.hypothesis import inject_result_comments
+
+            child_code = inject_result_comments(child_code, child_metrics)
+
         # Get artifacts
         artifacts = _worker_evaluator.get_pending_artifacts(child_id)
 

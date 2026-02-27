@@ -111,6 +111,66 @@ def rescue_hypotheses(code: str, llm_response: str) -> str:
     return "\n".join(code_lines)
 
 
+def inject_result_comments(code: str, actual_metrics: dict) -> str:
+    """Inject RESULT-N comment lines after each EXPECT-N in the code.
+
+    After evaluation, the framework calls this to stamp hypothesis verdicts
+    directly into the child's code.  When this code is later shown to the LLM
+    (as parent, top program, or inspiration), the verdicts are visible in
+    context with the code that produced them.
+
+    No-op when:
+      - code has no EXPECT-N lines
+      - RESULT-N lines already exist (idempotent)
+
+    Args:
+        code: Source code with HYPOTHESIS/MECHANISM/EXPECT comments.
+        actual_metrics: Dict of metric_name -> value from evaluation.
+
+    Returns:
+        Code with RESULT-N lines injected after each EXPECT-N.
+    """
+    # Already has results? Don't double-stamp.
+    if re.search(r"(?://|#|--)\s*RESULT-\d+:", code):
+        return code
+
+    # No EXPECT lines? Nothing to inject — return code unchanged.
+    if not re.search(r"(?://|#|--)\s*EXPECT-\d+:", code):
+        return code
+
+    expect_pattern = re.compile(
+        r"^(\s*)((?://|#|--)\s*)EXPECT-(\d+):\s*(\S+)\s*([<>])\s*([0-9]+(?:\.[0-9]+)?)\s*$"
+    )
+
+    lines = code.splitlines()
+    new_lines = []
+    for line in lines:
+        new_lines.append(line)
+        m = expect_pattern.match(line)
+        if m:
+            indent = m.group(1)       # leading whitespace
+            prefix = m.group(2)       # comment prefix (e.g. "// " or "# ")
+            hid = m.group(3)          # hypothesis number
+            metric = m.group(4)       # metric name
+            operator = m.group(5)     # < or >
+            threshold = float(m.group(6))
+            actual = actual_metrics.get(metric)
+
+            if actual is None:
+                verdict = "INCONCLUSIVE"
+                result_text = f"{indent}{prefix}RESULT-{hid}: {verdict} (metric not available)"
+            else:
+                if operator == ">":
+                    verdict = "CONFIRMED" if actual > threshold else "REFUTED"
+                else:
+                    verdict = "CONFIRMED" if actual < threshold else "REFUTED"
+                result_text = f"{indent}{prefix}RESULT-{hid}: {verdict} (actual={actual})"
+
+            new_lines.append(result_text)
+
+    return "\n".join(new_lines)
+
+
 def parse_hypotheses(code: str, valid_metrics: set[str]) -> list:
     """Parse HYPOTHESIS-N, MECHANISM-N, EXPECT-N comment blocks from code.
 
@@ -241,7 +301,17 @@ def test_hypotheses(hypotheses: list, actual_metrics: dict, baseline_metrics: di
 
 
 def load_ledger(ledger_path: Path) -> dict:
-    """Load hypothesis ledger from disk, or return empty structure."""
+    """[DEPRECATED] Load hypothesis ledger from disk, or return empty structure.
+
+    V3 hypothesis pipeline uses inline RESULT comments instead of a ledger.
+    Kept for backward compatibility.
+    """
+    import warnings
+    warnings.warn(
+        "load_ledger() is deprecated. V3 uses inline RESULT comments in code.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     ledger_path = Path(ledger_path)
     if ledger_path.exists():
         with open(ledger_path, "r") as f:
@@ -252,7 +322,17 @@ def load_ledger(ledger_path: Path) -> dict:
 def update_ledger(
     ledger: dict, hypothesis_results: list, overall_combined_score: float, ledger_path: Path
 ) -> dict:
-    """Append hypothesis results to ledger and persist to disk."""
+    """[DEPRECATED] Append hypothesis results to ledger and persist to disk.
+
+    V3 hypothesis pipeline uses inline RESULT comments instead of a ledger.
+    Kept for backward compatibility.
+    """
+    import warnings
+    warnings.warn(
+        "update_ledger() is deprecated. V3 uses inline RESULT comments in code.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     entry = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "overall_combined_score": overall_combined_score,
@@ -268,10 +348,17 @@ def update_ledger(
 
 
 def generate_knowledge_base_summary(ledger: dict, top_n: int = 5) -> str:
-    """Generate text summary of hypothesis outcomes grouped by target metric.
+    """[DEPRECATED] Generate text summary of hypothesis outcomes.
 
-    Sections: CONFIRMED STRATEGIES, REFUTED STRATEGIES, INCONCLUSIVE, BASELINE VALUES.
+    V3 hypothesis pipeline uses inline RESULT comments instead of a knowledge base.
+    Kept for backward compatibility.
     """
+    import warnings
+    warnings.warn(
+        "generate_knowledge_base_summary() is deprecated. V3 uses inline RESULT comments in code.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     entries = ledger.get("entries", [])
     if not entries:
         lines = ["HYPOTHESIS KNOWLEDGE BASE:", "", "No hypothesis data yet."]
@@ -367,7 +454,17 @@ def generate_knowledge_base_summary(ledger: dict, top_n: int = 5) -> str:
 def format_hypothesis_results(
     hypothesis_results: list, overall_score: float, baseline_score: float
 ) -> str:
-    """Format this iteration's hypothesis verdicts as human-readable text."""
+    """[DEPRECATED] Format hypothesis verdicts as human-readable text.
+
+    V3 hypothesis pipeline uses inline RESULT comments instead.
+    Kept for backward compatibility.
+    """
+    import warnings
+    warnings.warn(
+        "format_hypothesis_results() is deprecated. V3 uses inline RESULT comments in code.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     lines = ["--- Hypothesis Verdicts ---"]
     for h in hypothesis_results:
         actual_str = f"{h['actual']:.1f}" if h["actual"] is not None else "N/A"

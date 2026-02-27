@@ -3,7 +3,6 @@ Evaluator for the function minimization example
 """
 
 import importlib.util
-import json
 import logging
 import os
 import numpy as np
@@ -11,20 +10,9 @@ import time
 import concurrent.futures
 import traceback
 import signal
-from pathlib import Path
 from openevolve.evaluation_result import EvaluationResult
-from openevolve.hypothesis import (
-    parse_hypotheses,
-    test_hypotheses,
-    load_ledger,
-    update_ledger,
-    generate_knowledge_base_summary,
-    format_hypothesis_results,
-)
 
 logger = logging.getLogger(__name__)
-
-VALID_METRICS = {"value_score", "distance_score", "reliability_score", "combined_score"}
 
 
 def run_with_timeout(func, args=(), kwargs={}, timeout_seconds=5):
@@ -237,88 +225,6 @@ def evaluate(program_path):
             "average_distance_to_global": f"{avg_distance:.4f}",
             "search_efficiency": f"Success rate: {reliability_score:.2%}"
         }
-
-        # --- Hypothesis pipeline (only when hypothesis_driven mode is enabled) ---
-        hypothesis_enabled = os.environ.get("HYPOTHESIS_DRIVEN", "false") == "true"
-        if hypothesis_enabled:
-            try:
-                with open(program_path, "r") as f:
-                    source_code = f.read()
-
-                hypotheses = parse_hypotheses(source_code, valid_metrics=VALID_METRICS)
-                logger.info("[HYPOTHESIS] Parsed %d hypotheses from evolved code", len(hypotheses))
-                for h in hypotheses:
-                    logger.info("[HYPOTHESIS]   H%d: %s (EXPECT: %s < %s)", h["id"], h["claim"], h["metric"], h["threshold"])
-
-                if hypotheses:
-                    # Use run-specific output dir if available (set by controller),
-                    # otherwise fall back to shared example directory.
-                    run_output_dir = os.environ.get("OPENEVOLVE_OUTPUT_DIR")
-                    if run_output_dir:
-                        artifact_dir = Path(run_output_dir)
-                    else:
-                        artifact_dir = Path(__file__).parent / "openevolve_output"
-                    artifact_dir.mkdir(parents=True, exist_ok=True)
-
-                    baseline_path = artifact_dir / "baseline_metrics.json"
-                    ledger_path = artifact_dir / "hypothesis_ledger.json"
-                    logger.info("[HYPOTHESIS] Ledger path: %s", ledger_path)
-
-                    # Load or compute baseline
-                    if baseline_path.exists():
-                        with open(baseline_path, "r") as f:
-                            baseline_metrics = json.load(f)
-                        logger.info("[HYPOTHESIS] Loaded baseline from %s", baseline_path)
-                    else:
-                        # First run: current metrics become baseline
-                        baseline_metrics = {
-                            "value_score": value_score,
-                            "distance_score": distance_score,
-                            "reliability_score": reliability_score,
-                            "combined_score": combined_score,
-                        }
-                        with open(baseline_path, "w") as f:
-                            json.dump(baseline_metrics, f, indent=2)
-                        logger.info("[HYPOTHESIS] Created baseline: %s", baseline_metrics)
-
-                    actual_metrics = {
-                        "value_score": value_score,
-                        "distance_score": distance_score,
-                        "reliability_score": reliability_score,
-                        "combined_score": combined_score,
-                    }
-
-                    h_results = test_hypotheses(hypotheses, actual_metrics, baseline_metrics)
-                    for r in h_results:
-                        logger.info("[HYPOTHESIS]   H%d verdict=%s (actual=%s, threshold=%s)", r["id"], r["verdict"], r.get("actual"), r["threshold"])
-                    baseline_score = baseline_metrics.get("combined_score", 0)
-                    hypothesis_results_text = format_hypothesis_results(h_results, combined_score, baseline_score)
-
-                    ledger = load_ledger(ledger_path)
-                    if not ledger["baseline"] and baseline_metrics:
-                        ledger["baseline"] = baseline_metrics
-                    update_ledger(ledger, h_results, combined_score, ledger_path)
-                    logger.info("[HYPOTHESIS] Updated ledger (%d total entries)", len(ledger.get("entries", [])))
-                    knowledge_base_text = generate_knowledge_base_summary(ledger)
-                    logger.info("[HYPOTHESIS] Knowledge base:\n%s", knowledge_base_text)
-
-                    artifacts["hypothesis_results"] = hypothesis_results_text
-                    artifacts["hypothesis_knowledge_base"] = knowledge_base_text
-                else:
-                    logger.info("[HYPOTHESIS] No hypotheses found in evolved code")
-                    # Still show knowledge base even without hypotheses
-                    run_output_dir = os.environ.get("OPENEVOLVE_OUTPUT_DIR")
-                    if run_output_dir:
-                        ledger_path = Path(run_output_dir) / "hypothesis_ledger.json"
-                    else:
-                        ledger_path = Path(__file__).parent / "openevolve_output" / "hypothesis_ledger.json"
-                    if ledger_path.exists():
-                        ledger = load_ledger(ledger_path)
-                        knowledge_base_text = generate_knowledge_base_summary(ledger)
-                        if knowledge_base_text:
-                            artifacts["hypothesis_knowledge_base"] = knowledge_base_text
-            except Exception as e:
-                logger.warning(f"Hypothesis pipeline error (non-fatal): {e}")
 
         return EvaluationResult(
             metrics={

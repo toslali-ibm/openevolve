@@ -29,17 +29,22 @@ Format (each hypothesis needs all 3 lines, using the appropriate comment syntax 
   # EXPECT-N: <metric_name> < <threshold>   (for lower-is-better metrics like latency)
   # EXPECT-N: <metric_name> > <threshold>   (for higher-is-better metrics like scores)
 
+After evaluation, a RESULT-N line is automatically added showing the verdict:
+  # RESULT-N: CONFIRMED (actual=3850.0)
+  # RESULT-N: REFUTED (actual=5200.0)
+
 Rules:
   - N starts at 1 and increments
   - metric_name must be one of the metrics shown in your performance feedback
   - Use < for metrics where lower is better (e.g. latency, error rate)
   - Use > for metrics where higher is better (e.g. accuracy, score)
   - threshold is a number; the hypothesis is CONFIRMED if actual satisfies the comparison
-  - Set thresholds based on baseline values shown in the HYPOTHESIS KNOWLEDGE BASE artifact (if present)
   - Be specific: "improves performance" is too vague; "reduces avg_e2e_ms by routing large requests to less-loaded instances" is good
-  - If a strategy was REFUTED in the knowledge base, explain why your new approach differs
-  - Build on CONFIRMED strategies; combine proven techniques
-  - If no knowledge base is shown yet (first iteration), set thresholds 5-10% beyond the current metrics
+  - Look at RESULT lines in the parent program and top programs to see what worked (CONFIRMED) and what failed (REFUTED)
+  - Build on CONFIRMED strategies from top-performing programs
+  - Avoid or differentiate from REFUTED strategies
+  - If no RESULT lines exist yet (first iteration), set thresholds 5-10% beyond the current metrics
+  - Do NOT write RESULT lines yourself — they are added automatically after evaluation
 """
 
 # User message template for diff-based evolution

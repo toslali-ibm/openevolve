@@ -450,5 +450,199 @@ class TestPromptInjection(unittest.TestCase):
         self.assertEqual(count, 0)  # template NOT appended
 
 
+class TestInjectResultComments(unittest.TestCase):
+    """Test injecting RESULT-N lines into code after evaluation."""
+
+    def test_inject_python_results(self):
+        from openevolve.hypothesis import inject_result_comments
+        code = (
+            "# EVOLVE-BLOCK-START\n"
+            "# HYPOTHESIS-1: Better search improves score\n"
+            "# MECHANISM-1: Multi-start covers more basins\n"
+            "# EXPECT-1: combined_score > 0.8\n"
+            "def solve(): pass\n"
+            "# EVOLVE-BLOCK-END\n"
+        )
+        metrics = {"combined_score": 0.9, "distance_score": 0.7}
+        result = inject_result_comments(code, metrics)
+        self.assertIn("RESULT-1: CONFIRMED", result)
+        self.assertIn("actual=0.9", result)
+        # RESULT should appear right after EXPECT
+        lines = result.splitlines()
+        expect_idx = next(i for i, l in enumerate(lines) if "EXPECT-1" in l)
+        self.assertIn("RESULT-1", lines[expect_idx + 1])
+
+    def test_inject_go_results(self):
+        from openevolve.hypothesis import inject_result_comments
+        code = (
+            "// EVOLVE-BLOCK-START\n"
+            "// HYPOTHESIS-1: Cache affinity reduces latency\n"
+            "// MECHANISM-1: Prefix reuse avoids recomputation\n"
+            "// EXPECT-1: avg_e2e_ms < 5000\n"
+            "func route() {}\n"
+            "// EVOLVE-BLOCK-END\n"
+        )
+        metrics = {"avg_e2e_ms": 4500.0}
+        result = inject_result_comments(code, metrics)
+        self.assertIn("// RESULT-1: CONFIRMED", result)
+
+    def test_inject_refuted(self):
+        from openevolve.hypothesis import inject_result_comments
+        code = (
+            "# HYPOTHESIS-1: Reduces latency\n"
+            "# MECHANISM-1: Better routing\n"
+            "# EXPECT-1: avg_e2e_ms < 3000\n"
+            "x = 1\n"
+        )
+        metrics = {"avg_e2e_ms": 5000.0}
+        result = inject_result_comments(code, metrics)
+        self.assertIn("RESULT-1: REFUTED", result)
+        self.assertIn("actual=5000.0", result)
+
+    def test_inject_multiple_hypotheses(self):
+        from openevolve.hypothesis import inject_result_comments
+        code = (
+            "# HYPOTHESIS-1: First claim\n"
+            "# MECHANISM-1: First mechanism\n"
+            "# EXPECT-1: metric_a > 0.5\n"
+            "# HYPOTHESIS-2: Second claim\n"
+            "# MECHANISM-2: Second mechanism\n"
+            "# EXPECT-2: metric_b < 10.0\n"
+            "x = 1\n"
+        )
+        metrics = {"metric_a": 0.8, "metric_b": 15.0}
+        result = inject_result_comments(code, metrics)
+        self.assertIn("RESULT-1: CONFIRMED", result)
+        self.assertIn("RESULT-2: REFUTED", result)
+
+    def test_noop_when_no_hypotheses(self):
+        from openevolve.hypothesis import inject_result_comments
+        code = "def solve(): pass\n"
+        metrics = {"score": 0.5}
+        result = inject_result_comments(code, metrics)
+        self.assertEqual(result, code)
+
+    def test_noop_when_results_already_present(self):
+        from openevolve.hypothesis import inject_result_comments
+        code = (
+            "# HYPOTHESIS-1: Some claim\n"
+            "# MECHANISM-1: Some mechanism\n"
+            "# EXPECT-1: score > 0.5\n"
+            "# RESULT-1: CONFIRMED (actual=0.8)\n"
+            "x = 1\n"
+        )
+        metrics = {"score": 0.3}
+        result = inject_result_comments(code, metrics)
+        # Should NOT overwrite existing RESULT
+        self.assertIn("RESULT-1: CONFIRMED (actual=0.8)", result)
+        self.assertNotIn("REFUTED", result)
+
+    def test_inconclusive_when_metric_missing(self):
+        from openevolve.hypothesis import inject_result_comments
+        code = (
+            "# HYPOTHESIS-1: Claim\n"
+            "# MECHANISM-1: Mechanism\n"
+            "# EXPECT-1: nonexistent_metric < 10\n"
+            "x = 1\n"
+        )
+        metrics = {"other_metric": 5.0}
+        result = inject_result_comments(code, metrics)
+        self.assertIn("RESULT-1: INCONCLUSIVE", result)
+
+    def test_preserves_indentation(self):
+        from openevolve.hypothesis import inject_result_comments
+        code = (
+            "\t// HYPOTHESIS-1: Claim\n"
+            "\t// MECHANISM-1: Mechanism\n"
+            "\t// EXPECT-1: score < 100\n"
+            "\tfunc route() {}\n"
+        )
+        metrics = {"score": 80.0}
+        result = inject_result_comments(code, metrics)
+        lines = result.splitlines()
+        result_line = next(l for l in lines if "RESULT-1" in l)
+        self.assertTrue(result_line.startswith("\t"))
+
+
+class TestV3InlineResultsPipeline(unittest.TestCase):
+    """End-to-end test of V3: hypotheses + results live in code."""
+
+    def test_full_pipeline_python(self):
+        """Simulate: rescue → eval → inject → result visible in code."""
+        from openevolve.hypothesis import inject_result_comments
+
+        llm_response = (
+            "# HYPOTHESIS-1: Multi-start search improves combined_score\n"
+            "# MECHANISM-1: Random restarts escape local minima\n"
+            "# EXPECT-1: combined_score > 0.8\n"
+            "\n<<<<<<< SEARCH\ndef run_search(): pass\n=======\n"
+            "def run_search(): return (-1.7, 0.68, -1.5)\n>>>>>>> REPLACE\n"
+        )
+        code_after_diff = (
+            "# EVOLVE-BLOCK-START\n"
+            "def run_search(): return (-1.7, 0.68, -1.5)\n"
+            "# EVOLVE-BLOCK-END\n"
+        )
+
+        # Step 1: Rescue hypotheses into code
+        rescued = rescue_hypotheses(code_after_diff, llm_response)
+        self.assertIn("HYPOTHESIS-1", rescued)
+        self.assertIn("EXPECT-1", rescued)
+
+        # Step 2: Evaluate (simulated) — returns metrics
+        actual_metrics = {"combined_score": 0.92, "distance_score": 0.85}
+
+        # Step 3: Framework injects RESULT lines
+        final_code = inject_result_comments(rescued, actual_metrics)
+
+        # Verify RESULT is in the code
+        self.assertIn("RESULT-1: CONFIRMED", final_code)
+        self.assertIn("actual=0.92", final_code)
+
+        # Step 4: When shown to next LLM, hypotheses are still parseable
+        parsed = parse_hypotheses(final_code, valid_metrics={"combined_score", "distance_score"})
+        self.assertEqual(len(parsed), 1)
+        self.assertEqual(parsed[0]["claim"], "Multi-start search improves combined_score")
+
+    def test_full_pipeline_go(self):
+        """Same flow with Go comment syntax."""
+        from openevolve.hypothesis import inject_result_comments
+
+        code = (
+            "// EVOLVE-BLOCK-START\n"
+            "// HYPOTHESIS-1: Cache affinity reduces latency\n"
+            "// MECHANISM-1: Prefix reuse avoids recomputation\n"
+            "// EXPECT-1: avg_e2e_ms < 5000\n"
+            "func route(req Request) int { return 0 }\n"
+            "// EVOLVE-BLOCK-END\n"
+        )
+        metrics = {"avg_e2e_ms": 4200.0, "avg_p95_ms": 5100.0}
+
+        final_code = inject_result_comments(code, metrics)
+
+        self.assertIn("// RESULT-1: CONFIRMED", final_code)
+        self.assertIn("actual=4200.0", final_code)
+
+        # Still parseable
+        parsed = parse_hypotheses(final_code, valid_metrics={"avg_e2e_ms"})
+        self.assertEqual(len(parsed), 1)
+
+    def test_idempotent_injection(self):
+        """Injecting twice should not double-stamp."""
+        from openevolve.hypothesis import inject_result_comments
+
+        code = (
+            "# HYPOTHESIS-1: Claim\n"
+            "# MECHANISM-1: Mechanism\n"
+            "# EXPECT-1: score > 0.5\n"
+            "x = 1\n"
+        )
+        metrics = {"score": 0.8}
+        once = inject_result_comments(code, metrics)
+        twice = inject_result_comments(once, metrics)
+        self.assertEqual(once, twice)
+        self.assertEqual(twice.count("RESULT-1"), 1)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -10,7 +10,7 @@ from openevolve.config import Config
 from openevolve.evaluator import Evaluator
 from openevolve.llm.ensemble import LLMEnsemble
 from openevolve.prompt.sampler import PromptSampler
-from openevolve.hypothesis import rescue_hypotheses
+from openevolve.hypothesis import rescue_hypotheses, inject_result_comments
 from openevolve.utils.code_utils import (
     apply_diff,
     extract_diffs,
@@ -124,6 +124,10 @@ async def run_iteration_with_shared_db(
         # Evaluate the child program
         child_id = str(uuid.uuid4())
         result.child_metrics = await evaluator.evaluate_program(child_code, child_id)
+
+        # Stamp hypothesis verdicts into child code
+        if config.hypothesis_driven and result.child_metrics:
+            child_code = inject_result_comments(child_code, result.child_metrics)
 
         # Handle artifacts if they exist
         artifacts = evaluator.get_pending_artifacts(child_id)
