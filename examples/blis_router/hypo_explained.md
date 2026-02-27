@@ -1,6 +1,9 @@
 # How Hypothesis-Driven Evolution Works
 
-## Pipeline Flow
+## Pipeline Flow (V2 — Score-Ranked, Island-Local)
+
+> **Status**: V2 is the target design. See [V1 Design](#v1-design-current-implementation)
+> at the bottom for the current implementation and its known issues.
 
 ### Step 1: System Prompt — Hypothesis Instructions
 
@@ -11,8 +14,9 @@ This tells the LLM:
 - Write 1-3 hypotheses as comments at the TOP of the EVOLVE-BLOCK
 - Each hypothesis needs 3 lines: HYPOTHESIS-N, MECHANISM-N, EXPECT-N
 - EXPECT uses `<` for lower-is-better metrics, `>` for higher-is-better
-- Build on CONFIRMED strategies from the knowledge base
-- Avoid or differentiate from REFUTED strategies
+- Learn from CONFIRMED hypotheses in top-scoring programs on the island
+- Avoid patterns from REFUTED hypotheses in worst-scoring programs
+- Set thresholds informed by baseline values
 
 When `hypothesis_driven: false`, this template is NOT appended — the LLM gets
 no instructions about hypotheses whatsoever.
@@ -50,7 +54,7 @@ as a preamble. `apply_diff()` only keeps REPLACE content, so hypotheses are lost
 Only runs when `hypothesis_driven: true` (gated in `iteration.py` and
 `process_parallel.py`).
 
-### Step 4: Evaluator — Parse, Test, Update Ledger
+### Step 4: Evaluator — Parse, Test, Update Ledger (V2)
 
 The evaluator runs the evolved program, gets actual metrics, then:
 
@@ -66,103 +70,156 @@ The evaluator runs the evolved program, gets actual metrics, then:
   - Missing metric → INCONCLUSIVE
   - Also computes delta vs baseline as a percentage
 
-**c) Update Ledger** — `update_ledger(ledger, results, score, ledger_path)`:
+**c) Update Ledger** — `update_ledger(ledger, results, score, ledger_path, program_id, island)`:
   - Appends a new entry to the persistent JSON ledger file
-  - Each entry contains: timestamp, overall score, list of hypothesis verdicts
+  - Each entry contains: timestamp, overall score, **program_id**, **island**, list of hypothesis verdicts
   - Ledger file is per-run (stored in `OPENEVOLVE_OUTPUT_DIR`)
   - Ledger grows monotonically — entries are never removed
+  - `program_id` and `island` enable filtering by island at prompt time
+
+**d) Store artifact** — evaluator stores **only its own verdicts**:
+  - `artifacts["hypothesis_results"]` = formatted text of this program's hypothesis verdicts
+  - The evaluator does **NOT** generate or store a knowledge base summary (that's done at prompt time now)
 
 The entire hypothesis pipeline only runs when `HYPOTHESIS_DRIVEN=true` env var
 is set (propagated from `config.hypothesis_driven` by the controller).
 
-### Step 5: Knowledge Base — Feedback to Next Iteration
+### Step 5: Fresh Island-Local Knowledge at Prompt Time (V2)
 
-After updating the ledger, the evaluator generates a knowledge base summary and
-stores it as an **artifact** on the current program.
+When a program is selected as a **parent** for a new iteration, the worker
+computes a **fresh** knowledge base from the ledger — not a stale artifact.
 
-**`generate_knowledge_base_summary(ledger, top_n=5)`** works as follows:
+`generate_island_knowledge_summary(ledger, top_program_ids, worst_program_ids)`
+in `openevolve/hypothesis.py` works as follows:
 
-1. **Aggregate** all ledger entries by unique `(metric, claim)` pairs.
-   If the same claim was tested 5 times across different iterations, those
-   5 verdicts are grouped together.
+1. **Filter** ledger entries to only those matching the provided program IDs
+   (top-scoring and worst-scoring programs from the current island).
 
-2. **Classify** each unique strategy:
-   - **Confirmed**: confirm_rate >= 50% (majority of tests passed)
-   - **Refuted**: confirm_rate < 50% AND tested >= 2 times
-   - **Inconclusive**: tested only once AND not confirmed
+2. **Sort** top entries by score descending (best first), worst by score ascending.
 
-3. **Select top 5** from each category:
-   - Confirmed: sorted by avg_delta (best improvement first)
-   - Refuted: sorted by worst avg_delta first
-   - Inconclusive: up to 5
+3. **Display individual verdicts** — no aggregation by claim string. Each
+   hypothesis is shown with its verdict, actual value, threshold, and delta.
+   The LLM does pattern recognition across these examples.
 
-4. **Append baseline values** (metrics from the initial program)
+4. **Cap at top_n per section** (default 5) to bound prompt size.
+
+5. **Append baseline values** (metrics from the initial program).
 
 The result is a plain text summary like:
 ```
-=== CONFIRMED STRATEGIES ===
-  [combined_score] Hybrid of global exploration and local Gaussian mutation
-  (confirmed 11/11, avg_delta=-1.2%)
-    mechanism: Global uniform sampling finds basins, Gaussian steps converge within
+=== STRATEGIES FROM TOP-SCORING PROGRAMS ===
+  [CONFIRMED] Adaptive weight by input length reduces avg latency
+  (EXPECT cache_warmup_e2e_ms < 4200, ACTUAL 3850.0, delta=-7.2% vs baseline)
+    mechanism: Short requests routed by load-balance, long by prefix affinity
 
-=== REFUTED STRATEGIES ===
-  [load_spikes_e2e_ms] Aggressive quadratic penalty on overloaded instances
-  (confirmed 0/3, avg_delta=+2.1%)
-    mechanism: Quadratic penalties cause routing oscillation between instances
+=== STRATEGIES FROM WORST-SCORING PROGRAMS ===
+  [REFUTED] Aggressive quadratic penalty on overloaded instances
+  (EXPECT load_spikes_e2e_ms < 3350, ACTUAL 4100.0, delta=+22.1% vs baseline)
+    mechanism: Quadratic penalties cause routing oscillation
 
 === BASELINE VALUES ===
   avg_e2e_ms: 2610.5
   combined_score: -3860.2
 ```
 
-This text is stored as `artifacts["hypothesis_knowledge_base"]` on the
-**current program** — the one just evaluated.
+This is computed in `iteration.py` / `process_parallel.py` and injected as a
+synthetic `hypothesis_knowledge_base` artifact alongside the parent's own artifacts.
 
-### Step 6: Prompt Assembly — How It Reaches the LLM
+### Step 6: Prompt Assembly — Two-Channel Knowledge (V2)
 
-When this program is later selected as a **parent** for a new iteration:
+When a program is selected as a **parent** for a new iteration:
 
 1. Worker fetches parent's artifacts from the database snapshot
-   (`process_parallel.py:157`)
-2. Artifacts are passed to `build_prompt(program_artifacts=parent_artifacts)`
-   (`process_parallel.py:190`)
-3. `_render_artifacts()` renders ALL artifacts as markdown code blocks
+   (`process_parallel.py:157`) — this contains the parent's **own** hypothesis
+   verdicts (from Step 4d)
+2. Worker computes **fresh island-local knowledge** from the ledger (Step 5)
+   and injects it as `parent_artifacts["hypothesis_knowledge_base"]`
+3. Artifacts are passed to `build_prompt(program_artifacts=parent_artifacts)`
+4. `_render_artifacts()` renders ALL artifacts as markdown code blocks
    in the `{artifacts}` section of the user message template
-4. No further filtering — the knowledge base text is included verbatim
 
-So the LLM sees:
-- **System message**: hypothesis format instructions (HYPOTHESIS-N / MECHANISM-N / EXPECT-N)
-- **User message**: parent code, metrics, evolution history, AND the knowledge base
-  artifact showing which strategies worked (confirmed) and which failed (refuted)
+So the LLM sees **two channels**:
+- **`hypothesis_results`** — the parent's own hypothesis verdicts (what it tried, what happened)
+- **`hypothesis_knowledge_base`** — fresh island-local summary of what worked/failed
+  across the best and worst programs on this island
+
+Plus:
+- **System message**: hypothesis format instructions
+- **User message**: parent code, metrics, evolution history
 
 The LLM is expected to use this feedback to:
-- **Build on** confirmed strategies (combine proven techniques)
-- **Avoid** refuted strategies (or explain why a new approach differs)
+- **Build on** confirmed strategies from top-scoring island programs
+- **Avoid** patterns from worst-scoring island programs
 - **Set thresholds** informed by baseline values
+- **Refine** the parent's own approach based on its specific verdicts
 
-## Summary
+## Summary (V2)
 
 ```
 Iteration N:
   LLM sees:  system prompt (hypothesis instructions)
            + user prompt (parent code, metrics, history)
-           + parent's artifact: knowledge base (top 5 confirmed, top 5 refuted,
-                                                top 5 inconclusive, baseline values)
+           + parent's artifact: hypothesis_results (its own verdicts)
+           + FRESH artifact: hypothesis_knowledge_base
+                (top 5 from best island programs,
+                 top 5 from worst island programs,
+                 baseline values)
+
   LLM writes: evolved code with 1-3 HYPOTHESIS/MECHANISM/EXPECT comments
 
   Evaluator:  runs code → gets actual metrics
            → parse_hypotheses() extracts hypotheses from code
            → test_hypotheses() checks each EXPECT against actual
-           → update_ledger() appends verdicts to persistent ledger
-           → generate_knowledge_base_summary() selects top 5 per category
-                from ENTIRE ledger history
-           → stores summary as artifact["hypothesis_knowledge_base"]
-                on THIS program (the child)
+           → update_ledger() appends verdicts with program_id + island
+           → stores ONLY own verdicts as artifact["hypothesis_results"]
+
+  Worker (prompt time):
+           → loads ledger from disk (always fresh)
+           → gets top 5 + worst 5 program IDs from current island
+           → generate_island_knowledge_summary() produces ranked display
+           → injects as synthetic artifact["hypothesis_knowledge_base"]
 
 Iteration N+1:
-  If this child is selected as parent → its knowledge base artifact
-  is shown to the LLM → cycle continues
+  Parent selected → worker computes fresh knowledge → LLM sees
+  latest island-wide intelligence + parent's own history → cycle continues
 ```
 
-At most **15 strategies + baseline values** are shown to the LLM at any time
-(5 confirmed + 5 refuted + 5 inconclusive), regardless of how large the ledger grows.
+At most **10 hypothesis verdicts + baseline values** are shown to the LLM at any time
+(5 from top programs + 5 from worst programs), regardless of how large the ledger grows.
+
+---
+
+## V1 Design (Current Implementation)
+
+> This section documents the V1 design for reference. V2 above fixes the
+> issues described here.
+
+### How V1 Works
+
+In V1, the evaluator calls `generate_knowledge_base_summary(ledger)` after
+testing hypotheses and stores the result as `artifacts["hypothesis_knowledge_base"]`
+on the child program. When that program is later selected as a parent, its
+artifact is passed verbatim to the LLM.
+
+### Known Issues with V1
+
+**1. Dead aggregation** — `generate_knowledge_base_summary()` aggregates
+hypotheses by exact `(metric, claim)` string match. Since LLM-generated
+claims almost never repeat verbatim across iterations, every hypothesis
+has `total=1`. This means:
+  - The REFUTED bucket (requires `total >= 2`) is **always empty**
+  - All failed hypotheses fall into INCONCLUSIVE instead
+  - Multi-trial aggregation is effectively a dead feature
+
+**2. Stale knowledge** — The knowledge base is frozen at the time the parent
+was evaluated. If the parent was evaluated at iteration 5 but selected as
+parent at iteration 50, the LLM sees 45-iteration-old intelligence.
+
+**3. Global scope breaks island isolation** — OpenEvolve uses island-based
+MAP-Elites where programs, metrics, and inspirations are all island-local.
+But V1's knowledge base is computed from the **global** ledger, leaking
+strategies across island boundaries.
+
+**4. No lineage attribution** — V1 shows "what strategies exist" but not
+"which programs used them and how well they scored". The LLM can't
+distinguish between a strategy from the best program and one from the worst.
