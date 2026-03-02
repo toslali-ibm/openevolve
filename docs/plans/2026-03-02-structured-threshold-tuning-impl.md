@@ -148,23 +148,19 @@ class TestParseTuneAnnotations(unittest.TestCase):
         params = parse_tune_annotations(code)
         self.assertEqual(params[0].param_type, "float")
 
-    def test_parse_categorical(self):
-        code = 'strategy = "greedy"  # @TUNE {greedy, round_robin, weighted}'
-        params = parse_tune_annotations(code)
-        self.assertEqual(len(params), 1)
-        p = params[0]
-        self.assertEqual(p.param_type, "categorical")
-        self.assertEqual(p.choices, ["greedy", "round_robin", "weighted"])
-        self.assertEqual(p.value, "greedy")
-
     def test_parse_multiple(self):
         code = (
             'load_cutoff = 0.4  # @TUNE [0.0, 1.0]\n'
             'batch_size = 32  # @TUNE [8, 128] int\n'
-            'strategy = "greedy"  # @TUNE {greedy, round_robin, weighted}\n'
+            'decay = 0.01  # @TUNE [0.001, 0.1] float\n'
         )
         params = parse_tune_annotations(code)
         self.assertEqual(len(params), 3)
+
+    def test_ignores_categorical(self):
+        code = 'strategy = "greedy"  # @TUNE {greedy, round_robin, weighted}'
+        params = parse_tune_annotations(code)
+        self.assertEqual(len(params), 0)
 
     def test_max_params_enforced(self):
         code = (
@@ -222,11 +218,6 @@ _TUNE_RANGE_RE = re.compile(
     r"^(\s*(\w+)\s*=\s*(.+?)\s*)#\s*@TUNE\s+\[([^,\]]+),\s*([^\]]+)\](\s+(?:int|float))?"
 )
 
-# Regex for: varname = "value"  # @TUNE {a, b, c}
-_TUNE_CAT_RE = re.compile(
-    r'^(\s*(\w+)\s*=\s*(.+?)\s*)#\s*@TUNE\s+\{([^}]+)\}'
-)
-
 # Regex to strip existing @TUNED(...) annotations
 _TUNED_RE = re.compile(r"\s*@TUNED\([^)]*\)")
 
@@ -236,13 +227,12 @@ class TuneParam:
     """A single tunable parameter parsed from code."""
 
     name: str
-    value: object  # original value (float, int, or str)
+    value: object  # original value (float or int)
     line_number: int  # 0-indexed line in code
     full_line: str  # the full original line text
-    param_type: str = "float"  # "float", "int", "categorical"
+    param_type: str = "float"  # "float" or "int"
     low: Optional[float] = None
     high: Optional[float] = None
-    choices: Optional[List[str]] = None
 
 
 def parse_tune_annotations(code: str, max_params: int = 3) -> List[TuneParam]:
@@ -277,19 +267,6 @@ def parse_tune_annotations(code: str, max_params: int = 3) -> List[TuneParam]:
                 name=name, value=value, line_number=i,
                 full_line=line, param_type=param_type,
                 low=low, high=high,
-            ))
-            continue
-
-        # Try categorical pattern: {a, b, c}
-        m = _TUNE_CAT_RE.match(line)
-        if m:
-            name = m.group(2)
-            raw_value = m.group(3).strip().strip('"').strip("'")
-            choices = [c.strip() for c in m.group(4).split(",")]
-            params.append(TuneParam(
-                name=name, value=raw_value, line_number=i,
-                full_line=line, param_type="categorical",
-                choices=choices,
             ))
             continue
 
@@ -380,17 +357,6 @@ class TestRewriteTuneValues(unittest.TestCase):
         )
         self.assertIn("batch = 64", result)
 
-    def test_rewrite_categorical(self):
-        code = 'strategy = "greedy"  # @TUNE {greedy, round_robin, weighted}\n'
-        params = parse_tune_annotations(code)
-        new_values = {"strategy": "weighted"}
-        result = rewrite_tune_values(
-            code, params, new_values,
-            0.5, 0.6, {"x": 1.0}, {"x": 1.5},
-        )
-        self.assertIn('strategy = "weighted"', result)
-        self.assertIn("@TUNED(was=greedy", result)
-
     def test_non_tune_lines_unchanged(self):
         code = 'x = 42\nload = 0.4  # @TUNE [0.0, 1.0]\ny = 3\n'
         params = parse_tune_annotations(code)
@@ -468,9 +434,7 @@ def rewrite_tune_values(
         indent = old_line[: len(old_line) - len(old_line.lstrip())]
 
         # Build the assignment part
-        if param.param_type == "categorical":
-            assign = f'{indent}{param.name} = "{new_val}"'
-        elif param.param_type == "int":
+        if param.param_type == "int":
             assign = f'{indent}{param.name} = {int(new_val)}'
         else:
             assign = f'{indent}{param.name} = {round(new_val, 4)}'
@@ -665,12 +629,10 @@ async def tune_program(
         """Optuna objective: suggest values, evaluate, return score."""
         values = {}
         for p in params:
-            if p.param_type == "float":
-                values[p.name] = trial.suggest_float(p.name, p.low, p.high)
-            elif p.param_type == "int":
+            if p.param_type == "int":
                 values[p.name] = trial.suggest_int(p.name, int(p.low), int(p.high))
-            elif p.param_type == "categorical":
-                values[p.name] = trial.suggest_categorical(p.name, p.choices)
+            else:
+                values[p.name] = trial.suggest_float(p.name, p.low, p.high)
 
         # Rewrite code with trial values (no @TUNED yet, just values)
         trial_code = _rewrite_values_only(code, params, values)
@@ -746,9 +708,7 @@ def _rewrite_values_only(code: str, params: List[TuneParam], values: dict) -> st
         old_line = lines[line_num]
         indent = old_line[: len(old_line) - len(old_line.lstrip())]
 
-        if param.param_type == "categorical":
-            assign = f'{indent}{param.name} = "{new_val}"'
-        elif param.param_type == "int":
+        if param.param_type == "int":
             assign = f'{indent}{param.name} = {int(new_val)}'
         else:
             assign = f'{indent}{param.name} = {round(new_val, 4)}'
@@ -1142,7 +1102,6 @@ An optimizer will search the declared ranges before scoring your program.
 var = value  # @TUNE [min, max]          # float (default)
 var = value  # @TUNE [min, max] int      # integer
 var = value  # @TUNE [min, max] float    # explicit float
-var = "val"  # @TUNE {opt1, opt2, opt3}  # categorical
 ```
 
 ### What happens
@@ -1486,7 +1445,7 @@ python scripts/analyze_experiment.py \
 |------|------|-------|-------|
 | 1 | `TuningConfig` dataclass | `config.py` | 4 |
 | 2 | Parse `@TUNE` annotations | `tuning.py` (new) | 9 |
-| 3 | Rewrite code with `@TUNED` | `tuning.py` | 7 |
+| 3 | Rewrite code with `@TUNED` | `tuning.py` | 6 |
 | 4 | Optuna `tune_program()` | `tuning.py` | 4 |
 | 5 | `IterationTuningStats` + `TuningTracker` | `tuning.py`, `iteration.py` | 4 |
 | 6 | Prompt template + injection | `templates.py`, `sampler.py` | 3 |

@@ -31,10 +31,9 @@ decay_rate = 0.01  # @TUNE [0.001, 0.1] float
 
 # Integer
 batch_size = 32  # @TUNE [8, 128] int
-
-# Categorical
-strategy = "greedy"  # @TUNE {greedy, round_robin, weighted}
 ```
+
+Only numeric types (float and int) are supported. Categorical/strategy choices are algorithmic decisions that the LLM should make through evolution, not optimizer search.
 
 ### After tuning — optimizer feedback
 
@@ -43,7 +42,6 @@ The optimizer rewrites values and adds `@TUNED` annotations:
 ```python
 load_cutoff = 0.67  # @TUNE [0.0, 1.0] @TUNED(was=0.4, gain=+0.12, best_impact=throughput:+0.3)
 batch_size = 64  # @TUNE [8, 128] int @TUNED(was=32, gain=+0.12, best_impact=avg_e2e_ms:-20)
-strategy = "weighted"  # @TUNE {greedy, round_robin, weighted} @TUNED(was=greedy, gain=+0.12, best_impact=throughput:+0.15)
 ```
 
 Where:
@@ -60,7 +58,7 @@ Where:
 ### Parsing regex (conceptual)
 
 ```
-^(\s*(\w+)\s*=\s*(.+?)\s*)#\s*@TUNE\s+(\[.+?\]|\{.+?\})(\s+(?:int|float))?
+^(\s*(\w+)\s*=\s*(.+?)\s*)#\s*@TUNE\s+\[([^,\]]+),\s*([^\]]+)\](\s+(?:int|float))?
 ```
 
 ---
@@ -137,11 +135,11 @@ A `THRESHOLD_TUNING_INSTRUCTIONS_TEMPLATE` is appended to the system message whe
 The template instructs the LLM:
 
 1. **What**: You may annotate up to 3 variable assignments with `@TUNE` to declare tunable thresholds.
-2. **Syntax**: `var = value  # @TUNE [min, max]` for continuous, `# @TUNE {a, b, c}` for categorical, optional `int`/`float` type hint.
+2. **Syntax**: `var = value  # @TUNE [min, max]` for float (default), append `int` for integer. Only numeric types — no categorical.
 3. **What happens**: An optimizer will search the declared ranges before scoring — so pick good ranges, not good values.
 4. **Reading feedback**: `@TUNED(was=X, gain=Y, best_impact=metric:Z)` means the optimizer found a better value. `gain` is the total score improvement from tuning all parameters jointly. `best_impact` shows which metric this specific parameter affected most.
 5. **Constraints**: Max 3 `@TUNE` per program. Choose the most impactful parameters. Hardcode the rest with your best guess.
-6. **Guidance**: Focus `@TUNE` on parameters where you're uncertain about the right value. Don't tune constants you know theoretically. Do tune decision boundaries, cutoffs, weights, and scaling factors.
+6. **Guidance**: Focus `@TUNE` on numeric parameters where you're uncertain about the right value. Don't tune constants you know theoretically. Do tune decision boundaries, cutoffs, weights, and scaling factors. Don't use `@TUNE` for algorithmic choices (e.g., which strategy to use) — make those decisions yourself.
 7. **Parent annotations**: Don't manually change `@TUNED` annotations from the parent — let the optimizer handle those. Focus on structural changes and declaring new thresholds if needed.
 
 ### Single-shot example in the template
