@@ -54,6 +54,12 @@ TASK_CONFIGS = {
         "treatment_config": "examples/alphaevolve_math_problems/heilbronn_triangle/config_experiment_treatment.yaml",
         "control_config": "examples/alphaevolve_math_problems/heilbronn_triangle/config_experiment_control.yaml",
     },
+    "rust_adaptive_sort": {
+        "initial_program": "examples/rust_adaptive_sort/initial_program.rs",
+        "evaluator": "examples/rust_adaptive_sort/evaluator.py",
+        "treatment_config": "examples/rust_adaptive_sort/config_experiment_treatment.yaml",
+        "control_config": "examples/rust_adaptive_sort/config_experiment_control.yaml",
+    },
 }
 
 
