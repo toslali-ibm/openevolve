@@ -60,6 +60,12 @@ TASK_CONFIGS = {
         "treatment_config": "examples/rust_adaptive_sort/config_experiment_treatment.yaml",
         "control_config": "examples/rust_adaptive_sort/config_experiment_control.yaml",
     },
+    "function_minimization_tuning": {
+        "initial_program": "examples/function_minimization/initial_program.py",
+        "evaluator": "examples/function_minimization/evaluator.py",
+        "treatment_config": "examples/function_minimization/config_tuning_treatment.yaml",
+        "control_config": "examples/function_minimization/config_tuning_control.yaml",
+    },
     "web_scraper": {
         "initial_program": "examples/web_scraper_optillm/initial_program.py",
         "evaluator": "examples/web_scraper_optillm/evaluator.py",

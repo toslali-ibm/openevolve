@@ -49,6 +49,46 @@ Rules:
   - Do NOT write RESULT lines yourself — they are added automatically after evaluation
 """
 
+# Threshold tuning instructions appended to system message when tuning.enabled=True
+THRESHOLD_TUNING_INSTRUCTIONS_TEMPLATE = """
+
+## Threshold Tuning
+
+You may annotate up to 3 variable assignments with `@TUNE` to declare tunable thresholds.
+An optimizer will search the declared ranges before scoring your program.
+
+### Syntax
+
+```
+var = value  # @TUNE [min, max]          # float (default)
+var = value  # @TUNE [min, max] int      # integer
+var = value  # @TUNE [min, max] float    # explicit float
+```
+
+### What happens
+
+After you generate code, the optimizer will try different values within your declared ranges and pick the best ones. So focus on picking **good ranges**, not perfect values.
+
+### Reading feedback
+
+After tuning, you will see `@TUNED` annotations:
+```
+threshold_a = 0.72  # @TUNE [0.0, 1.0] @TUNED(was=0.5, gain=+0.11, best_impact=accuracy:+0.05)
+max_retries = 7  # @TUNE [1, 10] int @TUNED(was=3, gain=+0.11, best_impact=success_rate:+0.1)
+```
+
+- `gain` = total score improvement from tuning all parameters jointly
+- `best_impact` = the single metric this parameter affected most
+
+### Rules
+
+- Max 3 `@TUNE` per program. Choose the most impactful parameters. Hardcode the rest.
+- `@TUNE` must appear on a simple assignment line (`name = value`).
+- Focus on parameters where you're uncertain: decision boundaries, cutoffs, weights, scaling factors.
+- Don't tune constants you know theoretically (e.g., pi, array sizes).
+- Don't manually change `@TUNED` annotations from the parent -- the optimizer handles those.
+"""
+
 # User message template for diff-based evolution
 DIFF_USER_TEMPLATE = """# Current Program Information
 - Current performance metrics: {metrics}

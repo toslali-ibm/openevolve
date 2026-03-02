@@ -18,6 +18,7 @@ from openevolve.hypothesis import (
     count_result_comments,
     IterationHypothesisStats,
 )
+from openevolve.tuning import tune_program, IterationTuningStats
 from openevolve.utils.code_utils import (
     apply_diff,
     extract_diffs,
@@ -38,6 +39,7 @@ class Result:
     llm_response: str = None
     artifacts: dict = None
     hypothesis_stats: IterationHypothesisStats = None
+    tuning_stats: IterationTuningStats = None
 
 
 async def run_iteration_with_shared_db(
@@ -81,6 +83,7 @@ async def run_iteration_with_shared_db(
             program_artifacts=parent_artifacts if parent_artifacts else None,
             feature_dimensions=database.config.feature_dimensions,
             hypothesis_driven=config.hypothesis_driven,
+            tuning_enabled=config.tuning.enabled,
         )
 
         result = Result(parent=parent)
@@ -151,6 +154,22 @@ async def run_iteration_with_shared_db(
                 f"({len(child_code)} > {config.max_code_length})"
             )
             return None
+
+        # Tune thresholds if enabled
+        if config.tuning.enabled:
+            try:
+                child_code, tuning_stats = await tune_program(
+                    child_code,
+                    evaluator.evaluate_program,
+                    config.tuning,
+                )
+                tuning_stats.iteration = iteration
+                result.tuning_stats = tuning_stats
+            except ImportError as e:
+                logger.error(f"[TUNING] {e}")
+                return None
+            except Exception as e:
+                logger.warning(f"[TUNING] Tuning failed, using original code: {e}")
 
         # Evaluate the child program
         child_id = str(uuid.uuid4())

@@ -378,6 +378,16 @@ class EvolutionTraceConfig:
 
 
 @dataclass
+class TuningConfig:
+    """Configuration for structured threshold tuning."""
+
+    enabled: bool = False
+    budget: int = 20
+    max_params: int = 3
+    budget_scale_per_param: int = 5
+
+
+@dataclass
 class Config:
     """Master configuration for OpenEvolve"""
 
@@ -396,6 +406,7 @@ class Config:
     database: DatabaseConfig = field(default_factory=DatabaseConfig)
     evaluator: EvaluatorConfig = field(default_factory=EvaluatorConfig)
     evolution_trace: EvolutionTraceConfig = field(default_factory=EvolutionTraceConfig)
+    tuning: TuningConfig = field(default_factory=TuningConfig)
 
     # Evolution settings
     diff_based_evolution: bool = True
