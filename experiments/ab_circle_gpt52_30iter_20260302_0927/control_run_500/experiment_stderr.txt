@@ -1,0 +1,297 @@
+2026-03-02 09:50:08,792 - INFO - Logging to experiments/ab_circle_gpt52_30iter_20260302_0927/control_run_500/logs/openevolve_20260302_095008.log
+2026-03-02 09:50:08,804 - INFO - Set random seed to 42 for reproducibility
+2026-03-02 09:50:08,823 - INFO - Initialized OpenAI LLM with model: Azure/gpt-5.2-2025-12-11
+2026-03-02 09:50:08,829 - INFO - Initialized OpenAI LLM with model: aws/claude-opus-4-6
+2026-03-02 09:50:08,829 - INFO - Initialized LLM ensemble with models: Azure/gpt-5.2-2025-12-11 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-03-02 09:50:08,839 - INFO - Initialized LLM ensemble with models: Azure/gpt-5.2-2025-12-11 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-03-02 09:50:08,840 - INFO - Initialized prompt sampler
+2026-03-02 09:50:08,841 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-03-02 09:50:08,841 - INFO - Initialized program database with 0 programs
+2026-03-02 09:50:08,841 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-03-02 09:50:08,841 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-03-02 09:50:08,841 - INFO - Initialized OpenEvolve with examples/circle_packing/initial_program.py
+2026-03-02 09:50:08,841 - INFO - Adding initial program to database
+2026-03-02 09:50:09,011 - INFO - Evaluated program 1961b710-f2de-4199-8b73-2c5fef3311c5 in 0.17s: validity=1.0000, sum_radii=0.9598, target_ratio=0.3642, combined_score=0.3642, eval_time=0.0825
+2026-03-02 09:50:09,011 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-03-02 09:50:09,019 - INFO - Initialized process parallel controller with 3 workers
+2026-03-02 09:50:09,019 - INFO - Set max None tasks per child
+2026-03-02 09:50:09,020 - INFO - Started process pool with 3 processes
+2026-03-02 09:50:09,020 - INFO - Using island-based evolution with 3 islands
+2026-03-02 09:50:09,020 - INFO - Island Status:
+2026-03-02 09:50:09,020 - INFO -  * Island 0: 1 programs, best=0.3642, avg=0.3642, diversity=0.00, gen=0 (best: 1961b710-f2de-4199-8b73-2c5fef3311c5)
+2026-03-02 09:50:09,020 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 09:50:09,020 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 09:50:09,020 - INFO - Starting process-based evolution from iteration 1 for 30 iterations (total: 31)
+2026-03-02 09:50:09,029 - INFO - Early stopping disabled
+2026-03-02 09:50:09,428 - INFO - Initialized OpenAI LLM with model: Azure/gpt-5.2-2025-12-11
+2026-03-02 09:50:09,428 - INFO - Initialized OpenAI LLM with model: Azure/gpt-5.2-2025-12-11
+2026-03-02 09:50:09,428 - INFO - Initialized OpenAI LLM with model: Azure/gpt-5.2-2025-12-11
+2026-03-02 09:50:09,433 - INFO - Initialized OpenAI LLM with model: aws/claude-opus-4-6
+2026-03-02 09:50:09,433 - INFO - Initialized LLM ensemble with models: Azure/gpt-5.2-2025-12-11 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-03-02 09:50:09,433 - INFO - Initialized OpenAI LLM with model: aws/claude-opus-4-6
+2026-03-02 09:50:09,433 - INFO - Initialized LLM ensemble with models: Azure/gpt-5.2-2025-12-11 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-03-02 09:50:09,434 - INFO - Initialized OpenAI LLM with model: aws/claude-opus-4-6
+2026-03-02 09:50:09,434 - INFO - Initialized LLM ensemble with models: Azure/gpt-5.2-2025-12-11 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-03-02 09:50:09,434 - INFO - Initialized prompt sampler
+2026-03-02 09:50:09,434 - INFO - Initialized prompt sampler
+2026-03-02 09:50:09,435 - INFO - Initialized prompt sampler
+2026-03-02 09:50:09,445 - INFO - Initialized LLM ensemble with models: Azure/gpt-5.2-2025-12-11 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-03-02 09:50:09,445 - INFO - Initialized LLM ensemble with models: Azure/gpt-5.2-2025-12-11 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-03-02 09:50:09,446 - INFO - Initialized LLM ensemble with models: Azure/gpt-5.2-2025-12-11 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-03-02 09:50:09,446 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-03-02 09:50:09,446 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-03-02 09:50:09,446 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-03-02 09:50:09,446 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-03-02 09:50:09,446 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-03-02 09:50:09,446 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-03-02 09:50:09,446 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-03-02 09:50:09,446 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-03-02 09:50:09,446 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-03-02 09:50:09,447 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:50:09,447 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:50:09,447 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:50:38,785 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:50:40,122 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:50:40,287 - INFO - Evaluated program b96a1b46-b77f-4f12-8688-6f2947b74e49 in 0.16s: validity=1.0000, sum_radii=2.0359, target_ratio=0.7726, combined_score=0.7726, eval_time=0.0719
+2026-03-02 09:50:40,288 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:50:40,289 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 5}
+2026-03-02 09:50:40,289 - INFO - New best program b96a1b46-b77f-4f12-8688-6f2947b74e49 replaces 1961b710-f2de-4199-8b73-2c5fef3311c5 (combined_score: 0.3642 → 0.7726, +0.4084)
+2026-03-02 09:50:40,290 - INFO - Iteration 3: Program b96a1b46-b77f-4f12-8688-6f2947b74e49 (parent: 1961b710-f2de-4199-8b73-2c5fef3311c5) completed in 30.84s
+2026-03-02 09:50:40,290 - INFO - Metrics: validity=1.0000, sum_radii=2.0359, target_ratio=0.7726, combined_score=0.7726, eval_time=0.0719
+2026-03-02 09:50:40,290 - INFO - 🌟 New best solution found at iteration 3: b96a1b46-b77f-4f12-8688-6f2947b74e49
+2026-03-02 09:50:40,677 - INFO - Evaluated program 264781bc-7e2e-4c6b-a075-71b2fd49ee26 in 1.89s: validity=1.0000, sum_radii=1.7985, target_ratio=0.6826, combined_score=0.6826, eval_time=0.9435
+2026-03-02 09:50:40,678 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:50:40,684 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 9}
+2026-03-02 09:50:40,685 - INFO - Iteration 1: Program 264781bc-7e2e-4c6b-a075-71b2fd49ee26 (parent: 1961b710-f2de-4199-8b73-2c5fef3311c5) completed in 31.23s
+2026-03-02 09:50:40,685 - INFO - Metrics: validity=1.0000, sum_radii=1.7985, target_ratio=0.6826, combined_score=0.6826, eval_time=0.9435
+2026-03-02 09:50:57,495 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:51:08,091 - INFO - Evaluated program ef451c05-fb7b-4d0b-9a8b-57626a477f0a in 10.59s: validity=1.0000, sum_radii=2.4948, target_ratio=0.9468, combined_score=0.9468, eval_time=5.2685
+2026-03-02 09:51:08,093 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:51:08,095 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 9, 'diversity': 9} (fitness: 0.683 -> 0.947)
+2026-03-02 09:51:08,095 - INFO - New best program ef451c05-fb7b-4d0b-9a8b-57626a477f0a replaces b96a1b46-b77f-4f12-8688-6f2947b74e49 (combined_score: 0.7726 → 0.9468, +0.1742)
+2026-03-02 09:51:08,096 - INFO - Iteration 2: Program ef451c05-fb7b-4d0b-9a8b-57626a477f0a (parent: 1961b710-f2de-4199-8b73-2c5fef3311c5) completed in 58.65s
+2026-03-02 09:51:08,096 - INFO - Metrics: validity=1.0000, sum_radii=2.4948, target_ratio=0.9468, combined_score=0.9468, eval_time=5.2685
+2026-03-02 09:51:08,096 - INFO - 🌟 New best solution found at iteration 2: ef451c05-fb7b-4d0b-9a8b-57626a477f0a
+2026-03-02 09:51:08,181 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:51:15,333 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:51:16,060 - INFO - Evaluated program c58043b4-d1ac-4d47-ac6b-c09e6fcdcffb in 0.72s: validity=1.0000, sum_radii=2.4975, target_ratio=0.9478, combined_score=0.9478, eval_time=0.3581
+2026-03-02 09:51:16,062 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 09:51:16,070 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 1, 'diversity': 3}
+2026-03-02 09:51:16,070 - INFO - New best program c58043b4-d1ac-4d47-ac6b-c09e6fcdcffb replaces ef451c05-fb7b-4d0b-9a8b-57626a477f0a (combined_score: 0.9468 → 0.9478, +0.0010)
+2026-03-02 09:51:16,070 - INFO - Iteration 5: Program c58043b4-d1ac-4d47-ac6b-c09e6fcdcffb (parent: 1961b710-f2de-4199-8b73-2c5fef3311c5) completed in 35.38s
+2026-03-02 09:51:16,070 - INFO - Metrics: validity=1.0000, sum_radii=2.4975, target_ratio=0.9478, combined_score=0.9478, eval_time=0.3581
+2026-03-02 09:51:16,070 - INFO - 🌟 New best solution found at iteration 5: c58043b4-d1ac-4d47-ac6b-c09e6fcdcffb
+2026-03-02 09:51:16,070 - INFO - Checkpoint interval reached at iteration 5
+2026-03-02 09:51:16,071 - INFO - Island Status:
+2026-03-02 09:51:16,071 - INFO -  * Island 0: 4 programs, best=0.9478, avg=0.7579, diversity=739.37, gen=4 (best: c58043b4-d1ac-4d47-ac6b-c09e6fcdcffb)
+2026-03-02 09:51:16,071 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 09:51:16,071 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 09:51:16,073 - INFO - Saved database with 5 programs to experiments/ab_circle_gpt52_30iter_20260302_0927/control_run_500/checkpoints/checkpoint_5
+2026-03-02 09:51:16,073 - INFO - Saved best program at checkpoint 5 with metrics: validity=1.0000, sum_radii=2.4975, target_ratio=0.9478, combined_score=0.9478, eval_time=0.3581
+2026-03-02 09:51:16,073 - INFO - Saved checkpoint at iteration 5 to experiments/ab_circle_gpt52_30iter_20260302_0927/control_run_500/checkpoints/checkpoint_5
+2026-03-02 09:51:27,826 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:51:27,910 - INFO - Evaluated program cf9257f8-d82a-4214-b22f-ff52a14f3cf3 in 0.08s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 09:51:27,911 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:51:27,912 - INFO - Iteration 7: Program cf9257f8-d82a-4214-b22f-ff52a14f3cf3 (parent: 1961b710-f2de-4199-8b73-2c5fef3311c5) completed in 11.85s
+2026-03-02 09:51:27,912 - INFO - Metrics: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 09:51:36,619 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:51:36,789 - INFO - Evaluated program a89ed66d-6cbe-4015-8776-46e08775980c in 0.17s: validity=1.0000, sum_radii=1.5114, target_ratio=0.5736, combined_score=0.5736, eval_time=0.0825
+2026-03-02 09:51:36,790 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 09:51:36,795 - INFO - Iteration 6: Program a89ed66d-6cbe-4015-8776-46e08775980c (parent: 1961b710-f2de-4199-8b73-2c5fef3311c5) completed in 28.70s
+2026-03-02 09:51:36,795 - INFO - Metrics: validity=1.0000, sum_radii=1.5114, target_ratio=0.5736, combined_score=0.5736, eval_time=0.0825
+2026-03-02 09:51:54,208 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:51:54,880 - INFO - Evaluated program f45a4a82-9620-44dd-8b62-04356517ddac in 0.67s: validity=1.0000, sum_radii=2.0980, target_ratio=0.7962, combined_score=0.7962, eval_time=0.3308
+2026-03-02 09:51:54,881 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:51:54,889 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 2, 'diversity': 2}
+2026-03-02 09:51:54,889 - INFO - Iteration 8: Program f45a4a82-9620-44dd-8b62-04356517ddac (parent: b96a1b46-b77f-4f12-8688-6f2947b74e49) completed in 26.97s
+2026-03-02 09:51:54,889 - INFO - Metrics: validity=1.0000, sum_radii=2.0980, target_ratio=0.7962, combined_score=0.7962, eval_time=0.3308
+2026-03-02 09:51:57,225 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:51:58,347 - INFO - Evaluated program 27dcb2e0-9d84-43fd-ac18-bd16e433debf in 1.12s: validity=1.0000, sum_radii=2.5041, target_ratio=0.9503, combined_score=0.9503, eval_time=0.5564
+2026-03-02 09:51:58,348 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:51:58,352 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 8, 'diversity': 6}
+2026-03-02 09:51:58,352 - INFO - New best program 27dcb2e0-9d84-43fd-ac18-bd16e433debf replaces c58043b4-d1ac-4d47-ac6b-c09e6fcdcffb (combined_score: 0.9478 → 0.9503, +0.0025)
+2026-03-02 09:51:58,353 - INFO - Iteration 9: Program 27dcb2e0-9d84-43fd-ac18-bd16e433debf (parent: ef451c05-fb7b-4d0b-9a8b-57626a477f0a) completed in 21.56s
+2026-03-02 09:51:58,353 - INFO - Metrics: validity=1.0000, sum_radii=2.5041, target_ratio=0.9503, combined_score=0.9503, eval_time=0.5564
+2026-03-02 09:51:58,353 - INFO - 🌟 New best solution found at iteration 9: 27dcb2e0-9d84-43fd-ac18-bd16e433debf
+2026-03-02 09:52:22,477 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:52:23,817 - INFO - Evaluated program e4ee0492-1025-4993-aad1-fd69ef98e616 in 1.34s: validity=1.0000, sum_radii=2.5030, target_ratio=0.9499, combined_score=0.9499, eval_time=0.6649
+2026-03-02 09:52:23,819 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 09:52:23,825 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 1, 'diversity': 2}
+2026-03-02 09:52:23,826 - INFO - Iteration 10: Program e4ee0492-1025-4993-aad1-fd69ef98e616 (parent: 1961b710-f2de-4199-8b73-2c5fef3311c5) completed in 28.94s
+2026-03-02 09:52:23,826 - INFO - Metrics: validity=1.0000, sum_radii=2.5030, target_ratio=0.9499, combined_score=0.9499, eval_time=0.6649
+2026-03-02 09:52:23,826 - INFO - Checkpoint interval reached at iteration 10
+2026-03-02 09:52:23,826 - INFO - Island Status:
+2026-03-02 09:52:23,827 - INFO -  * Island 0: 9 programs, best=0.9503, avg=0.7002, diversity=567.95, gen=9 (best: 27dcb2e0-9d84-43fd-ac18-bd16e433debf)
+2026-03-02 09:52:23,827 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 09:52:23,827 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 09:52:23,831 - INFO - Saved database with 10 programs to experiments/ab_circle_gpt52_30iter_20260302_0927/control_run_500/checkpoints/checkpoint_10
+2026-03-02 09:52:23,831 - INFO - Saved best program at checkpoint 10 with metrics: validity=1.0000, sum_radii=2.5041, target_ratio=0.9503, combined_score=0.9503, eval_time=0.5564
+2026-03-02 09:52:23,831 - INFO - Saved checkpoint at iteration 10 to experiments/ab_circle_gpt52_30iter_20260302_0927/control_run_500/checkpoints/checkpoint_10
+2026-03-02 09:52:31,837 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:52:33,870 - INFO - Evaluated program 13916a6c-0166-483c-9527-d2d2b2c41bf6 in 2.03s: validity=1.0000, sum_radii=2.5030, target_ratio=0.9499, combined_score=0.9499, eval_time=1.0275
+2026-03-02 09:52:33,872 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:52:33,878 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 3}
+2026-03-02 09:52:33,878 - INFO - Iteration 11: Program 13916a6c-0166-483c-9527-d2d2b2c41bf6 (parent: cf9257f8-d82a-4214-b22f-ff52a14f3cf3) completed in 35.52s
+2026-03-02 09:52:33,878 - INFO - Metrics: validity=1.0000, sum_radii=2.5030, target_ratio=0.9499, combined_score=0.9499, eval_time=1.0275
+2026-03-02 09:52:34,758 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:52:39,357 - INFO - Evaluated program b7aa8257-8ade-43c9-9857-0a81a1dfebdd in 4.60s: validity=1.0000, sum_radii=2.4809, target_ratio=0.9415, combined_score=0.9415, eval_time=2.3029
+2026-03-02 09:52:39,359 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 09:52:39,360 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 4}
+2026-03-02 09:52:39,361 - INFO - Iteration 12: Program b7aa8257-8ade-43c9-9857-0a81a1dfebdd (parent: c58043b4-d1ac-4d47-ac6b-c09e6fcdcffb) completed in 15.54s
+2026-03-02 09:52:39,361 - INFO - Metrics: validity=1.0000, sum_radii=2.4809, target_ratio=0.9415, combined_score=0.9415, eval_time=2.3029
+2026-03-02 09:52:56,716 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:52:57,879 - INFO - Evaluated program 1b3c1783-021d-4ba5-9662-f20f0c9fbeaa in 1.16s: validity=1.0000, sum_radii=2.4717, target_ratio=0.9380, combined_score=0.9380, eval_time=0.5881
+2026-03-02 09:52:57,882 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:52:57,883 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 4, 'diversity': 3}
+2026-03-02 09:52:57,883 - INFO - Island 0 MAP-Elites coverage reached 10.0% (10/100 cells)
+2026-03-02 09:52:57,883 - INFO - Iteration 14: Program 1b3c1783-021d-4ba5-9662-f20f0c9fbeaa (parent: c58043b4-d1ac-4d47-ac6b-c09e6fcdcffb) completed in 18.52s
+2026-03-02 09:52:57,883 - INFO - Metrics: validity=1.0000, sum_radii=2.4717, target_ratio=0.9380, combined_score=0.9380, eval_time=0.5881
+2026-03-02 09:53:03,631 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:53:08,186 - WARNING - Stage 1 evaluation timed out after 120s
+2026-03-02 09:53:08,186 - INFO - Evaluated program 68d4c155-2c20-4799-96c4-3251cbcc2407 in 120.00s: stage1_passed=0.0000, error=0.0000, timeout=1.0000
+2026-03-02 09:53:14,212 - INFO - Evaluated program 10002798-6823-4941-80bb-4ca8e228903b in 10.58s: validity=1.0000, sum_radii=2.5137, target_ratio=0.9540, combined_score=0.9540, eval_time=5.3009
+2026-03-02 09:53:14,214 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 09:53:14,215 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 4, 'diversity': 3} (fitness: 0.938 -> 0.954)
+2026-03-02 09:53:14,215 - INFO - New best program 10002798-6823-4941-80bb-4ca8e228903b replaces 27dcb2e0-9d84-43fd-ac18-bd16e433debf (combined_score: 0.9503 → 0.9540, +0.0036)
+2026-03-02 09:53:14,215 - INFO - Iteration 13: Program 10002798-6823-4941-80bb-4ca8e228903b (parent: b96a1b46-b77f-4f12-8688-6f2947b74e49) completed in 40.34s
+2026-03-02 09:53:14,215 - INFO - Metrics: validity=1.0000, sum_radii=2.5137, target_ratio=0.9540, combined_score=0.9540, eval_time=5.3009
+2026-03-02 09:53:14,215 - INFO - 🌟 New best solution found at iteration 13: 10002798-6823-4941-80bb-4ca8e228903b
+2026-03-02 09:53:24,776 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:53:26,090 - INFO - Evaluated program 681ee151-808c-4bc8-9306-ac38e1783d7e in 1.31s: validity=1.0000, sum_radii=2.5035, target_ratio=0.9501, combined_score=0.9501, eval_time=0.6701
+2026-03-02 09:53:26,092 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 09:53:26,094 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 8}
+2026-03-02 09:53:26,095 - INFO - Iteration 15: Program 681ee151-808c-4bc8-9306-ac38e1783d7e (parent: ef451c05-fb7b-4d0b-9a8b-57626a477f0a) completed in 28.21s
+2026-03-02 09:53:26,095 - INFO - Metrics: validity=1.0000, sum_radii=2.5035, target_ratio=0.9501, combined_score=0.9501, eval_time=0.6701
+2026-03-02 09:53:26,095 - INFO - Checkpoint interval reached at iteration 15
+2026-03-02 09:53:26,095 - INFO - Island Status:
+2026-03-02 09:53:26,095 - INFO -  * Island 0: 13 programs, best=0.9540, avg=0.7767, diversity=685.58, gen=14 (best: 10002798-6823-4941-80bb-4ca8e228903b)
+2026-03-02 09:53:26,095 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 09:53:26,095 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 09:53:26,101 - INFO - Saved database with 15 programs to experiments/ab_circle_gpt52_30iter_20260302_0927/control_run_500/checkpoints/checkpoint_15
+2026-03-02 09:53:26,101 - INFO - Saved best program at checkpoint 15 with metrics: validity=1.0000, sum_radii=2.5137, target_ratio=0.9540, combined_score=0.9540, eval_time=5.3009
+2026-03-02 09:53:26,101 - INFO - Saved checkpoint at iteration 15 to experiments/ab_circle_gpt52_30iter_20260302_0927/control_run_500/checkpoints/checkpoint_15
+2026-03-02 09:53:35,432 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:53:36,440 - INFO - Evaluated program 08f846e2-a051-4bdf-b7e1-14b3e25e748f in 1.00s: validity=1.0000, sum_radii=2.5040, target_ratio=0.9503, combined_score=0.9503, eval_time=0.4975
+2026-03-02 09:53:36,442 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 09:53:36,452 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 3, 'diversity': 2}
+2026-03-02 09:53:36,453 - INFO - Iteration 16: Program 08f846e2-a051-4bdf-b7e1-14b3e25e748f (parent: b96a1b46-b77f-4f12-8688-6f2947b74e49) completed in 22.23s
+2026-03-02 09:53:36,453 - INFO - Metrics: validity=1.0000, sum_radii=2.5040, target_ratio=0.9503, combined_score=0.9503, eval_time=0.4975
+2026-03-02 09:53:49,969 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:53:50,084 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:53:50,779 - INFO - Evaluated program bc0c85ec-fc5a-465f-a4c4-9106bbcf8a90 in 0.69s: validity=1.0000, sum_radii=2.4837, target_ratio=0.9426, combined_score=0.9426, eval_time=0.3443
+2026-03-02 09:53:50,781 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:53:50,786 - INFO - Iteration 17: Program bc0c85ec-fc5a-465f-a4c4-9106bbcf8a90 (parent: b7aa8257-8ade-43c9-9857-0a81a1dfebdd) completed in 24.69s
+2026-03-02 09:53:50,786 - INFO - Metrics: validity=1.0000, sum_radii=2.4837, target_ratio=0.9426, combined_score=0.9426, eval_time=0.3443
+2026-03-02 09:54:16,509 - INFO - Evaluated program 870ec2d3-3aec-411b-b994-ddd673c7f668 in 26.54s: validity=1.0000, sum_radii=2.4252, target_ratio=0.9204, combined_score=0.9204, eval_time=13.2125
+2026-03-02 09:54:16,511 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:54:16,515 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 6, 'diversity': 4}
+2026-03-02 09:54:16,515 - INFO - Iteration 18: Program 870ec2d3-3aec-411b-b994-ddd673c7f668 (parent: 1b3c1783-021d-4ba5-9662-f20f0c9fbeaa) completed in 40.07s
+2026-03-02 09:54:16,516 - INFO - Metrics: validity=1.0000, sum_radii=2.4252, target_ratio=0.9204, combined_score=0.9204, eval_time=13.2125
+2026-03-02 09:54:20,570 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:54:33,030 - INFO - Evaluated program f30c5514-ceef-4a2b-8b12-70f2045576d1 in 12.46s: validity=1.0000, sum_radii=2.5158, target_ratio=0.9548, combined_score=0.9548, eval_time=6.2218
+2026-03-02 09:54:33,032 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 09:54:33,041 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 1, 'diversity': 3} (fitness: 0.948 -> 0.955)
+2026-03-02 09:54:33,041 - INFO - New best program f30c5514-ceef-4a2b-8b12-70f2045576d1 replaces 10002798-6823-4941-80bb-4ca8e228903b (combined_score: 0.9540 → 0.9548, +0.0008)
+2026-03-02 09:54:33,041 - INFO - Iteration 19: Program f30c5514-ceef-4a2b-8b12-70f2045576d1 (parent: b7aa8257-8ade-43c9-9857-0a81a1dfebdd) completed in 42.25s
+2026-03-02 09:54:33,041 - INFO - Metrics: validity=1.0000, sum_radii=2.5158, target_ratio=0.9548, combined_score=0.9548, eval_time=6.2218
+2026-03-02 09:54:33,042 - INFO - 🌟 New best solution found at iteration 19: f30c5514-ceef-4a2b-8b12-70f2045576d1
+2026-03-02 09:54:42,703 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:54:48,235 - INFO - Evaluated program c1d47fd3-67b4-4b68-b336-34e7712e1bd6 in 5.53s: validity=1.0000, sum_radii=2.5234, target_ratio=0.9576, combined_score=0.9576, eval_time=2.7786
+2026-03-02 09:54:48,237 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 09:54:48,247 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 8, 'diversity': 7}
+2026-03-02 09:54:48,247 - INFO - New best program c1d47fd3-67b4-4b68-b336-34e7712e1bd6 replaces f30c5514-ceef-4a2b-8b12-70f2045576d1 (combined_score: 0.9548 → 0.9576, +0.0029)
+2026-03-02 09:54:48,248 - INFO - Iteration 20: Program c1d47fd3-67b4-4b68-b336-34e7712e1bd6 (parent: ef451c05-fb7b-4d0b-9a8b-57626a477f0a) completed in 31.72s
+2026-03-02 09:54:48,248 - INFO - Metrics: validity=1.0000, sum_radii=2.5234, target_ratio=0.9576, combined_score=0.9576, eval_time=2.7786
+2026-03-02 09:54:48,248 - INFO - 🌟 New best solution found at iteration 20: c1d47fd3-67b4-4b68-b336-34e7712e1bd6
+2026-03-02 09:54:48,248 - INFO - Checkpoint interval reached at iteration 20
+2026-03-02 09:54:48,248 - INFO - Island Status:
+2026-03-02 09:54:48,248 - INFO -  * Island 0: 17 programs, best=0.9576, avg=0.8162, diversity=461.70, gen=19 (best: c1d47fd3-67b4-4b68-b336-34e7712e1bd6)
+2026-03-02 09:54:48,248 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 09:54:48,248 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 09:54:48,256 - INFO - Saved database with 20 programs to experiments/ab_circle_gpt52_30iter_20260302_0927/control_run_500/checkpoints/checkpoint_20
+2026-03-02 09:54:48,256 - INFO - Saved best program at checkpoint 20 with metrics: validity=1.0000, sum_radii=2.5234, target_ratio=0.9576, combined_score=0.9576, eval_time=2.7786
+2026-03-02 09:54:48,256 - INFO - Saved checkpoint at iteration 20 to experiments/ab_circle_gpt52_30iter_20260302_0927/control_run_500/checkpoints/checkpoint_20
+2026-03-02 09:54:49,769 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:54:50,916 - INFO - Evaluated program 23718137-3825-48ae-ab6c-c066f31370cc in 1.15s: validity=1.0000, sum_radii=2.5155, target_ratio=0.9547, combined_score=0.9547, eval_time=0.5722
+2026-03-02 09:54:50,918 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:54:50,929 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 9, 'diversity': 8} (fitness: 0.950 -> 0.955)
+2026-03-02 09:54:50,929 - INFO - Iteration 21: Program 23718137-3825-48ae-ab6c-c066f31370cc (parent: 27dcb2e0-9d84-43fd-ac18-bd16e433debf) completed in 17.89s
+2026-03-02 09:54:50,929 - INFO - Metrics: validity=1.0000, sum_radii=2.5155, target_ratio=0.9547, combined_score=0.9547, eval_time=0.5722
+2026-03-02 09:55:03,533 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:55:04,507 - INFO - Evaluated program 4282ae62-e40d-4fd0-afe9-ca1fed02eeeb in 0.97s: validity=1.0000, sum_radii=2.4369, target_ratio=0.9248, combined_score=0.9248, eval_time=0.4842
+2026-03-02 09:55:04,509 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:55:04,518 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 2, 'diversity': 3}
+2026-03-02 09:55:04,518 - INFO - Iteration 22: Program 4282ae62-e40d-4fd0-afe9-ca1fed02eeeb (parent: cf9257f8-d82a-4214-b22f-ff52a14f3cf3) completed in 16.27s
+2026-03-02 09:55:04,518 - INFO - Metrics: validity=1.0000, sum_radii=2.4369, target_ratio=0.9248, combined_score=0.9248, eval_time=0.4842
+2026-03-02 09:55:11,563 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 09:55:11,568 - INFO - Iteration 4: Program 68d4c155-2c20-4799-96c4-3251cbcc2407 (parent: 1961b710-f2de-4199-8b73-2c5fef3311c5) completed in 271.27s
+2026-03-02 09:55:11,568 - INFO - Metrics: stage1_passed=0.0000, error=0.0000, timeout=1.0000
+2026-03-02 09:55:11,568 - WARNING - ⚠️  No 'combined_score' metric found in evaluation results. Using average of all numeric metrics (0.3333) for evolution guidance. For better evolution results, please modify your evaluator to return a 'combined_score' metric that properly weights different aspects of program performance.
+2026-03-02 09:55:22,745 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:55:23,621 - INFO - Evaluated program 8e149288-ce73-4c1c-83c8-43c31480fa14 in 0.87s: validity=1.0000, sum_radii=2.3682, target_ratio=0.8988, combined_score=0.8988, eval_time=0.4195
+2026-03-02 09:55:23,623 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:55:23,630 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 6, 'diversity': 5}
+2026-03-02 09:55:23,631 - INFO - Iteration 25: Program 8e149288-ce73-4c1c-83c8-43c31480fa14 (parent: 870ec2d3-3aec-411b-b994-ddd673c7f668) completed in 12.06s
+2026-03-02 09:55:23,631 - INFO - Metrics: validity=1.0000, sum_radii=2.3682, target_ratio=0.8988, combined_score=0.8988, eval_time=0.4195
+2026-03-02 09:55:23,631 - INFO - Checkpoint interval reached at iteration 25
+2026-03-02 09:55:23,631 - INFO - Island Status:
+2026-03-02 09:55:23,631 - INFO -  * Island 0: 20 programs, best=0.9576, avg=0.8018, diversity=537.88, gen=23 (best: c1d47fd3-67b4-4b68-b336-34e7712e1bd6)
+2026-03-02 09:55:23,631 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 09:55:23,631 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 09:55:23,641 - INFO - Saved database with 24 programs to experiments/ab_circle_gpt52_30iter_20260302_0927/control_run_500/checkpoints/checkpoint_25
+2026-03-02 09:55:23,641 - INFO - Saved best program at checkpoint 25 with metrics: validity=1.0000, sum_radii=2.5234, target_ratio=0.9576, combined_score=0.9576, eval_time=2.7786
+2026-03-02 09:55:23,641 - INFO - Saved checkpoint at iteration 25 to experiments/ab_circle_gpt52_30iter_20260302_0927/control_run_500/checkpoints/checkpoint_25
+2026-03-02 09:55:32,880 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:55:33,586 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:55:36,445 - INFO - Evaluated program 12c59d86-7fd1-4f14-80a0-905d05cf7e04 in 2.73s: validity=1.0000, sum_radii=2.5204, target_ratio=0.9565, combined_score=0.9565, eval_time=1.3752
+2026-03-02 09:55:36,447 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:55:36,457 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 5}
+2026-03-02 09:55:36,458 - INFO - Iteration 23: Program 12c59d86-7fd1-4f14-80a0-905d05cf7e04 (parent: 681ee151-808c-4bc8-9306-ac38e1783d7e) completed in 45.53s
+2026-03-02 09:55:36,458 - INFO - Metrics: validity=1.0000, sum_radii=2.5204, target_ratio=0.9565, combined_score=0.9565, eval_time=1.3752
+2026-03-02 09:55:37,900 - INFO - Evaluated program fab57bcf-9aaf-4603-a14c-eafec22cd4f6 in 5.02s: validity=1.0000, sum_radii=2.5050, target_ratio=0.9507, combined_score=0.9507, eval_time=2.5329
+2026-03-02 09:55:37,902 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 09:55:37,906 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 4}
+2026-03-02 09:55:37,907 - INFO - Iteration 24: Program fab57bcf-9aaf-4603-a14c-eafec22cd4f6 (parent: 08f846e2-a051-4bdf-b7e1-14b3e25e748f) completed in 33.39s
+2026-03-02 09:55:37,907 - INFO - Metrics: validity=1.0000, sum_radii=2.5050, target_ratio=0.9507, combined_score=0.9507, eval_time=2.5329
+2026-03-02 09:55:49,267 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:55:53,522 - INFO - Evaluated program 1ac71dba-9f02-47d5-b179-cc6fde4c1521 in 4.25s: validity=1.0000, sum_radii=2.4739, target_ratio=0.9389, combined_score=0.9389, eval_time=2.1184
+2026-03-02 09:55:53,523 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:55:53,534 - INFO - Iteration 26: Program 1ac71dba-9f02-47d5-b179-cc6fde4c1521 (parent: 13916a6c-0166-483c-9527-d2d2b2c41bf6) completed in 29.90s
+2026-03-02 09:55:53,534 - INFO - Metrics: validity=1.0000, sum_radii=2.4739, target_ratio=0.9389, combined_score=0.9389, eval_time=2.1184
+2026-03-02 09:55:59,075 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:56:00,233 - INFO - Evaluated program 7cb0c4c1-54c9-4c11-954d-7ecc67e155fb in 1.11s: validity=1.0000, sum_radii=2.4789, target_ratio=0.9407, combined_score=0.9407, eval_time=0.5501
+2026-03-02 09:56:00,235 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 09:56:00,242 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 6, 'diversity': 4} (fitness: 0.920 -> 0.941)
+2026-03-02 09:56:00,243 - INFO - Iteration 28: Program 7cb0c4c1-54c9-4c11-954d-7ecc67e155fb (parent: c1d47fd3-67b4-4b68-b336-34e7712e1bd6) completed in 22.33s
+2026-03-02 09:56:00,243 - INFO - Metrics: validity=1.0000, sum_radii=2.4789, target_ratio=0.9407, combined_score=0.9407, eval_time=0.5501
+2026-03-02 09:56:08,486 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:56:10,533 - INFO - Evaluated program 870f8cd2-5c5f-4194-b632-0e181b6d7d8e in 2.05s: validity=1.0000, sum_radii=2.4998, target_ratio=0.9487, combined_score=0.9487, eval_time=1.0081
+2026-03-02 09:56:10,537 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 2, 'diversity': 3} (fitness: 0.925 -> 0.949)
+2026-03-02 09:56:10,537 - INFO - Iteration 27: Program 870f8cd2-5c5f-4194-b632-0e181b6d7d8e (parent: e4ee0492-1025-4993-aad1-fd69ef98e616) completed in 34.09s
+2026-03-02 09:56:10,537 - INFO - Metrics: validity=1.0000, sum_radii=2.4998, target_ratio=0.9487, combined_score=0.9487, eval_time=1.0081
+2026-03-02 09:56:20,396 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:56:25,791 - INFO - Evaluated program ff9b6a9c-7981-4c68-ac60-6c8b755882d8 in 5.39s: validity=1.0000, sum_radii=2.5234, target_ratio=0.9576, combined_score=0.9576, eval_time=2.6719
+2026-03-02 09:56:25,804 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 2, 'diversity': 3} (fitness: 0.949 -> 0.958)
+2026-03-02 09:56:25,805 - INFO - Iteration 29: Program ff9b6a9c-7981-4c68-ac60-6c8b755882d8 (parent: 4282ae62-e40d-4fd0-afe9-ca1fed02eeeb) completed in 32.27s
+2026-03-02 09:56:25,805 - INFO - Metrics: validity=1.0000, sum_radii=2.5234, target_ratio=0.9576, combined_score=0.9576, eval_time=2.6719
+2026-03-02 09:56:34,340 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 09:56:38,741 - INFO - Evaluated program 14545b13-0bcc-4407-bf98-7adde2fe4d16 in 4.40s: validity=1.0000, sum_radii=2.5160, target_ratio=0.9548, combined_score=0.9548, eval_time=2.1683
+2026-03-02 09:56:38,746 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 6}
+2026-03-02 09:56:38,746 - INFO - Iteration 30: Program 14545b13-0bcc-4407-bf98-7adde2fe4d16 (parent: c1d47fd3-67b4-4b68-b336-34e7712e1bd6) completed in 38.51s
+2026-03-02 09:56:38,746 - INFO - Metrics: validity=1.0000, sum_radii=2.5160, target_ratio=0.9548, combined_score=0.9548, eval_time=2.1683
+2026-03-02 09:56:38,746 - INFO - Checkpoint interval reached at iteration 30
+2026-03-02 09:56:38,747 - INFO - Island Status:
+2026-03-02 09:56:38,747 - INFO -  * Island 0: 24 programs, best=0.9576, avg=0.8288, diversity=617.20, gen=30 (best: c1d47fd3-67b4-4b68-b336-34e7712e1bd6)
+2026-03-02 09:56:38,747 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 09:56:38,747 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 09:56:38,759 - INFO - Saved database with 31 programs to experiments/ab_circle_gpt52_30iter_20260302_0927/control_run_500/checkpoints/checkpoint_30
+2026-03-02 09:56:38,760 - INFO - Saved best program at checkpoint 30 with metrics: validity=1.0000, sum_radii=2.5234, target_ratio=0.9576, combined_score=0.9576, eval_time=2.7786
+2026-03-02 09:56:38,760 - INFO - Saved checkpoint at iteration 30 to experiments/ab_circle_gpt52_30iter_20260302_0927/control_run_500/checkpoints/checkpoint_30
+2026-03-02 09:56:38,760 - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-03-02 09:56:38,772 - INFO - Saved database with 31 programs to experiments/ab_circle_gpt52_30iter_20260302_0927/control_run_500/checkpoints/checkpoint_30
+2026-03-02 09:56:38,772 - INFO - Saved best program at checkpoint 30 with metrics: validity=1.0000, sum_radii=2.5234, target_ratio=0.9576, combined_score=0.9576, eval_time=2.7786
+2026-03-02 09:56:38,772 - INFO - Saved checkpoint at iteration 30 to experiments/ab_circle_gpt52_30iter_20260302_0927/control_run_500/checkpoints/checkpoint_30
+2026-03-02 09:56:38,896 - INFO - Stopped process pool
+2026-03-02 09:56:38,896 - INFO - Using tracked best program: c1d47fd3-67b4-4b68-b336-34e7712e1bd6
+2026-03-02 09:56:38,896 - INFO - Evolution complete. Best program has metrics: validity=1.0000, sum_radii=2.5234, target_ratio=0.9576, combined_score=0.9576, eval_time=2.7786
+2026-03-02 09:56:38,897 - INFO - Saved best program to experiments/ab_circle_gpt52_30iter_20260302_0927/control_run_500/best/best_program.py with program info to experiments/ab_circle_gpt52_30iter_20260302_0927/control_run_500/best/best_program_info.json
