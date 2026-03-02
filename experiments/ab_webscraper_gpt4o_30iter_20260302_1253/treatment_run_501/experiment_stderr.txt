@@ -1,0 +1,331 @@
+2026-03-02 13:15:41,307 - INFO - Logging to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/logs/openevolve_20260302_131541.log
+2026-03-02 13:15:41,320 - INFO - Set random seed to 42 for reproducibility
+2026-03-02 13:15:41,341 - INFO - Initialized OpenAI LLM with model: Azure/gpt-4o
+2026-03-02 13:15:41,347 - INFO - Initialized OpenAI LLM with model: aws/claude-sonnet-4-5
+2026-03-02 13:15:41,347 - INFO - Initialized LLM ensemble with models: Azure/gpt-4o (weight: 0.70), aws/claude-sonnet-4-5 (weight: 0.30)
+2026-03-02 13:15:41,357 - INFO - Initialized LLM ensemble with models: Azure/gpt-4o (weight: 0.70), aws/claude-sonnet-4-5 (weight: 0.30)
+2026-03-02 13:15:41,358 - INFO - Initialized prompt sampler
+2026-03-02 13:15:41,359 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-03-02 13:15:41,359 - INFO - Initialized program database with 0 programs
+2026-03-02 13:15:41,360 - INFO - Successfully loaded evaluation function from examples/web_scraper_optillm/evaluator.py
+2026-03-02 13:15:41,360 - INFO - Initialized evaluator with examples/web_scraper_optillm/evaluator.py
+2026-03-02 13:15:41,360 - INFO - Initialized OpenEvolve with examples/web_scraper_optillm/initial_program.py
+2026-03-02 13:15:41,360 - INFO - Adding initial program to database
+2026-03-02 13:15:41,406 - INFO - Evaluated program e282e9f4-2f0f-4721-8d90-147d50653d44 in 0.05s: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:15:41,406 - INFO - New MAP-Elites cell occupied in island 0: {'combined_score': 4, 'accuracy': 4, 'completeness': 4}
+2026-03-02 13:15:41,413 - INFO - Initialized process parallel controller with 1 workers
+2026-03-02 13:15:41,414 - INFO - Set max None tasks per child
+2026-03-02 13:15:41,414 - INFO - Started process pool with 1 processes
+2026-03-02 13:15:41,414 - INFO - Using island-based evolution with 3 islands
+2026-03-02 13:15:41,414 - INFO - Island Status:
+2026-03-02 13:15:41,414 - INFO -  * Island 0: 1 programs, best=0.6864, avg=0.6864, diversity=0.00, gen=0 (best: e282e9f4-2f0f-4721-8d90-147d50653d44)
+2026-03-02 13:15:41,414 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 13:15:41,414 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 13:15:41,414 - INFO - Starting process-based evolution from iteration 1 for 30 iterations (total: 31)
+2026-03-02 13:15:41,418 - INFO - Early stopping disabled
+2026-03-02 13:15:41,842 - INFO - Initialized OpenAI LLM with model: Azure/gpt-4o
+2026-03-02 13:15:41,847 - INFO - Initialized OpenAI LLM with model: aws/claude-sonnet-4-5
+2026-03-02 13:15:41,848 - INFO - Initialized LLM ensemble with models: Azure/gpt-4o (weight: 0.70), aws/claude-sonnet-4-5 (weight: 0.30)
+2026-03-02 13:15:41,849 - INFO - Initialized prompt sampler
+2026-03-02 13:15:41,860 - INFO - Initialized LLM ensemble with models: Azure/gpt-4o (weight: 0.70), aws/claude-sonnet-4-5 (weight: 0.30)
+2026-03-02 13:15:41,861 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-03-02 13:15:41,861 - INFO - Successfully loaded evaluation function from examples/web_scraper_optillm/evaluator.py
+2026-03-02 13:15:41,861 - INFO - Initialized evaluator with examples/web_scraper_optillm/evaluator.py
+2026-03-02 13:15:41,861 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:15:41,863 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-03-02 13:16:07,295 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:16:07,366 - INFO - Evaluated program 507a1f36-8416-41ac-820e-d6ad1ab6d336 in 0.07s: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:16:07,367 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:16:07,367 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-03-02 13:16:07,369 - INFO - [HYPO-TRACK] iter=1 | generated=3(OK) persisted=3(OK) results_injected=3(OK) parent_hypos=0(N/A) top_w_hypos=0/1
+2026-03-02 13:16:07,370 - INFO - Iteration 1: Program 507a1f36-8416-41ac-820e-d6ad1ab6d336 (parent: e282e9f4-2f0f-4721-8d90-147d50653d44) completed in 25.51s
+2026-03-02 13:16:07,370 - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:16:31,113 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:16:31,120 - INFO - Evaluated program b9bac3df-5946-4fca-9e25-0f6eb3da1569 in 0.00s: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:16:31,121 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:16:31,121 - INFO - Sampled model: Azure/gpt-4o
+2026-03-02 13:16:31,129 - INFO - [HYPO-TRACK] iter=2 | generated=2(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=0/1
+2026-03-02 13:16:31,130 - INFO - Iteration 2: Program b9bac3df-5946-4fca-9e25-0f6eb3da1569 (parent: e282e9f4-2f0f-4721-8d90-147d50653d44) completed in 23.75s
+2026-03-02 13:16:31,130 - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:16:42,597 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:16:42,604 - INFO - Evaluated program e7c68984-9251-4806-98a9-ed96dcc2d753 in 0.00s: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:16:42,605 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:16:42,605 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-03-02 13:16:42,606 - INFO - [HYPO-TRACK] iter=3 | generated=3(OK) persisted=3(OK) results_injected=3(OK) parent_hypos=0(N/A) top_w_hypos=0/1
+2026-03-02 13:16:42,606 - INFO - Iteration 3: Program e7c68984-9251-4806-98a9-ed96dcc2d753 (parent: e282e9f4-2f0f-4721-8d90-147d50653d44) completed in 11.48s
+2026-03-02 13:16:42,606 - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:17:10,616 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:17:10,622 - INFO - Evaluated program 581e3dc0-6535-439d-a5cc-5a190fd6df78 in 0.00s: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:17:10,623 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:17:10,623 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-03-02 13:17:10,631 - INFO - [HYPO-TRACK] iter=4 | generated=2(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=1/2
+2026-03-02 13:17:10,631 - INFO - New MAP-Elites cell occupied in island 0: {'combined_score': 7, 'accuracy': 7, 'completeness': 7}
+2026-03-02 13:17:10,631 - INFO - New best program 581e3dc0-6535-439d-a5cc-5a190fd6df78 replaces e282e9f4-2f0f-4721-8d90-147d50653d44 (combined_score: 0.6864 → 0.7458, +0.0594)
+2026-03-02 13:17:10,631 - INFO - Iteration 4: Program 581e3dc0-6535-439d-a5cc-5a190fd6df78 (parent: e282e9f4-2f0f-4721-8d90-147d50653d44) completed in 28.02s
+2026-03-02 13:17:10,631 - INFO - Metrics: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:17:10,631 - INFO - 🌟 New best solution found at iteration 4: 581e3dc0-6535-439d-a5cc-5a190fd6df78
+2026-03-02 13:17:44,314 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:17:44,368 - INFO - Evaluated program 602b6b66-e784-4a61-8b99-2edbc74f55a8 in 0.00s: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:17:44,369 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:17:44,369 - INFO - Sampled model: Azure/gpt-4o
+2026-03-02 13:17:44,380 - INFO - [HYPO-TRACK] iter=5 | generated=2(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=2/3
+2026-03-02 13:17:44,380 - INFO - New MAP-Elites cell occupied in island 0: {'combined_score': 0, 'accuracy': 0, 'completeness': 0}
+2026-03-02 13:17:44,380 - INFO - Iteration 5: Program 602b6b66-e784-4a61-8b99-2edbc74f55a8 (parent: e282e9f4-2f0f-4721-8d90-147d50653d44) completed in 33.75s
+2026-03-02 13:17:44,381 - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:17:44,381 - INFO - Checkpoint interval reached at iteration 5
+2026-03-02 13:17:44,381 - INFO - Island Status:
+2026-03-02 13:17:44,381 - INFO -  * Island 0: 6 programs, best=0.7458, avg=0.6963, diversity=572.72, gen=5 (best: 581e3dc0-6535-439d-a5cc-5a190fd6df78)
+2026-03-02 13:17:44,381 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 13:17:44,381 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 13:17:44,384 - INFO - Saved database with 6 programs to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/checkpoints/checkpoint_5
+2026-03-02 13:17:44,384 - INFO - Saved best program at checkpoint 5 with metrics: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:17:44,384 - INFO - Saved checkpoint at iteration 5 to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/checkpoints/checkpoint_5
+2026-03-02 13:17:44,385 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/hypothesis_tracker.json
+2026-03-02 13:17:58,123 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:17:58,130 - INFO - Evaluated program 792a4078-6007-4f4c-bef9-6fd8b3e9f03c in 0.01s: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:17:58,131 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:17:58,132 - INFO - Sampled model: Azure/gpt-4o
+2026-03-02 13:17:58,135 - INFO - [HYPO-TRACK] iter=6 | generated=3(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=3(OK) top_w_hypos=3/4
+2026-03-02 13:17:58,135 - INFO - Iteration 6: Program 792a4078-6007-4f4c-bef9-6fd8b3e9f03c (parent: e7c68984-9251-4806-98a9-ed96dcc2d753) completed in 13.76s
+2026-03-02 13:17:58,136 - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:18:15,498 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:18:15,502 - INFO - Evaluated program 0da9141b-0a82-4d2b-92a0-b625473fbf50 in 0.00s: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:18:15,504 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:18:15,504 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-03-02 13:18:15,514 - INFO - [HYPO-TRACK] iter=7 | generated=3(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=3(OK) top_w_hypos=4/5
+2026-03-02 13:18:15,515 - INFO - Iteration 7: Program 0da9141b-0a82-4d2b-92a0-b625473fbf50 (parent: e7c68984-9251-4806-98a9-ed96dcc2d753) completed in 17.37s
+2026-03-02 13:18:15,515 - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:18:48,466 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:18:48,475 - INFO - Evaluated program 183f0e80-f86d-4cca-a171-6e3c5b21bec0 in 0.01s: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:18:48,477 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:18:48,478 - INFO - Sampled model: Azure/gpt-4o
+2026-03-02 13:18:48,482 - INFO - [HYPO-TRACK] iter=8 | generated=3(OK) persisted=3(OK) results_injected=3(OK) parent_hypos=0(N/A) top_w_hypos=4/5
+2026-03-02 13:18:48,483 - INFO - Iteration 8: Program 183f0e80-f86d-4cca-a171-6e3c5b21bec0 (parent: e282e9f4-2f0f-4721-8d90-147d50653d44) completed in 32.97s
+2026-03-02 13:18:48,483 - INFO - Metrics: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:19:02,868 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:19:02,875 - INFO - Evaluated program 29fb1d50-3b65-431e-9d28-71d829cd4291 in 0.00s: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:19:02,876 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:19:02,877 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-03-02 13:19:02,881 - INFO - [HYPO-TRACK] iter=9 | generated=3(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=3(OK) top_w_hypos=4/5
+2026-03-02 13:19:02,881 - INFO - Iteration 9: Program 29fb1d50-3b65-431e-9d28-71d829cd4291 (parent: e7c68984-9251-4806-98a9-ed96dcc2d753) completed in 14.40s
+2026-03-02 13:19:02,881 - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:19:31,883 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:19:31,890 - INFO - Evaluated program 2e7a132f-75cd-4f89-ad05-8c3131367183 in 0.00s: accuracy=0.5000, completeness=0.2250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.5675
+2026-03-02 13:19:31,891 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:19:31,892 - INFO - Sampled model: Azure/gpt-4o
+2026-03-02 13:19:31,899 - INFO - [HYPO-TRACK] iter=10 | generated=2(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=4/5
+2026-03-02 13:19:31,900 - INFO - Performing migration at iteration 10
+2026-03-02 13:19:31,900 - INFO - Performing migration between islands
+2026-03-02 13:19:31,900 - INFO - New MAP-Elites cell occupied in island 1: {'combined_score': 7, 'accuracy': 7, 'completeness': 7}
+2026-03-02 13:19:31,900 - INFO - Program bfe737bf migrated to island 1
+2026-03-02 13:19:31,900 - INFO - New MAP-Elites cell occupied in island 2: {'combined_score': 7, 'accuracy': 7, 'completeness': 7}
+2026-03-02 13:19:31,900 - INFO - Program 191b2740 migrated to island 2
+2026-03-02 13:19:31,900 - INFO - Migration completed at generation 10
+2026-03-02 13:19:31,901 - INFO - Island Status:
+2026-03-02 13:19:31,901 - INFO -  * Island 0: 11 programs, best=0.7458, avg=0.6864, diversity=193.77, gen=10 (best: 581e3dc0-6535-439d-a5cc-5a190fd6df78)
+2026-03-02 13:19:31,901 - INFO -    Island 1: 1 programs, best=0.7458, avg=0.7458, diversity=0.00, gen=0 (best: bfe737bf-93d9-43f2-bfac-fb876b75deee)
+2026-03-02 13:19:31,901 - INFO -    Island 2: 1 programs, best=0.7458, avg=0.7458, diversity=0.00, gen=0 (best: 191b2740-e70c-4d47-99ef-4e8cfb2ced0b)
+2026-03-02 13:19:31,901 - INFO - Iteration 10: Program 2e7a132f-75cd-4f89-ad05-8c3131367183 (parent: e282e9f4-2f0f-4721-8d90-147d50653d44) completed in 29.01s
+2026-03-02 13:19:31,901 - INFO - Metrics: accuracy=0.5000, completeness=0.2250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.5675
+2026-03-02 13:19:31,901 - INFO - Checkpoint interval reached at iteration 10
+2026-03-02 13:19:31,902 - INFO - Island Status:
+2026-03-02 13:19:31,902 - INFO -  * Island 0: 11 programs, best=0.7458, avg=0.6864, diversity=193.77, gen=10 (best: 581e3dc0-6535-439d-a5cc-5a190fd6df78)
+2026-03-02 13:19:31,902 - INFO -    Island 1: 1 programs, best=0.7458, avg=0.7458, diversity=0.00, gen=0 (best: bfe737bf-93d9-43f2-bfac-fb876b75deee)
+2026-03-02 13:19:31,902 - INFO -    Island 2: 1 programs, best=0.7458, avg=0.7458, diversity=0.00, gen=0 (best: 191b2740-e70c-4d47-99ef-4e8cfb2ced0b)
+2026-03-02 13:19:31,909 - INFO - Saved database with 13 programs to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/checkpoints/checkpoint_10
+2026-03-02 13:19:31,909 - INFO - Saved best program at checkpoint 10 with metrics: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:19:31,909 - INFO - Saved checkpoint at iteration 10 to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/checkpoints/checkpoint_10
+2026-03-02 13:19:31,909 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/hypothesis_tracker.json
+2026-03-02 13:19:51,766 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:19:51,771 - INFO - Evaluated program f5cad862-e2fd-4dbb-ac6a-34f4dea43cb8 in 0.00s: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:19:51,772 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:19:51,772 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-03-02 13:19:51,781 - INFO - [HYPO-TRACK] iter=11 | generated=2(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=4/5
+2026-03-02 13:19:51,781 - INFO - New MAP-Elites cell occupied in island 0: {'combined_score': 5, 'accuracy': 5, 'completeness': 5}
+2026-03-02 13:19:51,781 - INFO - Iteration 11: Program f5cad862-e2fd-4dbb-ac6a-34f4dea43cb8 (parent: b9bac3df-5946-4fca-9e25-0f6eb3da1569) completed in 19.88s
+2026-03-02 13:19:51,781 - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:20:22,264 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:20:22,316 - INFO - Evaluated program 0d9ab11f-c697-490f-b3eb-28b5455a10fe in 0.01s: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:20:22,317 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:20:22,318 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-03-02 13:20:22,323 - INFO - [HYPO-TRACK] iter=12 | generated=4(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=2(OK) top_w_hypos=4/5
+2026-03-02 13:20:22,324 - INFO - Iteration 12: Program 0d9ab11f-c697-490f-b3eb-28b5455a10fe (parent: b9bac3df-5946-4fca-9e25-0f6eb3da1569) completed in 30.54s
+2026-03-02 13:20:22,324 - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:20:50,392 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:20:50,439 - INFO - Evaluated program dd41d6b7-53f1-4b28-b684-28fc17e173c5 in 0.00s: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:20:50,440 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:20:50,441 - INFO - Sampled model: Azure/gpt-4o
+2026-03-02 13:20:50,445 - INFO - [HYPO-TRACK] iter=13 | generated=5(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=3(OK) top_w_hypos=4/5
+2026-03-02 13:20:50,445 - INFO - Iteration 13: Program dd41d6b7-53f1-4b28-b684-28fc17e173c5 (parent: 507a1f36-8416-41ac-820e-d6ad1ab6d336) completed in 28.12s
+2026-03-02 13:20:50,445 - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:20:56,895 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:20:56,900 - INFO - Evaluated program 5d100eaa-bfa3-465f-aa6e-98913f95bb38 in 0.00s: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:20:56,901 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:20:56,902 - INFO - Sampled model: Azure/gpt-4o
+2026-03-02 13:20:56,906 - INFO - [HYPO-TRACK] iter=14 | generated=3(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=1/1
+2026-03-02 13:20:56,906 - INFO - Iteration 14: Program 5d100eaa-bfa3-465f-aa6e-98913f95bb38 (parent: bfe737bf-93d9-43f2-bfac-fb876b75deee) completed in 6.46s
+2026-03-02 13:20:56,907 - INFO - Metrics: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:21:08,640 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:21:08,647 - INFO - Evaluated program bd94ee6a-f741-41a9-ae9f-267cbd86bffc in 0.01s: accuracy=0.8889, completeness=0.4000, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7756
+2026-03-02 13:21:08,649 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:21:08,650 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-03-02 13:21:08,658 - INFO - [HYPO-TRACK] iter=15 | generated=3(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=1/1
+2026-03-02 13:21:08,658 - INFO - Island 2 MAP-Elites cell improved: {'combined_score': 7, 'accuracy': 7, 'completeness': 7} (fitness: 0.746 -> 0.776)
+2026-03-02 13:21:08,659 - INFO - New best program bd94ee6a-f741-41a9-ae9f-267cbd86bffc replaces 581e3dc0-6535-439d-a5cc-5a190fd6df78 (combined_score: 0.7458 → 0.7756, +0.0297)
+2026-03-02 13:21:08,659 - INFO - Iteration 15: Program bd94ee6a-f741-41a9-ae9f-267cbd86bffc (parent: 191b2740-e70c-4d47-99ef-4e8cfb2ced0b) completed in 11.75s
+2026-03-02 13:21:08,659 - INFO - Metrics: accuracy=0.8889, completeness=0.4000, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7756
+2026-03-02 13:21:08,659 - INFO - 🌟 New best solution found at iteration 15: bd94ee6a-f741-41a9-ae9f-267cbd86bffc
+2026-03-02 13:21:08,659 - INFO - Checkpoint interval reached at iteration 15
+2026-03-02 13:21:08,660 - INFO - Island Status:
+2026-03-02 13:21:08,660 - INFO -  * Island 0: 14 programs, best=0.7458, avg=0.6864, diversity=342.22, gen=13 (best: 581e3dc0-6535-439d-a5cc-5a190fd6df78)
+2026-03-02 13:21:08,660 - INFO -    Island 1: 2 programs, best=0.7458, avg=0.7458, diversity=0.00, gen=1 (best: bfe737bf-93d9-43f2-bfac-fb876b75deee)
+2026-03-02 13:21:08,660 - INFO -    Island 2: 1 programs, best=0.7756, avg=0.7756, diversity=0.00, gen=1 (best: bd94ee6a-f741-41a9-ae9f-267cbd86bffc)
+2026-03-02 13:21:08,670 - INFO - Saved database with 18 programs to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/checkpoints/checkpoint_15
+2026-03-02 13:21:08,670 - INFO - Saved best program at checkpoint 15 with metrics: accuracy=0.8889, completeness=0.4000, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7756
+2026-03-02 13:21:08,670 - INFO - Saved checkpoint at iteration 15 to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/checkpoints/checkpoint_15
+2026-03-02 13:21:08,671 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/hypothesis_tracker.json
+2026-03-02 13:21:34,011 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:21:34,020 - INFO - Evaluated program 9398e863-a66c-45c1-95fc-977c9d0d2a39 in 0.00s: accuracy=0.6111, completeness=0.2750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6269
+2026-03-02 13:21:34,021 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:21:34,022 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-03-02 13:21:34,028 - INFO - [HYPO-TRACK] iter=16 | generated=4(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=2(OK) top_w_hypos=4/5
+2026-03-02 13:21:34,028 - INFO - New MAP-Elites cell occupied in island 0: {'combined_score': 2, 'accuracy': 2, 'completeness': 2}
+2026-03-02 13:21:34,028 - INFO - Iteration 16: Program 9398e863-a66c-45c1-95fc-977c9d0d2a39 (parent: 2e7a132f-75cd-4f89-ad05-8c3131367183) completed in 25.37s
+2026-03-02 13:21:34,028 - INFO - Metrics: accuracy=0.6111, completeness=0.2750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6269
+2026-03-02 13:22:00,077 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:22:00,083 - INFO - Evaluated program c1d08e0f-0802-4fcf-92c6-137834eb83cd in 0.00s: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:22:00,084 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:22:00,084 - INFO - Sampled model: Azure/gpt-4o
+2026-03-02 13:22:00,094 - INFO - [HYPO-TRACK] iter=17 | generated=4(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=2(OK) top_w_hypos=2/2
+2026-03-02 13:22:00,094 - INFO - New MAP-Elites cell occupied in island 1: {'combined_score': 6, 'accuracy': 6, 'completeness': 6}
+2026-03-02 13:22:00,095 - INFO - Iteration 17: Program c1d08e0f-0802-4fcf-92c6-137834eb83cd (parent: 5d100eaa-bfa3-465f-aa6e-98913f95bb38) completed in 26.06s
+2026-03-02 13:22:00,095 - INFO - Metrics: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:22:11,783 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:22:11,790 - INFO - Evaluated program 3ab44756-1809-4037-b607-9a66f9ed0f0c in 0.01s: accuracy=0.8889, completeness=0.4000, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7756
+2026-03-02 13:22:11,791 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:22:11,792 - INFO - Sampled model: Azure/gpt-4o
+2026-03-02 13:22:11,793 - INFO - [HYPO-TRACK] iter=18 | generated=3(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=1/1
+2026-03-02 13:22:11,794 - INFO - Iteration 18: Program 3ab44756-1809-4037-b607-9a66f9ed0f0c (parent: bd94ee6a-f741-41a9-ae9f-267cbd86bffc) completed in 11.71s
+2026-03-02 13:22:11,794 - INFO - Metrics: accuracy=0.8889, completeness=0.4000, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7756
+2026-03-02 13:22:25,357 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:22:25,363 - INFO - Evaluated program dfe697f7-4b17-4501-84b6-3f0aac77d4fb in 0.00s: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:22:25,364 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:22:25,365 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-03-02 13:22:25,365 - INFO - [HYPO-TRACK] iter=19 | generated=3(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=3(OK) top_w_hypos=4/5
+2026-03-02 13:22:25,366 - INFO - Iteration 19: Program dfe697f7-4b17-4501-84b6-3f0aac77d4fb (parent: 0da9141b-0a82-4d2b-92a0-b625473fbf50) completed in 13.57s
+2026-03-02 13:22:25,366 - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:22:52,963 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:22:52,970 - INFO - Evaluated program ef447716-101f-448b-9742-a77e19e7fbc4 in 0.01s: accuracy=0.2222, completeness=0.1000, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.4189
+2026-03-02 13:22:52,972 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:22:52,972 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-03-02 13:22:52,983 - INFO - [HYPO-TRACK] iter=20 | generated=4(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=2(OK) top_w_hypos=3/3
+2026-03-02 13:22:52,983 - INFO - New MAP-Elites cell occupied in island 1: {'combined_score': 0, 'accuracy': 0, 'completeness': 0}
+2026-03-02 13:22:52,984 - INFO - Iteration 20: Program ef447716-101f-448b-9742-a77e19e7fbc4 (parent: c1d08e0f-0802-4fcf-92c6-137834eb83cd) completed in 27.61s
+2026-03-02 13:22:52,984 - INFO - Metrics: accuracy=0.2222, completeness=0.1000, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.4189
+2026-03-02 13:22:52,984 - INFO - Checkpoint interval reached at iteration 20
+2026-03-02 13:22:52,985 - INFO - Island Status:
+2026-03-02 13:22:52,985 - INFO -  * Island 0: 16 programs, best=0.7458, avg=0.6827, diversity=342.22, gen=15 (best: 581e3dc0-6535-439d-a5cc-5a190fd6df78)
+2026-03-02 13:22:52,985 - INFO -    Island 1: 4 programs, best=0.7458, avg=0.6641, diversity=110.63, gen=3 (best: bfe737bf-93d9-43f2-bfac-fb876b75deee)
+2026-03-02 13:22:52,985 - INFO -    Island 2: 2 programs, best=0.7756, avg=0.7756, diversity=100.40, gen=2 (best: bd94ee6a-f741-41a9-ae9f-267cbd86bffc)
+2026-03-02 13:22:52,997 - INFO - Saved database with 23 programs to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/checkpoints/checkpoint_20
+2026-03-02 13:22:52,998 - INFO - Saved best program at checkpoint 20 with metrics: accuracy=0.8889, completeness=0.4000, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7756
+2026-03-02 13:22:52,998 - INFO - Saved checkpoint at iteration 20 to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/checkpoints/checkpoint_20
+2026-03-02 13:22:52,998 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/hypothesis_tracker.json
+2026-03-02 13:23:20,645 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:23:20,650 - INFO - Evaluated program f3c60baf-a987-4f99-9f15-8a62641e16c9 in 0.00s: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:23:20,652 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:23:20,652 - INFO - Sampled model: Azure/gpt-4o
+2026-03-02 13:23:20,660 - INFO - [HYPO-TRACK] iter=21 | generated=5(OK) persisted=3(OK) results_injected=3(OK) parent_hypos=2(OK) top_w_hypos=2/2
+2026-03-02 13:23:20,660 - INFO - New MAP-Elites cell occupied in island 2: {'combined_score': 6, 'accuracy': 6, 'completeness': 5}
+2026-03-02 13:23:20,660 - INFO - Iteration 21: Program f3c60baf-a987-4f99-9f15-8a62641e16c9 (parent: 3ab44756-1809-4037-b607-9a66f9ed0f0c) completed in 27.68s
+2026-03-02 13:23:20,660 - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:23:26,223 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:23:26,225 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:23:26,226 - INFO - Sampled model: Azure/gpt-4o
+2026-03-02 13:23:26,231 - WARNING - Iteration 22 error: No valid diffs found in response
+2026-03-02 13:23:39,732 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:23:39,738 - INFO - Evaluated program 367dff37-2a37-462a-8198-aa3432ceadca in 0.00s: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:23:39,739 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:23:39,740 - INFO - Sampled model: Azure/gpt-4o
+2026-03-02 13:23:39,742 - INFO - [HYPO-TRACK] iter=23 | generated=3(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=4/4
+2026-03-02 13:23:39,743 - INFO - Iteration 23: Program 367dff37-2a37-462a-8198-aa3432ceadca (parent: 5d100eaa-bfa3-465f-aa6e-98913f95bb38) completed in 13.51s
+2026-03-02 13:23:39,743 - INFO - Metrics: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:23:55,351 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:23:55,358 - INFO - Evaluated program dae9b1e4-1a05-48df-a03a-7cdca2579566 in 0.00s: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:23:55,359 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:23:55,359 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-03-02 13:23:55,364 - INFO - [HYPO-TRACK] iter=24 | generated=3(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=3/3
+2026-03-02 13:23:55,364 - INFO - Iteration 24: Program dae9b1e4-1a05-48df-a03a-7cdca2579566 (parent: 3ab44756-1809-4037-b607-9a66f9ed0f0c) completed in 15.62s
+2026-03-02 13:23:55,364 - INFO - Metrics: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:24:23,189 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:24:23,197 - INFO - Evaluated program c3d8a422-2066-4578-9cd2-cd9e2ebe8762 in 0.01s: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:24:23,198 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:24:23,199 - INFO - Sampled model: Azure/gpt-4o
+2026-03-02 13:24:23,207 - INFO - [HYPO-TRACK] iter=25 | generated=6(OK) persisted=3(OK) results_injected=3(OK) parent_hypos=3(OK) top_w_hypos=4/5
+2026-03-02 13:24:23,208 - INFO - Iteration 25: Program c3d8a422-2066-4578-9cd2-cd9e2ebe8762 (parent: 507a1f36-8416-41ac-820e-d6ad1ab6d336) completed in 27.84s
+2026-03-02 13:24:23,208 - INFO - Metrics: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:24:23,208 - INFO - Checkpoint interval reached at iteration 25
+2026-03-02 13:24:23,210 - INFO - Island Status:
+2026-03-02 13:24:23,210 - INFO -  * Island 0: 17 programs, best=0.7458, avg=0.6864, diversity=342.22, gen=16 (best: 581e3dc0-6535-439d-a5cc-5a190fd6df78)
+2026-03-02 13:24:23,210 - INFO -    Island 1: 5 programs, best=0.7458, avg=0.6804, diversity=76.52, gen=4 (best: bfe737bf-93d9-43f2-bfac-fb876b75deee)
+2026-03-02 13:24:23,210 - INFO -    Island 2: 4 programs, best=0.7756, avg=0.7458, diversity=104.15, gen=4 (best: bd94ee6a-f741-41a9-ae9f-267cbd86bffc)
+2026-03-02 13:24:23,225 - INFO - Saved database with 27 programs to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/checkpoints/checkpoint_25
+2026-03-02 13:24:23,226 - INFO - Saved best program at checkpoint 25 with metrics: accuracy=0.8889, completeness=0.4000, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7756
+2026-03-02 13:24:23,226 - INFO - Saved checkpoint at iteration 25 to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/checkpoints/checkpoint_25
+2026-03-02 13:24:23,226 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/hypothesis_tracker.json
+2026-03-02 13:24:34,884 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:24:34,895 - INFO - Evaluated program 1188838e-0053-4147-8a21-dd6590cad032 in 0.00s: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:24:34,897 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:24:34,897 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-03-02 13:24:34,907 - INFO - [HYPO-TRACK] iter=26 | generated=2(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-03-02 13:24:34,907 - INFO - Iteration 26: Program 1188838e-0053-4147-8a21-dd6590cad032 (parent: c1d08e0f-0802-4fcf-92c6-137834eb83cd) completed in 11.70s
+2026-03-02 13:24:34,907 - INFO - Metrics: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:24:58,387 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:24:58,395 - INFO - Evaluated program 562bf1f7-22c2-4c9f-b114-51a513b450cf in 0.00s: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 13:24:58,396 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:24:58,397 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-03-02 13:24:58,401 - INFO - [HYPO-TRACK] iter=27 | generated=5(OK) persisted=3(OK) results_injected=3(OK) parent_hypos=2(OK) top_w_hypos=4/4
+2026-03-02 13:24:58,402 - INFO - Island 2 MAP-Elites cell improved: {'combined_score': 7, 'accuracy': 7, 'completeness': 7} (fitness: 0.776 -> 0.805)
+2026-03-02 13:24:58,402 - INFO - New best program 562bf1f7-22c2-4c9f-b114-51a513b450cf replaces bd94ee6a-f741-41a9-ae9f-267cbd86bffc (combined_score: 0.7756 → 0.8053, +0.0297)
+2026-03-02 13:24:58,402 - INFO - Iteration 27: Program 562bf1f7-22c2-4c9f-b114-51a513b450cf (parent: 3ab44756-1809-4037-b607-9a66f9ed0f0c) completed in 23.50s
+2026-03-02 13:24:58,402 - INFO - Metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 13:24:58,402 - INFO - 🌟 New best solution found at iteration 27: 562bf1f7-22c2-4c9f-b114-51a513b450cf
+2026-03-02 13:25:27,642 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:25:27,648 - INFO - Evaluated program 193f57f7-51e3-452a-a952-fe7c4eec992c in 0.00s: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:25:27,650 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:25:27,650 - INFO - Sampled model: Azure/gpt-4o
+2026-03-02 13:25:27,658 - INFO - [HYPO-TRACK] iter=28 | generated=3(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=4/5
+2026-03-02 13:25:27,658 - INFO - New MAP-Elites cell occupied in island 0: {'combined_score': 6, 'accuracy': 6, 'completeness': 6}
+2026-03-02 13:25:27,659 - INFO - Iteration 28: Program 193f57f7-51e3-452a-a952-fe7c4eec992c (parent: f5cad862-e2fd-4dbb-ac6a-34f4dea43cb8) completed in 29.25s
+2026-03-02 13:25:27,659 - INFO - Metrics: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:25:41,515 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:25:41,528 - INFO - Evaluated program 58942a82-4318-4307-b2a2-a24bc5155f33 in 0.01s: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:25:41,530 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-03-02 13:25:41,531 - INFO - Sampled model: Azure/gpt-4o
+2026-03-02 13:25:41,533 - INFO - [HYPO-TRACK] iter=29 | generated=3(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-03-02 13:25:41,533 - INFO - Iteration 29: Program 58942a82-4318-4307-b2a2-a24bc5155f33 (parent: bfe737bf-93d9-43f2-bfac-fb876b75deee) completed in 13.88s
+2026-03-02 13:25:41,533 - INFO - Metrics: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:25:53,829 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 13:25:53,835 - INFO - Evaluated program e8c67ccc-962f-4408-9c12-3c1a671c1943 in 0.00s: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:25:53,840 - INFO - [HYPO-TRACK] iter=30 | generated=3(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=4/4
+2026-03-02 13:25:53,840 - INFO - New MAP-Elites cell occupied in island 2: {'combined_score': 6, 'accuracy': 6, 'completeness': 6}
+2026-03-02 13:25:53,841 - INFO - Iteration 30: Program e8c67ccc-962f-4408-9c12-3c1a671c1943 (parent: dae9b1e4-1a05-48df-a03a-7cdca2579566) completed in 12.31s
+2026-03-02 13:25:53,841 - INFO - Metrics: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 13:25:53,841 - INFO - Checkpoint interval reached at iteration 30
+2026-03-02 13:25:53,842 - INFO - Island Status:
+2026-03-02 13:25:53,842 - INFO -  * Island 0: 18 programs, best=0.7458, avg=0.6897, diversity=371.67, gen=17 (best: 581e3dc0-6535-439d-a5cc-5a190fd6df78)
+2026-03-02 13:25:53,842 - INFO -    Island 1: 7 programs, best=0.7458, avg=0.6991, diversity=95.13, gen=6 (best: bfe737bf-93d9-43f2-bfac-fb876b75deee)
+2026-03-02 13:25:53,842 - INFO -    Island 2: 5 programs, best=0.8053, avg=0.7518, diversity=122.10, gen=6 (best: 562bf1f7-22c2-4c9f-b114-51a513b450cf)
+2026-03-02 13:25:53,859 - INFO - Saved database with 32 programs to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/checkpoints/checkpoint_30
+2026-03-02 13:25:53,859 - INFO - Saved best program at checkpoint 30 with metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 13:25:53,859 - INFO - Saved checkpoint at iteration 30 to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/checkpoints/checkpoint_30
+2026-03-02 13:25:53,860 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/hypothesis_tracker.json
+2026-03-02 13:25:53,860 - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-03-02 13:25:53,860 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/hypothesis_tracker.json
+2026-03-02 13:25:53,875 - INFO - Saved database with 32 programs to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/checkpoints/checkpoint_30
+2026-03-02 13:25:53,876 - INFO - Saved best program at checkpoint 30 with metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 13:25:53,876 - INFO - Saved checkpoint at iteration 30 to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/checkpoints/checkpoint_30
+2026-03-02 13:25:54,000 - INFO - Stopped process pool
+2026-03-02 13:25:54,000 - INFO - Using tracked best program: 562bf1f7-22c2-4c9f-b114-51a513b450cf
+2026-03-02 13:25:54,000 - INFO - Evolution complete. Best program has metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 13:25:54,001 - INFO - Saved best program to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/best/best_program.py with program info to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_501/best/best_program_info.json

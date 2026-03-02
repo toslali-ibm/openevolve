@@ -40,7 +40,7 @@ database:
   
   # Feature dimensions for sorting algorithms
   feature_dimensions:
-    - "score"            # Overall performance score
+    - "combined_score"    # Overall performance score
     - "performance_score"  # Speed performance
     - "adaptability_score" # Adaptability to different data patterns
   feature_bins: 8

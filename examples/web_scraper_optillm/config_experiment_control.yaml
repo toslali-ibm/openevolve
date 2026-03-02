@@ -1,0 +1,52 @@
+# Web Scraper — CONTROL (vanilla OpenEvolve)
+# Identical to treatment except hypothesis_driven: false
+
+hypothesis_driven: false
+
+max_iterations: 30
+checkpoint_interval: 5
+log_level: "INFO"
+
+llm:
+  primary_model: "Azure/gpt-4o"
+  primary_model_weight: 0.7
+  secondary_model: "aws/claude-sonnet-4-5"
+  secondary_model_weight: 0.3
+  api_base: "https://ete-litellm.ai-models.vpc-int.res.ibm.com"
+  temperature: 0.7
+  top_p: null
+  max_tokens: 16000
+  timeout: 120
+
+  system_message: |
+    You are an expert Python developer tasked with evolving a web scraper for API documentation.
+    Your goal is to improve the scraper's ability to extract function signatures, parameters, and descriptions
+    from HTML documentation pages. The scraper should be robust and handle various documentation formats.
+    Key considerations:
+    1. Parse HTML efficiently using BeautifulSoup
+    2. Extract function names, signatures, and descriptions accurately
+    3. Handle different documentation structures (Python docs, library docs, etc.)
+    4. Provide meaningful error handling
+    5. Return structured data in the expected format
+    Focus on improving the EVOLVE-BLOCK sections to make the scraper more accurate and robust.
+
+prompt:
+  num_top_programs: 3
+  num_diverse_programs: 2
+  include_artifacts: true
+  max_artifact_bytes: 8192
+
+database:
+  population_size: 50
+  num_islands: 3
+  migration_interval: 10
+  feature_dimensions:
+    - "combined_score"
+    - "accuracy"
+    - "completeness"
+  feature_bins: 8
+
+evaluator:
+  timeout: 60
+  parallel_evaluations: 1
+  cascade_evaluation: false

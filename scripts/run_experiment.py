@@ -60,6 +60,12 @@ TASK_CONFIGS = {
         "treatment_config": "examples/rust_adaptive_sort/config_experiment_treatment.yaml",
         "control_config": "examples/rust_adaptive_sort/config_experiment_control.yaml",
     },
+    "web_scraper": {
+        "initial_program": "examples/web_scraper_optillm/initial_program.py",
+        "evaluator": "examples/web_scraper_optillm/evaluator.py",
+        "treatment_config": "examples/web_scraper_optillm/config_experiment_treatment.yaml",
+        "control_config": "examples/web_scraper_optillm/config_experiment_control.yaml",
+    },
 }
 
 

@@ -162,7 +162,7 @@ async def _evaluate(program_path: str) -> EvaluationResult:
 
                 return EvaluationResult(
                     metrics={
-                        "score": overall_score,
+                        "combined_score": overall_score,
                         "compile_success": 1.0,
                         "correctness": correctness,
                         "performance_score": performance,
@@ -222,7 +222,7 @@ if __name__ == "__main__":
 
     if len(sys.argv) > 1:
         result = evaluate(sys.argv[1])
-        print(f"Score: {result.metrics['score']:.4f}")
+        print(f"Score: {result.metrics['combined_score']:.4f}")
         print(f"Correctness: {result.metrics['correctness']:.4f}")
         print(f"Performance: {result.metrics['performance_score']:.4f}")
         print(f"Adaptability: {result.metrics['adaptability_score']:.4f}")

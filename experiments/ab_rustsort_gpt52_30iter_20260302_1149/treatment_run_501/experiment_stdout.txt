@@ -1,0 +1,13 @@
+
+Evolution complete!
+Best program metrics:
+  combined_score: 0.9998
+  compile_success: 1.0000
+  correctness: 1.0000
+  performance_score: 0.9997
+  adaptability_score: 1.0000
+  avg_time: 0.0000
+  memory_safe: 1.0000
+
+Latest checkpoint saved at: experiments/ab_rustsort_gpt52_30iter_20260302_1149/treatment_run_501/checkpoints/checkpoint_30
+To resume, use: --checkpoint experiments/ab_rustsort_gpt52_30iter_20260302_1149/treatment_run_501/checkpoints/checkpoint_30

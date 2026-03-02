@@ -1,0 +1,202 @@
+2026-03-02 12:53:06,513 - openevolve.controller - INFO - Logging to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/logs/openevolve_20260302_125306.log
+2026-03-02 12:53:06,525 - openevolve.controller - INFO - Set random seed to 42 for reproducibility
+2026-03-02 12:53:06,545 - openevolve.llm.openai - INFO - Initialized OpenAI LLM with model: Azure/gpt-4o
+2026-03-02 12:53:06,551 - openevolve.llm.openai - INFO - Initialized OpenAI LLM with model: aws/claude-sonnet-4-5
+2026-03-02 12:53:06,551 - openevolve.llm.ensemble - INFO - Initialized LLM ensemble with models: Azure/gpt-4o (weight: 0.70), aws/claude-sonnet-4-5 (weight: 0.30)
+2026-03-02 12:53:06,562 - openevolve.llm.ensemble - INFO - Initialized LLM ensemble with models: Azure/gpt-4o (weight: 0.70), aws/claude-sonnet-4-5 (weight: 0.30)
+2026-03-02 12:53:06,562 - openevolve.prompt.sampler - INFO - Initialized prompt sampler
+2026-03-02 12:53:06,563 - openevolve.prompt.sampler - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-03-02 12:53:06,563 - openevolve.database - INFO - Initialized program database with 0 programs
+2026-03-02 12:53:06,563 - openevolve.evaluator - INFO - Successfully loaded evaluation function from examples/web_scraper_optillm/evaluator.py
+2026-03-02 12:53:06,563 - openevolve.evaluator - INFO - Initialized evaluator with examples/web_scraper_optillm/evaluator.py
+2026-03-02 12:53:06,563 - openevolve.controller - INFO - Initialized OpenEvolve with examples/web_scraper_optillm/initial_program.py
+2026-03-02 12:53:06,563 - openevolve.controller - INFO - Adding initial program to database
+2026-03-02 12:53:06,609 - openevolve.evaluator - INFO - Evaluated program f61341fa-3d35-4e9e-b142-e73674a6a839 in 0.05s: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 12:53:06,609 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'combined_score': 4, 'accuracy': 4, 'completeness': 4}
+2026-03-02 12:53:06,617 - openevolve.process_parallel - INFO - Initialized process parallel controller with 1 workers
+2026-03-02 12:53:06,617 - openevolve.process_parallel - INFO - Set max None tasks per child
+2026-03-02 12:53:06,617 - openevolve.process_parallel - INFO - Started process pool with 1 processes
+2026-03-02 12:53:06,617 - openevolve.controller - INFO - Using island-based evolution with 3 islands
+2026-03-02 12:53:06,617 - openevolve.database - INFO - Island Status:
+2026-03-02 12:53:06,617 - openevolve.database - INFO -  * Island 0: 1 programs, best=0.6864, avg=0.6864, diversity=0.00, gen=0 (best: f61341fa-3d35-4e9e-b142-e73674a6a839)
+2026-03-02 12:53:06,617 - openevolve.database - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 12:53:06,618 - openevolve.database - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 12:53:06,618 - openevolve.process_parallel - INFO - Starting process-based evolution from iteration 1 for 30 iterations (total: 31)
+2026-03-02 12:53:06,621 - openevolve.process_parallel - INFO - Early stopping disabled
+2026-03-02 12:53:32,703 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=1 | generated=2(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=0/1
+2026-03-02 12:53:32,704 - openevolve.process_parallel - INFO - Iteration 1: Program 70c727c0-4ce0-41c7-9eb5-6e56eae720f9 (parent: f61341fa-3d35-4e9e-b142-e73674a6a839) completed in 25.66s
+2026-03-02 12:53:32,704 - openevolve.process_parallel - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 12:53:57,639 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=2 | generated=2(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=0/1
+2026-03-02 12:53:57,640 - openevolve.process_parallel - INFO - Iteration 2: Program b81b8fb6-f962-42bc-a3c1-a39dc5934180 (parent: f61341fa-3d35-4e9e-b142-e73674a6a839) completed in 24.94s
+2026-03-02 12:53:57,640 - openevolve.process_parallel - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 12:54:05,508 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=3 | generated=3(OK) persisted=3(OK) results_injected=3(OK) parent_hypos=0(N/A) top_w_hypos=0/1
+2026-03-02 12:54:05,509 - openevolve.process_parallel - INFO - Iteration 3: Program c83fbeec-9cf3-4d9f-9817-88ce790f773a (parent: f61341fa-3d35-4e9e-b142-e73674a6a839) completed in 7.86s
+2026-03-02 12:54:05,509 - openevolve.process_parallel - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 12:54:38,043 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=4 | generated=3(OK) persisted=3(OK) results_injected=3(OK) parent_hypos=0(N/A) top_w_hypos=1/2
+2026-03-02 12:54:38,044 - openevolve.process_parallel - INFO - Iteration 4: Program 03cbaa85-8b94-4a28-a71a-9887abb8ba03 (parent: f61341fa-3d35-4e9e-b142-e73674a6a839) completed in 32.54s
+2026-03-02 12:54:38,044 - openevolve.process_parallel - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 12:55:03,460 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=5 | generated=2(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=2/3
+2026-03-02 12:55:03,460 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'combined_score': 7, 'accuracy': 7, 'completeness': 7}
+2026-03-02 12:55:03,460 - openevolve.database - INFO - New best program e872d02f-1ce6-498b-ba96-efdbd5f24520 replaces f61341fa-3d35-4e9e-b142-e73674a6a839 (combined_score: 0.6864 → 0.7458, +0.0594)
+2026-03-02 12:55:03,461 - openevolve.process_parallel - INFO - Iteration 5: Program e872d02f-1ce6-498b-ba96-efdbd5f24520 (parent: f61341fa-3d35-4e9e-b142-e73674a6a839) completed in 25.41s
+2026-03-02 12:55:03,461 - openevolve.process_parallel - INFO - Metrics: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 12:55:03,461 - openevolve.process_parallel - INFO - 🌟 New best solution found at iteration 5: e872d02f-1ce6-498b-ba96-efdbd5f24520
+2026-03-02 12:55:03,461 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 5
+2026-03-02 12:55:03,462 - openevolve.database - INFO - Island Status:
+2026-03-02 12:55:03,462 - openevolve.database - INFO -  * Island 0: 6 programs, best=0.7458, avg=0.6963, diversity=441.98, gen=5 (best: e872d02f-1ce6-498b-ba96-efdbd5f24520)
+2026-03-02 12:55:03,462 - openevolve.database - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 12:55:03,462 - openevolve.database - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 12:55:03,468 - openevolve.database - INFO - Saved database with 6 programs to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/checkpoints/checkpoint_5
+2026-03-02 12:55:03,468 - openevolve.controller - INFO - Saved best program at checkpoint 5 with metrics: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 12:55:03,468 - openevolve.controller - INFO - Saved checkpoint at iteration 5 to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/checkpoints/checkpoint_5
+2026-03-02 12:55:03,469 - openevolve.hypothesis - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/hypothesis_tracker.json
+2026-03-02 12:55:20,900 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=6 | generated=3(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=3/4
+2026-03-02 12:55:20,900 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'combined_score': 0, 'accuracy': 0, 'completeness': 0}
+2026-03-02 12:55:20,901 - openevolve.process_parallel - INFO - Iteration 6: Program d9b9291a-046d-4736-aa9c-5c7af3066ed5 (parent: 70c727c0-4ce0-41c7-9eb5-6e56eae720f9) completed in 17.45s
+2026-03-02 12:55:20,901 - openevolve.process_parallel - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 12:55:44,098 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=7 | generated=3(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=3(OK) top_w_hypos=4/5
+2026-03-02 12:55:44,099 - openevolve.process_parallel - INFO - Iteration 7: Program 2bcbb856-e751-4774-9291-995104c456bf (parent: c83fbeec-9cf3-4d9f-9817-88ce790f773a) completed in 23.19s
+2026-03-02 12:55:44,099 - openevolve.process_parallel - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 12:56:15,707 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=8 | generated=4(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=2(OK) top_w_hypos=4/5
+2026-03-02 12:56:15,708 - openevolve.process_parallel - INFO - Iteration 8: Program fc25efa7-f9eb-4dae-8b10-ae592f4eda1a (parent: b81b8fb6-f962-42bc-a3c1-a39dc5934180) completed in 31.62s
+2026-03-02 12:56:15,708 - openevolve.process_parallel - INFO - Metrics: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 12:56:29,541 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=9 | generated=3(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=3(OK) top_w_hypos=4/5
+2026-03-02 12:56:29,542 - openevolve.process_parallel - INFO - Iteration 9: Program b38a753e-3c45-4f60-b601-56d44a9efae0 (parent: c83fbeec-9cf3-4d9f-9817-88ce790f773a) completed in 13.83s
+2026-03-02 12:56:29,542 - openevolve.process_parallel - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 12:57:03,566 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=10 | generated=5(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=4/5
+2026-03-02 12:57:03,566 - openevolve.database - INFO - Island 0 MAP-Elites cell improved: {'combined_score': 7, 'accuracy': 7, 'completeness': 7} (fitness: 0.746 -> 0.805)
+2026-03-02 12:57:03,566 - openevolve.database - INFO - New best program 23b35a1e-4c95-4821-8163-b1265e0efe84 replaces e872d02f-1ce6-498b-ba96-efdbd5f24520 (combined_score: 0.7458 → 0.8053, +0.0594)
+2026-03-02 12:57:03,567 - openevolve.process_parallel - INFO - Performing migration at iteration 10
+2026-03-02 12:57:03,567 - openevolve.database - INFO - Performing migration between islands
+2026-03-02 12:57:03,567 - openevolve.database - INFO - New MAP-Elites cell occupied in island 1: {'combined_score': 7, 'accuracy': 7, 'completeness': 7}
+2026-03-02 12:57:03,568 - openevolve.database - INFO - Program 255ae472 migrated to island 1
+2026-03-02 12:57:03,568 - openevolve.database - INFO - New MAP-Elites cell occupied in island 2: {'combined_score': 7, 'accuracy': 7, 'completeness': 7}
+2026-03-02 12:57:03,568 - openevolve.database - INFO - Program 50b9d0a2 migrated to island 2
+2026-03-02 12:57:03,568 - openevolve.database - INFO - Migration completed at generation 10
+2026-03-02 12:57:03,569 - openevolve.database - INFO - Island Status:
+2026-03-02 12:57:03,569 - openevolve.database - INFO -  * Island 0: 10 programs, best=0.8053, avg=0.7042, diversity=436.78, gen=10 (best: 23b35a1e-4c95-4821-8163-b1265e0efe84)
+2026-03-02 12:57:03,569 - openevolve.database - INFO -    Island 1: 1 programs, best=0.8053, avg=0.8053, diversity=0.00, gen=0 (best: 255ae472-cdb4-4a67-a302-2fa74b56878f)
+2026-03-02 12:57:03,569 - openevolve.database - INFO -    Island 2: 1 programs, best=0.8053, avg=0.8053, diversity=0.00, gen=0 (best: 50b9d0a2-15b9-4ac1-a256-f3243c234460)
+2026-03-02 12:57:03,569 - openevolve.process_parallel - INFO - Iteration 10: Program 23b35a1e-4c95-4821-8163-b1265e0efe84 (parent: b81b8fb6-f962-42bc-a3c1-a39dc5934180) completed in 34.03s
+2026-03-02 12:57:03,569 - openevolve.process_parallel - INFO - Metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 12:57:03,569 - openevolve.process_parallel - INFO - 🌟 New best solution found at iteration 10: 23b35a1e-4c95-4821-8163-b1265e0efe84
+2026-03-02 12:57:03,569 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 10
+2026-03-02 12:57:03,570 - openevolve.database - INFO - Island Status:
+2026-03-02 12:57:03,570 - openevolve.database - INFO -  * Island 0: 10 programs, best=0.8053, avg=0.7042, diversity=436.78, gen=10 (best: 23b35a1e-4c95-4821-8163-b1265e0efe84)
+2026-03-02 12:57:03,570 - openevolve.database - INFO -    Island 1: 1 programs, best=0.8053, avg=0.8053, diversity=0.00, gen=0 (best: 255ae472-cdb4-4a67-a302-2fa74b56878f)
+2026-03-02 12:57:03,570 - openevolve.database - INFO -    Island 2: 1 programs, best=0.8053, avg=0.8053, diversity=0.00, gen=0 (best: 50b9d0a2-15b9-4ac1-a256-f3243c234460)
+2026-03-02 12:57:03,579 - openevolve.database - INFO - Saved database with 13 programs to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/checkpoints/checkpoint_10
+2026-03-02 12:57:03,580 - openevolve.controller - INFO - Saved best program at checkpoint 10 with metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 12:57:03,580 - openevolve.controller - INFO - Saved checkpoint at iteration 10 to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/checkpoints/checkpoint_10
+2026-03-02 12:57:03,580 - openevolve.hypothesis - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/hypothesis_tracker.json
+2026-03-02 12:57:19,894 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=11 | generated=3(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=3(OK) top_w_hypos=4/5
+2026-03-02 12:57:19,895 - openevolve.process_parallel - INFO - Iteration 11: Program b938938c-ed67-4c23-915e-66ee2d58534e (parent: 2bcbb856-e751-4774-9291-995104c456bf) completed in 16.32s
+2026-03-02 12:57:19,895 - openevolve.process_parallel - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 12:57:48,203 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=12 | generated=5(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=3(OK) top_w_hypos=4/5
+2026-03-02 12:57:48,204 - openevolve.process_parallel - INFO - Iteration 12: Program 9fd2f949-d2c6-43cc-89e4-81c541ee72b3 (parent: c83fbeec-9cf3-4d9f-9817-88ce790f773a) completed in 28.31s
+2026-03-02 12:57:48,204 - openevolve.process_parallel - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 12:58:20,182 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=13 | generated=6(OK) persisted=3(OK) results_injected=3(OK) parent_hypos=3(OK) top_w_hypos=4/5
+2026-03-02 12:58:20,182 - openevolve.process_parallel - INFO - Iteration 13: Program f717ed9a-f1c1-4c7d-8b0a-019104939918 (parent: b38a753e-3c45-4f60-b601-56d44a9efae0) completed in 31.98s
+2026-03-02 12:58:20,182 - openevolve.process_parallel - INFO - Metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 12:58:30,289 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=14 | generated=3(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=3(OK) top_w_hypos=1/1
+2026-03-02 12:58:30,289 - openevolve.database - INFO - New MAP-Elites cell occupied in island 1: {'combined_score': 0, 'accuracy': 0, 'completeness': 0}
+2026-03-02 12:58:30,290 - openevolve.process_parallel - INFO - Iteration 14: Program d8b3790e-9a07-496c-b2f8-ad00f6d4f160 (parent: 255ae472-cdb4-4a67-a302-2fa74b56878f) completed in 10.10s
+2026-03-02 12:58:30,290 - openevolve.process_parallel - INFO - Metrics: accuracy=0.6111, completeness=0.2750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6269
+2026-03-02 12:58:42,721 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=15 | generated=3(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=3(OK) top_w_hypos=1/1
+2026-03-02 12:58:42,721 - openevolve.database - INFO - New MAP-Elites cell occupied in island 2: {'combined_score': 0, 'accuracy': 0, 'completeness': 0}
+2026-03-02 12:58:42,721 - openevolve.process_parallel - INFO - Iteration 15: Program 06b4e47f-1fed-4557-8c8e-efa4e4181ab3 (parent: 50b9d0a2-15b9-4ac1-a256-f3243c234460) completed in 12.43s
+2026-03-02 12:58:42,722 - openevolve.process_parallel - INFO - Metrics: accuracy=0.1667, completeness=0.0750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.3892
+2026-03-02 12:58:42,722 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 15
+2026-03-02 12:58:42,722 - openevolve.database - INFO - Island Status:
+2026-03-02 12:58:42,722 - openevolve.database - INFO -  * Island 0: 13 programs, best=0.8053, avg=0.7093, diversity=407.87, gen=13 (best: 23b35a1e-4c95-4821-8163-b1265e0efe84)
+2026-03-02 12:58:42,722 - openevolve.database - INFO -    Island 1: 2 programs, best=0.8053, avg=0.7161, diversity=16.50, gen=1 (best: 255ae472-cdb4-4a67-a302-2fa74b56878f)
+2026-03-02 12:58:42,722 - openevolve.database - INFO -    Island 2: 2 programs, best=0.8053, avg=0.5972, diversity=65.30, gen=1 (best: 50b9d0a2-15b9-4ac1-a256-f3243c234460)
+2026-03-02 12:58:42,732 - openevolve.database - INFO - Saved database with 18 programs to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/checkpoints/checkpoint_15
+2026-03-02 12:58:42,732 - openevolve.controller - INFO - Saved best program at checkpoint 15 with metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 12:58:42,732 - openevolve.controller - INFO - Saved checkpoint at iteration 15 to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/checkpoints/checkpoint_15
+2026-03-02 12:58:42,733 - openevolve.hypothesis - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/hypothesis_tracker.json
+2026-03-02 12:59:15,621 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=16 | generated=6(OK) persisted=3(OK) results_injected=3(OK) parent_hypos=3(OK) top_w_hypos=5/5
+2026-03-02 12:59:15,621 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'combined_score': 5, 'accuracy': 5, 'completeness': 5}
+2026-03-02 12:59:15,622 - openevolve.process_parallel - INFO - Iteration 16: Program f90b7703-9e61-4514-9d57-6077a2c48c37 (parent: 2bcbb856-e751-4774-9291-995104c456bf) completed in 32.90s
+2026-03-02 12:59:15,622 - openevolve.process_parallel - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 12:59:40,534 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=17 | generated=5(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=3(OK) top_w_hypos=2/2
+2026-03-02 12:59:40,534 - openevolve.database - INFO - New MAP-Elites cell occupied in island 1: {'combined_score': 6, 'accuracy': 6, 'completeness': 6}
+2026-03-02 12:59:40,535 - openevolve.process_parallel - INFO - Iteration 17: Program dd63de77-8da3-4d05-86c6-38ac3c91abfb (parent: 255ae472-cdb4-4a67-a302-2fa74b56878f) completed in 24.92s
+2026-03-02 12:59:40,535 - openevolve.process_parallel - INFO - Metrics: accuracy=0.8333, completeness=0.3750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.7458
+2026-03-02 12:59:50,494 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=18 | generated=3(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=3(OK) top_w_hypos=2/2
+2026-03-02 12:59:50,494 - openevolve.process_parallel - INFO - Iteration 18: Program 80f03422-5428-415e-9933-2ea7d36ef968 (parent: 50b9d0a2-15b9-4ac1-a256-f3243c234460) completed in 9.96s
+2026-03-02 12:59:50,494 - openevolve.process_parallel - INFO - Metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 13:00:03,249 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=19 | generated=3(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=3(OK) top_w_hypos=5/5
+2026-03-02 13:00:03,250 - openevolve.process_parallel - INFO - Iteration 19: Program 20c78187-b095-488c-90f0-8646cf4ec2e3 (parent: 2bcbb856-e751-4774-9291-995104c456bf) completed in 12.75s
+2026-03-02 13:00:03,250 - openevolve.process_parallel - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:00:26,813 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=20 | generated=6(OK) persisted=3(OK) results_injected=3(OK) parent_hypos=3(OK) top_w_hypos=3/3
+2026-03-02 13:00:26,814 - openevolve.process_parallel - INFO - Iteration 20: Program b17511bf-776d-4217-a3fe-89fe855d74e2 (parent: 255ae472-cdb4-4a67-a302-2fa74b56878f) completed in 23.56s
+2026-03-02 13:00:26,814 - openevolve.process_parallel - INFO - Metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 13:00:26,814 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 20
+2026-03-02 13:00:26,815 - openevolve.database - INFO - Island Status:
+2026-03-02 13:00:26,815 - openevolve.database - INFO -  * Island 0: 15 programs, best=0.8053, avg=0.7062, diversity=399.43, gen=15 (best: 23b35a1e-4c95-4821-8163-b1265e0efe84)
+2026-03-02 13:00:26,815 - openevolve.database - INFO -    Island 1: 4 programs, best=0.8053, avg=0.7458, diversity=177.40, gen=3 (best: 255ae472-cdb4-4a67-a302-2fa74b56878f)
+2026-03-02 13:00:26,815 - openevolve.database - INFO -    Island 2: 3 programs, best=0.8053, avg=0.6666, diversity=43.53, gen=2 (best: 50b9d0a2-15b9-4ac1-a256-f3243c234460)
+2026-03-02 13:00:26,829 - openevolve.database - INFO - Saved database with 23 programs to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/checkpoints/checkpoint_20
+2026-03-02 13:00:26,829 - openevolve.controller - INFO - Saved best program at checkpoint 20 with metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 13:00:26,829 - openevolve.controller - INFO - Saved checkpoint at iteration 20 to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/checkpoints/checkpoint_20
+2026-03-02 13:00:26,830 - openevolve.hypothesis - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/hypothesis_tracker.json
+2026-03-02 13:00:52,857 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=21 | generated=6(OK) persisted=3(OK) results_injected=3(OK) parent_hypos=3(OK) top_w_hypos=3/3
+2026-03-02 13:00:52,857 - openevolve.process_parallel - INFO - Iteration 21: Program fca5275f-fffa-4f61-b398-c20f8b52c2e8 (parent: 50b9d0a2-15b9-4ac1-a256-f3243c234460) completed in 26.04s
+2026-03-02 13:00:52,857 - openevolve.process_parallel - INFO - Metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 13:01:10,268 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=22 | generated=3(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=3(OK) top_w_hypos=5/5
+2026-03-02 13:01:10,269 - openevolve.process_parallel - INFO - Iteration 22: Program 467ac16f-ef3a-4e55-8c84-ac11e801726c (parent: 20c78187-b095-488c-90f0-8646cf4ec2e3) completed in 17.41s
+2026-03-02 13:01:10,269 - openevolve.process_parallel - INFO - Metrics: accuracy=0.7222, completeness=0.3250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6864
+2026-03-02 13:01:25,184 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=23 | generated=2(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=3(OK) top_w_hypos=4/4
+2026-03-02 13:01:25,184 - openevolve.database - INFO - New MAP-Elites cell occupied in island 1: {'combined_score': 4, 'accuracy': 4, 'completeness': 4}
+2026-03-02 13:01:25,184 - openevolve.process_parallel - INFO - Iteration 23: Program dbf1deaa-02ea-437d-8fd7-fbc54f5d8f35 (parent: d8b3790e-9a07-496c-b2f8-ad00f6d4f160) completed in 14.92s
+2026-03-02 13:01:25,184 - openevolve.process_parallel - INFO - Metrics: accuracy=0.6111, completeness=0.2750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6269
+2026-03-02 13:01:38,990 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=24 | generated=3(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=3(OK) top_w_hypos=4/4
+2026-03-02 13:01:38,990 - openevolve.process_parallel - INFO - Iteration 24: Program 83a818ee-025d-48f6-88d6-1d25339810d0 (parent: 80f03422-5428-415e-9933-2ea7d36ef968) completed in 13.80s
+2026-03-02 13:01:38,990 - openevolve.process_parallel - INFO - Metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 13:02:15,046 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=25 | generated=5(OK) persisted=3(OK) results_injected=3(OK) parent_hypos=2(OK) top_w_hypos=5/5
+2026-03-02 13:02:15,047 - openevolve.process_parallel - INFO - Iteration 25: Program 272af083-ecad-40bc-b824-72863679433c (parent: d9b9291a-046d-4736-aa9c-5c7af3066ed5) completed in 36.05s
+2026-03-02 13:02:15,047 - openevolve.process_parallel - INFO - Metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 13:02:15,047 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 25
+2026-03-02 13:02:15,049 - openevolve.database - INFO - Island Status:
+2026-03-02 13:02:15,049 - openevolve.database - INFO -  * Island 0: 17 programs, best=0.8053, avg=0.7109, diversity=478.17, gen=17 (best: 23b35a1e-4c95-4821-8163-b1265e0efe84)
+2026-03-02 13:02:15,049 - openevolve.database - INFO -    Island 1: 5 programs, best=0.8053, avg=0.7221, diversity=179.98, gen=4 (best: 255ae472-cdb4-4a67-a302-2fa74b56878f)
+2026-03-02 13:02:15,049 - openevolve.database - INFO -    Island 2: 5 programs, best=0.8053, avg=0.7221, diversity=145.00, gen=4 (best: 50b9d0a2-15b9-4ac1-a256-f3243c234460)
+2026-03-02 13:02:15,068 - openevolve.database - INFO - Saved database with 28 programs to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/checkpoints/checkpoint_25
+2026-03-02 13:02:15,068 - openevolve.controller - INFO - Saved best program at checkpoint 25 with metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 13:02:15,068 - openevolve.controller - INFO - Saved checkpoint at iteration 25 to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/checkpoints/checkpoint_25
+2026-03-02 13:02:15,069 - openevolve.hypothesis - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/hypothesis_tracker.json
+2026-03-02 13:02:24,960 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=26 | generated=3(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=3(OK) top_w_hypos=5/5
+2026-03-02 13:02:24,960 - openevolve.process_parallel - INFO - Iteration 26: Program 8f9d8232-7cc0-4483-b852-25d4c015e3cb (parent: d8b3790e-9a07-496c-b2f8-ad00f6d4f160) completed in 9.92s
+2026-03-02 13:02:24,960 - openevolve.process_parallel - INFO - Metrics: accuracy=0.6111, completeness=0.2750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.6269
+2026-03-02 13:02:45,050 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=27 | generated=6(OK) persisted=3(OK) results_injected=3(OK) parent_hypos=3(OK) top_w_hypos=5/5
+2026-03-02 13:02:45,051 - openevolve.process_parallel - INFO - Iteration 27: Program 9a8cf69e-aae4-4298-9f7d-2169e7df237b (parent: 06b4e47f-1fed-4557-8c8e-efa4e4181ab3) completed in 20.09s
+2026-03-02 13:02:45,051 - openevolve.process_parallel - INFO - Metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 13:03:17,954 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=28 | generated=6(OK) persisted=3(OK) results_injected=3(OK) parent_hypos=3(OK) top_w_hypos=5/5
+2026-03-02 13:03:17,954 - openevolve.process_parallel - INFO - Iteration 28: Program 015774a8-55e1-4dd5-95a5-640d17e88fe5 (parent: 467ac16f-ef3a-4e55-8c84-ac11e801726c) completed in 32.90s
+2026-03-02 13:03:17,955 - openevolve.process_parallel - INFO - Metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 13:03:32,763 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=29 | generated=5(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=3(OK) top_w_hypos=5/5
+2026-03-02 13:03:32,764 - openevolve.database - INFO - New MAP-Elites cell occupied in island 1: {'combined_score': 0, 'accuracy': 3, 'completeness': 0}
+2026-03-02 13:03:32,764 - openevolve.process_parallel - INFO - Iteration 29: Program 54024891-388c-46ef-9649-5e0704a6f39c (parent: 255ae472-cdb4-4a67-a302-2fa74b56878f) completed in 14.81s
+2026-03-02 13:03:32,764 - openevolve.process_parallel - INFO - Metrics: accuracy=0.5000, completeness=0.1000, robustness=0.5000, parsing_errors=0.5000, total_score=0.0000, combined_score=0.3800
+2026-03-02 13:03:41,338 - openevolve.hypothesis - INFO - [HYPO-TRACK] iter=30 | generated=3(OK) persisted=3(OK) results_injected=0(MISS) parent_hypos=3(OK) top_w_hypos=5/5
+2026-03-02 13:03:41,339 - openevolve.process_parallel - INFO - Iteration 30: Program 83e5c0ff-2ac3-4f88-9fa2-be808819e746 (parent: 06b4e47f-1fed-4557-8c8e-efa4e4181ab3) completed in 8.57s
+2026-03-02 13:03:41,339 - openevolve.process_parallel - INFO - Metrics: accuracy=0.1667, completeness=0.0750, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.3892
+2026-03-02 13:03:41,339 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 30
+2026-03-02 13:03:41,341 - openevolve.database - INFO - Island Status:
+2026-03-02 13:03:41,341 - openevolve.database - INFO -  * Island 0: 18 programs, best=0.8053, avg=0.7161, diversity=248.12, gen=18 (best: 23b35a1e-4c95-4821-8163-b1265e0efe84)
+2026-03-02 13:03:41,341 - openevolve.database - INFO -    Island 1: 7 programs, best=0.8053, avg=0.6596, diversity=175.08, gen=6 (best: 255ae472-cdb4-4a67-a302-2fa74b56878f)
+2026-03-02 13:03:41,341 - openevolve.database - INFO -    Island 2: 7 programs, best=0.8053, avg=0.6864, diversity=32.65, gen=6 (best: 50b9d0a2-15b9-4ac1-a256-f3243c234460)
+2026-03-02 13:03:41,359 - openevolve.database - INFO - Saved database with 33 programs to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/checkpoints/checkpoint_30
+2026-03-02 13:03:41,360 - openevolve.controller - INFO - Saved best program at checkpoint 30 with metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 13:03:41,360 - openevolve.controller - INFO - Saved checkpoint at iteration 30 to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/checkpoints/checkpoint_30
+2026-03-02 13:03:41,360 - openevolve.hypothesis - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/hypothesis_tracker.json
+2026-03-02 13:03:41,360 - openevolve.process_parallel - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-03-02 13:03:41,361 - openevolve.hypothesis - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/hypothesis_tracker.json
+2026-03-02 13:03:41,376 - openevolve.database - INFO - Saved database with 33 programs to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/checkpoints/checkpoint_30
+2026-03-02 13:03:41,376 - openevolve.controller - INFO - Saved best program at checkpoint 30 with metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 13:03:41,376 - openevolve.controller - INFO - Saved checkpoint at iteration 30 to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/checkpoints/checkpoint_30
+2026-03-02 13:03:41,500 - openevolve.process_parallel - INFO - Stopped process pool
+2026-03-02 13:03:41,501 - openevolve.controller - INFO - Using tracked best program: 23b35a1e-4c95-4821-8163-b1265e0efe84
+2026-03-02 13:03:41,501 - openevolve.controller - INFO - Evolution complete. Best program has metrics: accuracy=0.9444, completeness=0.4250, robustness=1.0000, parsing_errors=0.0000, total_score=0.0000, combined_score=0.8053
+2026-03-02 13:03:41,501 - openevolve.controller - INFO - Saved best program to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/best/best_program.py with program info to experiments/ab_webscraper_gpt4o_30iter_20260302_1253/treatment_run_500/best/best_program_info.json

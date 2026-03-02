@@ -23,15 +23,17 @@ HYPOTHESIS_INSTRUCTIONS_TEMPLATE = """
 
 You MUST include at least 1 hypothesis (max 3) as comments at the TOP of the EVOLVE-BLOCK, BEFORE any code.
 
-Format (each hypothesis needs all 3 lines, using the appropriate comment syntax for the language):
-  # HYPOTHESIS-N: <one-line claim about what will improve and why>
-  # MECHANISM-N: <causal explanation - what signal/behavior drives the improvement>
-  # EXPECT-N: <metric_name> < <threshold>   (for lower-is-better metrics like latency)
-  # EXPECT-N: <metric_name> > <threshold>   (for higher-is-better metrics like scores)
+Format (each hypothesis needs all 3 lines, using the correct comment syntax for the target language — e.g. // for Rust/Go/C/Java, # for Python/R/Shell, -- for Lua/SQL):
+  // HYPOTHESIS-N: <one-line claim about what will improve and why>
+  // MECHANISM-N: <causal explanation - what signal/behavior drives the improvement>
+  // EXPECT-N: <metric_name> < <threshold>   (for lower-is-better metrics like latency)
+  // EXPECT-N: <metric_name> > <threshold>   (for higher-is-better metrics like scores)
 
 After evaluation, a RESULT-N line is automatically added showing the verdict:
-  # RESULT-N: CONFIRMED (actual=3850.0)
-  # RESULT-N: REFUTED (actual=5200.0)
+  // RESULT-N: CONFIRMED (actual=3850.0)
+  // RESULT-N: REFUTED (actual=5200.0)
+
+IMPORTANT: Use only ASCII characters in hypothesis comments — no Unicode quotes, em-dashes, or special characters.
 
 Rules:
   - N starts at 1 and increments
