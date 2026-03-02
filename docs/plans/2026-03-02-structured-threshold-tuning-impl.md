@@ -1327,6 +1327,159 @@ git commit -m "style: format tuning code with black"
 
 ---
 
+### Task 10: A/B experiment — tuning enabled vs disabled
+
+**Files:**
+- Create: `examples/function_minimization/config_tuning_control.yaml`
+- Create: `examples/function_minimization/config_tuning_treatment.yaml`
+- Modify: `scripts/run_experiment.py` (add task entry)
+
+**Goal:** Run a controlled A/B experiment to measure whether threshold tuning improves scores. Treatment enables `tuning.enabled: true` with `budget: 10`. Control has `tuning.enabled: false`. Everything else identical. 3 runs, 20 iterations each, sequential.
+
+**Step 1: Create control config**
+
+Create `examples/function_minimization/config_tuning_control.yaml`:
+
+```yaml
+# Function Minimization — CONTROL (tuning disabled)
+# A/B Experiment: threshold tuning OFF
+
+max_iterations: 20
+checkpoint_interval: 5
+
+hypothesis_driven: true
+
+# Tuning disabled (control condition)
+tuning:
+  enabled: false
+
+log_level: "INFO"
+
+llm:
+  primary_model: "GCP/gemini-2.5-flash"
+  primary_model_weight: 0.8
+  secondary_model: "gcp/gemini-3-flash-preview"
+  secondary_model_weight: 0.2
+  api_base: "https://ete-litellm.ai-models.vpc-int.res.ibm.com"
+  temperature: 0.7
+  top_p: null
+  max_tokens: 16000
+  timeout: 120
+
+prompt:
+  system_message: |
+    You are an expert programmer specializing in optimization algorithms.
+    Your task is to improve a function minimization algorithm to find the global minimum
+    of a complex function with many local minima.
+    The function is f(x, y) = sin(x) * cos(y) + sin(x*y) + (x^2 + y^2)/20.
+    Focus on improving the search_algorithm function to reliably find the global minimum,
+    escaping local minima that might trap simple algorithms.
+
+    Performance metrics (higher = better for these scores):
+      - value_score: closeness of found value to global minimum (1.0 = perfect)
+      - distance_score: closeness of (x,y) to global minimum location (1.0 = perfect)
+      - reliability_score: fraction of trials that succeed (1.0 = all succeed)
+      - combined_score: weighted combination of above (max ~1.5)
+
+  num_top_programs: 3
+  num_diverse_programs: 2
+
+database:
+  population_size: 50
+  archive_size: 20
+  num_islands: 3
+  elite_selection_ratio: 0.2
+  exploitation_ratio: 0.7
+  similarity_threshold: 0.99
+
+evaluator:
+  timeout: 60
+  cascade_thresholds: [1.3]
+  parallel_evaluations: 3
+
+diff_based_evolution: true
+max_code_length: 20000
+```
+
+**Step 2: Create treatment config**
+
+Create `examples/function_minimization/config_tuning_treatment.yaml` — identical except:
+
+```yaml
+# Function Minimization — TREATMENT (tuning enabled)
+# A/B Experiment: threshold tuning ON with budget=10
+
+# ... (identical to control above, except:)
+
+# Tuning enabled (treatment condition)
+tuning:
+  enabled: true
+  budget: 10
+  max_params: 3
+  budget_scale_per_param: 3
+```
+
+Everything else is byte-for-byte identical to the control config.
+
+**Step 3: Register the task in `run_experiment.py`**
+
+Add to `TASK_CONFIGS` dict in `scripts/run_experiment.py`:
+
+```python
+    "function_minimization_tuning": {
+        "initial_program": "examples/function_minimization/initial_program.py",
+        "evaluator": "examples/function_minimization/evaluator.py",
+        "treatment_config": "examples/function_minimization/config_tuning_treatment.yaml",
+        "control_config": "examples/function_minimization/config_tuning_control.yaml",
+    },
+```
+
+**Step 4: Commit**
+
+```bash
+git add examples/function_minimization/config_tuning_control.yaml \
+       examples/function_minimization/config_tuning_treatment.yaml \
+       scripts/run_experiment.py
+git commit -m "feat(tuning): add A/B experiment configs for threshold tuning"
+```
+
+**Step 5: Run the A/B experiment**
+
+```bash
+python scripts/run_experiment.py \
+    --task function_minimization_tuning \
+    --condition both \
+    --runs 3 \
+    --seed-start 200 \
+    --iterations 20 \
+    --output-dir experiments/tuning_ab_funcmin
+```
+
+This runs sequentially (no `--parallel` flag): 3 control runs + 3 treatment runs = 6 total runs at 20 iterations each. Each treatment iteration does 10 Optuna trials per program with `@TUNE` annotations (19 trials total for 3 params: `10 + 3*3`).
+
+**Step 6: Analyze results**
+
+```bash
+python scripts/analyze_experiment.py \
+    --data experiments/tuning_ab_funcmin/convergence.csv \
+    --output experiments/tuning_ab_funcmin
+```
+
+**Expected outputs:**
+- `convergence.csv` — per-run, per-checkpoint best scores
+- `run_results.json` — full metadata including tuning tracker stats
+- `convergence_curves.png` — treatment vs control median with IQR bands
+- `final_scores_boxplot.png` — box plots comparing final scores
+- `statistics.json` — Mann-Whitney U test, effect size
+
+**What to look for:**
+- Treatment (tuning ON) should show higher `combined_score` if tuning helps
+- `[TUNE-TRACK]` logs in treatment stderr show per-iteration tuning activity
+- `tuning_tracker.json` in each treatment run dir shows aggregate stats
+- Control runs should have zero tuning overhead (skipped when `enabled: false`)
+
+---
+
 ## Summary
 
 | Task | What | Files | Tests |
@@ -1340,8 +1493,9 @@ git commit -m "style: format tuning code with black"
 | 7 | Iteration flow integration | `iteration.py` | 1 + E2E |
 | 8 | Optional dependency | `pyproject.toml` | — |
 | 9 | Format + full test suite | all | all |
+| 10 | A/B experiment (3 runs × 20 iter, budget=10) | configs, `run_experiment.py` | E2E |
 
-Total: ~32 new unit tests across 9 tasks.
+Total: ~32 new unit tests across 10 tasks.
 
 ### What you'll see in experiment logs
 
