@@ -1,0 +1,15 @@
+
+Evolution complete!
+Best program metrics:
+  combined_score: -3879.6781
+  avg_e2e_ms: 2576.8159
+  avg_p95_ms: 5182.5403
+  cache_warmup_e2e_ms: 4210.6420
+  load_spikes_e2e_ms: 3357.5828
+  multiturn_e2e_ms: 162.2228
+  success_rate: 1.0000
+  num_successful: 3.0000
+  num_failed: 0.0000
+
+Latest checkpoint saved at: experiments/blis_ab_20260227_1344/treatment_run_43/checkpoints/checkpoint_30
+To resume, use: --checkpoint experiments/blis_ab_20260227_1344/treatment_run_43/checkpoints/checkpoint_30

@@ -42,6 +42,18 @@ TASK_CONFIGS = {
         "treatment_config": "examples/circle_packing/config_experiment_treatment.yaml",
         "control_config": "examples/circle_packing/config_experiment_control.yaml",
     },
+    "kissing_number": {
+        "initial_program": "examples/alphaevolve_math_problems/kissing_number/initial_program.py",
+        "evaluator": "examples/alphaevolve_math_problems/kissing_number/evaluator.py",
+        "treatment_config": "examples/alphaevolve_math_problems/kissing_number/config_experiment_treatment.yaml",
+        "control_config": "examples/alphaevolve_math_problems/kissing_number/config_experiment_control.yaml",
+    },
+    "heilbronn_triangle": {
+        "initial_program": "examples/alphaevolve_math_problems/heilbronn_triangle/initial_program.py",
+        "evaluator": "examples/alphaevolve_math_problems/heilbronn_triangle/evaluator.py",
+        "treatment_config": "examples/alphaevolve_math_problems/heilbronn_triangle/config_experiment_treatment.yaml",
+        "control_config": "examples/alphaevolve_math_problems/heilbronn_triangle/config_experiment_control.yaml",
+    },
 }
 
 
@@ -111,60 +123,75 @@ def collect_convergence(run_dir: Path) -> list:
 
 
 def check_hypothesis_stats(run_dir: Path) -> dict:
-    """Collect comprehensive hypothesis statistics for a run."""
+    """Collect hypothesis pipeline statistics for a run.
+
+    Reads from hypothesis_tracker.json (V3 inline RESULT pipeline)
+    with fallback to scanning checkpoints.
+    """
     stats = {
-        "ledger_exists": False,
-        "ledger_entries": 0,
-        "total_hypotheses_tested": 0,
-        "confirmed": 0,
-        "refuted": 0,
-        "inconclusive": 0,
+        "tracker_exists": False,
+        "total_iterations_tracked": 0,
+        "total_hypotheses_generated": 0,
+        "total_hypotheses_persisted": 0,
+        "total_results_injected": 0,
+        "total_iterations_with_parent_hypotheses": 0,
+        "avg_hypotheses_per_iteration": 0,
+        "persist_rate": 0,
+        "inject_rate": 0,
+        "inherit_rate": 0,
         "programs_with_hypotheses": 0,
         "total_evolved_programs": 0,
         "best_program_has_hypotheses": False,
     }
 
-    # Check ledger
-    ledger_path = run_dir / "hypothesis_ledger.json"
-    if ledger_path.exists():
-        stats["ledger_exists"] = True
+    # Primary: read hypothesis_tracker.json written by the pipeline
+    tracker_path = run_dir / "hypothesis_tracker.json"
+    # Also check inside db subdir (where process_parallel saves it)
+    if not tracker_path.exists():
+        tracker_path = run_dir / "db" / "hypothesis_tracker.json"
+    if not tracker_path.exists():
+        # Search for it
+        for p in run_dir.rglob("hypothesis_tracker.json"):
+            tracker_path = p
+            break
+
+    if tracker_path.exists():
+        stats["tracker_exists"] = True
         try:
-            with open(ledger_path) as f:
-                ledger = json.load(f)
-            entries = ledger.get("entries", [])
-            stats["ledger_entries"] = len(entries)
-            for e in entries:
-                for h in e.get("hypotheses", []):
-                    stats["total_hypotheses_tested"] += 1
-                    verdict = h.get("verdict", "")
-                    if verdict == "CONFIRMED":
-                        stats["confirmed"] += 1
-                    elif verdict == "REFUTED":
-                        stats["refuted"] += 1
-                    else:
-                        stats["inconclusive"] += 1
+            with open(tracker_path) as f:
+                tracker = json.load(f)
+            stats["total_iterations_tracked"] = tracker.get("total_iterations_tracked", 0)
+            stats["total_hypotheses_generated"] = tracker.get("total_hypotheses_generated", 0)
+            stats["total_hypotheses_persisted"] = tracker.get("total_hypotheses_persisted", 0)
+            stats["total_results_injected"] = tracker.get("total_results_injected", 0)
+            stats["total_iterations_with_parent_hypotheses"] = tracker.get("total_iterations_with_parent_hypotheses", 0)
+            stats["avg_hypotheses_per_iteration"] = tracker.get("avg_hypotheses_per_iteration", 0)
+            stats["persist_rate"] = tracker.get("persist_rate", 0)
+            stats["inject_rate"] = tracker.get("inject_rate", 0)
+            stats["inherit_rate"] = tracker.get("inherit_rate", 0)
         except (json.JSONDecodeError, KeyError):
             pass
 
-    # Check programs in checkpoints for hypothesis comments
-    for checkpoint_dir in sorted((run_dir / "checkpoints").glob("checkpoint_*")):
-        programs_dir = checkpoint_dir / "programs"
-        if not programs_dir.exists():
-            continue
-        for prog_file in programs_dir.glob("*.json"):
-            stats["total_evolved_programs"] += 1
-            try:
-                prog = json.loads(prog_file.read_text())
-                code = prog.get("code", "")
-                if "HYPOTHESIS-" in code and "EXPECT-" in code:
-                    stats["programs_with_hypotheses"] += 1
-            except (json.JSONDecodeError, KeyError):
-                pass
+    # Fallback: check programs in checkpoints for hypothesis comments
+    checkpoints_dir = run_dir / "checkpoints"
+    if checkpoints_dir.exists():
+        for checkpoint_dir in sorted(checkpoints_dir.glob("checkpoint_*")):
+            programs_dir = checkpoint_dir / "programs"
+            if not programs_dir.exists():
+                continue
+            for prog_file in programs_dir.glob("*.json"):
+                stats["total_evolved_programs"] += 1
+                try:
+                    prog = json.loads(prog_file.read_text())
+                    code = prog.get("code", "")
+                    if "HYPOTHESIS-" in code and "EXPECT-" in code:
+                        stats["programs_with_hypotheses"] += 1
+                except (json.JSONDecodeError, KeyError):
+                    pass
 
     # Check if best program has hypotheses
     best_prog_path = run_dir / "best" / "best_program.py"
     if not best_prog_path.exists():
-        # Try other extensions
         for ext in [".go", ".r", ".rs"]:
             alt = run_dir / "best" / f"best_program{ext}"
             if alt.exists():
@@ -283,10 +310,18 @@ def main():
                 total = h.get("total_evolved_programs", 0)
                 pct = f"{100*progs/total:.0f}%" if total > 0 else "N/A"
                 print(f"    seed={r['seed']}: {cp} checkpoints")
-                print(f"      Hypothesis compliance: {progs}/{total} programs ({pct})")
-                print(f"      Ledger: {h.get('ledger_entries', 0)} entries | "
-                      f"confirmed={h.get('confirmed', 0)} refuted={h.get('refuted', 0)} "
-                      f"inconclusive={h.get('inconclusive', 0)}")
+                if h.get("tracker_exists"):
+                    print(f"      Pipeline tracking ({h.get('total_iterations_tracked', 0)} iters):")
+                    print(f"        Generated: {h.get('total_hypotheses_generated', 0)} "
+                          f"(avg {h.get('avg_hypotheses_per_iteration', 0)}/iter)")
+                    print(f"        Persisted: {h.get('total_hypotheses_persisted', 0)} "
+                          f"(rate={h.get('persist_rate', 0):.0%})")
+                    print(f"        Results injected: {h.get('total_results_injected', 0)} "
+                          f"(rate={h.get('inject_rate', 0):.0%})")
+                    print(f"        Inherited (parent had hypos): "
+                          f"{h.get('total_iterations_with_parent_hypotheses', 0)} "
+                          f"(rate={h.get('inherit_rate', 0):.0%})")
+                print(f"      Programs w/ hypotheses: {progs}/{total} ({pct})")
                 print(f"      Best program has hypotheses: {h.get('best_program_has_hypotheses', False)}")
             else:
                 print(f"    seed={r['seed']}: FAILED")

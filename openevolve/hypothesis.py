@@ -16,6 +16,7 @@ The comment format works with any language's comment syntax:
 import json
 import logging
 import re
+from dataclasses import dataclass, field, asdict
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
@@ -24,6 +25,117 @@ logger = logging.getLogger(__name__)
 
 # Regex that matches any single-line comment prefix: //, #, or --
 _COMMENT_PREFIX = r"(?://|#|--)\s*"
+
+
+def count_hypothesis_comments(text: str) -> int:
+    """Count the number of HYPOTHESIS-N comment lines in text."""
+    return len(re.findall(rf"(?://|#|--)\s*HYPOTHESIS-\d+:", text))
+
+
+def count_expect_comments(text: str) -> int:
+    """Count the number of EXPECT-N comment lines in text."""
+    return len(re.findall(rf"(?://|#|--)\s*EXPECT-\d+:", text))
+
+
+def count_result_comments(text: str) -> int:
+    """Count the number of RESULT-N comment lines in text."""
+    return len(re.findall(rf"(?://|#|--)\s*RESULT-\d+:", text))
+
+
+@dataclass
+class IterationHypothesisStats:
+    """Per-iteration hypothesis pipeline statistics."""
+    iteration: int = 0
+    # LLM generated hypotheses in its response
+    hypotheses_in_llm_response: int = 0
+    expects_in_llm_response: int = 0
+    # Hypotheses present in final child code (after rescue)
+    hypotheses_in_child_code: int = 0
+    expects_in_child_code: int = 0
+    # RESULT comments injected after evaluation
+    results_injected: int = 0
+    # Hypotheses visible in the parent program shown to LLM
+    hypotheses_in_parent: int = 0
+    results_in_parent: int = 0
+    # Hypotheses visible in top programs shown to LLM
+    top_programs_with_hypotheses: int = 0
+    top_programs_total: int = 0
+
+
+@dataclass
+class HypothesisTracker:
+    """Aggregates hypothesis pipeline statistics across iterations."""
+    iterations: list = field(default_factory=list)
+    # Running totals
+    total_iterations: int = 0
+    total_hypotheses_generated: int = 0
+    total_hypotheses_persisted: int = 0
+    total_results_injected: int = 0
+    total_iterations_with_parent_hypotheses: int = 0
+
+    def record(self, stats: IterationHypothesisStats) -> None:
+        """Record stats for one iteration and update totals."""
+        self.iterations.append(asdict(stats))
+        self.total_iterations += 1
+        self.total_hypotheses_generated += stats.hypotheses_in_llm_response
+        self.total_hypotheses_persisted += stats.hypotheses_in_child_code
+        self.total_results_injected += stats.results_injected
+        if stats.hypotheses_in_parent > 0:
+            self.total_iterations_with_parent_hypotheses += 1
+
+        # Log per-iteration summary
+        gen_ok = "OK" if stats.hypotheses_in_llm_response > 0 else "MISS"
+        persist_ok = "OK" if stats.hypotheses_in_child_code > 0 else "MISS"
+        inject_ok = "OK" if stats.results_injected > 0 else "MISS"
+        inherit_ok = "OK" if stats.hypotheses_in_parent > 0 else "N/A"
+
+        logger.info(
+            f"[HYPO-TRACK] iter={stats.iteration} | "
+            f"generated={stats.hypotheses_in_llm_response}({gen_ok}) "
+            f"persisted={stats.hypotheses_in_child_code}({persist_ok}) "
+            f"results_injected={stats.results_injected}({inject_ok}) "
+            f"parent_hypos={stats.hypotheses_in_parent}({inherit_ok}) "
+            f"top_w_hypos={stats.top_programs_with_hypotheses}/{stats.top_programs_total}"
+        )
+
+    def summary(self) -> dict:
+        """Return a summary dict for persistence."""
+        gen_rate = (
+            self.total_hypotheses_generated / self.total_iterations
+            if self.total_iterations > 0 else 0
+        )
+        persist_rate = (
+            self.total_hypotheses_persisted / self.total_hypotheses_generated
+            if self.total_hypotheses_generated > 0 else 0
+        )
+        inject_rate = (
+            self.total_results_injected / self.total_hypotheses_persisted
+            if self.total_hypotheses_persisted > 0 else 0
+        )
+        inherit_rate = (
+            self.total_iterations_with_parent_hypotheses / self.total_iterations
+            if self.total_iterations > 0 else 0
+        )
+        return {
+            "total_iterations_tracked": self.total_iterations,
+            "total_hypotheses_generated": self.total_hypotheses_generated,
+            "total_hypotheses_persisted": self.total_hypotheses_persisted,
+            "total_results_injected": self.total_results_injected,
+            "total_iterations_with_parent_hypotheses": self.total_iterations_with_parent_hypotheses,
+            "avg_hypotheses_per_iteration": round(gen_rate, 2),
+            "persist_rate": round(persist_rate, 3),
+            "inject_rate": round(inject_rate, 3),
+            "inherit_rate": round(inherit_rate, 3),
+            "per_iteration": self.iterations,
+        }
+
+    def save(self, path: Path) -> None:
+        """Save tracker state to JSON file."""
+        path = Path(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with open(path, "w") as f:
+            json.dump(self.summary(), f, indent=2)
+        logger.info(f"[HYPO-TRACK] Saved hypothesis tracker to {path}")
 
 
 def extract_hypothesis_comment_block(text: str) -> list[str]:

@@ -43,7 +43,7 @@ Rules:
   - Look at RESULT lines in the parent program and top programs to see what worked (CONFIRMED) and what failed (REFUTED)
   - Build on CONFIRMED strategies from top-performing programs
   - Avoid or differentiate from REFUTED strategies
-  - If no RESULT lines exist yet (first iteration), set thresholds 5-10% beyond the current metrics
+  - If no RESULT lines exist yet (first iteration), set thresholds that represent a 5-10% improvement over the current metrics (e.g. 5-10% lower for latency, 5-10% higher for scores)
   - Do NOT write RESULT lines yourself — they are added automatically after evaluation
 """
 

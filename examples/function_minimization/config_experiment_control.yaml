@@ -1,11 +1,13 @@
 # Function Minimization - CONTROL (vanilla OpenEvolve)
 # A/B Experiment: Control condition with hypothesis_driven=false
 
-max_iterations: 20
+max_iterations: 30
 checkpoint_interval: 5
 
 # Hypothesis-driven evolution disabled (control condition)
 hypothesis_driven: false
+
+log_level: "INFO"
 
 # LLM configuration (identical to treatment)
 llm:
@@ -15,10 +17,11 @@ llm:
   secondary_model_weight: 0.2
   api_base: "https://ete-litellm.ai-models.vpc-int.res.ibm.com"
   temperature: 0.7
+  top_p: null
   max_tokens: 16000
   timeout: 120
 
-# Prompt configuration (same base prompt as treatment, without hypothesis instructions)
+# Prompt configuration (identical to treatment — domain prompt only)
 prompt:
   system_message: |
     You are an expert programmer specializing in optimization algorithms.
@@ -33,6 +36,9 @@ prompt:
       - distance_score: closeness of (x,y) to global minimum location (1.0 = perfect)
       - reliability_score: fraction of trials that succeed (1.0 = all succeed)
       - combined_score: weighted combination of above (max ~1.5)
+
+  num_top_programs: 3
+  num_diverse_programs: 2
 
 # Database configuration
 database:

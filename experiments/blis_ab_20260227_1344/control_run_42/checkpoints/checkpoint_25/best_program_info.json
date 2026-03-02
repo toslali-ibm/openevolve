@@ -1,0 +1,20 @@
+{
+  "id": "8902547c-ff35-47fc-a3e3-f2dde44e16b1",
+  "generation": 3,
+  "iteration": 21,
+  "current_iteration": 25,
+  "metrics": {
+    "combined_score": -3870.7890643888886,
+    "avg_e2e_ms": 2600.346462111111,
+    "avg_p95_ms": 5141.231666666666,
+    "cache_warmup_e2e_ms": 4275.9758204,
+    "load_spikes_e2e_ms": 3363.3812346,
+    "multiturn_e2e_ms": 161.68233133333334,
+    "success_rate": 1.0,
+    "num_successful": 3,
+    "num_failed": 0
+  },
+  "language": "python",
+  "timestamp": 1772221894.7945752,
+  "saved_at": 1772222073.073167
+}

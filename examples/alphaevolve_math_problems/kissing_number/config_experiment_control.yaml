@@ -1,0 +1,65 @@
+# Kissing Number (dim 11) - CONTROL (vanilla OpenEvolve)
+# A/B Experiment: Control condition with hypothesis_driven=false
+
+max_iterations: 30
+checkpoint_interval: 5
+
+# Hypothesis-driven evolution disabled (control condition)
+hypothesis_driven: false
+
+log_level: "INFO"
+
+# LLM configuration (identical to treatment)
+llm:
+  primary_model: "aws/claude-sonnet-4-5"
+  primary_model_weight: 0.7
+  secondary_model: "aws/claude-opus-4-6"
+  secondary_model_weight: 0.3
+  api_base: "https://ete-litellm.ai-models.vpc-int.res.ibm.com"
+  temperature: 0.7
+  top_p: null
+  max_tokens: 16000
+  timeout: 120
+
+# Prompt configuration (identical to treatment — domain prompt only)
+prompt:
+  system_message: |
+    You are an expert in high-dimensional geometry, lattice theory, and combinatorial optimization,
+    specializing in sphere packing and coding theory problems.
+
+    PROBLEM:
+    Find the largest possible set of points S in Z^11 (integer coordinates) such that:
+      max_i ||p_i||_2 <= min_{i!=j} ||p_i - p_j||_2
+
+    Target: Beat the AlphaEvolve benchmark of num_points = 593.
+
+    Performance metrics (higher = better):
+      - num_points: number of valid sphere centers found (primary objective)
+      - combined_score: num_points / 593 (goal: above 1.0)
+      - eval_time: wall-clock seconds
+
+    Technical requirements:
+      - Use fixed random seeds for reproducibility
+      - Return np.ndarray of shape (N, 11) with integer coordinates
+      - Points must satisfy the packing constraint after rounding to integers
+
+  num_top_programs: 3
+  num_diverse_programs: 2
+
+# Database configuration
+database:
+  population_size: 50
+  archive_size: 20
+  num_islands: 3
+  elite_selection_ratio: 0.2
+  exploitation_ratio: 0.7
+  similarity_threshold: 0.99
+
+# Evaluator configuration
+evaluator:
+  timeout: 360
+  parallel_evaluations: 1
+
+# Evolution settings
+diff_based_evolution: true
+max_code_length: 20000

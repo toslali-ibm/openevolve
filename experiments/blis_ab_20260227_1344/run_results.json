@@ -1,0 +1,186 @@
+[
+  {
+    "seed": 42,
+    "condition": "treatment",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": -3862.1469729555547
+      },
+      {
+        "iteration": 15,
+        "best_combined_score": -3862.1469729555547
+      },
+      {
+        "iteration": 20,
+        "best_combined_score": -3862.1469729555547
+      },
+      {
+        "iteration": 25,
+        "best_combined_score": -3862.1469729555547
+      },
+      {
+        "iteration": 30,
+        "best_combined_score": -3856.870760955555
+      },
+      {
+        "iteration": 5,
+        "best_combined_score": -3866.975604777777
+      }
+    ],
+    "hypothesis": {
+      "tracker_exists": true,
+      "total_iterations_tracked": 29,
+      "total_hypotheses_generated": 131,
+      "total_hypotheses_persisted": 79,
+      "total_results_injected": 64,
+      "total_iterations_with_parent_hypotheses": 23,
+      "avg_hypotheses_per_iteration": 4.52,
+      "persist_rate": 0.603,
+      "inject_rate": 0.81,
+      "inherit_rate": 0.793,
+      "programs_with_hypotheses": 102,
+      "total_evolved_programs": 108,
+      "best_program_has_hypotheses": true
+    }
+  },
+  {
+    "seed": 43,
+    "condition": "treatment",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": -3881.3760428111104
+      },
+      {
+        "iteration": 15,
+        "best_combined_score": -3881.3760428111104
+      },
+      {
+        "iteration": 20,
+        "best_combined_score": -3879.6781011111107
+      },
+      {
+        "iteration": 25,
+        "best_combined_score": -3879.6781011111107
+      },
+      {
+        "iteration": 30,
+        "best_combined_score": -3879.6781011111107
+      },
+      {
+        "iteration": 5,
+        "best_combined_score": -3926.1174112888884
+      }
+    ],
+    "hypothesis": {
+      "tracker_exists": true,
+      "total_iterations_tracked": 30,
+      "total_hypotheses_generated": 130,
+      "total_hypotheses_persisted": 70,
+      "total_results_injected": 45,
+      "total_iterations_with_parent_hypotheses": 24,
+      "avg_hypotheses_per_iteration": 4.33,
+      "persist_rate": 0.538,
+      "inject_rate": 0.643,
+      "inherit_rate": 0.8,
+      "programs_with_hypotheses": 105,
+      "total_evolved_programs": 111,
+      "best_program_has_hypotheses": true
+    }
+  },
+  {
+    "seed": 42,
+    "condition": "control",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": -3916.5781306888885
+      },
+      {
+        "iteration": 15,
+        "best_combined_score": -3916.5781306888885
+      },
+      {
+        "iteration": 20,
+        "best_combined_score": -3874.5326177888883
+      },
+      {
+        "iteration": 25,
+        "best_combined_score": -3870.7890643888886
+      },
+      {
+        "iteration": 30,
+        "best_combined_score": -3869.488250377777
+      },
+      {
+        "iteration": 5,
+        "best_combined_score": -3959.553409144444
+      }
+    ],
+    "hypothesis": {
+      "tracker_exists": false,
+      "total_iterations_tracked": 0,
+      "total_hypotheses_generated": 0,
+      "total_hypotheses_persisted": 0,
+      "total_results_injected": 0,
+      "total_iterations_with_parent_hypotheses": 0,
+      "avg_hypotheses_per_iteration": 0,
+      "persist_rate": 0,
+      "inject_rate": 0,
+      "inherit_rate": 0,
+      "programs_with_hypotheses": 0,
+      "total_evolved_programs": 111,
+      "best_program_has_hypotheses": false
+    }
+  },
+  {
+    "seed": 43,
+    "condition": "control",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": -4286.4230003777775
+      },
+      {
+        "iteration": 15,
+        "best_combined_score": -4277.161810944443
+      },
+      {
+        "iteration": 20,
+        "best_combined_score": -3894.0211332111103
+      },
+      {
+        "iteration": 25,
+        "best_combined_score": -3894.0211332111103
+      },
+      {
+        "iteration": 30,
+        "best_combined_score": -3885.8052504555544
+      },
+      {
+        "iteration": 5,
+        "best_combined_score": -4286.4230003777775
+      }
+    ],
+    "hypothesis": {
+      "tracker_exists": false,
+      "total_iterations_tracked": 0,
+      "total_hypotheses_generated": 0,
+      "total_hypotheses_persisted": 0,
+      "total_results_injected": 0,
+      "total_iterations_with_parent_hypotheses": 0,
+      "avg_hypotheses_per_iteration": 0,
+      "persist_rate": 0,
+      "inject_rate": 0,
+      "inherit_rate": 0,
+      "programs_with_hypotheses": 0,
+      "total_evolved_programs": 111,
+      "best_program_has_hypotheses": false
+    }
+  }
+]

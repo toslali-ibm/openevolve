@@ -1,24 +1,28 @@
 # Circle Packing - TREATMENT (hypothesis-driven)
 # A/B Experiment: Treatment condition with hypothesis_driven=true
+# V3: Framework auto-appends HYPOTHESIS_INSTRUCTIONS_TEMPLATE to system prompt
 
-max_iterations: 20
+max_iterations: 30
 checkpoint_interval: 5
 
 # Hypothesis-driven evolution (treatment condition)
 hypothesis_driven: true
 
-# LLM configuration
+log_level: "INFO"
+
+# LLM configuration (identical to control)
 llm:
-  primary_model: "GCP/gemini-2.5-flash"
-  primary_model_weight: 0.8
-  secondary_model: "gcp/gemini-3-flash-preview"
-  secondary_model_weight: 0.2
+  primary_model: "aws/claude-sonnet-4-5"
+  primary_model_weight: 0.7
+  secondary_model: "aws/claude-opus-4-6"
+  secondary_model_weight: 0.3
   api_base: "https://ete-litellm.ai-models.vpc-int.res.ibm.com"
   temperature: 0.7
+  top_p: null
   max_tokens: 16000
   timeout: 120
 
-# Prompt configuration
+# Prompt configuration (identical to control — no hypothesis instructions here)
 prompt:
   system_message: |
     You are an expert mathematician specializing in circle packing problems and computational geometry.
@@ -39,44 +43,8 @@ prompt:
       - validity: 1.0 if packing is valid (no overlaps, inside square), 0.0 otherwise
       - combined_score: target_ratio * validity
 
-    HYPOTHESIS REQUIREMENTS:
-    You MUST include at least 1 hypothesis (max 3) as Python comments at the TOP of the
-    EVOLVE-BLOCK, BEFORE any code. This is MANDATORY — code without hypotheses will be penalized.
-
-    Format (each hypothesis needs all 3 lines):
-      # HYPOTHESIS-N: <one-line claim about what will improve and why>
-      # MECHANISM-N: <causal explanation - what signal/behavior drives the improvement>
-      # EXPECT-N: <metric_name> > <threshold>   (use > because higher scores are better)
-
-    Available metrics for EXPECT:
-      - sum_radii, target_ratio, combined_score
-
-    Hypothesis rules:
-      - N starts at 1 and increments
-      - metric_name must be one of: sum_radii, target_ratio, combined_score
-      - Use > operator (these scores are higher-is-better)
-      - threshold is a number; the hypothesis is CONFIRMED if actual > threshold
-      - Be specific about WHY your change helps
-      - If a strategy was REFUTED in the knowledge base, explain why your new approach differs
-      - Build on CONFIRMED strategies; combine proven techniques
-
-    EXAMPLE of correct format:
-    ```python
-    # EVOLVE-BLOCK-START
-    # HYPOTHESIS-1: Hexagonal close-packing in center improves sum_radii
-    # MECHANISM-1: Hexagonal arrangement maximizes local packing density,
-    #   allowing circles of similar size to pack with minimal wasted space
-    # EXPECT-1: sum_radii > 1.5
-    # HYPOTHESIS-2: Edge-aware placement avoids wasted boundary space
-    # MECHANISM-2: Placing smaller circles along edges fills gaps that large
-    #   circles cannot occupy, increasing total coverage
-    # EXPECT-2: target_ratio > 0.6
-    import numpy as np
-    def construct_packing():
-        # ... improved packing code ...
-    ```
-
-    IMPORTANT: Every response MUST start with hypothesis comments before any code.
+  num_top_programs: 3
+  num_diverse_programs: 2
 
 # Database configuration
 database:

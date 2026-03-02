@@ -33,6 +33,7 @@ class SerializableResult:
     artifacts: Optional[Dict[str, Any]] = None
     iteration: int = 0
     error: Optional[str] = None
+    hypothesis_stats: Optional[Dict[str, Any]] = None
 
 
 def _worker_init(config_dict: dict, evaluation_file: str, parent_env: dict = None) -> None:
@@ -194,6 +195,25 @@ def _run_iteration_worker(
 
         iteration_start = time.time()
 
+        # Track hypothesis pipeline stats
+        from openevolve.hypothesis import (
+            count_hypothesis_comments,
+            count_expect_comments,
+            count_result_comments,
+            IterationHypothesisStats,
+        )
+        from dataclasses import asdict as _asdict
+
+        hypo_stats = IterationHypothesisStats(iteration=iteration)
+
+        if _worker_config.hypothesis_driven:
+            hypo_stats.hypotheses_in_parent = count_hypothesis_comments(parent.code)
+            hypo_stats.results_in_parent = count_result_comments(parent.code)
+            hypo_stats.top_programs_total = len(programs_for_prompt)
+            hypo_stats.top_programs_with_hypotheses = sum(
+                1 for p in programs_for_prompt if count_hypothesis_comments(p.code) > 0
+            )
+
         # Generate code modification (sync wrapper for async)
         try:
             llm_response = asyncio.run(
@@ -209,6 +229,11 @@ def _run_iteration_worker(
         # Check for None response
         if llm_response is None:
             return SerializableResult(error="LLM returned None response", iteration=iteration)
+
+        # Track: hypotheses in raw LLM response
+        if _worker_config.hypothesis_driven:
+            hypo_stats.hypotheses_in_llm_response = count_hypothesis_comments(llm_response)
+            hypo_stats.expects_in_llm_response = count_expect_comments(llm_response)
 
         # Parse response based on evolution mode
         if _worker_config.diff_based_evolution:
@@ -245,6 +270,11 @@ def _run_iteration_worker(
             child_code = new_code
             changes_summary = "Full rewrite"
 
+        # Track: hypotheses persisted in child code (after rescue)
+        if _worker_config.hypothesis_driven:
+            hypo_stats.hypotheses_in_child_code = count_hypothesis_comments(child_code)
+            hypo_stats.expects_in_child_code = count_expect_comments(child_code)
+
         # Check code length
         if len(child_code) > _worker_config.max_code_length:
             return SerializableResult(
@@ -262,7 +292,10 @@ def _run_iteration_worker(
         if _worker_config.hypothesis_driven and child_metrics:
             from openevolve.hypothesis import inject_result_comments
 
+            results_before = count_result_comments(child_code)
             child_code = inject_result_comments(child_code, child_metrics)
+            results_after = count_result_comments(child_code)
+            hypo_stats.results_injected = results_after - results_before
 
         # Get artifacts
         artifacts = _worker_evaluator.get_pending_artifacts(child_id)
@@ -293,6 +326,7 @@ def _run_iteration_worker(
             llm_response=llm_response,
             artifacts=artifacts,
             iteration=iteration,
+            hypothesis_stats=_asdict(hypo_stats),
         )
 
     except Exception as e:
@@ -324,6 +358,10 @@ class ProcessParallelController:
         # Number of worker processes
         self.num_workers = config.evaluator.parallel_evaluations
         self.num_islands = config.database.num_islands
+
+        # Hypothesis pipeline tracker (treatment runs only, cheap no-op for control)
+        from openevolve.hypothesis import HypothesisTracker
+        self.hypothesis_tracker = HypothesisTracker() if config.hypothesis_driven else None
 
         logger.info(f"Initialized process parallel controller with {self.num_workers} workers")
 
@@ -512,6 +550,12 @@ class ProcessParallelController:
                 timeout_seconds = self.config.evaluator.timeout + 30
                 result = future.result(timeout=timeout_seconds)
 
+                # Record hypothesis tracking stats
+                if self.hypothesis_tracker and result.hypothesis_stats:
+                    from openevolve.hypothesis import IterationHypothesisStats
+                    stats = IterationHypothesisStats(**result.hypothesis_stats)
+                    self.hypothesis_tracker.record(stats)
+
                 if result.error:
                     logger.warning(f"Iteration {completed_iteration} error: {result.error}")
                 elif result.child_program_dict:
@@ -632,6 +676,10 @@ class ProcessParallelController:
                         self.database.log_island_status()
                         if checkpoint_callback:
                             checkpoint_callback(completed_iteration)
+                        # Save hypothesis tracker alongside checkpoint
+                        if self.hypothesis_tracker and self.database.config.db_path:
+                            tracker_path = Path(self.database.config.db_path).parent / "hypothesis_tracker.json"
+                            self.hypothesis_tracker.save(tracker_path)
 
                     # Check target score
                     if target_score is not None and child_program.metrics:
@@ -734,6 +782,11 @@ class ProcessParallelController:
             logger.info("✅ Evolution completed - Shutdown requested")
         else:
             logger.info("✅ Evolution completed - Maximum iterations reached")
+
+        # Save final hypothesis tracker
+        if self.hypothesis_tracker and self.database.config.db_path:
+            tracker_path = Path(self.database.config.db_path).parent / "hypothesis_tracker.json"
+            self.hypothesis_tracker.save(tracker_path)
 
         return self.database.get_best_program()
 

@@ -1,0 +1,94 @@
+[
+  {
+    "seed": 102,
+    "condition": "treatment",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": -3868.9183472999994
+      },
+      {
+        "iteration": 15,
+        "best_combined_score": -3862.572226055555
+      },
+      {
+        "iteration": 20,
+        "best_combined_score": -3861.149419655554
+      },
+      {
+        "iteration": 25,
+        "best_combined_score": -3861.149419655554
+      },
+      {
+        "iteration": 30,
+        "best_combined_score": -3861.149419655554
+      },
+      {
+        "iteration": 5,
+        "best_combined_score": -3958.2523553999995
+      }
+    ],
+    "hypothesis": {
+      "tracker_exists": true,
+      "total_iterations_tracked": 29,
+      "total_hypotheses_generated": 122,
+      "total_hypotheses_persisted": 67,
+      "total_results_injected": 57,
+      "total_iterations_with_parent_hypotheses": 23,
+      "avg_hypotheses_per_iteration": 4.21,
+      "persist_rate": 0.549,
+      "inject_rate": 0.851,
+      "inherit_rate": 0.793,
+      "programs_with_hypotheses": 101,
+      "total_evolved_programs": 107,
+      "best_program_has_hypotheses": true
+    }
+  },
+  {
+    "seed": 102,
+    "condition": "control",
+    "status": "ok",
+    "convergence": [
+      {
+        "iteration": 10,
+        "best_combined_score": -3856.967841622222
+      },
+      {
+        "iteration": 15,
+        "best_combined_score": -3856.967841622222
+      },
+      {
+        "iteration": 20,
+        "best_combined_score": -3856.967841622222
+      },
+      {
+        "iteration": 25,
+        "best_combined_score": -3856.967841622222
+      },
+      {
+        "iteration": 30,
+        "best_combined_score": -3856.967841622222
+      },
+      {
+        "iteration": 5,
+        "best_combined_score": -3864.475909388889
+      }
+    ],
+    "hypothesis": {
+      "tracker_exists": false,
+      "total_iterations_tracked": 0,
+      "total_hypotheses_generated": 0,
+      "total_hypotheses_persisted": 0,
+      "total_results_injected": 0,
+      "total_iterations_with_parent_hypotheses": 0,
+      "avg_hypotheses_per_iteration": 0,
+      "persist_rate": 0,
+      "inject_rate": 0,
+      "inherit_rate": 0,
+      "programs_with_hypotheses": 0,
+      "total_evolved_programs": 111,
+      "best_program_has_hypotheses": false
+    }
+  }
+]

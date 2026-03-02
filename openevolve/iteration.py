@@ -10,7 +10,14 @@ from openevolve.config import Config
 from openevolve.evaluator import Evaluator
 from openevolve.llm.ensemble import LLMEnsemble
 from openevolve.prompt.sampler import PromptSampler
-from openevolve.hypothesis import rescue_hypotheses, inject_result_comments
+from openevolve.hypothesis import (
+    rescue_hypotheses,
+    inject_result_comments,
+    count_hypothesis_comments,
+    count_expect_comments,
+    count_result_comments,
+    IterationHypothesisStats,
+)
 from openevolve.utils.code_utils import (
     apply_diff,
     extract_diffs,
@@ -30,6 +37,7 @@ class Result:
     prompt: str = None
     llm_response: str = None
     artifacts: dict = None
+    hypothesis_stats: IterationHypothesisStats = None
 
 
 async def run_iteration_with_shared_db(
@@ -78,11 +86,29 @@ async def run_iteration_with_shared_db(
         result = Result(parent=parent)
         iteration_start = time.time()
 
+        # Track hypothesis pipeline stats (treatment only, but cheap for control too)
+        hypo_stats = IterationHypothesisStats(iteration=iteration)
+
+        if config.hypothesis_driven:
+            # Track: hypotheses visible in parent program
+            hypo_stats.hypotheses_in_parent = count_hypothesis_comments(parent.code)
+            hypo_stats.results_in_parent = count_result_comments(parent.code)
+            # Track: how many top programs have hypotheses
+            hypo_stats.top_programs_total = len(island_top_programs)
+            hypo_stats.top_programs_with_hypotheses = sum(
+                1 for p in island_top_programs if count_hypothesis_comments(p.code) > 0
+            )
+
         # Generate code modification
         llm_response = await llm_ensemble.generate_with_context(
             system_message=prompt["system"],
             messages=[{"role": "user", "content": prompt["user"]}],
         )
+
+        # Track: hypotheses in raw LLM response
+        if config.hypothesis_driven and llm_response:
+            hypo_stats.hypotheses_in_llm_response = count_hypothesis_comments(llm_response)
+            hypo_stats.expects_in_llm_response = count_expect_comments(llm_response)
 
         # Parse the response
         if config.diff_based_evolution:
@@ -113,6 +139,11 @@ async def run_iteration_with_shared_db(
             child_code = new_code
             changes_summary = "Full rewrite"
 
+        # Track: hypotheses persisted in child code (after rescue)
+        if config.hypothesis_driven:
+            hypo_stats.hypotheses_in_child_code = count_hypothesis_comments(child_code)
+            hypo_stats.expects_in_child_code = count_expect_comments(child_code)
+
         # Check code length
         if len(child_code) > config.max_code_length:
             logger.warning(
@@ -127,7 +158,10 @@ async def run_iteration_with_shared_db(
 
         # Stamp hypothesis verdicts into child code
         if config.hypothesis_driven and result.child_metrics:
+            results_before = count_result_comments(child_code)
             child_code = inject_result_comments(child_code, result.child_metrics)
+            results_after = count_result_comments(child_code)
+            hypo_stats.results_injected = results_after - results_before
 
         # Handle artifacts if they exist
         artifacts = evaluator.get_pending_artifacts(child_id)
@@ -164,6 +198,7 @@ async def run_iteration_with_shared_db(
         result.prompt = prompt
         result.llm_response = llm_response
         result.artifacts = artifacts
+        result.hypothesis_stats = hypo_stats
         result.iteration_time = time.time() - iteration_start
         result.iteration = iteration
 

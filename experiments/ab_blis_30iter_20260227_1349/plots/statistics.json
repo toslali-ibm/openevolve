@@ -1,0 +1,12 @@
+{
+  "comparison_iteration": 30,
+  "treatment_median": -3876.2291007111103,
+  "treatment_iqr": 26.92507964444485,
+  "control_median": -4053.222917188889,
+  "control_iqr": 340.8672366666665,
+  "n_treatment": 3,
+  "n_control": 3,
+  "mann_whitney_u": 6.0,
+  "p_value": 0.35,
+  "rank_biserial_r": 0.33333333333333326
+}

@@ -1,24 +1,27 @@
 # Circle Packing - CONTROL (vanilla OpenEvolve)
 # A/B Experiment: Control condition with hypothesis_driven=false
 
-max_iterations: 20
+max_iterations: 30
 checkpoint_interval: 5
 
 # Hypothesis-driven evolution disabled (control condition)
 hypothesis_driven: false
 
+log_level: "INFO"
+
 # LLM configuration (identical to treatment)
 llm:
-  primary_model: "GCP/gemini-2.5-flash"
-  primary_model_weight: 0.8
-  secondary_model: "gcp/gemini-3-flash-preview"
-  secondary_model_weight: 0.2
+  primary_model: "aws/claude-sonnet-4-5"
+  primary_model_weight: 0.7
+  secondary_model: "aws/claude-opus-4-6"
+  secondary_model_weight: 0.3
   api_base: "https://ete-litellm.ai-models.vpc-int.res.ibm.com"
   temperature: 0.7
+  top_p: null
   max_tokens: 16000
   timeout: 120
 
-# Prompt configuration (same base prompt, without hypothesis instructions)
+# Prompt configuration (identical to treatment — domain prompt only)
 prompt:
   system_message: |
     You are an expert mathematician specializing in circle packing problems and computational geometry.
@@ -38,6 +41,9 @@ prompt:
       - target_ratio: ratio to AlphaEvolve target of 2.635 (1.0 = matches paper)
       - validity: 1.0 if packing is valid (no overlaps, inside square), 0.0 otherwise
       - combined_score: target_ratio * validity
+
+  num_top_programs: 3
+  num_diverse_programs: 2
 
 # Database configuration
 database:

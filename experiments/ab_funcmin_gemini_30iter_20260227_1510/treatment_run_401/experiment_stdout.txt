@@ -1,0 +1,11 @@
+
+Evolution complete!
+Best program metrics:
+  runs_successfully: 1.0000
+  value_score: 0.9992
+  distance_score: 0.9853
+  combined_score: 1.4928
+  reliability_score: 1.0000
+
+Latest checkpoint saved at: experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_401/checkpoints/checkpoint_30
+To resume, use: --checkpoint experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_401/checkpoints/checkpoint_30

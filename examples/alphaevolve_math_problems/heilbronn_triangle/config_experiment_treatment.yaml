@@ -1,0 +1,67 @@
+# Heilbronn Triangle (11 points) - TREATMENT (hypothesis-driven)
+# A/B Experiment: Treatment condition with hypothesis_driven=true
+# V3: Framework auto-appends HYPOTHESIS_INSTRUCTIONS_TEMPLATE to system prompt
+
+max_iterations: 30
+checkpoint_interval: 5
+
+# Hypothesis-driven evolution (treatment condition)
+hypothesis_driven: true
+
+log_level: "INFO"
+
+# LLM configuration (identical to control)
+llm:
+  primary_model: "aws/claude-sonnet-4-5"
+  primary_model_weight: 0.7
+  secondary_model: "aws/claude-opus-4-6"
+  secondary_model_weight: 0.3
+  api_base: "https://ete-litellm.ai-models.vpc-int.res.ibm.com"
+  temperature: 0.7
+  top_p: null
+  max_tokens: 16000
+  timeout: 120
+
+# Prompt configuration (identical to control — no hypothesis instructions here)
+prompt:
+  system_message: |
+    You are an expert computational geometer and optimization specialist with deep expertise
+    in the Heilbronn triangle problem.
+
+    PROBLEM:
+    Place exactly 11 points inside an equilateral triangle with vertices at
+    (0,0), (1,0), (0.5, sqrt(3)/2) to maximize the minimum triangle area
+    formed by any three points.
+
+    Target: Beat the AlphaEvolve benchmark of min_area_normalized = 0.036529889880030156.
+
+    Performance metrics (higher = better):
+      - min_area_normalized: area of smallest triangle among all point triplets (primary objective)
+      - combined_score: min_area_normalized / 0.036529889880030156 (goal: above 1.0)
+      - eval_time: wall-clock seconds
+
+    Technical requirements:
+      - Use fixed random seeds for reproducibility
+      - Return np.ndarray of shape (11, 2)
+      - All points must lie inside the equilateral triangle boundary
+
+  num_top_programs: 3
+  num_diverse_programs: 2
+
+# Database configuration
+database:
+  population_size: 50
+  archive_size: 20
+  num_islands: 3
+  elite_selection_ratio: 0.2
+  exploitation_ratio: 0.7
+  similarity_threshold: 0.99
+
+# Evaluator configuration
+evaluator:
+  timeout: 360
+  parallel_evaluations: 1
+
+# Evolution settings
+diff_based_evolution: true
+max_code_length: 20000

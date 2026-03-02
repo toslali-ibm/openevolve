@@ -84,7 +84,7 @@ class OpenEvolve:
 
         # When an explicit output_dir is provided, isolate the database to
         # that directory so separate runs never share program state.
-        if output_dir and self.config.database.db_path:
+        if output_dir:
             self.config.database.db_path = os.path.join(self.output_dir, "db")
 
         # Expose output dir to evaluators via env var so they can write

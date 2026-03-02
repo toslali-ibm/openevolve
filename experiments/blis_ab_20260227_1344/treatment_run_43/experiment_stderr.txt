@@ -1,0 +1,825 @@
+2026-02-27 14:11:39,461 - INFO - Logging to experiments/blis_ab_20260227_1344/treatment_run_43/logs/openevolve_20260227_141139.log
+2026-02-27 14:11:39,472 - INFO - Set random seed to 42 for reproducibility
+2026-02-27 14:11:39,494 - INFO - Initialized OpenAI LLM with model: aws/claude-sonnet-4-5
+2026-02-27 14:11:39,499 - INFO - Initialized OpenAI LLM with model: aws/claude-opus-4-6
+2026-02-27 14:11:39,500 - INFO - Initialized LLM ensemble with models: aws/claude-sonnet-4-5 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-02-27 14:11:39,510 - INFO - Initialized LLM ensemble with models: aws/claude-sonnet-4-5 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-02-27 14:11:39,511 - INFO - Initialized prompt sampler
+2026-02-27 14:11:39,512 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-27 14:11:39,512 - INFO - Initialized program database with 0 programs
+2026-02-27 14:11:39,514 - INFO - Successfully loaded evaluation function from examples/blis_router/evaluator.py
+2026-02-27 14:11:39,514 - INFO - Initialized evaluator with examples/blis_router/evaluator.py
+2026-02-27 14:11:39,514 - INFO - Initialized OpenEvolve with examples/blis_router/initial_program.py
+2026-02-27 14:11:39,514 - INFO - Adding initial program to database
+2026-02-27 14:11:39,515 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:11:39,516 - INFO - Extracted Go code: 12070 chars, first line: package sim
+2026-02-27 14:11:39,516 - INFO - !!!! NO DIFF FOUND - code unchanged from initial
+2026-02-27 14:11:39,517 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:11:39,517 - INFO - Building BLIS...
+2026-02-27 14:11:39,862 - INFO - Build successful
+2026-02-27 14:11:39,862 - INFO - Running cache_warmup workload...
+2026-02-27 14:11:48,964 - INFO - cache_warmup: e2e_mean=5734.57ms, p95=10562.63ms
+2026-02-27 14:11:48,964 - INFO - Running load_spikes workload...
+2026-02-27 14:11:56,320 - INFO - load_spikes: e2e_mean=3285.44ms, p95=7185.52ms
+2026-02-27 14:11:56,320 - INFO - Running multiturn workload...
+2026-02-27 14:11:56,535 - INFO - multiturn: e2e_mean=160.77ms, p95=457.93ms
+2026-02-27 14:11:56,536 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=5735ms p95=10563ms |   load_spikes: mean=3285ms p95=7186ms |   multiturn: mean=161ms p95=458ms |   Avg mean=3060ms p95=6069ms | Score: -4564.48
+2026-02-27 14:11:56,536 - INFO - Evaluated program ce18f130-b977-4831-bb3a-679a0b65c0d6 in 17.02s: combined_score=-4564.4754, avg_e2e_ms=3060.2601, avg_p95_ms=6068.6908, cache_warmup_e2e_ms=5734.5725, load_spikes_e2e_ms=3285.4380, multiturn_e2e_ms=160.7697, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:11:56,537 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-02-27 14:11:56,543 - INFO - Initialized process parallel controller with 1 workers
+2026-02-27 14:11:56,544 - INFO - Set max None tasks per child
+2026-02-27 14:11:56,544 - INFO - Started process pool with 1 processes
+2026-02-27 14:11:56,544 - INFO - Using island-based evolution with 3 islands
+2026-02-27 14:11:56,544 - INFO - Island Status:
+2026-02-27 14:11:56,544 - INFO -  * Island 0: 1 programs, best=-4564.4754, avg=-4564.4754, diversity=0.00, gen=0 (best: ce18f130-b977-4831-bb3a-679a0b65c0d6)
+2026-02-27 14:11:56,544 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 14:11:56,544 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 14:11:56,544 - INFO - Starting process-based evolution from iteration 1 for 30 iterations (total: 31)
+2026-02-27 14:11:56,547 - INFO - Early stopping disabled
+2026-02-27 14:11:56,909 - INFO - Initialized OpenAI LLM with model: aws/claude-sonnet-4-5
+2026-02-27 14:11:56,915 - INFO - Initialized OpenAI LLM with model: aws/claude-opus-4-6
+2026-02-27 14:11:56,915 - INFO - Initialized LLM ensemble with models: aws/claude-sonnet-4-5 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-02-27 14:11:56,916 - INFO - Initialized prompt sampler
+2026-02-27 14:11:56,927 - INFO - Initialized LLM ensemble with models: aws/claude-sonnet-4-5 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-02-27 14:11:56,928 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-27 14:11:56,929 - INFO - Successfully loaded evaluation function from examples/blis_router/evaluator.py
+2026-02-27 14:11:56,929 - INFO - Initialized evaluator with examples/blis_router/evaluator.py
+2026-02-27 14:11:56,929 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:11:56,931 - INFO - Sampled model: aws/claude-opus-4-6
+2026-02-27 14:12:32,393 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:12:32,399 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:12:32,400 - INFO - Extracted Go code: 14750 chars, first line: package sim
+2026-02-27 14:12:32,400 - INFO - Diff vs initial: -4 / +63 lines
+2026-02-27 14:12:32,401 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:12:32,401 - INFO - Building BLIS...
+2026-02-27 14:12:32,958 - INFO - Build successful
+2026-02-27 14:12:32,959 - INFO - Running cache_warmup workload...
+2026-02-27 14:12:42,100 - INFO - cache_warmup: e2e_mean=4794.33ms, p95=10172.01ms
+2026-02-27 14:12:42,100 - INFO - Running load_spikes workload...
+2026-02-27 14:12:49,403 - INFO - load_spikes: e2e_mean=3285.56ms, p95=7172.05ms
+2026-02-27 14:12:49,403 - INFO - Running multiturn workload...
+2026-02-27 14:12:49,612 - INFO - multiturn: e2e_mean=160.74ms, p95=455.08ms
+2026-02-27 14:12:49,612 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4794ms p95=10172ms |   load_spikes: mean=3286ms p95=7172ms |   multiturn: mean=161ms p95=455ms |   Avg mean=2747ms p95=5933ms | Score: -4339.96
+2026-02-27 14:12:49,613 - INFO - Evaluated program 3aa486ab-ed3a-4e17-a17b-b0e93928f39a in 17.21s: combined_score=-4339.9613, avg_e2e_ms=2746.8755, avg_p95_ms=5933.0471, cache_warmup_e2e_ms=4794.3280, load_spikes_e2e_ms=3285.5575, multiturn_e2e_ms=160.7409, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:12:49,614 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:12:49,615 - INFO - Sampled model: aws/claude-opus-4-6
+2026-02-27 14:12:49,618 - INFO - [HYPO-TRACK] iter=1 | generated=3(OK) persisted=3(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=0/1
+2026-02-27 14:12:49,619 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 5}
+2026-02-27 14:12:49,619 - INFO - New best program 3aa486ab-ed3a-4e17-a17b-b0e93928f39a replaces ce18f130-b977-4831-bb3a-679a0b65c0d6 (combined_score: -4564.4754 → -4339.9613, +224.5141)
+2026-02-27 14:12:49,619 - INFO - Iteration 1: Program 3aa486ab-ed3a-4e17-a17b-b0e93928f39a (parent: ce18f130-b977-4831-bb3a-679a0b65c0d6) completed in 52.68s
+2026-02-27 14:12:49,619 - INFO - Metrics: combined_score=-4339.9613, avg_e2e_ms=2746.8755, avg_p95_ms=5933.0471, cache_warmup_e2e_ms=4794.3280, load_spikes_e2e_ms=3285.5575, multiturn_e2e_ms=160.7409, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:12:49,619 - INFO - 🌟 New best solution found at iteration 1: 3aa486ab-ed3a-4e17-a17b-b0e93928f39a
+2026-02-27 14:13:14,995 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:13:14,997 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:13:14,997 - INFO - Extracted Go code: 14086 chars, first line: package sim
+2026-02-27 14:13:14,998 - INFO - Diff vs initial: -4 / +60 lines
+2026-02-27 14:13:14,998 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:13:14,998 - INFO - Building BLIS...
+2026-02-27 14:13:15,559 - INFO - Build successful
+2026-02-27 14:13:15,559 - INFO - Running cache_warmup workload...
+2026-02-27 14:13:25,037 - INFO - cache_warmup: e2e_mean=5734.79ms, p95=10564.17ms
+2026-02-27 14:13:25,037 - INFO - Running load_spikes workload...
+2026-02-27 14:13:32,426 - INFO - load_spikes: e2e_mean=3349.93ms, p95=7013.57ms
+2026-02-27 14:13:32,426 - INFO - Running multiturn workload...
+2026-02-27 14:13:32,644 - INFO - multiturn: e2e_mean=163.08ms, p95=470.66ms
+2026-02-27 14:13:32,644 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=5735ms p95=10564ms |   load_spikes: mean=3350ms p95=7014ms |   multiturn: mean=163ms p95=471ms |   Avg mean=3083ms p95=6016ms | Score: -4549.37
+2026-02-27 14:13:32,645 - INFO - Evaluated program a2443b39-8409-4494-99c6-594bcc2fe998 in 17.65s: combined_score=-4549.3693, avg_e2e_ms=3082.6018, avg_p95_ms=6016.1369, cache_warmup_e2e_ms=5734.7864, load_spikes_e2e_ms=3349.9348, multiturn_e2e_ms=163.0840, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:13:32,647 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:13:32,647 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-02-27 14:13:32,653 - INFO - [HYPO-TRACK] iter=2 | generated=2(OK) persisted=2(OK) results_injected=1(OK) parent_hypos=0(N/A) top_w_hypos=0/1
+2026-02-27 14:13:32,654 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 0}
+2026-02-27 14:13:32,654 - INFO - Iteration 2: Program a2443b39-8409-4494-99c6-594bcc2fe998 (parent: ce18f130-b977-4831-bb3a-679a0b65c0d6) completed in 43.03s
+2026-02-27 14:13:32,654 - INFO - Metrics: combined_score=-4549.3693, avg_e2e_ms=3082.6018, avg_p95_ms=6016.1369, cache_warmup_e2e_ms=5734.7864, load_spikes_e2e_ms=3349.9348, multiturn_e2e_ms=163.0840, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:13:56,282 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:13:56,288 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:13:56,288 - INFO - Extracted Go code: 13741 chars, first line: package sim
+2026-02-27 14:13:56,289 - INFO - Diff vs initial: -1 / +39 lines
+2026-02-27 14:13:56,289 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:13:56,289 - INFO - Building BLIS...
+2026-02-27 14:13:56,436 - ERROR - Build failed: # github.com/inference-sim/inference-sim/sim
+sim/routing.go:189:6: declared and not used: i
+
+2026-02-27 14:13:56,437 - INFO - Evaluated program b1e9e932-5c9e-4af2-b9ef-6ef962568b9b in 0.15s: combined_score=-100000.0000, avg_e2e_ms=inf, error=Build failed: # github.com/inference-sim/inference-sim/sim
+sim/routing.go:189:6: declared and not used: i
+2026-02-27 14:13:56,439 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:13:56,440 - INFO - Sampled model: aws/claude-opus-4-6
+2026-02-27 14:13:56,447 - INFO - [HYPO-TRACK] iter=3 | generated=3(OK) persisted=3(OK) results_injected=3(OK) parent_hypos=0(N/A) top_w_hypos=0/1
+2026-02-27 14:13:56,448 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 6, 'diversity': 0}
+2026-02-27 14:13:56,449 - INFO - Iteration 3: Program b1e9e932-5c9e-4af2-b9ef-6ef962568b9b (parent: ce18f130-b977-4831-bb3a-679a0b65c0d6) completed in 23.79s
+2026-02-27 14:13:56,449 - INFO - Metrics: combined_score=-100000.0000, avg_e2e_ms=inf, error=Build failed: # github.com/inference-sim/inference-sim/sim
+sim/routing.go:189:6: declared and not used: i
+2026-02-27 14:14:33,615 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:14:33,618 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:14:33,618 - INFO - Extracted Go code: 15666 chars, first line: package sim
+2026-02-27 14:14:33,619 - INFO - Diff vs initial: -4 / +96 lines
+2026-02-27 14:14:33,619 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:14:33,619 - INFO - Building BLIS...
+2026-02-27 14:14:34,211 - INFO - Build successful
+2026-02-27 14:14:34,212 - INFO - Running cache_warmup workload...
+2026-02-27 14:14:43,622 - INFO - cache_warmup: e2e_mean=4205.52ms, p95=8212.28ms
+2026-02-27 14:14:43,622 - INFO - Running load_spikes workload...
+2026-02-27 14:14:50,920 - INFO - load_spikes: e2e_mean=3243.32ms, p95=7277.44ms
+2026-02-27 14:14:50,920 - INFO - Running multiturn workload...
+2026-02-27 14:14:51,138 - INFO - multiturn: e2e_mean=161.28ms, p95=456.85ms
+2026-02-27 14:14:51,138 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4206ms p95=8212ms |   load_spikes: mean=3243ms p95=7277ms |   multiturn: mean=161ms p95=457ms |   Avg mean=2537ms p95=5316ms | Score: -3926.12
+2026-02-27 14:14:51,138 - INFO - Evaluated program 20c002ea-d9a6-47dc-923c-e6b5b4d7cdfa in 17.52s: combined_score=-3926.1174, avg_e2e_ms=2536.7095, avg_p95_ms=5315.5253, cache_warmup_e2e_ms=4205.5247, load_spikes_e2e_ms=3243.3224, multiturn_e2e_ms=161.2814, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:14:51,140 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:14:51,141 - INFO - Sampled model: aws/claude-opus-4-6
+2026-02-27 14:14:51,141 - INFO - [HYPO-TRACK] iter=4 | generated=6(OK) persisted=3(OK) results_injected=2(OK) parent_hypos=3(OK) top_w_hypos=1/2
+2026-02-27 14:14:51,142 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 7}
+2026-02-27 14:14:51,142 - INFO - New best program 20c002ea-d9a6-47dc-923c-e6b5b4d7cdfa replaces 3aa486ab-ed3a-4e17-a17b-b0e93928f39a (combined_score: -4339.9613 → -3926.1174, +413.8439)
+2026-02-27 14:14:51,143 - INFO - Iteration 4: Program 20c002ea-d9a6-47dc-923c-e6b5b4d7cdfa (parent: 3aa486ab-ed3a-4e17-a17b-b0e93928f39a) completed in 54.70s
+2026-02-27 14:14:51,143 - INFO - Metrics: combined_score=-3926.1174, avg_e2e_ms=2536.7095, avg_p95_ms=5315.5253, cache_warmup_e2e_ms=4205.5247, load_spikes_e2e_ms=3243.3224, multiturn_e2e_ms=161.2814, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:14:51,143 - INFO - 🌟 New best solution found at iteration 4: 20c002ea-d9a6-47dc-923c-e6b5b4d7cdfa
+2026-02-27 14:15:28,147 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:15:28,152 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:15:28,152 - INFO - Extracted Go code: 15535 chars, first line: package sim
+2026-02-27 14:15:28,152 - INFO - Diff vs initial: -4 / +100 lines
+2026-02-27 14:15:28,152 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:15:28,153 - INFO - Building BLIS...
+2026-02-27 14:15:28,738 - INFO - Build successful
+2026-02-27 14:15:28,738 - INFO - Running cache_warmup workload...
+2026-02-27 14:15:38,885 - INFO - cache_warmup: e2e_mean=4161.48ms, p95=8639.86ms
+2026-02-27 14:15:38,885 - INFO - Running load_spikes workload...
+2026-02-27 14:15:46,250 - INFO - load_spikes: e2e_mean=3235.39ms, p95=7374.16ms
+2026-02-27 14:15:46,250 - INFO - Running multiturn workload...
+2026-02-27 14:15:46,468 - INFO - multiturn: e2e_mean=160.62ms, p95=461.13ms
+2026-02-27 14:15:46,469 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4161ms p95=8640ms |   load_spikes: mean=3235ms p95=7374ms |   multiturn: mean=161ms p95=461ms |   Avg mean=2519ms p95=5492ms | Score: -4005.44
+2026-02-27 14:15:46,469 - INFO - Evaluated program 53efa44b-98c9-490e-8a6c-215447e57c3a in 18.32s: combined_score=-4005.4406, avg_e2e_ms=2519.1630, avg_p95_ms=5491.7182, cache_warmup_e2e_ms=4161.4848, load_spikes_e2e_ms=3235.3857, multiturn_e2e_ms=160.6184, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:15:46,471 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:15:46,472 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-02-27 14:15:46,475 - INFO - [HYPO-TRACK] iter=5 | generated=6(OK) persisted=3(OK) results_injected=2(OK) parent_hypos=3(OK) top_w_hypos=2/3
+2026-02-27 14:15:46,476 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 9, 'diversity': 5} (fitness: -4339.961 -> -4005.441)
+2026-02-27 14:15:46,477 - INFO - Iteration 5: Program 53efa44b-98c9-490e-8a6c-215447e57c3a (parent: 3aa486ab-ed3a-4e17-a17b-b0e93928f39a) completed in 55.33s
+2026-02-27 14:15:46,477 - INFO - Metrics: combined_score=-4005.4406, avg_e2e_ms=2519.1630, avg_p95_ms=5491.7182, cache_warmup_e2e_ms=4161.4848, load_spikes_e2e_ms=3235.3857, multiturn_e2e_ms=160.6184, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:15:46,477 - INFO - Checkpoint interval reached at iteration 5
+2026-02-27 14:15:46,478 - INFO - Island Status:
+2026-02-27 14:15:46,478 - INFO -  * Island 0: 5 programs, best=-3926.1174, avg=-23409.0805, diversity=651.80, gen=5 (best: 20c002ea-d9a6-47dc-923c-e6b5b4d7cdfa)
+2026-02-27 14:15:46,478 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 14:15:46,478 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 14:15:46,482 - INFO - Saved database with 6 programs to experiments/blis_ab_20260227_1344/treatment_run_43/checkpoints/checkpoint_5
+2026-02-27 14:15:46,482 - INFO - Saved best program at checkpoint 5 with metrics: combined_score=-3926.1174, avg_e2e_ms=2536.7095, avg_p95_ms=5315.5253, cache_warmup_e2e_ms=4205.5247, load_spikes_e2e_ms=3243.3224, multiturn_e2e_ms=161.2814, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:15:46,482 - INFO - Saved checkpoint at iteration 5 to experiments/blis_ab_20260227_1344/treatment_run_43/checkpoints/checkpoint_5
+2026-02-27 14:15:46,482 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/blis_ab_20260227_1344/treatment_run_43/hypothesis_tracker.json
+2026-02-27 14:16:14,740 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:16:14,743 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:16:14,743 - INFO - Extracted Go code: 14239 chars, first line: package sim
+2026-02-27 14:16:14,744 - INFO - Diff vs initial: -1 / +53 lines
+2026-02-27 14:16:14,744 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:16:14,744 - INFO - Building BLIS...
+2026-02-27 14:16:15,323 - INFO - Build successful
+2026-02-27 14:16:15,323 - INFO - Running cache_warmup workload...
+2026-02-27 14:16:24,748 - INFO - cache_warmup: e2e_mean=4778.09ms, p95=10166.36ms
+2026-02-27 14:16:24,749 - INFO - Running load_spikes workload...
+2026-02-27 14:16:31,988 - INFO - load_spikes: e2e_mean=3284.50ms, p95=7170.94ms
+2026-02-27 14:16:31,989 - INFO - Running multiturn workload...
+2026-02-27 14:16:32,200 - INFO - multiturn: e2e_mean=160.84ms, p95=455.73ms
+2026-02-27 14:16:32,200 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4778ms p95=10166ms |   load_spikes: mean=3285ms p95=7171ms |   multiturn: mean=161ms p95=456ms |   Avg mean=2741ms p95=5931ms | Score: -4336.08
+2026-02-27 14:16:32,200 - INFO - Evaluated program 16c420c3-13b0-4ef7-a3ea-d76eaaec9ed1 in 17.46s: combined_score=-4336.0769, avg_e2e_ms=2741.1437, avg_p95_ms=5931.0101, cache_warmup_e2e_ms=4778.0916, load_spikes_e2e_ms=3284.5031, multiturn_e2e_ms=160.8365, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:16:32,203 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:16:32,204 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-02-27 14:16:32,206 - INFO - [HYPO-TRACK] iter=6 | generated=3(OK) persisted=3(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=3/4
+2026-02-27 14:16:32,207 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 6, 'diversity': 0} (fitness: -100000.000 -> -4336.077)
+2026-02-27 14:16:32,208 - INFO - Iteration 6: Program 16c420c3-13b0-4ef7-a3ea-d76eaaec9ed1 (parent: ce18f130-b977-4831-bb3a-679a0b65c0d6) completed in 45.73s
+2026-02-27 14:16:32,208 - INFO - Metrics: combined_score=-4336.0769, avg_e2e_ms=2741.1437, avg_p95_ms=5931.0101, cache_warmup_e2e_ms=4778.0916, load_spikes_e2e_ms=3284.5031, multiturn_e2e_ms=160.8365, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:16:55,779 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:16:55,782 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:16:55,782 - INFO - Extracted Go code: 13603 chars, first line: package sim
+2026-02-27 14:16:55,783 - INFO - Diff vs initial: -5 / +48 lines
+2026-02-27 14:16:55,783 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:16:55,783 - INFO - Building BLIS...
+2026-02-27 14:16:56,327 - INFO - Build successful
+2026-02-27 14:16:56,327 - INFO - Running cache_warmup workload...
+2026-02-27 14:17:05,597 - INFO - cache_warmup: e2e_mean=4214.13ms, p95=8210.36ms
+2026-02-27 14:17:05,597 - INFO - Running load_spikes workload...
+2026-02-27 14:17:12,888 - INFO - load_spikes: e2e_mean=3283.94ms, p95=7219.95ms
+2026-02-27 14:17:12,888 - INFO - Running multiturn workload...
+2026-02-27 14:17:13,103 - INFO - multiturn: e2e_mean=160.70ms, p95=460.93ms
+2026-02-27 14:17:13,103 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4214ms p95=8210ms |   load_spikes: mean=3284ms p95=7220ms |   multiturn: mean=161ms p95=461ms |   Avg mean=2553ms p95=5297ms | Score: -3925.00
+2026-02-27 14:17:13,104 - INFO - Evaluated program 458f7e7c-0c63-4f69-a8d1-a07c29a75311 in 17.32s: combined_score=-3925.0030, avg_e2e_ms=2552.9242, avg_p95_ms=5297.0819, cache_warmup_e2e_ms=4214.1253, load_spikes_e2e_ms=3283.9448, multiturn_e2e_ms=160.7026, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:17:13,106 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:17:13,107 - INFO - Sampled model: aws/claude-opus-4-6
+2026-02-27 14:17:13,109 - INFO - [HYPO-TRACK] iter=7 | generated=2(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=4/5
+2026-02-27 14:17:13,111 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 4, 'diversity': 0}
+2026-02-27 14:17:13,111 - INFO - New best program 458f7e7c-0c63-4f69-a8d1-a07c29a75311 replaces 20c002ea-d9a6-47dc-923c-e6b5b4d7cdfa (combined_score: -3926.1174 → -3925.0030, +1.1144)
+2026-02-27 14:17:13,111 - INFO - Iteration 7: Program 458f7e7c-0c63-4f69-a8d1-a07c29a75311 (parent: ce18f130-b977-4831-bb3a-679a0b65c0d6) completed in 40.90s
+2026-02-27 14:17:13,111 - INFO - Metrics: combined_score=-3925.0030, avg_e2e_ms=2552.9242, avg_p95_ms=5297.0819, cache_warmup_e2e_ms=4214.1253, load_spikes_e2e_ms=3283.9448, multiturn_e2e_ms=160.7026, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:17:13,111 - INFO - 🌟 New best solution found at iteration 7: 458f7e7c-0c63-4f69-a8d1-a07c29a75311
+2026-02-27 14:17:48,704 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:17:48,710 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:17:48,711 - INFO - Extracted Go code: 14663 chars, first line: package sim
+2026-02-27 14:17:48,711 - INFO - Diff vs initial: -11 / +80 lines
+2026-02-27 14:17:48,711 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:17:48,711 - INFO - Building BLIS...
+2026-02-27 14:17:49,280 - INFO - Build successful
+2026-02-27 14:17:49,280 - INFO - Running cache_warmup workload...
+2026-02-27 14:17:58,440 - INFO - cache_warmup: e2e_mean=4213.08ms, p95=8181.36ms
+2026-02-27 14:17:58,440 - INFO - Running load_spikes workload...
+2026-02-27 14:18:05,728 - INFO - load_spikes: e2e_mean=3362.76ms, p95=6908.93ms
+2026-02-27 14:18:05,728 - INFO - Running multiturn workload...
+2026-02-27 14:18:05,951 - INFO - multiturn: e2e_mean=161.71ms, p95=460.42ms
+2026-02-27 14:18:05,951 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4213ms p95=8181ms |   load_spikes: mean=3363ms p95=6909ms |   multiturn: mean=162ms p95=460ms |   Avg mean=2579ms p95=5184ms | Score: -3881.38
+2026-02-27 14:18:05,951 - INFO - Evaluated program 8d56697c-c8a5-4542-a1f9-5d97845e35fe in 17.24s: combined_score=-3881.3760, avg_e2e_ms=2579.1837, avg_p95_ms=5183.5684, cache_warmup_e2e_ms=4213.0776, load_spikes_e2e_ms=3362.7607, multiturn_e2e_ms=161.7127, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:18:05,953 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:18:05,955 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-02-27 14:18:05,955 - INFO - [HYPO-TRACK] iter=8 | generated=2(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=4/5
+2026-02-27 14:18:05,957 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 7, 'diversity': 0} (fitness: -4549.369 -> -3881.376)
+2026-02-27 14:18:05,957 - INFO - New best program 8d56697c-c8a5-4542-a1f9-5d97845e35fe replaces 458f7e7c-0c63-4f69-a8d1-a07c29a75311 (combined_score: -3925.0030 → -3881.3760, +43.6270)
+2026-02-27 14:18:05,958 - INFO - Iteration 8: Program 8d56697c-c8a5-4542-a1f9-5d97845e35fe (parent: ce18f130-b977-4831-bb3a-679a0b65c0d6) completed in 52.85s
+2026-02-27 14:18:05,958 - INFO - Metrics: combined_score=-3881.3760, avg_e2e_ms=2579.1837, avg_p95_ms=5183.5684, cache_warmup_e2e_ms=4213.0776, load_spikes_e2e_ms=3362.7607, multiturn_e2e_ms=161.7127, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:18:05,958 - INFO - 🌟 New best solution found at iteration 8: 8d56697c-c8a5-4542-a1f9-5d97845e35fe
+2026-02-27 14:18:33,070 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:18:33,079 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:18:33,080 - INFO - Extracted Go code: 16482 chars, first line: package sim
+2026-02-27 14:18:33,080 - INFO - Diff vs initial: -4 / +115 lines
+2026-02-27 14:18:33,080 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:18:33,080 - INFO - Building BLIS...
+2026-02-27 14:18:33,660 - INFO - Build successful
+2026-02-27 14:18:33,661 - INFO - Running cache_warmup workload...
+2026-02-27 14:18:43,110 - INFO - cache_warmup: e2e_mean=4214.22ms, p95=8288.10ms
+2026-02-27 14:18:43,110 - INFO - Running load_spikes workload...
+2026-02-27 14:18:50,365 - INFO - load_spikes: e2e_mean=3240.45ms, p95=7296.31ms
+2026-02-27 14:18:50,365 - INFO - Running multiturn workload...
+2026-02-27 14:18:50,589 - INFO - multiturn: e2e_mean=160.65ms, p95=456.49ms
+2026-02-27 14:18:50,589 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4214ms p95=8288ms |   load_spikes: mean=3240ms p95=7296ms |   multiturn: mean=161ms p95=456ms |   Avg mean=2538ms p95=5347ms | Score: -3942.70
+2026-02-27 14:18:50,589 - INFO - Evaluated program 8391420e-9dbc-4cf1-9047-dbf0f9443cb9 in 17.51s: combined_score=-3942.7010, avg_e2e_ms=2538.4389, avg_p95_ms=5346.9631, cache_warmup_e2e_ms=4214.2170, load_spikes_e2e_ms=3240.4504, multiturn_e2e_ms=160.6493, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:18:50,591 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:18:50,593 - INFO - Sampled model: aws/claude-opus-4-6
+2026-02-27 14:18:50,601 - INFO - [HYPO-TRACK] iter=9 | generated=6(OK) persisted=3(OK) results_injected=2(OK) parent_hypos=3(OK) top_w_hypos=4/5
+2026-02-27 14:18:50,604 - INFO - Iteration 9: Program 8391420e-9dbc-4cf1-9047-dbf0f9443cb9 (parent: 20c002ea-d9a6-47dc-923c-e6b5b4d7cdfa) completed in 44.64s
+2026-02-27 14:18:50,604 - INFO - Metrics: combined_score=-3942.7010, avg_e2e_ms=2538.4389, avg_p95_ms=5346.9631, cache_warmup_e2e_ms=4214.2170, load_spikes_e2e_ms=3240.4504, multiturn_e2e_ms=160.6493, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:19:32,448 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:19:32,451 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:19:32,451 - INFO - Extracted Go code: 14697 chars, first line: package sim
+2026-02-27 14:19:32,451 - INFO - Diff vs initial: -5 / +70 lines
+2026-02-27 14:19:32,452 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:19:32,452 - INFO - Building BLIS...
+2026-02-27 14:19:33,028 - INFO - Build successful
+2026-02-27 14:19:33,028 - INFO - Running cache_warmup workload...
+2026-02-27 14:19:42,386 - INFO - cache_warmup: e2e_mean=4108.44ms, p95=8517.30ms
+2026-02-27 14:19:42,386 - INFO - Running load_spikes workload...
+2026-02-27 14:19:49,693 - INFO - load_spikes: e2e_mean=3240.21ms, p95=7346.93ms
+2026-02-27 14:19:49,694 - INFO - Running multiturn workload...
+2026-02-27 14:19:49,914 - INFO - multiturn: e2e_mean=162.47ms, p95=461.43ms
+2026-02-27 14:19:49,914 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4108ms p95=8517ms |   load_spikes: mean=3240ms p95=7347ms |   multiturn: mean=162ms p95=461ms |   Avg mean=2504ms p95=5442ms | Score: -3972.80
+2026-02-27 14:19:49,914 - INFO - Evaluated program 9a3ab438-b191-4088-a86e-73d8f76213ea in 17.46s: combined_score=-3972.7983, avg_e2e_ms=2503.7079, avg_p95_ms=5441.8888, cache_warmup_e2e_ms=4108.4399, load_spikes_e2e_ms=3240.2095, multiturn_e2e_ms=162.4742, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:19:49,916 - INFO - [HYPO-TRACK] iter=10 | generated=6(OK) persisted=3(OK) results_injected=2(OK) parent_hypos=3(OK) top_w_hypos=5/5
+2026-02-27 14:19:49,917 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:19:49,918 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-02-27 14:19:49,919 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 6, 'diversity': 0} (fitness: -4336.077 -> -3972.798)
+2026-02-27 14:19:49,919 - INFO - Iteration 10: Program 9a3ab438-b191-4088-a86e-73d8f76213ea (parent: 20c002ea-d9a6-47dc-923c-e6b5b4d7cdfa) completed in 59.32s
+2026-02-27 14:19:49,919 - INFO - Metrics: combined_score=-3972.7983, avg_e2e_ms=2503.7079, avg_p95_ms=5441.8888, cache_warmup_e2e_ms=4108.4399, load_spikes_e2e_ms=3240.2095, multiturn_e2e_ms=162.4742, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:19:49,919 - INFO - Checkpoint interval reached at iteration 10
+2026-02-27 14:19:49,921 - INFO - Island Status:
+2026-02-27 14:19:49,921 - INFO -  * Island 0: 7 programs, best=-3881.3760, avg=-4031.1303, diversity=507.17, gen=10 (best: 8d56697c-c8a5-4542-a1f9-5d97845e35fe)
+2026-02-27 14:19:49,921 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 14:19:49,921 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 14:19:49,930 - INFO - Saved database with 11 programs to experiments/blis_ab_20260227_1344/treatment_run_43/checkpoints/checkpoint_10
+2026-02-27 14:19:49,930 - INFO - Saved best program at checkpoint 10 with metrics: combined_score=-3881.3760, avg_e2e_ms=2579.1837, avg_p95_ms=5183.5684, cache_warmup_e2e_ms=4213.0776, load_spikes_e2e_ms=3362.7607, multiturn_e2e_ms=161.7127, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:19:49,930 - INFO - Saved checkpoint at iteration 10 to experiments/blis_ab_20260227_1344/treatment_run_43/checkpoints/checkpoint_10
+2026-02-27 14:19:49,930 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/blis_ab_20260227_1344/treatment_run_43/hypothesis_tracker.json
+2026-02-27 14:20:21,290 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:20:21,295 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:20:21,295 - INFO - Extracted Go code: 13952 chars, first line: package sim
+2026-02-27 14:20:21,296 - INFO - Diff vs initial: -11 / +62 lines
+2026-02-27 14:20:21,296 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:20:21,297 - INFO - Building BLIS...
+2026-02-27 14:20:21,877 - INFO - Build successful
+2026-02-27 14:20:21,877 - INFO - Running cache_warmup workload...
+2026-02-27 14:20:31,229 - INFO - cache_warmup: e2e_mean=4196.95ms, p95=8332.07ms
+2026-02-27 14:20:31,229 - INFO - Running load_spikes workload...
+2026-02-27 14:20:38,618 - INFO - load_spikes: e2e_mean=3254.56ms, p95=7292.95ms
+2026-02-27 14:20:38,618 - INFO - Running multiturn workload...
+2026-02-27 14:20:38,841 - INFO - multiturn: e2e_mean=163.75ms, p95=465.85ms
+2026-02-27 14:20:38,842 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4197ms p95=8332ms |   load_spikes: mean=3255ms p95=7293ms |   multiturn: mean=164ms p95=466ms |   Avg mean=2538ms p95=5364ms | Score: -3951.02
+2026-02-27 14:20:38,842 - INFO - Evaluated program 98619425-aa99-4087-866a-e623835ff74b in 17.55s: combined_score=-3951.0209, avg_e2e_ms=2538.4194, avg_p95_ms=5363.6223, cache_warmup_e2e_ms=4196.9506, load_spikes_e2e_ms=3254.5620, multiturn_e2e_ms=163.7457, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:20:38,844 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:20:38,845 - INFO - Sampled model: aws/claude-opus-4-6
+2026-02-27 14:20:38,852 - INFO - [HYPO-TRACK] iter=11 | generated=6(OK) persisted=3(OK) results_injected=2(OK) parent_hypos=3(OK) top_w_hypos=5/5
+2026-02-27 14:20:38,855 - INFO - Iteration 11: Program 98619425-aa99-4087-866a-e623835ff74b (parent: 16c420c3-13b0-4ef7-a3ea-d76eaaec9ed1) completed in 48.93s
+2026-02-27 14:20:38,855 - INFO - Metrics: combined_score=-3951.0209, avg_e2e_ms=2538.4194, avg_p95_ms=5363.6223, cache_warmup_e2e_ms=4196.9506, load_spikes_e2e_ms=3254.5620, multiturn_e2e_ms=163.7457, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:21:25,465 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:21:25,468 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:21:25,468 - INFO - Extracted Go code: 15218 chars, first line: package sim
+2026-02-27 14:21:25,469 - INFO - Diff vs initial: -11 / +91 lines
+2026-02-27 14:21:25,469 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:21:25,469 - INFO - Building BLIS...
+2026-02-27 14:21:26,054 - INFO - Build successful
+2026-02-27 14:21:26,054 - INFO - Running cache_warmup workload...
+2026-02-27 14:21:35,833 - INFO - cache_warmup: e2e_mean=4228.56ms, p95=8069.69ms
+2026-02-27 14:21:35,833 - INFO - Running load_spikes workload...
+2026-02-27 14:21:43,323 - INFO - load_spikes: e2e_mean=3302.92ms, p95=7135.77ms
+2026-02-27 14:21:43,323 - INFO - Running multiturn workload...
+2026-02-27 14:21:43,555 - INFO - multiturn: e2e_mean=163.08ms, p95=468.50ms
+2026-02-27 14:21:43,556 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4229ms p95=8070ms |   load_spikes: mean=3303ms p95=7136ms |   multiturn: mean=163ms p95=468ms |   Avg mean=2565ms p95=5225ms | Score: -3894.75
+2026-02-27 14:21:43,556 - INFO - Evaluated program cff03c4f-daab-4ad7-9664-faf51e6f3962 in 18.09s: combined_score=-3894.7542, avg_e2e_ms=2564.8572, avg_p95_ms=5224.6512, cache_warmup_e2e_ms=4228.5637, load_spikes_e2e_ms=3302.9241, multiturn_e2e_ms=163.0838, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:21:43,558 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:21:43,560 - INFO - Sampled model: aws/claude-opus-4-6
+2026-02-27 14:21:43,563 - INFO - [HYPO-TRACK] iter=12 | generated=5(OK) persisted=2(OK) results_injected=1(OK) parent_hypos=3(OK) top_w_hypos=5/5
+2026-02-27 14:21:43,566 - INFO - Iteration 12: Program cff03c4f-daab-4ad7-9664-faf51e6f3962 (parent: 8391420e-9dbc-4cf1-9047-dbf0f9443cb9) completed in 64.71s
+2026-02-27 14:21:43,566 - INFO - Metrics: combined_score=-3894.7542, avg_e2e_ms=2564.8572, avg_p95_ms=5224.6512, cache_warmup_e2e_ms=4228.5637, load_spikes_e2e_ms=3302.9241, multiturn_e2e_ms=163.0838, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:22:18,517 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:22:18,520 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:22:18,520 - INFO - Extracted Go code: 14517 chars, first line: package sim
+2026-02-27 14:22:18,521 - INFO - Diff vs initial: -11 / +78 lines
+2026-02-27 14:22:18,521 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:22:18,521 - INFO - Building BLIS...
+2026-02-27 14:22:19,119 - INFO - Build successful
+2026-02-27 14:22:19,120 - INFO - Running cache_warmup workload...
+2026-02-27 14:22:28,515 - INFO - cache_warmup: e2e_mean=4210.13ms, p95=8235.25ms
+2026-02-27 14:22:28,516 - INFO - Running load_spikes workload...
+2026-02-27 14:22:35,996 - INFO - load_spikes: e2e_mean=3357.29ms, p95=6940.80ms
+2026-02-27 14:22:35,996 - INFO - Running multiturn workload...
+2026-02-27 14:22:36,213 - INFO - multiturn: e2e_mean=161.64ms, p95=459.86ms
+2026-02-27 14:22:36,214 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4210ms p95=8235ms |   load_spikes: mean=3357ms p95=6941ms |   multiturn: mean=162ms p95=460ms |   Avg mean=2576ms p95=5212ms | Score: -3894.16
+2026-02-27 14:22:36,214 - INFO - Evaluated program acd9e8f2-16d1-4db0-a457-4b55d5e0d31f in 17.69s: combined_score=-3894.1627, avg_e2e_ms=2576.3556, avg_p95_ms=5211.9698, cache_warmup_e2e_ms=4210.1305, load_spikes_e2e_ms=3357.2938, multiturn_e2e_ms=161.6427, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:22:36,216 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:22:36,217 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-02-27 14:22:36,218 - INFO - [HYPO-TRACK] iter=13 | generated=4(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 14:22:36,221 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 5, 'diversity': 0} (fitness: -4564.475 -> -3894.163)
+2026-02-27 14:22:36,222 - INFO - Iteration 13: Program acd9e8f2-16d1-4db0-a457-4b55d5e0d31f (parent: 458f7e7c-0c63-4f69-a8d1-a07c29a75311) completed in 52.66s
+2026-02-27 14:22:36,222 - INFO - Metrics: combined_score=-3894.1627, avg_e2e_ms=2576.3556, avg_p95_ms=5211.9698, cache_warmup_e2e_ms=4210.1305, load_spikes_e2e_ms=3357.2938, multiturn_e2e_ms=161.6427, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:23:11,686 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:23:11,690 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:23:11,690 - INFO - Extracted Go code: 15309 chars, first line: package sim
+2026-02-27 14:23:11,690 - INFO - Diff vs initial: -5 / +84 lines
+2026-02-27 14:23:11,691 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:23:11,691 - INFO - Building BLIS...
+2026-02-27 14:23:12,313 - INFO - Build successful
+2026-02-27 14:23:12,313 - INFO - Running cache_warmup workload...
+2026-02-27 14:23:21,811 - INFO - cache_warmup: e2e_mean=4218.57ms, p95=8215.85ms
+2026-02-27 14:23:21,812 - INFO - Running load_spikes workload...
+2026-02-27 14:23:29,120 - INFO - load_spikes: e2e_mean=3354.25ms, p95=6958.57ms
+2026-02-27 14:23:29,120 - INFO - Running multiturn workload...
+2026-02-27 14:23:29,371 - INFO - multiturn: e2e_mean=162.24ms, p95=462.65ms
+2026-02-27 14:23:29,371 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4219ms p95=8216ms |   load_spikes: mean=3354ms p95=6959ms |   multiturn: mean=162ms p95=463ms |   Avg mean=2578ms p95=5212ms | Score: -3895.36
+2026-02-27 14:23:29,372 - INFO - Evaluated program e8fc6d68-80d1-46ce-93b1-c82cb5dff029 in 17.68s: combined_score=-3895.3558, avg_e2e_ms=2578.3523, avg_p95_ms=5212.3592, cache_warmup_e2e_ms=4218.5664, load_spikes_e2e_ms=3354.2526, multiturn_e2e_ms=162.2378, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:23:29,374 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:23:29,375 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-02-27 14:23:29,380 - INFO - [HYPO-TRACK] iter=14 | generated=6(OK) persisted=3(OK) results_injected=2(OK) parent_hypos=3(OK) top_w_hypos=5/5
+2026-02-27 14:23:29,383 - INFO - Iteration 14: Program e8fc6d68-80d1-46ce-93b1-c82cb5dff029 (parent: 9a3ab438-b191-4088-a86e-73d8f76213ea) completed in 53.16s
+2026-02-27 14:23:29,383 - INFO - Metrics: combined_score=-3895.3558, avg_e2e_ms=2578.3523, avg_p95_ms=5212.3592, cache_warmup_e2e_ms=4218.5664, load_spikes_e2e_ms=3354.2526, multiturn_e2e_ms=162.2378, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:23:53,611 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:23:53,618 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:23:53,618 - INFO - Extracted Go code: 15253 chars, first line: package sim
+2026-02-27 14:23:53,619 - INFO - Diff vs initial: -11 / +90 lines
+2026-02-27 14:23:53,620 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:23:53,620 - INFO - Building BLIS...
+2026-02-27 14:23:54,191 - INFO - Build successful
+2026-02-27 14:23:54,191 - INFO - Running cache_warmup workload...
+2026-02-27 14:24:03,591 - INFO - cache_warmup: e2e_mean=4205.81ms, p95=8293.68ms
+2026-02-27 14:24:03,591 - INFO - Running load_spikes workload...
+2026-02-27 14:24:10,906 - INFO - load_spikes: e2e_mean=3237.94ms, p95=7360.33ms
+2026-02-27 14:24:10,906 - INFO - Running multiturn workload...
+2026-02-27 14:24:11,126 - INFO - multiturn: e2e_mean=162.20ms, p95=467.22ms
+2026-02-27 14:24:11,126 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4206ms p95=8294ms |   load_spikes: mean=3238ms p95=7360ms |   multiturn: mean=162ms p95=467ms |   Avg mean=2535ms p95=5374ms | Score: -3954.53
+2026-02-27 14:24:11,126 - INFO - Evaluated program 8fc70a29-25ce-4a50-a38a-f6b513543ad6 in 17.51s: combined_score=-3954.5302, avg_e2e_ms=2535.3158, avg_p95_ms=5373.7445, cache_warmup_e2e_ms=4205.8100, load_spikes_e2e_ms=3237.9402, multiturn_e2e_ms=162.1971, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:24:11,128 - INFO - [HYPO-TRACK] iter=15 | generated=5(OK) persisted=3(OK) results_injected=2(OK) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 14:24:11,128 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:24:11,129 - INFO - Sampled model: aws/claude-opus-4-6
+2026-02-27 14:24:11,132 - INFO - Iteration 15: Program 8fc70a29-25ce-4a50-a38a-f6b513543ad6 (parent: 8d56697c-c8a5-4542-a1f9-5d97845e35fe) completed in 41.75s
+2026-02-27 14:24:11,132 - INFO - Metrics: combined_score=-3954.5302, avg_e2e_ms=2535.3158, avg_p95_ms=5373.7445, cache_warmup_e2e_ms=4205.8100, load_spikes_e2e_ms=3237.9402, multiturn_e2e_ms=162.1971, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:24:11,132 - INFO - Checkpoint interval reached at iteration 15
+2026-02-27 14:24:11,134 - INFO - Island Status:
+2026-02-27 14:24:11,134 - INFO -  * Island 0: 11 programs, best=-3881.3760, avg=-3931.2055, diversity=507.17, gen=15 (best: 8d56697c-c8a5-4542-a1f9-5d97845e35fe)
+2026-02-27 14:24:11,134 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 14:24:11,134 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 14:24:11,145 - INFO - Saved database with 16 programs to experiments/blis_ab_20260227_1344/treatment_run_43/checkpoints/checkpoint_15
+2026-02-27 14:24:11,146 - INFO - Saved best program at checkpoint 15 with metrics: combined_score=-3881.3760, avg_e2e_ms=2579.1837, avg_p95_ms=5183.5684, cache_warmup_e2e_ms=4213.0776, load_spikes_e2e_ms=3362.7607, multiturn_e2e_ms=161.7127, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:24:11,146 - INFO - Saved checkpoint at iteration 15 to experiments/blis_ab_20260227_1344/treatment_run_43/checkpoints/checkpoint_15
+2026-02-27 14:24:11,146 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/blis_ab_20260227_1344/treatment_run_43/hypothesis_tracker.json
+2026-02-27 14:24:49,637 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:24:49,642 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:24:49,643 - INFO - Extracted Go code: 14652 chars, first line: package sim
+2026-02-27 14:24:49,643 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:24:49,643 - INFO - Building BLIS...
+2026-02-27 14:24:50,271 - INFO - Build successful
+2026-02-27 14:24:50,271 - INFO - Running cache_warmup workload...
+2026-02-27 14:24:59,608 - INFO - cache_warmup: e2e_mean=4213.08ms, p95=8181.36ms
+2026-02-27 14:24:59,609 - INFO - Running load_spikes workload...
+2026-02-27 14:25:07,017 - INFO - load_spikes: e2e_mean=3362.76ms, p95=6908.93ms
+2026-02-27 14:25:07,018 - INFO - Running multiturn workload...
+2026-02-27 14:25:07,230 - INFO - multiturn: e2e_mean=160.36ms, p95=457.96ms
+2026-02-27 14:25:07,230 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4213ms p95=8181ms |   load_spikes: mean=3363ms p95=6909ms |   multiturn: mean=160ms p95=458ms |   Avg mean=2579ms p95=5183ms | Score: -3880.74
+2026-02-27 14:25:07,230 - INFO - Evaluated program fe9b8bba-4eb5-4c17-a75d-0d9ca9a41157 in 17.59s: combined_score=-3880.7423, avg_e2e_ms=2578.7343, avg_p95_ms=5182.7502, cache_warmup_e2e_ms=4213.0776, load_spikes_e2e_ms=3362.7607, multiturn_e2e_ms=160.3647, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:25:07,232 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:25:07,234 - INFO - Sampled model: aws/claude-opus-4-6
+2026-02-27 14:25:07,241 - INFO - [HYPO-TRACK] iter=16 | generated=5(OK) persisted=2(OK) results_injected=1(OK) parent_hypos=3(OK) top_w_hypos=5/5
+2026-02-27 14:25:07,244 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 5, 'diversity': 0} (fitness: -3894.163 -> -3880.742)
+2026-02-27 14:25:07,244 - INFO - New best program fe9b8bba-4eb5-4c17-a75d-0d9ca9a41157 replaces 8d56697c-c8a5-4542-a1f9-5d97845e35fe (combined_score: -3881.3760 → -3880.7423, +0.6338)
+2026-02-27 14:25:07,245 - INFO - Iteration 16: Program fe9b8bba-4eb5-4c17-a75d-0d9ca9a41157 (parent: 9a3ab438-b191-4088-a86e-73d8f76213ea) completed in 56.10s
+2026-02-27 14:25:07,245 - INFO - Metrics: combined_score=-3880.7423, avg_e2e_ms=2578.7343, avg_p95_ms=5182.7502, cache_warmup_e2e_ms=4213.0776, load_spikes_e2e_ms=3362.7607, multiturn_e2e_ms=160.3647, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:25:07,245 - INFO - 🌟 New best solution found at iteration 16: fe9b8bba-4eb5-4c17-a75d-0d9ca9a41157
+2026-02-27 14:25:37,525 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:25:37,532 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:25:37,532 - INFO - Extracted Go code: 14591 chars, first line: package sim
+2026-02-27 14:25:37,533 - INFO - Diff vs initial: -11 / +79 lines
+2026-02-27 14:25:37,533 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:25:37,533 - INFO - Building BLIS...
+2026-02-27 14:25:38,102 - INFO - Build successful
+2026-02-27 14:25:38,103 - INFO - Running cache_warmup workload...
+2026-02-27 14:25:47,507 - INFO - cache_warmup: e2e_mean=4207.23ms, p95=8265.65ms
+2026-02-27 14:25:47,508 - INFO - Running load_spikes workload...
+2026-02-27 14:25:54,890 - INFO - load_spikes: e2e_mean=3356.80ms, p95=6931.42ms
+2026-02-27 14:25:54,890 - INFO - Running multiturn workload...
+2026-02-27 14:25:55,108 - INFO - multiturn: e2e_mean=160.36ms, p95=457.96ms
+2026-02-27 14:25:55,109 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4207ms p95=8266ms |   load_spikes: mean=3357ms p95=6931ms |   multiturn: mean=160ms p95=458ms |   Avg mean=2575ms p95=5218ms | Score: -3896.57
+2026-02-27 14:25:55,109 - INFO - Evaluated program 251775c1-c824-4f20-a2ad-10b9462e23b1 in 17.58s: combined_score=-3896.5718, avg_e2e_ms=2574.7974, avg_p95_ms=5218.3462, cache_warmup_e2e_ms=4207.2309, load_spikes_e2e_ms=3356.7966, multiturn_e2e_ms=160.3647, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:25:55,111 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:25:55,112 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-02-27 14:25:55,121 - INFO - [HYPO-TRACK] iter=17 | generated=4(OK) persisted=2(OK) results_injected=1(OK) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 14:25:55,126 - INFO - Iteration 17: Program 251775c1-c824-4f20-a2ad-10b9462e23b1 (parent: acd9e8f2-16d1-4db0-a457-4b55d5e0d31f) completed in 47.88s
+2026-02-27 14:25:55,126 - INFO - Metrics: combined_score=-3896.5718, avg_e2e_ms=2574.7974, avg_p95_ms=5218.3462, cache_warmup_e2e_ms=4207.2309, load_spikes_e2e_ms=3356.7966, multiturn_e2e_ms=160.3647, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:26:18,238 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:26:18,242 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:26:18,242 - INFO - Extracted Go code: 15187 chars, first line: package sim
+2026-02-27 14:26:18,243 - INFO - Diff vs initial: -11 / +91 lines
+2026-02-27 14:26:18,243 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:26:18,243 - INFO - Building BLIS...
+2026-02-27 14:26:18,829 - INFO - Build successful
+2026-02-27 14:26:18,829 - INFO - Running cache_warmup workload...
+2026-02-27 14:26:28,134 - INFO - cache_warmup: e2e_mean=4213.08ms, p95=8181.36ms
+2026-02-27 14:26:28,134 - INFO - Running load_spikes workload...
+2026-02-27 14:26:35,542 - INFO - load_spikes: e2e_mean=3362.76ms, p95=6908.93ms
+2026-02-27 14:26:35,543 - INFO - Running multiturn workload...
+2026-02-27 14:26:35,763 - INFO - multiturn: e2e_mean=161.71ms, p95=460.42ms
+2026-02-27 14:26:35,763 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4213ms p95=8181ms |   load_spikes: mean=3363ms p95=6909ms |   multiturn: mean=162ms p95=460ms |   Avg mean=2579ms p95=5184ms | Score: -3881.38
+2026-02-27 14:26:35,763 - INFO - Evaluated program 50fcb5c3-6dbe-4209-ab79-68d32d335165 in 17.52s: combined_score=-3881.3760, avg_e2e_ms=2579.1837, avg_p95_ms=5183.5684, cache_warmup_e2e_ms=4213.0776, load_spikes_e2e_ms=3362.7607, multiturn_e2e_ms=161.7127, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:26:35,765 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:26:35,767 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-02-27 14:26:35,767 - INFO - [HYPO-TRACK] iter=18 | generated=4(OK) persisted=2(OK) results_injected=1(OK) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 14:26:35,772 - INFO - Iteration 18: Program 50fcb5c3-6dbe-4209-ab79-68d32d335165 (parent: cff03c4f-daab-4ad7-9664-faf51e6f3962) completed in 40.65s
+2026-02-27 14:26:35,772 - INFO - Metrics: combined_score=-3881.3760, avg_e2e_ms=2579.1837, avg_p95_ms=5183.5684, cache_warmup_e2e_ms=4213.0776, load_spikes_e2e_ms=3362.7607, multiturn_e2e_ms=161.7127, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:27:06,860 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:27:06,866 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:27:06,867 - INFO - Extracted Go code: 14823 chars, first line: package sim
+2026-02-27 14:27:06,868 - INFO - Diff vs initial: -11 / +85 lines
+2026-02-27 14:27:06,868 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:27:06,868 - INFO - Building BLIS...
+2026-02-27 14:27:07,414 - INFO - Build successful
+2026-02-27 14:27:07,415 - INFO - Running cache_warmup workload...
+2026-02-27 14:27:16,772 - INFO - cache_warmup: e2e_mean=4213.08ms, p95=8181.36ms
+2026-02-27 14:27:16,772 - INFO - Running load_spikes workload...
+2026-02-27 14:27:24,065 - INFO - load_spikes: e2e_mean=3362.76ms, p95=6908.93ms
+2026-02-27 14:27:24,066 - INFO - Running multiturn workload...
+2026-02-27 14:27:24,282 - INFO - multiturn: e2e_mean=161.71ms, p95=460.42ms
+2026-02-27 14:27:24,282 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4213ms p95=8181ms |   load_spikes: mean=3363ms p95=6909ms |   multiturn: mean=162ms p95=460ms |   Avg mean=2579ms p95=5184ms | Score: -3881.38
+2026-02-27 14:27:24,282 - INFO - Evaluated program b0edd1bd-0a42-4597-8dba-347eef8bd084 in 17.42s: combined_score=-3881.3760, avg_e2e_ms=2579.1837, avg_p95_ms=5183.5684, cache_warmup_e2e_ms=4213.0776, load_spikes_e2e_ms=3362.7607, multiturn_e2e_ms=161.7127, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:27:24,284 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:27:24,285 - INFO - Sampled model: aws/claude-opus-4-6
+2026-02-27 14:27:24,292 - INFO - [HYPO-TRACK] iter=19 | generated=5(OK) persisted=2(OK) results_injected=1(OK) parent_hypos=3(OK) top_w_hypos=5/5
+2026-02-27 14:27:24,297 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 6, 'diversity': 0} (fitness: -3972.798 -> -3881.376)
+2026-02-27 14:27:24,297 - INFO - Iteration 19: Program b0edd1bd-0a42-4597-8dba-347eef8bd084 (parent: 20c002ea-d9a6-47dc-923c-e6b5b4d7cdfa) completed in 48.52s
+2026-02-27 14:27:24,297 - INFO - Metrics: combined_score=-3881.3760, avg_e2e_ms=2579.1837, avg_p95_ms=5183.5684, cache_warmup_e2e_ms=4213.0776, load_spikes_e2e_ms=3362.7607, multiturn_e2e_ms=161.7127, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:27:57,483 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:27:57,487 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:27:57,487 - INFO - Extracted Go code: 14802 chars, first line: package sim
+2026-02-27 14:27:57,488 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:27:57,488 - INFO - Building BLIS...
+2026-02-27 14:27:58,073 - INFO - Build successful
+2026-02-27 14:27:58,073 - INFO - Running cache_warmup workload...
+2026-02-27 14:28:07,325 - INFO - cache_warmup: e2e_mean=4210.64ms, p95=8162.22ms
+2026-02-27 14:28:07,326 - INFO - Running load_spikes workload...
+2026-02-27 14:28:14,710 - INFO - load_spikes: e2e_mean=3357.58ms, p95=6926.28ms
+2026-02-27 14:28:14,711 - INFO - Running multiturn workload...
+2026-02-27 14:28:14,932 - INFO - multiturn: e2e_mean=162.22ms, p95=459.13ms
+2026-02-27 14:28:14,932 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4211ms p95=8162ms |   load_spikes: mean=3358ms p95=6926ms |   multiturn: mean=162ms p95=459ms |   Avg mean=2577ms p95=5183ms | Score: -3879.68
+2026-02-27 14:28:14,932 - INFO - Evaluated program e319fb40-03b2-4667-b9b6-0ca2f05181bd in 17.45s: combined_score=-3879.6781, avg_e2e_ms=2576.8159, avg_p95_ms=5182.5403, cache_warmup_e2e_ms=4210.6420, load_spikes_e2e_ms=3357.5828, multiturn_e2e_ms=162.2228, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:28:14,935 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:28:14,936 - INFO - Sampled model: aws/claude-opus-4-6
+2026-02-27 14:28:14,940 - INFO - [HYPO-TRACK] iter=20 | generated=5(OK) persisted=2(OK) results_injected=1(OK) parent_hypos=3(OK) top_w_hypos=5/5
+2026-02-27 14:28:14,945 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 6, 'diversity': 0} (fitness: -3881.376 -> -3879.678)
+2026-02-27 14:28:14,945 - INFO - New best program e319fb40-03b2-4667-b9b6-0ca2f05181bd replaces fe9b8bba-4eb5-4c17-a75d-0d9ca9a41157 (combined_score: -3880.7423 → -3879.6781, +1.0642)
+2026-02-27 14:28:14,946 - INFO - Iteration 20: Program e319fb40-03b2-4667-b9b6-0ca2f05181bd (parent: 98619425-aa99-4087-866a-e623835ff74b) completed in 50.65s
+2026-02-27 14:28:14,946 - INFO - Metrics: combined_score=-3879.6781, avg_e2e_ms=2576.8159, avg_p95_ms=5182.5403, cache_warmup_e2e_ms=4210.6420, load_spikes_e2e_ms=3357.5828, multiturn_e2e_ms=162.2228, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:28:14,946 - INFO - 🌟 New best solution found at iteration 20: e319fb40-03b2-4667-b9b6-0ca2f05181bd
+2026-02-27 14:28:14,946 - INFO - Checkpoint interval reached at iteration 20
+2026-02-27 14:28:14,947 - INFO - Island Status:
+2026-02-27 14:28:14,947 - INFO -  * Island 0: 13 programs, best=-3879.6781, avg=-3916.5129, diversity=301.30, gen=20 (best: e319fb40-03b2-4667-b9b6-0ca2f05181bd)
+2026-02-27 14:28:14,947 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 14:28:14,947 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 14:28:14,963 - INFO - Saved database with 21 programs to experiments/blis_ab_20260227_1344/treatment_run_43/checkpoints/checkpoint_20
+2026-02-27 14:28:14,963 - INFO - Saved best program at checkpoint 20 with metrics: combined_score=-3879.6781, avg_e2e_ms=2576.8159, avg_p95_ms=5182.5403, cache_warmup_e2e_ms=4210.6420, load_spikes_e2e_ms=3357.5828, multiturn_e2e_ms=162.2228, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:28:14,963 - INFO - Saved checkpoint at iteration 20 to experiments/blis_ab_20260227_1344/treatment_run_43/checkpoints/checkpoint_20
+2026-02-27 14:28:14,963 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/blis_ab_20260227_1344/treatment_run_43/hypothesis_tracker.json
+2026-02-27 14:28:38,915 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:28:38,918 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:28:38,919 - INFO - Extracted Go code: 15056 chars, first line: package sim
+2026-02-27 14:28:38,919 - INFO - Diff vs initial: -11 / +91 lines
+2026-02-27 14:28:38,919 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:28:38,919 - INFO - Building BLIS...
+2026-02-27 14:28:39,480 - INFO - Build successful
+2026-02-27 14:28:39,480 - INFO - Running cache_warmup workload...
+2026-02-27 14:28:48,929 - INFO - cache_warmup: e2e_mean=4213.08ms, p95=8184.07ms
+2026-02-27 14:28:48,930 - INFO - Running load_spikes workload...
+2026-02-27 14:28:56,164 - INFO - load_spikes: e2e_mean=3357.17ms, p95=6906.24ms
+2026-02-27 14:28:56,164 - INFO - Running multiturn workload...
+2026-02-27 14:28:56,382 - INFO - multiturn: e2e_mean=162.09ms, p95=464.43ms
+2026-02-27 14:28:56,382 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4213ms p95=8184ms |   load_spikes: mean=3357ms p95=6906ms |   multiturn: mean=162ms p95=464ms |   Avg mean=2577ms p95=5185ms | Score: -3881.18
+2026-02-27 14:28:56,383 - INFO - Evaluated program 20093b30-e571-4685-8526-6dac9694a7af in 17.47s: combined_score=-3881.1798, avg_e2e_ms=2577.4462, avg_p95_ms=5184.9134, cache_warmup_e2e_ms=4213.0799, load_spikes_e2e_ms=3357.1693, multiturn_e2e_ms=162.0893, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:28:56,385 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:28:56,386 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-02-27 14:28:56,394 - INFO - [HYPO-TRACK] iter=21 | generated=4(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 14:28:56,409 - INFO - Iteration 21: Program 20093b30-e571-4685-8526-6dac9694a7af (parent: 8d56697c-c8a5-4542-a1f9-5d97845e35fe) completed in 41.45s
+2026-02-27 14:28:56,409 - INFO - Metrics: combined_score=-3881.1798, avg_e2e_ms=2577.4462, avg_p95_ms=5184.9134, cache_warmup_e2e_ms=4213.0799, load_spikes_e2e_ms=3357.1693, multiturn_e2e_ms=162.0893, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:29:25,560 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:29:25,573 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:29:25,573 - INFO - Extracted Go code: 14923 chars, first line: package sim
+2026-02-27 14:29:25,574 - INFO - Diff vs initial: -11 / +85 lines
+2026-02-27 14:29:25,574 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:29:25,574 - INFO - Building BLIS...
+2026-02-27 14:29:26,146 - INFO - Build successful
+2026-02-27 14:29:26,147 - INFO - Running cache_warmup workload...
+2026-02-27 14:29:35,546 - INFO - cache_warmup: e2e_mean=4208.06ms, p95=8250.05ms
+2026-02-27 14:29:35,546 - INFO - Running load_spikes workload...
+2026-02-27 14:29:42,898 - INFO - load_spikes: e2e_mean=3363.24ms, p95=6924.28ms
+2026-02-27 14:29:42,898 - INFO - Running multiturn workload...
+2026-02-27 14:29:43,142 - INFO - multiturn: e2e_mean=160.36ms, p95=457.96ms
+2026-02-27 14:29:43,142 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4208ms p95=8250ms |   load_spikes: mean=3363ms p95=6924ms |   multiturn: mean=160ms p95=458ms |   Avg mean=2577ms p95=5211ms | Score: -3893.99
+2026-02-27 14:29:43,142 - INFO - Evaluated program 80604403-5a2b-41c2-97da-327d1adc752c in 17.57s: combined_score=-3893.9934, avg_e2e_ms=2577.2227, avg_p95_ms=5210.7641, cache_warmup_e2e_ms=4208.0595, load_spikes_e2e_ms=3363.2439, multiturn_e2e_ms=160.3647, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:29:43,144 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:29:43,146 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-02-27 14:29:43,147 - INFO - [HYPO-TRACK] iter=22 | generated=4(OK) persisted=2(OK) results_injected=1(OK) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 14:29:43,152 - INFO - Iteration 22: Program 80604403-5a2b-41c2-97da-327d1adc752c (parent: 50fcb5c3-6dbe-4209-ab79-68d32d335165) completed in 46.76s
+2026-02-27 14:29:43,152 - INFO - Metrics: combined_score=-3893.9934, avg_e2e_ms=2577.2227, avg_p95_ms=5210.7641, cache_warmup_e2e_ms=4208.0595, load_spikes_e2e_ms=3363.2439, multiturn_e2e_ms=160.3647, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:30:14,714 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:30:14,718 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:30:14,719 - INFO - Extracted Go code: 15325 chars, first line: package sim
+2026-02-27 14:30:14,719 - INFO - Diff vs initial: -11 / +90 lines
+2026-02-27 14:30:14,720 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:30:14,720 - INFO - Building BLIS...
+2026-02-27 14:30:15,272 - INFO - Build successful
+2026-02-27 14:30:15,272 - INFO - Running cache_warmup workload...
+2026-02-27 14:30:24,654 - INFO - cache_warmup: e2e_mean=4213.08ms, p95=8181.36ms
+2026-02-27 14:30:24,654 - INFO - Running load_spikes workload...
+2026-02-27 14:30:32,740 - INFO - load_spikes: e2e_mean=3362.76ms, p95=6908.93ms
+2026-02-27 14:30:32,740 - INFO - Running multiturn workload...
+2026-02-27 14:30:33,351 - INFO - multiturn: e2e_mean=161.20ms, p95=457.30ms
+2026-02-27 14:30:33,352 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4213ms p95=8181ms |   load_spikes: mean=3363ms p95=6909ms |   multiturn: mean=161ms p95=457ms |   Avg mean=2579ms p95=5183ms | Score: -3880.77
+2026-02-27 14:30:33,352 - INFO - Evaluated program c7dc4777-333c-415c-b03e-522dbb720d2f in 18.63s: combined_score=-3880.7710, avg_e2e_ms=2579.0118, avg_p95_ms=5182.5301, cache_warmup_e2e_ms=4213.0776, load_spikes_e2e_ms=3362.7607, multiturn_e2e_ms=161.1972, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:30:33,355 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:30:33,356 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-02-27 14:30:33,360 - INFO - [HYPO-TRACK] iter=23 | generated=6(OK) persisted=3(OK) results_injected=2(OK) parent_hypos=3(OK) top_w_hypos=5/5
+2026-02-27 14:30:33,365 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 7, 'diversity': 0} (fitness: -3881.376 -> -3880.771)
+2026-02-27 14:30:33,366 - INFO - Iteration 23: Program c7dc4777-333c-415c-b03e-522dbb720d2f (parent: 98619425-aa99-4087-866a-e623835ff74b) completed in 50.21s
+2026-02-27 14:30:33,366 - INFO - Metrics: combined_score=-3880.7710, avg_e2e_ms=2579.0118, avg_p95_ms=5182.5301, cache_warmup_e2e_ms=4213.0776, load_spikes_e2e_ms=3362.7607, multiturn_e2e_ms=161.1972, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:30:55,436 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:30:55,441 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:30:55,441 - INFO - Extracted Go code: 14863 chars, first line: package sim
+2026-02-27 14:30:55,442 - INFO - Diff vs initial: -11 / +86 lines
+2026-02-27 14:30:55,442 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:30:55,442 - INFO - Building BLIS...
+2026-02-27 14:30:56,106 - INFO - Build successful
+2026-02-27 14:30:56,106 - INFO - Running cache_warmup workload...
+2026-02-27 14:31:05,877 - INFO - cache_warmup: e2e_mean=4225.98ms, p95=8141.00ms
+2026-02-27 14:31:05,877 - INFO - Running load_spikes workload...
+2026-02-27 14:31:13,323 - INFO - load_spikes: e2e_mean=3362.17ms, p95=6958.36ms
+2026-02-27 14:31:13,323 - INFO - Running multiturn workload...
+2026-02-27 14:31:13,556 - INFO - multiturn: e2e_mean=165.34ms, p95=484.05ms
+2026-02-27 14:31:13,556 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4226ms p95=8141ms |   load_spikes: mean=3362ms p95=6958ms |   multiturn: mean=165ms p95=484ms |   Avg mean=2584ms p95=5194ms | Score: -3889.48
+2026-02-27 14:31:13,556 - INFO - Evaluated program d34bb2da-7509-4444-a993-fed22ca1e7c2 in 18.12s: combined_score=-3889.4830, avg_e2e_ms=2584.4978, avg_p95_ms=5194.4683, cache_warmup_e2e_ms=4225.9823, load_spikes_e2e_ms=3362.1723, multiturn_e2e_ms=165.3386, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:31:13,559 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:31:13,560 - INFO - Sampled model: aws/claude-opus-4-6
+2026-02-27 14:31:13,569 - INFO - [HYPO-TRACK] iter=24 | generated=4(OK) persisted=2(OK) results_injected=1(OK) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 14:31:13,574 - INFO - Iteration 24: Program d34bb2da-7509-4444-a993-fed22ca1e7c2 (parent: 20093b30-e571-4685-8526-6dac9694a7af) completed in 40.20s
+2026-02-27 14:31:13,575 - INFO - Metrics: combined_score=-3889.4830, avg_e2e_ms=2584.4978, avg_p95_ms=5194.4683, cache_warmup_e2e_ms=4225.9823, load_spikes_e2e_ms=3362.1723, multiturn_e2e_ms=165.3386, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:31:43,515 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:31:43,520 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:31:43,521 - INFO - Extracted Go code: 14971 chars, first line: package sim
+2026-02-27 14:31:43,521 - INFO - Diff vs initial: -11 / +89 lines
+2026-02-27 14:31:43,521 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:31:43,521 - INFO - Building BLIS...
+2026-02-27 14:31:44,119 - INFO - Build successful
+2026-02-27 14:31:44,119 - INFO - Running cache_warmup workload...
+2026-02-27 14:31:53,833 - INFO - cache_warmup: e2e_mean=4211.67ms, p95=8252.48ms
+2026-02-27 14:31:53,833 - INFO - Running load_spikes workload...
+2026-02-27 14:32:01,447 - INFO - load_spikes: e2e_mean=3357.16ms, p95=6926.06ms
+2026-02-27 14:32:01,447 - INFO - Running multiturn workload...
+2026-02-27 14:32:01,699 - INFO - multiturn: e2e_mean=161.76ms, p95=459.72ms
+2026-02-27 14:32:01,699 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4212ms p95=8252ms |   load_spikes: mean=3357ms p95=6926ms |   multiturn: mean=162ms p95=460ms |   Avg mean=2577ms p95=5213ms | Score: -3894.81
+2026-02-27 14:32:01,699 - INFO - Evaluated program 51f373b6-4693-4c8d-be86-9447df2fab2a in 18.18s: combined_score=-3894.8078, avg_e2e_ms=2576.8632, avg_p95_ms=5212.7524, cache_warmup_e2e_ms=4211.6712, load_spikes_e2e_ms=3357.1608, multiturn_e2e_ms=161.7576, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:32:01,702 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:32:01,703 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-02-27 14:32:01,704 - INFO - [HYPO-TRACK] iter=25 | generated=4(OK) persisted=2(OK) results_injected=1(OK) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 14:32:01,709 - INFO - Iteration 25: Program 51f373b6-4693-4c8d-be86-9447df2fab2a (parent: 251775c1-c824-4f20-a2ad-10b9462e23b1) completed in 48.14s
+2026-02-27 14:32:01,709 - INFO - Metrics: combined_score=-3894.8078, avg_e2e_ms=2576.8632, avg_p95_ms=5212.7524, cache_warmup_e2e_ms=4211.6712, load_spikes_e2e_ms=3357.1608, multiturn_e2e_ms=161.7576, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:32:01,709 - INFO - Checkpoint interval reached at iteration 25
+2026-02-27 14:32:01,711 - INFO - Island Status:
+2026-02-27 14:32:01,711 - INFO -  * Island 0: 17 programs, best=-3879.6781, avg=-3910.2074, diversity=325.85, gen=25 (best: e319fb40-03b2-4667-b9b6-0ca2f05181bd)
+2026-02-27 14:32:01,711 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 14:32:01,711 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 14:32:01,731 - INFO - Saved database with 26 programs to experiments/blis_ab_20260227_1344/treatment_run_43/checkpoints/checkpoint_25
+2026-02-27 14:32:01,731 - INFO - Saved best program at checkpoint 25 with metrics: combined_score=-3879.6781, avg_e2e_ms=2576.8159, avg_p95_ms=5182.5403, cache_warmup_e2e_ms=4210.6420, load_spikes_e2e_ms=3357.5828, multiturn_e2e_ms=162.2228, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:32:01,731 - INFO - Saved checkpoint at iteration 25 to experiments/blis_ab_20260227_1344/treatment_run_43/checkpoints/checkpoint_25
+2026-02-27 14:32:01,732 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/blis_ab_20260227_1344/treatment_run_43/hypothesis_tracker.json
+2026-02-27 14:32:30,813 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:32:30,821 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:32:30,821 - INFO - Extracted Go code: 14274 chars, first line: package sim
+2026-02-27 14:32:30,822 - INFO - Diff vs initial: -11 / +78 lines
+2026-02-27 14:32:30,822 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:32:30,822 - INFO - Building BLIS...
+2026-02-27 14:32:31,401 - INFO - Build successful
+2026-02-27 14:32:31,401 - INFO - Running cache_warmup workload...
+2026-02-27 14:32:41,145 - INFO - cache_warmup: e2e_mean=4213.08ms, p95=8181.36ms
+2026-02-27 14:32:41,145 - INFO - Running load_spikes workload...
+2026-02-27 14:32:48,487 - INFO - load_spikes: e2e_mean=3362.76ms, p95=6908.93ms
+2026-02-27 14:32:48,488 - INFO - Running multiturn workload...
+2026-02-27 14:32:48,714 - INFO - multiturn: e2e_mean=161.70ms, p95=460.30ms
+2026-02-27 14:32:48,714 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4213ms p95=8181ms |   load_spikes: mean=3363ms p95=6909ms |   multiturn: mean=162ms p95=460ms |   Avg mean=2579ms p95=5184ms | Score: -3881.36
+2026-02-27 14:32:48,715 - INFO - Evaluated program 28cf0924-d795-42be-b12a-591a3769cf19 in 17.89s: combined_score=-3881.3550, avg_e2e_ms=2579.1809, avg_p95_ms=5183.5291, cache_warmup_e2e_ms=4213.0776, load_spikes_e2e_ms=3362.7607, multiturn_e2e_ms=161.7044, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:32:48,718 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:32:48,719 - INFO - Sampled model: aws/claude-opus-4-6
+2026-02-27 14:32:48,726 - INFO - [HYPO-TRACK] iter=26 | generated=3(OK) persisted=1(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 14:32:48,730 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 4, 'diversity': 0} (fitness: -3925.003 -> -3881.355)
+2026-02-27 14:32:48,731 - INFO - Iteration 26: Program 28cf0924-d795-42be-b12a-591a3769cf19 (parent: 50fcb5c3-6dbe-4209-ab79-68d32d335165) completed in 47.01s
+2026-02-27 14:32:48,731 - INFO - Metrics: combined_score=-3881.3550, avg_e2e_ms=2579.1809, avg_p95_ms=5183.5291, cache_warmup_e2e_ms=4213.0776, load_spikes_e2e_ms=3362.7607, multiturn_e2e_ms=161.7044, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:33:23,846 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:33:23,850 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:33:23,851 - INFO - Extracted Go code: 14987 chars, first line: package sim
+2026-02-27 14:33:23,851 - INFO - Diff vs initial: -11 / +89 lines
+2026-02-27 14:33:23,851 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:33:23,851 - INFO - Building BLIS...
+2026-02-27 14:33:24,439 - INFO - Build successful
+2026-02-27 14:33:24,439 - INFO - Running cache_warmup workload...
+2026-02-27 14:33:33,919 - INFO - cache_warmup: e2e_mean=4210.49ms, p95=8216.69ms
+2026-02-27 14:33:33,919 - INFO - Running load_spikes workload...
+2026-02-27 14:33:41,333 - INFO - load_spikes: e2e_mean=3357.50ms, p95=6904.59ms
+2026-02-27 14:33:41,333 - INFO - Running multiturn workload...
+2026-02-27 14:33:41,558 - INFO - multiturn: e2e_mean=165.69ms, p95=476.16ms
+2026-02-27 14:33:41,558 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4210ms p95=8217ms |   load_spikes: mean=3357ms p95=6905ms |   multiturn: mean=166ms p95=476ms |   Avg mean=2578ms p95=5199ms | Score: -3888.52
+2026-02-27 14:33:41,558 - INFO - Evaluated program e41f05a1-900f-4895-ace9-8cbfed228cba in 17.71s: combined_score=-3888.5197, avg_e2e_ms=2577.8916, avg_p95_ms=5199.1479, cache_warmup_e2e_ms=4210.4864, load_spikes_e2e_ms=3357.4977, multiturn_e2e_ms=165.6905, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:33:41,561 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:33:41,562 - INFO - Sampled model: aws/claude-opus-4-6
+2026-02-27 14:33:41,567 - INFO - [HYPO-TRACK] iter=27 | generated=5(OK) persisted=2(OK) results_injected=1(OK) parent_hypos=3(OK) top_w_hypos=5/5
+2026-02-27 14:33:41,572 - INFO - Iteration 27: Program e41f05a1-900f-4895-ace9-8cbfed228cba (parent: 20c002ea-d9a6-47dc-923c-e6b5b4d7cdfa) completed in 52.84s
+2026-02-27 14:33:41,572 - INFO - Metrics: combined_score=-3888.5197, avg_e2e_ms=2577.8916, avg_p95_ms=5199.1479, cache_warmup_e2e_ms=4210.4864, load_spikes_e2e_ms=3357.4977, multiturn_e2e_ms=165.6905, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:34:12,933 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:34:12,940 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:34:12,940 - INFO - Extracted Go code: 14809 chars, first line: package sim
+2026-02-27 14:34:12,940 - INFO - Diff vs initial: -11 / +88 lines
+2026-02-27 14:34:12,941 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:34:12,941 - INFO - Building BLIS...
+2026-02-27 14:34:13,505 - INFO - Build successful
+2026-02-27 14:34:13,506 - INFO - Running cache_warmup workload...
+2026-02-27 14:34:22,930 - INFO - cache_warmup: e2e_mean=4205.60ms, p95=8267.20ms
+2026-02-27 14:34:22,930 - INFO - Running load_spikes workload...
+2026-02-27 14:34:30,307 - INFO - load_spikes: e2e_mean=3357.54ms, p95=6914.14ms
+2026-02-27 14:34:30,307 - INFO - Running multiturn workload...
+2026-02-27 14:34:30,579 - INFO - multiturn: e2e_mean=165.69ms, p95=476.16ms
+2026-02-27 14:34:30,579 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4206ms p95=8267ms |   load_spikes: mean=3358ms p95=6914ms |   multiturn: mean=166ms p95=476ms |   Avg mean=2576ms p95=5219ms | Score: -3897.72
+2026-02-27 14:34:30,580 - INFO - Evaluated program e60b618a-6fab-4fce-b274-e44ad56686c5 in 17.64s: combined_score=-3897.7234, avg_e2e_ms=2576.2772, avg_p95_ms=5219.1696, cache_warmup_e2e_ms=4205.5971, load_spikes_e2e_ms=3357.5440, multiturn_e2e_ms=165.6905, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:34:30,582 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:34:30,584 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-02-27 14:34:30,584 - INFO - [HYPO-TRACK] iter=28 | generated=4(OK) persisted=2(OK) results_injected=1(OK) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 14:34:30,590 - INFO - Iteration 28: Program e60b618a-6fab-4fce-b274-e44ad56686c5 (parent: 80604403-5a2b-41c2-97da-327d1adc752c) completed in 49.02s
+2026-02-27 14:34:30,590 - INFO - Metrics: combined_score=-3897.7234, avg_e2e_ms=2576.2772, avg_p95_ms=5219.1696, cache_warmup_e2e_ms=4205.5971, load_spikes_e2e_ms=3357.5440, multiturn_e2e_ms=165.6905, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:34:59,569 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:34:59,575 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:34:59,575 - INFO - Extracted Go code: 14613 chars, first line: package sim
+2026-02-27 14:34:59,576 - INFO - Diff vs initial: -11 / +78 lines
+2026-02-27 14:34:59,576 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:34:59,576 - INFO - Building BLIS...
+2026-02-27 14:35:00,174 - INFO - Build successful
+2026-02-27 14:35:00,174 - INFO - Running cache_warmup workload...
+2026-02-27 14:35:09,644 - INFO - cache_warmup: e2e_mean=4208.71ms, p95=8189.43ms
+2026-02-27 14:35:09,644 - INFO - Running load_spikes workload...
+2026-02-27 14:35:17,074 - INFO - load_spikes: e2e_mean=3362.55ms, p95=6963.25ms
+2026-02-27 14:35:17,074 - INFO - Running multiturn workload...
+2026-02-27 14:35:17,303 - INFO - multiturn: e2e_mean=161.71ms, p95=460.42ms
+2026-02-27 14:35:17,303 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4209ms p95=8189ms |   load_spikes: mean=3363ms p95=6963ms |   multiturn: mean=162ms p95=460ms |   Avg mean=2578ms p95=5204ms | Score: -3891.01
+2026-02-27 14:35:17,303 - INFO - Evaluated program c739e932-ab76-420c-a7a1-359e487a4e4b in 17.73s: combined_score=-3891.0112, avg_e2e_ms=2577.6567, avg_p95_ms=5204.3657, cache_warmup_e2e_ms=4208.7105, load_spikes_e2e_ms=3362.5469, multiturn_e2e_ms=161.7127, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:35:17,306 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 14:35:17,307 - INFO - Sampled model: aws/claude-sonnet-4-5
+2026-02-27 14:35:17,310 - INFO - [HYPO-TRACK] iter=29 | generated=4(OK) persisted=2(OK) results_injected=1(OK) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 14:35:17,316 - INFO - Iteration 29: Program c739e932-ab76-420c-a7a1-359e487a4e4b (parent: cff03c4f-daab-4ad7-9664-faf51e6f3962) completed in 46.72s
+2026-02-27 14:35:17,316 - INFO - Metrics: combined_score=-3891.0112, avg_e2e_ms=2577.6567, avg_p95_ms=5204.3657, cache_warmup_e2e_ms=4208.7105, load_spikes_e2e_ms=3362.5469, multiturn_e2e_ms=161.7127, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:35:37,948 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 14:35:37,951 - INFO - Program text preview: """
+Initial Program: BLIS Router Weight Optimization
+
+This contains the full routing.go file (synced...
+2026-02-27 14:35:37,952 - INFO - Extracted Go code: 14591 chars, first line: package sim
+2026-02-27 14:35:37,952 - INFO - Diff vs initial: -11 / +83 lines
+2026-02-27 14:35:37,952 - INFO - Wrote evolved routing.go to /Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/blis_router/inference-sim/sim/routing.go
+2026-02-27 14:35:37,952 - INFO - Building BLIS...
+2026-02-27 14:35:38,524 - INFO - Build successful
+2026-02-27 14:35:38,524 - INFO - Running cache_warmup workload...
+2026-02-27 14:35:47,998 - INFO - cache_warmup: e2e_mean=4210.64ms, p95=8162.22ms
+2026-02-27 14:35:47,998 - INFO - Running load_spikes workload...
+2026-02-27 14:35:55,354 - INFO - load_spikes: e2e_mean=3357.58ms, p95=6926.28ms
+2026-02-27 14:35:55,354 - INFO - Running multiturn workload...
+2026-02-27 14:35:55,579 - INFO - multiturn: e2e_mean=162.22ms, p95=459.13ms
+2026-02-27 14:35:55,579 - INFO - EVALUATION COMPLETE |   cache_warmup: mean=4211ms p95=8162ms |   load_spikes: mean=3358ms p95=6926ms |   multiturn: mean=162ms p95=459ms |   Avg mean=2577ms p95=5183ms | Score: -3879.68
+2026-02-27 14:35:55,580 - INFO - Evaluated program e98e9ebf-c13d-41a6-a02b-170afe495ab9 in 17.63s: combined_score=-3879.6781, avg_e2e_ms=2576.8159, avg_p95_ms=5182.5403, cache_warmup_e2e_ms=4210.6420, load_spikes_e2e_ms=3357.5828, multiturn_e2e_ms=162.2228, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:35:55,583 - INFO - [HYPO-TRACK] iter=30 | generated=4(OK) persisted=2(OK) results_injected=1(OK) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 14:35:55,587 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 5, 'diversity': 0} (fitness: -3880.742 -> -3879.678)
+2026-02-27 14:35:55,588 - INFO - Iteration 30: Program e98e9ebf-c13d-41a6-a02b-170afe495ab9 (parent: 51f373b6-4693-4c8d-be86-9447df2fab2a) completed in 38.27s
+2026-02-27 14:35:55,588 - INFO - Metrics: combined_score=-3879.6781, avg_e2e_ms=2576.8159, avg_p95_ms=5182.5403, cache_warmup_e2e_ms=4210.6420, load_spikes_e2e_ms=3357.5828, multiturn_e2e_ms=162.2228, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:35:55,588 - INFO - Checkpoint interval reached at iteration 30
+2026-02-27 14:35:55,589 - INFO - Island Status:
+2026-02-27 14:35:55,589 - INFO -  * Island 0: 20 programs, best=-3879.6781, avg=-3905.3034, diversity=233.32, gen=30 (best: e319fb40-03b2-4667-b9b6-0ca2f05181bd)
+2026-02-27 14:35:55,589 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 14:35:55,589 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 14:35:55,611 - INFO - Saved database with 31 programs to experiments/blis_ab_20260227_1344/treatment_run_43/checkpoints/checkpoint_30
+2026-02-27 14:35:55,611 - INFO - Saved best program at checkpoint 30 with metrics: combined_score=-3879.6781, avg_e2e_ms=2576.8159, avg_p95_ms=5182.5403, cache_warmup_e2e_ms=4210.6420, load_spikes_e2e_ms=3357.5828, multiturn_e2e_ms=162.2228, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:35:55,611 - INFO - Saved checkpoint at iteration 30 to experiments/blis_ab_20260227_1344/treatment_run_43/checkpoints/checkpoint_30
+2026-02-27 14:35:55,612 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/blis_ab_20260227_1344/treatment_run_43/hypothesis_tracker.json
+2026-02-27 14:35:55,612 - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-02-27 14:35:55,612 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/blis_ab_20260227_1344/treatment_run_43/hypothesis_tracker.json
+2026-02-27 14:35:55,635 - INFO - Saved database with 31 programs to experiments/blis_ab_20260227_1344/treatment_run_43/checkpoints/checkpoint_30
+2026-02-27 14:35:55,635 - INFO - Saved best program at checkpoint 30 with metrics: combined_score=-3879.6781, avg_e2e_ms=2576.8159, avg_p95_ms=5182.5403, cache_warmup_e2e_ms=4210.6420, load_spikes_e2e_ms=3357.5828, multiturn_e2e_ms=162.2228, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:35:55,635 - INFO - Saved checkpoint at iteration 30 to experiments/blis_ab_20260227_1344/treatment_run_43/checkpoints/checkpoint_30
+2026-02-27 14:35:55,730 - INFO - Stopped process pool
+2026-02-27 14:35:55,730 - INFO - Using tracked best program: e319fb40-03b2-4667-b9b6-0ca2f05181bd
+2026-02-27 14:35:55,730 - INFO - Evolution complete. Best program has metrics: combined_score=-3879.6781, avg_e2e_ms=2576.8159, avg_p95_ms=5182.5403, cache_warmup_e2e_ms=4210.6420, load_spikes_e2e_ms=3357.5828, multiturn_e2e_ms=162.2228, success_rate=1.0000, num_successful=3.0000, num_failed=0.0000
+2026-02-27 14:35:55,731 - INFO - Saved best program to experiments/blis_ab_20260227_1344/treatment_run_43/best/best_program.py with program info to experiments/blis_ab_20260227_1344/treatment_run_43/best/best_program_info.json

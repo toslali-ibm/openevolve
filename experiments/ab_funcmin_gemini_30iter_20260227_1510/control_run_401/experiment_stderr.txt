@@ -1,0 +1,279 @@
+2026-02-27 15:20:00,594 - INFO - Logging to experiments/ab_funcmin_gemini_30iter_20260227_1510/control_run_401/logs/openevolve_20260227_152000.log
+2026-02-27 15:20:00,606 - INFO - Set random seed to 42 for reproducibility
+2026-02-27 15:20:00,631 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-27 15:20:00,637 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-27 15:20:00,637 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-27 15:20:00,648 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-27 15:20:00,649 - INFO - Initialized prompt sampler
+2026-02-27 15:20:00,649 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-27 15:20:00,650 - INFO - Initialized program database with 0 programs
+2026-02-27 15:20:00,650 - INFO - Successfully loaded evaluation function from examples/function_minimization/evaluator.py
+2026-02-27 15:20:00,650 - INFO - Initialized evaluator with examples/function_minimization/evaluator.py
+2026-02-27 15:20:00,650 - INFO - Initialized OpenEvolve with examples/function_minimization/initial_program.py
+2026-02-27 15:20:00,650 - INFO - Adding initial program to database
+2026-02-27 15:20:00,655 - INFO - Evaluated program 1dc9766a-0c86-474c-af84-79b9038cb6b7 in 0.00s: runs_successfully=1.0000, value_score=0.9418, distance_score=0.7566, combined_score=1.2148
+2026-02-27 15:20:00,655 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-02-27 15:20:00,662 - INFO - Initialized process parallel controller with 3 workers
+2026-02-27 15:20:00,662 - INFO - Set max None tasks per child
+2026-02-27 15:20:00,663 - INFO - Started process pool with 3 processes
+2026-02-27 15:20:00,663 - INFO - Using island-based evolution with 3 islands
+2026-02-27 15:20:00,663 - INFO - Island Status:
+2026-02-27 15:20:00,663 - INFO -  * Island 0: 1 programs, best=1.2148, avg=1.2148, diversity=0.00, gen=0 (best: 1dc9766a-0c86-474c-af84-79b9038cb6b7)
+2026-02-27 15:20:00,663 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:20:00,663 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:20:00,663 - INFO - Starting process-based evolution from iteration 1 for 30 iterations (total: 31)
+2026-02-27 15:20:00,671 - INFO - Early stopping disabled
+2026-02-27 15:20:01,066 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-27 15:20:01,067 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-27 15:20:01,067 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-27 15:20:01,072 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-27 15:20:01,072 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-27 15:20:01,072 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-27 15:20:01,072 - INFO - Initialized prompt sampler
+2026-02-27 15:20:01,072 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-27 15:20:01,072 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-27 15:20:01,072 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-27 15:20:01,073 - INFO - Initialized prompt sampler
+2026-02-27 15:20:01,073 - INFO - Initialized prompt sampler
+2026-02-27 15:20:01,083 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-27 15:20:01,083 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-27 15:20:01,084 - INFO - Successfully loaded evaluation function from examples/function_minimization/evaluator.py
+2026-02-27 15:20:01,084 - INFO - Initialized evaluator with examples/function_minimization/evaluator.py
+2026-02-27 15:20:01,084 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-27 15:20:01,084 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-27 15:20:01,085 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:20:01,085 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-27 15:20:01,085 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-27 15:20:01,085 - INFO - Successfully loaded evaluation function from examples/function_minimization/evaluator.py
+2026-02-27 15:20:01,085 - INFO - Successfully loaded evaluation function from examples/function_minimization/evaluator.py
+2026-02-27 15:20:01,085 - INFO - Initialized evaluator with examples/function_minimization/evaluator.py
+2026-02-27 15:20:01,085 - INFO - Initialized evaluator with examples/function_minimization/evaluator.py
+2026-02-27 15:20:01,086 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:20:01,086 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:20:05,322 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:20:05,368 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:20:05,400 - INFO - Evaluated program 2515cc44-be31-4c94-9a4a-13adb2611b7c in 0.07s: runs_successfully=1.0000, value_score=0.9804, distance_score=0.5555, combined_score=1.0283, reliability_score=1.0000
+2026-02-27 15:20:05,402 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:20:05,404 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 5}
+2026-02-27 15:20:05,405 - INFO - Iteration 2: Program 2515cc44-be31-4c94-9a4a-13adb2611b7c (parent: 1dc9766a-0c86-474c-af84-79b9038cb6b7) completed in 4.32s
+2026-02-27 15:20:05,405 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9804, distance_score=0.5555, combined_score=1.0283, reliability_score=1.0000
+2026-02-27 15:20:05,436 - INFO - Evaluated program 988c9c61-f817-4ffb-a0d1-2e3ad9a44777 in 0.06s: runs_successfully=1.0000, value_score=0.9564, distance_score=0.5556, combined_score=1.0138, reliability_score=1.0000
+2026-02-27 15:20:05,438 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:20:05,449 - INFO - Iteration 3: Program 988c9c61-f817-4ffb-a0d1-2e3ad9a44777 (parent: 1dc9766a-0c86-474c-af84-79b9038cb6b7) completed in 4.35s
+2026-02-27 15:20:05,449 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9564, distance_score=0.5556, combined_score=1.0138, reliability_score=1.0000
+2026-02-27 15:20:06,249 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:20:06,327 - INFO - Evaluated program 8b8b1fbb-a6b4-47a1-8571-4966a2a183c7 in 0.07s: runs_successfully=1.0000, value_score=0.9804, distance_score=0.5548, combined_score=1.0280, reliability_score=1.0000
+2026-02-27 15:20:06,328 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:20:06,338 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 0}
+2026-02-27 15:20:06,339 - INFO - Iteration 1: Program 8b8b1fbb-a6b4-47a1-8571-4966a2a183c7 (parent: 1dc9766a-0c86-474c-af84-79b9038cb6b7) completed in 5.24s
+2026-02-27 15:20:06,339 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9804, distance_score=0.5548, combined_score=1.0280, reliability_score=1.0000
+2026-02-27 15:20:09,414 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:20:09,478 - INFO - Evaluated program 3e7c73df-7f8d-471d-97d4-1b93ffd8ac5c in 0.06s: runs_successfully=1.0000, value_score=0.9997, distance_score=0.9982, combined_score=1.4990, reliability_score=1.0000
+2026-02-27 15:20:09,480 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:20:09,488 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 9}
+2026-02-27 15:20:09,488 - INFO - New best program 3e7c73df-7f8d-471d-97d4-1b93ffd8ac5c replaces 1dc9766a-0c86-474c-af84-79b9038cb6b7 (combined_score: 1.2148 → 1.4990, +0.2842)
+2026-02-27 15:20:09,489 - INFO - Iteration 5: Program 3e7c73df-7f8d-471d-97d4-1b93ffd8ac5c (parent: 1dc9766a-0c86-474c-af84-79b9038cb6b7) completed in 4.04s
+2026-02-27 15:20:09,489 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9997, distance_score=0.9982, combined_score=1.4990, reliability_score=1.0000
+2026-02-27 15:20:09,489 - INFO - 🌟 New best solution found at iteration 5: 3e7c73df-7f8d-471d-97d4-1b93ffd8ac5c
+2026-02-27 15:20:09,489 - INFO - Checkpoint interval reached at iteration 5
+2026-02-27 15:20:09,489 - INFO - Island Status:
+2026-02-27 15:20:09,489 - INFO -  * Island 0: 5 programs, best=1.4990, avg=1.1568, diversity=61.43, gen=4 (best: 3e7c73df-7f8d-471d-97d4-1b93ffd8ac5c)
+2026-02-27 15:20:09,489 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:20:09,489 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:20:09,491 - INFO - Saved database with 5 programs to experiments/ab_funcmin_gemini_30iter_20260227_1510/control_run_401/checkpoints/checkpoint_5
+2026-02-27 15:20:09,491 - INFO - Saved best program at checkpoint 5 with metrics: runs_successfully=1.0000, value_score=0.9997, distance_score=0.9982, combined_score=1.4990, reliability_score=1.0000
+2026-02-27 15:20:09,491 - INFO - Saved checkpoint at iteration 5 to experiments/ab_funcmin_gemini_30iter_20260227_1510/control_run_401/checkpoints/checkpoint_5
+2026-02-27 15:20:10,442 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:20:10,495 - INFO - Evaluated program fb8d8495-7741-4d10-af99-367d469f8788 in 0.05s: runs_successfully=1.0000, value_score=0.9997, distance_score=0.9953, combined_score=1.4976, reliability_score=1.0000
+2026-02-27 15:20:10,496 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:20:10,503 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 9, 'diversity': 0} (fitness: 1.028 -> 1.498)
+2026-02-27 15:20:10,503 - INFO - Iteration 4: Program fb8d8495-7741-4d10-af99-367d469f8788 (parent: 1dc9766a-0c86-474c-af84-79b9038cb6b7) completed in 5.09s
+2026-02-27 15:20:10,503 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9997, distance_score=0.9953, combined_score=1.4976, reliability_score=1.0000
+2026-02-27 15:20:12,179 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:20:12,233 - INFO - Evaluated program cf1b0292-c739-46b4-b8fb-282aded23147 in 0.05s: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7130, combined_score=1.3633, reliability_score=1.0000
+2026-02-27 15:20:12,234 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:20:12,240 - INFO - Iteration 6: Program cf1b0292-c739-46b4-b8fb-282aded23147 (parent: 1dc9766a-0c86-474c-af84-79b9038cb6b7) completed in 5.91s
+2026-02-27 15:20:12,240 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7130, combined_score=1.3633, reliability_score=1.0000
+2026-02-27 15:20:45,481 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:20:45,540 - INFO - Evaluated program b3a90260-cdcb-430a-873f-35277f410e82 in 0.06s: runs_successfully=1.0000, value_score=0.9606, distance_score=0.8610, combined_score=1.4079, reliability_score=1.0000
+2026-02-27 15:20:45,542 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:20:45,551 - INFO - Iteration 7: Program b3a90260-cdcb-430a-873f-35277f410e82 (parent: 2515cc44-be31-4c94-9a4a-13adb2611b7c) completed in 36.06s
+2026-02-27 15:20:45,551 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9606, distance_score=0.8610, combined_score=1.4079, reliability_score=1.0000
+2026-02-27 15:20:51,508 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:20:51,563 - INFO - Evaluated program 0af31dbb-f1e8-47b4-9413-ef20f6f6f1da in 0.05s: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7106, combined_score=1.3622, reliability_score=1.0000
+2026-02-27 15:20:51,565 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:20:51,571 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 2, 'diversity': 1}
+2026-02-27 15:20:51,571 - INFO - Iteration 8: Program 0af31dbb-f1e8-47b4-9413-ef20f6f6f1da (parent: 1dc9766a-0c86-474c-af84-79b9038cb6b7) completed in 41.07s
+2026-02-27 15:20:51,571 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7106, combined_score=1.3622, reliability_score=1.0000
+2026-02-27 15:20:53,354 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:20:53,374 - INFO - Evaluated program 5f0c54c2-9928-498e-af7a-6d2b39855f80 in 0.02s: runs_successfully=1.0000, value_score=0.8894, distance_score=0.3122, combined_score=0.7384, reliability_score=1.0000
+2026-02-27 15:20:53,375 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:20:53,381 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 3, 'diversity': 3}
+2026-02-27 15:20:53,381 - INFO - Iteration 10: Program 5f0c54c2-9928-498e-af7a-6d2b39855f80 (parent: 2515cc44-be31-4c94-9a4a-13adb2611b7c) completed in 7.83s
+2026-02-27 15:20:53,381 - INFO - Metrics: runs_successfully=1.0000, value_score=0.8894, distance_score=0.3122, combined_score=0.7384, reliability_score=1.0000
+2026-02-27 15:20:53,381 - INFO - Checkpoint interval reached at iteration 10
+2026-02-27 15:20:53,381 - INFO - Island Status:
+2026-02-27 15:20:53,381 - INFO -  * Island 0: 9 programs, best=1.4990, avg=1.2361, diversity=88.08, gen=9 (best: 3e7c73df-7f8d-471d-97d4-1b93ffd8ac5c)
+2026-02-27 15:20:53,381 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:20:53,381 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:20:53,385 - INFO - Saved database with 10 programs to experiments/ab_funcmin_gemini_30iter_20260227_1510/control_run_401/checkpoints/checkpoint_10
+2026-02-27 15:20:53,386 - INFO - Saved best program at checkpoint 10 with metrics: runs_successfully=1.0000, value_score=0.9997, distance_score=0.9982, combined_score=1.4990, reliability_score=1.0000
+2026-02-27 15:20:53,386 - INFO - Saved checkpoint at iteration 10 to experiments/ab_funcmin_gemini_30iter_20260227_1510/control_run_401/checkpoints/checkpoint_10
+2026-02-27 15:20:57,698 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:20:57,755 - INFO - Evaluated program de0f7a06-d8c1-408c-89e8-ad134e47c141 in 0.06s: runs_successfully=1.0000, value_score=0.9387, distance_score=0.3852, combined_score=0.7849, reliability_score=1.0000
+2026-02-27 15:20:57,756 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:20:57,757 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 1, 'diversity': 1}
+2026-02-27 15:20:57,758 - INFO - Iteration 11: Program de0f7a06-d8c1-408c-89e8-ad134e47c141 (parent: 2515cc44-be31-4c94-9a4a-13adb2611b7c) completed in 6.19s
+2026-02-27 15:20:57,758 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9387, distance_score=0.3852, combined_score=0.7849, reliability_score=1.0000
+2026-02-27 15:21:07,797 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:21:07,851 - INFO - Evaluated program ad79b12d-4211-4578-bd9c-40d1c83d4222 in 0.05s: runs_successfully=1.0000, value_score=0.9900, distance_score=0.7134, combined_score=1.3635, reliability_score=1.0000
+2026-02-27 15:21:07,852 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:21:07,854 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 2, 'diversity': 1} (fitness: 1.362 -> 1.364)
+2026-02-27 15:21:07,854 - INFO - Iteration 12: Program ad79b12d-4211-4578-bd9c-40d1c83d4222 (parent: cf1b0292-c739-46b4-b8fb-282aded23147) completed in 14.48s
+2026-02-27 15:21:07,854 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9900, distance_score=0.7134, combined_score=1.3635, reliability_score=1.0000
+2026-02-27 15:21:07,878 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:21:07,932 - INFO - Evaluated program e7b345c6-5b36-4176-a87a-d94945866bd8 in 0.05s: runs_successfully=1.0000, value_score=0.9997, distance_score=0.9976, combined_score=1.4987, reliability_score=1.0000
+2026-02-27 15:21:07,934 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:21:07,943 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 4, 'diversity': 2}
+2026-02-27 15:21:07,944 - INFO - Iteration 9: Program e7b345c6-5b36-4176-a87a-d94945866bd8 (parent: 1dc9766a-0c86-474c-af84-79b9038cb6b7) completed in 55.70s
+2026-02-27 15:21:07,944 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9997, distance_score=0.9976, combined_score=1.4987, reliability_score=1.0000
+2026-02-27 15:21:13,379 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:21:13,439 - INFO - Evaluated program f8fdb0ca-02c9-417e-90f9-0eb5540c396f in 0.06s: runs_successfully=1.0000, value_score=0.9711, distance_score=0.4549, combined_score=0.9864, reliability_score=1.0000
+2026-02-27 15:21:13,441 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:21:13,445 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 2, 'diversity': 0}
+2026-02-27 15:21:13,446 - INFO - Iteration 13: Program f8fdb0ca-02c9-417e-90f9-0eb5540c396f (parent: fb8d8495-7741-4d10-af99-367d469f8788) completed in 15.68s
+2026-02-27 15:21:13,446 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9711, distance_score=0.4549, combined_score=0.9864, reliability_score=1.0000
+2026-02-27 15:21:13,652 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:21:13,711 - INFO - Evaluated program d8faca4e-39d9-4523-8c40-304fb637250b in 0.06s: runs_successfully=1.0000, value_score=0.9475, distance_score=0.4551, combined_score=0.9723, reliability_score=1.0000
+2026-02-27 15:21:13,713 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:21:13,722 - INFO - Iteration 15: Program d8faca4e-39d9-4523-8c40-304fb637250b (parent: fb8d8495-7741-4d10-af99-367d469f8788) completed in 5.78s
+2026-02-27 15:21:13,722 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9475, distance_score=0.4551, combined_score=0.9723, reliability_score=1.0000
+2026-02-27 15:21:13,722 - INFO - Checkpoint interval reached at iteration 15
+2026-02-27 15:21:13,722 - INFO - Island Status:
+2026-02-27 15:21:13,722 - INFO -  * Island 0: 13 programs, best=1.4990, avg=1.1822, diversity=103.20, gen=14 (best: 3e7c73df-7f8d-471d-97d4-1b93ffd8ac5c)
+2026-02-27 15:21:13,722 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:21:13,723 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:21:13,728 - INFO - Saved database with 15 programs to experiments/ab_funcmin_gemini_30iter_20260227_1510/control_run_401/checkpoints/checkpoint_15
+2026-02-27 15:21:13,728 - INFO - Saved best program at checkpoint 15 with metrics: runs_successfully=1.0000, value_score=0.9997, distance_score=0.9982, combined_score=1.4990, reliability_score=1.0000
+2026-02-27 15:21:13,728 - INFO - Saved checkpoint at iteration 15 to experiments/ab_funcmin_gemini_30iter_20260227_1510/control_run_401/checkpoints/checkpoint_15
+2026-02-27 15:21:23,466 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:21:23,517 - INFO - Evaluated program d5b57d00-98ec-4906-b9b4-414be4b6a9df in 0.05s: runs_successfully=1.0000, value_score=0.9711, distance_score=0.4546, combined_score=0.9863, reliability_score=1.0000
+2026-02-27 15:21:23,519 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:21:23,527 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 1, 'diversity': 0}
+2026-02-27 15:21:23,528 - INFO - Island 0 MAP-Elites coverage reached 10.0% (10/100 cells)
+2026-02-27 15:21:23,528 - INFO - Iteration 14: Program d5b57d00-98ec-4906-b9b4-414be4b6a9df (parent: 1dc9766a-0c86-474c-af84-79b9038cb6b7) completed in 15.67s
+2026-02-27 15:21:23,528 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9711, distance_score=0.4546, combined_score=0.9863, reliability_score=1.0000
+2026-02-27 15:21:48,238 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:21:48,258 - INFO - Evaluated program d7e06fd5-bdf8-41d8-b13d-9729285ad32b in 0.02s: runs_successfully=1.0000, value_score=0.9804, distance_score=0.5553, combined_score=1.0281, reliability_score=1.0000
+2026-02-27 15:21:48,259 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:21:48,267 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 3, 'diversity': 3} (fitness: 0.738 -> 1.028)
+2026-02-27 15:21:48,268 - INFO - Iteration 17: Program d7e06fd5-bdf8-41d8-b13d-9729285ad32b (parent: 5f0c54c2-9928-498e-af7a-6d2b39855f80) completed in 34.55s
+2026-02-27 15:21:48,268 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9804, distance_score=0.5553, combined_score=1.0281, reliability_score=1.0000
+2026-02-27 15:21:50,388 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:21:50,441 - INFO - Evaluated program 824f5a17-90b3-423c-aa74-7d6d85fed77b in 0.05s: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7126, combined_score=1.3631, reliability_score=1.0000
+2026-02-27 15:21:50,443 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:21:50,444 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 1, 'diversity': 0} (fitness: 0.986 -> 1.363)
+2026-02-27 15:21:50,445 - INFO - Iteration 16: Program 824f5a17-90b3-423c-aa74-7d6d85fed77b (parent: 3e7c73df-7f8d-471d-97d4-1b93ffd8ac5c) completed in 37.00s
+2026-02-27 15:21:50,445 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7126, combined_score=1.3631, reliability_score=1.0000
+2026-02-27 15:21:52,890 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:21:52,908 - INFO - Evaluated program 089881c9-44e2-4a68-ba60-60b743ecc4fe in 0.01s: runs_successfully=1.0000, value_score=0.9641, distance_score=0.7985, combined_score=1.2570
+2026-02-27 15:21:52,911 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:21:52,922 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 8}
+2026-02-27 15:21:52,923 - INFO - Iteration 18: Program 089881c9-44e2-4a68-ba60-60b743ecc4fe (parent: 988c9c61-f817-4ffb-a0d1-2e3ad9a44777) completed in 29.39s
+2026-02-27 15:21:52,923 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9641, distance_score=0.7985, combined_score=1.2570
+2026-02-27 15:21:56,863 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:21:56,915 - INFO - Evaluated program 6eaafa5f-a4a0-492e-82e4-8d12d14a7053 in 0.05s: runs_successfully=1.0000, value_score=0.9997, distance_score=0.9966, combined_score=1.4982, reliability_score=1.0000
+2026-02-27 15:21:56,917 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:21:56,925 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 2, 'diversity': 1} (fitness: 1.364 -> 1.498)
+2026-02-27 15:21:56,926 - INFO - Iteration 21: Program 6eaafa5f-a4a0-492e-82e4-8d12d14a7053 (parent: d8faca4e-39d9-4523-8c40-304fb637250b) completed in 4.01s
+2026-02-27 15:21:56,926 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9997, distance_score=0.9966, combined_score=1.4982, reliability_score=1.0000
+2026-02-27 15:22:13,229 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:22:13,294 - INFO - Evaluated program 937a5af1-a1c9-4ec3-8056-9d2439875eb4 in 0.06s: runs_successfully=1.0000, value_score=0.9711, distance_score=0.4548, combined_score=0.9864, reliability_score=1.0000
+2026-02-27 15:22:13,295 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:22:13,302 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 3, 'diversity': 1}
+2026-02-27 15:22:13,302 - INFO - Iteration 19: Program 937a5af1-a1c9-4ec3-8056-9d2439875eb4 (parent: cf1b0292-c739-46b4-b8fb-282aded23147) completed in 25.04s
+2026-02-27 15:22:13,302 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9711, distance_score=0.4548, combined_score=0.9864, reliability_score=1.0000
+2026-02-27 15:22:17,321 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:22:17,372 - INFO - Evaluated program 1fb94ab8-a8fd-4804-a615-8b74c3b4c685 in 0.05s: runs_successfully=1.0000, value_score=0.9804, distance_score=0.5548, combined_score=1.0279, reliability_score=1.0000
+2026-02-27 15:22:17,374 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:22:17,379 - INFO - Iteration 20: Program 1fb94ab8-a8fd-4804-a615-8b74c3b4c685 (parent: ad79b12d-4211-4578-bd9c-40d1c83d4222) completed in 26.93s
+2026-02-27 15:22:17,379 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9804, distance_score=0.5548, combined_score=1.0279, reliability_score=1.0000
+2026-02-27 15:22:17,379 - INFO - Checkpoint interval reached at iteration 20
+2026-02-27 15:22:17,379 - INFO - Island Status:
+2026-02-27 15:22:17,379 - INFO -  * Island 0: 17 programs, best=1.4990, avg=1.2016, diversity=313.05, gen=21 (best: 3e7c73df-7f8d-471d-97d4-1b93ffd8ac5c)
+2026-02-27 15:22:17,379 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:22:17,379 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:22:17,386 - INFO - Saved database with 22 programs to experiments/ab_funcmin_gemini_30iter_20260227_1510/control_run_401/checkpoints/checkpoint_20
+2026-02-27 15:22:17,387 - INFO - Saved best program at checkpoint 20 with metrics: runs_successfully=1.0000, value_score=0.9997, distance_score=0.9982, combined_score=1.4990, reliability_score=1.0000
+2026-02-27 15:22:17,387 - INFO - Saved checkpoint at iteration 20 to experiments/ab_funcmin_gemini_30iter_20260227_1510/control_run_401/checkpoints/checkpoint_20
+2026-02-27 15:22:23,604 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:22:23,657 - INFO - Evaluated program 38dcd8ab-e3e4-451f-b75e-92d34d94466c in 0.05s: runs_successfully=1.0000, value_score=0.9654, distance_score=0.7144, combined_score=1.3455, reliability_score=1.0000
+2026-02-27 15:22:23,658 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:22:23,670 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 1, 'diversity': 1} (fitness: 0.785 -> 1.346)
+2026-02-27 15:22:23,670 - INFO - Iteration 24: Program 38dcd8ab-e3e4-451f-b75e-92d34d94466c (parent: de0f7a06-d8c1-408c-89e8-ad134e47c141) completed in 6.28s
+2026-02-27 15:22:23,670 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9654, distance_score=0.7144, combined_score=1.3455, reliability_score=1.0000
+2026-02-27 15:22:31,804 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:22:31,857 - INFO - Evaluated program 8388bca0-a88c-420c-87a1-655f92ab4d40 in 0.05s: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7130, combined_score=1.3633, reliability_score=1.0000
+2026-02-27 15:22:31,858 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:22:31,864 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 1, 'diversity': 1} (fitness: 1.346 -> 1.363)
+2026-02-27 15:22:31,864 - INFO - Iteration 22: Program 8388bca0-a88c-420c-87a1-655f92ab4d40 (parent: f8fdb0ca-02c9-417e-90f9-0eb5540c396f) completed in 34.94s
+2026-02-27 15:22:31,864 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7130, combined_score=1.3633, reliability_score=1.0000
+2026-02-27 15:22:38,009 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:22:38,078 - INFO - Evaluated program 823e119e-108b-4f9c-9ffe-0762cea1889b in 0.07s: runs_successfully=1.0000, value_score=0.9582, distance_score=0.8516, combined_score=1.4019, reliability_score=1.0000
+2026-02-27 15:22:38,080 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:22:38,091 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 9, 'diversity': 8} (fitness: 1.257 -> 1.402)
+2026-02-27 15:22:38,092 - INFO - Iteration 23: Program 823e119e-108b-4f9c-9ffe-0762cea1889b (parent: e7b345c6-5b36-4176-a87a-d94945866bd8) completed in 24.78s
+2026-02-27 15:22:38,092 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9582, distance_score=0.8516, combined_score=1.4019, reliability_score=1.0000
+2026-02-27 15:22:43,745 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:22:43,797 - INFO - Evaluated program e3afec0d-08f9-473e-a121-2d9587298158 in 0.05s: runs_successfully=1.0000, value_score=0.9900, distance_score=0.7146, combined_score=1.3640, reliability_score=1.0000
+2026-02-27 15:22:43,798 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:22:43,804 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 1, 'diversity': 1} (fitness: 1.363 -> 1.364)
+2026-02-27 15:22:43,804 - INFO - Iteration 27: Program e3afec0d-08f9-473e-a121-2d9587298158 (parent: 2515cc44-be31-4c94-9a4a-13adb2611b7c) completed in 5.72s
+2026-02-27 15:22:43,805 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9900, distance_score=0.7146, combined_score=1.3640, reliability_score=1.0000
+2026-02-27 15:22:57,090 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:22:57,149 - INFO - Evaluated program c42941e5-c5dd-472d-af11-f1e2f88ae173 in 0.06s: runs_successfully=1.0000, value_score=0.9900, distance_score=0.7137, combined_score=1.3636, reliability_score=1.0000
+2026-02-27 15:22:57,151 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:22:57,154 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 3, 'diversity': 1} (fitness: 0.986 -> 1.364)
+2026-02-27 15:22:57,155 - INFO - Iteration 25: Program c42941e5-c5dd-472d-af11-f1e2f88ae173 (parent: 6eaafa5f-a4a0-492e-82e4-8d12d14a7053) completed in 33.49s
+2026-02-27 15:22:57,155 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9900, distance_score=0.7137, combined_score=1.3636, reliability_score=1.0000
+2026-02-27 15:22:57,155 - INFO - Checkpoint interval reached at iteration 25
+2026-02-27 15:22:57,155 - INFO - Island Status:
+2026-02-27 15:22:57,155 - INFO -  * Island 0: 17 programs, best=1.4990, avg=1.2664, diversity=82.32, gen=26 (best: 3e7c73df-7f8d-471d-97d4-1b93ffd8ac5c)
+2026-02-27 15:22:57,155 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:22:57,155 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:22:57,165 - INFO - Saved database with 27 programs to experiments/ab_funcmin_gemini_30iter_20260227_1510/control_run_401/checkpoints/checkpoint_25
+2026-02-27 15:22:57,165 - INFO - Saved best program at checkpoint 25 with metrics: runs_successfully=1.0000, value_score=0.9997, distance_score=0.9982, combined_score=1.4990, reliability_score=1.0000
+2026-02-27 15:22:57,165 - INFO - Saved checkpoint at iteration 25 to experiments/ab_funcmin_gemini_30iter_20260227_1510/control_run_401/checkpoints/checkpoint_25
+2026-02-27 15:23:15,597 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:23:15,657 - INFO - Evaluated program 3158efe9-0d71-43c9-b0ed-f04f87c2abe6 in 0.06s: runs_successfully=1.0000, value_score=0.9804, distance_score=0.5554, combined_score=1.0282, reliability_score=1.0000
+2026-02-27 15:23:15,658 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:23:15,670 - INFO - Iteration 26: Program 3158efe9-0d71-43c9-b0ed-f04f87c2abe6 (parent: e7b345c6-5b36-4176-a87a-d94945866bd8) completed in 43.80s
+2026-02-27 15:23:15,670 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9804, distance_score=0.5554, combined_score=1.0282, reliability_score=1.0000
+2026-02-27 15:23:16,627 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:23:16,703 - INFO - Evaluated program 85bfe693-cd4c-4d44-a554-64b533bbf55b in 0.07s: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7120, combined_score=1.3629, reliability_score=1.0000
+2026-02-27 15:23:16,705 - INFO - Iteration 28: Program 85bfe693-cd4c-4d44-a554-64b533bbf55b (parent: f8fdb0ca-02c9-417e-90f9-0eb5540c396f) completed in 32.91s
+2026-02-27 15:23:16,705 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7120, combined_score=1.3629, reliability_score=1.0000
+2026-02-27 15:23:26,854 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:23:26,906 - INFO - Evaluated program a61a0f78-d492-4253-b2a8-884a1b781480 in 0.05s: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7128, combined_score=1.3632, reliability_score=1.0000
+2026-02-27 15:23:26,909 - INFO - Iteration 29: Program a61a0f78-d492-4253-b2a8-884a1b781480 (parent: 937a5af1-a1c9-4ec3-8056-9d2439875eb4) completed in 29.76s
+2026-02-27 15:23:26,909 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7128, combined_score=1.3632, reliability_score=1.0000
+2026-02-27 15:23:42,211 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:23:42,223 - INFO - Evaluated program 10457005-ad41-4b95-8063-16a23a887a99 in 0.01s: runs_successfully=1.0000, value_score=0.9103, distance_score=0.2004, combined_score=0.5011
+2026-02-27 15:23:42,234 - INFO - Iteration 30: Program 10457005-ad41-4b95-8063-16a23a887a99 (parent: 1dc9766a-0c86-474c-af84-79b9038cb6b7) completed in 26.57s
+2026-02-27 15:23:42,234 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9103, distance_score=0.2004, combined_score=0.5011
+2026-02-27 15:23:42,234 - INFO - Checkpoint interval reached at iteration 30
+2026-02-27 15:23:42,235 - INFO - Island Status:
+2026-02-27 15:23:42,235 - INFO -  * Island 0: 21 programs, best=1.4990, avg=1.2278, diversity=110.32, gen=30 (best: 3e7c73df-7f8d-471d-97d4-1b93ffd8ac5c)
+2026-02-27 15:23:42,235 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:23:42,235 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:23:42,249 - INFO - Saved database with 31 programs to experiments/ab_funcmin_gemini_30iter_20260227_1510/control_run_401/checkpoints/checkpoint_30
+2026-02-27 15:23:42,249 - INFO - Saved best program at checkpoint 30 with metrics: runs_successfully=1.0000, value_score=0.9997, distance_score=0.9982, combined_score=1.4990, reliability_score=1.0000
+2026-02-27 15:23:42,249 - INFO - Saved checkpoint at iteration 30 to experiments/ab_funcmin_gemini_30iter_20260227_1510/control_run_401/checkpoints/checkpoint_30
+2026-02-27 15:23:42,249 - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-02-27 15:23:42,259 - INFO - Saved database with 31 programs to experiments/ab_funcmin_gemini_30iter_20260227_1510/control_run_401/checkpoints/checkpoint_30
+2026-02-27 15:23:42,259 - INFO - Saved best program at checkpoint 30 with metrics: runs_successfully=1.0000, value_score=0.9997, distance_score=0.9982, combined_score=1.4990, reliability_score=1.0000
+2026-02-27 15:23:42,259 - INFO - Saved checkpoint at iteration 30 to experiments/ab_funcmin_gemini_30iter_20260227_1510/control_run_401/checkpoints/checkpoint_30
+2026-02-27 15:23:42,375 - INFO - Stopped process pool
+2026-02-27 15:23:42,375 - INFO - Using tracked best program: 3e7c73df-7f8d-471d-97d4-1b93ffd8ac5c
+2026-02-27 15:23:42,376 - INFO - Evolution complete. Best program has metrics: runs_successfully=1.0000, value_score=0.9997, distance_score=0.9982, combined_score=1.4990, reliability_score=1.0000
+2026-02-27 15:23:42,376 - INFO - Saved best program to experiments/ab_funcmin_gemini_30iter_20260227_1510/control_run_401/best/best_program.py with program info to experiments/ab_funcmin_gemini_30iter_20260227_1510/control_run_401/best/best_program_info.json

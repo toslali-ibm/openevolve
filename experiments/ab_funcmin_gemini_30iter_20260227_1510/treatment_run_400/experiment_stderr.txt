@@ -1,0 +1,345 @@
+2026-02-27 15:10:31,865 - INFO - Logging to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/logs/openevolve_20260227_151031.log
+2026-02-27 15:10:31,877 - INFO - Set random seed to 42 for reproducibility
+2026-02-27 15:10:31,903 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-27 15:10:31,909 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-27 15:10:31,909 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-27 15:10:31,921 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-27 15:10:31,922 - INFO - Initialized prompt sampler
+2026-02-27 15:10:31,923 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-27 15:10:31,923 - INFO - Initialized program database with 0 programs
+2026-02-27 15:10:31,923 - INFO - Successfully loaded evaluation function from examples/function_minimization/evaluator.py
+2026-02-27 15:10:31,924 - INFO - Initialized evaluator with examples/function_minimization/evaluator.py
+2026-02-27 15:10:31,924 - INFO - Initialized OpenEvolve with examples/function_minimization/initial_program.py
+2026-02-27 15:10:31,924 - INFO - Adding initial program to database
+2026-02-27 15:10:31,930 - INFO - Evaluated program 6539f5c1-a03f-486d-af40-2c7f68a50810 in 0.01s: runs_successfully=1.0000, value_score=0.9418, distance_score=0.7566, combined_score=1.2148
+2026-02-27 15:10:31,930 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-02-27 15:10:31,937 - INFO - Initialized process parallel controller with 3 workers
+2026-02-27 15:10:31,938 - INFO - Set max None tasks per child
+2026-02-27 15:10:31,938 - INFO - Started process pool with 3 processes
+2026-02-27 15:10:31,938 - INFO - Using island-based evolution with 3 islands
+2026-02-27 15:10:31,938 - INFO - Island Status:
+2026-02-27 15:10:31,938 - INFO -  * Island 0: 1 programs, best=1.2148, avg=1.2148, diversity=0.00, gen=0 (best: 6539f5c1-a03f-486d-af40-2c7f68a50810)
+2026-02-27 15:10:31,938 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:10:31,938 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:10:31,938 - INFO - Starting process-based evolution from iteration 1 for 30 iterations (total: 31)
+2026-02-27 15:10:31,951 - INFO - Early stopping disabled
+2026-02-27 15:10:32,419 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-27 15:10:32,426 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-27 15:10:32,430 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-27 15:10:32,430 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-27 15:10:32,430 - INFO - Initialized prompt sampler
+2026-02-27 15:10:32,436 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-27 15:10:32,436 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-27 15:10:32,437 - INFO - Initialized prompt sampler
+2026-02-27 15:10:32,441 - INFO - Initialized OpenAI LLM with model: GCP/gemini-2.5-flash
+2026-02-27 15:10:32,447 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-27 15:10:32,448 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-27 15:10:32,448 - INFO - Successfully loaded evaluation function from examples/function_minimization/evaluator.py
+2026-02-27 15:10:32,448 - INFO - Initialized evaluator with examples/function_minimization/evaluator.py
+2026-02-27 15:10:32,448 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:10:32,451 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:10:32,454 - INFO - Initialized OpenAI LLM with model: gcp/gemini-3-flash-preview
+2026-02-27 15:10:32,454 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-27 15:10:32,454 - INFO - Initialized prompt sampler
+2026-02-27 15:10:32,456 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-27 15:10:32,456 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-27 15:10:32,457 - INFO - Successfully loaded evaluation function from examples/function_minimization/evaluator.py
+2026-02-27 15:10:32,457 - INFO - Initialized evaluator with examples/function_minimization/evaluator.py
+2026-02-27 15:10:32,457 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:10:32,458 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:10:32,467 - INFO - Initialized LLM ensemble with models: GCP/gemini-2.5-flash (weight: 0.80), gcp/gemini-3-flash-preview (weight: 0.20)
+2026-02-27 15:10:32,467 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-02-27 15:10:32,468 - INFO - Successfully loaded evaluation function from examples/function_minimization/evaluator.py
+2026-02-27 15:10:32,468 - INFO - Initialized evaluator with examples/function_minimization/evaluator.py
+2026-02-27 15:10:32,468 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:10:32,469 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:10:39,029 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:10:39,114 - INFO - Evaluated program d1aa9689-e677-4869-a9f2-b8ac53582e57 in 0.08s: runs_successfully=1.0000, value_score=0.9955, distance_score=0.9501, combined_score=1.4741, reliability_score=1.0000
+2026-02-27 15:10:39,115 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:10:39,116 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:10:39,124 - INFO - [HYPO-TRACK] iter=1 | generated=2(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=0/1
+2026-02-27 15:10:39,124 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 5}
+2026-02-27 15:10:39,124 - INFO - New best program d1aa9689-e677-4869-a9f2-b8ac53582e57 replaces 6539f5c1-a03f-486d-af40-2c7f68a50810 (combined_score: 1.2148 → 1.4741, +0.2594)
+2026-02-27 15:10:39,125 - INFO - Iteration 1: Program d1aa9689-e677-4869-a9f2-b8ac53582e57 (parent: 6539f5c1-a03f-486d-af40-2c7f68a50810) completed in 6.67s
+2026-02-27 15:10:39,125 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9955, distance_score=0.9501, combined_score=1.4741, reliability_score=1.0000
+2026-02-27 15:10:39,125 - INFO - 🌟 New best solution found at iteration 1: d1aa9689-e677-4869-a9f2-b8ac53582e57
+2026-02-27 15:10:39,287 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:10:39,379 - INFO - Evaluated program 42b4b0e7-6e2e-4c75-9d3a-490c1ad1b74b in 0.08s: runs_successfully=1.0000, value_score=0.9953, distance_score=0.9452, combined_score=1.4718, reliability_score=1.0000
+2026-02-27 15:10:39,380 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:10:39,381 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:10:39,381 - INFO - [HYPO-TRACK] iter=2 | generated=2(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=0/1
+2026-02-27 15:10:39,381 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 0}
+2026-02-27 15:10:39,382 - INFO - Iteration 2: Program 42b4b0e7-6e2e-4c75-9d3a-490c1ad1b74b (parent: 6539f5c1-a03f-486d-af40-2c7f68a50810) completed in 6.92s
+2026-02-27 15:10:39,382 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9953, distance_score=0.9452, combined_score=1.4718, reliability_score=1.0000
+2026-02-27 15:10:40,684 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:10:40,710 - INFO - Evaluated program c354c8fe-74cd-4222-b9fa-c5efd973cc9b in 0.02s: runs_successfully=1.0000, value_score=0.9443, distance_score=0.8396, combined_score=1.2634
+2026-02-27 15:10:40,711 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:10:40,711 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:10:40,711 - INFO - [HYPO-TRACK] iter=3 | generated=2(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=0/1
+2026-02-27 15:10:40,712 - INFO - Iteration 3: Program c354c8fe-74cd-4222-b9fa-c5efd973cc9b (parent: 6539f5c1-a03f-486d-af40-2c7f68a50810) completed in 8.24s
+2026-02-27 15:10:40,712 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9443, distance_score=0.8396, combined_score=1.2634
+2026-02-27 15:10:45,480 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:10:45,544 - INFO - Evaluated program 6037786a-58e0-47e1-b49c-3a0f57e70bdf in 0.06s: runs_successfully=1.0000, value_score=0.9973, distance_score=0.9632, combined_score=1.4814, reliability_score=1.0000
+2026-02-27 15:10:45,545 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:10:45,545 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:10:45,553 - INFO - [HYPO-TRACK] iter=4 | generated=2(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=0/1
+2026-02-27 15:10:45,553 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 9, 'diversity': 0} (fitness: 1.472 -> 1.481)
+2026-02-27 15:10:45,553 - INFO - New best program 6037786a-58e0-47e1-b49c-3a0f57e70bdf replaces d1aa9689-e677-4869-a9f2-b8ac53582e57 (combined_score: 1.4741 → 1.4814, +0.0073)
+2026-02-27 15:10:45,554 - INFO - Iteration 4: Program 6037786a-58e0-47e1-b49c-3a0f57e70bdf (parent: 6539f5c1-a03f-486d-af40-2c7f68a50810) completed in 6.43s
+2026-02-27 15:10:45,554 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9973, distance_score=0.9632, combined_score=1.4814, reliability_score=1.0000
+2026-02-27 15:10:45,554 - INFO - 🌟 New best solution found at iteration 4: 6037786a-58e0-47e1-b49c-3a0f57e70bdf
+2026-02-27 15:10:45,726 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:10:45,795 - INFO - Evaluated program 89649e8e-24d0-4e16-a9c1-091959c6770f in 0.06s: runs_successfully=1.0000, value_score=0.9974, distance_score=0.9621, combined_score=1.4810, reliability_score=1.0000
+2026-02-27 15:10:45,796 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:10:45,796 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:10:45,805 - INFO - [HYPO-TRACK] iter=5 | generated=2(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=0/1
+2026-02-27 15:10:45,806 - INFO - Iteration 5: Program 89649e8e-24d0-4e16-a9c1-091959c6770f (parent: 6539f5c1-a03f-486d-af40-2c7f68a50810) completed in 6.41s
+2026-02-27 15:10:45,806 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9974, distance_score=0.9621, combined_score=1.4810, reliability_score=1.0000
+2026-02-27 15:10:45,806 - INFO - Checkpoint interval reached at iteration 5
+2026-02-27 15:10:45,806 - INFO - Island Status:
+2026-02-27 15:10:45,806 - INFO -  * Island 0: 5 programs, best=1.4814, avg=1.3829, diversity=165.25, gen=5 (best: 6037786a-58e0-47e1-b49c-3a0f57e70bdf)
+2026-02-27 15:10:45,806 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:10:45,806 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:10:45,809 - INFO - Saved database with 6 programs to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/checkpoints/checkpoint_5
+2026-02-27 15:10:45,809 - INFO - Saved best program at checkpoint 5 with metrics: runs_successfully=1.0000, value_score=0.9973, distance_score=0.9632, combined_score=1.4814, reliability_score=1.0000
+2026-02-27 15:10:45,809 - INFO - Saved checkpoint at iteration 5 to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/checkpoints/checkpoint_5
+2026-02-27 15:10:45,810 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/hypothesis_tracker.json
+2026-02-27 15:10:46,990 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:10:47,055 - INFO - Evaluated program 5674ef59-f731-4d1d-ac61-0fe3dadbcf98 in 0.06s: runs_successfully=1.0000, value_score=0.9936, distance_score=0.9427, combined_score=1.4694, reliability_score=1.0000
+2026-02-27 15:10:47,057 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:10:47,057 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:10:47,059 - INFO - [HYPO-TRACK] iter=6 | generated=2(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=0/1
+2026-02-27 15:10:47,059 - INFO - Iteration 6: Program 5674ef59-f731-4d1d-ac61-0fe3dadbcf98 (parent: 6539f5c1-a03f-486d-af40-2c7f68a50810) completed in 6.35s
+2026-02-27 15:10:47,059 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9936, distance_score=0.9427, combined_score=1.4694, reliability_score=1.0000
+2026-02-27 15:11:04,771 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:11:04,836 - INFO - Evaluated program e1bfc9a6-adf9-4636-ae78-2e2a1636c592 in 0.06s: runs_successfully=1.0000, value_score=0.9950, distance_score=0.9452, combined_score=1.4716, reliability_score=1.0000
+2026-02-27 15:11:04,837 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:11:04,837 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:11:04,846 - INFO - [HYPO-TRACK] iter=7 | generated=2(OK) persisted=2(OK) results_injected=3(OK) parent_hypos=0(N/A) top_w_hypos=1/2
+2026-02-27 15:11:04,847 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 8}
+2026-02-27 15:11:04,847 - INFO - Iteration 7: Program e1bfc9a6-adf9-4636-ae78-2e2a1636c592 (parent: 6539f5c1-a03f-486d-af40-2c7f68a50810) completed in 19.29s
+2026-02-27 15:11:04,847 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9950, distance_score=0.9452, combined_score=1.4716, reliability_score=1.0000
+2026-02-27 15:11:10,929 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:11:10,997 - INFO - Evaluated program 05542d81-21b7-4b02-a073-07ff2e76825e in 0.07s: runs_successfully=1.0000, value_score=0.9957, distance_score=0.9669, combined_score=1.4819, reliability_score=1.0000
+2026-02-27 15:11:10,998 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:11:10,998 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:11:11,003 - INFO - [HYPO-TRACK] iter=8 | generated=2(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=2/3
+2026-02-27 15:11:11,004 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 6, 'diversity': 2}
+2026-02-27 15:11:11,004 - INFO - New best program 05542d81-21b7-4b02-a073-07ff2e76825e replaces 6037786a-58e0-47e1-b49c-3a0f57e70bdf (combined_score: 1.4814 → 1.4819, +0.0005)
+2026-02-27 15:11:11,004 - INFO - Iteration 8: Program 05542d81-21b7-4b02-a073-07ff2e76825e (parent: d1aa9689-e677-4869-a9f2-b8ac53582e57) completed in 25.20s
+2026-02-27 15:11:11,004 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9957, distance_score=0.9669, combined_score=1.4819, reliability_score=1.0000
+2026-02-27 15:11:11,004 - INFO - 🌟 New best solution found at iteration 8: 05542d81-21b7-4b02-a073-07ff2e76825e
+2026-02-27 15:11:11,703 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:11:11,767 - INFO - Evaluated program 2557e883-c2c7-47e7-92b6-3e540fe971aa in 0.06s: runs_successfully=1.0000, value_score=0.9959, distance_score=0.9506, combined_score=1.4747, reliability_score=1.0000
+2026-02-27 15:11:11,768 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:11:11,769 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:11:11,776 - INFO - [HYPO-TRACK] iter=9 | generated=1(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=3/4
+2026-02-27 15:11:11,777 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 5, 'diversity': 0} (fitness: 1.215 -> 1.475)
+2026-02-27 15:11:11,777 - INFO - Iteration 9: Program 2557e883-c2c7-47e7-92b6-3e540fe971aa (parent: c354c8fe-74cd-4222-b9fa-c5efd973cc9b) completed in 24.71s
+2026-02-27 15:11:11,777 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9959, distance_score=0.9506, combined_score=1.4747, reliability_score=1.0000
+2026-02-27 15:11:12,838 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:11:12,904 - INFO - Evaluated program 1af7ac9a-1b90-49e8-9ca9-99326d59e2d2 in 0.06s: runs_successfully=1.0000, value_score=0.9925, distance_score=0.9440, combined_score=1.4692, reliability_score=1.0000
+2026-02-27 15:11:12,905 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:11:12,905 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:11:12,913 - INFO - [HYPO-TRACK] iter=10 | generated=2(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=3/4
+2026-02-27 15:11:12,914 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 3}
+2026-02-27 15:11:12,914 - INFO - Iteration 10: Program 1af7ac9a-1b90-49e8-9ca9-99326d59e2d2 (parent: 6037786a-58e0-47e1-b49c-3a0f57e70bdf) completed in 8.07s
+2026-02-27 15:11:12,914 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9925, distance_score=0.9440, combined_score=1.4692, reliability_score=1.0000
+2026-02-27 15:11:12,914 - INFO - Checkpoint interval reached at iteration 10
+2026-02-27 15:11:12,915 - INFO - Island Status:
+2026-02-27 15:11:12,915 - INFO -  * Island 0: 9 programs, best=1.4819, avg=1.4519, diversity=92.17, gen=10 (best: 05542d81-21b7-4b02-a073-07ff2e76825e)
+2026-02-27 15:11:12,915 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:11:12,915 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:11:12,920 - INFO - Saved database with 11 programs to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/checkpoints/checkpoint_10
+2026-02-27 15:11:12,920 - INFO - Saved best program at checkpoint 10 with metrics: runs_successfully=1.0000, value_score=0.9957, distance_score=0.9669, combined_score=1.4819, reliability_score=1.0000
+2026-02-27 15:11:12,920 - INFO - Saved checkpoint at iteration 10 to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/checkpoints/checkpoint_10
+2026-02-27 15:11:12,921 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/hypothesis_tracker.json
+2026-02-27 15:11:16,851 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:11:16,922 - INFO - Evaluated program 534ed117-d3f5-4eb6-ab48-eeeb091a4130 in 0.07s: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7125, combined_score=1.3631, reliability_score=1.0000
+2026-02-27 15:11:16,923 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:11:16,923 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:11:16,930 - INFO - [HYPO-TRACK] iter=11 | generated=1(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=4/5
+2026-02-27 15:11:16,931 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 6, 'diversity': 1}
+2026-02-27 15:11:16,931 - INFO - Iteration 11: Program 534ed117-d3f5-4eb6-ab48-eeeb091a4130 (parent: 6037786a-58e0-47e1-b49c-3a0f57e70bdf) completed in 5.92s
+2026-02-27 15:11:16,931 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9899, distance_score=0.7125, combined_score=1.3631, reliability_score=1.0000
+2026-02-27 15:11:18,518 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:11:18,582 - INFO - Evaluated program c3c291ad-eab4-494e-a2df-13456c5b64de in 0.06s: runs_successfully=1.0000, value_score=0.9956, distance_score=0.9626, combined_score=1.4799, reliability_score=1.0000
+2026-02-27 15:11:18,583 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:11:18,583 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:11:18,586 - INFO - [HYPO-TRACK] iter=12 | generated=2(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 15:11:18,586 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 5, 'diversity': 0} (fitness: 1.475 -> 1.480)
+2026-02-27 15:11:18,587 - INFO - Iteration 12: Program c3c291ad-eab4-494e-a2df-13456c5b64de (parent: 5674ef59-f731-4d1d-ac61-0fe3dadbcf98) completed in 6.81s
+2026-02-27 15:11:18,587 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9956, distance_score=0.9626, combined_score=1.4799, reliability_score=1.0000
+2026-02-27 15:11:25,357 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:11:25,421 - INFO - Evaluated program 9d9373cc-b373-4cbe-9233-e19ba4f7aaba in 0.06s: runs_successfully=1.0000, value_score=0.9945, distance_score=0.9463, combined_score=1.4717, reliability_score=1.0000
+2026-02-27 15:11:25,422 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:11:25,422 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:11:25,432 - INFO - [HYPO-TRACK] iter=13 | generated=2(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=0(N/A) top_w_hypos=5/5
+2026-02-27 15:11:25,433 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 7, 'diversity': 2}
+2026-02-27 15:11:25,433 - INFO - Iteration 13: Program 9d9373cc-b373-4cbe-9233-e19ba4f7aaba (parent: 6539f5c1-a03f-486d-af40-2c7f68a50810) completed in 12.52s
+2026-02-27 15:11:25,433 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9945, distance_score=0.9463, combined_score=1.4717, reliability_score=1.0000
+2026-02-27 15:11:32,091 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:11:32,171 - INFO - Evaluated program 17bff402-7833-4e86-8d3e-45c8793da2e5 in 0.08s: runs_successfully=1.0000, value_score=0.9891, distance_score=0.9487, combined_score=1.4687, reliability_score=1.0000
+2026-02-27 15:11:32,173 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:11:32,173 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:11:32,182 - INFO - [HYPO-TRACK] iter=14 | generated=2(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 15:11:32,183 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 6, 'diversity': 1} (fitness: 1.363 -> 1.469)
+2026-02-27 15:11:32,183 - INFO - Iteration 14: Program 17bff402-7833-4e86-8d3e-45c8793da2e5 (parent: 6037786a-58e0-47e1-b49c-3a0f57e70bdf) completed in 15.25s
+2026-02-27 15:11:32,183 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9891, distance_score=0.9487, combined_score=1.4687, reliability_score=1.0000
+2026-02-27 15:11:35,828 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:11:35,837 - INFO - Evaluated program 969ac150-5f30-4d83-8353-3502b37288c4 in 0.01s: runs_successfully=1.0000, value_score=0.9452, distance_score=0.7972, combined_score=1.2404
+2026-02-27 15:11:35,838 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:11:35,839 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:11:35,847 - INFO - [HYPO-TRACK] iter=15 | generated=2(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 15:11:35,848 - INFO - Iteration 15: Program 969ac150-5f30-4d83-8353-3502b37288c4 (parent: d1aa9689-e677-4869-a9f2-b8ac53582e57) completed in 17.25s
+2026-02-27 15:11:35,848 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9452, distance_score=0.7972, combined_score=1.2404
+2026-02-27 15:11:35,848 - INFO - Checkpoint interval reached at iteration 15
+2026-02-27 15:11:35,848 - INFO - Island Status:
+2026-02-27 15:11:35,848 - INFO -  * Island 0: 12 programs, best=1.4819, avg=1.4377, diversity=59.22, gen=15 (best: 05542d81-21b7-4b02-a073-07ff2e76825e)
+2026-02-27 15:11:35,848 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:11:35,848 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:11:35,856 - INFO - Saved database with 16 programs to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/checkpoints/checkpoint_15
+2026-02-27 15:11:35,857 - INFO - Saved best program at checkpoint 15 with metrics: runs_successfully=1.0000, value_score=0.9957, distance_score=0.9669, combined_score=1.4819, reliability_score=1.0000
+2026-02-27 15:11:35,857 - INFO - Saved checkpoint at iteration 15 to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/checkpoints/checkpoint_15
+2026-02-27 15:11:35,857 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/hypothesis_tracker.json
+2026-02-27 15:11:47,626 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:11:47,690 - INFO - Evaluated program 56b52979-3fe0-4be7-8ae1-c73ca4628474 in 0.06s: runs_successfully=1.0000, value_score=0.9821, distance_score=0.9223, combined_score=1.4516, reliability_score=1.0000
+2026-02-27 15:11:47,691 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:11:47,691 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:11:47,701 - INFO - [HYPO-TRACK] iter=16 | generated=2(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 15:11:47,702 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 6, 'diversity': 0}
+2026-02-27 15:11:47,702 - INFO - Iteration 16: Program 56b52979-3fe0-4be7-8ae1-c73ca4628474 (parent: c354c8fe-74cd-4222-b9fa-c5efd973cc9b) completed in 22.27s
+2026-02-27 15:11:47,702 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9821, distance_score=0.9223, combined_score=1.4516, reliability_score=1.0000
+2026-02-27 15:11:52,905 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:11:52,969 - INFO - Evaluated program d0420576-13fd-48ed-a0f7-6560642e662a in 0.06s: runs_successfully=1.0000, value_score=0.9961, distance_score=0.9532, combined_score=1.4760, reliability_score=1.0000
+2026-02-27 15:11:52,970 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:11:52,971 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:11:52,980 - INFO - [HYPO-TRACK] iter=18 | generated=2(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 15:11:52,981 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 6, 'diversity': 0} (fitness: 1.452 -> 1.476)
+2026-02-27 15:11:52,982 - INFO - Iteration 18: Program d0420576-13fd-48ed-a0f7-6560642e662a (parent: c3c291ad-eab4-494e-a2df-13456c5b64de) completed in 17.13s
+2026-02-27 15:11:52,982 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9961, distance_score=0.9532, combined_score=1.4760, reliability_score=1.0000
+2026-02-27 15:12:02,406 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:12:02,473 - INFO - Evaluated program 83eabfeb-278c-4f94-828c-c91c4ee617ac in 0.07s: runs_successfully=1.0000, value_score=0.9833, distance_score=0.9413, combined_score=1.4610, reliability_score=1.0000
+2026-02-27 15:12:02,474 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:12:02,474 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:12:02,483 - INFO - [HYPO-TRACK] iter=17 | generated=2(OK) persisted=4(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 15:12:02,485 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 9}
+2026-02-27 15:12:02,485 - INFO - Island 0 MAP-Elites coverage reached 10.0% (10/100 cells)
+2026-02-27 15:12:02,485 - INFO - Iteration 17: Program 83eabfeb-278c-4f94-828c-c91c4ee617ac (parent: 1af7ac9a-1b90-49e8-9ca9-99326d59e2d2) completed in 30.30s
+2026-02-27 15:12:02,485 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9833, distance_score=0.9413, combined_score=1.4610, reliability_score=1.0000
+2026-02-27 15:12:14,316 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:12:14,402 - INFO - Evaluated program 9b388be5-bfa4-4ca9-9b85-4012a0be9fc9 in 0.08s: runs_successfully=1.0000, value_score=0.9836, distance_score=0.9029, combined_score=1.4440, reliability_score=1.0000
+2026-02-27 15:12:14,403 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:12:14,404 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:12:14,408 - INFO - [HYPO-TRACK] iter=19 | generated=4(OK) persisted=2(OK) results_injected=3(OK) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 15:12:14,410 - INFO - Iteration 19: Program 9b388be5-bfa4-4ca9-9b85-4012a0be9fc9 (parent: 6037786a-58e0-47e1-b49c-3a0f57e70bdf) completed in 26.71s
+2026-02-27 15:12:14,410 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9836, distance_score=0.9029, combined_score=1.4440, reliability_score=1.0000
+2026-02-27 15:12:18,217 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:12:18,282 - INFO - Evaluated program 3cb5f8bc-e4d7-4341-b002-b7ac553225b0 in 0.06s: runs_successfully=1.0000, value_score=0.9846, distance_score=0.6957, combined_score=1.3515, reliability_score=1.0000
+2026-02-27 15:12:18,283 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:12:18,283 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:12:18,287 - INFO - [HYPO-TRACK] iter=20 | generated=2(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 15:12:18,288 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 4, 'diversity': 0}
+2026-02-27 15:12:18,288 - INFO - Iteration 20: Program 3cb5f8bc-e4d7-4341-b002-b7ac553225b0 (parent: c354c8fe-74cd-4222-b9fa-c5efd973cc9b) completed in 25.31s
+2026-02-27 15:12:18,289 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9846, distance_score=0.6957, combined_score=1.3515, reliability_score=1.0000
+2026-02-27 15:12:18,289 - INFO - Checkpoint interval reached at iteration 20
+2026-02-27 15:12:18,289 - INFO - Island Status:
+2026-02-27 15:12:18,289 - INFO -  * Island 0: 16 programs, best=1.4819, avg=1.4366, diversity=46.77, gen=20 (best: 05542d81-21b7-4b02-a073-07ff2e76825e)
+2026-02-27 15:12:18,289 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:12:18,289 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:12:18,298 - INFO - Saved database with 21 programs to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/checkpoints/checkpoint_20
+2026-02-27 15:12:18,298 - INFO - Saved best program at checkpoint 20 with metrics: runs_successfully=1.0000, value_score=0.9957, distance_score=0.9669, combined_score=1.4819, reliability_score=1.0000
+2026-02-27 15:12:18,298 - INFO - Saved checkpoint at iteration 20 to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/checkpoints/checkpoint_20
+2026-02-27 15:12:18,299 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/hypothesis_tracker.json
+2026-02-27 15:12:18,919 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:12:18,928 - INFO - Evaluated program df1cb3f7-ade3-40a8-a210-f5c66d4b6b4c in 0.01s: runs_successfully=1.0000, value_score=0.9101, distance_score=0.2007, combined_score=0.5010
+2026-02-27 15:12:18,929 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:12:18,930 - INFO - Sampled model: gcp/gemini-3-flash-preview
+2026-02-27 15:12:18,936 - INFO - [HYPO-TRACK] iter=21 | generated=2(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 15:12:18,938 - INFO - Iteration 21: Program df1cb3f7-ade3-40a8-a210-f5c66d4b6b4c (parent: 534ed117-d3f5-4eb6-ab48-eeeb091a4130) completed in 16.45s
+2026-02-27 15:12:18,938 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9101, distance_score=0.2007, combined_score=0.5010
+2026-02-27 15:12:20,494 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:12:20,559 - INFO - Evaluated program 8520bac1-eea5-490e-94ee-c6a06bbbaba2 in 0.06s: runs_successfully=1.0000, value_score=0.9846, distance_score=0.6924, combined_score=1.3501, reliability_score=1.0000
+2026-02-27 15:12:20,560 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:12:20,561 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:12:20,567 - INFO - [HYPO-TRACK] iter=22 | generated=2(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 15:12:20,568 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 4, 'diversity': 1}
+2026-02-27 15:12:20,568 - INFO - Iteration 22: Program 8520bac1-eea5-490e-94ee-c6a06bbbaba2 (parent: 5674ef59-f731-4d1d-ac61-0fe3dadbcf98) completed in 6.16s
+2026-02-27 15:12:20,568 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9846, distance_score=0.6924, combined_score=1.3501, reliability_score=1.0000
+2026-02-27 15:12:26,939 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:12:27,036 - INFO - Evaluated program af012164-d3d7-454b-8cee-80851dbfa978 in 0.07s: runs_successfully=1.0000, value_score=0.9852, distance_score=0.9357, combined_score=1.4600, reliability_score=1.0000
+2026-02-27 15:12:27,038 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:12:27,038 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:12:27,040 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:12:27,047 - INFO - [HYPO-TRACK] iter=23 | generated=4(OK) persisted=2(OK) results_injected=2(OK) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 15:12:27,049 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 4, 'diversity': 0} (fitness: 1.352 -> 1.460)
+2026-02-27 15:12:27,049 - INFO - Iteration 23: Program af012164-d3d7-454b-8cee-80851dbfa978 (parent: d1aa9689-e677-4869-a9f2-b8ac53582e57) completed in 8.75s
+2026-02-27 15:12:27,049 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9852, distance_score=0.9357, combined_score=1.4600, reliability_score=1.0000
+2026-02-27 15:12:27,050 - INFO - Evaluated program f9c446ac-3d5e-4814-b244-f1d63ea2f027 in 0.01s: runs_successfully=1.0000, value_score=0.9103, distance_score=0.2004, combined_score=0.5011
+2026-02-27 15:12:27,051 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:12:27,052 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:12:27,061 - INFO - [HYPO-TRACK] iter=24 | generated=2(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 15:12:27,063 - INFO - Iteration 24: Program f9c446ac-3d5e-4814-b244-f1d63ea2f027 (parent: 9d9373cc-b373-4cbe-9233-e19ba4f7aaba) completed in 8.12s
+2026-02-27 15:12:27,063 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9103, distance_score=0.2004, combined_score=0.5011
+2026-02-27 15:12:36,972 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:12:37,040 - INFO - Evaluated program 1e6cd8c6-9554-4678-a70d-7b98ed91849d in 0.07s: runs_successfully=1.0000, value_score=0.9909, distance_score=0.9419, combined_score=1.4671, reliability_score=1.0000
+2026-02-27 15:12:37,042 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:12:37,042 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:12:37,049 - INFO - [HYPO-TRACK] iter=25 | generated=2(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 15:12:37,049 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 1}
+2026-02-27 15:12:37,050 - INFO - Iteration 25: Program 1e6cd8c6-9554-4678-a70d-7b98ed91849d (parent: d1aa9689-e677-4869-a9f2-b8ac53582e57) completed in 16.48s
+2026-02-27 15:12:37,050 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9909, distance_score=0.9419, combined_score=1.4671, reliability_score=1.0000
+2026-02-27 15:12:37,050 - INFO - Checkpoint interval reached at iteration 25
+2026-02-27 15:12:37,050 - INFO - Island Status:
+2026-02-27 15:12:37,050 - INFO -  * Island 0: 20 programs, best=1.4819, avg=1.3456, diversity=36.30, gen=25 (best: 05542d81-21b7-4b02-a073-07ff2e76825e)
+2026-02-27 15:12:37,050 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:12:37,050 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:12:37,065 - INFO - Saved database with 26 programs to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/checkpoints/checkpoint_25
+2026-02-27 15:12:37,065 - INFO - Saved best program at checkpoint 25 with metrics: runs_successfully=1.0000, value_score=0.9957, distance_score=0.9669, combined_score=1.4819, reliability_score=1.0000
+2026-02-27 15:12:37,065 - INFO - Saved checkpoint at iteration 25 to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/checkpoints/checkpoint_25
+2026-02-27 15:12:37,067 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/hypothesis_tracker.json
+2026-02-27 15:12:51,872 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:12:51,880 - INFO - Evaluated program d29020d2-24ce-42a5-ae2a-c1721eb7ce25 in 0.01s: runs_successfully=1.0000, value_score=0.9432, distance_score=0.8115, combined_score=1.2467
+2026-02-27 15:12:51,881 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:12:51,882 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:12:51,883 - INFO - [HYPO-TRACK] iter=28 | generated=1(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 15:12:51,884 - INFO - Iteration 28: Program d29020d2-24ce-42a5-ae2a-c1721eb7ce25 (parent: df1cb3f7-ade3-40a8-a210-f5c66d4b6b4c) completed in 14.84s
+2026-02-27 15:12:51,885 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9432, distance_score=0.8115, combined_score=1.2467
+2026-02-27 15:12:53,638 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:12:53,639 - INFO - [HYPOTHESIS] Appended generic hypothesis template to system prompt
+2026-02-27 15:12:53,640 - INFO - Sampled model: GCP/gemini-2.5-flash
+2026-02-27 15:12:53,641 - WARNING - Iteration 27 error: No valid diffs found in response
+2026-02-27 15:13:02,146 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:13:02,216 - INFO - Evaluated program d723be06-7228-4e15-87e4-7c6428959cc2 in 0.07s: runs_successfully=1.0000, value_score=0.9879, distance_score=0.9398, combined_score=1.4638, reliability_score=1.0000
+2026-02-27 15:13:02,221 - INFO - [HYPO-TRACK] iter=26 | generated=1(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 15:13:02,223 - INFO - Iteration 26: Program d723be06-7228-4e15-87e4-7c6428959cc2 (parent: d0420576-13fd-48ed-a0f7-6560642e662a) completed in 35.18s
+2026-02-27 15:13:02,223 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9879, distance_score=0.9398, combined_score=1.4638, reliability_score=1.0000
+2026-02-27 15:13:04,650 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:13:04,717 - INFO - Evaluated program 3ad3bb00-f6bf-4c69-aac7-2dc1f2d48964 in 0.07s: runs_successfully=1.0000, value_score=0.9760, distance_score=0.6760, combined_score=1.3362, reliability_score=1.0000
+2026-02-27 15:13:04,724 - INFO - [HYPO-TRACK] iter=30 | generated=2(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 15:13:04,725 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 8, 'diversity': 5}
+2026-02-27 15:13:04,726 - INFO - Iteration 30: Program 3ad3bb00-f6bf-4c69-aac7-2dc1f2d48964 (parent: e1bfc9a6-adf9-4636-ae78-2e2a1636c592) completed in 11.08s
+2026-02-27 15:13:04,726 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9760, distance_score=0.6760, combined_score=1.3362, reliability_score=1.0000
+2026-02-27 15:13:04,726 - INFO - Checkpoint interval reached at iteration 30
+2026-02-27 15:13:04,726 - INFO - Island Status:
+2026-02-27 15:13:04,726 - INFO -  * Island 0: 23 programs, best=1.4819, avg=1.3461, diversity=64.98, gen=28 (best: 05542d81-21b7-4b02-a073-07ff2e76825e)
+2026-02-27 15:13:04,726 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:13:04,726 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-02-27 15:13:04,740 - INFO - Saved database with 29 programs to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/checkpoints/checkpoint_30
+2026-02-27 15:13:04,740 - INFO - Saved best program at checkpoint 30 with metrics: runs_successfully=1.0000, value_score=0.9957, distance_score=0.9669, combined_score=1.4819, reliability_score=1.0000
+2026-02-27 15:13:04,741 - INFO - Saved checkpoint at iteration 30 to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/checkpoints/checkpoint_30
+2026-02-27 15:13:04,741 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/hypothesis_tracker.json
+2026-02-27 15:13:14,372 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-02-27 15:13:14,438 - INFO - Evaluated program 28c93ffe-9732-4ba2-a11c-a763d737f477 in 0.06s: runs_successfully=1.0000, value_score=0.9865, distance_score=0.9127, combined_score=1.4506, reliability_score=1.0000
+2026-02-27 15:13:14,443 - INFO - [HYPO-TRACK] iter=29 | generated=2(OK) persisted=2(OK) results_injected=0(MISS) parent_hypos=2(OK) top_w_hypos=5/5
+2026-02-27 15:13:14,444 - INFO - Iteration 29: Program 28c93ffe-9732-4ba2-a11c-a763d737f477 (parent: 17bff402-7833-4e86-8d3e-45c8793da2e5) completed in 22.56s
+2026-02-27 15:13:14,444 - INFO - Metrics: runs_successfully=1.0000, value_score=0.9865, distance_score=0.9127, combined_score=1.4506, reliability_score=1.0000
+2026-02-27 15:13:14,444 - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-02-27 15:13:14,445 - INFO - [HYPO-TRACK] Saved hypothesis tracker to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/hypothesis_tracker.json
+2026-02-27 15:13:14,454 - INFO - Saved database with 30 programs to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/checkpoints/checkpoint_30
+2026-02-27 15:13:14,454 - INFO - Saved best program at checkpoint 30 with metrics: runs_successfully=1.0000, value_score=0.9957, distance_score=0.9669, combined_score=1.4819, reliability_score=1.0000
+2026-02-27 15:13:14,454 - INFO - Saved checkpoint at iteration 30 to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/checkpoints/checkpoint_30
+2026-02-27 15:13:14,579 - INFO - Stopped process pool
+2026-02-27 15:13:14,579 - INFO - Using tracked best program: 05542d81-21b7-4b02-a073-07ff2e76825e
+2026-02-27 15:13:14,579 - INFO - Evolution complete. Best program has metrics: runs_successfully=1.0000, value_score=0.9957, distance_score=0.9669, combined_score=1.4819, reliability_score=1.0000
+2026-02-27 15:13:14,580 - INFO - Saved best program to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/best/best_program.py with program info to experiments/ab_funcmin_gemini_30iter_20260227_1510/treatment_run_400/best/best_program_info.json
