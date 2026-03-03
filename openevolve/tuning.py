@@ -40,6 +40,9 @@ _TUNE_ANNOTATION_RE = re.compile(
     r"\s*(?:#|//)\s*@TUNE\s+\[[^\]]+\](?:\s+(?:int|float))?(?:\s*@TUNED\([^)]*\))?"
 )
 
+# Regex to count @TUNE occurrences without matching @TUNED
+_TUNE_WORD_RE = re.compile(r"@TUNE\b(?!D)")
+
 
 @dataclass
 class TuneParam:
@@ -554,12 +557,10 @@ async def tune_program(
             )
             result = strip_tuned_for_db(result)
 
-            # Count stripped annotations
-            stats.annotations_stripped = result.count("@TUNE") - code.count("@TUNE")
-            if stats.annotations_stripped < 0:
-                stats.annotations_stripped = abs(stats.annotations_stripped)
-            else:
-                stats.annotations_stripped = 0
+            # Count stripped annotations (use word-boundary regex to avoid matching @TUNED)
+            tune_in_original = len(_TUNE_WORD_RE.findall(code))
+            tune_in_result = len(_TUNE_WORD_RE.findall(result))
+            stats.annotations_stripped = max(0, tune_in_original - tune_in_result)
 
             logger.info(
                 f"[TUNING] Optimized {len(params)} params over {n_trials} trials "

@@ -301,6 +301,8 @@ def _run_iteration_worker(
                 IterationTuningStats,
             )
 
+            pre_tune_metrics = None
+
             try:
                 if has_tune_annotations(child_code):
                     # Compute population statistics from snapshot
@@ -383,6 +385,18 @@ def _run_iteration_worker(
                 return SerializableResult(error=f"Tuning import error: {e}", iteration=iteration)
             except Exception as e:
                 logger.warning(f"[TUNING] Rescue tuning failed, using original code: {e}")
+                # Record skip stats so tracker counts stay accurate
+                skip_stats = IterationTuningStats(
+                    iteration=iteration,
+                    mode="skipped",
+                    tune_annotations_found=(
+                        child_code.count("@TUNE") if "@TUNE" in child_code else 0
+                    ),
+                )
+                tuning_stats_dict = _asdict(skip_stats)
+                # Reuse pre-tune metrics if already computed to avoid redundant eval
+                if pre_tune_metrics is not None:
+                    tuning_metrics = pre_tune_metrics
 
         # Final evaluation (skip if tuning or pre-eval already evaluated)
         if tuning_metrics:
@@ -1026,8 +1040,8 @@ class ProcessParallelController:
                         if polished_score > original_score:
                             prog.code = polished_code
                             prog.metrics = polished_metrics
-                            # Direct update in database (no update_program method)
                             self.database.programs[prog.id] = prog
+                            self.database._update_best_program(prog)
                             logger.info(
                                 f"[TUNE-{mode.upper()}] Improved {prog.id} on island {island_id}: "
                                 f"{original_score:.4f} -> {polished_score:.4f} "
