@@ -28,3 +28,19 @@ Use your superpowers if needed.. first answer all: hypothesis generation is prov
 
 
 Hey! We have hypotheses driven evolution pipeline here right? basically the idea is to simply set a flag to enable hypotheses generation by llm (prompted that way), which has expectations, that are tested, and persisted in the current program hypothese comment blogs. in next iterations, when openmevolve sample parent programs of bad and good, hypos are also there to guide the process and make discovery smarter - right?? bascially now, there is no diferentiation of config for conrol and treatment - just a flag to enable/disable hypo right???? 
+
+----
+go aahead and run ab experiments for tuning feature (hypos are disabled) 
+
+ Process 1: funcmin_tuning     → treatment_300 → treatment_301 → control_300 → control_301                                                                  
+  Process 2: circpack_tuning    → treatment_300 → treatment_301 → control_300 → control_301
+  Process 3: blis_router_tuning → treatment_300 → treatment_301 → control_300 → control_301
+
+
+The order per task will be:                                                                                                                        
+                                                                                                                                                             
+  Each process: treatment_300 → control_300 → treatment_301 → control_301
+                                                                                                                                                             
+  That way after just 2 runs we already have one treatment + one control to compare.
+                                                                                                                                                             
+  Launch them now
