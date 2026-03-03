@@ -5,7 +5,7 @@ How to run A/B experiments for OpenEvolve features. Three independent features c
 | Feature | Config Flag | What It Does |
 |---------|------------|--------------|
 | **Hypothesis** | `hypothesis_driven: true/false` | LLM writes structured HYPOTHESIS/EXPECT comments; RESULT verdicts auto-injected |
-| **Tuning** | `tuning.enabled: true/false` | LLM annotates params with `@TUNE`; Optuna optimizes within declared ranges |
+| **Tuning (v2)** | `tuning.enabled: true/false` | LLM annotates params with `@TUNE`; Optuna optimizes via tiered rescue/polish |
 | **Combined** | Both flags | Hypothesis + Tuning together |
 
 ---
@@ -84,9 +84,19 @@ python scripts/run_experiment.py \
 - Best program contains `HYPOTHESIS-` and `RESULT-` comments
 - Grep logs for `[HYPO-TRACK]` to see per-iteration stats
 
-### B. Tuning A/B
+### B. Tuning A/B (v2 — tiered rescue/polish)
 
 Tests whether `@TUNE` threshold tuning improves outcomes.
+
+**How tuning v2 works**: The LLM sees a minimal 4-line prompt about `@TUNE`. It focuses on
+algorithms, not parameters. Behind the scenes, Optuna runs in three tiers:
+- **Rescue** (5 trials): Novel-but-low-scoring programs get a quick tuning pass
+- **Checkpoint polish** (10 trials): Top-K elites polished at each checkpoint
+- **Final polish** (20 trials): Thorough tuning of the best programs at the end
+
+The LLM **never** sees `@TUNED` feedback — optimizer results are hidden to prevent
+anchoring on parameter thinking. Insensitive `@TUNE` annotations (gain < 0.01) are
+automatically stripped.
 
 **Config setup** — only `tuning.enabled` differs:
 
@@ -94,9 +104,11 @@ Tests whether `@TUNE` threshold tuning improves outcomes.
 |---------|-----------|---------|
 | `hypothesis_driven` | `false` | `false` |
 | `tuning.enabled` | `true` | `false` |
-| `tuning.budget` | `10` | — |
+| `tuning.rescue_trials` | `5` | — |
+| `tuning.checkpoint_trials` | `10` | — |
+| `tuning.final_trials` | `20` | — |
+| `tuning.polish_top_k` | `3` | — |
 | `tuning.max_params` | `3` | — |
-| `tuning.budget_scale_per_param` | `3` | — |
 
 **Task names**: `function_minimization_tuning`, `circle_packing_tuning`, `blis_router_tuning`
 
@@ -118,9 +130,11 @@ hypothesis_driven: false
 
 tuning:
   enabled: true
-  budget: 10           # base Optuna trials
-  max_params: 3        # max @TUNE annotations honored
-  budget_scale_per_param: 3  # extra trials per param (total = budget + params * scale)
+  max_params: 3
+  rescue_trials: 5         # per-iteration rescue (selective, novel+low-scoring only)
+  checkpoint_trials: 10    # polish top-K elites at each checkpoint
+  final_trials: 20         # thorough polish at the final iteration
+  polish_top_k: 3          # top-K programs per island to polish
 ```
 
 **Control config template**:
@@ -133,19 +147,23 @@ tuning:
 
 **Validation checklist** (treatment runs only):
 - `tuning_tracker.json` exists with `total_iterations_with_tuning > 0`
-- Programs contain `@TUNE` annotations (grep for `@TUNE` in checkpoint programs)
-- Best programs contain `@TUNED(...)` feedback annotations
-- Grep logs for `[TUNING]` and `[TUNE-TRACK]` to see per-iteration stats
-- Check `avg_gain_when_tuned` in tracker — positive means tuning is helping
+- Check `rescue_count > 0` — rescue is selecting novel programs to tune
+- Check `tune_annotation_rate > 0` — LLM is generating `@TUNE` annotations
+- Best programs should **NOT** contain `@TUNED` (stripped before DB storage)
+- Best programs may contain `@TUNE` annotations (sensitive ones kept)
+- Grep logs for `[TUNE-RESCUE]`, `[TUNE-SKIP]`, `[TUNE-CHECKPOINT]`, `[TUNE-FINAL]`
+- Check `rescue_avg_gain` in tracker — positive means rescue is helping
+- If `tune_annotation_rate` drops to 0, the LLM stopped generating `@TUNE`
 
 **Language notes**: `@TUNE` annotations work in any language:
 - Python: `threshold = 0.5  # @TUNE [0.0, 1.0]`
 - Go: `threshold := 0.5 // @TUNE [0.0, 1.0]`
 - Rust/C++: `let threshold = 0.5; // @TUNE [0.0, 1.0]`
 
-**Performance note**: Tuning adds ~19 evaluations per iteration (budget + params * scale).
-For expensive evaluators (BLIS, circle_packing), this significantly increases iteration time.
-For cheap evaluators (funcmin), overhead is minimal (~1s per iteration).
+**Performance note (v2 vs v1)**: v2 uses ~56% fewer evaluations than v1. Rescue tuning
+fires on ~32% of iterations (novel+low-scoring only), not all. Polish adds ~180 evaluations
+total over a 25-iteration run (vs v1's ~500). For BLIS (~20s/eval), total tuning wall-clock
+is ~1.2 hours vs v1's ~2.8 hours.
 
 ### C. Combined (Hypothesis + Tuning) A/B
 
@@ -163,9 +181,11 @@ Tests whether hypothesis AND tuning together improve outcomes vs vanilla.
 hypothesis_driven: true
 tuning:
   enabled: true
-  budget: 10
   max_params: 3
-  budget_scale_per_param: 3
+  rescue_trials: 5
+  checkpoint_trials: 10
+  final_trials: 20
+  polish_top_k: 3
 ```
 
 ```yaml
@@ -176,7 +196,79 @@ tuning:
 ```
 
 **Note**: This tests the combined effect. To attribute effects to individual features,
-run separate hypothesis-only and tuning-only A/B experiments.
+run separate hypothesis-only and tuning-only A/B experiments (or use the factorial runner).
+
+---
+
+## Live Monitoring During Runs (IMPORTANT)
+
+Don't just launch experiments and wait. **Actively monitor** the first few iterations of
+each condition to catch pipeline failures early. A broken pipeline wastes hours of compute.
+
+### How to monitor
+
+While an experiment is running, tail the stderr log in a separate terminal (or use Bash tool):
+
+```bash
+# Find the active run directory
+ls -lt experiments/<dir>/  # most recent run dir at top
+
+# Tail the live log
+tail -f experiments/<dir>/treatment_run_300/experiment_stderr.txt
+```
+
+### What to look for — Tuning treatment
+
+Check these within the **first 3-5 iterations**:
+
+| Expected Log Line | What It Means | If Missing |
+|-------------------|---------------|------------|
+| `[TUNE-RESCUE] iter=N ...` | Rescue tuning fired on a novel program | May be OK if all programs score above median |
+| `[TUNE-SKIP] iter=N ...` | Program skipped rescue (good score or low diversity) | Should appear — means selection logic is active |
+| `[TUNE-CHECKPOINT] iter=5 ...` | Checkpoint polish ran at first checkpoint | Must appear at checkpoint_interval iterations |
+| `tune_annotations=N→M` | LLM generated N @TUNE annotations, M honored | If N=0 for several iterations, LLM isn't using @TUNE |
+
+**Red flags — stop and investigate:**
+- Zero `[TUNE-RESCUE]` AND zero `[TUNE-SKIP]` lines → tuning pipeline not running at all
+- `tune_annotations=0` for 5+ consecutive iterations → LLM stopped generating @TUNE
+- `[TUNING] Baseline evaluation failed` repeatedly → evaluator broken
+- Any `ImportError` mentioning optuna → `pip install optuna` needed
+
+### What to look for — Hypothesis treatment
+
+| Expected Log Line | What It Means | If Missing |
+|-------------------|---------------|------------|
+| `[HYPO-TRACK] iter=N ... hypotheses_in_child_code=M` | M > 0 means hypotheses persisted | If M=0, diff application is stripping them |
+| `[HYPO-TRACK] ... results_injected=K` | K > 0 means RESULT verdicts injected | If K=0 after iter 1, inject pipeline broken |
+| `[HYPO-TRACK] ... persist_rate=X` | X > 0.5 means hypotheses surviving diffs | X=0 means all hypotheses lost |
+
+### What to look for — Control runs
+
+Control runs should have **none** of the above log lines. If you see `[TUNE-RESCUE]` or
+`[HYPO-TRACK]` in a control run, the config is wrong — the feature isn't disabled.
+
+### Validation after each run completes
+
+```bash
+# Quick sanity check for tuning treatment
+cat experiments/<dir>/treatment_run_*/tuning_tracker.json | python -m json.tool | head -20
+# Expect: rescue_count > 0, tune_annotation_rate > 0
+
+# Quick sanity check for hypothesis treatment
+cat experiments/<dir>/treatment_run_*/hypothesis_tracker.json | python -m json.tool | head -20
+# Expect: avg_hypotheses_per_iteration > 0, persist_rate > 0.5
+
+# Verify control has no tracker files (or tracker shows zeros)
+ls experiments/<dir>/control_run_*/tuning_tracker.json  # should not exist
+ls experiments/<dir>/control_run_*/hypothesis_tracker.json  # should not exist
+```
+
+### When to abort and restart
+
+- **Config mismatch**: Treatment and control configs differ in more than the tested flag
+- **Pipeline not active**: 5+ iterations with zero annotations/hypotheses in treatment
+- **Evaluator broken**: Repeated evaluation failures in stderr
+- **Stale data**: Output directory had leftover files from a previous run
 
 ---
 
@@ -251,8 +343,21 @@ experiments/tuning_ab_funcmin/
 |---------|-----|
 | `Build failed` in BLIS logs | Check `examples/blis_router/inference-sim` builds manually |
 | LLM timeout errors | Increase `llm.timeout` in both configs |
-| `[TUNING]` never appears in logs | Check `tuning.enabled: true` in config; verify `process_parallel.py` passes `tuning_enabled` to `build_prompt` |
-| `@TUNE` count = 0 in tracker | LLM isn't generating annotations; check prompt template is injected (look for `[TUNING] Appended` in stderr) |
+| `[TUNE-RESCUE]` never appears | Check `tuning.enabled: true`; check LLM is generating `@TUNE` annotations |
+| `tune_annotation_rate` = 0 | LLM isn't generating `@TUNE`; prompt may need a nudge (rare) |
+| `rescue_count` = 0 | All programs score above median — rescue selection is working correctly, just no candidates |
+| `@TUNED` in best program | Bug — `strip_tuned_for_db()` should remove it. Check `tuning.py` |
 | `persist_rate` = 0 (hypothesis) | Diff application stripping hypotheses; check rescue logic |
 | Scores identical treatment/control | Pipeline may not be active; check tracker files exist |
 | Parallel run corruption | **Kill all processes**, clean output dir, restart with `--condition both` |
+
+## Document History
+
+- **Canonical doc**: This file (`docs/AB_EXPERIMENT_HOWTO.md`)
+- **Superseded**: `docs/plans/hypothesis-ab-experiment-howto.md` (deleted — was hypothesis-only, referenced removed signal_processing task)
+- **Related design docs** (historical, not howto):
+  - `docs/plans/2026-02-25-hypothesis-ab-experiment-design.md` — Original hypothesis experiment design
+  - `docs/plans/2026-02-25-hypothesis-ab-experiment-plan.md` — Original implementation plan
+  - `docs/plans/hypothesis-ab-experiment-findings.md` — v1 hypothesis experiment results
+  - `docs/plans/2026-03-02-structured-threshold-tuning-design.md` — Tuning v1 design
+  - `docs/plans/2026-03-03-structured-threshold-tuning-v2-design.md` — Tuning v2 design (current)

@@ -379,12 +379,16 @@ class EvolutionTraceConfig:
 
 @dataclass
 class TuningConfig:
-    """Configuration for structured threshold tuning."""
+    """Configuration for structured threshold tuning (v2: tiered)."""
 
     enabled: bool = False
-    budget: int = 20
     max_params: int = 3
-    budget_scale_per_param: int = 5
+
+    # Tiered trial budgets (flat counts, no per-param scaling)
+    rescue_trials: int = 5  # Per-iteration rescue (selective)
+    checkpoint_trials: int = 10  # Polish at checkpoint intervals
+    final_trials: int = 20  # Polish at final iteration
+    polish_top_k: int = 3  # Top-K programs per island to polish
 
 
 @dataclass
@@ -438,6 +442,21 @@ class Config:
                 re.compile(config_dict["diff_pattern"])
             except re.error as e:
                 raise ValueError(f"Invalid regex pattern in diff_pattern: {e}")
+
+        # Backward compat: map v1 tuning config fields to v2 tiered fields
+        tuning_dict = config_dict.get("tuning", {})
+        if tuning_dict:
+            # v1: budget → rescue_trials
+            if "budget" in tuning_dict and "rescue_trials" not in tuning_dict:
+                tuning_dict["rescue_trials"] = tuning_dict.pop("budget")
+                tuning_dict.pop("budget_scale_per_param", None)
+            # v2-draft: rescue_budget/polish_budget → rescue_trials/checkpoint_trials
+            if "rescue_budget" in tuning_dict and "rescue_trials" not in tuning_dict:
+                tuning_dict["rescue_trials"] = tuning_dict.pop("rescue_budget")
+                tuning_dict.pop("rescue_scale_per_param", None)
+            if "polish_budget" in tuning_dict and "checkpoint_trials" not in tuning_dict:
+                tuning_dict["checkpoint_trials"] = tuning_dict.pop("polish_budget")
+                tuning_dict.pop("polish_scale_per_param", None)
 
         config: Config = dacite.from_dict(
             data_class=cls,

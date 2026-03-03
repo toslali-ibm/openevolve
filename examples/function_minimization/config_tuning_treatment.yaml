@@ -1,17 +1,19 @@
-# Function Minimization — TREATMENT (tuning enabled)
-# A/B Experiment: threshold tuning ON with budget=10
+# Function Minimization — TREATMENT (tuning v2 enabled)
+# A/B Experiment: tiered threshold tuning ON
 
 max_iterations: 20
 checkpoint_interval: 5
 
 hypothesis_driven: false
 
-# Tuning enabled (treatment condition)
+# Tuning v2 enabled (treatment condition)
 tuning:
   enabled: true
-  budget: 10
   max_params: 3
-  budget_scale_per_param: 3
+  rescue_trials: 5
+  checkpoint_trials: 10
+  final_trials: 20
+  polish_top_k: 3
 
 log_level: "INFO"
 

@@ -287,32 +287,108 @@ def _run_iteration_worker(
                 iteration=iteration,
             )
 
-        # Tune thresholds if enabled
+        # v2 Rescue tuning: selectively tune novel-but-low-scoring programs
+        import uuid
+
+        child_id = str(uuid.uuid4())
         tuning_stats_dict = None
+        tuning_metrics = None
+
         if _worker_config.tuning.enabled:
-            from openevolve.tuning import tune_program, IterationTuningStats
+            from openevolve.tuning import (
+                tune_program,
+                has_tune_annotations,
+                IterationTuningStats,
+            )
 
             try:
-                child_code, tuning_stats = asyncio.run(
-                    tune_program(
-                        child_code,
-                        _worker_evaluator.evaluate_program,
-                        _worker_config.tuning,
-                    )
-                )
-                tuning_stats.iteration = iteration
-                tuning_stats_dict = _asdict(tuning_stats)
+                if has_tune_annotations(child_code):
+                    # Compute population statistics from snapshot
+                    from statistics import median as _median
+
+                    pop_scores = [
+                        p.get("metrics", {}).get("combined_score", 0)
+                        for p in db_snapshot["programs"].values()
+                        if p.get("metrics")
+                    ]
+                    pop_diversities = [
+                        p.get("diversity", 0) for p in db_snapshot["programs"].values()
+                    ]
+
+                    should_rescue = False
+                    rescue_reason = ""
+
+                    if pop_scores and pop_diversities:
+                        score_median = _median(pop_scores)
+                        sorted_scores = sorted(pop_scores)
+                        score_p25 = sorted_scores[max(0, len(sorted_scores) // 4)]
+                        diversity_median = _median(pop_diversities)
+
+                        # Evaluate child to get un-tuned score
+                        pre_tune_metrics = asyncio.run(
+                            _worker_evaluator.evaluate_program(child_code, child_id)
+                        )
+                        pre_tune_score = pre_tune_metrics.get("combined_score", 0)
+
+                        # Compute child diversity against population
+                        from openevolve.database import ProgramDatabase
+
+                        child_diversity = ProgramDatabase.fast_code_diversity_against_set(
+                            child_code, db_snapshot
+                        )
+
+                        if pre_tune_score < score_median and child_diversity > diversity_median:
+                            should_rescue = True
+                            rescue_reason = "novel_low_score"
+                        elif pre_tune_score < score_p25:
+                            should_rescue = True
+                            rescue_reason = "very_poor"
+
+                        if should_rescue:
+                            child_code, tuning_stats, tuning_metrics = asyncio.run(
+                                tune_program(
+                                    child_code,
+                                    _worker_evaluator.evaluate_program,
+                                    _worker_config.tuning,
+                                    mode="rescue",
+                                    baseline_metrics=pre_tune_metrics,
+                                )
+                            )
+                            tuning_stats.iteration = iteration
+                            tuning_stats.selection_reason = rescue_reason
+                            tuning_stats_dict = _asdict(tuning_stats)
+                        else:
+                            # Not rescue-selected; record skip stats
+                            tuning_metrics = pre_tune_metrics  # reuse pre-eval
+                            skip_stats = IterationTuningStats(
+                                iteration=iteration,
+                                mode="skipped",
+                                tune_annotations_found=child_code.count("@TUNE"),
+                            )
+                            tuning_stats_dict = _asdict(skip_stats)
+                    else:
+                        # Empty population — no stats to compare against, skip rescue
+                        skip_stats = IterationTuningStats(
+                            iteration=iteration,
+                            mode="skipped",
+                            tune_annotations_found=child_code.count("@TUNE"),
+                        )
+                        tuning_stats_dict = _asdict(skip_stats)
+                else:
+                    # No @TUNE annotations at all
+                    skip_stats = IterationTuningStats(iteration=iteration, mode="skipped")
+                    tuning_stats_dict = _asdict(skip_stats)
             except ImportError as e:
                 logger.error(f"[TUNING] {e}")
                 return SerializableResult(error=f"Tuning import error: {e}", iteration=iteration)
             except Exception as e:
-                logger.warning(f"[TUNING] Tuning failed, using original code: {e}")
+                logger.warning(f"[TUNING] Rescue tuning failed, using original code: {e}")
 
-        # Evaluate the child program
-        import uuid
-
-        child_id = str(uuid.uuid4())
-        child_metrics = asyncio.run(_worker_evaluator.evaluate_program(child_code, child_id))
+        # Final evaluation (skip if tuning or pre-eval already evaluated)
+        if tuning_metrics:
+            child_metrics = tuning_metrics
+        else:
+            child_metrics = asyncio.run(_worker_evaluator.evaluate_program(child_code, child_id))
 
         # Stamp hypothesis verdicts into child code
         if _worker_config.hypothesis_driven and child_metrics:
@@ -388,10 +464,12 @@ class ProcessParallelController:
 
         # Hypothesis pipeline tracker (treatment runs only, cheap no-op for control)
         from openevolve.hypothesis import HypothesisTracker
+
         self.hypothesis_tracker = HypothesisTracker() if config.hypothesis_driven else None
 
         # Tuning pipeline tracker
         from openevolve.tuning import TuningTracker
+
         self.tuning_tracker = TuningTracker() if config.tuning.enabled else None
 
         logger.info(f"Initialized process parallel controller with {self.num_workers} workers")
@@ -585,12 +663,14 @@ class ProcessParallelController:
                 # Record hypothesis tracking stats
                 if self.hypothesis_tracker and result.hypothesis_stats:
                     from openevolve.hypothesis import IterationHypothesisStats
+
                     stats = IterationHypothesisStats(**result.hypothesis_stats)
                     self.hypothesis_tracker.record(stats)
 
                 # Record tuning tracking stats
                 if self.tuning_tracker and result.tuning_stats:
                     from openevolve.tuning import IterationTuningStats
+
                     tstats = IterationTuningStats(**result.tuning_stats)
                     self.tuning_tracker.record(tstats)
 
@@ -649,10 +729,8 @@ class ProcessParallelController:
 
                     # Island management
                     # get current program island id
-                    island_id = child_program.metadata.get(
-                        "island", self.database.current_island
-                    )
-                    #use this to increment island generation
+                    island_id = child_program.metadata.get("island", self.database.current_island)
+                    # use this to increment island generation
                     self.database.increment_island_generation(island_idx=island_id)
 
                     # Check migration
@@ -716,12 +794,24 @@ class ProcessParallelController:
                             checkpoint_callback(completed_iteration)
                         # Save hypothesis tracker alongside checkpoint
                         if self.hypothesis_tracker and self.database.config.db_path:
-                            tracker_path = Path(self.database.config.db_path).parent / "hypothesis_tracker.json"
+                            tracker_path = (
+                                Path(self.database.config.db_path).parent
+                                / "hypothesis_tracker.json"
+                            )
                             self.hypothesis_tracker.save(tracker_path)
                         # Save tuning tracker alongside checkpoint
                         if self.tuning_tracker and self.database.config.db_path:
-                            tuning_path = Path(self.database.config.db_path).parent / "tuning_tracker.json"
+                            tuning_path = (
+                                Path(self.database.config.db_path).parent / "tuning_tracker.json"
+                            )
                             self.tuning_tracker.save(tuning_path)
+                        # v2: Checkpoint polish (not at final iteration — that uses final polish)
+                        if (
+                            self.config.tuning.enabled
+                            and completed_iteration + self.config.checkpoint_interval
+                            <= total_iterations
+                        ):
+                            await self._polish_elites(completed_iteration, is_final=False)
 
                     # Check target score
                     if target_score is not None and child_program.metrics:
@@ -831,6 +921,10 @@ class ProcessParallelController:
         else:
             logger.info("✅ Evolution completed - Maximum iterations reached")
 
+        # v2: Final polish — thorough tuning of best programs
+        if self.config.tuning.enabled:
+            await self._polish_elites(completed_iterations, is_final=True)
+
         # Save final hypothesis tracker
         if self.hypothesis_tracker and self.database.config.db_path:
             tracker_path = Path(self.database.config.db_path).parent / "hypothesis_tracker.json"
@@ -875,3 +969,100 @@ class ProcessParallelController:
         except Exception as e:
             logger.error(f"Error submitting iteration {iteration}: {e}")
             return None
+
+    async def _polish_elites(self, iteration: int, is_final: bool = False):
+        """Tune top-K elite programs per island. Checkpoint budget normally, final budget at end."""
+        if not self.config.tuning.enabled:
+            return
+
+        from openevolve.tuning import (
+            tune_program,
+            has_tune_annotations,
+            IterationTuningStats,
+        )
+
+        mode = "final" if is_final else "checkpoint"
+
+        for island_id in range(self.num_islands):
+            island_program_ids = (
+                list(self.database.islands[island_id])
+                if island_id < len(self.database.islands)
+                else []
+            )
+            if not island_program_ids:
+                continue
+
+            # Get actual program objects and sort by score
+            island_programs = [
+                self.database.get(pid)
+                for pid in island_program_ids
+                if self.database.get(pid) is not None
+            ]
+            island_programs.sort(
+                key=lambda p: p.metrics.get("combined_score", 0) if p.metrics else 0,
+                reverse=True,
+            )
+            top_k = island_programs[: self.config.tuning.polish_top_k]
+
+            for prog in top_k:
+                if not has_tune_annotations(prog.code):
+                    continue
+
+                try:
+                    polished_code, stats, polished_metrics = await tune_program(
+                        prog.code,
+                        self._create_polish_evaluate_fn(),
+                        self.config.tuning,
+                        mode=mode,
+                        baseline_metrics=prog.metrics,
+                    )
+                    stats.iteration = iteration
+                    stats.selection_reason = f"{mode}_elite"
+
+                    if polished_metrics:
+                        polished_score = polished_metrics.get("combined_score", 0)
+                        original_score = prog.metrics.get("combined_score", 0)
+
+                        if polished_score > original_score:
+                            prog.code = polished_code
+                            prog.metrics = polished_metrics
+                            # Direct update in database (no update_program method)
+                            self.database.programs[prog.id] = prog
+                            logger.info(
+                                f"[TUNE-{mode.upper()}] Improved {prog.id} on island {island_id}: "
+                                f"{original_score:.4f} -> {polished_score:.4f} "
+                                f"(+{polished_score - original_score:.4f})"
+                            )
+                        else:
+                            logger.info(
+                                f"[TUNE-{mode.upper()}] No improvement for {prog.id} on island {island_id} "
+                                f"(score {original_score:.4f})"
+                            )
+
+                    if self.tuning_tracker:
+                        self.tuning_tracker.record(stats)
+
+                except Exception as e:
+                    logger.warning(f"[TUNE-{mode.upper()}] Polish failed for {prog.id}: {e}")
+
+    def _create_polish_evaluate_fn(self):
+        """Create an evaluate function for polish tuning in the main process."""
+        from openevolve.evaluator import Evaluator
+        from openevolve.llm.ensemble import LLMEnsemble
+        from openevolve.prompt.sampler import PromptSampler
+
+        if not hasattr(self, "_polish_evaluator"):
+            evaluator_llm = LLMEnsemble(self.config.llm.evaluator_models)
+            evaluator_prompt = PromptSampler(self.config.prompt)
+            evaluator_prompt.set_templates("evaluator_system_message")
+
+            self._polish_evaluator = Evaluator(
+                self.config.evaluator,
+                self.evaluation_file,
+                evaluator_llm,
+                evaluator_prompt,
+                database=None,
+                suffix=self.file_suffix,
+            )
+
+        return self._polish_evaluator.evaluate_program

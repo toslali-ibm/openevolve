@@ -2050,6 +2050,35 @@ class ProgramDatabase:
 
         return diversity
 
+    @staticmethod
+    def fast_code_diversity_against_set(child_code: str, db_snapshot: dict) -> float:
+        """Compute diversity of child code against population from a DB snapshot.
+
+        Uses the same _fast_code_diversity metric as MAP-Elites for consistency.
+        Designed to be called from worker processes with a serialized snapshot.
+        """
+        # Get reference codes from snapshot programs
+        reference_codes = [
+            p.get("code", "") for p in list(db_snapshot["programs"].values())[:20] if p.get("code")
+        ]
+        if not reference_codes:
+            return 0.0
+
+        scores = []
+        for ref_code in reference_codes:
+            if ref_code != child_code:
+                # Inline the _fast_code_diversity logic (static, no self needed)
+                if child_code == ref_code:
+                    scores.append(0.0)
+                    continue
+                length_diff = abs(len(child_code) - len(ref_code))
+                line_diff = abs(child_code.count("\n") - ref_code.count("\n"))
+                char_diff = len(set(child_code).symmetric_difference(set(ref_code)))
+                diversity = length_diff * 0.1 + line_diff * 10 + char_diff * 0.5
+                scores.append(diversity)
+
+        return sum(scores) / max(1, len(scores)) if scores else 0.0
+
     def _get_cached_diversity(self, program: Program) -> float:
         """
         Get diversity score for a program using cache and reference set

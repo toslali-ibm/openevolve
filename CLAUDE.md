@@ -114,6 +114,35 @@ YAML-based configuration with hierarchical structure:
 3. **Error Resilience**: Individual failures don't crash system - extensive retry logic and timeout protection
 4. **Prompt Engineering**: Template-based system with context-aware building and evolution history
 
+### Experimental Features
+
+Two experimental features can be toggled independently via config flags:
+
+1. **Hypothesis-Driven Evolution** (`hypothesis_driven: true`): LLM writes structured HYPOTHESIS/EXPECT comments; RESULT verdicts auto-injected after evaluation.
+2. **Threshold Tuning v2** (`tuning.enabled: true`): LLM marks numeric parameters with `@TUNE`; Optuna optimizes via tiered rescue (5 trials), checkpoint polish (10 trials), and final polish (20 trials). `@TUNED` feedback is **never** shown to the LLM.
+
+### Running A/B Experiments
+
+**Read `docs/AB_EXPERIMENT_HOWTO.md` before running any experiment.** It covers hypothesis, tuning, and combined experiments.
+
+**Critical rules:**
+- **NEVER run experiments in parallel** — always `--condition both` (sequential)
+- **Always clean state first** — `rm -rf experiments/<dir>` before re-running
+- **One variable at a time** — tuning A/B: both configs set `hypothesis_driven: false`; hypothesis A/B: both set `tuning.enabled: false`
+- **Monitor during runs** — tail logs and verify expected log lines appear (see monitoring section in AB doc)
+
+**Quick reference:**
+```bash
+# Tuning A/B
+python scripts/run_experiment.py --task function_minimization_tuning --condition both --runs 2 --seed-start 300 --iterations 25 --output-dir experiments/tuning_ab_funcmin
+
+# Hypothesis A/B
+python scripts/run_experiment.py --task blis_router --condition both --runs 2 --seed-start 300 --iterations 25 --output-dir experiments/hypothesis_ab_blis
+
+# Analyze
+python scripts/analyze_experiment.py --data experiments/<dir>/convergence.csv --output experiments/<dir>
+```
+
 ### Development Notes
 
 - Python >=3.10 required
