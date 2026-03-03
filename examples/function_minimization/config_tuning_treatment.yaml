@@ -4,7 +4,7 @@
 max_iterations: 20
 checkpoint_interval: 5
 
-hypothesis_driven: true
+hypothesis_driven: false
 
 # Tuning enabled (treatment condition)
 tuning:

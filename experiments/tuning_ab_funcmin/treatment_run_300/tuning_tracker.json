@@ -1,0 +1,659 @@
+{
+  "total_iterations_tracked": 25,
+  "total_iterations_with_tuning": 25,
+  "total_trials": 475,
+  "avg_gain_when_tuned": 0.2754,
+  "avg_tuning_duration_s": 1.1,
+  "per_iteration": [
+    {
+      "iteration": 1,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.2172400951385498,
+      "original_score": 1.4593033802896027,
+      "tuned_score": 1.494341842784033,
+      "gain": 0.03503846249443021,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.0,
+          "now": 0.2796021508587992
+        },
+        "cooling": {
+          "was": 0.995,
+          "now": 0.9903297746006923
+        },
+        "step_size": {
+          "was": 0.5,
+          "now": 0.20256488025659083
+        }
+      }
+    },
+    {
+      "iteration": 2,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.1614508628845215,
+      "original_score": 1.3443978503845189,
+      "tuned_score": 1.4662109677785855,
+      "gain": 0.12181311739406664,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.0,
+          "now": 1.7952372549415494
+        },
+        "cooling": {
+          "was": 0.995,
+          "now": 0.9688810492097233
+        },
+        "step_size": {
+          "was": 0.5,
+          "now": 1.7149291889885698
+        }
+      }
+    },
+    {
+      "iteration": 3,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.9989690780639648,
+      "original_score": 1.4759399743939574,
+      "tuned_score": 1.4759399743939574,
+      "gain": 0.0,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.0,
+          "now": 1.0
+        },
+        "cooling": {
+          "was": 0.995,
+          "now": 0.995
+        },
+        "step_size": {
+          "was": 0.5,
+          "now": 0.5
+        }
+      }
+    },
+    {
+      "iteration": 4,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.1274008750915527,
+      "original_score": 1.3522084080111616,
+      "tuned_score": 1.4804042572337361,
+      "gain": 0.12819584922257454,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.0,
+          "now": 1.5342674463878665
+        },
+        "cooling": {
+          "was": 0.995,
+          "now": 0.9891949643907431
+        },
+        "step_size": {
+          "was": 0.5,
+          "now": 0.7065260886949077
+        }
+      }
+    },
+    {
+      "iteration": 5,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.1361770629882812,
+      "original_score": 1.3472998856700205,
+      "tuned_score": 1.4613758927344715,
+      "gain": 0.11407600706445109,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.0,
+          "now": 1.0836343151189005
+        },
+        "cooling": {
+          "was": 0.995,
+          "now": 0.9679014294758725
+        },
+        "step_size": {
+          "was": 0.5,
+          "now": 1.8223645821870877
+        }
+      }
+    },
+    {
+      "iteration": 6,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.9774799346923828,
+      "original_score": 1.484485127547571,
+      "tuned_score": 1.484485127547571,
+      "gain": 0.0,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.0,
+          "now": 1.0
+        },
+        "cooling": {
+          "was": 0.995,
+          "now": 0.995
+        },
+        "step_size": {
+          "was": 0.5,
+          "now": 0.5
+        }
+      }
+    },
+    {
+      "iteration": 8,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.5462770462036133,
+      "original_score": 0.5010048557031157,
+      "tuned_score": 1.4857738886290899,
+      "gain": 0.9847690329259742,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.7952,
+          "now": 1.055172300751077
+        },
+        "cooling": {
+          "was": 0.9689,
+          "now": 0.9964703585082277
+        },
+        "initial_step_std_dev": {
+          "was": 1.7149,
+          "now": 1.2636555805393264
+        }
+      }
+    },
+    {
+      "iteration": 10,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.8681507110595703,
+      "original_score": 1.0168987374211562,
+      "tuned_score": 1.4671152471141191,
+      "gain": 0.4502165096929629,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "init_temp": {
+          "was": 2.0,
+          "now": 3.5256451479520696
+        },
+        "cooling": {
+          "was": 0.98,
+          "now": 0.9707028333862148
+        },
+        "step_scale": {
+          "was": 1.0,
+          "now": 2.495010548783769
+        }
+      }
+    },
+    {
+      "iteration": 9,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.0110797882080078,
+      "original_score": 0.9856523475403101,
+      "tuned_score": 1.4989660955540929,
+      "gain": 0.5133137480137828,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.7952,
+          "now": 1.5982452410392662
+        },
+        "cooling": {
+          "was": 0.9689,
+          "now": 0.9903158373560929
+        },
+        "step_size": {
+          "was": 1.7149,
+          "now": 1.4988082843134367
+        }
+      }
+    },
+    {
+      "iteration": 7,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 2.667794942855835,
+      "original_score": 1.4954481596699518,
+      "tuned_score": 1.4991371848598152,
+      "gain": 0.0036890251898633597,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "local_refinement_prob": {
+          "was": 0.3,
+          "now": 0.6270107119159453
+        },
+        "local_step_std": {
+          "was": 0.2,
+          "now": 0.05987119823369029
+        },
+        "num_local_steps": {
+          "was": 5,
+          "now": 6
+        }
+      }
+    },
+    {
+      "iteration": 12,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.7936630249023438,
+      "original_score": 1.0641896705821072,
+      "tuned_score": 1.477119204433225,
+      "gain": 0.41292953385111786,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.0,
+          "now": 1.0067561742075473
+        },
+        "cooling": {
+          "was": 0.99,
+          "now": 0.9983812220701571
+        },
+        "step_size": {
+          "was": 2.0,
+          "now": 1.4552019379711798
+        }
+      }
+    },
+    {
+      "iteration": 13,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.0410230159759521,
+      "original_score": 1.2295342597110879,
+      "tuned_score": 1.4925841260862587,
+      "gain": 0.2630498663751708,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.8,
+          "now": 0.5607359316040024
+        },
+        "cooling": {
+          "was": 0.99,
+          "now": 0.9789924650448907
+        },
+        "reheat_rate": {
+          "was": 0.4,
+          "now": 0.364089813526299
+        }
+      }
+    },
+    {
+      "iteration": 11,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.6574521064758301,
+      "original_score": 1.016714142752634,
+      "tuned_score": 1.4691994361222482,
+      "gain": 0.4524852933696142,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "initial_temperature": {
+          "was": 1.0,
+          "now": 2.2210352420971367
+        },
+        "cooling_rate": {
+          "was": 0.995,
+          "now": 0.9951498209457962
+        },
+        "step_std_factor": {
+          "was": 0.5,
+          "now": 1.5872868136066662
+        }
+      }
+    },
+    {
+      "iteration": 14,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.7211189270019531,
+      "original_score": 1.009622587879107,
+      "tuned_score": 1.446787031247617,
+      "gain": 0.43716444336851,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.0,
+          "now": 4.801548036812286
+        },
+        "cooling": {
+          "was": 0.995,
+          "now": 0.9969127301953236
+        },
+        "initial_step_std_dev": {
+          "was": 0.5,
+          "now": 1.3078271951439524
+        }
+      }
+    },
+    {
+      "iteration": 15,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.8068270683288574,
+      "original_score": 0.951294085786322,
+      "tuned_score": 1.4758768274662675,
+      "gain": 0.5245827416799455,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.7952,
+          "now": 2.171349714524212
+        },
+        "cooling": {
+          "was": 0.9689,
+          "now": 0.9987659919159676
+        },
+        "initial_step_std_dev": {
+          "was": 1.7149,
+          "now": 1.237357954577257
+        }
+      }
+    },
+    {
+      "iteration": 18,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.8846898078918457,
+      "original_score": 1.3614764619424935,
+      "tuned_score": 1.4956030157321036,
+      "gain": 0.13412655378961014,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.0,
+          "now": 2.1722016256472974
+        },
+        "cooling": {
+          "was": 0.995,
+          "now": 0.987995170541662
+        },
+        "initial_step_std_dev": {
+          "was": 0.5,
+          "now": 1.8682117556162507
+        }
+      }
+    },
+    {
+      "iteration": 17,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.0711166858673096,
+      "original_score": 1.4991172156115338,
+      "tuned_score": 1.49915398293355,
+      "gain": 3.676732201629562e-05,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.0552,
+          "now": 3.237288711590523
+        },
+        "cooling": {
+          "was": 0.9965,
+          "now": 0.99886039350621
+        },
+        "initial_step_std_dev": {
+          "was": 1.2637,
+          "now": 1.948615584532771
+        }
+      }
+    },
+    {
+      "iteration": 19,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.34212803840637207,
+      "original_score": 0.36932169998668046,
+      "tuned_score": 1.295857435231999,
+      "gain": 0.9265357352453185,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 0.2796,
+          "now": 4.892998691262609
+        },
+        "cooling": {
+          "was": 0.9903,
+          "now": 0.9663570143633766
+        },
+        "initial_step_size": {
+          "was": 0.2026,
+          "now": 1.8281932082250356
+        }
+      }
+    },
+    {
+      "iteration": 21,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.0192668437957764,
+      "original_score": 1.4987925537683124,
+      "tuned_score": 1.4991728924842982,
+      "gain": 0.00038033871598575075,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.2,
+          "now": 2.519299938725942
+        },
+        "cooling": {
+          "was": 0.997,
+          "now": 0.9900052641495899
+        },
+        "step_scale": {
+          "was": 1.5,
+          "now": 1.40023175456319
+        }
+      }
+    },
+    {
+      "iteration": 16,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.1771819591522217,
+      "original_score": 1.4413672922761684,
+      "tuned_score": 1.4917649156430606,
+      "gain": 0.05039762336689213,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.7952,
+          "now": 0.11266722754650615
+        },
+        "cooling": {
+          "was": 0.9689,
+          "now": 0.9668201578428518
+        },
+        "global_jump_interval": {
+          "was": 20,
+          "now": 93
+        }
+      }
+    },
+    {
+      "iteration": 20,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.6092929840087891,
+      "original_score": 0.8308509053419677,
+      "tuned_score": 1.4280495800363857,
+      "gain": 0.597198674694418,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 4.8015,
+          "now": 4.474468392702376
+        },
+        "cooling": {
+          "was": 0.9969,
+          "now": 0.9986479882956066
+        },
+        "initial_step_std_dev": {
+          "was": 1.3078,
+          "now": 1.1537702486320411
+        }
+      }
+    },
+    {
+      "iteration": 24,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.9072060585021973,
+      "original_score": 1.363096786324327,
+      "tuned_score": 1.498783395688379,
+      "gain": 0.13568660936405186,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "local_prob": {
+          "was": 0.7,
+          "now": 0.4528931872324444
+        },
+        "initial_step": {
+          "was": 1.0,
+          "now": 0.5154560969163365
+        },
+        "global_freq": {
+          "was": 20,
+          "now": 5
+        }
+      }
+    },
+    {
+      "iteration": 23,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.0194189548492432,
+      "original_score": 1.0283814917204257,
+      "tuned_score": 1.448693199054953,
+      "gain": 0.4203117073345273,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.0,
+          "now": 2.2053665556549693
+        },
+        "cooling": {
+          "was": 0.995,
+          "now": 0.960306590773661
+        },
+        "initial_step_size": {
+          "was": 2.0,
+          "now": 3.4070726023867093
+        }
+      }
+    },
+    {
+      "iteration": 22,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 3.933314085006714,
+      "original_score": 1.4991882341395097,
+      "tuned_score": 1.4994883929692264,
+      "gain": 0.00030015882971667907,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "local_sa_prob": {
+          "was": 0.6,
+          "now": 0.5536961629762753
+        },
+        "initial_local_temp": {
+          "was": 0.5,
+          "now": 0.12927308328626963
+        },
+        "local_cooling_rate": {
+          "was": 0.95,
+          "now": 0.8077541513846318
+        }
+      }
+    },
+    {
+      "iteration": 25,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.9152388572692871,
+      "original_score": 1.3213541458849543,
+      "tuned_score": 1.4990860921739695,
+      "gain": 0.17773194628901523,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "init_temp": {
+          "was": 3.5256,
+          "now": 0.5999394963514096
+        },
+        "cooling": {
+          "was": 0.9707,
+          "now": 0.9335521626830172
+        },
+        "global_jump_prob": {
+          "was": 0.05,
+          "now": 0.19528440156230503
+        }
+      }
+    }
+  ]
+}

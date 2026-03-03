@@ -1,0 +1,9 @@
+{
+  "comparison_iteration": 25,
+  "treatment_median": 1.4994243927852167,
+  "treatment_iqr": 2.718768446619002e-05,
+  "control_median": 1.499420128919971,
+  "control_iqr": 0.00011548662255478348,
+  "n_treatment": 2,
+  "n_control": 2
+}

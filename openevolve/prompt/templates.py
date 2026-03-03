@@ -59,10 +59,11 @@ An optimizer will search the declared ranges before scoring your program.
 
 ### Syntax
 
+Use `#` (Python) or `//` (Go, Rust, C++) comments depending on the language:
 ```
 var = value  # @TUNE [min, max]          # float (default)
 var = value  # @TUNE [min, max] int      # integer
-var = value  # @TUNE [min, max] float    # explicit float
+var := value // @TUNE [min, max] float   # Go-style
 ```
 
 ### What happens
@@ -74,7 +75,7 @@ After you generate code, the optimizer will try different values within your dec
 After tuning, you will see `@TUNED` annotations:
 ```
 threshold_a = 0.72  # @TUNE [0.0, 1.0] @TUNED(was=0.5, gain=+0.11, best_impact=accuracy:+0.05)
-max_retries = 7  # @TUNE [1, 10] int @TUNED(was=3, gain=+0.11, best_impact=success_rate:+0.1)
+maxRetries := 7  // @TUNE [1, 10] int @TUNED(was=3, gain=+0.11, best_impact=success_rate:+0.1)
 ```
 
 - `gain` = total score improvement from tuning all parameters jointly
@@ -83,7 +84,7 @@ max_retries = 7  # @TUNE [1, 10] int @TUNED(was=3, gain=+0.11, best_impact=succe
 ### Rules
 
 - Max 3 `@TUNE` per program. Choose the most impactful parameters. Hardcode the rest.
-- `@TUNE` must appear on a simple assignment line (`name = value`).
+- `@TUNE` must appear on a simple assignment line (`name = value` or `name := value`).
 - Focus on parameters where you're uncertain: decision boundaries, cutoffs, weights, scaling factors.
 - Don't tune constants you know theoretically (e.g., pi, array sizes).
 - Don't manually change `@TUNED` annotations from the parent -- the optimizer handles those.

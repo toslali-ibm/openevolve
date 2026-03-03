@@ -1,0 +1,11 @@
+
+Evolution complete!
+Best program metrics:
+  runs_successfully: 1.0000
+  value_score: 0.9997
+  distance_score: 0.9990
+  combined_score: 1.4993
+  reliability_score: 1.0000
+
+Latest checkpoint saved at: experiments/tuning_ab_funcmin/control_run_301/checkpoints/checkpoint_25
+To resume, use: --checkpoint experiments/tuning_ab_funcmin/control_run_301/checkpoints/checkpoint_25

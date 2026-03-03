@@ -17,8 +17,9 @@ from typing import Awaitable, Callable, List, Optional, Tuple
 logger = logging.getLogger(__name__)
 
 # Regex for: varname = value  # @TUNE [low, high] [int|float]
+# Supports both Python (#) and Go/C++ (//) comment styles, and := assignment
 _TUNE_RANGE_RE = re.compile(
-    r"^(\s*(\w+)\s*=\s*(.+?)\s*)#\s*@TUNE\s+\[([^,\]]+),\s*([^\]]+)\](\s+(?:int|float))?"
+    r"^(\s*(\w+)\s*:?=\s*(.+?)\s*)(?:#|//)\s*@TUNE\s+\[([^,\]]+),\s*([^\]]+)\](\s+(?:int|float))?"
 )
 
 # Regex to strip existing @TUNED(...) annotations
@@ -139,14 +140,17 @@ def rewrite_tune_values(
         # Preserve indentation
         indent = old_line[: len(old_line) - len(old_line.lstrip())]
 
+        # Detect assignment operator (:= for Go, = for Python/etc)
+        assign_op = ":=" if ":=" in old_line.split("#")[0].split("//")[0] else "="
+
         # Build the assignment part
         if param.param_type == "int":
-            assign = f"{indent}{param.name} = {int(new_val)}"
+            assign = f"{indent}{param.name} {assign_op} {int(new_val)}"
         else:
-            assign = f"{indent}{param.name} = {round(new_val, 4)}"
+            assign = f"{indent}{param.name} {assign_op} {round(new_val, 4)}"
 
-        # Preserve the @TUNE annotation from the original line
-        tune_match = re.search(r"#\s*@TUNE\s+\[[^\]]+\](?:\s+(?:int|float))?", old_line)
+        # Preserve the @TUNE annotation from the original line (supports # and // comments)
+        tune_match = re.search(r"(?:#|//)\s*@TUNE\s+\[[^\]]+\](?:\s+(?:int|float))?", old_line)
         tune_part = tune_match.group(0) if tune_match else ""
 
         # Build @TUNED annotation
@@ -409,13 +413,16 @@ def _rewrite_values_only(code: str, params: List[TuneParam], values: dict) -> st
         old_line = lines[line_num]
         indent = old_line[: len(old_line) - len(old_line.lstrip())]
 
-        if param.param_type == "int":
-            assign = f"{indent}{param.name} = {int(new_val)}"
-        else:
-            assign = f"{indent}{param.name} = {round(new_val, 4)}"
+        # Detect assignment operator (:= for Go, = for Python/etc)
+        assign_op = ":=" if ":=" in old_line.split("#")[0].split("//")[0] else "="
 
-        # Preserve the comment part (everything from # onward)
-        comment_match = re.search(r"#.*$", old_line)
+        if param.param_type == "int":
+            assign = f"{indent}{param.name} {assign_op} {int(new_val)}"
+        else:
+            assign = f"{indent}{param.name} {assign_op} {round(new_val, 4)}"
+
+        # Preserve the comment part (everything from # or // onward)
+        comment_match = re.search(r"(?:#|//).*$", old_line)
         comment = comment_match.group(0) if comment_match else ""
 
         lines[line_num] = f"{assign}  {comment}"

@@ -1,0 +1,764 @@
+2026-03-02 19:45:26,734 - INFO - Logging to experiments/tuning_ab_circpack/treatment_run_300/logs/openevolve_20260302_194526.log
+2026-03-02 19:45:26,746 - INFO - Set random seed to 42 for reproducibility
+2026-03-02 19:45:26,767 - INFO - Initialized OpenAI LLM with model: Azure/gpt-5.2-2025-12-11
+2026-03-02 19:45:26,773 - INFO - Initialized OpenAI LLM with model: aws/claude-opus-4-6
+2026-03-02 19:45:26,773 - INFO - Initialized LLM ensemble with models: Azure/gpt-5.2-2025-12-11 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-03-02 19:45:26,784 - INFO - Initialized LLM ensemble with models: Azure/gpt-5.2-2025-12-11 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-03-02 19:45:26,785 - INFO - Initialized prompt sampler
+2026-03-02 19:45:26,785 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-03-02 19:45:26,786 - INFO - Initialized program database with 0 programs
+2026-03-02 19:45:26,786 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-03-02 19:45:26,786 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-03-02 19:45:26,786 - INFO - Initialized OpenEvolve with examples/circle_packing/initial_program.py
+2026-03-02 19:45:26,786 - INFO - Adding initial program to database
+2026-03-02 19:45:26,995 - INFO - Evaluated program 881f2c1e-2848-4c1b-838a-e764f6d3bbc0 in 0.21s: validity=1.0000, sum_radii=0.9598, target_ratio=0.3642, combined_score=0.3642, eval_time=0.1136
+2026-03-02 19:45:27,003 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-03-02 19:45:27,032 - INFO - Initialized process parallel controller with 3 workers
+2026-03-02 19:45:27,034 - INFO - Set max None tasks per child
+2026-03-02 19:45:27,034 - INFO - Started process pool with 3 processes
+2026-03-02 19:45:27,035 - INFO - Using island-based evolution with 3 islands
+2026-03-02 19:45:27,035 - INFO - Island Status:
+2026-03-02 19:45:27,035 - INFO -  * Island 0: 1 programs, best=0.3642, avg=0.3642, diversity=0.00, gen=0 (best: 881f2c1e-2848-4c1b-838a-e764f6d3bbc0)
+2026-03-02 19:45:27,035 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 19:45:27,035 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 19:45:27,035 - INFO - Starting process-based evolution from iteration 1 for 25 iterations (total: 26)
+2026-03-02 19:45:27,054 - INFO - Early stopping disabled
+2026-03-02 19:45:27,537 - INFO - Initialized OpenAI LLM with model: Azure/gpt-5.2-2025-12-11
+2026-03-02 19:45:27,539 - INFO - Initialized OpenAI LLM with model: Azure/gpt-5.2-2025-12-11
+2026-03-02 19:45:27,543 - INFO - Initialized OpenAI LLM with model: aws/claude-opus-4-6
+2026-03-02 19:45:27,543 - INFO - Initialized LLM ensemble with models: Azure/gpt-5.2-2025-12-11 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-03-02 19:45:27,544 - INFO - Initialized prompt sampler
+2026-03-02 19:45:27,545 - INFO - Initialized OpenAI LLM with model: aws/claude-opus-4-6
+2026-03-02 19:45:27,545 - INFO - Initialized LLM ensemble with models: Azure/gpt-5.2-2025-12-11 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-03-02 19:45:27,546 - INFO - Initialized prompt sampler
+2026-03-02 19:45:27,556 - INFO - Initialized LLM ensemble with models: Azure/gpt-5.2-2025-12-11 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-03-02 19:45:27,557 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-03-02 19:45:27,557 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-03-02 19:45:27,557 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-03-02 19:45:27,558 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:45:27,558 - INFO - Initialized LLM ensemble with models: Azure/gpt-5.2-2025-12-11 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-03-02 19:45:27,558 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-03-02 19:45:27,559 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-03-02 19:45:27,559 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-03-02 19:45:27,559 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:45:27,559 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 19:45:27,560 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 19:45:27,560 - INFO - Initialized OpenAI LLM with model: Azure/gpt-5.2-2025-12-11
+2026-03-02 19:45:27,566 - INFO - Initialized OpenAI LLM with model: aws/claude-opus-4-6
+2026-03-02 19:45:27,566 - INFO - Initialized LLM ensemble with models: Azure/gpt-5.2-2025-12-11 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-03-02 19:45:27,567 - INFO - Initialized prompt sampler
+2026-03-02 19:45:27,578 - INFO - Initialized LLM ensemble with models: Azure/gpt-5.2-2025-12-11 (weight: 0.70), aws/claude-opus-4-6 (weight: 0.30)
+2026-03-02 19:45:27,579 - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-03-02 19:45:27,579 - INFO - Successfully loaded evaluation function from examples/circle_packing/evaluator.py
+2026-03-02 19:45:27,579 - INFO - Initialized evaluator with examples/circle_packing/evaluator.py
+2026-03-02 19:45:27,579 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:45:27,580 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 19:45:53,228 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:45:53,732 - INFO - Evaluated program tune_baseline in 0.45s: validity=1.0000, sum_radii=2.0999, target_ratio=0.7969, combined_score=0.7969, eval_time=0.2272
+2026-03-02 19:45:54,194 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:45:54,329 - INFO - Evaluated program tune_trial_0 in 0.58s: validity=1.0000, sum_radii=2.1000, target_ratio=0.7969, combined_score=0.7969, eval_time=0.2777
+2026-03-02 19:45:54,336 - INFO - Evaluated program tune_baseline in 0.08s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:54,434 - INFO - Evaluated program tune_trial_0 in 0.08s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:54,515 - INFO - Evaluated program tune_trial_1 in 0.08s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:54,600 - INFO - Evaluated program tune_trial_2 in 0.08s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:54,690 - INFO - Evaluated program tune_trial_3 in 0.09s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:54,783 - INFO - Evaluated program tune_trial_4 in 0.09s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:54,913 - INFO - Evaluated program tune_trial_5 in 0.13s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:54,996 - INFO - Evaluated program tune_trial_6 in 0.08s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:55,085 - INFO - Evaluated program tune_trial_7 in 0.09s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:55,104 - INFO - Evaluated program tune_trial_1 in 0.77s: validity=1.0000, sum_radii=2.1000, target_ratio=0.7970, combined_score=0.7970, eval_time=0.4116
+2026-03-02 19:45:55,167 - INFO - Evaluated program tune_trial_8 in 0.08s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:55,256 - INFO - Evaluated program tune_trial_9 in 0.09s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:55,345 - INFO - Evaluated program tune_trial_10 in 0.09s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:55,434 - INFO - Evaluated program tune_trial_11 in 0.09s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:55,519 - INFO - Evaluated program tune_trial_12 in 0.08s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:55,598 - INFO - Evaluated program tune_trial_13 in 0.08s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:55,682 - INFO - Evaluated program tune_trial_14 in 0.08s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:55,765 - INFO - Evaluated program tune_trial_2 in 0.66s: validity=1.0000, sum_radii=2.1000, target_ratio=0.7970, combined_score=0.7970, eval_time=0.3261
+2026-03-02 19:45:55,770 - INFO - Evaluated program tune_trial_15 in 0.08s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:55,862 - INFO - Evaluated program tune_trial_16 in 0.09s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:55,952 - INFO - Evaluated program tune_trial_17 in 0.09s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:56,033 - INFO - Evaluated program tune_trial_18 in 0.08s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:56,035 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.0000 → 0.0000 (gain=+0.0000)
+2026-03-02 19:45:56,128 - INFO - Evaluated program 8745c5d9-75a4-4dbc-98bc-59bf840fdecf in 0.09s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:56,132 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:45:56,132 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 19:45:56,137 - INFO - [TUNE-TRACK] iter=2 | annotations=3→3 trials=19ok/0fail score=0.0000→0.0000 gain=+0.0000 duration=1.8s params=['row_spacing', 'col_spacing', 'hex_offset']
+2026-03-02 19:45:56,137 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 5}
+2026-03-02 19:45:56,138 - INFO - Iteration 2: Program 8745c5d9-75a4-4dbc-98bc-59bf840fdecf (parent: 881f2c1e-2848-4c1b-838a-e764f6d3bbc0) completed in 28.57s
+2026-03-02 19:45:56,138 - INFO - Metrics: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:45:56,662 - INFO - Evaluated program tune_trial_3 in 0.89s: validity=1.0000, sum_radii=2.1000, target_ratio=0.7970, combined_score=0.7970, eval_time=0.4334
+2026-03-02 19:45:57,186 - INFO - Evaluated program tune_trial_4 in 0.52s: validity=1.0000, sum_radii=2.1000, target_ratio=0.7970, combined_score=0.7970, eval_time=0.2677
+2026-03-02 19:45:57,608 - INFO - Evaluated program tune_trial_5 in 0.42s: validity=1.0000, sum_radii=2.0998, target_ratio=0.7969, combined_score=0.7969, eval_time=0.2081
+2026-03-02 19:45:57,879 - INFO - Evaluated program tune_trial_6 in 0.27s: validity=1.0000, sum_radii=2.1000, target_ratio=0.7970, combined_score=0.7970, eval_time=0.1338
+2026-03-02 19:45:58,758 - INFO - Evaluated program tune_trial_7 in 0.88s: validity=1.0000, sum_radii=2.1000, target_ratio=0.7970, combined_score=0.7970, eval_time=0.4408
+2026-03-02 19:45:59,404 - INFO - Evaluated program tune_trial_8 in 0.65s: validity=1.0000, sum_radii=2.0999, target_ratio=0.7969, combined_score=0.7969, eval_time=0.3199
+2026-03-02 19:45:59,856 - INFO - Evaluated program tune_trial_9 in 0.45s: validity=1.0000, sum_radii=2.1000, target_ratio=0.7969, combined_score=0.7969, eval_time=0.2256
+2026-03-02 19:46:00,717 - INFO - Evaluated program tune_trial_10 in 0.86s: validity=1.0000, sum_radii=2.1000, target_ratio=0.7970, combined_score=0.7970, eval_time=0.4270
+2026-03-02 19:46:01,453 - INFO - Evaluated program tune_trial_11 in 0.73s: validity=1.0000, sum_radii=2.1000, target_ratio=0.7970, combined_score=0.7970, eval_time=0.3669
+2026-03-02 19:46:01,947 - INFO - Evaluated program tune_trial_12 in 0.49s: validity=1.0000, sum_radii=2.1000, target_ratio=0.7970, combined_score=0.7970, eval_time=0.2415
+2026-03-02 19:46:02,294 - INFO - Evaluated program tune_trial_13 in 0.34s: validity=1.0000, sum_radii=2.1000, target_ratio=0.7970, combined_score=0.7970, eval_time=0.1819
+2026-03-02 19:46:03,020 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:46:03,101 - INFO - Evaluated program tune_trial_14 in 0.80s: validity=1.0000, sum_radii=2.1000, target_ratio=0.7970, combined_score=0.7970, eval_time=0.4218
+2026-03-02 19:46:03,474 - INFO - Evaluated program tune_trial_15 in 0.37s: validity=1.0000, sum_radii=2.1000, target_ratio=0.7970, combined_score=0.7970, eval_time=0.1853
+2026-03-02 19:46:04,055 - INFO - Evaluated program tune_trial_16 in 0.58s: validity=1.0000, sum_radii=2.0993, target_ratio=0.7967, combined_score=0.7967, eval_time=0.2846
+2026-03-02 19:46:04,596 - INFO - Evaluated program tune_trial_17 in 0.54s: validity=1.0000, sum_radii=2.1000, target_ratio=0.7970, combined_score=0.7970, eval_time=0.2654
+2026-03-02 19:46:05,417 - INFO - Evaluated program tune_trial_18 in 0.82s: validity=1.0000, sum_radii=2.0999, target_ratio=0.7969, combined_score=0.7969, eval_time=0.4094
+2026-03-02 19:46:05,419 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.7969 → 0.7970 (gain=+0.0000)
+2026-03-02 19:46:06,307 - INFO - Evaluated program 67fe8d04-0890-4b80-91cc-06f2bc8964f1 in 0.89s: validity=1.0000, sum_radii=2.1000, target_ratio=0.7970, combined_score=0.7970, eval_time=0.4412
+2026-03-02 19:46:06,308 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:46:06,309 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 19:46:06,318 - INFO - [TUNE-TRACK] iter=1 | annotations=3→3 trials=19ok/0fail score=0.7969→0.7970 gain=+0.0000 duration=12.2s params=['r_init', 'n_iters', 'growth']
+2026-03-02 19:46:06,318 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 9}
+2026-03-02 19:46:06,318 - INFO - New best program 67fe8d04-0890-4b80-91cc-06f2bc8964f1 replaces 881f2c1e-2848-4c1b-838a-e764f6d3bbc0 (combined_score: 0.3642 → 0.7970, +0.4327)
+2026-03-02 19:46:06,319 - INFO - Iteration 1: Program 67fe8d04-0890-4b80-91cc-06f2bc8964f1 (parent: 881f2c1e-2848-4c1b-838a-e764f6d3bbc0) completed in 38.75s
+2026-03-02 19:46:06,319 - INFO - Metrics: validity=1.0000, sum_radii=2.1000, target_ratio=0.7970, combined_score=0.7970, eval_time=0.4412
+2026-03-02 19:46:06,319 - INFO - 🌟 New best solution found at iteration 1: 67fe8d04-0890-4b80-91cc-06f2bc8964f1
+2026-03-02 19:46:19,246 - INFO - Evaluated program tune_baseline in 16.18s: validity=1.0000, sum_radii=2.4800, target_ratio=0.9412, combined_score=0.9412, eval_time=8.1179
+2026-03-02 19:46:28,215 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:46:28,222 - WARNING - [TUNING] Tuning failed, using original code: could not convert string to float: '1.0 / (ny + 1)'
+2026-03-02 19:46:28,758 - INFO - Evaluated program ad68619d-d979-4f78-aeab-c177f40b65c7 in 0.54s: validity=1.0000, sum_radii=1.5820, target_ratio=0.6004, combined_score=0.6004, eval_time=0.2679
+2026-03-02 19:46:28,760 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:46:28,760 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 19:46:28,767 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 4, 'diversity': 3}
+2026-03-02 19:46:28,768 - INFO - Iteration 4: Program ad68619d-d979-4f78-aeab-c177f40b65c7 (parent: 881f2c1e-2848-4c1b-838a-e764f6d3bbc0) completed in 32.63s
+2026-03-02 19:46:28,768 - INFO - Metrics: validity=1.0000, sum_radii=1.5820, target_ratio=0.6004, combined_score=0.6004, eval_time=0.2679
+2026-03-02 19:46:35,633 - INFO - Evaluated program tune_trial_0 in 16.37s: validity=1.0000, sum_radii=2.4787, target_ratio=0.9407, combined_score=0.9407, eval_time=8.1701
+2026-03-02 19:46:36,951 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:46:36,953 - WARNING - [TUNING] Tuning failed, using original code: could not convert string to float: '1.0 / (nrows + 1)'
+2026-03-02 19:46:40,071 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:46:40,248 - INFO - Evaluated program tune_baseline in 0.17s: validity=1.0000, sum_radii=1.3568, target_ratio=0.5149, combined_score=0.5149, eval_time=0.0851
+2026-03-02 19:46:40,332 - INFO - Evaluated program tune_trial_0 in 0.08s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:46:40,417 - INFO - Evaluated program tune_trial_1 in 0.08s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:46:40,501 - INFO - Evaluated program tune_trial_2 in 0.08s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:46:40,660 - INFO - Evaluated program tune_trial_3 in 0.16s: validity=1.0000, sum_radii=1.6286, target_ratio=0.6181, combined_score=0.6181, eval_time=0.0793
+2026-03-02 19:46:40,832 - INFO - Evaluated program tune_trial_4 in 0.17s: validity=1.0000, sum_radii=1.7400, target_ratio=0.6604, combined_score=0.6604, eval_time=0.0833
+2026-03-02 19:46:41,006 - INFO - Evaluated program tune_trial_5 in 0.17s: validity=1.0000, sum_radii=1.4422, target_ratio=0.5473, combined_score=0.5473, eval_time=0.0841
+2026-03-02 19:46:41,174 - INFO - Evaluated program tune_trial_6 in 0.17s: validity=1.0000, sum_radii=1.7800, target_ratio=0.6755, combined_score=0.6755, eval_time=0.0809
+2026-03-02 19:46:41,339 - INFO - Evaluated program tune_trial_7 in 0.16s: validity=1.0000, sum_radii=1.8166, target_ratio=0.6894, combined_score=0.6894, eval_time=0.0740
+2026-03-02 19:46:41,514 - INFO - Evaluated program tune_trial_8 in 0.17s: validity=1.0000, sum_radii=1.5441, target_ratio=0.5860, combined_score=0.5860, eval_time=0.0854
+2026-03-02 19:46:41,681 - INFO - Evaluated program tune_trial_9 in 0.16s: validity=1.0000, sum_radii=1.6551, target_ratio=0.6281, combined_score=0.6281, eval_time=0.0800
+2026-03-02 19:46:41,764 - INFO - Evaluated program tune_trial_10 in 0.08s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:46:41,933 - INFO - Evaluated program tune_trial_11 in 0.17s: validity=1.0000, sum_radii=1.5286, target_ratio=0.5801, combined_score=0.5801, eval_time=0.0826
+2026-03-02 19:46:42,120 - INFO - Evaluated program tune_trial_12 in 0.19s: validity=1.0000, sum_radii=1.8038, target_ratio=0.6846, combined_score=0.6846, eval_time=0.0854
+2026-03-02 19:46:42,320 - INFO - Evaluated program tune_trial_13 in 0.19s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:46:42,488 - INFO - Evaluated program tune_trial_14 in 0.17s: validity=1.0000, sum_radii=1.7264, target_ratio=0.6552, combined_score=0.6552, eval_time=0.0810
+2026-03-02 19:46:42,674 - INFO - Evaluated program tune_trial_15 in 0.18s: validity=1.0000, sum_radii=1.3133, target_ratio=0.4984, combined_score=0.4984, eval_time=0.0949
+2026-03-02 19:46:42,860 - INFO - Evaluated program tune_trial_16 in 0.18s: validity=1.0000, sum_radii=1.8784, target_ratio=0.7129, combined_score=0.7129, eval_time=0.0862
+2026-03-02 19:46:43,073 - INFO - Evaluated program tune_trial_17 in 0.21s: validity=1.0000, sum_radii=1.6779, target_ratio=0.6368, combined_score=0.6368, eval_time=0.1132
+2026-03-02 19:46:43,185 - INFO - Evaluated program tune_trial_18 in 0.10s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:46:43,187 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.5149 → 0.7129 (gain=+0.1979)
+2026-03-02 19:46:43,360 - INFO - Evaluated program e8992d22-be80-4f45-bc9c-8a03af7a3cae in 0.17s: validity=1.0000, sum_radii=1.8784, target_ratio=0.7129, combined_score=0.7129, eval_time=0.0851
+2026-03-02 19:46:43,361 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:46:43,361 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 19:46:43,371 - INFO - [TUNE-TRACK] iter=6 | annotations=3→3 trials=19ok/0fail score=0.5149→0.7129 gain=+0.1979 duration=3.1s params=['m', 'dx', 'dy']
+2026-03-02 19:46:43,371 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 1, 'diversity': 2}
+2026-03-02 19:46:43,372 - INFO - Iteration 6: Program e8992d22-be80-4f45-bc9c-8a03af7a3cae (parent: 881f2c1e-2848-4c1b-838a-e764f6d3bbc0) completed in 14.60s
+2026-03-02 19:46:43,372 - INFO - Metrics: validity=1.0000, sum_radii=1.8784, target_ratio=0.7129, combined_score=0.7129, eval_time=0.0851
+2026-03-02 19:46:52,163 - INFO - Evaluated program tune_trial_1 in 16.53s: validity=1.0000, sum_radii=2.4831, target_ratio=0.9424, combined_score=0.9424, eval_time=8.1567
+2026-03-02 19:46:59,945 - INFO - Evaluated program 51846e99-ec9a-412a-a4bb-c3dc15ded203 in 22.99s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:46:59,946 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:46:59,947 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 19:46:59,947 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 2}
+2026-03-02 19:46:59,948 - INFO - Iteration 5: Program 51846e99-ec9a-412a-a4bb-c3dc15ded203 (parent: 881f2c1e-2848-4c1b-838a-e764f6d3bbc0) completed in 53.64s
+2026-03-02 19:46:59,948 - INFO - Metrics: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:46:59,948 - INFO - Checkpoint interval reached at iteration 5
+2026-03-02 19:46:59,948 - INFO - Island Status:
+2026-03-02 19:46:59,948 - INFO -  * Island 0: 6 programs, best=0.7970, avg=0.4124, diversity=270.73, gen=5 (best: 67fe8d04-0890-4b80-91cc-06f2bc8964f1)
+2026-03-02 19:46:59,948 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 19:46:59,948 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 19:46:59,951 - INFO - Saved database with 6 programs to experiments/tuning_ab_circpack/treatment_run_300/checkpoints/checkpoint_5
+2026-03-02 19:46:59,951 - INFO - Saved best program at checkpoint 5 with metrics: validity=1.0000, sum_radii=2.1000, target_ratio=0.7970, combined_score=0.7970, eval_time=0.4412
+2026-03-02 19:46:59,951 - INFO - Saved checkpoint at iteration 5 to experiments/tuning_ab_circpack/treatment_run_300/checkpoints/checkpoint_5
+2026-03-02 19:46:59,951 - INFO - [TUNE-TRACK] Saved tuning tracker to experiments/tuning_ab_circpack/treatment_run_300/tuning_tracker.json
+2026-03-02 19:47:05,827 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:47:06,000 - INFO - Evaluated program tune_baseline in 0.17s: validity=1.0000, sum_radii=1.9500, target_ratio=0.7400, combined_score=0.7400, eval_time=0.0787
+2026-03-02 19:47:06,080 - INFO - Evaluated program tune_trial_0 in 0.08s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:47:06,241 - INFO - Evaluated program tune_trial_1 in 0.16s: validity=1.0000, sum_radii=1.3520, target_ratio=0.5131, combined_score=0.5131, eval_time=0.0768
+2026-03-02 19:47:06,410 - INFO - Evaluated program tune_trial_2 in 0.17s: validity=1.0000, sum_radii=1.8824, target_ratio=0.7144, combined_score=0.7144, eval_time=0.0822
+2026-03-02 19:47:06,579 - INFO - Evaluated program tune_trial_3 in 0.17s: validity=1.0000, sum_radii=2.1606, target_ratio=0.8199, combined_score=0.8199, eval_time=0.0825
+2026-03-02 19:47:06,746 - INFO - Evaluated program tune_trial_4 in 0.17s: validity=1.0000, sum_radii=1.8512, target_ratio=0.7025, combined_score=0.7025, eval_time=0.0840
+2026-03-02 19:47:06,839 - INFO - Evaluated program tune_trial_5 in 0.09s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:47:06,998 - INFO - Evaluated program tune_trial_6 in 0.16s: validity=1.0000, sum_radii=1.8486, target_ratio=0.7015, combined_score=0.7015, eval_time=0.0766
+2026-03-02 19:47:07,169 - INFO - Evaluated program tune_trial_7 in 0.17s: validity=1.0000, sum_radii=2.1502, target_ratio=0.8160, combined_score=0.8160, eval_time=0.0849
+2026-03-02 19:47:07,256 - INFO - Evaluated program tune_trial_8 in 0.09s: validity=1.0000, sum_radii=0.2600, target_ratio=0.0987, combined_score=0.0987
+2026-03-02 19:47:07,425 - INFO - Evaluated program tune_trial_9 in 0.17s: validity=1.0000, sum_radii=2.3217, target_ratio=0.8811, combined_score=0.8811, eval_time=0.0812
+2026-03-02 19:47:07,580 - INFO - Evaluated program tune_trial_10 in 0.15s: validity=1.0000, sum_radii=2.2853, target_ratio=0.8673, combined_score=0.8673, eval_time=0.0737
+2026-03-02 19:47:07,742 - INFO - Evaluated program tune_trial_11 in 0.16s: validity=1.0000, sum_radii=2.2594, target_ratio=0.8574, combined_score=0.8574, eval_time=0.0780
+2026-03-02 19:47:07,916 - INFO - Evaluated program tune_trial_12 in 0.17s: validity=1.0000, sum_radii=2.3140, target_ratio=0.8782, combined_score=0.8782, eval_time=0.0810
+2026-03-02 19:47:07,917 - INFO - [TUNING] Optimized 1 params over 13 trials: score 0.7400 → 0.8811 (gain=+0.1411)
+2026-03-02 19:47:08,076 - INFO - Evaluated program 2ca95c51-d186-45d7-becc-99b5414e6bd3 in 0.16s: validity=1.0000, sum_radii=2.3217, target_ratio=0.8811, combined_score=0.8811, eval_time=0.0770
+2026-03-02 19:47:08,078 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:47:08,078 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 19:47:08,082 - INFO - [TUNE-TRACK] iter=7 | annotations=1→1 trials=13ok/0fail score=0.7400→0.8811 gain=+0.1411 duration=2.1s params=['r']
+2026-03-02 19:47:08,082 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 9}
+2026-03-02 19:47:08,082 - INFO - New best program 2ca95c51-d186-45d7-becc-99b5414e6bd3 replaces 67fe8d04-0890-4b80-91cc-06f2bc8964f1 (combined_score: 0.7970 → 0.8811, +0.0842)
+2026-03-02 19:47:08,083 - INFO - Iteration 7: Program 2ca95c51-d186-45d7-becc-99b5414e6bd3 (parent: 8745c5d9-75a4-4dbc-98bc-59bf840fdecf) completed in 24.72s
+2026-03-02 19:47:08,083 - INFO - Metrics: validity=1.0000, sum_radii=2.3217, target_ratio=0.8811, combined_score=0.8811, eval_time=0.0770
+2026-03-02 19:47:08,083 - INFO - 🌟 New best solution found at iteration 7: 2ca95c51-d186-45d7-becc-99b5414e6bd3
+2026-03-02 19:47:08,387 - INFO - Evaluated program tune_trial_2 in 16.22s: validity=1.0000, sum_radii=2.4829, target_ratio=0.9423, combined_score=0.9423, eval_time=8.0383
+2026-03-02 19:47:17,524 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:47:17,690 - INFO - Evaluated program tune_baseline in 0.16s: validity=1.0000, sum_radii=1.1537, target_ratio=0.4378, combined_score=0.4378, eval_time=0.0762
+2026-03-02 19:47:17,842 - INFO - Evaluated program tune_trial_0 in 0.15s: validity=1.0000, sum_radii=1.2269, target_ratio=0.4656, combined_score=0.4656, eval_time=0.0746
+2026-03-02 19:47:17,996 - INFO - Evaluated program tune_trial_1 in 0.15s: validity=1.0000, sum_radii=0.9348, target_ratio=0.3548, combined_score=0.3548, eval_time=0.0735
+2026-03-02 19:47:18,161 - INFO - Evaluated program tune_trial_2 in 0.16s: validity=1.0000, sum_radii=0.8964, target_ratio=0.3402, combined_score=0.3402, eval_time=0.0724
+2026-03-02 19:47:18,323 - INFO - Evaluated program tune_trial_3 in 0.16s: validity=1.0000, sum_radii=1.0064, target_ratio=0.3820, combined_score=0.3820, eval_time=0.0798
+2026-03-02 19:47:18,482 - INFO - Evaluated program tune_trial_4 in 0.16s: validity=1.0000, sum_radii=1.1742, target_ratio=0.4456, combined_score=0.4456, eval_time=0.0799
+2026-03-02 19:47:18,646 - INFO - Evaluated program tune_trial_5 in 0.16s: validity=1.0000, sum_radii=1.1742, target_ratio=0.4456, combined_score=0.4456, eval_time=0.0818
+2026-03-02 19:47:18,811 - INFO - Evaluated program tune_trial_6 in 0.16s: validity=1.0000, sum_radii=1.1698, target_ratio=0.4439, combined_score=0.4439, eval_time=0.0767
+2026-03-02 19:47:18,975 - INFO - Evaluated program tune_trial_7 in 0.16s: validity=1.0000, sum_radii=0.9027, target_ratio=0.3426, combined_score=0.3426, eval_time=0.0831
+2026-03-02 19:47:19,133 - INFO - Evaluated program tune_trial_8 in 0.16s: validity=1.0000, sum_radii=1.1657, target_ratio=0.4424, combined_score=0.4424, eval_time=0.0726
+2026-03-02 19:47:19,292 - INFO - Evaluated program tune_trial_9 in 0.16s: validity=1.0000, sum_radii=1.0813, target_ratio=0.4104, combined_score=0.4104, eval_time=0.0800
+2026-03-02 19:47:19,467 - INFO - Evaluated program tune_trial_10 in 0.17s: validity=1.0000, sum_radii=1.2654, target_ratio=0.4802, combined_score=0.4802, eval_time=0.0823
+2026-03-02 19:47:19,632 - INFO - Evaluated program tune_trial_11 in 0.16s: validity=1.0000, sum_radii=1.2660, target_ratio=0.4805, combined_score=0.4805, eval_time=0.0810
+2026-03-02 19:47:19,792 - INFO - Evaluated program tune_trial_12 in 0.16s: validity=1.0000, sum_radii=1.2273, target_ratio=0.4658, combined_score=0.4658, eval_time=0.0801
+2026-03-02 19:47:19,964 - INFO - Evaluated program tune_trial_13 in 0.17s: validity=1.0000, sum_radii=1.2642, target_ratio=0.4798, combined_score=0.4798, eval_time=0.0872
+2026-03-02 19:47:20,122 - INFO - Evaluated program tune_trial_14 in 0.15s: validity=1.0000, sum_radii=1.2061, target_ratio=0.4577, combined_score=0.4577, eval_time=0.0743
+2026-03-02 19:47:20,293 - INFO - Evaluated program tune_trial_15 in 0.17s: validity=1.0000, sum_radii=1.1850, target_ratio=0.4497, combined_score=0.4497, eval_time=0.0909
+2026-03-02 19:47:20,461 - INFO - Evaluated program tune_trial_16 in 0.16s: validity=1.0000, sum_radii=1.1171, target_ratio=0.4239, combined_score=0.4239, eval_time=0.0841
+2026-03-02 19:47:20,636 - INFO - Evaluated program tune_trial_17 in 0.17s: validity=1.0000, sum_radii=1.2442, target_ratio=0.4722, combined_score=0.4722, eval_time=0.0852
+2026-03-02 19:47:20,802 - INFO - Evaluated program tune_trial_18 in 0.16s: validity=1.0000, sum_radii=1.1686, target_ratio=0.4435, combined_score=0.4435, eval_time=0.0797
+2026-03-02 19:47:20,804 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.4378 → 0.4805 (gain=+0.0426)
+2026-03-02 19:47:20,976 - INFO - Evaluated program 5c331962-6292-49e3-b657-7870e4fa718f in 0.17s: validity=1.0000, sum_radii=1.2660, target_ratio=0.4805, combined_score=0.4805, eval_time=0.0800
+2026-03-02 19:47:20,977 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:47:20,978 - INFO - [TUNE-TRACK] iter=8 | annotations=3→3 trials=19ok/0fail score=0.4378→0.4805 gain=+0.0426 duration=3.3s params=['s', 'ay', 'n_iters']
+2026-03-02 19:47:20,978 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 19:47:20,978 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 4}
+2026-03-02 19:47:20,979 - INFO - Iteration 8: Program 5c331962-6292-49e3-b657-7870e4fa718f (parent: 67fe8d04-0890-4b80-91cc-06f2bc8964f1) completed in 21.03s
+2026-03-02 19:47:20,979 - INFO - Metrics: validity=1.0000, sum_radii=1.2660, target_ratio=0.4805, combined_score=0.4805, eval_time=0.0800
+2026-03-02 19:47:24,490 - INFO - Evaluated program tune_trial_3 in 16.10s: validity=1.0000, sum_radii=2.4794, target_ratio=0.9410, combined_score=0.9410, eval_time=8.0285
+2026-03-02 19:47:40,303 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:47:40,578 - INFO - Evaluated program tune_trial_4 in 16.09s: validity=1.0000, sum_radii=2.4786, target_ratio=0.9406, combined_score=0.9406, eval_time=7.9944
+2026-03-02 19:47:42,960 - INFO - Evaluated program tune_baseline in 2.66s: validity=1.0000, sum_radii=2.0345, target_ratio=0.7721, combined_score=0.7721, eval_time=1.3405
+2026-03-02 19:47:45,702 - INFO - Evaluated program tune_trial_0 in 2.74s: validity=1.0000, sum_radii=1.9709, target_ratio=0.7480, combined_score=0.7480, eval_time=1.3626
+2026-03-02 19:47:47,267 - INFO - Evaluated program tune_trial_1 in 1.56s: validity=1.0000, sum_radii=1.9907, target_ratio=0.7555, combined_score=0.7555, eval_time=0.7903
+2026-03-02 19:47:51,399 - INFO - Evaluated program tune_trial_2 in 4.13s: validity=1.0000, sum_radii=2.1403, target_ratio=0.8123, combined_score=0.8123, eval_time=2.0559
+2026-03-02 19:47:52,187 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:47:53,019 - INFO - Evaluated program tune_baseline in 0.83s: validity=1.0000, sum_radii=1.6305, target_ratio=0.6188, combined_score=0.6188, eval_time=0.4125
+2026-03-02 19:47:53,801 - INFO - Evaluated program tune_trial_0 in 0.78s: validity=1.0000, sum_radii=1.7862, target_ratio=0.6779, combined_score=0.6779, eval_time=0.3884
+2026-03-02 19:47:53,900 - INFO - Evaluated program tune_trial_3 in 2.50s: validity=1.0000, sum_radii=2.0444, target_ratio=0.7759, combined_score=0.7759, eval_time=1.2553
+2026-03-02 19:47:54,517 - INFO - Evaluated program tune_trial_1 in 0.71s: validity=1.0000, sum_radii=1.6115, target_ratio=0.6116, combined_score=0.6116, eval_time=0.3584
+2026-03-02 19:47:55,444 - INFO - Evaluated program tune_trial_2 in 0.93s: validity=1.0000, sum_radii=1.6142, target_ratio=0.6126, combined_score=0.6126, eval_time=0.4602
+2026-03-02 19:47:56,127 - INFO - Evaluated program tune_trial_4 in 2.23s: validity=1.0000, sum_radii=1.9538, target_ratio=0.7415, combined_score=0.7415, eval_time=1.1057
+2026-03-02 19:47:56,254 - INFO - Evaluated program tune_trial_3 in 0.81s: validity=1.0000, sum_radii=1.6190, target_ratio=0.6144, combined_score=0.6144, eval_time=0.4046
+2026-03-02 19:47:56,746 - INFO - Evaluated program tune_trial_5 in 16.17s: validity=1.0000, sum_radii=2.4757, target_ratio=0.9395, combined_score=0.9395, eval_time=8.0573
+2026-03-02 19:47:57,179 - INFO - Evaluated program tune_trial_4 in 0.92s: validity=1.0000, sum_radii=1.7740, target_ratio=0.6732, combined_score=0.6732, eval_time=0.4629
+2026-03-02 19:47:57,948 - INFO - Evaluated program tune_trial_5 in 0.77s: validity=1.0000, sum_radii=1.5509, target_ratio=0.5886, combined_score=0.5886, eval_time=0.3814
+2026-03-02 19:47:58,349 - INFO - Evaluated program tune_trial_5 in 2.22s: validity=1.0000, sum_radii=2.0503, target_ratio=0.7781, combined_score=0.7781, eval_time=1.1101
+2026-03-02 19:47:58,763 - INFO - Evaluated program tune_trial_6 in 0.81s: validity=1.0000, sum_radii=1.8514, target_ratio=0.7026, combined_score=0.7026, eval_time=0.4054
+2026-03-02 19:47:59,697 - INFO - Evaluated program tune_trial_7 in 0.93s: validity=1.0000, sum_radii=1.7984, target_ratio=0.6825, combined_score=0.6825, eval_time=0.4358
+2026-03-02 19:48:00,650 - INFO - Evaluated program tune_trial_8 in 0.95s: validity=1.0000, sum_radii=1.5428, target_ratio=0.5855, combined_score=0.5855, eval_time=0.4810
+2026-03-02 19:48:01,690 - INFO - Evaluated program tune_trial_9 in 1.04s: validity=1.0000, sum_radii=1.5571, target_ratio=0.5909, combined_score=0.5909, eval_time=0.5212
+2026-03-02 19:48:02,376 - INFO - Evaluated program tune_trial_10 in 0.68s: validity=1.0000, sum_radii=1.8563, target_ratio=0.7045, combined_score=0.7045, eval_time=0.3375
+2026-03-02 19:48:02,485 - INFO - Evaluated program tune_trial_6 in 4.13s: validity=1.0000, sum_radii=2.0540, target_ratio=0.7795, combined_score=0.7795, eval_time=2.0401
+2026-03-02 19:48:03,070 - INFO - Evaluated program tune_trial_11 in 0.69s: validity=1.0000, sum_radii=1.8261, target_ratio=0.6930, combined_score=0.6930, eval_time=0.3413
+2026-03-02 19:48:03,907 - INFO - Evaluated program tune_trial_12 in 0.83s: validity=1.0000, sum_radii=1.7013, target_ratio=0.6457, combined_score=0.6457, eval_time=0.4161
+2026-03-02 19:48:04,652 - INFO - Evaluated program tune_trial_13 in 0.74s: validity=1.0000, sum_radii=1.8341, target_ratio=0.6961, combined_score=0.6961, eval_time=0.3678
+2026-03-02 19:48:05,338 - INFO - Evaluated program tune_trial_14 in 0.68s: validity=1.0000, sum_radii=1.6605, target_ratio=0.6302, combined_score=0.6302, eval_time=0.3403
+2026-03-02 19:48:05,812 - INFO - Evaluated program tune_trial_7 in 3.33s: validity=1.0000, sum_radii=2.0974, target_ratio=0.7960, combined_score=0.7960, eval_time=1.6523
+2026-03-02 19:48:06,139 - INFO - Evaluated program tune_trial_15 in 0.80s: validity=1.0000, sum_radii=1.8472, target_ratio=0.7010, combined_score=0.7010, eval_time=0.3973
+2026-03-02 19:48:07,019 - INFO - Evaluated program tune_trial_16 in 0.88s: validity=1.0000, sum_radii=1.6266, target_ratio=0.6173, combined_score=0.6173, eval_time=0.4465
+2026-03-02 19:48:07,756 - INFO - Evaluated program tune_trial_17 in 0.73s: validity=1.0000, sum_radii=1.8809, target_ratio=0.7138, combined_score=0.7138, eval_time=0.3654
+2026-03-02 19:48:08,474 - INFO - Evaluated program tune_trial_18 in 0.71s: validity=1.0000, sum_radii=1.8387, target_ratio=0.6978, combined_score=0.6978, eval_time=0.3560
+2026-03-02 19:48:08,476 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.6188 → 0.7138 (gain=+0.0950)
+2026-03-02 19:48:09,217 - INFO - Evaluated program 82ba952f-9c9b-429e-a4f9-411b80e1370b in 0.74s: validity=1.0000, sum_radii=1.8809, target_ratio=0.7138, combined_score=0.7138, eval_time=0.3672
+2026-03-02 19:48:09,219 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:48:09,220 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 19:48:09,220 - INFO - [TUNE-TRACK] iter=10 | annotations=3→3 trials=19ok/0fail score=0.6188→0.7138 gain=+0.0950 duration=16.3s params=['step', 'n_outer', 'growth']
+2026-03-02 19:48:09,221 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 9, 'diversity': 4} (fitness: 0.480 -> 0.714)
+2026-03-02 19:48:09,221 - INFO - Iteration 10: Program 82ba952f-9c9b-429e-a4f9-411b80e1370b (parent: ad68619d-d979-4f78-aeab-c177f40b65c7) completed in 48.24s
+2026-03-02 19:48:09,221 - INFO - Metrics: validity=1.0000, sum_radii=1.8809, target_ratio=0.7138, combined_score=0.7138, eval_time=0.3672
+2026-03-02 19:48:09,221 - INFO - Checkpoint interval reached at iteration 10
+2026-03-02 19:48:09,222 - INFO - Island Status:
+2026-03-02 19:48:09,222 - INFO -  * Island 0: 8 programs, best=0.8811, avg=0.5087, diversity=471.92, gen=8 (best: 2ca95c51-d186-45d7-becc-99b5414e6bd3)
+2026-03-02 19:48:09,222 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 19:48:09,222 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 19:48:09,225 - INFO - Saved database with 9 programs to experiments/tuning_ab_circpack/treatment_run_300/checkpoints/checkpoint_10
+2026-03-02 19:48:09,226 - INFO - Saved best program at checkpoint 10 with metrics: validity=1.0000, sum_radii=2.3217, target_ratio=0.8811, combined_score=0.8811, eval_time=0.0770
+2026-03-02 19:48:09,226 - INFO - Saved checkpoint at iteration 10 to experiments/tuning_ab_circpack/treatment_run_300/checkpoints/checkpoint_10
+2026-03-02 19:48:09,226 - INFO - [TUNE-TRACK] Saved tuning tracker to experiments/tuning_ab_circpack/treatment_run_300/tuning_tracker.json
+2026-03-02 19:48:09,864 - INFO - Evaluated program tune_trial_8 in 4.05s: validity=1.0000, sum_radii=2.1150, target_ratio=0.8027, combined_score=0.8027, eval_time=2.0080
+2026-03-02 19:48:11,263 - INFO - Evaluated program tune_trial_9 in 1.39s: validity=1.0000, sum_radii=1.9878, target_ratio=0.7544, combined_score=0.7544, eval_time=0.6821
+2026-03-02 19:48:13,088 - INFO - Evaluated program tune_trial_6 in 16.34s: validity=1.0000, sum_radii=2.4761, target_ratio=0.9397, combined_score=0.9397, eval_time=8.1462
+2026-03-02 19:48:15,815 - INFO - Evaluated program tune_trial_10 in 4.55s: validity=1.0000, sum_radii=2.0150, target_ratio=0.7647, combined_score=0.7647, eval_time=2.2576
+2026-03-02 19:48:19,404 - INFO - Evaluated program tune_trial_11 in 3.59s: validity=1.0000, sum_radii=2.0626, target_ratio=0.7828, combined_score=0.7828, eval_time=1.7883
+2026-03-02 19:48:24,071 - INFO - Evaluated program tune_trial_12 in 4.66s: validity=1.0000, sum_radii=2.1163, target_ratio=0.8031, combined_score=0.8031, eval_time=2.3056
+2026-03-02 19:48:28,694 - INFO - Evaluated program tune_trial_13 in 4.62s: validity=1.0000, sum_radii=2.0599, target_ratio=0.7817, combined_score=0.7817, eval_time=2.3118
+2026-03-02 19:48:29,357 - INFO - Evaluated program tune_trial_7 in 16.27s: validity=1.0000, sum_radii=2.4781, target_ratio=0.9405, combined_score=0.9405, eval_time=8.1563
+2026-03-02 19:48:31,994 - INFO - Evaluated program tune_trial_14 in 3.30s: validity=1.0000, sum_radii=2.0665, target_ratio=0.7843, combined_score=0.7843, eval_time=1.6486
+2026-03-02 19:48:35,371 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:48:35,375 - WARNING - [TUNING] Tuning failed, using original code: could not convert string to float: 'radii * 0.3 + max_r * 0.7'
+2026-03-02 19:48:36,029 - INFO - Evaluated program tune_trial_15 in 4.03s: validity=1.0000, sum_radii=1.9614, target_ratio=0.7444, combined_score=0.7444, eval_time=2.0078
+2026-03-02 19:48:36,292 - INFO - Evaluated program a070c7f2-3934-437c-b358-f5d51242b500 in 0.92s: validity=1.0000, sum_radii=2.2238, target_ratio=0.8440, combined_score=0.8440, eval_time=0.4559
+2026-03-02 19:48:36,294 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:48:36,295 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 19:48:36,303 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 9, 'diversity': 9} (fitness: 0.797 -> 0.844)
+2026-03-02 19:48:36,304 - INFO - Iteration 11: Program a070c7f2-3934-437c-b358-f5d51242b500 (parent: 67fe8d04-0890-4b80-91cc-06f2bc8964f1) completed in 27.07s
+2026-03-02 19:48:36,304 - INFO - Metrics: validity=1.0000, sum_radii=2.2238, target_ratio=0.8440, combined_score=0.8440, eval_time=0.4559
+2026-03-02 19:48:40,364 - INFO - Evaluated program tune_trial_16 in 4.33s: validity=1.0000, sum_radii=2.1774, target_ratio=0.8263, combined_score=0.8263, eval_time=2.1592
+2026-03-02 19:48:44,103 - INFO - Evaluated program tune_trial_17 in 3.74s: validity=1.0000, sum_radii=2.1381, target_ratio=0.8114, combined_score=0.8114, eval_time=1.8614
+2026-03-02 19:48:45,481 - INFO - Evaluated program tune_trial_8 in 16.12s: validity=1.0000, sum_radii=2.4848, target_ratio=0.9430, combined_score=0.9430, eval_time=8.0231
+2026-03-02 19:48:47,166 - INFO - Evaluated program tune_trial_18 in 3.06s: validity=1.0000, sum_radii=2.0956, target_ratio=0.7953, combined_score=0.7953, eval_time=1.5375
+2026-03-02 19:48:47,168 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.7721 → 0.8263 (gain=+0.0542)
+2026-03-02 19:48:49,032 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:48:49,538 - INFO - Evaluated program tune_baseline in 0.50s: validity=1.0000, sum_radii=2.3835, target_ratio=0.9046, combined_score=0.9046, eval_time=0.2551
+2026-03-02 19:48:50,065 - INFO - Evaluated program tune_trial_0 in 0.53s: validity=1.0000, sum_radii=2.3896, target_ratio=0.9069, combined_score=0.9069, eval_time=0.2746
+2026-03-02 19:48:50,640 - INFO - Evaluated program tune_trial_1 in 0.57s: validity=1.0000, sum_radii=2.3785, target_ratio=0.9027, combined_score=0.9027, eval_time=0.2827
+2026-03-02 19:48:51,379 - INFO - Evaluated program tune_trial_2 in 0.74s: validity=1.0000, sum_radii=2.4237, target_ratio=0.9198, combined_score=0.9198, eval_time=0.3707
+2026-03-02 19:48:51,533 - INFO - Evaluated program af21b38f-6684-4dd6-b9c9-becb718ceea4 in 4.36s: validity=1.0000, sum_radii=2.1774, target_ratio=0.8263, combined_score=0.8263, eval_time=2.1954
+2026-03-02 19:48:51,534 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:48:51,535 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 19:48:51,537 - INFO - [TUNE-TRACK] iter=9 | annotations=3→3 trials=19ok/0fail score=0.7721→0.8263 gain=+0.0542 duration=66.9s params=['step_size', 'n_iters', 'temp']
+2026-03-02 19:48:51,538 - INFO - Iteration 9: Program af21b38f-6684-4dd6-b9c9-becb718ceea4 (parent: 67fe8d04-0890-4b80-91cc-06f2bc8964f1) completed in 103.46s
+2026-03-02 19:48:51,538 - INFO - Metrics: validity=1.0000, sum_radii=2.1774, target_ratio=0.8263, combined_score=0.8263, eval_time=2.1954
+2026-03-02 19:48:51,901 - INFO - Evaluated program tune_trial_3 in 0.52s: validity=1.0000, sum_radii=2.4077, target_ratio=0.9137, combined_score=0.9137, eval_time=0.2597
+2026-03-02 19:48:52,747 - INFO - Evaluated program tune_trial_4 in 0.85s: validity=1.0000, sum_radii=2.4059, target_ratio=0.9131, combined_score=0.9131, eval_time=0.4246
+2026-03-02 19:48:53,437 - INFO - Evaluated program tune_trial_5 in 0.69s: validity=1.0000, sum_radii=2.3993, target_ratio=0.9106, combined_score=0.9106, eval_time=0.3409
+2026-03-02 19:48:54,188 - INFO - Evaluated program tune_trial_6 in 0.75s: validity=1.0000, sum_radii=2.4450, target_ratio=0.9279, combined_score=0.9279, eval_time=0.3720
+2026-03-02 19:48:54,902 - INFO - Evaluated program tune_trial_7 in 0.71s: validity=1.0000, sum_radii=2.3761, target_ratio=0.9018, combined_score=0.9018, eval_time=0.3873
+2026-03-02 19:48:55,518 - INFO - Evaluated program tune_trial_8 in 0.61s: validity=1.0000, sum_radii=2.3999, target_ratio=0.9108, combined_score=0.9108, eval_time=0.2995
+2026-03-02 19:48:55,768 - INFO - Evaluated program tune_trial_9 in 0.25s: validity=1.0000, sum_radii=2.3063, target_ratio=0.8753, combined_score=0.8753, eval_time=0.1146
+2026-03-02 19:48:56,089 - INFO - Evaluated program tune_trial_10 in 0.32s: validity=1.0000, sum_radii=2.3583, target_ratio=0.8950, combined_score=0.8950, eval_time=0.1567
+2026-03-02 19:48:56,908 - INFO - Evaluated program tune_trial_11 in 0.82s: validity=1.0000, sum_radii=2.4396, target_ratio=0.9258, combined_score=0.9258, eval_time=0.4083
+2026-03-02 19:48:57,755 - INFO - Evaluated program tune_trial_12 in 0.84s: validity=1.0000, sum_radii=2.4407, target_ratio=0.9262, combined_score=0.9262, eval_time=0.4187
+2026-03-02 19:48:58,523 - INFO - Evaluated program tune_trial_13 in 0.77s: validity=1.0000, sum_radii=2.4609, target_ratio=0.9339, combined_score=0.9339, eval_time=0.3905
+2026-03-02 19:48:59,261 - INFO - Evaluated program tune_trial_14 in 0.73s: validity=1.0000, sum_radii=2.4445, target_ratio=0.9277, combined_score=0.9277, eval_time=0.3659
+2026-03-02 19:48:59,925 - INFO - Evaluated program tune_trial_15 in 0.66s: validity=1.0000, sum_radii=2.4633, target_ratio=0.9348, combined_score=0.9348, eval_time=0.3291
+2026-03-02 19:49:00,344 - INFO - Evaluated program tune_trial_16 in 0.42s: validity=1.0000, sum_radii=2.3303, target_ratio=0.8844, combined_score=0.8844, eval_time=0.2080
+2026-03-02 19:49:01,032 - INFO - Evaluated program tune_trial_17 in 0.68s: validity=1.0000, sum_radii=2.4056, target_ratio=0.9129, combined_score=0.9129, eval_time=0.3342
+2026-03-02 19:49:01,700 - INFO - Evaluated program tune_trial_9 in 16.22s: validity=1.0000, sum_radii=2.4754, target_ratio=0.9394, combined_score=0.9394, eval_time=8.1420
+2026-03-02 19:49:01,717 - INFO - Evaluated program tune_trial_18 in 0.68s: validity=1.0000, sum_radii=2.4426, target_ratio=0.9270, combined_score=0.9270, eval_time=0.3424
+2026-03-02 19:49:01,719 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.9046 → 0.9348 (gain=+0.0303)
+2026-03-02 19:49:02,397 - INFO - Evaluated program e77183de-236c-4824-a069-d3998b2cfa36 in 0.68s: validity=1.0000, sum_radii=2.4633, target_ratio=0.9348, combined_score=0.9348, eval_time=0.3426
+2026-03-02 19:49:02,399 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:49:02,399 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 19:49:02,403 - INFO - [TUNE-TRACK] iter=12 | annotations=3→3 trials=19ok/0fail score=0.9046→0.9348 gain=+0.0303 duration=12.7s params=['step0', 'n_passes', 'shrink']
+2026-03-02 19:49:02,404 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 4, 'diversity': 2}
+2026-03-02 19:49:02,404 - INFO - New best program e77183de-236c-4824-a069-d3998b2cfa36 replaces 2ca95c51-d186-45d7-becc-99b5414e6bd3 (combined_score: 0.8811 → 0.9348, +0.0537)
+2026-03-02 19:49:02,405 - INFO - Iteration 12: Program e77183de-236c-4824-a069-d3998b2cfa36 (parent: ad68619d-d979-4f78-aeab-c177f40b65c7) completed in 26.10s
+2026-03-02 19:49:02,405 - INFO - Metrics: validity=1.0000, sum_radii=2.4633, target_ratio=0.9348, combined_score=0.9348, eval_time=0.3426
+2026-03-02 19:49:02,405 - INFO - 🌟 New best solution found at iteration 12: e77183de-236c-4824-a069-d3998b2cfa36
+2026-03-02 19:49:02,804 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:49:02,983 - INFO - Evaluated program tune_baseline in 0.18s: validity=1.0000, sum_radii=0.9182, target_ratio=0.3485, combined_score=0.3485, eval_time=0.0832
+2026-03-02 19:49:03,144 - INFO - Evaluated program tune_trial_0 in 0.16s: validity=1.0000, sum_radii=1.2958, target_ratio=0.4918, combined_score=0.4918, eval_time=0.0806
+2026-03-02 19:49:03,298 - INFO - Evaluated program tune_trial_1 in 0.15s: validity=1.0000, sum_radii=0.9182, target_ratio=0.3485, combined_score=0.3485, eval_time=0.0727
+2026-03-02 19:49:03,461 - INFO - Evaluated program tune_trial_2 in 0.16s: validity=1.0000, sum_radii=0.9325, target_ratio=0.3539, combined_score=0.3539, eval_time=0.0806
+2026-03-02 19:49:03,626 - INFO - Evaluated program tune_trial_3 in 0.16s: validity=1.0000, sum_radii=0.9182, target_ratio=0.3485, combined_score=0.3485, eval_time=0.0815
+2026-03-02 19:49:03,798 - INFO - Evaluated program tune_trial_4 in 0.17s: validity=1.0000, sum_radii=1.4307, target_ratio=0.5430, combined_score=0.5430, eval_time=0.0869
+2026-03-02 19:49:03,961 - INFO - Evaluated program tune_trial_5 in 0.16s: validity=1.0000, sum_radii=0.9182, target_ratio=0.3485, combined_score=0.3485, eval_time=0.0778
+2026-03-02 19:49:04,122 - INFO - Evaluated program tune_trial_6 in 0.16s: validity=1.0000, sum_radii=1.0282, target_ratio=0.3902, combined_score=0.3902, eval_time=0.0791
+2026-03-02 19:49:04,277 - INFO - Evaluated program tune_trial_7 in 0.15s: validity=1.0000, sum_radii=0.9182, target_ratio=0.3485, combined_score=0.3485, eval_time=0.0796
+2026-03-02 19:49:04,442 - INFO - Evaluated program tune_trial_8 in 0.16s: validity=1.0000, sum_radii=1.4645, target_ratio=0.5558, combined_score=0.5558, eval_time=0.0813
+2026-03-02 19:49:04,600 - INFO - Evaluated program tune_trial_9 in 0.16s: validity=1.0000, sum_radii=0.9182, target_ratio=0.3485, combined_score=0.3485, eval_time=0.0719
+2026-03-02 19:49:04,765 - INFO - Evaluated program tune_trial_10 in 0.16s: validity=1.0000, sum_radii=1.1797, target_ratio=0.4477, combined_score=0.4477, eval_time=0.0766
+2026-03-02 19:49:04,941 - INFO - Evaluated program tune_trial_11 in 0.17s: validity=1.0000, sum_radii=1.4396, target_ratio=0.5463, combined_score=0.5463, eval_time=0.0806
+2026-03-02 19:49:05,110 - INFO - Evaluated program tune_trial_12 in 0.17s: validity=1.0000, sum_radii=1.4633, target_ratio=0.5554, combined_score=0.5554, eval_time=0.0811
+2026-03-02 19:49:05,277 - INFO - Evaluated program tune_trial_13 in 0.16s: validity=1.0000, sum_radii=1.2278, target_ratio=0.4660, combined_score=0.4660, eval_time=0.0795
+2026-03-02 19:49:05,438 - INFO - Evaluated program tune_trial_14 in 0.16s: validity=1.0000, sum_radii=1.4611, target_ratio=0.5545, combined_score=0.5545, eval_time=0.0830
+2026-03-02 19:49:05,608 - INFO - Evaluated program tune_trial_15 in 0.17s: validity=1.0000, sum_radii=1.1051, target_ratio=0.4194, combined_score=0.4194, eval_time=0.0807
+2026-03-02 19:49:05,782 - INFO - Evaluated program tune_trial_16 in 0.17s: validity=1.0000, sum_radii=1.3395, target_ratio=0.5083, combined_score=0.5083, eval_time=0.0835
+2026-03-02 19:49:05,949 - INFO - Evaluated program tune_trial_17 in 0.16s: validity=1.0000, sum_radii=1.2986, target_ratio=0.4928, combined_score=0.4928, eval_time=0.0827
+2026-03-02 19:49:06,111 - INFO - Evaluated program tune_trial_18 in 0.16s: validity=1.0000, sum_radii=0.9182, target_ratio=0.3485, combined_score=0.3485, eval_time=0.0703
+2026-03-02 19:49:06,114 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.3485 → 0.5558 (gain=+0.2073)
+2026-03-02 19:49:06,274 - INFO - Evaluated program 101e0290-c6e5-4221-ac6a-da11ce4a36a5 in 0.16s: validity=1.0000, sum_radii=1.4645, target_ratio=0.5558, combined_score=0.5558, eval_time=0.0812
+2026-03-02 19:49:06,276 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:49:06,276 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 19:49:06,279 - INFO - [TUNE-TRACK] iter=13 | annotations=3→3 trials=19ok/0fail score=0.3485→0.5558 gain=+0.2073 duration=3.3s params=['dx', 'dy', 'squish_y']
+2026-03-02 19:49:06,279 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 1, 'diversity': 3}
+2026-03-02 19:49:06,279 - INFO - Island 0 MAP-Elites coverage reached 10.0% (10/100 cells)
+2026-03-02 19:49:06,280 - INFO - Iteration 13: Program 101e0290-c6e5-4221-ac6a-da11ce4a36a5 (parent: e8992d22-be80-4f45-bc9c-8a03af7a3cae) completed in 14.74s
+2026-03-02 19:49:06,280 - INFO - Metrics: validity=1.0000, sum_radii=1.4645, target_ratio=0.5558, combined_score=0.5558, eval_time=0.0812
+2026-03-02 19:49:17,690 - INFO - Evaluated program tune_trial_10 in 15.99s: validity=1.0000, sum_radii=2.4721, target_ratio=0.9382, combined_score=0.9382, eval_time=7.9828
+2026-03-02 19:49:19,891 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:49:19,973 - INFO - Evaluated program tune_baseline in 0.08s: validity=1.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:49:20,061 - INFO - Evaluated program tune_trial_0 in 0.09s: validity=1.0000, sum_radii=0.0003, target_ratio=0.0001, combined_score=0.0001
+2026-03-02 19:49:20,148 - INFO - Evaluated program tune_trial_1 in 0.09s: validity=1.0000, sum_radii=0.0109, target_ratio=0.0042, combined_score=0.0042
+2026-03-02 19:49:20,234 - INFO - Evaluated program tune_trial_2 in 0.08s: validity=1.0000, sum_radii=0.0007, target_ratio=0.0003, combined_score=0.0003
+2026-03-02 19:49:20,310 - INFO - Evaluated program tune_trial_3 in 0.08s: validity=1.0000, sum_radii=0.0001, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:49:20,392 - INFO - Evaluated program tune_trial_4 in 0.08s: validity=1.0000, sum_radii=0.0002, target_ratio=0.0001, combined_score=0.0001
+2026-03-02 19:49:20,478 - INFO - Evaluated program tune_trial_5 in 0.08s: validity=1.0000, sum_radii=0.0447, target_ratio=0.0170, combined_score=0.0170
+2026-03-02 19:49:20,561 - INFO - Evaluated program tune_trial_6 in 0.08s: validity=1.0000, sum_radii=0.0008, target_ratio=0.0003, combined_score=0.0003
+2026-03-02 19:49:20,646 - INFO - Evaluated program tune_trial_7 in 0.08s: validity=1.0000, sum_radii=0.0010, target_ratio=0.0004, combined_score=0.0004
+2026-03-02 19:49:20,735 - INFO - Evaluated program tune_trial_8 in 0.09s: validity=1.0000, sum_radii=0.0226, target_ratio=0.0086, combined_score=0.0086
+2026-03-02 19:49:20,817 - INFO - Evaluated program tune_trial_9 in 0.08s: validity=1.0000, sum_radii=0.0007, target_ratio=0.0003, combined_score=0.0003
+2026-03-02 19:49:20,898 - INFO - Evaluated program tune_trial_10 in 0.08s: validity=1.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:49:20,985 - INFO - Evaluated program tune_trial_11 in 0.08s: validity=1.0000, sum_radii=0.0122, target_ratio=0.0046, combined_score=0.0046
+2026-03-02 19:49:20,988 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:49:21,068 - INFO - Evaluated program tune_trial_12 in 0.08s: validity=1.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:49:21,151 - INFO - Evaluated program tune_trial_13 in 0.08s: validity=1.0000, sum_radii=0.0187, target_ratio=0.0071, combined_score=0.0071
+2026-03-02 19:49:21,240 - INFO - Evaluated program tune_trial_14 in 0.09s: validity=1.0000, sum_radii=0.0005, target_ratio=0.0002, combined_score=0.0002
+2026-03-02 19:49:21,322 - INFO - Evaluated program tune_trial_15 in 0.08s: validity=1.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:49:21,405 - INFO - Evaluated program tune_trial_16 in 0.08s: validity=1.0000, sum_radii=0.0181, target_ratio=0.0069, combined_score=0.0069
+2026-03-02 19:49:21,494 - INFO - Evaluated program tune_trial_17 in 0.09s: validity=1.0000, sum_radii=0.0570, target_ratio=0.0216, combined_score=0.0216
+2026-03-02 19:49:21,577 - INFO - Evaluated program tune_trial_18 in 0.08s: validity=1.0000, sum_radii=0.0459, target_ratio=0.0174, combined_score=0.0174
+2026-03-02 19:49:21,579 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.0000 → 0.0216 (gain=+0.0216)
+2026-03-02 19:49:21,669 - INFO - Evaluated program b142f846-50cc-4b18-a98c-1ca7f9a1395b in 0.09s: validity=1.0000, sum_radii=0.0570, target_ratio=0.0216, combined_score=0.0216
+2026-03-02 19:49:21,671 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:49:21,671 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 19:49:21,680 - INFO - [TUNE-TRACK] iter=15 | annotations=4→3 trials=19ok/0fail score=0.0000→0.0216 gain=+0.0216 duration=1.7s params=['m', 'dx', 'dy']
+2026-03-02 19:49:21,682 - INFO - Iteration 15: Program b142f846-50cc-4b18-a98c-1ca7f9a1395b (parent: e8992d22-be80-4f45-bc9c-8a03af7a3cae) completed in 15.39s
+2026-03-02 19:49:21,682 - INFO - Metrics: validity=1.0000, sum_radii=0.0570, target_ratio=0.0216, combined_score=0.0216
+2026-03-02 19:49:21,682 - INFO - Checkpoint interval reached at iteration 15
+2026-03-02 19:49:21,682 - INFO - Island Status:
+2026-03-02 19:49:21,682 - INFO -  * Island 0: 12 programs, best=0.9348, avg=0.5379, diversity=404.02, gen=13 (best: e77183de-236c-4824-a069-d3998b2cfa36)
+2026-03-02 19:49:21,682 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 19:49:21,682 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 19:49:21,687 - INFO - Saved database with 14 programs to experiments/tuning_ab_circpack/treatment_run_300/checkpoints/checkpoint_15
+2026-03-02 19:49:21,688 - INFO - Saved best program at checkpoint 15 with metrics: validity=1.0000, sum_radii=2.4633, target_ratio=0.9348, combined_score=0.9348, eval_time=0.3426
+2026-03-02 19:49:21,688 - INFO - Saved checkpoint at iteration 15 to experiments/tuning_ab_circpack/treatment_run_300/checkpoints/checkpoint_15
+2026-03-02 19:49:21,688 - INFO - [TUNE-TRACK] Saved tuning tracker to experiments/tuning_ab_circpack/treatment_run_300/tuning_tracker.json
+2026-03-02 19:49:26,145 - INFO - Evaluated program tune_baseline in 5.15s: validity=1.0000, sum_radii=2.4594, target_ratio=0.9334, combined_score=0.9334, eval_time=2.5613
+2026-03-02 19:49:30,974 - INFO - Evaluated program tune_trial_0 in 4.83s: validity=1.0000, sum_radii=2.4599, target_ratio=0.9336, combined_score=0.9336, eval_time=2.4199
+2026-03-02 19:49:33,896 - INFO - Evaluated program tune_trial_11 in 16.20s: validity=1.0000, sum_radii=2.4828, target_ratio=0.9422, combined_score=0.9422, eval_time=8.0788
+2026-03-02 19:49:35,769 - INFO - Evaluated program tune_trial_1 in 4.79s: validity=1.0000, sum_radii=2.4033, target_ratio=0.9121, combined_score=0.9121, eval_time=2.3957
+2026-03-02 19:49:40,760 - INFO - Evaluated program tune_trial_2 in 4.99s: validity=1.0000, sum_radii=2.4419, target_ratio=0.9267, combined_score=0.9267, eval_time=2.5069
+2026-03-02 19:49:45,029 - INFO - Evaluated program tune_trial_3 in 4.27s: validity=1.0000, sum_radii=2.3901, target_ratio=0.9071, combined_score=0.9071, eval_time=2.1243
+2026-03-02 19:49:45,925 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:49:46,121 - INFO - Evaluated program tune_baseline in 0.19s: validity=1.0000, sum_radii=1.4224, target_ratio=0.5398, combined_score=0.5398, eval_time=0.0925
+2026-03-02 19:49:46,312 - INFO - Evaluated program tune_trial_0 in 0.19s: validity=1.0000, sum_radii=1.3963, target_ratio=0.5299, combined_score=0.5299, eval_time=0.0920
+2026-03-02 19:49:46,501 - INFO - Evaluated program tune_trial_1 in 0.19s: validity=1.0000, sum_radii=1.1811, target_ratio=0.4482, combined_score=0.4482, eval_time=0.0962
+2026-03-02 19:49:46,589 - INFO - Evaluated program tune_trial_2 in 0.09s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:49:46,778 - INFO - Evaluated program tune_trial_3 in 0.19s: validity=1.0000, sum_radii=1.4366, target_ratio=0.5452, combined_score=0.5452, eval_time=0.0918
+2026-03-02 19:49:46,962 - INFO - Evaluated program tune_trial_4 in 0.18s: validity=1.0000, sum_radii=1.1665, target_ratio=0.4427, combined_score=0.4427, eval_time=0.0900
+2026-03-02 19:49:47,147 - INFO - Evaluated program tune_trial_5 in 0.18s: validity=1.0000, sum_radii=1.2902, target_ratio=0.4896, combined_score=0.4896, eval_time=0.0895
+2026-03-02 19:49:47,329 - INFO - Evaluated program tune_trial_6 in 0.18s: validity=1.0000, sum_radii=1.4606, target_ratio=0.5543, combined_score=0.5543, eval_time=0.0853
+2026-03-02 19:49:47,425 - INFO - Evaluated program tune_trial_7 in 0.10s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:49:47,522 - INFO - Evaluated program tune_trial_8 in 0.10s: validity=0.0000, sum_radii=0.0000, target_ratio=0.0000, combined_score=0.0000
+2026-03-02 19:49:47,717 - INFO - Evaluated program tune_trial_9 in 0.19s: validity=1.0000, sum_radii=1.4007, target_ratio=0.5316, combined_score=0.5316, eval_time=0.0983
+2026-03-02 19:49:47,906 - INFO - Evaluated program tune_trial_10 in 0.19s: validity=1.0000, sum_radii=1.5694, target_ratio=0.5956, combined_score=0.5956, eval_time=0.0931
+2026-03-02 19:49:48,092 - INFO - Evaluated program tune_trial_11 in 0.18s: validity=1.0000, sum_radii=1.5593, target_ratio=0.5918, combined_score=0.5918, eval_time=0.0875
+2026-03-02 19:49:48,311 - INFO - Evaluated program tune_trial_12 in 0.22s: validity=1.0000, sum_radii=0.9964, target_ratio=0.3781, combined_score=0.3781, eval_time=0.1240
+2026-03-02 19:49:48,313 - INFO - [TUNING] Optimized 1 params over 13 trials: score 0.5398 → 0.5956 (gain=+0.0558)
+2026-03-02 19:49:48,504 - INFO - Evaluated program 61737cbd-97ec-4b19-bddd-27bf2d062a2a in 0.19s: validity=1.0000, sum_radii=1.5694, target_ratio=0.5956, combined_score=0.5956, eval_time=0.0892
+2026-03-02 19:49:48,506 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:49:48,506 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 19:49:48,514 - INFO - [TUNE-TRACK] iter=16 | annotations=1→1 trials=13ok/0fail score=0.5398→0.5956 gain=+0.0558 duration=2.4s params=['r_init']
+2026-03-02 19:49:48,515 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 0, 'diversity': 5} (fitness: 0.000 -> 0.596)
+2026-03-02 19:49:48,516 - INFO - Iteration 16: Program 61737cbd-97ec-4b19-bddd-27bf2d062a2a (parent: 8745c5d9-75a4-4dbc-98bc-59bf840fdecf) completed in 26.83s
+2026-03-02 19:49:48,516 - INFO - Metrics: validity=1.0000, sum_radii=1.5694, target_ratio=0.5956, combined_score=0.5956, eval_time=0.0892
+2026-03-02 19:49:50,054 - INFO - Evaluated program tune_trial_4 in 5.02s: validity=1.0000, sum_radii=2.4182, target_ratio=0.9177, combined_score=0.9177, eval_time=2.5187
+2026-03-02 19:49:50,098 - INFO - Evaluated program tune_trial_12 in 16.20s: validity=1.0000, sum_radii=2.4832, target_ratio=0.9424, combined_score=0.9424, eval_time=8.0782
+2026-03-02 19:49:54,949 - INFO - Evaluated program tune_trial_5 in 4.89s: validity=1.0000, sum_radii=2.4634, target_ratio=0.9349, combined_score=0.9349, eval_time=2.4396
+2026-03-02 19:50:00,022 - INFO - Evaluated program tune_trial_6 in 5.07s: validity=1.0000, sum_radii=2.3942, target_ratio=0.9086, combined_score=0.9086, eval_time=2.5135
+2026-03-02 19:50:00,366 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:50:01,044 - INFO - Evaluated program tune_baseline in 0.68s: validity=1.0000, sum_radii=2.4665, target_ratio=0.9361, combined_score=0.9361, eval_time=0.3398
+2026-03-02 19:50:01,746 - INFO - Evaluated program tune_trial_0 in 0.70s: validity=1.0000, sum_radii=2.3656, target_ratio=0.8978, combined_score=0.8978, eval_time=0.3478
+2026-03-02 19:50:02,171 - INFO - Evaluated program tune_trial_1 in 0.42s: validity=1.0000, sum_radii=2.4036, target_ratio=0.9122, combined_score=0.9122, eval_time=0.2040
+2026-03-02 19:50:02,679 - INFO - Evaluated program tune_trial_2 in 0.51s: validity=1.0000, sum_radii=2.4222, target_ratio=0.9193, combined_score=0.9193, eval_time=0.2539
+2026-03-02 19:50:03,211 - INFO - Evaluated program tune_trial_3 in 0.53s: validity=1.0000, sum_radii=2.3634, target_ratio=0.8969, combined_score=0.8969, eval_time=0.2683
+2026-03-02 19:50:04,053 - INFO - Evaluated program tune_trial_4 in 0.84s: validity=1.0000, sum_radii=2.4433, target_ratio=0.9272, combined_score=0.9272, eval_time=0.4166
+2026-03-02 19:50:04,627 - INFO - Evaluated program tune_trial_5 in 0.57s: validity=1.0000, sum_radii=2.4490, target_ratio=0.9294, combined_score=0.9294, eval_time=0.2820
+2026-03-02 19:50:04,900 - INFO - Evaluated program tune_trial_7 in 4.88s: validity=1.0000, sum_radii=2.4772, target_ratio=0.9401, combined_score=0.9401, eval_time=2.4476
+2026-03-02 19:50:05,056 - INFO - Evaluated program tune_trial_6 in 0.43s: validity=1.0000, sum_radii=2.3705, target_ratio=0.8996, combined_score=0.8996, eval_time=0.2159
+2026-03-02 19:50:06,008 - INFO - Evaluated program tune_trial_7 in 0.95s: validity=1.0000, sum_radii=2.3677, target_ratio=0.8985, combined_score=0.8985, eval_time=0.4770
+2026-03-02 19:50:06,285 - INFO - Evaluated program tune_trial_13 in 16.18s: validity=1.0000, sum_radii=2.4778, target_ratio=0.9403, combined_score=0.9403, eval_time=8.0936
+2026-03-02 19:50:06,588 - INFO - Evaluated program tune_trial_8 in 0.58s: validity=1.0000, sum_radii=2.4257, target_ratio=0.9206, combined_score=0.9206, eval_time=0.2873
+2026-03-02 19:50:07,006 - INFO - Evaluated program tune_trial_9 in 0.42s: validity=1.0000, sum_radii=2.3837, target_ratio=0.9046, combined_score=0.9046, eval_time=0.2055
+2026-03-02 19:50:07,793 - INFO - Evaluated program tune_trial_10 in 0.78s: validity=1.0000, sum_radii=2.4525, target_ratio=0.9307, combined_score=0.9307, eval_time=0.3899
+2026-03-02 19:50:08,563 - INFO - Evaluated program tune_trial_11 in 0.77s: validity=1.0000, sum_radii=2.4639, target_ratio=0.9351, combined_score=0.9351, eval_time=0.3849
+2026-03-02 19:50:09,393 - INFO - Evaluated program tune_trial_12 in 0.83s: validity=1.0000, sum_radii=2.4591, target_ratio=0.9332, combined_score=0.9332, eval_time=0.4076
+2026-03-02 19:50:09,948 - INFO - Evaluated program tune_trial_8 in 5.05s: validity=1.0000, sum_radii=2.4556, target_ratio=0.9319, combined_score=0.9319, eval_time=2.5196
+2026-03-02 19:50:10,401 - INFO - Evaluated program tune_trial_13 in 1.01s: validity=1.0000, sum_radii=2.4297, target_ratio=0.9221, combined_score=0.9221, eval_time=0.5012
+2026-03-02 19:50:11,238 - INFO - Evaluated program tune_trial_14 in 0.83s: validity=1.0000, sum_radii=2.4787, target_ratio=0.9407, combined_score=0.9407, eval_time=0.4131
+2026-03-02 19:50:11,990 - INFO - Evaluated program tune_trial_15 in 0.75s: validity=1.0000, sum_radii=2.4381, target_ratio=0.9253, combined_score=0.9253, eval_time=0.3771
+2026-03-02 19:50:13,002 - INFO - Evaluated program tune_trial_16 in 1.01s: validity=1.0000, sum_radii=2.4612, target_ratio=0.9341, combined_score=0.9341, eval_time=0.5075
+2026-03-02 19:50:13,831 - INFO - Evaluated program tune_trial_17 in 0.83s: validity=1.0000, sum_radii=2.4159, target_ratio=0.9169, combined_score=0.9169, eval_time=0.4111
+2026-03-02 19:50:14,582 - INFO - Evaluated program tune_trial_18 in 0.75s: validity=1.0000, sum_radii=2.4435, target_ratio=0.9273, combined_score=0.9273, eval_time=0.3772
+2026-03-02 19:50:14,584 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.9361 → 0.9407 (gain=+0.0046)
+2026-03-02 19:50:15,121 - INFO - Evaluated program tune_trial_9 in 5.17s: validity=1.0000, sum_radii=2.4692, target_ratio=0.9371, combined_score=0.9371, eval_time=2.5842
+2026-03-02 19:50:15,421 - INFO - Evaluated program 310f36d9-276b-4de1-8128-3c35de181ae1 in 0.84s: validity=1.0000, sum_radii=2.4787, target_ratio=0.9407, combined_score=0.9407, eval_time=0.4123
+2026-03-02 19:50:15,422 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:50:15,423 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 19:50:15,431 - INFO - [TUNE-TRACK] iter=17 | annotations=3→3 trials=19ok/0fail score=0.9361→0.9407 gain=+0.0046 duration=14.2s params=['step0', 'n_passes', 'shrink']
+2026-03-02 19:50:15,432 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 3, 'diversity': 2}
+2026-03-02 19:50:15,432 - INFO - New best program 310f36d9-276b-4de1-8128-3c35de181ae1 replaces e77183de-236c-4824-a069-d3998b2cfa36 (combined_score: 0.9348 → 0.9407, +0.0059)
+2026-03-02 19:50:15,432 - INFO - Iteration 17: Program 310f36d9-276b-4de1-8128-3c35de181ae1 (parent: 82ba952f-9c9b-429e-a4f9-411b80e1370b) completed in 26.92s
+2026-03-02 19:50:15,432 - INFO - Metrics: validity=1.0000, sum_radii=2.4787, target_ratio=0.9407, combined_score=0.9407, eval_time=0.4123
+2026-03-02 19:50:15,432 - INFO - 🌟 New best solution found at iteration 17: 310f36d9-276b-4de1-8128-3c35de181ae1
+2026-03-02 19:50:20,313 - INFO - Evaluated program tune_trial_10 in 5.19s: validity=1.0000, sum_radii=2.4474, target_ratio=0.9288, combined_score=0.9288, eval_time=2.5930
+2026-03-02 19:50:22,444 - INFO - Evaluated program tune_trial_14 in 16.16s: validity=1.0000, sum_radii=2.4764, target_ratio=0.9398, combined_score=0.9398, eval_time=8.0668
+2026-03-02 19:50:25,634 - INFO - Evaluated program tune_trial_11 in 5.32s: validity=1.0000, sum_radii=2.4664, target_ratio=0.9360, combined_score=0.9360, eval_time=2.6671
+2026-03-02 19:50:30,729 - INFO - Evaluated program tune_trial_12 in 5.09s: validity=1.0000, sum_radii=2.4825, target_ratio=0.9421, combined_score=0.9421, eval_time=2.5391
+2026-03-02 19:50:36,059 - INFO - Evaluated program tune_trial_13 in 5.33s: validity=1.0000, sum_radii=2.4655, target_ratio=0.9357, combined_score=0.9357, eval_time=2.6510
+2026-03-02 19:50:38,543 - INFO - Evaluated program tune_trial_15 in 16.10s: validity=1.0000, sum_radii=2.4810, target_ratio=0.9416, combined_score=0.9416, eval_time=8.0336
+2026-03-02 19:50:38,545 - INFO - [TUNING] Optimized 2 params over 16 trials: score 0.9412 → 0.9430 (gain=+0.0018)
+2026-03-02 19:50:41,493 - INFO - Evaluated program tune_trial_14 in 5.43s: validity=1.0000, sum_radii=2.4561, target_ratio=0.9321, combined_score=0.9321, eval_time=2.7081
+2026-03-02 19:50:43,827 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:50:44,497 - INFO - Evaluated program tune_baseline in 0.67s: validity=1.0000, sum_radii=2.4573, target_ratio=0.9326, combined_score=0.9326, eval_time=0.3296
+2026-03-02 19:50:44,952 - INFO - Evaluated program tune_trial_0 in 0.45s: validity=1.0000, sum_radii=2.4078, target_ratio=0.9138, combined_score=0.9138, eval_time=0.2228
+2026-03-02 19:50:45,673 - INFO - Evaluated program tune_trial_1 in 0.72s: validity=1.0000, sum_radii=2.4651, target_ratio=0.9355, combined_score=0.9355, eval_time=0.3561
+2026-03-02 19:50:46,333 - INFO - Evaluated program tune_trial_2 in 0.66s: validity=1.0000, sum_radii=2.3642, target_ratio=0.8972, combined_score=0.8972, eval_time=0.3204
+2026-03-02 19:50:46,706 - INFO - Evaluated program tune_trial_3 in 0.37s: validity=1.0000, sum_radii=2.3658, target_ratio=0.8978, combined_score=0.8978, eval_time=0.1856
+2026-03-02 19:50:46,942 - INFO - Evaluated program tune_trial_15 in 5.45s: validity=1.0000, sum_radii=2.4832, target_ratio=0.9424, combined_score=0.9424, eval_time=2.6822
+2026-03-02 19:50:46,943 - INFO - [TUNING] Optimized 2 params over 16 trials: score 0.9334 → 0.9424 (gain=+0.0090)
+2026-03-02 19:50:47,434 - INFO - Evaluated program tune_trial_4 in 0.73s: validity=1.0000, sum_radii=2.4800, target_ratio=0.9412, combined_score=0.9412, eval_time=0.3597
+2026-03-02 19:50:48,090 - INFO - Evaluated program tune_trial_5 in 0.65s: validity=1.0000, sum_radii=2.4753, target_ratio=0.9394, combined_score=0.9394, eval_time=0.3265
+2026-03-02 19:50:48,978 - INFO - Evaluated program tune_trial_6 in 0.89s: validity=1.0000, sum_radii=2.4246, target_ratio=0.9201, combined_score=0.9201, eval_time=0.4557
+2026-03-02 19:50:49,363 - INFO - Evaluated program tune_trial_7 in 0.38s: validity=1.0000, sum_radii=2.3865, target_ratio=0.9057, combined_score=0.9057, eval_time=0.1908
+2026-03-02 19:50:49,815 - INFO - Evaluated program tune_trial_8 in 0.45s: validity=1.0000, sum_radii=2.3496, target_ratio=0.8917, combined_score=0.8917, eval_time=0.2215
+2026-03-02 19:50:50,553 - INFO - Evaluated program tune_trial_9 in 0.74s: validity=1.0000, sum_radii=2.3635, target_ratio=0.8970, combined_score=0.8970, eval_time=0.3712
+2026-03-02 19:50:51,426 - INFO - Evaluated program tune_trial_10 in 0.87s: validity=1.0000, sum_radii=2.4309, target_ratio=0.9225, combined_score=0.9225, eval_time=0.4308
+2026-03-02 19:50:52,020 - INFO - Evaluated program tune_trial_11 in 0.59s: validity=1.0000, sum_radii=2.4496, target_ratio=0.9296, combined_score=0.9296, eval_time=0.2936
+2026-03-02 19:50:52,329 - INFO - Evaluated program 7dc0f6c3-1efe-40a1-8bd5-f1218ac4a6f6 in 5.38s: validity=1.0000, sum_radii=2.4832, target_ratio=0.9424, combined_score=0.9424, eval_time=2.6857
+2026-03-02 19:50:52,330 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:50:52,331 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 19:50:52,341 - INFO - [TUNE-TRACK] iter=14 | annotations=2→2 trials=16ok/0fail score=0.9334→0.9424 gain=+0.0090 duration=86.0s params=['step', 'decay']
+2026-03-02 19:50:52,343 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 6, 'diversity': 3}
+2026-03-02 19:50:52,343 - INFO - New best program 7dc0f6c3-1efe-40a1-8bd5-f1218ac4a6f6 replaces 310f36d9-276b-4de1-8128-3c35de181ae1 (combined_score: 0.9407 → 0.9424, +0.0017)
+2026-03-02 19:50:52,343 - INFO - Iteration 14: Program 7dc0f6c3-1efe-40a1-8bd5-f1218ac4a6f6 (parent: 51846e99-ec9a-412a-a4bb-c3dc15ded203) completed in 109.93s
+2026-03-02 19:50:52,343 - INFO - Metrics: validity=1.0000, sum_radii=2.4832, target_ratio=0.9424, combined_score=0.9424, eval_time=2.6857
+2026-03-02 19:50:52,343 - INFO - 🌟 New best solution found at iteration 14: 7dc0f6c3-1efe-40a1-8bd5-f1218ac4a6f6
+2026-03-02 19:50:52,628 - INFO - Evaluated program tune_trial_12 in 0.60s: validity=1.0000, sum_radii=2.4751, target_ratio=0.9393, combined_score=0.9393, eval_time=0.3058
+2026-03-02 19:50:53,354 - INFO - Evaluated program tune_trial_13 in 0.72s: validity=1.0000, sum_radii=2.4852, target_ratio=0.9432, combined_score=0.9432, eval_time=0.3636
+2026-03-02 19:50:54,151 - INFO - Evaluated program tune_trial_14 in 0.79s: validity=1.0000, sum_radii=2.4581, target_ratio=0.9329, combined_score=0.9329, eval_time=0.3955
+2026-03-02 19:50:54,757 - INFO - Evaluated program 9cf9910a-3332-4d35-8331-cf3ae82abeac in 16.21s: validity=1.0000, sum_radii=2.4848, target_ratio=0.9430, combined_score=0.9430, eval_time=8.0802
+2026-03-02 19:50:54,758 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:50:54,759 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 19:50:54,765 - INFO - [TUNE-TRACK] iter=3 | annotations=2→2 trials=16ok/0fail score=0.9412→0.9430 gain=+0.0018 duration=275.5s params=['r', 'step']
+2026-03-02 19:50:54,766 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 9, 'diversity': 9} (fitness: 0.844 -> 0.943)
+2026-03-02 19:50:54,766 - INFO - New best program 9cf9910a-3332-4d35-8331-cf3ae82abeac replaces 7dc0f6c3-1efe-40a1-8bd5-f1218ac4a6f6 (combined_score: 0.9424 → 0.9430, +0.0006)
+2026-03-02 19:50:54,767 - INFO - Iteration 3: Program 9cf9910a-3332-4d35-8331-cf3ae82abeac (parent: 881f2c1e-2848-4c1b-838a-e764f6d3bbc0) completed in 327.18s
+2026-03-02 19:50:54,767 - INFO - Metrics: validity=1.0000, sum_radii=2.4848, target_ratio=0.9430, combined_score=0.9430, eval_time=8.0802
+2026-03-02 19:50:54,767 - INFO - 🌟 New best solution found at iteration 3: 9cf9910a-3332-4d35-8331-cf3ae82abeac
+2026-03-02 19:50:54,882 - INFO - Evaluated program tune_trial_15 in 0.73s: validity=1.0000, sum_radii=2.4814, target_ratio=0.9417, combined_score=0.9417, eval_time=0.3638
+2026-03-02 19:50:55,690 - INFO - Evaluated program tune_trial_16 in 0.81s: validity=1.0000, sum_radii=2.4459, target_ratio=0.9282, combined_score=0.9282, eval_time=0.4014
+2026-03-02 19:50:56,206 - INFO - Evaluated program tune_trial_17 in 0.51s: validity=1.0000, sum_radii=2.4453, target_ratio=0.9280, combined_score=0.9280, eval_time=0.2576
+2026-03-02 19:50:56,994 - INFO - Evaluated program tune_trial_18 in 0.79s: validity=1.0000, sum_radii=2.4655, target_ratio=0.9357, combined_score=0.9357, eval_time=0.3896
+2026-03-02 19:50:56,996 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.9326 → 0.9432 (gain=+0.0106)
+2026-03-02 19:50:57,708 - INFO - Evaluated program d9a39b6a-a4c2-460b-825d-630386c2fc43 in 0.71s: validity=1.0000, sum_radii=2.4852, target_ratio=0.9432, combined_score=0.9432, eval_time=0.3482
+2026-03-02 19:50:57,710 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:50:57,710 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 19:50:57,716 - INFO - [TUNE-TRACK] iter=18 | annotations=3→3 trials=19ok/0fail score=0.9326→0.9432 gain=+0.0106 duration=13.2s params=['step0', 'n_passes', 'shrink']
+2026-03-02 19:50:57,718 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 2, 'diversity': 3}
+2026-03-02 19:50:57,718 - INFO - New best program d9a39b6a-a4c2-460b-825d-630386c2fc43 replaces 9cf9910a-3332-4d35-8331-cf3ae82abeac (combined_score: 0.9430 → 0.9432, +0.0002)
+2026-03-02 19:50:57,718 - INFO - Iteration 18: Program d9a39b6a-a4c2-460b-825d-630386c2fc43 (parent: e8992d22-be80-4f45-bc9c-8a03af7a3cae) completed in 42.29s
+2026-03-02 19:50:57,718 - INFO - Metrics: validity=1.0000, sum_radii=2.4852, target_ratio=0.9432, combined_score=0.9432, eval_time=0.3482
+2026-03-02 19:50:57,718 - INFO - 🌟 New best solution found at iteration 18: d9a39b6a-a4c2-460b-825d-630386c2fc43
+2026-03-02 19:51:10,839 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:51:11,750 - INFO - Evaluated program tune_baseline in 0.91s: validity=1.0000, sum_radii=2.4495, target_ratio=0.9296, combined_score=0.9296, eval_time=0.4387
+2026-03-02 19:51:12,907 - INFO - Evaluated program tune_trial_0 in 1.16s: validity=1.0000, sum_radii=2.4687, target_ratio=0.9369, combined_score=0.9369, eval_time=0.5663
+2026-03-02 19:51:13,770 - INFO - Evaluated program tune_trial_1 in 0.86s: validity=1.0000, sum_radii=2.3602, target_ratio=0.8957, combined_score=0.8957, eval_time=0.4259
+2026-03-02 19:51:14,458 - INFO - Evaluated program tune_trial_2 in 0.69s: validity=1.0000, sum_radii=2.4692, target_ratio=0.9371, combined_score=0.9371, eval_time=0.3422
+2026-03-02 19:51:15,035 - INFO - Evaluated program tune_trial_3 in 0.58s: validity=1.0000, sum_radii=2.4351, target_ratio=0.9241, combined_score=0.9241, eval_time=0.2873
+2026-03-02 19:51:16,089 - INFO - Evaluated program tune_trial_4 in 1.05s: validity=1.0000, sum_radii=2.4891, target_ratio=0.9446, combined_score=0.9446, eval_time=0.5364
+2026-03-02 19:51:17,284 - INFO - Evaluated program tune_trial_5 in 1.19s: validity=1.0000, sum_radii=2.4111, target_ratio=0.9150, combined_score=0.9150, eval_time=0.5949
+2026-03-02 19:51:18,304 - INFO - Evaluated program tune_trial_6 in 1.02s: validity=1.0000, sum_radii=2.4128, target_ratio=0.9157, combined_score=0.9157, eval_time=0.5073
+2026-03-02 19:51:18,789 - INFO - Evaluated program tune_trial_7 in 0.48s: validity=1.0000, sum_radii=2.4243, target_ratio=0.9200, combined_score=0.9200, eval_time=0.2417
+2026-03-02 19:51:19,251 - INFO - Evaluated program tune_trial_8 in 0.46s: validity=1.0000, sum_radii=2.3705, target_ratio=0.8996, combined_score=0.8996, eval_time=0.2286
+2026-03-02 19:51:19,764 - INFO - Evaluated program tune_trial_9 in 0.51s: validity=1.0000, sum_radii=2.3960, target_ratio=0.9093, combined_score=0.9093, eval_time=0.2383
+2026-03-02 19:51:20,475 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:51:20,700 - INFO - Evaluated program tune_trial_10 in 0.93s: validity=1.0000, sum_radii=2.4180, target_ratio=0.9177, combined_score=0.9177, eval_time=0.4633
+2026-03-02 19:51:21,396 - INFO - Evaluated program tune_trial_11 in 0.69s: validity=1.0000, sum_radii=2.4476, target_ratio=0.9289, combined_score=0.9289, eval_time=0.3453
+2026-03-02 19:51:22,157 - INFO - Evaluated program tune_trial_12 in 0.76s: validity=1.0000, sum_radii=2.4502, target_ratio=0.9298, combined_score=0.9298, eval_time=0.3767
+2026-03-02 19:51:22,936 - INFO - Evaluated program tune_trial_13 in 0.78s: validity=1.0000, sum_radii=2.4468, target_ratio=0.9286, combined_score=0.9286, eval_time=0.3861
+2026-03-02 19:51:23,897 - INFO - Evaluated program tune_trial_14 in 0.96s: validity=1.0000, sum_radii=2.4567, target_ratio=0.9323, combined_score=0.9323, eval_time=0.4805
+2026-03-02 19:51:24,580 - INFO - Evaluated program tune_trial_15 in 0.68s: validity=1.0000, sum_radii=2.4451, target_ratio=0.9279, combined_score=0.9279, eval_time=0.3356
+2026-03-02 19:51:25,612 - INFO - Evaluated program tune_trial_16 in 1.03s: validity=1.0000, sum_radii=2.4376, target_ratio=0.9251, combined_score=0.9251, eval_time=0.5165
+2026-03-02 19:51:25,997 - INFO - Evaluated program tune_trial_17 in 0.38s: validity=1.0000, sum_radii=2.3469, target_ratio=0.8907, combined_score=0.8907, eval_time=0.1832
+2026-03-02 19:51:26,867 - INFO - Evaluated program tune_trial_18 in 0.87s: validity=1.0000, sum_radii=2.4367, target_ratio=0.9247, combined_score=0.9247, eval_time=0.4332
+2026-03-02 19:51:26,869 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.9296 → 0.9446 (gain=+0.0150)
+2026-03-02 19:51:27,320 - INFO - Evaluated program tune_baseline in 6.84s: validity=1.0000, sum_radii=2.4954, target_ratio=0.9470, combined_score=0.9470, eval_time=3.4010
+2026-03-02 19:51:27,941 - INFO - Evaluated program e192a31a-40fb-4940-bf49-4783c6823680 in 1.07s: validity=1.0000, sum_radii=2.4891, target_ratio=0.9446, combined_score=0.9446, eval_time=0.5507
+2026-03-02 19:51:27,943 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:51:27,943 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 19:51:27,953 - INFO - [TUNE-TRACK] iter=21 | annotations=3→3 trials=19ok/0fail score=0.9296→0.9446 gain=+0.0150 duration=16.0s params=['step0', 'n_passes', 'shrink']
+2026-03-02 19:51:27,955 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 3}
+2026-03-02 19:51:27,955 - INFO - New best program e192a31a-40fb-4940-bf49-4783c6823680 replaces d9a39b6a-a4c2-460b-825d-630386c2fc43 (combined_score: 0.9432 → 0.9446, +0.0015)
+2026-03-02 19:51:27,955 - INFO - Iteration 21: Program e192a31a-40fb-4940-bf49-4783c6823680 (parent: af21b38f-6684-4dd6-b9c9-becb718ceea4) completed in 30.23s
+2026-03-02 19:51:27,955 - INFO - Metrics: validity=1.0000, sum_radii=2.4891, target_ratio=0.9446, combined_score=0.9446, eval_time=0.5507
+2026-03-02 19:51:27,955 - INFO - 🌟 New best solution found at iteration 21: e192a31a-40fb-4940-bf49-4783c6823680
+2026-03-02 19:51:28,159 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:51:30,253 - INFO - Evaluated program tune_trial_0 in 2.93s: validity=1.0000, sum_radii=2.4347, target_ratio=0.9240, combined_score=0.9240, eval_time=1.4556
+2026-03-02 19:51:30,895 - INFO - Evaluated program tune_baseline in 2.73s: validity=1.0000, sum_radii=2.4661, target_ratio=0.9359, combined_score=0.9359, eval_time=1.3769
+2026-03-02 19:51:34,899 - INFO - Evaluated program tune_trial_1 in 4.65s: validity=1.0000, sum_radii=2.4850, target_ratio=0.9431, combined_score=0.9431, eval_time=2.3164
+2026-03-02 19:51:36,803 - INFO - Evaluated program tune_trial_0 in 5.91s: validity=1.0000, sum_radii=2.3931, target_ratio=0.9082, combined_score=0.9082, eval_time=2.9671
+2026-03-02 19:51:38,219 - INFO - Evaluated program tune_trial_1 in 1.41s: validity=1.0000, sum_radii=2.4614, target_ratio=0.9341, combined_score=0.9341, eval_time=0.7132
+2026-03-02 19:51:38,801 - INFO - Evaluated program tune_trial_2 in 3.90s: validity=1.0000, sum_radii=2.4599, target_ratio=0.9335, combined_score=0.9335, eval_time=1.9359
+2026-03-02 19:51:40,447 - INFO - Evaluated program tune_trial_2 in 2.23s: validity=1.0000, sum_radii=2.4357, target_ratio=0.9244, combined_score=0.9244, eval_time=1.0966
+2026-03-02 19:51:43,165 - INFO - Evaluated program tune_trial_3 in 4.36s: validity=1.0000, sum_radii=2.4616, target_ratio=0.9342, combined_score=0.9342, eval_time=2.1181
+2026-03-02 19:51:45,538 - INFO - Evaluated program tune_trial_4 in 2.37s: validity=1.0000, sum_radii=2.4440, target_ratio=0.9275, combined_score=0.9275, eval_time=1.1640
+2026-03-02 19:51:45,585 - INFO - Evaluated program tune_trial_3 in 5.14s: validity=1.0000, sum_radii=2.4226, target_ratio=0.9194, combined_score=0.9194, eval_time=2.5664
+2026-03-02 19:51:47,254 - INFO - Evaluated program tune_trial_4 in 1.67s: validity=1.0000, sum_radii=2.4528, target_ratio=0.9308, combined_score=0.9308, eval_time=0.8338
+2026-03-02 19:51:51,546 - INFO - Evaluated program tune_trial_5 in 4.29s: validity=1.0000, sum_radii=2.4571, target_ratio=0.9325, combined_score=0.9325, eval_time=2.1660
+2026-03-02 19:51:52,915 - INFO - Evaluated program tune_trial_5 in 7.38s: validity=1.0000, sum_radii=2.5137, target_ratio=0.9540, combined_score=0.9540, eval_time=3.7083
+2026-03-02 19:51:54,146 - INFO - Evaluated program tune_trial_6 in 2.60s: validity=1.0000, sum_radii=2.4277, target_ratio=0.9213, combined_score=0.9213, eval_time=1.2728
+2026-03-02 19:51:57,683 - INFO - Evaluated program tune_trial_7 in 3.54s: validity=1.0000, sum_radii=2.4540, target_ratio=0.9313, combined_score=0.9313, eval_time=1.7816
+2026-03-02 19:51:59,793 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:52:01,378 - INFO - Evaluated program tune_trial_8 in 3.69s: validity=1.0000, sum_radii=2.4072, target_ratio=0.9135, combined_score=0.9135, eval_time=1.8737
+2026-03-02 19:52:03,364 - INFO - Evaluated program tune_trial_6 in 10.45s: validity=1.0000, sum_radii=2.5078, target_ratio=0.9517, combined_score=0.9517, eval_time=5.2176
+2026-03-02 19:52:04,370 - INFO - Evaluated program tune_trial_9 in 2.99s: validity=1.0000, sum_radii=2.4575, target_ratio=0.9326, combined_score=0.9326, eval_time=1.4939
+2026-03-02 19:52:05,359 - INFO - Evaluated program tune_trial_10 in 0.99s: validity=1.0000, sum_radii=2.4057, target_ratio=0.9130, combined_score=0.9130, eval_time=0.4952
+2026-03-02 19:52:05,811 - INFO - Evaluated program tune_baseline in 6.02s: validity=1.0000, sum_radii=2.4860, target_ratio=0.9435, combined_score=0.9435, eval_time=3.0028
+2026-03-02 19:52:08,093 - INFO - Evaluated program tune_trial_11 in 2.73s: validity=1.0000, sum_radii=2.4402, target_ratio=0.9261, combined_score=0.9261, eval_time=1.3740
+2026-03-02 19:52:09,269 - INFO - Evaluated program tune_trial_12 in 1.17s: validity=1.0000, sum_radii=2.4433, target_ratio=0.9273, combined_score=0.9273, eval_time=0.5799
+2026-03-02 19:52:10,505 - INFO - Evaluated program tune_trial_7 in 7.14s: validity=1.0000, sum_radii=2.5093, target_ratio=0.9523, combined_score=0.9523, eval_time=3.5639
+2026-03-02 19:52:11,297 - INFO - Evaluated program tune_trial_13 in 2.03s: validity=1.0000, sum_radii=2.4553, target_ratio=0.9318, combined_score=0.9318, eval_time=0.9910
+2026-03-02 19:52:12,550 - INFO - Evaluated program tune_trial_0 in 6.74s: validity=1.0000, sum_radii=2.4501, target_ratio=0.9298, combined_score=0.9298, eval_time=3.3864
+2026-03-02 19:52:14,120 - INFO - Evaluated program tune_trial_14 in 2.82s: validity=1.0000, sum_radii=2.4048, target_ratio=0.9127, combined_score=0.9127, eval_time=1.3976
+2026-03-02 19:52:16,569 - INFO - Evaluated program tune_trial_15 in 2.45s: validity=1.0000, sum_radii=2.4553, target_ratio=0.9318, combined_score=0.9318, eval_time=1.2297
+2026-03-02 19:52:16,806 - INFO - Evaluated program tune_trial_1 in 4.25s: validity=1.0000, sum_radii=2.4713, target_ratio=0.9379, combined_score=0.9379, eval_time=2.1159
+2026-03-02 19:52:17,819 - INFO - Evaluated program tune_trial_8 in 7.31s: validity=1.0000, sum_radii=2.4756, target_ratio=0.9395, combined_score=0.9395, eval_time=3.6367
+2026-03-02 19:52:18,333 - INFO - Evaluated program tune_trial_16 in 1.76s: validity=1.0000, sum_radii=2.4497, target_ratio=0.9297, combined_score=0.9297, eval_time=0.8798
+2026-03-02 19:52:20,403 - INFO - Evaluated program tune_trial_17 in 2.07s: validity=1.0000, sum_radii=2.4595, target_ratio=0.9334, combined_score=0.9334, eval_time=1.0153
+2026-03-02 19:52:23,455 - INFO - Evaluated program tune_trial_18 in 3.05s: validity=1.0000, sum_radii=2.4861, target_ratio=0.9435, combined_score=0.9435, eval_time=1.5061
+2026-03-02 19:52:23,457 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.9359 → 0.9435 (gain=+0.0076)
+2026-03-02 19:52:23,859 - INFO - Evaluated program tune_trial_2 in 7.05s: validity=1.0000, sum_radii=2.4422, target_ratio=0.9268, combined_score=0.9268, eval_time=3.5304
+2026-03-02 19:52:24,276 - INFO - Evaluated program tune_trial_9 in 6.46s: validity=1.0000, sum_radii=2.5199, target_ratio=0.9563, combined_score=0.9563, eval_time=3.2037
+2026-03-02 19:52:26,476 - INFO - Evaluated program 80886af0-fc9f-478d-bebb-f2af1a7b6686 in 3.02s: validity=1.0000, sum_radii=2.4861, target_ratio=0.9435, combined_score=0.9435, eval_time=1.5085
+2026-03-02 19:52:26,477 - INFO - [TUNE-TRACK] iter=19 | annotations=3→3 trials=19ok/0fail score=0.9359→0.9435 gain=+0.0076 duration=55.3s params=['step0', 'n_passes', 'shrink']
+2026-03-02 19:52:26,477 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:52:26,478 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 19:52:26,478 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 2, 'diversity': 3} (fitness: 0.943 -> 0.943)
+2026-03-02 19:52:26,479 - INFO - Iteration 19: Program 80886af0-fc9f-478d-bebb-f2af1a7b6686 (parent: af21b38f-6684-4dd6-b9c9-becb718ceea4) completed in 94.15s
+2026-03-02 19:52:26,479 - INFO - Metrics: validity=1.0000, sum_radii=2.4861, target_ratio=0.9435, combined_score=0.9435, eval_time=1.5085
+2026-03-02 19:52:27,535 - INFO - Evaluated program tune_trial_3 in 3.67s: validity=1.0000, sum_radii=2.4597, target_ratio=0.9335, combined_score=0.9335, eval_time=1.8689
+2026-03-02 19:52:31,355 - INFO - Evaluated program tune_trial_10 in 7.08s: validity=1.0000, sum_radii=2.5181, target_ratio=0.9556, combined_score=0.9556, eval_time=3.4647
+2026-03-02 19:52:31,557 - INFO - Evaluated program tune_trial_4 in 4.02s: validity=1.0000, sum_radii=2.4890, target_ratio=0.9446, combined_score=0.9446, eval_time=2.0272
+2026-03-02 19:52:36,450 - INFO - Evaluated program tune_trial_5 in 4.89s: validity=1.0000, sum_radii=2.4851, target_ratio=0.9431, combined_score=0.9431, eval_time=2.4584
+2026-03-02 19:52:38,687 - INFO - Evaluated program tune_trial_11 in 7.33s: validity=1.0000, sum_radii=2.4859, target_ratio=0.9434, combined_score=0.9434, eval_time=3.6673
+2026-03-02 19:52:39,390 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:52:39,815 - INFO - Evaluated program tune_baseline in 0.42s: validity=1.0000, sum_radii=2.4225, target_ratio=0.9194, combined_score=0.9194, eval_time=0.2116
+2026-03-02 19:52:40,096 - INFO - Evaluated program tune_trial_0 in 0.28s: validity=1.0000, sum_radii=2.3724, target_ratio=0.9003, combined_score=0.9003, eval_time=0.1391
+2026-03-02 19:52:40,416 - INFO - Evaluated program tune_trial_1 in 0.32s: validity=1.0000, sum_radii=2.3344, target_ratio=0.8859, combined_score=0.8859, eval_time=0.1582
+2026-03-02 19:52:40,827 - INFO - Evaluated program tune_trial_2 in 0.41s: validity=1.0000, sum_radii=2.3753, target_ratio=0.9015, combined_score=0.9015, eval_time=0.2046
+2026-03-02 19:52:41,330 - INFO - Evaluated program tune_trial_3 in 0.50s: validity=1.0000, sum_radii=2.3610, target_ratio=0.8960, combined_score=0.8960, eval_time=0.2503
+2026-03-02 19:52:41,577 - INFO - Evaluated program tune_trial_4 in 0.25s: validity=1.0000, sum_radii=2.3613, target_ratio=0.8961, combined_score=0.8961, eval_time=0.1231
+2026-03-02 19:52:41,890 - INFO - Evaluated program tune_trial_6 in 5.44s: validity=1.0000, sum_radii=2.5339, target_ratio=0.9616, combined_score=0.9616, eval_time=2.6935
+2026-03-02 19:52:42,018 - INFO - Evaluated program tune_trial_5 in 0.44s: validity=1.0000, sum_radii=2.3709, target_ratio=0.8998, combined_score=0.8998, eval_time=0.2278
+2026-03-02 19:52:42,405 - INFO - Evaluated program tune_trial_6 in 0.39s: validity=1.0000, sum_radii=2.3654, target_ratio=0.8977, combined_score=0.8977, eval_time=0.1788
+2026-03-02 19:52:42,916 - INFO - Evaluated program tune_trial_7 in 0.51s: validity=1.0000, sum_radii=2.3713, target_ratio=0.8999, combined_score=0.8999, eval_time=0.2515
+2026-03-02 19:52:43,173 - INFO - Evaluated program tune_trial_8 in 0.26s: validity=1.0000, sum_radii=2.3717, target_ratio=0.9001, combined_score=0.9001, eval_time=0.1210
+2026-03-02 19:52:43,467 - INFO - Evaluated program tune_trial_9 in 0.29s: validity=1.0000, sum_radii=2.3655, target_ratio=0.8977, combined_score=0.8977, eval_time=0.1472
+2026-03-02 19:52:43,885 - INFO - Evaluated program tune_trial_10 in 0.42s: validity=1.0000, sum_radii=2.3670, target_ratio=0.8983, combined_score=0.8983, eval_time=0.2048
+2026-03-02 19:52:44,303 - INFO - Evaluated program tune_trial_11 in 0.42s: validity=1.0000, sum_radii=2.3799, target_ratio=0.9032, combined_score=0.9032, eval_time=0.2050
+2026-03-02 19:52:44,714 - INFO - Evaluated program tune_trial_12 in 0.41s: validity=1.0000, sum_radii=2.3774, target_ratio=0.9023, combined_score=0.9023, eval_time=0.2022
+2026-03-02 19:52:44,832 - INFO - Evaluated program tune_trial_7 in 2.94s: validity=1.0000, sum_radii=2.4704, target_ratio=0.9375, combined_score=0.9375, eval_time=1.4269
+2026-03-02 19:52:45,088 - INFO - Evaluated program tune_trial_13 in 0.37s: validity=1.0000, sum_radii=2.3778, target_ratio=0.9024, combined_score=0.9024, eval_time=0.1857
+2026-03-02 19:52:45,452 - INFO - Evaluated program tune_trial_14 in 0.36s: validity=1.0000, sum_radii=2.3865, target_ratio=0.9057, combined_score=0.9057, eval_time=0.1826
+2026-03-02 19:52:45,908 - INFO - Evaluated program tune_trial_15 in 0.45s: validity=1.0000, sum_radii=2.3810, target_ratio=0.9036, combined_score=0.9036, eval_time=0.2286
+2026-03-02 19:52:46,370 - INFO - Evaluated program tune_trial_16 in 0.46s: validity=1.0000, sum_radii=2.3994, target_ratio=0.9106, combined_score=0.9106, eval_time=0.2248
+2026-03-02 19:52:46,586 - INFO - Evaluated program tune_trial_12 in 7.90s: validity=1.0000, sum_radii=2.5071, target_ratio=0.9515, combined_score=0.9515, eval_time=3.8335
+2026-03-02 19:52:46,741 - INFO - Evaluated program tune_trial_17 in 0.37s: validity=1.0000, sum_radii=2.3814, target_ratio=0.9038, combined_score=0.9038, eval_time=0.1793
+2026-03-02 19:52:47,198 - INFO - Evaluated program tune_trial_18 in 0.46s: validity=1.0000, sum_radii=2.4009, target_ratio=0.9112, combined_score=0.9112, eval_time=0.2252
+2026-03-02 19:52:47,200 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.9194 → 0.9194 (gain=+0.0000)
+2026-03-02 19:52:47,613 - INFO - Evaluated program aba63066-7fa5-4b7e-b316-e4a64a4fc1a6 in 0.41s: validity=1.0000, sum_radii=2.4225, target_ratio=0.9194, combined_score=0.9194, eval_time=0.2013
+2026-03-02 19:52:47,614 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:52:47,615 - INFO - Sampled model: aws/claude-opus-4-6
+2026-03-02 19:52:47,620 - INFO - [TUNE-TRACK] iter=23 | annotations=3→3 trials=19ok/0fail score=0.9194→0.9194 gain=+0.0000 duration=7.8s params=['step0', 'n_passes', 'shrink']
+2026-03-02 19:52:47,621 - INFO - Iteration 23: Program aba63066-7fa5-4b7e-b316-e4a64a4fc1a6 (parent: e77183de-236c-4824-a069-d3998b2cfa36) completed in 21.14s
+2026-03-02 19:52:47,621 - INFO - Metrics: validity=1.0000, sum_radii=2.4225, target_ratio=0.9194, combined_score=0.9194, eval_time=0.2013
+2026-03-02 19:52:51,112 - INFO - Evaluated program tune_trial_8 in 6.28s: validity=1.0000, sum_radii=2.4843, target_ratio=0.9428, combined_score=0.9428, eval_time=3.1425
+2026-03-02 19:52:54,222 - INFO - Evaluated program tune_trial_13 in 7.63s: validity=1.0000, sum_radii=2.5086, target_ratio=0.9520, combined_score=0.9520, eval_time=3.7920
+2026-03-02 19:52:56,546 - INFO - Evaluated program tune_trial_9 in 5.43s: validity=1.0000, sum_radii=2.4625, target_ratio=0.9345, combined_score=0.9345, eval_time=2.7250
+2026-03-02 19:53:01,074 - INFO - Evaluated program tune_trial_14 in 6.85s: validity=1.0000, sum_radii=2.4978, target_ratio=0.9479, combined_score=0.9479, eval_time=3.4107
+2026-03-02 19:53:03,085 - INFO - Evaluated program tune_trial_10 in 6.54s: validity=1.0000, sum_radii=2.5218, target_ratio=0.9570, combined_score=0.9570, eval_time=3.2489
+2026-03-02 19:53:07,577 - INFO - Evaluated program tune_trial_15 in 6.50s: validity=1.0000, sum_radii=2.5056, target_ratio=0.9509, combined_score=0.9509, eval_time=3.2268
+2026-03-02 19:53:09,934 - INFO - Evaluated program tune_trial_11 in 6.85s: validity=1.0000, sum_radii=2.5286, target_ratio=0.9596, combined_score=0.9596, eval_time=3.4151
+2026-03-02 19:53:14,794 - INFO - Evaluated program tune_trial_16 in 7.21s: validity=1.0000, sum_radii=2.4998, target_ratio=0.9487, combined_score=0.9487, eval_time=3.6398
+2026-03-02 19:53:16,678 - INFO - Evaluated program tune_trial_12 in 6.74s: validity=1.0000, sum_radii=2.5268, target_ratio=0.9589, combined_score=0.9589, eval_time=3.3771
+2026-03-02 19:53:17,753 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:53:18,477 - INFO - Evaluated program tune_baseline in 0.72s: validity=1.0000, sum_radii=2.4615, target_ratio=0.9342, combined_score=0.9342, eval_time=0.3563
+2026-03-02 19:53:18,741 - INFO - Evaluated program tune_trial_17 in 3.94s: validity=1.0000, sum_radii=2.4688, target_ratio=0.9369, combined_score=0.9369, eval_time=1.9503
+2026-03-02 19:53:19,204 - INFO - Evaluated program tune_trial_0 in 0.73s: validity=1.0000, sum_radii=2.3551, target_ratio=0.8938, combined_score=0.8938, eval_time=0.3582
+2026-03-02 19:53:19,935 - INFO - Evaluated program tune_trial_1 in 0.73s: validity=1.0000, sum_radii=2.4072, target_ratio=0.9136, combined_score=0.9136, eval_time=0.3633
+2026-03-02 19:53:20,671 - INFO - Evaluated program tune_trial_2 in 0.73s: validity=1.0000, sum_radii=2.3568, target_ratio=0.8944, combined_score=0.8944, eval_time=0.3650
+2026-03-02 19:53:21,396 - INFO - Evaluated program tune_trial_3 in 0.72s: validity=1.0000, sum_radii=2.3988, target_ratio=0.9103, combined_score=0.9103, eval_time=0.3566
+2026-03-02 19:53:22,144 - INFO - Evaluated program tune_trial_4 in 0.75s: validity=1.0000, sum_radii=2.4241, target_ratio=0.9200, combined_score=0.9200, eval_time=0.3685
+2026-03-02 19:53:22,395 - INFO - Evaluated program tune_trial_13 in 5.71s: validity=1.0000, sum_radii=2.4189, target_ratio=0.9180, combined_score=0.9180, eval_time=2.8722
+2026-03-02 19:53:22,870 - INFO - Evaluated program tune_trial_5 in 0.72s: validity=1.0000, sum_radii=2.4655, target_ratio=0.9357, combined_score=0.9357, eval_time=0.3522
+2026-03-02 19:53:23,624 - INFO - Evaluated program tune_trial_6 in 0.75s: validity=1.0000, sum_radii=2.4458, target_ratio=0.9282, combined_score=0.9282, eval_time=0.3615
+2026-03-02 19:53:24,345 - INFO - Evaluated program tune_trial_7 in 0.72s: validity=1.0000, sum_radii=2.3543, target_ratio=0.8935, combined_score=0.8935, eval_time=0.3533
+2026-03-02 19:53:25,068 - INFO - Evaluated program tune_trial_8 in 0.72s: validity=1.0000, sum_radii=2.3862, target_ratio=0.9056, combined_score=0.9056, eval_time=0.3610
+2026-03-02 19:53:25,793 - INFO - Evaluated program tune_trial_9 in 0.72s: validity=1.0000, sum_radii=2.4922, target_ratio=0.9458, combined_score=0.9458, eval_time=0.3651
+2026-03-02 19:53:25,935 - INFO - Evaluated program tune_trial_18 in 7.19s: validity=1.0000, sum_radii=2.5460, target_ratio=0.9662, combined_score=0.9662, eval_time=3.5953
+2026-03-02 19:53:25,937 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.9470 → 0.9662 (gain=+0.0192)
+2026-03-02 19:53:26,535 - INFO - Evaluated program tune_trial_10 in 0.74s: validity=1.0000, sum_radii=2.3619, target_ratio=0.8963, combined_score=0.8963, eval_time=0.3704
+2026-03-02 19:53:27,268 - INFO - Evaluated program tune_trial_11 in 0.73s: validity=1.0000, sum_radii=2.4843, target_ratio=0.9428, combined_score=0.9428, eval_time=0.3690
+2026-03-02 19:53:28,013 - INFO - Evaluated program tune_trial_12 in 0.74s: validity=1.0000, sum_radii=2.4812, target_ratio=0.9416, combined_score=0.9416, eval_time=0.3703
+2026-03-02 19:53:28,740 - INFO - Evaluated program tune_trial_13 in 0.72s: validity=1.0000, sum_radii=2.4254, target_ratio=0.9205, combined_score=0.9205, eval_time=0.3610
+2026-03-02 19:53:28,874 - INFO - Evaluated program tune_trial_14 in 6.48s: validity=1.0000, sum_radii=2.5299, target_ratio=0.9601, combined_score=0.9601, eval_time=3.2357
+2026-03-02 19:53:29,473 - INFO - Evaluated program tune_trial_14 in 0.73s: validity=1.0000, sum_radii=2.4596, target_ratio=0.9334, combined_score=0.9334, eval_time=0.3663
+2026-03-02 19:53:30,207 - INFO - Evaluated program tune_trial_15 in 0.73s: validity=1.0000, sum_radii=2.5024, target_ratio=0.9497, combined_score=0.9497, eval_time=0.3590
+2026-03-02 19:53:30,935 - INFO - Evaluated program tune_trial_16 in 0.73s: validity=1.0000, sum_radii=2.4038, target_ratio=0.9123, combined_score=0.9123, eval_time=0.3591
+2026-03-02 19:53:31,672 - INFO - Evaluated program tune_trial_17 in 0.73s: validity=1.0000, sum_radii=2.3541, target_ratio=0.8934, combined_score=0.8934, eval_time=0.3735
+2026-03-02 19:53:32,393 - INFO - Evaluated program tune_trial_18 in 0.72s: validity=1.0000, sum_radii=2.4507, target_ratio=0.9301, combined_score=0.9301, eval_time=0.3597
+2026-03-02 19:53:32,395 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.9342 → 0.9497 (gain=+0.0155)
+2026-03-02 19:53:33,124 - INFO - Evaluated program e5f68c9c-3b87-477a-a7ee-bae99ff7ccd6 in 0.73s: validity=1.0000, sum_radii=2.5024, target_ratio=0.9497, combined_score=0.9497, eval_time=0.3616
+2026-03-02 19:53:33,125 - INFO - [TUNING] Appended threshold tuning template to system prompt
+2026-03-02 19:53:33,126 - INFO - Sampled model: Azure/gpt-5.2-2025-12-11
+2026-03-02 19:53:33,134 - INFO - [TUNE-TRACK] iter=24 | annotations=3→3 trials=19ok/0fail score=0.9342→0.9497 gain=+0.0155 duration=14.6s params=['r0', 'step0', 'shrink']
+2026-03-02 19:53:33,135 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 2, 'diversity': 4}
+2026-03-02 19:53:33,135 - INFO - New best program e5f68c9c-3b87-477a-a7ee-bae99ff7ccd6 replaces e192a31a-40fb-4940-bf49-4783c6823680 (combined_score: 0.9446 → 0.9497, +0.0050)
+2026-03-02 19:53:33,136 - INFO - Iteration 24: Program e5f68c9c-3b87-477a-a7ee-bae99ff7ccd6 (parent: b142f846-50cc-4b18-a98c-1ca7f9a1395b) completed in 45.51s
+2026-03-02 19:53:33,136 - INFO - Metrics: validity=1.0000, sum_radii=2.5024, target_ratio=0.9497, combined_score=0.9497, eval_time=0.3616
+2026-03-02 19:53:33,136 - INFO - 🌟 New best solution found at iteration 24: e5f68c9c-3b87-477a-a7ee-bae99ff7ccd6
+2026-03-02 19:53:33,178 - INFO - Evaluated program 6fc092b8-6c50-42de-a6be-9f12694cfd72 in 7.24s: validity=1.0000, sum_radii=2.5460, target_ratio=0.9662, combined_score=0.9662, eval_time=3.6207
+2026-03-02 19:53:33,184 - INFO - [TUNE-TRACK] iter=20 | annotations=3→3 trials=19ok/0fail score=0.9470→0.9662 gain=+0.0192 duration=125.5s params=['step0', 'n_passes', 'shrink']
+2026-03-02 19:53:33,186 - INFO - Island 0 MAP-Elites cell improved: {'complexity': 5, 'diversity': 2} (fitness: 0.000 -> 0.966)
+2026-03-02 19:53:33,186 - INFO - New best program 6fc092b8-6c50-42de-a6be-9f12694cfd72 replaces e5f68c9c-3b87-477a-a7ee-bae99ff7ccd6 (combined_score: 0.9497 → 0.9662, +0.0165)
+2026-03-02 19:53:33,186 - INFO - Iteration 20: Program 6fc092b8-6c50-42de-a6be-9f12694cfd72 (parent: e77183de-236c-4824-a069-d3998b2cfa36) completed in 158.42s
+2026-03-02 19:53:33,186 - INFO - Metrics: validity=1.0000, sum_radii=2.5460, target_ratio=0.9662, combined_score=0.9662, eval_time=3.6207
+2026-03-02 19:53:33,186 - INFO - 🌟 New best solution found at iteration 20: 6fc092b8-6c50-42de-a6be-9f12694cfd72
+2026-03-02 19:53:33,186 - INFO - Checkpoint interval reached at iteration 20
+2026-03-02 19:53:33,187 - INFO - Island Status:
+2026-03-02 19:53:33,187 - INFO -  * Island 0: 18 programs, best=0.9662, avg=0.7642, diversity=275.98, gen=23 (best: 6fc092b8-6c50-42de-a6be-9f12694cfd72)
+2026-03-02 19:53:33,187 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 19:53:33,187 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 19:53:33,198 - INFO - Saved database with 24 programs to experiments/tuning_ab_circpack/treatment_run_300/checkpoints/checkpoint_20
+2026-03-02 19:53:33,198 - INFO - Saved best program at checkpoint 20 with metrics: validity=1.0000, sum_radii=2.5460, target_ratio=0.9662, combined_score=0.9662, eval_time=3.6207
+2026-03-02 19:53:33,198 - INFO - Saved checkpoint at iteration 20 to experiments/tuning_ab_circpack/treatment_run_300/checkpoints/checkpoint_20
+2026-03-02 19:53:33,199 - INFO - [TUNE-TRACK] Saved tuning tracker to experiments/tuning_ab_circpack/treatment_run_300/tuning_tracker.json
+2026-03-02 19:53:34,357 - INFO - Evaluated program tune_trial_15 in 5.48s: validity=1.0000, sum_radii=2.4822, target_ratio=0.9420, combined_score=0.9420, eval_time=2.7336
+2026-03-02 19:53:39,305 - INFO - Evaluated program tune_trial_16 in 4.94s: validity=1.0000, sum_radii=2.4596, target_ratio=0.9334, combined_score=0.9334, eval_time=2.4762
+2026-03-02 19:53:45,265 - INFO - HTTP Request: POST https://ete-litellm.ai-models.vpc-int.res.ibm.com/chat/completions "HTTP/1.1 200 OK"
+2026-03-02 19:53:45,707 - INFO - Evaluated program tune_trial_17 in 6.40s: validity=1.0000, sum_radii=2.5291, target_ratio=0.9598, combined_score=0.9598, eval_time=3.2805
+2026-03-02 19:53:46,236 - INFO - Evaluated program tune_baseline in 0.97s: validity=1.0000, sum_radii=2.4468, target_ratio=0.9286, combined_score=0.9286, eval_time=0.4757
+2026-03-02 19:53:46,919 - INFO - Evaluated program tune_trial_0 in 0.68s: validity=1.0000, sum_radii=2.4318, target_ratio=0.9229, combined_score=0.9229, eval_time=0.3413
+2026-03-02 19:53:47,988 - INFO - Evaluated program tune_trial_1 in 1.07s: validity=1.0000, sum_radii=2.4515, target_ratio=0.9304, combined_score=0.9304, eval_time=0.5232
+2026-03-02 19:53:48,697 - INFO - Evaluated program tune_trial_2 in 0.71s: validity=1.0000, sum_radii=2.4685, target_ratio=0.9368, combined_score=0.9368, eval_time=0.3532
+2026-03-02 19:53:49,383 - INFO - Evaluated program tune_trial_3 in 0.68s: validity=1.0000, sum_radii=2.4676, target_ratio=0.9365, combined_score=0.9365, eval_time=0.3335
+2026-03-02 19:53:50,148 - INFO - Evaluated program tune_trial_4 in 0.76s: validity=1.0000, sum_radii=2.3515, target_ratio=0.8924, combined_score=0.8924, eval_time=0.3857
+2026-03-02 19:53:50,851 - INFO - Evaluated program tune_trial_18 in 5.14s: validity=1.0000, sum_radii=2.5304, target_ratio=0.9603, combined_score=0.9603, eval_time=2.5656
+2026-03-02 19:53:50,853 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.9435 → 0.9616 (gain=+0.0182)
+2026-03-02 19:53:50,984 - INFO - Evaluated program tune_trial_5 in 0.83s: validity=1.0000, sum_radii=2.4521, target_ratio=0.9306, combined_score=0.9306, eval_time=0.4148
+2026-03-02 19:53:52,084 - INFO - Evaluated program tune_trial_6 in 1.10s: validity=1.0000, sum_radii=2.4692, target_ratio=0.9371, combined_score=0.9371, eval_time=0.5527
+2026-03-02 19:53:52,947 - INFO - Evaluated program tune_trial_7 in 0.86s: validity=1.0000, sum_radii=2.4371, target_ratio=0.9249, combined_score=0.9249, eval_time=0.4251
+2026-03-02 19:53:54,079 - INFO - Evaluated program tune_trial_8 in 1.13s: validity=1.0000, sum_radii=2.4653, target_ratio=0.9356, combined_score=0.9356, eval_time=0.5646
+2026-03-02 19:53:55,248 - INFO - Evaluated program tune_trial_9 in 1.17s: validity=1.0000, sum_radii=2.3982, target_ratio=0.9101, combined_score=0.9101, eval_time=0.5750
+2026-03-02 19:53:56,183 - INFO - Evaluated program 83272efd-3eca-49f3-a08b-0f31e1736ceb in 5.33s: validity=1.0000, sum_radii=2.5339, target_ratio=0.9616, combined_score=0.9616, eval_time=2.6714
+2026-03-02 19:53:56,190 - INFO - [TUNE-TRACK] iter=22 | annotations=3→3 trials=19ok/0fail score=0.9435→0.9616 gain=+0.0182 duration=111.1s params=['step', 'decay', 'iters']
+2026-03-02 19:53:56,191 - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 2, 'diversity': 2}
+2026-03-02 19:53:56,192 - INFO - Iteration 22: Program 83272efd-3eca-49f3-a08b-0f31e1736ceb (parent: a070c7f2-3934-437c-b358-f5d51242b500) completed in 148.24s
+2026-03-02 19:53:56,192 - INFO - Metrics: validity=1.0000, sum_radii=2.5339, target_ratio=0.9616, combined_score=0.9616, eval_time=2.6714
+2026-03-02 19:53:56,292 - INFO - Evaluated program tune_trial_10 in 1.04s: validity=1.0000, sum_radii=2.4774, target_ratio=0.9402, combined_score=0.9402, eval_time=0.5177
+2026-03-02 19:53:57,350 - INFO - Evaluated program tune_trial_11 in 1.05s: validity=1.0000, sum_radii=2.4635, target_ratio=0.9349, combined_score=0.9349, eval_time=0.5127
+2026-03-02 19:53:58,428 - INFO - Evaluated program tune_trial_12 in 1.08s: validity=1.0000, sum_radii=2.4421, target_ratio=0.9268, combined_score=0.9268, eval_time=0.5391
+2026-03-02 19:53:59,485 - INFO - Evaluated program tune_trial_13 in 1.05s: validity=1.0000, sum_radii=2.4599, target_ratio=0.9335, combined_score=0.9335, eval_time=0.5188
+2026-03-02 19:54:00,584 - INFO - Evaluated program tune_trial_14 in 1.10s: validity=1.0000, sum_radii=2.4431, target_ratio=0.9272, combined_score=0.9272, eval_time=0.5469
+2026-03-02 19:54:01,627 - INFO - Evaluated program tune_trial_15 in 1.04s: validity=1.0000, sum_radii=2.4298, target_ratio=0.9221, combined_score=0.9221, eval_time=0.5241
+2026-03-02 19:54:02,627 - INFO - Evaluated program tune_trial_16 in 1.00s: validity=1.0000, sum_radii=2.4614, target_ratio=0.9341, combined_score=0.9341, eval_time=0.4943
+2026-03-02 19:54:03,414 - INFO - Evaluated program tune_trial_17 in 0.78s: validity=1.0000, sum_radii=2.4298, target_ratio=0.9221, combined_score=0.9221, eval_time=0.3917
+2026-03-02 19:54:04,483 - INFO - Evaluated program tune_trial_18 in 1.07s: validity=1.0000, sum_radii=2.4096, target_ratio=0.9145, combined_score=0.9145, eval_time=0.5328
+2026-03-02 19:54:04,485 - INFO - [TUNING] Optimized 3 params over 19 trials: score 0.9286 → 0.9402 (gain=+0.0116)
+2026-03-02 19:54:05,552 - INFO - Evaluated program fbe4483a-fbaf-4a0e-94af-bb6e93b93596 in 1.07s: validity=1.0000, sum_radii=2.4774, target_ratio=0.9402, combined_score=0.9402, eval_time=0.5433
+2026-03-02 19:54:05,561 - INFO - [TUNE-TRACK] iter=25 | annotations=3→3 trials=19ok/0fail score=0.9286→0.9402 gain=+0.0116 duration=19.2s params=['mix', 'step0', 'shrink']
+2026-03-02 19:54:05,563 - INFO - Iteration 25: Program fbe4483a-fbaf-4a0e-94af-bb6e93b93596 (parent: 61737cbd-97ec-4b19-bddd-27bf2d062a2a) completed in 32.43s
+2026-03-02 19:54:05,563 - INFO - Metrics: validity=1.0000, sum_radii=2.4774, target_ratio=0.9402, combined_score=0.9402, eval_time=0.5433
+2026-03-02 19:54:05,563 - INFO - Checkpoint interval reached at iteration 25
+2026-03-02 19:54:05,564 - INFO - Island Status:
+2026-03-02 19:54:05,564 - INFO -  * Island 0: 20 programs, best=0.9662, avg=0.7829, diversity=275.98, gen=25 (best: 6fc092b8-6c50-42de-a6be-9f12694cfd72)
+2026-03-02 19:54:05,564 - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 19:54:05,564 - INFO -    Island 2: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-03-02 19:54:05,574 - INFO - Saved database with 26 programs to experiments/tuning_ab_circpack/treatment_run_300/checkpoints/checkpoint_25
+2026-03-02 19:54:05,574 - INFO - Saved best program at checkpoint 25 with metrics: validity=1.0000, sum_radii=2.5460, target_ratio=0.9662, combined_score=0.9662, eval_time=3.6207
+2026-03-02 19:54:05,574 - INFO - Saved checkpoint at iteration 25 to experiments/tuning_ab_circpack/treatment_run_300/checkpoints/checkpoint_25
+2026-03-02 19:54:05,575 - INFO - [TUNE-TRACK] Saved tuning tracker to experiments/tuning_ab_circpack/treatment_run_300/tuning_tracker.json
+2026-03-02 19:54:05,575 - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-03-02 19:54:05,575 - INFO - [TUNE-TRACK] Saved tuning tracker to experiments/tuning_ab_circpack/treatment_run_300/tuning_tracker.json
+2026-03-02 19:54:05,583 - INFO - Saved database with 26 programs to experiments/tuning_ab_circpack/treatment_run_300/checkpoints/checkpoint_25
+2026-03-02 19:54:05,584 - INFO - Saved best program at checkpoint 25 with metrics: validity=1.0000, sum_radii=2.5460, target_ratio=0.9662, combined_score=0.9662, eval_time=3.6207
+2026-03-02 19:54:05,584 - INFO - Saved checkpoint at iteration 25 to experiments/tuning_ab_circpack/treatment_run_300/checkpoints/checkpoint_25
+2026-03-02 19:54:05,732 - INFO - Stopped process pool
+2026-03-02 19:54:05,732 - INFO - Using tracked best program: 6fc092b8-6c50-42de-a6be-9f12694cfd72
+2026-03-02 19:54:05,732 - INFO - Evolution complete. Best program has metrics: validity=1.0000, sum_radii=2.5460, target_ratio=0.9662, combined_score=0.9662, eval_time=3.6207
+2026-03-02 19:54:05,733 - INFO - Saved best program to experiments/tuning_ab_circpack/treatment_run_300/best/best_program.py with program info to experiments/tuning_ab_circpack/treatment_run_300/best/best_program_info.json

@@ -1,0 +1,515 @@
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpig6cloyl.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpig6cloyl.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpb0pxw0vy.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpb0pxw0vy.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp_reabygq.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp_reabygq.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpidavklkj.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpidavklkj.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpu7830in0.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpu7830in0.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpeoqo__2p.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpeoqo__2p.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp_393p4yh.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp_393p4yh.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpxid2gar6.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpxid2gar6.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp_xhu1as3.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp_xhu1as3.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpxjixxkd8.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpxjixxkd8.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp08zk91b6.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp08zk91b6.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp2wxz7utx.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp2wxz7utx.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpu2akrlgp.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpu2akrlgp.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp6wcn63v3.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp6wcn63v3.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpqu1fhas1.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpqu1fhas1.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp_xsgwlb7.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp_xsgwlb7.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp6ztoaq5o.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp6ztoaq5o.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpkqfpg44b.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpkqfpg44b.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp5yrholgh.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmp5yrholgh.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpdk_dypm8.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpdk_dypm8.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+Stage 1 evaluation failed: name 'cooling' is not defined
+Traceback (most recent call last):
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 298, in evaluate_stage1
+    result = run_with_timeout(program.run_search, timeout_seconds=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/toslali/Desktop/work/ibm/projects/llm-inference/study/inference-llmd/nsdi/code/openevolve/examples/function_minimization/evaluator.py", line 34, in run_with_timeout
+    result = future.result(timeout=timeout_seconds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/anaconda3/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpf8cjswzi.py", line 62, in run_search
+    x, y, value = search_algorithm()
+                  ^^^^^^^^^^^^^^^^^^
+  File "/var/folders/b_/tj7bkn715835qnq09lbgc4m00000gn/T/tmpf8cjswzi.py", line 47, in search_algorithm
+    temp *= cooling
+            ^^^^^^^
+NameError: name 'cooling' is not defined
+
+
+Evolution complete!
+Best program metrics:
+  runs_successfully: 1.0000
+  value_score: 0.9997
+  distance_score: 0.9992
+  combined_score: 1.4994
+  reliability_score: 1.0000
+
+Latest checkpoint saved at: experiments/tuning_ab_funcmin/treatment_run_301/checkpoints/checkpoint_25
+To resume, use: --checkpoint experiments/tuning_ab_funcmin/treatment_run_301/checkpoints/checkpoint_25

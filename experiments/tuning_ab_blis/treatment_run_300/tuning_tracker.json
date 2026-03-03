@@ -1,0 +1,625 @@
+{
+  "total_iterations_tracked": 24,
+  "total_iterations_with_tuning": 24,
+  "total_trials": 450,
+  "avg_gain_when_tuned": 236.1676,
+  "avg_tuning_duration_s": 315.64,
+  "per_iteration": [
+    {
+      "iteration": 1,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 371.1729521751404,
+      "original_score": -6944.431990866666,
+      "tuned_score": -4479.2818147222215,
+      "gain": 2465.1501761444442,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyFactor": {
+          "was": 0.5,
+          "now": 1.3427352985891388
+        },
+        "cacheBonus": {
+          "was": 0.3,
+          "now": 0.010917842093735919
+        },
+        "kvPenalty": {
+          "was": 0.4,
+          "now": 0.9521858816598432
+        }
+      }
+    },
+    {
+      "iteration": 2,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 340.2379789352417,
+      "original_score": -3864.7373607222225,
+      "tuned_score": -3856.6927461999994,
+      "gain": 8.044614522223128,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyExp": {
+          "was": 1.8,
+          "now": 3.536796208495117
+        },
+        "cacheBoost": {
+          "was": 2.5,
+          "now": 3.6025280004564535
+        },
+        "kvPressureThresh": {
+          "was": 0.7,
+          "now": 0.9473758397779836
+        }
+      }
+    },
+    {
+      "iteration": 3,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 2.8584580421447754,
+      "original_score": -100000.0,
+      "tuned_score": -100000.0,
+      "gain": 0.0,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "kvPressureThreshold": {
+          "was": 0.85,
+          "now": 0.85
+        },
+        "sessionAffinityBoost": {
+          "was": 0.25,
+          "now": 0.25
+        },
+        "loadPenaltyFactor": {
+          "was": 0.03,
+          "now": 0.03
+        }
+      }
+    },
+    {
+      "iteration": 4,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 340.08146119117737,
+      "original_score": -3872.7161298111105,
+      "tuned_score": -3855.6272317111107,
+      "gain": 17.088898099999824,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyFactor": {
+          "was": 1.5,
+          "now": 0.568103373320916
+        },
+        "kvPenalty": {
+          "was": 0.95,
+          "now": 1.8492084324567983
+        },
+        "loadExcessWeight": {
+          "was": 0.8,
+          "now": 0.6708319508012127
+        }
+      }
+    },
+    {
+      "iteration": 5,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 341.1677050590515,
+      "original_score": -3881.761537299998,
+      "tuned_score": -3854.600876855555,
+      "gain": 27.160660444443238,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyScale": {
+          "was": 3.5,
+          "now": 1.91136141318472
+        },
+        "kvPressureThresh": {
+          "was": 0.85,
+          "now": 0.9444610428212714
+        },
+        "cacheSessionBoost": {
+          "was": 1.2,
+          "now": 2.32967621766406
+        }
+      }
+    },
+    {
+      "iteration": 6,
+      "tune_annotations_found": 4,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 367.3220579624176,
+      "original_score": -6677.362818755555,
+      "tuned_score": -4016.4716254333325,
+      "gain": 2660.8911933222225,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyExp": {
+          "was": 3.5368,
+          "now": 2.5014759367275645
+        },
+        "cacheBoost": {
+          "was": 3.6025,
+          "now": 2.4718924251730505
+        },
+        "kvPressureThresh": {
+          "was": 0.9474,
+          "now": 0.47876069039767954
+        }
+      }
+    },
+    {
+      "iteration": 7,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 340.7670159339905,
+      "original_score": -4292.467835377778,
+      "tuned_score": -3955.5223089222222,
+      "gain": 336.94552645555586,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyExp": {
+          "was": 0.8,
+          "now": 1.419824682333884
+        },
+        "cacheBoost": {
+          "was": 1.8,
+          "now": 1.4246260173175715
+        },
+        "kvPressureThresh": {
+          "was": 0.75,
+          "now": 0.7362393163872706
+        }
+      }
+    },
+    {
+      "iteration": 8,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 340.4418029785156,
+      "original_score": -3936.865627944445,
+      "tuned_score": -3878.3294443666664,
+      "gain": 58.5361835777785,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadWeight": {
+          "was": 1.85,
+          "now": 2.361590249907092
+        },
+        "kvThresh": {
+          "was": 0.94,
+          "now": 0.9154048268674861
+        },
+        "queueExtra": {
+          "was": 0.12,
+          "now": 0.29489393732204716
+        }
+      }
+    },
+    {
+      "iteration": 9,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 340.8147027492523,
+      "original_score": -3864.0871079111103,
+      "tuned_score": -3856.440967477777,
+      "gain": 7.64614043333313,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyPower": {
+          "was": 2.8,
+          "now": 3.2117111199121684
+        },
+        "kvThreshold": {
+          "was": 0.88,
+          "now": 0.7271787490526764
+        },
+        "sessionCacheWeight": {
+          "was": 1.5,
+          "now": 1.7629293751407649
+        }
+      }
+    },
+    {
+      "iteration": 10,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 341.07446694374084,
+      "original_score": -3853.8751467666657,
+      "tuned_score": -3853.8751467666657,
+      "gain": 0.0,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyScale": {
+          "was": 1.9,
+          "now": 1.9
+        },
+        "kvPressureThresh": {
+          "was": 0.94,
+          "now": 0.94
+        },
+        "cacheSessionBoost": {
+          "was": 2.3,
+          "now": 2.3
+        }
+      }
+    },
+    {
+      "iteration": 11,
+      "tune_annotations_found": 1,
+      "tune_annotations_honored": 1,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.941451072692871,
+      "original_score": -100000.0,
+      "tuned_score": -100000.0,
+      "gain": 0.0,
+      "trials_completed": 13,
+      "trials_failed": 0,
+      "param_changes": {
+        "kvPressureThreshold": {
+          "was": 0.85,
+          "now": 0.85
+        }
+      }
+    },
+    {
+      "iteration": 12,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 343.1086950302124,
+      "original_score": -3853.8751467666657,
+      "tuned_score": -3853.8751467666657,
+      "gain": 0.0,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyScale": {
+          "was": 1.9,
+          "now": 1.9
+        },
+        "kvPressureThresh": {
+          "was": 0.94,
+          "now": 0.94
+        },
+        "cacheSessionBoost": {
+          "was": 2.3,
+          "now": 2.3
+        }
+      }
+    },
+    {
+      "iteration": 13,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 342.38790130615234,
+      "original_score": -3853.8751467666657,
+      "tuned_score": -3853.135256766666,
+      "gain": 0.7398899999998321,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyScale": {
+          "was": 1.9,
+          "now": 1.8791715239988798
+        },
+        "kvPressureThresh": {
+          "was": 0.94,
+          "now": 0.8808910066285501
+        },
+        "cacheSessionBoost": {
+          "was": 2.3,
+          "now": 3.9769879389072704
+        }
+      }
+    },
+    {
+      "iteration": 14,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 342.89929127693176,
+      "original_score": -3861.942556455555,
+      "tuned_score": -3856.3694063777775,
+      "gain": 5.573150077777427,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyScale": {
+          "was": 2.0,
+          "now": 1.913366666191326
+        },
+        "kvPressureThresh": {
+          "was": 0.85,
+          "now": 0.8330408015168566
+        },
+        "cacheSessionBoost": {
+          "was": 2.5,
+          "now": 1.6043139945330787
+        }
+      }
+    },
+    {
+      "iteration": 15,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 342.32190704345703,
+      "original_score": -3864.8843037333327,
+      "tuned_score": -3856.717205033333,
+      "gain": 8.16709869999977,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyScale": {
+          "was": 2.0,
+          "now": 1.2025734554341878
+        },
+        "kvPressureThresh": {
+          "was": 0.88,
+          "now": 0.810117127474056
+        },
+        "cacheSessionBoost": {
+          "was": 2.5,
+          "now": 3.572326877131935
+        }
+      }
+    },
+    {
+      "iteration": 16,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 342.2790150642395,
+      "original_score": -3863.1128809555535,
+      "tuned_score": -3859.6959143999984,
+      "gain": 3.4169665555550637,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyScale": {
+          "was": 1.85,
+          "now": 2.193058310535175
+        },
+        "kvPressureThresh": {
+          "was": 0.88,
+          "now": 0.9469329494959352
+        },
+        "cacheSessionBoost": {
+          "was": 3.5,
+          "now": 3.8266843364295253
+        }
+      }
+    },
+    {
+      "iteration": 17,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 340.2150168418884,
+      "original_score": -3869.8819850555556,
+      "tuned_score": -3854.1067363888883,
+      "gain": 15.775248666667267,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyScale": {
+          "was": 1.9,
+          "now": 2.073362621904534
+        },
+        "queueWeight": {
+          "was": 0.15,
+          "now": 0.1494758530978402
+        },
+        "kvPressureThresh": {
+          "was": 0.88,
+          "now": 0.7592707750246913
+        }
+      }
+    },
+    {
+      "iteration": 18,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 342.4416832923889,
+      "original_score": -3854.311110877777,
+      "tuned_score": -3853.5133757444446,
+      "gain": 0.7977351333324805,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyScale": {
+          "was": 1.9,
+          "now": 1.9114605043471409
+        },
+        "kvPressureThresh": {
+          "was": 0.92,
+          "now": 0.9154488118890904
+        },
+        "cacheSessionBoost": {
+          "was": 2.5,
+          "now": 2.4467690223198435
+        }
+      }
+    },
+    {
+      "iteration": 19,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 341.76208996772766,
+      "original_score": -3863.1128809555535,
+      "tuned_score": -3858.4977592666655,
+      "gain": 4.615121688887939,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyScale": {
+          "was": 1.85,
+          "now": 2.160629499340593
+        },
+        "kvPressureThresh": {
+          "was": 0.88,
+          "now": 0.8507239218626125
+        },
+        "cacheSessionBoost": {
+          "was": 3.5,
+          "now": 0.6114316096898119
+        }
+      }
+    },
+    {
+      "iteration": 20,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 341.87898683547974,
+      "original_score": -3870.8866423222216,
+      "tuned_score": -3860.7583698,
+      "gain": 10.128272522221778,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyScale": {
+          "was": 1.88,
+          "now": 2.0928651548515425
+        },
+        "kvPressureThresh": {
+          "was": 0.88,
+          "now": 0.8202432008477362
+        },
+        "cacheSessionBoost": {
+          "was": 3.98,
+          "now": 3.153498223808908
+        }
+      }
+    },
+    {
+      "iteration": 21,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 341.7033452987671,
+      "original_score": -3874.797945022221,
+      "tuned_score": -3857.003795311111,
+      "gain": 17.794149711110094,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyScale": {
+          "was": 2.1,
+          "now": 1.3755773320985454
+        },
+        "kvPressureThresh": {
+          "was": 0.9,
+          "now": 0.8575141013169232
+        },
+        "queuePenaltyW": {
+          "was": 0.12,
+          "now": 0.12984493938678324
+        }
+      }
+    },
+    {
+      "iteration": 22,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 341.7233159542084,
+      "original_score": -3869.8643730777767,
+      "tuned_score": -3857.158878655556,
+      "gain": 12.705494422220909,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyScale": {
+          "was": 1.85,
+          "now": 2.3106309329369528
+        },
+        "kvPressureThresh": {
+          "was": 0.88,
+          "now": 0.9475614566637571
+        },
+        "cacheSessionBoost": {
+          "was": 3.5,
+          "now": 3.0957587189275753
+        }
+      }
+    },
+    {
+      "iteration": 23,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 342.9595432281494,
+      "original_score": -3865.5510097999995,
+      "tuned_score": -3861.2258739666654,
+      "gain": 4.325135833334116,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyScale": {
+          "was": 1.9,
+          "now": 2.286496264920905
+        },
+        "kvPressureThresh": {
+          "was": 0.87,
+          "now": 0.8491781274528479
+        },
+        "cacheSessionBoost": {
+          "was": 3.2,
+          "now": 2.05741969535201
+        }
+      }
+    },
+    {
+      "iteration": 25,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 341.85971117019653,
+      "original_score": -3864.0933662666666,
+      "tuned_score": -3861.5736405777775,
+      "gain": 2.519725688889139,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "loadPenaltyScale": {
+          "was": 1.88,
+          "now": 2.0387098496957923
+        },
+        "kvPressureThresh": {
+          "was": 0.88,
+          "now": 0.9339510739644156
+        },
+        "cacheSessionBoost": {
+          "was": 3.5,
+          "now": 3.2977090810912064
+        }
+      }
+    }
+  ]
+}

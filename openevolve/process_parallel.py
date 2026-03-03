@@ -34,6 +34,7 @@ class SerializableResult:
     iteration: int = 0
     error: Optional[str] = None
     hypothesis_stats: Optional[Dict[str, Any]] = None
+    tuning_stats: Optional[Dict[str, Any]] = None
 
 
 def _worker_init(config_dict: dict, evaluation_file: str, parent_env: dict = None) -> None:
@@ -68,6 +69,7 @@ def _worker_init(config_dict: dict, evaluation_file: str, parent_env: dict = Non
         LLMConfig,
         LLMModelConfig,
         PromptConfig,
+        TuningConfig,
     )
 
     # Reconstruct model objects
@@ -84,16 +86,18 @@ def _worker_init(config_dict: dict, evaluation_file: str, parent_env: dict = Non
     prompt_config = PromptConfig(**config_dict["prompt"])
     database_config = DatabaseConfig(**config_dict["database"])
     evaluator_config = EvaluatorConfig(**config_dict["evaluator"])
+    tuning_config = TuningConfig(**config_dict.get("tuning", {}))
 
     _worker_config = Config(
         llm=llm_config,
         prompt=prompt_config,
         database=database_config,
         evaluator=evaluator_config,
+        tuning=tuning_config,
         **{
             k: v
             for k, v in config_dict.items()
-            if k not in ["llm", "prompt", "database", "evaluator"]
+            if k not in ["llm", "prompt", "database", "evaluator", "tuning"]
         },
     )
     _worker_evaluation_file = evaluation_file
@@ -191,6 +195,7 @@ def _run_iteration_worker(
             program_artifacts=parent_artifacts,
             feature_dimensions=db_snapshot.get("feature_dimensions", []),
             hypothesis_driven=_worker_config.hypothesis_driven,
+            tuning_enabled=_worker_config.tuning.enabled,
         )
 
         iteration_start = time.time()
@@ -282,6 +287,27 @@ def _run_iteration_worker(
                 iteration=iteration,
             )
 
+        # Tune thresholds if enabled
+        tuning_stats_dict = None
+        if _worker_config.tuning.enabled:
+            from openevolve.tuning import tune_program, IterationTuningStats
+
+            try:
+                child_code, tuning_stats = asyncio.run(
+                    tune_program(
+                        child_code,
+                        _worker_evaluator.evaluate_program,
+                        _worker_config.tuning,
+                    )
+                )
+                tuning_stats.iteration = iteration
+                tuning_stats_dict = _asdict(tuning_stats)
+            except ImportError as e:
+                logger.error(f"[TUNING] {e}")
+                return SerializableResult(error=f"Tuning import error: {e}", iteration=iteration)
+            except Exception as e:
+                logger.warning(f"[TUNING] Tuning failed, using original code: {e}")
+
         # Evaluate the child program
         import uuid
 
@@ -327,6 +353,7 @@ def _run_iteration_worker(
             artifacts=artifacts,
             iteration=iteration,
             hypothesis_stats=_asdict(hypo_stats),
+            tuning_stats=tuning_stats_dict,
         )
 
     except Exception as e:
@@ -362,6 +389,10 @@ class ProcessParallelController:
         # Hypothesis pipeline tracker (treatment runs only, cheap no-op for control)
         from openevolve.hypothesis import HypothesisTracker
         self.hypothesis_tracker = HypothesisTracker() if config.hypothesis_driven else None
+
+        # Tuning pipeline tracker
+        from openevolve.tuning import TuningTracker
+        self.tuning_tracker = TuningTracker() if config.tuning.enabled else None
 
         logger.info(f"Initialized process parallel controller with {self.num_workers} workers")
 
@@ -399,6 +430,7 @@ class ProcessParallelController:
             "hypothesis_driven": config.hypothesis_driven,
             "language": config.language,
             "file_suffix": self.file_suffix,
+            "tuning": asdict(config.tuning),
         }
 
     def start(self) -> None:
@@ -556,6 +588,12 @@ class ProcessParallelController:
                     stats = IterationHypothesisStats(**result.hypothesis_stats)
                     self.hypothesis_tracker.record(stats)
 
+                # Record tuning tracking stats
+                if self.tuning_tracker and result.tuning_stats:
+                    from openevolve.tuning import IterationTuningStats
+                    tstats = IterationTuningStats(**result.tuning_stats)
+                    self.tuning_tracker.record(tstats)
+
                 if result.error:
                     logger.warning(f"Iteration {completed_iteration} error: {result.error}")
                 elif result.child_program_dict:
@@ -680,6 +718,10 @@ class ProcessParallelController:
                         if self.hypothesis_tracker and self.database.config.db_path:
                             tracker_path = Path(self.database.config.db_path).parent / "hypothesis_tracker.json"
                             self.hypothesis_tracker.save(tracker_path)
+                        # Save tuning tracker alongside checkpoint
+                        if self.tuning_tracker and self.database.config.db_path:
+                            tuning_path = Path(self.database.config.db_path).parent / "tuning_tracker.json"
+                            self.tuning_tracker.save(tuning_path)
 
                     # Check target score
                     if target_score is not None and child_program.metrics:
@@ -769,11 +811,17 @@ class ProcessParallelController:
                         next_iteration += 1
                         break  # Only submit one iteration per completion to maintain balance
 
-        # Handle shutdown
-        if self.shutdown_event.is_set():
-            logger.info("Shutdown requested, canceling remaining evaluations...")
+        # Cancel any remaining pending futures to avoid hanging during shutdown
+        if pending_futures:
+            n_pending = len(pending_futures)
+            logger.info(f"Canceling {n_pending} remaining pending futures...")
             for future in pending_futures.values():
                 future.cancel()
+            pending_futures.clear()
+
+        # Handle shutdown
+        if self.shutdown_event.is_set():
+            logger.info("Shutdown requested")
 
         # Log completion reason
         if self.early_stopping_triggered:
@@ -787,6 +835,11 @@ class ProcessParallelController:
         if self.hypothesis_tracker and self.database.config.db_path:
             tracker_path = Path(self.database.config.db_path).parent / "hypothesis_tracker.json"
             self.hypothesis_tracker.save(tracker_path)
+
+        # Save final tuning tracker
+        if self.tuning_tracker and self.database.config.db_path:
+            tuning_path = Path(self.database.config.db_path).parent / "tuning_tracker.json"
+            self.tuning_tracker.save(tuning_path)
 
         return self.database.get_best_program()
 

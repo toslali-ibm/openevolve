@@ -30,6 +30,12 @@ TASK_CONFIGS = {
         "treatment_config": "examples/blis_router/config_experiment_treatment.yaml",
         "control_config": "examples/blis_router/config_experiment_control.yaml",
     },
+    "blis_router_tuning": {
+        "initial_program": "examples/blis_router/initial_program.py",
+        "evaluator": "examples/blis_router/evaluator.py",
+        "treatment_config": "examples/blis_router/config_tuning_treatment.yaml",
+        "control_config": "examples/blis_router/config_tuning_control.yaml",
+    },
     "function_minimization": {
         "initial_program": "examples/function_minimization/initial_program.py",
         "evaluator": "examples/function_minimization/evaluator.py",
@@ -59,6 +65,12 @@ TASK_CONFIGS = {
         "evaluator": "examples/rust_adaptive_sort/evaluator.py",
         "treatment_config": "examples/rust_adaptive_sort/config_experiment_treatment.yaml",
         "control_config": "examples/rust_adaptive_sort/config_experiment_control.yaml",
+    },
+    "circle_packing_tuning": {
+        "initial_program": "examples/circle_packing/initial_program.py",
+        "evaluator": "examples/circle_packing/evaluator.py",
+        "treatment_config": "examples/circle_packing/config_tuning_treatment.yaml",
+        "control_config": "examples/circle_packing/config_tuning_control.yaml",
     },
     "function_minimization_tuning": {
         "initial_program": "examples/function_minimization/initial_program.py",
@@ -98,7 +110,7 @@ def run_single(task: str, condition: str, seed: int, output_dir: Path, iteration
     env["OPENEVOLVE_OUTPUT_DIR"] = str(run_dir)
 
     print(f"\nStarting {condition} run seed={seed} ({iterations} iters) -> {run_dir}")
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=3600, env=env)
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=14400, env=env)
 
     # Save stdout/stderr for debugging regardless of outcome
     (run_dir / "experiment_stdout.txt").write_text(result.stdout)

@@ -1,0 +1,557 @@
+{
+  "total_iterations_tracked": 22,
+  "total_iterations_with_tuning": 22,
+  "total_trials": 400,
+  "avg_gain_when_tuned": 0.0436,
+  "avg_tuning_duration_s": 39.28,
+  "per_iteration": [
+    {
+      "iteration": 2,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.8258728981018066,
+      "original_score": 0.0,
+      "tuned_score": 0.0,
+      "gain": 0.0,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "row_spacing": {
+          "was": 0.185,
+          "now": 0.185
+        },
+        "col_spacing": {
+          "was": 0.185,
+          "now": 0.185
+        },
+        "hex_offset": {
+          "was": 0.48,
+          "now": 0.48
+        }
+      }
+    },
+    {
+      "iteration": 1,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 12.184756994247437,
+      "original_score": 0.796931056293485,
+      "tuned_score": 0.7969639468690701,
+      "gain": 3.2890575585087234e-05,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "r_init": {
+          "was": 0.094,
+          "now": 0.08687692256377821
+        },
+        "n_iters": {
+          "was": 200,
+          "now": 491
+        },
+        "growth": {
+          "was": 0.85,
+          "now": 0.6157944956152855
+        }
+      }
+    },
+    {
+      "iteration": 6,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 3.113706111907959,
+      "original_score": 0.5149303102976545,
+      "tuned_score": 0.7128652751423149,
+      "gain": 0.19793496484466044,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "m": {
+          "was": 0.06,
+          "now": 0.06076919608979285
+        },
+        "dx": {
+          "was": 0.18,
+          "now": 0.14729000828640532
+        },
+        "dy": {
+          "was": 0.155,
+          "now": 0.20117113031538575
+        }
+      }
+    },
+    {
+      "iteration": 7,
+      "tune_annotations_found": 1,
+      "tune_annotations_honored": 1,
+      "tuning_ran": true,
+      "tuning_duration_s": 2.086552143096924,
+      "original_score": 0.7400379506641362,
+      "tuned_score": 0.8811191346634201,
+      "gain": 0.14108118399928382,
+      "trials_completed": 13,
+      "trials_failed": 0,
+      "param_changes": {
+        "r": {
+          "was": 0.0925,
+          "now": 0.08928288086700702
+        }
+      }
+    },
+    {
+      "iteration": 8,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 3.2765719890594482,
+      "original_score": 0.4378349123845357,
+      "tuned_score": 0.4804583900512067,
+      "gain": 0.04262347766667102,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "s": {
+          "was": 0.92,
+          "now": 0.852355777002442
+        },
+        "ay": {
+          "was": 1.0,
+          "now": 0.9223892181635891
+        },
+        "n_iters": {
+          "was": 220,
+          "now": 120
+        }
+      }
+    },
+    {
+      "iteration": 10,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 16.28762698173523,
+      "original_score": 0.6187864598763112,
+      "tuned_score": 0.7138126727420419,
+      "gain": 0.09502621286573065,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "step": {
+          "was": 0.008,
+          "now": 0.004012654838343708
+        },
+        "n_outer": {
+          "was": 150,
+          "now": 90
+        },
+        "growth": {
+          "was": 0.7,
+          "now": 0.8515810952140944
+        }
+      }
+    },
+    {
+      "iteration": 9,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 66.86347699165344,
+      "original_score": 0.7721006024845879,
+      "tuned_score": 0.8263280094984722,
+      "gain": 0.05422740701388429,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "step_size": {
+          "was": 0.025,
+          "now": 0.047764005911605546
+        },
+        "n_iters": {
+          "was": 400,
+          "now": 734
+        },
+        "temp": {
+          "was": 0.003,
+          "now": 0.004273950113625575
+        }
+      }
+    },
+    {
+      "iteration": 12,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 12.684742212295532,
+      "original_score": 0.9045535150154038,
+      "tuned_score": 0.9348210027995577,
+      "gain": 0.03026748778415389,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "step0": {
+          "was": 0.03,
+          "now": 0.05987738030737749
+        },
+        "n_passes": {
+          "was": 4,
+          "now": 6
+        },
+        "shrink": {
+          "was": 0.55,
+          "now": 0.47656027736181245
+        }
+      }
+    },
+    {
+      "iteration": 13,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 3.3085999488830566,
+      "original_score": 0.348450347881088,
+      "tuned_score": 0.555770082226439,
+      "gain": 0.207319734345351,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "dx": {
+          "was": 0.1473,
+          "now": 0.2139877597101143
+        },
+        "dy": {
+          "was": 0.2012,
+          "now": 0.16963527774962311
+        },
+        "squish_y": {
+          "was": 1.0,
+          "now": 0.9009809263913529
+        }
+      }
+    },
+    {
+      "iteration": 15,
+      "tune_annotations_found": 4,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.6851952075958252,
+      "original_score": 0.0,
+      "tuned_score": 0.021645589222374754,
+      "gain": 0.021645589222374754,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "m": {
+          "was": 0.0608,
+          "now": 0.054643678373818144
+        },
+        "dx": {
+          "was": 0.1473,
+          "now": 0.18972355621598602
+        },
+        "dy": {
+          "was": 0.2012,
+          "now": 0.21706788664986654
+        }
+      }
+    },
+    {
+      "iteration": 16,
+      "tune_annotations_found": 1,
+      "tune_annotations_honored": 1,
+      "tuning_ran": true,
+      "tuning_duration_s": 2.3864259719848633,
+      "original_score": 0.5398114352286177,
+      "tuned_score": 0.5955796671113209,
+      "gain": 0.05576823188270319,
+      "trials_completed": 13,
+      "trials_failed": 0,
+      "param_changes": {
+        "r_init": {
+          "was": 0.089,
+          "now": 0.09317936827384256
+        }
+      }
+    },
+    {
+      "iteration": 17,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 14.216695070266724,
+      "original_score": 0.9360649805876237,
+      "tuned_score": 0.94069076559764,
+      "gain": 0.0046257850100163145,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "step0": {
+          "was": 0.06,
+          "now": 0.051189542885830955
+        },
+        "n_passes": {
+          "was": 6,
+          "now": 8
+        },
+        "shrink": {
+          "was": 0.48,
+          "now": 0.6941601951477202
+        }
+      }
+    },
+    {
+      "iteration": 14,
+      "tune_annotations_found": 2,
+      "tune_annotations_honored": 2,
+      "tuning_ran": true,
+      "tuning_duration_s": 85.95083117485046,
+      "original_score": 0.9333730171230966,
+      "tuned_score": 0.9424007941370095,
+      "gain": 0.009027777013912885,
+      "trials_completed": 16,
+      "trials_failed": 0,
+      "param_changes": {
+        "step": {
+          "was": 0.006,
+          "now": 0.01832680087197672
+        },
+        "decay": {
+          "was": 0.985,
+          "now": 0.9676811435844987
+        }
+      }
+    },
+    {
+      "iteration": 3,
+      "tune_annotations_found": 2,
+      "tune_annotations_honored": 2,
+      "tuning_ran": true,
+      "tuning_duration_s": 275.51916098594666,
+      "original_score": 0.941172927262125,
+      "tuned_score": 0.9429835463836449,
+      "gain": 0.0018106191215199186,
+      "trials_completed": 16,
+      "trials_failed": 0,
+      "param_changes": {
+        "r": {
+          "was": 0.098,
+          "now": 0.10840488086470416
+        },
+        "step": {
+          "was": 0.003,
+          "now": 0.0015230478505344528
+        }
+      }
+    },
+    {
+      "iteration": 18,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 13.167513132095337,
+      "original_score": 0.9325651623023695,
+      "tuned_score": 0.9431503547748745,
+      "gain": 0.010585192472505,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "step0": {
+          "was": 0.055,
+          "now": 0.06924530071081984
+        },
+        "n_passes": {
+          "was": 7,
+          "now": 8
+        },
+        "shrink": {
+          "was": 0.5,
+          "now": 0.6097578201967458
+        }
+      }
+    },
+    {
+      "iteration": 21,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 16.024533987045288,
+      "original_score": 0.9296009376277463,
+      "tuned_score": 0.9446452469110589,
+      "gain": 0.015044309283312574,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "step0": {
+          "was": 0.058,
+          "now": 0.060404250495255954
+        },
+        "n_passes": {
+          "was": 7,
+          "now": 9
+        },
+        "shrink": {
+          "was": 0.5,
+          "now": 0.7666046610400181
+        }
+      }
+    },
+    {
+      "iteration": 19,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 55.295793294906616,
+      "original_score": 0.9358869591354778,
+      "tuned_score": 0.9434986003363854,
+      "gain": 0.007611641200907626,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "step0": {
+          "was": 0.055,
+          "now": 0.07124733127615966
+        },
+        "n_passes": {
+          "was": 8,
+          "now": 9
+        },
+        "shrink": {
+          "was": 0.52,
+          "now": 0.6294717333320776
+        }
+      }
+    },
+    {
+      "iteration": 23,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 7.808446884155273,
+      "original_score": 0.9193583483414094,
+      "tuned_score": 0.9193583483414094,
+      "gain": 0.0,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "step0": {
+          "was": 0.0599,
+          "now": 0.0599
+        },
+        "n_passes": {
+          "was": 6,
+          "now": 6
+        },
+        "shrink": {
+          "was": 0.4766,
+          "now": 0.4766
+        }
+      }
+    },
+    {
+      "iteration": 24,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 14.638898849487305,
+      "original_score": 0.9341550870525958,
+      "tuned_score": 0.949678791298213,
+      "gain": 0.01552370424561722,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "r0": {
+          "was": 0.0893,
+          "now": 0.09218607623531568
+        },
+        "step0": {
+          "was": 0.065,
+          "now": 0.08835590847314523
+        },
+        "shrink": {
+          "was": 0.62,
+          "now": 0.5633872387770126
+        }
+      }
+    },
+    {
+      "iteration": 20,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 125.45962810516357,
+      "original_score": 0.9470261770468484,
+      "tuned_score": 0.9662175665280051,
+      "gain": 0.019191389481156618,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "step0": {
+          "was": 0.06,
+          "now": 0.11095368458070447
+        },
+        "n_passes": {
+          "was": 8,
+          "now": 12
+        },
+        "shrink": {
+          "was": 0.55,
+          "now": 0.6046270945984343
+        }
+      }
+    },
+    {
+      "iteration": 22,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 111.05768895149231,
+      "original_score": 0.9434616526711187,
+      "tuned_score": 0.9616275162498765,
+      "gain": 0.018165863578757824,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "step": {
+          "was": 0.018,
+          "now": 0.029815561934784598
+        },
+        "decay": {
+          "was": 0.965,
+          "now": 0.9398769539196369
+        },
+        "iters": {
+          "was": 90,
+          "now": 113
+        }
+      }
+    },
+    {
+      "iteration": 25,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 19.217889070510864,
+      "original_score": 0.9285773194066629,
+      "tuned_score": 0.9401708768143668,
+      "gain": 0.011593557407703958,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "mix": {
+          "was": 0.35,
+          "now": 0.30848923278938356
+        },
+        "step0": {
+          "was": 0.06,
+          "now": 0.0587020950476967
+        },
+        "shrink": {
+          "was": 0.72,
+          "now": 0.5513287755226882
+        }
+      }
+    }
+  ]
+}

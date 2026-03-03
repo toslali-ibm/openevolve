@@ -1,0 +1,659 @@
+{
+  "total_iterations_tracked": 25,
+  "total_iterations_with_tuning": 25,
+  "total_trials": 475,
+  "avg_gain_when_tuned": 0.2441,
+  "avg_tuning_duration_s": 1.09,
+  "per_iteration": [
+    {
+      "iteration": 3,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.1151111125946045,
+      "original_score": 1.479236639772114,
+      "tuned_score": 1.479236639772114,
+      "gain": 0.0,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.0,
+          "now": 1.0
+        },
+        "cooling": {
+          "was": 0.995,
+          "now": 0.995
+        },
+        "step_size": {
+          "was": 0.5,
+          "now": 0.5
+        }
+      }
+    },
+    {
+      "iteration": 1,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.1492559909820557,
+      "original_score": 1.4628075221419075,
+      "tuned_score": 1.4925838413653634,
+      "gain": 0.029776319223455916,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.0,
+          "now": 2.836930744207787
+        },
+        "cooling": {
+          "was": 0.995,
+          "now": 0.9732900252577096
+        },
+        "step_size": {
+          "was": 0.5,
+          "now": 0.3778995301987326
+        }
+      }
+    },
+    {
+      "iteration": 2,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.2699542045593262,
+      "original_score": 1.3403138040345197,
+      "tuned_score": 1.467861232773192,
+      "gain": 0.1275474287386722,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.0,
+          "now": 2.676458514115438
+        },
+        "cooling": {
+          "was": 0.995,
+          "now": 0.9756198004535025
+        },
+        "step_size": {
+          "was": 0.5,
+          "now": 1.6217643966971542
+        }
+      }
+    },
+    {
+      "iteration": 4,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.1988861560821533,
+      "original_score": 1.354462213978267,
+      "tuned_score": 1.4723009163701388,
+      "gain": 0.11783870239187189,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.0,
+          "now": 2.986081159363539
+        },
+        "cooling": {
+          "was": 0.995,
+          "now": 0.994119685798299
+        },
+        "step_size": {
+          "was": 0.5,
+          "now": 1.0679125023805265
+        }
+      }
+    },
+    {
+      "iteration": 6,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.0673298835754395,
+      "original_score": 1.3566582017684718,
+      "tuned_score": 1.4766496063909056,
+      "gain": 0.11999140462243374,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.0,
+          "now": 0.5624694135894807
+        },
+        "cooling": {
+          "was": 0.995,
+          "now": 0.9815723902715182
+        },
+        "step_size": {
+          "was": 0.5,
+          "now": 1.1978275632004511
+        }
+      }
+    },
+    {
+      "iteration": 5,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.0578539371490479,
+      "original_score": 1.3549606751299348,
+      "tuned_score": 1.4669502663413203,
+      "gain": 0.11198959121138552,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 1.0,
+          "now": 1.223876522601888
+        },
+        "cooling": {
+          "was": 0.995,
+          "now": 0.9754797810323659
+        },
+        "step_size": {
+          "was": 0.5,
+          "now": 1.6538671839064731
+        }
+      }
+    },
+    {
+      "iteration": 7,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.8319728374481201,
+      "original_score": 1.3522560872622793,
+      "tuned_score": 1.4763611730547268,
+      "gain": 0.1241050857924475,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp_start": {
+          "was": 2.0,
+          "now": 5.846815031689633
+        },
+        "cooling_factor": {
+          "was": 0.99,
+          "now": 0.9939124335931389
+        },
+        "step_sd": {
+          "was": 0.8,
+          "now": 0.2929443779001106
+        }
+      }
+    },
+    {
+      "iteration": 10,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.6260700225830078,
+      "original_score": 1.4949089593915452,
+      "tuned_score": 1.496571813055784,
+      "gain": 0.0016628536642386837,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "pop_size": {
+          "was": 12,
+          "now": 5
+        },
+        "mutation_rate": {
+          "was": 0.7,
+          "now": 0.390440055019478
+        },
+        "step_scale": {
+          "was": 1.5,
+          "now": 0.9818013200588419
+        }
+      }
+    },
+    {
+      "iteration": 9,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.0347728729248047,
+      "original_score": 1.0640999216607445,
+      "tuned_score": 1.4745974392290315,
+      "gain": 0.410497517568287,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 2.6765,
+          "now": 0.4027533476739015
+        },
+        "cooling": {
+          "was": 0.9756,
+          "now": 0.9672336675889556
+        },
+        "step_size": {
+          "was": 1.6218,
+          "now": 1.7021110890632603
+        }
+      }
+    },
+    {
+      "iteration": 8,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.42800092697143555,
+      "original_score": 1.1991891397303942,
+      "tuned_score": 1.4409835697741147,
+      "gain": 0.24179443004372048,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "initial_temp": {
+          "was": 2.8369,
+          "now": 3.205256610220416
+        },
+        "cooling_rate": {
+          "was": 0.9733,
+          "now": 0.9982063494814669
+        },
+        "restart_probability": {
+          "was": 0.1,
+          "now": 0.37612898510405024
+        }
+      }
+    },
+    {
+      "iteration": 13,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.9895238876342773,
+      "original_score": 1.467379446467812,
+      "tuned_score": 1.467379446467812,
+      "gain": 0.0,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 2.5,
+          "now": 2.5
+        },
+        "cooling": {
+          "was": 0.98,
+          "now": 0.98
+        },
+        "step_size": {
+          "was": 1.5,
+          "now": 1.5
+        }
+      }
+    },
+    {
+      "iteration": 12,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.921349048614502,
+      "original_score": 0.5010893841717489,
+      "tuned_score": 1.3638399020260854,
+      "gain": 0.8627505178543365,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 2.5,
+          "now": 1.2533798050801601
+        },
+        "cooling": {
+          "was": 0.98,
+          "now": 0.993037764091039
+        },
+        "s_init": {
+          "was": 1.5,
+          "now": 2.4979307682769
+        }
+      }
+    },
+    {
+      "iteration": 11,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.06122088432312012,
+      "original_score": 0.0,
+      "tuned_score": 0.0,
+      "gain": 0.0,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "initial_temp": {
+          "was": 2.9861,
+          "now": 2.9861
+        },
+        "cooling_rate": {
+          "was": 0.9941,
+          "now": 0.9941
+        },
+        "step_scale_factor": {
+          "was": 1.0679,
+          "now": 1.0679
+        }
+      }
+    },
+    {
+      "iteration": 15,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.7575881481170654,
+      "original_score": 1.4377363089729858,
+      "tuned_score": 1.4877586924774344,
+      "gain": 0.05002238350444865,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 0.5625,
+          "now": 1.6872153638262999
+        },
+        "cooling": {
+          "was": 0.9816,
+          "now": 0.9965949666638021
+        },
+        "initial_perturbation_scale": {
+          "was": 1.1978,
+          "now": 1.0937352764405612
+        }
+      }
+    },
+    {
+      "iteration": 16,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.6779670715332031,
+      "original_score": 1.0224761708447954,
+      "tuned_score": 1.484198072589003,
+      "gain": 0.4617219017442076,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "initial_temp": {
+          "was": 1.2239,
+          "now": 0.6020776317389578
+        },
+        "cooling_rate": {
+          "was": 0.9755,
+          "now": 0.9989987438893199
+        },
+        "restart_probability": {
+          "was": 0.3,
+          "now": 0.24166019070176858
+        }
+      }
+    },
+    {
+      "iteration": 14,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.9309751987457275,
+      "original_score": 0.5010879964977201,
+      "tuned_score": 1.498386267840178,
+      "gain": 0.997298271342458,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "pop_size": {
+          "was": 5,
+          "now": 23
+        },
+        "mutation_rate": {
+          "was": 0.3904,
+          "now": 0.5580355407131071
+        },
+        "step_scale": {
+          "was": 0.9818,
+          "now": 0.7341607024118217
+        }
+      }
+    },
+    {
+      "iteration": 17,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.032209873199463,
+      "original_score": 1.4644913235623775,
+      "tuned_score": 1.4939764003435143,
+      "gain": 0.029485076781136765,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "temp": {
+          "was": 2.5,
+          "now": 2.533964577687374
+        },
+        "cooling": {
+          "was": 0.98,
+          "now": 0.9849322153083817
+        },
+        "step_size": {
+          "was": 1.5,
+          "now": 0.14400955766504922
+        }
+      }
+    },
+    {
+      "iteration": 18,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.8393969535827637,
+      "original_score": 0.9795226323427089,
+      "tuned_score": 1.4868748087874688,
+      "gain": 0.5073521764447599,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "initial_temp": {
+          "was": 2.9861,
+          "now": 0.1945169766517837
+        },
+        "cooling_rate": {
+          "was": 0.9941,
+          "now": 0.992294360957036
+        },
+        "restart_probability": {
+          "was": 0.1,
+          "now": 0.39531349665031107
+        }
+      }
+    },
+    {
+      "iteration": 19,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.7674627304077148,
+      "original_score": 1.4244222971451057,
+      "tuned_score": 1.4623933868609524,
+      "gain": 0.03797108971584673,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "initial_temp": {
+          "was": 3.0,
+          "now": 8.311078427398003
+        },
+        "cooling_rate": {
+          "was": 0.995,
+          "now": 0.9981895592551567
+        },
+        "global_restart_base_prob": {
+          "was": 0.2,
+          "now": 0.2896856170719158
+        }
+      }
+    },
+    {
+      "iteration": 21,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.3188931941986084,
+      "original_score": 1.4904071769786298,
+      "tuned_score": 1.498537002427808,
+      "gain": 0.008129825449178174,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "pop_size": {
+          "was": 12,
+          "now": 20
+        },
+        "mutation_rate": {
+          "was": 0.4,
+          "now": 0.7554811794069446
+        },
+        "step_scale": {
+          "was": 1.5,
+          "now": 0.5732981355529696
+        }
+      }
+    },
+    {
+      "iteration": 20,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.881422758102417,
+      "original_score": 0.7766133566333753,
+      "tuned_score": 1.4993764649079775,
+      "gain": 0.7227631082746022,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "initial_temp": {
+          "was": 1.2534,
+          "now": 0.9918919037317218
+        },
+        "cooling_rate": {
+          "was": 0.993,
+          "now": 0.9758302771160264
+        },
+        "global_jump_prob": {
+          "was": 0.1,
+          "now": 0.3418942382605499
+        }
+      }
+    },
+    {
+      "iteration": 22,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 0.49472618103027344,
+      "original_score": 0.471232195311972,
+      "tuned_score": 1.4718721638652765,
+      "gain": 1.0006399685533045,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "initial_temp": {
+          "was": 2.9861,
+          "now": 2.0801366277818314
+        },
+        "cooling_rate": {
+          "was": 0.9941,
+          "now": 0.9975372484699332
+        },
+        "restart_probability": {
+          "was": 0.1,
+          "now": 0.3294554222246889
+        }
+      }
+    },
+    {
+      "iteration": 24,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.9652941226959229,
+      "original_score": 1.3632103480059665,
+      "tuned_score": 1.499222451851712,
+      "gain": 0.13601210384574558,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "pop_size": {
+          "was": 25,
+          "now": 14
+        },
+        "mutation_rate": {
+          "was": 0.6,
+          "now": 0.5241788983874155
+        },
+        "step_scale": {
+          "was": 1.2,
+          "now": 0.6121267967151423
+        }
+      }
+    },
+    {
+      "iteration": 25,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 1.739483118057251,
+      "original_score": 1.495895350288952,
+      "tuned_score": 1.4987798254739695,
+      "gain": 0.0028844751850174433,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "pop_size": {
+          "was": 25,
+          "now": 16
+        },
+        "mutation_rate": {
+          "was": 0.6,
+          "now": 0.5592134168304743
+        },
+        "step_scale": {
+          "was": 1.2,
+          "now": 0.9623711265671512
+        }
+      }
+    },
+    {
+      "iteration": 23,
+      "tune_annotations_found": 3,
+      "tune_annotations_honored": 3,
+      "tuning_ran": true,
+      "tuning_duration_s": 2.0537829399108887,
+      "original_score": 1.4980889044359547,
+      "tuned_score": 1.4980889044359547,
+      "gain": 0.0,
+      "trials_completed": 19,
+      "trials_failed": 0,
+      "param_changes": {
+        "pop_size": {
+          "was": 23,
+          "now": 23
+        },
+        "mutation_rate": {
+          "was": 0.558,
+          "now": 0.558
+        },
+        "step_scale": {
+          "was": 0.7342,
+          "now": 0.7342
+        }
+      }
+    }
+  ]
+}
