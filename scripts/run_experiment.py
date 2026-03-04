@@ -102,6 +102,7 @@ def run_single(task: str, condition: str, seed: int, output_dir: Path, iteration
         "--config", config_path,
         "--iterations", str(iterations),
         "--output", str(run_dir),
+        "--seed", str(seed),
     ]
 
     # Pass run-specific output dir to child process so evaluators write
@@ -272,6 +273,8 @@ def main():
     parser.add_argument("--iterations", type=int, default=10, help="Iterations per run")
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--parallel", action="store_true", help="Run all conditions/seeds in parallel")
+    parser.add_argument("--interleave", action="store_true",
+                        help="Interleave conditions per seed: t_300,c_300,t_301,c_301 instead of t_300,t_301,c_300,c_301")
     args = parser.parse_args()
 
     output_dir = Path(args.output_dir)
@@ -281,10 +284,17 @@ def main():
 
     # Build list of (task, condition, seed) jobs
     jobs = []
-    for condition in conditions:
+    if args.interleave and len(conditions) > 1:
+        # Interleave: treatment_300, control_300, treatment_301, control_301
         for i in range(args.runs):
             seed = args.seed_start + i
-            jobs.append((args.task, condition, seed, output_dir, args.iterations))
+            for condition in conditions:
+                jobs.append((args.task, condition, seed, output_dir, args.iterations))
+    else:
+        for condition in conditions:
+            for i in range(args.runs):
+                seed = args.seed_start + i
+                jobs.append((args.task, condition, seed, output_dir, args.iterations))
 
     results = []
     if args.parallel:

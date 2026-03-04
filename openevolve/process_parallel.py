@@ -820,11 +820,37 @@ class ProcessParallelController:
                             )
                             self.tuning_tracker.save(tuning_path)
                         # v2: Checkpoint polish (not at final iteration — that uses final polish)
+                        # Polish must wait for all pending iterations to finish first,
+                        # because polish and workers share the same evaluator files
+                        # (e.g., routing.go for BLIS). Running concurrently causes
+                        # file races, timeouts, and corrupted scores.
                         if (
                             self.config.tuning.enabled
                             and completed_iteration + self.config.checkpoint_interval
                             <= total_iterations
                         ):
+                            # Drain all pending futures before polishing
+                            if pending_futures:
+                                logger.info(
+                                    f"[TUNE-CHECKPOINT] Waiting for {len(pending_futures)} "
+                                    f"pending iterations before polishing..."
+                                )
+                                for fut_iter, fut in list(pending_futures.items()):
+                                    try:
+                                        timeout_seconds = self.config.evaluator.timeout + 30
+                                        drain_result = fut.result(timeout=timeout_seconds)
+                                        if drain_result.child_program_dict:
+                                            child = Program(**drain_result.child_program_dict)
+                                            self.database.add(child, iteration=fut_iter)
+                                    except Exception as e:
+                                        logger.warning(
+                                            f"Iteration {fut_iter} failed during drain: {e}"
+                                        )
+                                pending_futures.clear()
+                                # Reset island pending tracking
+                                for isl in island_pending:
+                                    island_pending[isl].clear()
+
                             await self._polish_elites(completed_iteration, is_final=False)
 
                     # Check target score
@@ -1034,10 +1060,15 @@ class ProcessParallelController:
                     stats.selection_reason = f"{mode}_elite"
 
                     if polished_metrics:
-                        polished_score = polished_metrics.get("combined_score", 0)
+                        polished_score = polished_metrics.get("combined_score")
                         original_score = prog.metrics.get("combined_score", 0)
 
-                        if polished_score > original_score:
+                        # Reject invalid polished metrics (errors, timeouts, missing score)
+                        if (
+                            polished_score is not None
+                            and "error" not in polished_metrics
+                            and polished_score > original_score
+                        ):
                             prog.code = polished_code
                             prog.metrics = polished_metrics
                             self.database.programs[prog.id] = prog

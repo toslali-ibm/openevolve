@@ -57,6 +57,14 @@ def parse_args() -> argparse.Namespace:
 
     parser.add_argument("--secondary-model", help="Secondary LLM model name", default=None)
 
+    parser.add_argument(
+        "--seed",
+        "-s",
+        help="Random seed for reproducibility (overrides config random_seed)",
+        type=int,
+        default=None,
+    )
+
     return parser.parse_args()
 
 
@@ -102,6 +110,11 @@ async def main_async() -> int:
             print(f"Applied CLI model overrides - active models:")
             for i, model in enumerate(config.llm.models):
                 print(f"  Model {i+1}: {model.name} (weight: {model.weight})")
+
+    # Override random seed if specified on CLI
+    if args.seed is not None:
+        config.random_seed = args.seed
+        print(f"Using random seed: {args.seed}")
 
     # Initialize OpenEvolve
     try:

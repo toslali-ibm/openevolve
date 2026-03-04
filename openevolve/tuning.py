@@ -495,7 +495,14 @@ async def tune_program(
                 metrics = loop.run_until_complete(evaluate_fn(trial_code, trial_id))
             finally:
                 loop.close()
-            score = metrics.get("combined_score", 0.0)
+            # Treat evaluations without combined_score (timeouts, errors) as failures
+            if "combined_score" not in metrics or "error" in metrics:
+                logger.debug(
+                    f"[TUNING] Trial {trial.number} returned invalid metrics: "
+                    f"{list(metrics.keys())}"
+                )
+                return float("-inf")
+            score = metrics["combined_score"]
             trial.set_user_attr("metrics", metrics)
             return score
         except Exception as e:
@@ -534,10 +541,18 @@ async def tune_program(
     # Check if any trial beat the original
     try:
         best_trial = study.best_trial
-        if best_trial.value is not None and best_trial.value > original_score:
+        best_metrics = best_trial.user_attrs.get("metrics")
+        # Only accept if the trial has valid metrics with combined_score
+        if (
+            best_trial.value is not None
+            and best_trial.value > original_score
+            and best_trial.value > float("-inf")
+            and best_metrics
+            and "combined_score" in best_metrics
+            and "error" not in best_metrics
+        ):
             best_score = best_trial.value
             best_values = best_trial.params
-            best_metrics = best_trial.user_attrs.get("metrics", original_metrics)
 
             stats.tuned_score = best_score
             stats.gain = best_score - original_score
