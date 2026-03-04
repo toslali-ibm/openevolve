@@ -14,34 +14,67 @@ How to run A/B experiments for OpenEvolve features. Three independent features c
 
 ### 1. ALWAYS run experiments sequentially — NEVER in parallel
 
+**Run order**: `--condition both` interleaves treatment and control **by seed** — each
+treatment run is immediately followed by its matching control run before moving to the next seed.
+
 ```bash
-# CORRECT: single process, --condition both runs treatment then control sequentially
-python scripts/run_experiment.py --task <task> --condition both --runs 2 ...
+# CORRECT: single process, interleaved by seed (default)
+python scripts/run_experiment.py --task <task> --condition both --runs 3 ...
+# Execution order: treatment_500, control_500, treatment_501, control_501, treatment_502, control_502
 
 # WRONG: two parallel processes — causes data corruption
 python scripts/run_experiment.py --task <task> --condition treatment ... &
 python scripts/run_experiment.py --task <task> --condition control ... &
 ```
 
-**Why**: Some evaluators (especially BLIS router) write to shared files (e.g., `routing.go`).
-Parallel runs will clobber each other, producing corrupt results. Even for evaluators that
-don't share files (funcmin, circpack), parallel `run_experiment.py` processes write to the
-same output directory and can race on `convergence.csv` / `run_results.json`.
+**Why interleaved**: Interleaving controls for time-of-day LLM variation and lets you
+validate the pipeline on both conditions early (after seed 0 completes, you have one
+treatment and one control to compare). Use `--no-interleave` to group by condition
+(all treatment first, then all control) if you have a specific reason.
+
+**Why sequential**: Some evaluators (especially BLIS router) write to shared files (e.g.,
+`routing.go`). Parallel runs will clobber each other, producing corrupt results. Even for
+evaluators that don't share files (funcmin, circpack), parallel `run_experiment.py` processes
+write to the same output directory and can race on `convergence.csv` / `run_results.json`.
 
 ### 2. ALWAYS start from a clean state
 
-Before running experiments, remove any previous run data in the output directory:
+Before re-running an experiment, **move** the old data to `experiments/old/` with a version suffix:
 
 ```bash
-rm -rf experiments/tuning_ab_funcmin   # remove old data
+mv experiments/tuning_ab_funcmin experiments/old/tuning_ab_funcmin_v1   # archive old data
 # then run fresh
 python scripts/run_experiment.py --task function_minimization_tuning ...
 ```
 
+**NEVER** use `rm -rf` on experiment data. NEVER delete the entire `experiments/` directory
+or other experiments' data. Always archive to `experiments/old/`.
+
 **Why**: Leftover checkpoint directories, tracker files, or stale `convergence.csv` from
 previous runs can contaminate results or cause the experiment runner to skip/overwrite runs.
+Archiving preserves data for later comparison.
 
-### 3. One variable at a time
+### 3. ALWAYS use parallel_evaluations: 1 in tuning experiment configs
+
+All tuning experiment configs (`config_tuning_treatment.yaml` / `config_tuning_control.yaml`)
+**must** set `parallel_evaluations: 1`. Do NOT increase this value.
+
+```yaml
+evaluator:
+  parallel_evaluations: 1   # REQUIRED for tuning experiments
+```
+
+**Why**: With `parallel_evaluations > 1`, multiple worker iterations run concurrently. The
+checkpoint polish drain code processes completed iterations without triggering checkpoint
+callbacks, causing **missing checkpoints** (e.g., checkpoint_10 skipped entirely). Additionally,
+out-of-order iteration completion makes checkpoint triggering unreliable. The tuning pipeline
+(rescue selection, checkpoint polish, final polish) was designed assuming sequential iteration
+completion.
+
+**Verify before running**: `grep parallel_evaluations examples/<task>/config_tuning_*.yaml`
+— both treatment and control must show `1`.
+
+### 4. One variable at a time
 
 Each A/B experiment must isolate exactly **one** independent variable. Control and treatment
 configs must be **identical** except for the flag being tested. If testing tuning, both
@@ -202,8 +235,9 @@ run separate hypothesis-only and tuning-only A/B experiments (or use the factori
 
 ## Live Monitoring During Runs (IMPORTANT)
 
-Don't just launch experiments and wait. **Actively monitor** the first few iterations of
-each condition to catch pipeline failures early. A broken pipeline wastes hours of compute.
+Don't just launch experiments and wait. **Continuously monitor** every run throughout its
+entire duration. A broken pipeline or silent regression mid-run wastes hours of compute.
+Check logs after every few iterations, not just the first ones.
 
 ### How to monitor
 
@@ -219,7 +253,7 @@ tail -f experiments/<dir>/treatment_run_300/experiment_stderr.txt
 
 ### What to look for — Tuning treatment
 
-Check these within the **first 3-5 iterations**:
+Check these **continuously throughout the run** (not just the first few iterations):
 
 | Expected Log Line | What It Means | If Missing |
 |-------------------|---------------|------------|
@@ -266,7 +300,7 @@ ls experiments/<dir>/control_run_*/hypothesis_tracker.json  # should not exist
 ### When to abort and restart
 
 - **Config mismatch**: Treatment and control configs differ in more than the tested flag
-- **Pipeline not active**: 5+ iterations with zero annotations/hypotheses in treatment
+- **Pipeline not active**: 5+ consecutive iterations with zero annotations/hypotheses in treatment
 - **Evaluator broken**: Repeated evaluation failures in stderr
 - **Stale data**: Output directory had leftover files from a previous run
 
@@ -291,9 +325,16 @@ cd ../../..
 ## Analyzing Results
 
 ```bash
+# For hypothesis experiments (default labels: "Hypothesis-Driven" vs "Vanilla OpenEvolve")
 python scripts/analyze_experiment.py \
     --data experiments/<experiment_dir>/convergence.csv \
     --output experiments/<experiment_dir>
+
+# For tuning experiments (labels: "Tuning" vs "Control")
+python scripts/analyze_experiment.py \
+    --data experiments/<experiment_dir>/convergence.csv \
+    --output experiments/<experiment_dir> \
+    --labels tuning
 ```
 
 Produces:
@@ -336,6 +377,7 @@ experiments/tuning_ab_funcmin/
 | `blis_router_tuning` | Tuning | BLIS Go simulator | Go |
 | `function_minimization_tuning` | Tuning | Python function min | Python |
 | `circle_packing_tuning` | Tuning | Python circle packing | Python |
+| `web_scraper_tuning` | Tuning | Python web scraping | Python |
 
 ## Troubleshooting
 
@@ -350,6 +392,7 @@ experiments/tuning_ab_funcmin/
 | `persist_rate` = 0 (hypothesis) | Diff application stripping hypotheses; check rescue logic |
 | Scores identical treatment/control | Pipeline may not be active; check tracker files exist |
 | Parallel run corruption | **Kill all processes**, clean output dir, restart with `--condition both` |
+| Missing checkpoints (e.g., checkpoint_10 skipped) | Set `parallel_evaluations: 1` in both configs. With >1, drain skips checkpoint callbacks |
 
 ## Document History
 

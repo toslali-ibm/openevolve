@@ -44,3 +44,18 @@ The order per task will be:
   That way after just 2 runs we already have one treatment + one control to compare.
                                                                                                                                                              
   Launch them now
+
+
+---
+
+go aahead and run ab experiments for tuning feature (hypos are disabled) and sequential between controll and treatments so no adverse affect -- prefix experiment with tuning_v2 
+Process 1: funcmin_tuning     → treatment_300 → treatment_301 → control_300 → control_301
+Process 2: circpack_tuning    → treatment_300 → treatment_301 → control_300 → control_301
+Process 3: blis_router_tuning → treatment_300 → treatment_301 → control_300 → control_301
+
+The order per task will be:
+Each process: treatment_300 → control_300 → treatment_301 → control_301
+                                                                                     
+That way after just 2 runs we already have one treatment + one control to compare.
+
+Launch them now

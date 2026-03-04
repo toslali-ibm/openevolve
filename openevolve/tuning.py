@@ -77,13 +77,18 @@ def parse_tune_annotations(code: str, max_params: int = 3) -> List[TuneParam]:
             high = float(m.group(5).strip())
             type_hint = (m.group(6) or "").strip()
 
-            if type_hint == "int":
-                param_type = "int"
-                value = int(float(raw_value))
-                low, high = int(low), int(high)
-            else:
-                param_type = "float"
-                value = float(raw_value)
+            try:
+                if type_hint == "int":
+                    param_type = "int"
+                    value = int(float(raw_value))
+                    low, high = int(low), int(high)
+                else:
+                    param_type = "float"
+                    value = float(raw_value)
+            except (ValueError, TypeError):
+                # Skip annotations on non-numeric expressions (e.g.
+                # desc = desc_text[:300]  # @TUNE [150, 600])
+                continue
 
             params.append(
                 TuneParam(

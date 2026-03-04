@@ -44,8 +44,23 @@ def apply_locf(df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def plot_convergence_curves(df: pd.DataFrame, output_dir: Path, title_suffix: str = ""):
+LABEL_PRESETS = {
+    "hypothesis": {
+        "treatment": "Hypothesis-Driven",
+        "control": "Vanilla OpenEvolve",
+        "title": "Hypothesis-Driven vs Vanilla",
+    },
+    "tuning": {
+        "treatment": "Tuning",
+        "control": "Control",
+        "title": "Tuning vs Control",
+    },
+}
+
+
+def plot_convergence_curves(df: pd.DataFrame, output_dir: Path, title_suffix: str = "", labels: str = "hypothesis"):
     """Plot median convergence curves with IQR bands."""
+    preset = LABEL_PRESETS[labels]
     fig, ax = plt.subplots(figsize=(8, 5))
 
     for condition, color in [("treatment", "#2196F3"), ("control", "#FF5722")]:
@@ -60,13 +75,13 @@ def plot_convergence_curves(df: pd.DataFrame, output_dir: Path, title_suffix: st
         q75 = grouped.quantile(0.75)
 
         n_runs = cond_data["seed"].nunique()
-        label = f"Hypothesis-Driven (n={n_runs})" if condition == "treatment" else f"Vanilla OpenEvolve (n={n_runs})"
+        label = f"{preset[condition]} (n={n_runs})"
         ax.plot(median.index, median.values, color=color, linewidth=2, label=label, marker="o", markersize=4)
         ax.fill_between(median.index, q25.values, q75.values, color=color, alpha=0.2)
 
     ax.set_xlabel("Iteration", fontsize=12)
     ax.set_ylabel("Best Combined Score", fontsize=12)
-    ax.set_title(f"Convergence: Hypothesis-Driven vs Vanilla{title_suffix}", fontsize=13)
+    ax.set_title(f"Convergence: {preset['title']}{title_suffix}", fontsize=13)
     ax.legend(fontsize=11)
     ax.grid(True, alpha=0.3)
 
@@ -77,8 +92,9 @@ def plot_convergence_curves(df: pd.DataFrame, output_dir: Path, title_suffix: st
     print(f"Saved convergence_curves.png")
 
 
-def plot_final_scores_boxplot(df: pd.DataFrame, output_dir: Path):
+def plot_final_scores_boxplot(df: pd.DataFrame, output_dir: Path, labels: str = "hypothesis"):
     """Box plot of final best scores at last iteration."""
+    preset = LABEL_PRESETS[labels]
     # Use the max iteration that BOTH conditions have data for
     treatment_iters = set(df[df["condition"] == "treatment"]["iteration"].unique())
     control_iters = set(df[df["condition"] == "control"]["iteration"].unique())
@@ -100,7 +116,7 @@ def plot_final_scores_boxplot(df: pd.DataFrame, output_dir: Path):
 
     fig, ax = plt.subplots(figsize=(6, 5))
     data = [treatment_scores, control_scores]
-    labels = [f"Hypothesis-Driven\n(n={len(treatment_scores)})", f"Vanilla\n(n={len(control_scores)})"]
+    labels = [f"{preset['treatment']}\n(n={len(treatment_scores)})", f"{preset['control']}\n(n={len(control_scores)})"]
 
     bp = ax.boxplot(data, labels=labels, patch_artist=True)
     bp["boxes"][0].set_facecolor("#2196F3")
@@ -160,6 +176,12 @@ def main():
     parser.add_argument("--data", required=True, help="Path to convergence.csv")
     parser.add_argument("--output", required=True, help="Output directory for plots")
     parser.add_argument("--title", default="", help="Title suffix for plots")
+    parser.add_argument(
+        "--labels",
+        choices=["hypothesis", "tuning"],
+        default="hypothesis",
+        help="Label style: 'hypothesis' (Hypothesis-Driven vs Vanilla) or 'tuning' (Tuning vs Control)",
+    )
     args = parser.parse_args()
 
     df = load_data(args.data)
@@ -174,8 +196,8 @@ def main():
     df = apply_locf(df)
     print(f"After LOCF: {len(df)} data points")
 
-    plot_convergence_curves(df, output_dir, args.title)
-    plot_final_scores_boxplot(df, output_dir)
+    plot_convergence_curves(df, output_dir, args.title, labels=args.labels)
+    plot_final_scores_boxplot(df, output_dir, labels=args.labels)
 
     stats = compute_statistics(df)
     print("\n=== Statistical Summary ===")

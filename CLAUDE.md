@@ -126,10 +126,11 @@ Two experimental features can be toggled independently via config flags:
 **Read `docs/AB_EXPERIMENT_HOWTO.md` before running any experiment.** It covers hypothesis, tuning, and combined experiments.
 
 **Critical rules:**
-- **NEVER run experiments in parallel** — always `--condition both` (sequential)
-- **Always clean state first** — `rm -rf experiments/<dir>` before re-running
+- **NEVER run experiments in parallel** — always `--condition both` (sequential, interleaved by seed: t_300, c_300, t_301, c_301...)
+- **Always clean state first** — move the old experiment to `experiments/old/` before re-running (e.g., `mv experiments/tuning_ab_funcmin experiments/old/tuning_ab_funcmin_v1`). NEVER `rm -rf` experiments or delete the entire `experiments/` directory
 - **One variable at a time** — tuning A/B: both configs set `hypothesis_driven: false`; hypothesis A/B: both set `tuning.enabled: false`
-- **Monitor during runs** — tail logs and verify expected log lines appear (see monitoring section in AB doc)
+- **Tuning configs MUST use `parallel_evaluations: 1`** — with >1, checkpoint drain skips callbacks causing missing checkpoints. Verify: `grep parallel_evaluations examples/<task>/config_tuning_*.yaml`
+- **Monitor continuously** — tail logs throughout every run (not just initial iterations) and verify expected log lines appear (see monitoring section in AB doc)
 
 **Quick reference:**
 ```bash

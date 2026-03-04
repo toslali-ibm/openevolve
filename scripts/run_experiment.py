@@ -84,6 +84,12 @@ TASK_CONFIGS = {
         "treatment_config": "examples/web_scraper_optillm/config_experiment_treatment.yaml",
         "control_config": "examples/web_scraper_optillm/config_experiment_control.yaml",
     },
+    "web_scraper_tuning": {
+        "initial_program": "examples/web_scraper_optillm/initial_program.py",
+        "evaluator": "examples/web_scraper_optillm/evaluator.py",
+        "treatment_config": "examples/web_scraper_optillm/config_tuning_treatment.yaml",
+        "control_config": "examples/web_scraper_optillm/config_tuning_control.yaml",
+    },
 }
 
 
@@ -273,8 +279,8 @@ def main():
     parser.add_argument("--iterations", type=int, default=10, help="Iterations per run")
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--parallel", action="store_true", help="Run all conditions/seeds in parallel")
-    parser.add_argument("--interleave", action="store_true",
-                        help="Interleave conditions per seed: t_300,c_300,t_301,c_301 instead of t_300,t_301,c_300,c_301")
+    parser.add_argument("--no-interleave", action="store_true",
+                        help="Group by condition (t_300,t_301,c_300,c_301) instead of default interleaved order (t_300,c_300,t_301,c_301)")
     args = parser.parse_args()
 
     output_dir = Path(args.output_dir)
@@ -283,8 +289,11 @@ def main():
     total_runs = len(conditions) * args.runs
 
     # Build list of (task, condition, seed) jobs
+    # Default: interleave by seed (treatment_300, control_300, treatment_301, control_301)
+    # This controls for time-of-day LLM variation and catches pipeline issues early.
+    # Use --no-interleave to group by condition (all treatment first, then all control).
     jobs = []
-    if args.interleave and len(conditions) > 1:
+    if not args.no_interleave and len(conditions) > 1:
         # Interleave: treatment_300, control_300, treatment_301, control_301
         for i in range(args.runs):
             seed = args.seed_start + i
